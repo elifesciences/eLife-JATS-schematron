@@ -25,6 +25,7 @@
 
 <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence')"/>
+  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
   
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature article', 'Insight', 'Editorial')"/>
@@ -1860,7 +1861,6 @@
   
   <pattern
     id="related-articles">
-    <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
     
     <rule context="article[$disp-channel = 'Research Advance']//article-meta" 
       id="research-advance-test">
