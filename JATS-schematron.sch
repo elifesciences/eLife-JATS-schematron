@@ -94,6 +94,38 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:citation-format">
+    <xsl:param name="year"/>
+    <xsl:choose>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname,', ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/collab">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,', ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' and ',$year/ancestor::element-citation/person-group[1]/name/surname,' ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname,' and ',$year/ancestor::element-citation/person-group[1]/collab,' ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 2)">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname,' and ',$year/ancestor::element-citation/person-group[1]/name[2]/surname,' ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/collab) = 2)">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1],' and ',$year/ancestor::element-citation/person-group[1]/collab[2],' ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1], ' et al., ',$year)"/>
+      </xsl:when>
+      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
+        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname, ' et al., ',$year)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'undetermined'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
       <report test="@dtd-version" role="info" id="dtd-info">DTD version is<value-of select="@dtd-version"/>
@@ -480,7 +512,7 @@
       <assert test="@mimetype" role="error" id="media-test-1">media must have @mimetype.</assert>
       <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
       <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
-      <report test="if (@mime-subtype='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if (@mime-subtype='x-m') then not(matches(@xlink:href,'\.m$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>
       <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>
       <report test="@mime-subtype='octet-stream' and matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$||\.xlsx$||\.mp4$|\.gif$|')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>
     </rule>
@@ -488,7 +520,7 @@
   <pattern id="supplementary-material-tests-pattern">
     <rule context="supplementary-material" id="supplementary-material-tests">
       <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
-      <report test="if (label = 'Transparent reporting form') then ()                      else not(caption)" role="warning" id="supplementary-material-test-2">supplementary-material does not have a caption. Is this correct?</report>
+      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="warning" id="supplementary-material-test-2">supplementary-material does not have a caption. Is this correct?</report>
       <report test="if (caption) then not(caption/title)                     else ()" role="error" id="supplementary-material-test-3">supplementary-material caption must have a title.</report>
       <report test="if (label = 'Transparent reporting form') then ()                      else not(caption/p)" role="warning" id="supplementary-material-test-4">supplementary-material caption does not have a p. Is this correct?</report>
       <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>
@@ -539,7 +571,7 @@
   </pattern>
   <pattern id="td-child-tests-pattern">
     <rule context="td/*" id="td-child-tests">
-      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline')"/>
+      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/>
       <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain<value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold','italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace', and 'xref'.</assert>
     </rule>
   </pattern>
@@ -552,6 +584,11 @@
   <pattern id="fn-tests-pattern">
     <rule context="fn[@id]" id="fn-tests">
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
+    </rule>
+  </pattern>
+  <pattern id="general-label-tests-pattern">
+    <rule context="supplementary-material/label|fig/label|media/label" id="general-label-tests">
+      <assert test="matches(.,'\.$')" role="error" id="full-stop-assert">label MUST end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="fig-specific-tests-pattern">
@@ -907,11 +944,6 @@
       <report test="count(p) = 0" role="error" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="reply-p-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body//p" id="reply-p-tests">
-      <report test="not(parent::disp-quote) and matches(.,'^[0-9]')" role="warning" id="reply-p-test-1">paragraph in author reply begins with number but isn't captured in a parent disp-quote. Is this correct?</report>
-    </rule>
-  </pattern>
   <pattern id="reply-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
       <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
@@ -958,8 +990,8 @@
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">
       <let name="token1" value="substring-before(.,' ')"/>
       <let name="token2" value="substring-after(.,$token1)"/>
-      <assert test=". = concat(concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),        ' ',        string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')        )" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case -<value-of select="concat(concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),' ',string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' '))"/>
-      </assert>
+      <report test="if (contains(.,' ')) then . != concat(        concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),        ' ',        string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')        )        else (. != concat(upper-case(substring(., 1, 1)), lower-case(substring(., 2))))" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case -<value-of select="if (contains(.,' ')) then concat(concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),' ',string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')) else (concat(upper-case(substring(., 1, 1)), lower-case(substring(., 2))))"/>
+      </report>
       <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
     </rule>
   </pattern>
