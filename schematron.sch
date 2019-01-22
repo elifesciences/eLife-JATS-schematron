@@ -182,6 +182,44 @@
       <xsl:otherwise><xsl:value-of select="'undetermined'"/></xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
+  <xsl:function name="e:isbn-sum" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="string-length($s) = 10">
+        <xsl:variable name="d1" select="number(substring($s,1,1)) * 10"/>
+        <xsl:variable name="d2" select="number(substring($s,2,1)) * 9"/>
+        <xsl:variable name="d3" select="number(substring($s,3,1)) * 8"/>
+        <xsl:variable name="d4" select="number(substring($s,4,1)) * 7"/>
+        <xsl:variable name="d5" select="number(substring($s,5,1)) * 6"/>
+        <xsl:variable name="d6" select="number(substring($s,6,1)) * 5"/>
+        <xsl:variable name="d7" select="number(substring($s,7,1)) * 4"/>
+        <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
+        <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
+        <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
+        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+      </xsl:when>
+      <xsl:when test="string-length($s) = 13">
+        <xsl:variable name="d1" select="number(substring($s,1,1))"/>
+        <xsl:variable name="d2" select="number(substring($s,2,1)) * 3"/>
+        <xsl:variable name="d3" select="number(substring($s,3,1))"/>
+        <xsl:variable name="d4" select="number(substring($s,4,1)) * 3"/>
+        <xsl:variable name="d5" select="number(substring($s,5,1))"/>
+        <xsl:variable name="d6" select="number(substring($s,6,1)) * 3"/>
+        <xsl:variable name="d7" select="number(substring($s,7,1))"/>
+        <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
+        <xsl:variable name="d9" select="number(substring($s,9,1))"/>
+        <xsl:variable name="d10" select="number(substring($s,10,1)) * 3"/>
+        <xsl:variable name="d11" select="number(substring($s,11,1))"/>
+        <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
+        <xsl:variable name="d13" select="number(substring($s,13,1))"/>
+        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="number('1')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
  <pattern
  	id="article">
@@ -756,8 +794,8 @@
       id="institution-tests">
       
       <report test="matches(.,'[\p{P}]$')"
-        role="error"
-        id="institution-test-1">This element cannot end in punctuation - '<value-of select="substring(.,string-length(.),1)"/>'.</report>
+        role="warning"
+        id="institution-test-1">Institution ends in punctuation - '<value-of select="substring(.,string-length(.),1)"/>' - is this correct?</report>
       
       <report test="matches(.,'^US$|^USA$|^UK$')"
         role="error"
@@ -1093,6 +1131,16 @@
       <report test="@mime-subtype='octet-stream' and matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$||\.xlsx$||\.mp4$|\.gif$|')" 
         role="warning"
         id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
+      
+      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))
+        else ()"
+        role="error"
+        id="media-test-7">video label does not conform to eLife's usual label format.</report>
+      
+      <report test="if (@mimetype='video') then (not(label))
+        else ()"
+        role="error"
+        id="media-test-8">video does not contain a label, which is incorrect.</report>
     </rule>
     
     <rule context="supplementary-material" 
@@ -1112,14 +1160,19 @@
         role="error"
         id="supplementary-material-test-3">supplementary-material caption must have a title.</report>
       
-      <report test="if (label = 'Transparent reporting form') then () 
+      <!-- Not included because in most instances this is the case
+        <report test="if (label = 'Transparent reporting form') then () 
                     else not(caption/p)" 
         role="warning"
-        id="supplementary-material-test-4">supplementary-material caption does not have a p. Is this correct?</report>
+        id="supplementary-material-test-4">supplementary-material caption does not have a p. Is this correct?</report>-->
       
       <assert test="media"
         role="error"
-        id="supplementary-material-test-5">supplementary-material must have a media.</assert>
+        id="supplementary-material-test-5">supplementary-material must have a media.</assert>		
+      
+      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard$')"
+        role="error"
+        id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
     </rule>
     
     <rule context="disp-formula" 
@@ -1220,14 +1273,6 @@
       <assert test="ancestor::article//xref/@rid = @id"
         role="error"
         id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
-    </rule>
-    
-    <rule context="supplementary-material/label|fig/label|media/label"
-      id="general-label-tests">		
-      
-      <assert test="matches(.,'\.$')"
-        role="error"
-        id="full-stop-assert">label MUST end with a full stop.</assert>
     </rule>
   </pattern>
   
@@ -3589,7 +3634,7 @@
   <pattern
     id="house-style">
     
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|ext-link|named-content|monospace|code|underline"
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline"
       id="unallowed-symbol-tests">		
       
       <report test="contains(.,'©')"
@@ -3640,9 +3685,7 @@
         role="error"
         id="united-kingdom-test-2"><value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
     </rule>
-  </pattern>
-    
-    <pattern>
+  
     <rule context="xref[@ref-type='bibr']" id="ref-xref-tests">
       <let name="rid" value="@rid"></let>
       <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
@@ -3655,6 +3698,39 @@
       
     </rule>
     
+    <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
+      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
+      
+      <report test="matches(.,'plos|Plos|PLoS')"
+        role="error" 
+        id="PLOS">ref '<value-of select="ancestor::ref/@id"/>' contains
+        <value-of select="."/>. 'PLOS' should be upper-case.</report>
+      
+      <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'
+        else()"
+        role="error" 
+        id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has a PNAS doi but the title is
+        <value-of select="."/>, which is incorrect.</report>
+      
+    </rule>
+    
+    <rule context="element-citation[@publication-type='website']" id="website-tests">
+      
+      <report test="contains(ext-link,'github')"
+        role="error" 
+        id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
+      
+    </rule>
+    
+    <rule context="element-citation/pub-id[@pub-id-type='isbn']" 
+      id="isbn-conformity">
+      <let name="t" value="translate(.,'-','')"/>
+      <let name="sum" value="e:isbn-sum($t)"/>
+      
+      <assert test="number($sum) = 0"
+        role="error" 
+        id="isbn-conformity-test">pub-id contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
+    </rule>
   </pattern>
   
 </schema>
