@@ -2301,9 +2301,9 @@
   <pattern id="rrid-presence-pattern">
     <rule context="p|td|th" id="rrid-presence">
       <let name="count" value="count(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')])"/>
-      <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_\d+')"/>
+      <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+')"/>
       <let name="hit-count" value="count($hit//*:match)"/>
-      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_\d+') and ($count != $hit-count)" role="error" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+') and ($count != $hit-count)" role="error" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
