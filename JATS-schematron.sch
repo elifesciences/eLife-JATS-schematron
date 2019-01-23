@@ -2293,9 +2293,9 @@
   <pattern id="final-gene-primer-sequence-pattern">
     <rule context="p" id="final-gene-primer-sequence">
       <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
-      <let name="hit" value="analyze-string(.,'[ACGT]{15,}')"/>
+      <let name="hit" value="analyze-string(.,'[ACGTacgt]{15,}')"/>
       <let name="hit-count" value="count($hit//*:match)"/>
-      <report test="matches(.,'[ACGT]{15,}') and ($count != $hit-count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - could it be '<value-of select="$hit//*:match[1]"/>'?</report>
+      <report test="matches(.,'[ACGTacgt]{15,}') and ($count != $hit-count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - could it be '<value-of select="$hit//*:match[1]"/>'?</report>
     </rule>
   </pattern>
   <pattern id="rrid-presence-pattern">
