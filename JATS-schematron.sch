@@ -2295,6 +2295,11 @@
       <report test="not(descendant::named-content[@content-type='sequence']) and matches(.,'[ACGT]{15,}')" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence. Is this the case?</report>
     </rule>
   </pattern>
+  <pattern id="rrid-presence-pattern">
+    <rule context="p|td|th" id="rrid-presence">
+      <report test="not(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')]) and matches(.,'RRID:\s?[A-Za-z]{1,}_\d+')" role="error" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+    </rule>
+  </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution" id="unallowed-symbol-tests">
       <report test="contains(.,'©')" role="error" id="copyright-symbol">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
@@ -2335,7 +2340,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
       <report test="matches(.,'plos|Plos|PLoS')" role="error" id="PLOS">ref '<value-of select="ancestor::ref/@id"/>' contains<value-of select="."/>. 'PLOS' should be upper-case.</report>
-      <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has a PNAS doi but the title is<value-of select="."/>, which is incorrect.</report>
+      <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the title is<value-of select="."/>, which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">

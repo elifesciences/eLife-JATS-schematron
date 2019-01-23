@@ -3653,6 +3653,19 @@
   </pattern>
   
   <pattern
+    id="rrid-pattern">
+    
+    <rule context="p|td|th"
+      id="rrid-presence">		
+      
+      <report test="not(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')]) and matches(.,'RRID:\s?[A-Za-z]{1,}_\d+')"
+        role="error"
+        id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+    </rule>
+    
+  </pattern>
+  
+  <pattern
     id="house-style">
     
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution"
@@ -3734,7 +3747,7 @@
       <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'
         else()"
         role="error" 
-        id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has a PNAS doi but the title is
+        id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the title is
         <value-of select="."/>, which is incorrect.</report>
       
     </rule>
