@@ -2292,12 +2292,14 @@
   </pattern>
   <pattern id="final-gene-primer-sequence-pattern">
     <rule context="p" id="final-gene-primer-sequence">
-      <report test="not(descendant::named-content[@content-type='sequence']) and matches(.,'[ACGT]{15,}')" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence. Is this the case?</report>
+      <let name="string" value="analyze-string(.,'[ACGT]{15,}')"/>
+      <report test="not(descendant::named-content[@content-type='sequence']) and matches(.,'[ACGT]{15,}')" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - '<value-of select="$string//*:match[1]"/>'. Is this the case?</report>
     </rule>
   </pattern>
   <pattern id="rrid-presence-pattern">
     <rule context="p|td|th" id="rrid-presence">
-      <report test="not(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')]) and matches(.,'RRID:\s?[A-Za-z]{1,}_\d+')" role="error" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+      <let name="string" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_\d+')"/>
+      <report test="not(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')]) and matches(.,'RRID:\s?[A-Za-z]{1,}_\d+')" role="error" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - '<value-of select="$string//*:match[1]"/>'. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
