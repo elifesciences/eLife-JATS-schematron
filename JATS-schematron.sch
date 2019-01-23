@@ -620,6 +620,7 @@
   <pattern id="math-tests-pattern">
     <rule context="mml:math" id="math-tests">
       <report test="normalize-space(.)=''" role="error" id="math-test-1">mml:math must not be empty.</report>
+      <report test="descendant::mml:merror" role="warning" id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. Is this correct? Does the math render correctly?.</report>
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -658,11 +659,12 @@
   <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace')"/>
-      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="th-child-test">th cannot contain<value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
+      <assert test="self::*/local-name() = ($allowed-blocks,'bold')" role="error" id="th-child-test-1">th cannot contain<value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
+      <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="fn-tests-pattern">
-    <rule context="fn[@id]" id="fn-tests">
+    <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
   </pattern>
@@ -691,12 +693,12 @@
   </pattern>
   <pattern id="box-fig-tests-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests">
-      <assert test="matches(.,'^Box \d{1,4}—Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—Figure 1.', or 'Chemical Structure 1.', or 'Schema 1'.</assert>
+      <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Schema 1'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-tests-pattern">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests">
-      <assert test="matches(.,'^Appendix \d{1,4}—Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1.', or 'Chemical Structure 1.', or 'Schema 1'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Schema 1'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-tests-pattern">
@@ -1487,10 +1489,10 @@
         Each pub-id element must have one of these types: accession, archive, ark, assigning-authority or doi. 
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with types 
         '<value-of select="@pub-id-type"/>'.</assert>
-      <assert test="if (@pub-id-type ne 'doi') then @xlink:href else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1]
+      <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1]
         If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. 
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type 
-        '<value-of select="@pub-id-type"/>' but no @xlink-href.</assert>
+        '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
     </rule>
   </pattern>
   <pattern id="elem-citation-data-ext-link-pattern">
@@ -2288,26 +2290,25 @@
       <report test="matches(p,'[\p{P}]$')" role="error" id="feature-bio-test-3">bio cannot end in punctuation - '<value-of select="substring(p,string-length(p),1)"/>'.</report>
     </rule>
   </pattern>
+  <pattern id="final-gene-primer-sequence-pattern">
+    <rule context="p" id="final-gene-primer-sequence">
+      <report test="not(descendant::named-content[@content-type='sequence']) and matches(.,'[ACGT]{15,}')" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence. Is this the case?</report>
+    </rule>
+  </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline" id="unallowed-symbol-tests">
-      <report test="contains(.,'©')" role="error" id="copyright-symbol">
-        <value-of select="local-name()"/>element contains the copyright symbol, '©', which is not allowed.</report>
-      <report test="contains(.,'™')" role="error" id="trademark-symbol">
-        <value-of select="local-name()"/>element contains the trademark symbol, '™', which is not allowed.</report>
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">
-        <value-of select="local-name()"/>element contains the registered trademark symbol, '®', which is not allowed.</report>
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution" id="unallowed-symbol-tests">
+      <report test="contains(.,'©')" role="error" id="copyright-symbol">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report test="contains(.,'™')" role="error" id="trademark-symbol">'<value-of select="local-name()"/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">'<value-of select="local-name()"/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report test="matches(.,' [Ii]nc\. ')" role="warning" id="Inc-presence">'<value-of select="local-name()"/>' element contains 'Inc.' with a full stop. Remove the full stop.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
     <rule context="sup" id="unallowed-symbol-tests-sup">
-      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">
-        <value-of select="local-name()"/>element contains the copyright symbol, '©', which is not allowed.</report>
-      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">
-        <value-of select="local-name()"/>element contains the trademark symbol, '™', which is not allowed.</report>
-      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">
-        <value-of select="local-name()"/>element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">
-        <value-of select="local-name()"/>element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">'<value-of select="local-name()"/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<value-of select="local-name()"/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
+      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">'<value-of select="local-name()"/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
@@ -2340,6 +2341,13 @@
   <pattern id="website-tests-pattern">
     <rule context="element-citation[@publication-type='website']" id="website-tests">
       <report test="contains(ext-link,'github')" role="error" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
+    </rule>
+  </pattern>
+  <pattern id="ref-name-tests-pattern">
+    <rule context="element-citation/person-group[@person-group-type='author']//name" id="ref-name-tests">
+      <report test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
+      <report test="matches(.,'[Ed]itor')" role="warning" id="author-test-2">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Editor'. Is this correct?</report>
+      <report test="matches(.,'[Pp]ress')" role="warning" id="author-test-3">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Press'. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="isbn-conformity-pattern">
