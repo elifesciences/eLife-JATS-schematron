@@ -3644,11 +3644,13 @@
     
     <rule context="p"
       id="final-gene-primer-sequence">
-      <let name="string" value="analyze-string(.,'[ACGT]{15,}')"/>
+      <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
+      <let name="hit" value="analyze-string(.,'[ACGT]{15,}')"/>
+      <let name="hit-count" value="count($hit//*:match)"/>
       
-      <report test="not(descendant::named-content[@content-type='sequence']) and matches(.,'[ACGT]{15,}')"
+      <report test="matches(.,'[ACGT]{15,}') and ($count != $hit-count)"
         role="warning"
-        id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - '<value-of select="$string//*:match[1]"/>'. Is this the case?</report>
+        id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - could it be '<value-of select="$hit//*:match[1]"/>'?</report>
     </rule>
     
   </pattern>
@@ -3658,11 +3660,13 @@
     
     <rule context="p|td|th"
       id="rrid-presence">		
-      <let name="string" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_\d+')"/>
+      <let name="count" value="count(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')])"/>
+      <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_\d+')"/>
+      <let name="hit-count" value="count($hit//*:match)"/>
       
-      <report test="not(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')]) and matches(.,'RRID:\s?[A-Za-z]{1,}_\d+')"
+      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_\d+') and ($count != $hit-count)"
         role="error"
-        id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - '<value-of select="$string//*:match[1]"/>'. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+        id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
     </rule>
     
   </pattern>
