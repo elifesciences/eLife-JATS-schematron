@@ -268,8 +268,8 @@
       <assert test="count(permissions) = 1" role="error" id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are<value-of select="count(permissions)"/>
       </assert>
       <assert test="count(abstract[not(@abstract-type='executive-summary')]) = 1 or (count(abstract[not(@abstract-type='executive-summary')]) = 1 and count(abstract[@abstract-type='executive-summary']) = 1)" role="error" id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</assert>
-      <report test="if ($article-type = $features-article-types) then ()                    else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are<value-of select="count(funding-group)"/>.</report>
-      <report test="if ($article-type = $exceptions) then ()                   else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types excepting Insights, Retractions and Corrections.</report>
+      <report test="if (($article-type = $features-article-types) or ($subj-type = 'Scientific Correspondence')) then ()                    else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are<value-of select="count(funding-group)"/>.</report>
+      <report test="if ($article-type = $exceptions) then ()                   else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
       <assert test="count(kwd-group[@kwd-group-type='author-keywords']) = 1" role="error" id="test-auth-kwd-group-presence">One author keyword group must be present in article-meta .</assert>
       <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
     </rule>
@@ -718,10 +718,10 @@
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
       <report test="count(sec) = 0" role="error" id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>
-      <report test="if ($type = 'Short Report') then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">
         <value-of select="$type"/>doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
-      <report test="if ($type = 'Short Report') then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in<value-of select="$type"/>content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</report>
-      <report test="if ($type = 'Short Report') then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in<value-of select="$type"/>content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in<value-of select="$type"/>content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in<value-of select="$type"/>content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="top-level-sec-tests-pattern">
@@ -742,7 +742,7 @@
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="string" value="e:article-type2title($type)"/>
       <let name="specifics" value="('Scientific Correspondence','Replication Study','Registered Report','Correction','Retraction')"/>
-      <report test="if ($type = $specifics) then not(starts-with(.,$string))                     else ()" role="error" id="article-type-title-test">title of a<value-of select="$type"/>must start with '<value-of select="$string"/>'.</report>
+      <report test="if ($type = $specifics) then not(starts-with(.,$string))                     else ()" role="warning" id="article-type-title-test">title of a '<value-of select="$type"/>' should usually start with '<value-of select="$string"/>'. Is it correct?</report>
     </rule>
   </pattern>
   <pattern id="sec-title-tests-pattern">
@@ -911,9 +911,10 @@
   <pattern id="back-tests-pattern">
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
+      <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="if ($article-type = $features-article-types) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
       <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">One and only one sec[@sec-type="supplementary-material"] may be present in back.</report>
-      <report test="if ($article-type != 'research-article') then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for<value-of select="$article-type"/>.</report>
+      <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for<value-of select="$article-type"/>.</report>
       <report test="count(ack) gt 1" role="error" id="back-test-4">One and only one ack may be present in back.</report>
       <report test="if ($article-type != ('research-article','article-commentary')) then ()                     else count(ref-list) != 1" role="error" id="back-test-5">One and only one ref-list must be present in<value-of select="$article-type"/>content.</report>
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
@@ -2310,6 +2311,14 @@
       <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+')"/>
       <let name="hit-count" value="count($hit//*:match)"/>
       <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)" role="warning" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+    </rule>
+  </pattern>
+  <pattern id="duplicate-ref-pattern">
+    <rule context="ref-list//ref" id="duplicate-ref">
+      <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
+      <let name="title" value="element-citation/article-title"/>
+      <report test="($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
+      <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
