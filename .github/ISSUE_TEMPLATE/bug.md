@@ -1,7 +1,10 @@
 ---
-title: 'Bug'
+name: 
+about: 
+title: Bug
 labels: bug
 assignees: FAtherden-eLife
+
 ---
 
 #### Background
