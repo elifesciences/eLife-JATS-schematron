@@ -608,7 +608,7 @@
   </pattern>
   <pattern id="disp-formula-tests-pattern">
     <rule context="disp-formula" id="disp-formula-tests">
-      <assert test="label" role="warning" id="disp-formula-test-1">disp-formula doesn not have a label. Is this correct?</assert>
+      <assert test="label" role="warning" id="disp-formula-test-1">disp-formula does not have a label. Is this correct?</assert>
       <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
@@ -658,7 +658,7 @@
   </pattern>
   <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace')"/>
+      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula')"/>
       <assert test="self::*/local-name() = ($allowed-blocks,'bold')" role="error" id="th-child-test-1">th cannot contain<value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
       <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct?</report>
     </rule>
@@ -704,6 +704,12 @@
   <pattern id="app-fig-sup-tests-pattern">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests">
       <assert test="matches(.,'^Appendix \d{1,4}—Figure \d{1,4}—Figure Supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1—Figure Supplement 1.'.</assert>
+    </rule>
+  </pattern>
+  <pattern id="fig-title-tests-pattern">
+    <rule context="fig/caption/title" id="fig-title-tests">
+      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="ra-body-tests-pattern">
@@ -2269,7 +2275,7 @@
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">
       <let name="token1" value="substring-before(.,' ')"/>
       <let name="token2" value="substring-after(.,$token1)"/>
-      <report test="if (contains(.,' ')) then . != concat(        concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),        ' ',        string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')        )        else (. != concat(upper-case(substring(., 1, 1)), lower-case(substring(., 2))))" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case -<value-of select="if (contains(.,' ')) then concat(concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),' ',string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')) else (concat(upper-case(substring(., 1, 1)), lower-case(substring(., 2))))"/>
+      <report test="if (contains(.,' ')) then . != concat(        concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),        ' ',        string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')        )        else . != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case -<value-of select="if (contains(.,' ')) then . != concat(          concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),          ' ',          string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')          )          else . != e:titleCase(.)"/>
       </report>
       <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
     </rule>
@@ -2301,17 +2307,17 @@
   <pattern id="rrid-presence-pattern">
     <rule context="p|td|th" id="rrid-presence">
       <let name="count" value="count(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')])"/>
-      <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+')"/>
+      <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+')"/>
       <let name="hit-count" value="count($hit//*:match)"/>
-      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+') and ($count != $hit-count)" role="error" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)" role="warning" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution" id="unallowed-symbol-tests">
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       <report test="contains(.,'©')" role="error" id="copyright-symbol">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
       <report test="contains(.,'™')" role="error" id="trademark-symbol">'<value-of select="local-name()"/>' element contains the trademark symbol, '™', which is not allowed.</report>
       <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">'<value-of select="local-name()"/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
-      <report test="matches(.,' [Ii]nc\. ')" role="warning" id="Inc-presence">'<value-of select="local-name()"/>' element contains 'Inc.' with a full stop. Remove the full stop.</report>
+      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">'<value-of select="local-name()"/>' element contains 'Inc.' with a full stop. Remove the full stop.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -2340,13 +2346,27 @@
       <let name="cite2" value="e:citation-format2($ref//year)"/>
       <assert test=". = ($cite1,$cite2)" role="error" id="ref-xref-conformity">
         <value-of select="."/>- citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
+      <!-- The following test works, but significantly slows down validation
+        <report test="matches(preceding-sibling::text()[1],'\(\($') or matches(following-sibling::text()[1],'^\)\)')" 
+        role="warning" 
+        id="ref-xref-context-1"><value-of select="."/> - citation has either preceding double opening parenthesis '((' or following closing parenthesis '))' - is this corect?</report>-->
     </rule>
   </pattern>
   <pattern id="journal-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
-      <report test="matches(.,'plos|Plos|PLoS')" role="error" id="PLOS">ref '<value-of select="ancestor::ref/@id"/>' contains<value-of select="."/>. 'PLOS' should be upper-case.</report>
+      <let name="uc" value="upper-case(.)"/>
+      <report test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains<value-of select="."/>. 'PLOS' should be upper-case.</report>
+      <report test="($uc = 'PLOS ONE') and (. != 'PLOS ONE')" role="error" id="PLOS-2">ref '<value-of select="ancestor::ref/@id"/>' contains<value-of select="."/>. 'PLOS ONE' should be upper-case.</report>
       <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the title is<value-of select="."/>, which is incorrect.</report>
+      <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains<value-of select="."/>. 'RNA' should be upper-case.</report>
+      <report test="if (starts-with($doi,'10.1534/g3')) then . != 'G3: Genes | Genomes | Genetics'         else()" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the title is<value-of select="."/>- it should be 'G3: Genes | Genomes | Genetics'.</report>
+      <report test="matches(.,'\s?Amp\s?')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'Amp', is this a broken ampersand?</report>
+    </rule>
+  </pattern>
+  <pattern id="ref-article-title-tests-pattern">
+    <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
+      <report test="matches(.,'\. [A-Za-z]')" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
@@ -2366,6 +2386,16 @@
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       <assert test="number($sum) = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
+    </rule>
+  </pattern>
+  <pattern id="data-availability-statement-pattern">
+    <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
+      <assert test="matches(.,'.$|\?$')" role="error" id="DAS-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
+    </rule>
+  </pattern>
+  <pattern id="sec-title-conformity-pattern">
+    <rule context="sec/title" id="sec-title-conformity">
+      <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
 </schema>
