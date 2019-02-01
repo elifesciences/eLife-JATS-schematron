@@ -798,11 +798,6 @@
   	role="error" 
   	id="abstract-test-2">At least 1 p element must be present in abstract.</report>
 	
-	<!-- Note that warning ignores features content abstract[@abstract-type='executive-summary']-->
-	<report test="not(@abstract-type='executive-summary') and count(p) gt 1"
-  	role="warning" 
-  	id="abstract-test-3">More than 1 p element is present in abstract. Is this correct? Please check with eLife staff.</report>
-	
 	<report test="p/disp-formula"
   	role="error" 
   	id="abstract-test-4">abstracts cannot contain display formulas.</report>
@@ -954,11 +949,23 @@
       
       <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30"
         role="warning"
-        id="custom-meta-test-5">Impact statement contains more than 30 words. Please alert eLife staff.</report>
+        id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
+      
+      <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30"
+        role="error"
+        id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       
       <assert test="matches(.,'[\.|\?]$')"
         role="error"
         id="custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
+      
+      <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')"
+        role="warning"
+        id="pre-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      
+      <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')"
+        role="error"
+        id="final-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
     </rule>
     
     <rule context="article-meta/elocation-id" 
@@ -1100,9 +1107,9 @@
         role="error"
         id="fig-test-5">fig caption must have a title.</assert>
       
-      <assert test="caption/p" 
+      <report test="matches(@id,'^fig[0-9]{1,3}$') and not(caption/p)" 
         role="warning"
-        id="fig-test-6">fig caption does not have a p. Is this correct?</assert>
+        id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
       
       <assert test="graphic"
         role="error"
@@ -1230,8 +1237,8 @@
         id="math-test-1">mml:math must not be empty.</report>
       
       <report test="descendant::mml:merror"
-        role="warning"
-        id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. Is this correct? Does the math render correctly?.</report>
+        role="error"
+        id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
     </rule>
     
     <rule context="table-wrap" 
@@ -1776,7 +1783,7 @@
       <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()
         else count(sec[@sec-type='data-availability']) != 1"
         role="error"
-        id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for <value-of select="$article-type"/>.</report>
+        id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for '<value-of select="$article-type"/>'.</report>
       
       <report test="count(ack) gt 1"
         role="error"
@@ -3736,7 +3743,7 @@
   
   <pattern id="figure-xref-pattern">
     
-    <rule context="xref[@ref-type='fig']" id="fig-xref-tests">
+    <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="hit" value="analyze-string(.,'[0-9]{1,3}')"/>
@@ -3757,17 +3764,45 @@
         role="error" 
         id="fig-xref-conformity-3"><value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
-      <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–')))"
+      <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and ')))"
         role="warning" 
         id="fig-xref-conformity-4"><value-of select="."/> - figure citation links to a figure supplement, but only contains one number. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))"
+      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and '))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))"
         role="warning" 
         id="fig-xref-conformity-5"><value-of select="."/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. Is it correct?</report>
       
       <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))"
         role="error" 
         id="fig-xref-conformity-6"><value-of select="$no-2"/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+    </rule>
+  </pattern>
+  
+  <pattern id="supp-xref-pattern">
+    
+    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="last-text-hit" value="analyze-string(.,'[0-9]{1,3}$')"/>
+      <let name="last-text-no" value="$last-text-hit//*:match"/>
+      <let name="last-rid-hit" value="analyze-string($rid,'[0-9]{1,3}$')"/>
+      <let name="last-rid-no" value="$last-rid-hit//*:match"/>
+      <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      
+      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($prec-text != ' and ') and ($prec-text != '–')" 
+        role="warning" 
+        id="supp-file-xref-conformity-1"><value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
+      
+      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($prec-text != ' and ') and ($prec-text != '–')" 
+        role="warning" 
+        id="supp-file-xref-conformity-2"><value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
+      
+      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–')" 
+        role="warning" 
+        id="supp-file-xref-conformity-3"><value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
+      
+      <assert test="$last-text-no = $last-rid-no" 
+        role="error" 
+        id="supp-file-xref-conformity-4"><value-of select="."/> - citation content does not match what it directs to.</assert>
     </rule>
   </pattern>
   
@@ -3880,9 +3915,9 @@
     
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       
-      <report test="matches(.,'\. [A-Za-z]')"
+      <report test="matches(.,'[A-Za-z]{2,}\. [A-Za-z]')"
         role="warning" 
-        id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included?</report>
+        id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
     </rule>
     
     <rule context="element-citation[@publication-type='website']" 
@@ -3935,6 +3970,23 @@
         role="warning" 
         id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
+    </rule>
+    
+    <rule context="abstract[not(@*)]" 
+      id="abstract-house-tests">
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      
+      <report test="descendant::xref[@ref-type='bibr']"
+        role="warning" 
+        id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
+      
+      <report test="($subj = 'Research Communication') and ((count(p) le 2) or (not(matches(self::*/descendant::p[2],'^Editorial note:'))))"
+        role="error" 
+        id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note:', which is incorrect.</report>
+     
+      <report test="($subj = 'Research Article') and (count(p) ge 1)"
+        role="warning" 
+        id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>
   

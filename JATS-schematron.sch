@@ -455,8 +455,6 @@
       <!-- Exception for Features article-types -->
       <report test="if ($article-type = $features-article-types) then () else count(object-id[@pub-id-type='doi']) != 1" role="error" id="abstract-test-1">object-id[@pub-id-type='doi'] must be present in abstract in<value-of select="$article-type"/>content.</report>
       <report test="count(p) lt 1" role="error" id="abstract-test-2">At least 1 p element must be present in abstract.</report>
-      <!-- Note that warning ignores features content abstract[@abstract-type='executive-summary']-->
-      <report test="not(@abstract-type='executive-summary') and count(p) gt 1" role="warning" id="abstract-test-3">More than 1 p element is present in abstract. Is this correct? Please check with eLife staff.</report>
       <report test="p/disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
     </rule>
   </pattern>
@@ -526,8 +524,11 @@
   <pattern id="meta-value-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
-      <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. Please alert eLife staff.</report>
+      <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
+      <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       <assert test="matches(.,'[\.|\?]$')" role="error" id="custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
+      <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')" role="warning" id="pre-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')" role="error" id="final-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="elocation-id-tests-pattern">
@@ -593,7 +594,7 @@
       <assert test="label" role="error" id="fig-test-3">fig must have a label.</assert>
       <assert test="caption" role="error" id="fig-test-4">fig must have a caption.</assert>
       <assert test="caption/title" role="error" id="fig-test-5">fig caption must have a title.</assert>
-      <assert test="caption/p" role="warning" id="fig-test-6">fig caption does not have a p. Is this correct?</assert>
+      <report test="matches(@id,'^fig[0-9]{1,3}$') and not(caption/p)" role="warning" id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
       <assert test="graphic" role="error" id="fig-test-7">fig must have a graphic.</assert>
     </rule>
   </pattern>
@@ -646,7 +647,7 @@
   <pattern id="math-tests-pattern">
     <rule context="mml:math" id="math-tests">
       <report test="normalize-space(.)=''" role="error" id="math-test-1">mml:math must not be empty.</report>
-      <report test="descendant::mml:merror" role="warning" id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. Is this correct? Does the math render correctly?.</report>
+      <report test="descendant::mml:merror" role="error" id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -940,7 +941,7 @@
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="if ($article-type = $features-article-types) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
       <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">One and only one sec[@sec-type="supplementary-material"] may be present in back.</report>
-      <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for<value-of select="$article-type"/>.</report>
+      <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for '<value-of select="$article-type"/>'.</report>
       <report test="count(ack) gt 1" role="error" id="back-test-4">One and only one ack may be present in back.</report>
       <report test="if ($article-type != ('research-article','article-commentary')) then ()                     else count(ref-list) != 1" role="error" id="back-test-5">One and only one ref-list must be present in<value-of select="$article-type"/>content.</report>
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
@@ -2350,8 +2351,8 @@
       <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
     </rule>
   </pattern>
-  <pattern id="fig-xref-tests-pattern">
-    <rule context="xref[@ref-type='fig']" id="fig-xref-tests">
+  <pattern id="fig-xref-conformance-pattern">
+    <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="hit" value="analyze-string(.,'[0-9]{1,3}')"/>
@@ -2365,12 +2366,30 @@
         <value-of select="."/>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-3">
         <value-of select="."/>- figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
-      <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–')))" role="warning" id="fig-xref-conformity-4">
+      <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and ')))" role="warning" id="fig-xref-conformity-4">
         <value-of select="."/>- figure citation links to a figure supplement, but only contains one number. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
-      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))" role="warning" id="fig-xref-conformity-5">
+      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and '))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))" role="warning" id="fig-xref-conformity-5">
         <value-of select="."/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. Is it correct?</report>
       <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))" role="error" id="fig-xref-conformity-6">
         <value-of select="$no-2"/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+    </rule>
+  </pattern>
+  <pattern id="supp-file-xref-conformance-pattern">
+    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="last-text-hit" value="analyze-string(.,'[0-9]{1,3}$')"/>
+      <let name="last-text-no" value="$last-text-hit//*:match"/>
+      <let name="last-rid-hit" value="analyze-string($rid,'[0-9]{1,3}$')"/>
+      <let name="last-rid-no" value="$last-rid-hit//*:match"/>
+      <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-1">
+        <value-of select="."/>- citation points to source data, but does not include the string 'source data', which is very unusual.</report>
+      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-2">
+        <value-of select="."/>- citation points to source code, but does not include the string 'source code', which is very unusual.</report>
+      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-3">
+        <value-of select="."/>- citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
+      <assert test="$last-text-no = $last-rid-no" role="error" id="supp-file-xref-conformity-4">
+        <value-of select="."/>- citation content does not match what it directs to.</assert>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
@@ -2423,7 +2442,7 @@
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
-      <report test="matches(.,'\. [A-Za-z]')" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included?</report>
+      <report test="matches(.,'[A-Za-z]{2,}\. [A-Za-z]')" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
@@ -2453,6 +2472,14 @@
   <pattern id="sec-title-conformity-pattern">
     <rule context="sec/title" id="sec-title-conformity">
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="abstract-house-tests-pattern">
+    <rule context="abstract[not(@*)]" id="abstract-house-tests">
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
+      <report test="($subj = 'Research Communication') and ((count(p) le 2) or (not(matches(self::*/descendant::p[2],'^Editorial note:'))))" role="error" id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note:', which is incorrect.</report>
+      <report test="($subj = 'Research Article') and (count(p) ge 1)" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>
 </schema>
