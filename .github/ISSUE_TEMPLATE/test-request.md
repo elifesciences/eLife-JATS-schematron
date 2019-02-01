@@ -15,6 +15,9 @@ assignees: FAtherden-eLife
 
 #### Suggested schematron message
 
+#### Suggested role (warning or error)
+warning | error | not sure
+
 #### Stage
 pre-edit | final | both
 
