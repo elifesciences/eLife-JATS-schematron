@@ -94,6 +94,32 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:fig-id-type" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="matches($s,'^fig[0-9]{1,3}$')">
+        <xsl:value-of select="'Figure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^fig[0-9]{1,3}s[0-9]{1,3}$')">
+        <xsl:value-of select="'Figure supplement'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^box[0-9]{1,3}fig[0-9]{1,3}$')">
+        <xsl:value-of select="'Box figure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix figure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix figure supplement'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+        <xsl:value-of select="'Author response figure'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'undefined'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(translate($string,'àáâãäåçèéêëħìíîïłñòóôõöøùúûüýÿ','aaaaaaceeeehiiiilnoooooouuuuyy'),'æ','ae')"/>
@@ -820,12 +846,12 @@
   </pattern>
   <pattern id="app-fig-ids-pattern">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="app-fig-id-test">figure supplement must have an @id in the format app0fig0.</assert>
+      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="app-fig-id-test">figures in appendices must have an @id in the format app0fig0.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-ids-pattern">
     <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplement must have an @id in the format app0fig0s0.</assert>
+      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0.</assert>
     </rule>
   </pattern>
   <pattern id="rep-fig-ids-pattern">
@@ -1193,15 +1219,18 @@
         with @rid = <value-of select="@id"/> to be checked. The first name should be 
         '<value-of select="element-citation/person-group[1]/(name[1]/surname | collab[1])[1]"/>'.
       </assert>-->
-      <!-- If there is more than one year (caught by a different test), use the first year to compare. -->
+      <!-- The following is dealt with in test ref-xref-conformity
+        
+        If there is more than one year (caught by a different test), use the first year to compare. 
       <assert test="every $x in //xref[@rid=current()/@id]       satisfies (matches(replace($x,'\p{Zs}',' '), concat(', ',current()/element-citation/year[1]),'s') or       matches(replace($x,'\p{Zs}',' '), concat('\(',current()/element-citation/year[1],'\)')))" role="error" id="err-elem-cit-high-5">[err-elem-cit-high-5]
         All xrefs to &lt;ref&gt;s, which contain &lt;element-citation&gt;s, should contain, as the last part 
         of their content, the string ", " followed by the content of the year element in the 
         &lt;element-citation&gt;, or the year in parentheses. 
-        There is an incorrect &lt;xref&gt; with @rid<value-of select="@id"/>. It should contain the string 
-        ',<value-of select="element-citation/year"/>' or the string 
+        There is an incorrect &lt;xref&gt; with @rid <value-of select="@id"/>. It should contain the string 
+        ', <value-of select="element-citation/year"/>' or the string 
         '(<value-of select="element-citation/year"/>)' but does not.
-        There are<value-of select="count(//xref[@rid=current()/@id]/@rid)"/>references to be checked.</assert>
+        There are <value-of select="count(//xref[@rid=current()/@id]/@rid)"/> references to be checked.
+      </assert> -->
     </rule>
   </pattern>
   <pattern id="xref-pattern">
@@ -2321,6 +2350,29 @@
       <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
     </rule>
   </pattern>
+  <pattern id="fig-xref-tests-pattern">
+    <rule context="xref[@ref-type='fig']" id="fig-xref-tests">
+      <let name="rid" value="@rid"/>
+      <let name="type" value="e:fig-id-type($rid)"/>
+      <let name="hit" value="analyze-string(.,'[0-9]{1,3}')"/>
+      <let name="hit-count" value="count($hit//*:match)"/>
+      <let name="no-1" value="$hit/descendant::*:match[1]"/>
+      <let name="no-2" value="$hit/descendant::*:match[2]"/>
+      <let name="no-3" value="$hit/descendant::*:match[3]"/>
+      <report test="($hit-count = 0)" role="error" id="fig-xref-conformity-1">
+        <value-of select="."/>- figure citation does not any numbers which must be incorrect.</report>
+      <report test="($type = 'Figure') and ($hit-count = 1) and ($no-1 != substring-after($rid,'fig'))" role="error" id="fig-xref-conformity-2">
+        <value-of select="."/>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-3">
+        <value-of select="."/>- figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
+      <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–')))" role="warning" id="fig-xref-conformity-4">
+        <value-of select="."/>- figure citation links to a figure supplement, but only contains one number. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
+      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))" role="warning" id="fig-xref-conformity-5">
+        <value-of select="."/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. Is it correct?</report>
+      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))" role="error" id="fig-xref-conformity-6">
+        <value-of select="$no-2"/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+    </rule>
+  </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       <report test="contains(.,'©')" role="error" id="copyright-symbol">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
@@ -2355,10 +2407,6 @@
       <let name="cite2" value="e:citation-format2($ref//year)"/>
       <assert test=". = ($cite1,$cite2)" role="error" id="ref-xref-conformity">
         <value-of select="."/>- citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
-      <!-- The following test works, but significantly slows down validation
-        <report test="matches(preceding-sibling::text()[1],'\(\($') or matches(following-sibling::text()[1],'^\)\)')" 
-        role="warning" 
-        id="ref-xref-context-1"><value-of select="."/> - citation has either preceding double opening parenthesis '((' or following closing parenthesis '))' - is this corect?</report>-->
     </rule>
   </pattern>
   <pattern id="journal-title-tests-pattern">
