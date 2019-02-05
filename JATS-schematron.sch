@@ -612,7 +612,7 @@
       <assert test="@mimetype" role="error" id="media-test-1">media must have @mimetype.</assert>
       <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
       <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>
       <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>
       <report test="@mime-subtype='octet-stream' and matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$||\.xlsx$||\.mp4$|\.gif$|')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>
       <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
@@ -946,6 +946,7 @@
       <report test="if ($article-type != ('research-article','article-commentary')) then ()                     else count(ref-list) != 1" role="error" id="back-test-5">One and only one ref-list must be present in<value-of select="$article-type"/>content.</report>
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
       <report test="if ($article-type != 'article-commentary') then ()               else (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in<value-of select="$article-type"/>content.</report>
+      <report test="($article-type != $features-article-types) and (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement section, but there isn't one here. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="data-content-tests-pattern">
@@ -2371,7 +2372,7 @@
       <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and '))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))" role="warning" id="fig-xref-conformity-5">
         <value-of select="."/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. Is it correct?</report>
       <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))" role="error" id="fig-xref-conformity-6">
-        <value-of select="$no-2"/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+        <value-of select="."/>- figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="supp-file-xref-conformance-pattern">
@@ -2388,8 +2389,8 @@
         <value-of select="."/>- citation points to source code, but does not include the string 'source code', which is very unusual.</report>
       <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-3">
         <value-of select="."/>- citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
-      <assert test="$last-text-no = $last-rid-no" role="error" id="supp-file-xref-conformity-4">
-        <value-of select="."/>- citation content does not match what it directs to.</assert>
+      <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-4">
+        <value-of select="."/>- It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
@@ -2478,8 +2479,13 @@
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
       <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
-      <report test="($subj = 'Research Communication') and ((count(p) le 2) or (not(matches(self::*/descendant::p[2],'^Editorial note:'))))" role="error" id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note:', which is incorrect.</report>
-      <report test="($subj = 'Research Article') and (count(p) ge 1)" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
+      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="error" id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
+      <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="KRT-xref-tests-pattern">
+    <rule context="table-wrap[@id='keyresource']//xref" id="KRT-xref-tests">
+      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
     </rule>
   </pattern>
 </schema>

@@ -1154,6 +1154,7 @@
                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))
                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))
                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$'))
+                    else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
@@ -1802,6 +1803,10 @@
               else (count(fn-group[@content-type='competing-interest']) != 1)"
         role="error"
         id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$article-type"/> content.</report>
+      
+      <report test="($article-type != $features-article-types) and (not(ack))"
+        role="warning"
+        id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement section, but there isn't one here. Is this correct?</report>
       
     </rule>
     
@@ -3774,7 +3779,7 @@
       
       <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))"
         role="error" 
-        id="fig-xref-conformity-6"><value-of select="$no-2"/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+        id="fig-xref-conformity-6"><value-of select="."/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
     </rule>
   </pattern>
   
@@ -3801,8 +3806,8 @@
         id="supp-file-xref-conformity-3"><value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
       <assert test="$last-text-no = $last-rid-no" 
-        role="error" 
-        id="supp-file-xref-conformity-4"><value-of select="."/> - citation content does not match what it directs to.</assert>
+        role="warning" 
+        id="supp-file-xref-conformity-4"><value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
     </rule>
   </pattern>
   
@@ -3980,13 +3985,22 @@
         role="warning" 
         id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       
-      <report test="($subj = 'Research Communication') and ((count(p) le 2) or (not(matches(self::*/descendant::p[2],'^Editorial note:'))))"
+      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))"
         role="error" 
-        id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note:', which is incorrect.</report>
+        id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
      
-      <report test="($subj = 'Research Article') and (count(p) ge 1)"
+      <report test="(count(p) > 1) and ($subj = 'Research Article')"
         role="warning" 
         id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
+    </rule>
+    
+    <rule context="table-wrap[@id='keyresource']//xref" 
+      id="KRT-xref-tests">
+      
+      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)"
+        role="warning" 
+        id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
+      
     </rule>
   </pattern>
   
