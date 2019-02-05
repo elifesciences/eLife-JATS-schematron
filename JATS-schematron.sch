@@ -526,9 +526,11 @@
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
       <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
-      <assert test="matches(.,'[\.|\?]$')" role="error" id="custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
+      <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement should end with a full stop or question mark - please alert eLife staff.</assert>
+      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')" role="warning" id="pre-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')" role="error" id="final-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      <report test="matches(.,':')" role="error" id="custom-meta-test-8">Impact statement contains a colon, which is likely incorrect. It needs to be a proper sentence.</report>
     </rule>
   </pattern>
   <pattern id="elocation-id-tests-pattern">
@@ -635,7 +637,6 @@
   </pattern>
   <pattern id="disp-formula-tests-pattern">
     <rule context="disp-formula" id="disp-formula-tests">
-      <assert test="label" role="warning" id="disp-formula-test-1">disp-formula does not have a label. Is this correct?</assert>
       <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
@@ -702,7 +703,7 @@
   </pattern>
   <pattern id="fig-label-tests-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" id="fig-label-tests">
-      <assert test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Schema 0'.</assert>
+      <assert test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
     </rule>
   </pattern>
   <pattern id="fig-sup-tests-pattern">
@@ -715,17 +716,17 @@
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       <assert test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>
       <assert test="object-id[@pub-id-type='doi']" role="error" id="resp-fig-test-3">fig must have a object-id[@pub-id-type='doi'].</assert>
-      <assert test="matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Schema 1.'.</assert>
+      <assert test="matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
     </rule>
   </pattern>
   <pattern id="box-fig-tests-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests">
-      <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Schema 1'.</assert>
+      <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-tests-pattern">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests">
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Schema \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Schema 1'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-tests-pattern">
@@ -2363,8 +2364,8 @@
       <let name="no-3" value="$hit/descendant::*:match[3]"/>
       <report test="($hit-count = 0)" role="error" id="fig-xref-conformity-1">
         <value-of select="."/>- figure citation does not any numbers which must be incorrect.</report>
-      <report test="($type = 'Figure') and ($hit-count = 1) and ($no-1 != substring-after($rid,'fig'))" role="error" id="fig-xref-conformity-2">
-        <value-of select="."/>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      <report test="($type = 'Figure') and ($hit-count = 1) and ($no-1 != substring-after($rid,'fig'))" role="warning" id="fig-xref-conformity-2">
+        <value-of select="."/>- figure citation does not appear to link to the same place as the content of the citation suggests it should - unless this article contains Scheme/Chemical sturcture type figures.</report>
       <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-3">
         <value-of select="."/>- figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and ')))" role="warning" id="fig-xref-conformity-4">
@@ -2391,6 +2392,20 @@
         <value-of select="."/>- citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-4">
         <value-of select="."/>- It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
+    </rule>
+  </pattern>
+  <pattern id="equation-xref-conformance-pattern">
+    <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="text-hit" value="analyze-string(.,'[0-9]{1,3}')"/>
+      <let name="text-no" value="$text-hit//*:match"/>
+      <let name="rid-hit" value="analyze-string($rid,'[0-9]{1,3}$')"/>
+      <let name="rid-no" value="$rid-hit//*:match"/>
+      <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">
+        <value-of select="."/>- link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
+      <assert test="$text-no = $rid-no" role="warning" id="equ-xref-conformity-2">
+        <value-of select="."/>- It looks like equation link content does not match what it directs to. Check that it is correct.</assert>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-pattern">
@@ -2438,17 +2453,25 @@
       <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the title is<value-of select="."/>, which is incorrect.</report>
       <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains<value-of select="."/>. 'RNA' should be upper-case.</report>
       <report test="if (starts-with($doi,'10.1534/g3')) then . != 'G3: Genes | Genomes | Genetics'         else()" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the title is<value-of select="."/>- it should be 'G3: Genes | Genomes | Genetics'.</report>
-      <report test="matches(.,'\s?Amp\s?')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'Amp', is this a broken ampersand?</report>
+      <report test="matches(.,'\s?[Aa]mp[;]?\s?')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
+      <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check">ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <report test="matches(.,'[A-Za-z]{2,}\. [A-Za-z]')" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      <report test="matches(.,':\s?[a-z]')" role="warning" id="article-title-colon-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a colon followed by a lower-case letter. Should the first lower-case letter after the colon be capitalised? '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
     <rule context="element-citation[@publication-type='website']" id="website-tests">
       <report test="contains(ext-link,'github')" role="error" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
+    </rule>
+  </pattern>
+  <pattern id="publisher-name-tests-pattern">
+    <rule context="element-citation/publisher-name" id="publisher-name-tests">
+      <report test="matches(.,':')" role="warning" id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
+      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed?</report>
     </rule>
   </pattern>
   <pattern id="ref-name-tests-pattern">
@@ -2486,6 +2509,11 @@
   <pattern id="KRT-xref-tests-pattern">
     <rule context="table-wrap[@id='keyresource']//xref" id="KRT-xref-tests">
       <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="p-punctuation-pattern">
+    <rule context="article/body//p" id="p-punctuation">
+      <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
     </rule>
   </pattern>
 </schema>
