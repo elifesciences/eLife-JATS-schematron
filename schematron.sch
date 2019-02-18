@@ -972,8 +972,16 @@
         id="final-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
       <report test="matches(.,':')"
-        role="error"
+        role="warning"
         id="custom-meta-test-8">Impact statement contains a colon, which is likely incorrect. It needs to be a proper sentence.</report>
+      
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')"
+        role="warning"
+        id="pre-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
+      
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')"
+        role="error"
+        id="final-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
     </rule>
     
     <rule context="article-meta/elocation-id" 
@@ -1088,6 +1096,10 @@
       <assert test="matches(@xlink:href,'https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)')" 
         role="warning"
         id="url-conformance-test">Contents of @xlink:href don't look like a URL. Is this correct?</assert>
+      
+      <report test="matches(@xlink:href,'\.$')" 
+        role="error"
+        id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
     </rule>
     
     <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" 
@@ -1489,9 +1501,9 @@
     <rule context="ack" 
       id="ack-title-tests">
       
-      <assert test="title = 'Acknowledgements'"
+      <assert test="title = ('Acknowledgements','Acknowledgments')"
         role="error"
-        id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
+        id="ack-title-test">ack must have a title that contains 'Acknowledgements', or 'Acknowledgments'. Currently it is '<value-of select="title"/>'.</assert>
       
     </rule>
     
@@ -1808,7 +1820,8 @@
         role="error"
         id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$article-type"/> content.</report>
       
-      <report test="($article-type != $features-article-types) and (not(ack))"
+      <report test="if ($article-type = $features-article-types) then ()
+        else (not(ack))"
         role="warning"
         id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement section, but there isn't one here. Is this correct?</report>
       
@@ -3791,8 +3804,8 @@
     
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="last-text-hit" value="analyze-string(.,'[0-9]{1,3}$')"/>
-      <let name="last-text-no" value="$last-text-hit//*:match"/>
+      <let name="text-hit" value="analyze-string(.,'[0-9]{1,3}')"/>
+      <let name="last-text-no" value="$text-hit/descendant::*:match[last()]"/>
       <let name="last-rid-hit" value="analyze-string($rid,'[0-9]{1,3}$')"/>
       <let name="last-rid-no" value="$last-rid-hit//*:match"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
@@ -3819,22 +3832,24 @@
     
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rid" value="@rid"/>
+      <let name="label" value="ancestor::article//disp-formula[@id = $rid]/label"/>
       <let name="text-hit" value="analyze-string(.,'[0-9]{1,3}')"/>
       <let name="text-no" value="$text-hit//*:match"/>
-      <let name="rid-hit" value="analyze-string($rid,'[0-9]{1,3}$')"/>
-      <let name="rid-no" value="$rid-hit//*:match"/>
+      <let name="label-hit" value="analyze-string($label,'[0-9]{1,3}')"/>
+      <let name="label-no" value="$label-hit//*:match"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       
       <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" 
         role="warning" 
         id="equ-xref-conformity-1"><value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
-      <assert test="$text-no = $rid-no" 
+      <report test="if (contains($rid,' ')) then () else $text-no != $label-no" 
         role="error" 
-        id="equ-xref-conformity-2"><value-of select="."/> - equation link content does not match what it directs to. Check that it is correct.</assert>
+        id="equ-xref-conformity-2"><value-of select="$label-no"/> - equation link content does not match what it directs to. Check that it is correct.</report>
     </rule>
     
   </pattern>
+  
   <pattern
     id="house-style">
     
@@ -3948,13 +3963,9 @@
     
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       
-      <report test="matches(.,'[A-Za-z]{2,}\. [A-Za-z]')"
+      <report test="(not(matches(.,'vs\.|[Cc]\. elegans'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))"
         role="warning" 
         id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
-      
-      <report test="matches(.,':\s?[a-z]')"
-        role="warning" 
-        id="article-title-colon-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a colon followed by a lower-case letter. Should the first lower-case letter after the colon be capitalised? '<value-of select="."/>'</report>
     </rule>
     
     <rule context="element-citation[@publication-type='website']" 
@@ -4052,6 +4063,19 @@
       <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))"
         role="warning" 
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
+    </rule>
+    
+    <rule context="ref-list/ref" 
+      id="ref-link-mandate">
+      <let name="id" value="@id"/>
+      
+      <assert test="ancestor::article//xref[@rid = $id]"
+        role="warning" 
+        id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation lining to it needs to be added.</assert>
+      
+      <assert test="ancestor::article//xref[@rid = $id]"
+        role="error" 
+        id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation lining to it needs to be added.</assert>
     </rule>
   </pattern>
   
