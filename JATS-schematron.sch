@@ -132,7 +132,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(translate($string,'àáâãäåçèéêëħìíîïłñòóôõöøùúûüýÿ','aaaaaaceeeehiiiilnoooooouuuuyy'),'æ','ae')"/>
+    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêëħìíîïłñòóôõöøšùúûüýÿ','aaaaaacceeeehiiiilnoooooosuuuuyy'),'æ','ae')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1">
@@ -336,7 +336,9 @@
 		
     <assert test="self-uri[@content-type='pdf']" role="error" id="test-self-uri-att">self-uri must have an @content-type="pdf"</assert>
 		
-    <assert test="self-uri[@xlink:href = concat('elife-', $article-id, '.pdf')]" role="error" id="test-self-uri-pdf">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should be elife-<value-of select="$article-id"/>.pdf</assert>
+    <assert test="self-uri[starts-with(@xlink:href,concat('elife-', $article-id))]" role="error" id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</assert>
+    
+    <assert test="self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')]" role="error" id="test-self-uri-pdf-2">self-uri does not conform.</assert>
 		
     <assert test="count(history) = 1" role="error" id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
       </assert>
@@ -440,7 +442,7 @@
 		
     	<report test="surname[descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc]" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(surname,'^[\p{L}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="surname"/> contains other characters.</assert>
+	  <assert test="matches(surname,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="surname"/> contains other characters.</assert>
 		
 	  <assert test="matches(surname,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter. Is this correct?</assert>
 		
@@ -452,7 +454,7 @@
 		
     	<report test="given-names[descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc]" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(given-names,'^[\p{L}\s-]*$')" role="error" id="given-names-test-5">given-names may only contain letters, spaces or hyphens.</assert>
+	  <assert test="matches(given-names,'^[\p{L}\p{M}\s-]*$')" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="given-names"/> contains other characters.</assert>
 		
 	  <assert test="matches(given-names,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter. Is this correct?</assert>
 		
@@ -685,12 +687,12 @@
     </rule>
   </pattern>
   <pattern id="meta-value-tests-pattern">
-    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">  
+    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
-      <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
+      <report test="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x) gt 30" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
       
-      <report test="count(for $x in tokenize(normalize-space(.),' ') return $x) gt 30" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
+      <report test="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x) gt 30" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       
       <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement should end with a full stop or question mark - please alert eLife staff.</assert>
       
@@ -862,8 +864,14 @@
   </pattern>
   <pattern id="inline-formula-tests-pattern">
     <rule context="inline-formula" id="inline-formula-tests">
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       
       <assert test="mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
+      
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}]$') and not(matches(.,'^\s+'))" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]') and not(matches(.,'\s+$'))" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="math-tests-pattern">
@@ -877,7 +885,29 @@
   <pattern id="table-wrap-tests-pattern">
     <rule context="table-wrap" id="table-wrap-tests">
       
-      <assert test="table" role="error" id="table-wrap-test-1">table-wrap must have at least one table.</assert>
+      <assert test="table" role="error" id="table-wrap-test-1">table-wrap must have one table.</assert>
+      
+      <report test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="body-table-label-tests-pattern">
+    <rule context="body//table-wrap/label" id="body-table-label-tests">
+      
+      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$')" role="error" id="body-table-label-test-1">
+        <value-of select="."/> - Table label does not conform to the usual format.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="app-table-label-tests-pattern">
+    <rule context="app//table-wrap/label" id="app-table-label-tests">
+      <let name="app" value="ancestor::app/title"/>
+      
+      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')" role="error" id="app-table-label-test-1">
+        <value-of select="."/> - Table label does not conform to the usual format.</assert>
+      
+      <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">
+        <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.</assert>
       
     </rule>
   </pattern>
@@ -906,6 +936,10 @@
       <let name="count" value="count(th) + count(td)"/> 
       
       <report test="$count = 0" role="error" id="tr-test-1">tr must contain at least one th or td.</report>
+      
+      <report test="th and (tr/parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header), which is unusual. Please check that this is correct.</report>
+      
+      <report test="td and (tr/parent::thead)" role="warning" id="tr-test-3">table row in body contains a td element (table data), which is unusual. Please check that this is correct.</report>
     </rule>
   </pattern>
   <pattern id="td-child-tests-pattern">
@@ -933,8 +967,22 @@
   
   <pattern id="fig-specific-tests-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
+      <let name="id" value="@id"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label,'Figure \d{1,4}\.')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label,'Figure \d{1,4}\.')])"/>
+      <let name="no" value="analyze-string($id,'\d{1,4}$')//*:match"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
+      
+      <assert test="$no = string($pos)" role="error" id="fig-specific-test-2">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="(preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id])" role="warning" id="fig-specific-test-3">
+        <value-of select="label"/> does not appear directly after a paragraph citing it. Is that correct?</assert>
+  
+      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</assert>
+      
+      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-fig-specific-test-4">There is no citation to <value-of select="label"/> Esnure this is added.</assert>
   
     </rule>
   </pattern>
@@ -946,10 +994,20 @@
   </pattern>
   <pattern id="fig-sup-tests-pattern">
     <rule context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
+      <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
+      <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
+      <let name="no" value="analyze-string(@id,'\d{1,4}$')//*:match"/>
+      <let name="parent-fig-no" value="analyze-string(parent::fig-group/fig[not(@specific-use='child-fig')]/@id,'\d{1,4}$')//*:match"/>
       
       <assert test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
       
       <assert test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-sup-test-2">fig which has a @specific-use='child-fig' must have a label which contains 'supplement'.</assert>
+      
+      <assert test="starts-with(label,concat('Figure ',$parent-fig-no))" role="error" id="fig-sup-test-3">
+        <value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
+      
+      <assert test="$no = string($pos)" role="error" id="fig-sup-test-4">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</assert>
       
     </rule>
   </pattern>
@@ -973,20 +1031,17 @@
   <pattern id="app-fig-tests-pattern">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+      
+      <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure i placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-tests-pattern">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—Figure \d{1,4}—Figure Supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1—Figure Supplement 1.'.</assert>
-    </rule>
-  </pattern>
-  <pattern id="fig-title-tests-pattern">
-    <rule context="fig/caption/title" id="fig-title-tests"> 
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <assert test="matches(.,'^Appendix \d{1,4}—Figure \d{1,4}—figure Supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure Supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1—Figure Supplement 1.'.</assert>
       
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      <assert test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure i placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
   </pattern>
   
@@ -1042,6 +1097,45 @@
       
     </rule>
   </pattern>
+  <pattern id="fig-title-tests-pattern">
+    <rule context="fig/caption/title" id="fig-title-tests"> 
+      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      
+      <assert test="matches(.,'\.$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      
+      <report test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      
+      <report test="matches(.,'^\s')" role="error" id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+    </rule>
+  </pattern>
+  <pattern id="supplementary-material-title-tests-pattern">
+    <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
+      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      
+      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      
+      <report test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      
+      <report test="matches(.,'^\s')" role="error" id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+    </rule>
+  </pattern>
+  <pattern id="video-title-tests-pattern">
+    <rule context="media/caption/title" id="video-title-tests"> 
+      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      
+      <assert test="matches(.,'\.$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      
+      <report test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      
+      <report test="matches(.,'^\s')" role="error" id="video-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+    </rule>
+  </pattern>
   <pattern id="ack-title-tests-pattern">
     <rule context="ack" id="ack-title-tests">
       
@@ -1052,7 +1146,7 @@
   <pattern id="ref-list-title-tests-pattern">
     <rule context="ref-list" id="ref-list-title-tests">
       
-      <assert test="title = 'References'" role="error" id="ref-list-title-test">ref-list must have a title that contains 'References'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
       
     </rule>
   </pattern>
@@ -1336,7 +1430,7 @@
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-tests">
       <let name="author-count" value="count(ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author'])"/>
       
-      <assert test="$author-count = count(fn)" role="error" id="auth-cont-test-1">fn-group must contain one fn for each author. Currently there are <value-of select="$author-count"/> authors but <value-of select="count(fn)"/> footnotes.</assert>
+      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">fn-group does not contain one fn for each author. Currently there are <value-of select="$author-count"/> authors but <value-of select="count(fn)"/> footnotes. Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="auth-cont-fn-tests-pattern">
@@ -3106,10 +3200,13 @@
     <rule context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
       <let name="title" value="element-citation/article-title"/>
+      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
       
       <report test="($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
       <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
+      
+      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-3">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
   
@@ -3122,6 +3219,8 @@
       <let name="no-1" value="$hit/descendant::*:match[1]"/>
       <let name="no-2" value="$hit/descendant::*:match[2]"/>
       <let name="no-3" value="$hit/descendant::*:match[3]"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       
       <report test="($hit-count = 0)" role="error" id="fig-xref-conformity-1">
         <value-of select="."/> - figure citation does not any numbers which must be incorrect.</report>
@@ -3140,6 +3239,10 @@
       
       <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))" role="error" id="fig-xref-conformity-6">
         <value-of select="."/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+      
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
     </rule>
   </pattern>
   
@@ -3187,13 +3290,17 @@
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report test="contains(.,'©')" role="error" id="copyright-symbol">
+        <value-of select="local-name()"/> element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol">'<value-of select="local-name()"/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report test="contains(.,'™')" role="error" id="trademark-symbol">
+        <value-of select="local-name()"/> element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">'<value-of select="local-name()"/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">
+        <value-of select="local-name()"/> element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">'<value-of select="local-name()"/>' element contains 'Inc.' with a full stop. Remove the full stop.</report>
+      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">
+        <value-of select="local-name()"/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -3227,10 +3334,15 @@
       <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
       <let name="cite1" value="e:citation-format1($ref//year)"/>
       <let name="cite2" value="e:citation-format2($ref//year)"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       
       <assert test=". = ($cite1,$cite2)" role="error" id="ref-xref-conformity">
         <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
       
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="journal-title-tests-pattern">
@@ -3250,12 +3362,12 @@
       <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'RNA' should be upper-case.</report>
       
-      <report test="if (starts-with($doi,'10.1534/g3')) then . != 'G3: Genes | Genomes | Genetics'         else()" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the title is
-        <value-of select="."/> - it should be 'G3: Genes | Genomes | Genetics'.</report>
+      <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes|Genomes|Genetics') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the title is
+        <value-of select="."/> - it should be either 'G3: Genes|Genomes|Genetics' or 'G3: Genes, Genomes, Genetics'.</report>
       
-      <report test="matches(.,'\s?[Aa]mp[;]?\s?')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
+      <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       
-      <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check">ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
+      <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
@@ -3301,6 +3413,8 @@
       
       <assert test="matches(.,'.$|\?$')" role="error" id="DAS-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
+      <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="error" id="DAS-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citationin the dataset section with a dryad assigning authority.</report>
+      
     </rule>
   </pattern>
   <pattern id="sec-title-conformity-pattern">
@@ -3332,15 +3446,25 @@
     <rule context="article/body//p" id="p-punctuation">
       
       <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
+      
+      <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\.\s*?$|:\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop or colon - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
     <rule context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
       
-      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation lining to it needs to be added.</assert>
+      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
       
-      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation lining to it needs to be added.</assert>
+      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
+    </rule>
+  </pattern>
+  <pattern id="code-fork-pattern">
+    <rule context="article" id="code-fork">
+      <let name="hit" value="analyze-string(.,'[Gg]it[Hh]ub|[Gg]it[Ll]ab|[Cc]ode[Ff]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket|[Aa]ssembla ')"/>
+      
+      <report test="$hit//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join((for $x in $hit//*:match return $x),', ')"/>
+      </report>
     </rule>
   </pattern>
   
