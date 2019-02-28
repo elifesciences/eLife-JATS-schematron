@@ -967,17 +967,13 @@
         role="error"
         id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       
-      <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')"
+      <report test="matches(.,'[\p{L}]{2,}\. .*$|[\p{L}\p{N}]{2,}\? .*$|[\p{L}\p{N}]{2,}! .*$')"
         role="warning"
-        id="pre-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+        id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
-      <report test="matches(.,'\. [A-Za-z]{2,}|\? [A-Za-z]{2,}')"
-        role="error"
-        id="final-custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
-      
-      <report test="matches(.,':')"
+      <report test="matches(.,'[:;]')"
         role="warning"
-        id="custom-meta-test-8">Impact statement contains a colon, which is likely incorrect. It needs to be a proper sentence.</report>
+        id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
       <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')"
         role="warning"
@@ -1384,6 +1380,22 @@
     </rule>
   </pattern>
   
+  <pattern id="video-tests">
+    
+    <rule context="body//media[@mimetype='video']" 
+      id="body-video-specific">
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" 
+        role="error"
+        id="body-video-position-test-1"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</assert>
+      
+    </rule>
+    
+  </pattern>
+  
   <pattern
     id="further-fig-tests">
   
@@ -1392,7 +1404,7 @@
       <let name="id" value="@id"/>
       <let name="count" value="count(ancestor::article//fig[matches(label,'Figure \d{1,4}\.')])"/>
       <let name="pos" value="$count - count(following::fig[matches(label,'Figure \d{1,4}\.')])"/>
-      <let name="no" value="analyze-string($id,'\d{1,4}$')//*:match"/>
+      <let name="no" value="substring-after($id,'fig')"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" 
         role="error"
@@ -1428,8 +1440,8 @@
       id="fig-sup-tests">
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
-      <let name="no" value="analyze-string(@id,'\d{1,4}$')//*:match"/>
-      <let name="parent-fig-no" value="analyze-string(parent::fig-group/fig[not(@specific-use='child-fig')]/@id,'\d{1,4}$')//*:match"/>
+      <let name="no" value="substring-after(@id,'s')"/>
+      <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')]/@id,'fig')"/>
       
       <assert test="parent::fig-group" 
         role="error"
@@ -4234,9 +4246,9 @@
         role="warning" 
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\.\s*?$|:\s*?$'))"
+      <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))"
         role="warning" 
-        id="p-bracket-test">paragraph doesn't end with a full stop or colon - Is this correct?</report>
+        id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
     
     <rule context="ref-list/ref" 
