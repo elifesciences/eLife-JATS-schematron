@@ -376,7 +376,9 @@
 		
      <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
 	   
-     <report test="if ($article-type = 'editorial') then ()                    else count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     <report test="($article-type != 'editorial') and ($article-type != 'discussion') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     
+     <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" role="warning" id="head-subj-test3">article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
 	   
      <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
 	</rule>
@@ -515,11 +517,17 @@
   <pattern id="date-tests-pattern">
     <rule context="date" id="date-tests">
 		
-    	<assert test="matches(day,'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+    	<assert test="matches(day,'^[0-9]{2}$')" role="warning" id="pre-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+	  
+	  <assert test="matches(day,'^[0-9]{2}$')" role="error" id="final-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 		
-    	<assert test="matches(month,'^[0-9]{2}$')" role="error" id="date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+    	<assert test="matches(month,'^[0-9]{2}$')" role="warning" id="pre-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+	  
+	  <assert test="matches(month,'^[0-9]{2}$')" role="error" id="final-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
 		
-    	<assert test="matches(year,'^[0-9]{4}$')" role="error" id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+    	<assert test="matches(year,'^[0-9]{4}$')" role="warning" id="pre-date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+	  
+	  <assert test="matches(year,'^[0-9]{4}$')" role="error" id="final-date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
 		
     	<assert test="@iso-8601-date = concat(year,'-',month,'-',day)" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
 	
@@ -733,15 +741,15 @@
 		</rule>
   </pattern> 
 
- <pattern id="object-doi-tests-pattern">
-    <rule context="object-id[@pub-id-type='doi']" id="object-doi-tests">
+ <pattern id="object-id-tests-pattern">
+    <rule context="object-id[@pub-id-type='doi']" id="object-id-tests">
 	<let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
 	
-	  <assert test="starts-with(.,concat('10.7554/eLife.' , $article-id))" role="error" id="object-doi-test-1">object-doi must start with the elife doi prefix, '10.7554/eLife.' and the article id <value-of select="$article-id"/>.</assert>
+	  <assert test="starts-with(.,concat('10.7554/eLife.' , $article-id))" role="error" id="object-id-test-1">object-id must start with the elife doi prefix, '10.7554/eLife.' and the article id <value-of select="$article-id"/>.</assert>
 	
-	  <assert test="matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')" role="error" id="object-doi-test-2">object-doi must follow this convention - '10.7554/eLife.00000.000'.</assert>
+	  <assert test="matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')" role="error" id="object-id-test-2">object-id must follow this convention - '10.7554/eLife.00000.000'.</assert>
 	  
-	  <report test=". = preceding::object-id[@pub-id-type='doi'] or . = following::object-id[@pub-id-type='doi']" role="error" id="object-doi-test-3">object-dois must always be distinct. <value-of select="."/> is not distinct.</report>
+	  <report test=". = preceding::object-id[@pub-id-type='doi'] or . = following::object-id[@pub-id-type='doi']" role="error" id="object-id-test-3">object-ids must always be distinct. <value-of select="."/> is not distinct.</report>
 
     </rule>
   </pattern>	
@@ -785,13 +793,13 @@
   </pattern>
   <pattern id="fig-tests-pattern">
     <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" id="fig-tests">
-      
-      <!-- Include exception for feature template 5 with DOIs. -->
-      <report test="if (ancestor::article/@article-type = $features-article-types) then ()                      else count(object-id[@pub-id-type='doi']) != 1" role="error" id="fig-test-1">fig must have one and only one object-id[@pub-id-type='doi'].</report>
+      <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert test="@position" role="error" id="fig-test-2">fig must have a @position.</assert>
       
-      <assert test="label" role="error" id="fig-test-3">fig must have a label.</assert>
+      <report test="if ($article-type = $features-article-types) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label.</report>
+      
+      <report test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
       <assert test="caption" role="error" id="fig-test-4">fig must have a caption.</assert>
       
@@ -977,6 +985,7 @@
   
   <pattern id="fig-specific-tests-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
       <let name="count" value="count(ancestor::article//fig[matches(label,'Figure \d{1,4}\.')])"/>
       <let name="pos" value="$count - count(following::fig[matches(label,'Figure \d{1,4}\.')])"/>
@@ -984,15 +993,17 @@
       
       <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
-      <assert test="$no = string($pos)" role="error" id="fig-specific-test-2">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</assert>
+      <report test="if ($count = 0) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <assert test="(preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id])" role="warning" id="fig-specific-test-3">
         <value-of select="label"/> does not appear directly after a paragraph citing it. Is that correct?</assert>
   
-      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</assert>
+      <report test="if ($article-type = $features-article-types) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</report>
       
-      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-fig-specific-test-4">There is no citation to <value-of select="label"/> Esnure this is added.</assert>
+      <report test="if ($article-type = $features-article-types) then ()         else not(ancestor::article//xref[@rid = $id])" role="error" id="final-fig-specific-test-4">There is no citation to <value-of select="label"/> Esnure this is added.</report>
+      
+      <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
   
     </rule>
   </pattern>
@@ -1025,8 +1036,6 @@
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       
       <assert test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>
-      
-      <assert test="object-id[@pub-id-type='doi']" role="error" id="resp-fig-test-3">fig must have a object-id[@pub-id-type='doi'].</assert>
       
       <assert test="matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
       
@@ -1396,8 +1405,6 @@
   </pattern>
   <pattern id="app-boxed-text-tests-pattern">
     <rule context="back//app/boxed-text" id="app-boxed-text-tests">
-      
-      <assert test="count(object-id[@pub-id-type='doi']) = 1" role="error" id="app-test-4">boxed-text must have an object-id.</assert>
       
     </rule>
   </pattern>
@@ -3311,6 +3318,12 @@
       
       <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">
         <value-of select="local-name()"/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
+      
+      <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">
+        <value-of select="local-name()"/> element contains ' and and ' which is very likely to be incorrect.</report>
+      
+      <report test="matches(.,' [Ff]igure [Ff]igure ')" role="warning" id="figurefigure-presence">
+        <value-of select="local-name()"/> element contains ' figure figure ' which is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -3347,7 +3360,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert test=". = ($cite1,$cite2)" role="error" id="ref-xref-conformity">
+      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="ref-xref-conformity">
         <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
@@ -3384,6 +3397,8 @@
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       
       <report test="(not(matches(.,'vs\.|[Cc]\. elegans'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      
+      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">

@@ -4,9 +4,9 @@
 
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 
-let $xml := doc('/Users/fredatherden/desktop/elife-39723.xml')
+let $xml := doc('/Users/fredatherden/desktop/elife-41535.xml')
 
-let $sch := schematron:compile(doc('/Users/fredatherden/desktop/schematron.sch'))
+let $sch := schematron:compile(doc('/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/JATS-schematron.sch'))
 
 let $svrl := schematron:validate($xml, $sch)
 let $messages := schematron:messages($svrl)
