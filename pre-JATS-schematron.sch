@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:java="http://www.java.com/" xmlns:file="java.io.File" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
 
 <title>eLife Schematron</title>
 
@@ -25,7 +25,7 @@
 	 
 <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
-  <xsl:function name="e:titleCase" as="xs:string">
+  <xsl:function name="e:titleCaseToken" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="contains($s,'-')">
@@ -34,8 +34,31 @@
       <xsl:when test="lower-case($s)=('and','or','the','an','of')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
+      <xsl:when test="lower-case($s)=('rna','dna')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="concat(upper-case(substring($s, 1, 1)), lower-case(substring($s, 2)))"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:titleCase" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="contains($s,' ')">
+        <xsl:variable name="token1" select="substring-before($s,' ')"/>
+        <xsl:variable name="token2" select="substring-after($s,$token1)"/>
+        <xsl:value-of select="concat(           concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),           ' ',           string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="lower-case($s)=('and','or','the','an','of')">
+        <xsl:value-of select="lower-case($s)"/>
+      </xsl:when>
+      <xsl:when test="lower-case($s)=('rna','dna')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="e:titleCaseToken($s)"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -459,6 +482,9 @@
 	  <assert test="matches(given-names,'^[\p{L}\p{M}\s-]*$')" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="given-names"/> contains other characters.</assert>
 		
 	  <assert test="matches(given-names,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter. Is this correct?</assert>
+	  
+	  <report test="matches(given-names,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="given-names"/>
+      </report>
 		
 	</rule>
   </pattern>
@@ -519,15 +545,15 @@
 		
     	<assert test="matches(day,'^[0-9]{2}$')" role="warning" id="pre-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
-	  <assert test="matches(day,'^[0-9]{2}$')" role="error" id="final-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+	  
 		
     	<assert test="matches(month,'^[0-9]{2}$')" role="warning" id="pre-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
 	  
-	  <assert test="matches(month,'^[0-9]{2}$')" role="error" id="final-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+	  
 		
     	<assert test="matches(year,'^[0-9]{4}$')" role="warning" id="pre-date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
 	  
-	  <assert test="matches(year,'^[0-9]{4}$')" role="error" id="final-date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+	  
 		
     	<assert test="@iso-8601-date = concat(year,'-',month,'-',day)" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
 	
@@ -700,11 +726,11 @@
       
       <report test="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x) gt 30" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
       
-      <report test="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x) gt 30" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
+      
       
       <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement should end with a full stop or question mark - please alert eLife staff.</assert>
       
-      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
+      
       
       <report test="matches(.,'[\p{L}]{2,}\. .*$|[\p{L}\p{N}]{2,}\? .*$|[\p{L}\p{N}]{2,}! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
@@ -712,7 +738,7 @@
       
       <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="warning" id="pre-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
       
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
+      
     </rule>
   </pattern>
   <pattern id="elocation-id-tests-pattern">
@@ -749,7 +775,7 @@
 	
 	  <assert test="matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')" role="error" id="object-id-test-2">object-id must follow this convention - '10.7554/eLife.00000.000'.</assert>
 	  
-	  <report test=". = preceding::object-id[@pub-id-type='doi'] or . = following::object-id[@pub-id-type='doi']" role="error" id="object-id-test-3">object-ids must always be distinct. <value-of select="."/> is not distinct.</report>
+	  <report test="(. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])" role="error" id="object-id-test-3">object-ids must always be distinct. <value-of select="."/> is not distinct.</report>
 
     </rule>
   </pattern>	
@@ -1001,7 +1027,7 @@
   
       <report test="if ($article-type = $features-article-types) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</report>
       
-      <report test="if ($article-type = $features-article-types) then ()         else not(ancestor::article//xref[@rid = $id])" role="error" id="final-fig-specific-test-4">There is no citation to <value-of select="label"/> Esnure this is added.</report>
+      
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
   
@@ -1399,19 +1425,6 @@
       <assert test="parent::app-group" role="error" id="app-test-1">app must be captured as a child of an app-group element.</assert>
       
       <assert test="count(title) = 1" role="error" id="app-test-2">app must have one title.</assert>
-      
-      <assert test="count(descendant::boxed-text) = 1" role="error" id="app-test-3">app must have one and only one boxed-text.</assert>
-    </rule>
-  </pattern>
-  <pattern id="app-boxed-text-tests-pattern">
-    <rule context="back//app/boxed-text" id="app-boxed-text-tests">
-      
-    </rule>
-  </pattern>
-  <pattern id="app-content-tests-pattern">
-    <rule context="back//app//*[not(local-name() = ('sec','title','boxed-text'))]" id="app-content-tests">
-      
-      <assert test="ancestor::boxed-text" role="error" id="app-content-test-1">app content must be captured within boxed-text.</assert>
     </rule>
   </pattern>
   <pattern id="additional-info-tests-pattern">
@@ -3165,7 +3178,7 @@
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
-     <report test="if (contains(.,' ')) then . != concat(        concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),        ' ',        string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')        )        else . != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="if (contains(.,' ')) then . != concat(          concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),          ' ',          string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')          )          else . != e:titleCase(.)"/>
+     <report test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
       </report>
      
      <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
@@ -3396,7 +3409,7 @@
   <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       
-      <report test="(not(matches(.,'vs\.|[Cc]\. elegans'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      <report test="(not(matches(.,'vs\.|[Cc]\. elegans|sp\.'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
     </rule>
@@ -3470,9 +3483,9 @@
   <pattern id="p-punctuation-pattern">
     <rule context="article/body//p" id="p-punctuation">
       
-      <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
+      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
@@ -3481,7 +3494,7 @@
       
       <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
       
-      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
+      
     </rule>
   </pattern>
   <pattern id="code-fork-pattern">
