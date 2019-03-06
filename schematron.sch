@@ -710,30 +710,18 @@
 	
 	<rule context="date" 
 		id="date-tests">
-		
-    	<assert test="matches(day,'^[0-9]{2}$')"
-      	role="warning" 
-      	id="pre-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
 	  <assert test="matches(day,'^[0-9]{2}$')"
 	    role="error" 
-	    id="final-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
-		
-    	<assert test="matches(month,'^[0-9]{2}$')"
-      	role="warning" 
-      	id="pre-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+	    id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
 	  <assert test="matches(month,'^[0-9]{2}$')"
 	    role="error" 
-	    id="final-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
-		
-    	<assert test="matches(year,'^[0-9]{4}$')"
-      	role="warning" 
-      	id="pre-date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+	    id="date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
 	  
 	  <assert test="matches(year,'^[0-9]{4}$')"
 	    role="error" 
-	    id="final-date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+	    id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
 		
     	<assert test="@iso-8601-date = concat(year,'-',month,'-',day)"
       	role="error" 
@@ -745,16 +733,24 @@
       id="pub-date-tests-1">
       
       <assert test="matches(day,'^[0-9]{2}$')"
+        role="warning" 
+        id="pre-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+      
+      <assert test="matches(day,'^[0-9]{2}$')"
         role="error" 
-        id="pub-date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+        id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+      
+      <assert test="matches(month,'^[0-9]{2}$')"
+        role="warning" 
+        id="pre-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
       
       <assert test="matches(month,'^[0-9]{2}$')"
         role="error" 
-        id="pub-date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+        id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
       
       <assert test="matches(year,'^[0-9]{4}$')"
         role="error" 
-        id="pub-date-test-3">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+        id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
     </rule>
     
