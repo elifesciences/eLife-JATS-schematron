@@ -556,11 +556,11 @@
   <pattern id="pub-date-tests-1-pattern">
     <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
       
-      <assert test="matches(day,'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+      <assert test="matches(day,'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-1">day is not present in pub-date.</assert>
       
       
       
-      <assert test="matches(month,'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+      <assert test="matches(month,'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-2">month is not present in pub-date.</assert>
       
       
       
@@ -751,7 +751,7 @@
     <rule context="article-meta/volume" id="volume-test">
       <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>
       
-      <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">Journal volme is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+      <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
   </pattern>
 
@@ -827,7 +827,10 @@
       
       <assert test="caption" role="error" id="fig-test-4">fig must have a caption.</assert>
       
-      <assert test="caption/title" role="error" id="fig-test-5">fig caption must have a title.</assert>
+      <assert test="caption/title" role="warning" id="pre-fig-test-5">
+        <value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+      
+      
       
       <report test="matches(@id,'^fig[0-9]{1,3}$') and not(caption/p)" role="warning" id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
       
@@ -855,7 +858,7 @@
       
       <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
       
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
       
@@ -866,14 +869,27 @@
       <report test="if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
     </rule>
   </pattern>
+  <pattern id="video-test-pattern">
+    <rule context="media[child::label]" id="video-test">
+      
+      <assert test="caption/title" role="warning" id="pre-video-title">
+        <value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+      
+      
+      
+    </rule>
+  </pattern>
   <pattern id="supplementary-material-tests-pattern">
     <rule context="supplementary-material" id="supplementary-material-tests">
       
       <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
       
-      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="warning" id="supplementary-material-test-2">supplementary-material does not have a caption. Is this correct?</report>
+      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="error" id="supplementary-material-test-2">supplementary-material have a child caption.</report>
       
-      <report test="if (caption) then not(caption/title)                     else ()" role="error" id="supplementary-material-test-3">supplementary-material caption must have a title.</report>
+      <report test="if (caption) then not(caption/title)                     else ()" role="warning" id="pre-supplementary-material-test-3">
+        <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
+      
+      
       
       <!-- Not included because in most instances this is the case
         <report test="if (label = 'Transparent reporting form') then () 

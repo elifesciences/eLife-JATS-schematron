@@ -734,7 +734,7 @@
       
       <assert test="matches(day,'^[0-9]{2}$')"
         role="warning" 
-        id="pre-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+        id="pre-pub-date-test-1">day is not present in pub-date.</assert>
       
       <assert test="matches(day,'^[0-9]{2}$')"
         role="error" 
@@ -742,7 +742,7 @@
       
       <assert test="matches(month,'^[0-9]{2}$')"
         role="warning" 
-        id="pre-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+        id="pre-pub-date-test-2">month is not present in pub-date.</assert>
       
       <assert test="matches(month,'^[0-9]{2}$')"
         role="error" 
@@ -1045,7 +1045,7 @@
       
       <assert test=". = number($pub-date) - 2011"
         role="error"
-        id="volume-test-1">Journal volme is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+        id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
   </pattern>
 
@@ -1166,8 +1166,12 @@
         id="fig-test-4">fig must have a caption.</assert>
       
       <assert test="caption/title" 
+        role="warning"
+        id="pre-fig-test-5"><value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+      
+      <assert test="caption/title" 
         role="error"
-        id="fig-test-5">fig caption must have a title.</assert>
+        id="final-fig-test-5">fig caption must have a title.</assert>
       
       <report test="matches(@id,'^fig[0-9]{1,3}$') and not(caption/p)" 
         role="warning"
@@ -1215,7 +1219,7 @@
                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))
                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))
                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))
-                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$'))
+                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$'))
                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
@@ -1240,6 +1244,19 @@
         id="media-test-8">video does not contain a label, which is incorrect.</report>
     </rule>
     
+    <rule context="media[child::label]" 
+      id="video-test">
+      
+      <assert test="caption/title"
+        role="warning"
+        id="pre-video-title"><value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+      
+      <assert test="caption/title"
+        role="error"
+        id="final-video-title"><value-of select="label"/> does not have a title, which is incorrect.</assert>
+      
+    </rule>
+    
     <rule context="supplementary-material" 
       id="supplementary-material-tests">
       
@@ -1249,13 +1266,18 @@
       
       <report test="if (contains(label,'Transparent reporting form')) then () 
                     else not(caption)" 
-        role="warning"
-        id="supplementary-material-test-2">supplementary-material does not have a caption. Is this correct?</report>
+        role="error"
+        id="supplementary-material-test-2">supplementary-material have a child caption.</report>
       
       <report test="if (caption) then not(caption/title)
                     else ()" 
-        role="error"
-        id="supplementary-material-test-3">supplementary-material caption must have a title.</report>
+        role="warning"
+        id="pre-supplementary-material-test-3"><value-of select="label"/> does not have a title. Please alert eLife staff.</report>
+      
+      <report test="if (caption) then not(caption/title)
+        else ()" 
+        role="warning"
+        id="final-supplementary-material-test-3"><value-of select="label"/> doesn't have a title. Is this correct?</report>
       
       <!-- Not included because in most instances this is the case
         <report test="if (label = 'Transparent reporting form') then () 
