@@ -3257,31 +3257,23 @@
     <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="type" value="e:fig-id-type($rid)"/>
-      <let name="hit" value="analyze-string(.,'[0-9]{1,3}')"/>
-      <let name="hit-count" value="count($hit//*:match)"/>
-      <let name="no-1" value="$hit/descendant::*:match[1]"/>
-      <let name="no-2" value="$hit/descendant::*:match[2]"/>
-      <let name="no-3" value="$hit/descendant::*:match[3]"/>
+      <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="($hit-count = 0)" role="error" id="fig-xref-conformity-1">
-        <value-of select="."/> - figure citation does not any numbers which must be incorrect.</report>
+      <assert test="matches(.,'\p{N}')" role="error" id="fig-xref-conformity-1">
+        <value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="($type = 'Figure') and ($hit-count = 1) and ($no-1 != substring-after($rid,'fig'))" role="warning" id="fig-xref-conformity-2">
-        <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should - unless this article contains Scheme/Chemical sturcture type figures.</report>
+      <report test="($type = 'Figure') and ($no != $target-no)" role="error" id="fig-xref-conformity-2">
+        <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
       <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-3">
         <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
-      <report test="($type = 'Figure supplement') and ($hit-count = 1) and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and ')))" role="warning" id="fig-xref-conformity-4">
-        <value-of select="."/> - figure citation links to a figure supplement, but only contains one number. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
+      <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $| ,[\s]?$')))" role="warning" id="fig-xref-conformity-4">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and (not(matches(preceding-sibling::text()[1],' and '))) and ($no-1 != substring-after(substring-before($rid,'s'),'fig'))" role="warning" id="fig-xref-conformity-5">
-        <value-of select="."/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. Is it correct?</report>
-      
-      <report test="($type = 'Figure supplement') and (not(matches(preceding-sibling::text()[1],'–'))) and ($no-2 != substring-after($rid,'s'))" role="error" id="fig-xref-conformity-6">
-        <value-of select="."/> - figure citation links to a figure supplement, the content of the citation does not match the content of the link. It cannot be correct.</report>
+      <report test="($type = 'Figure supplement') and ($target-no != $no) and (substring($target-no,2) !=$no)" role="error" id="fig-xref-conformity-5">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -3292,10 +3284,10 @@
   <pattern id="supp-file-xref-conformance-pattern">
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="text-hit" value="analyze-string(.,'[0-9]{1,3}')"/>
-      <let name="last-text-no" value="$text-hit/descendant::*:match[last()]"/>
-      <let name="last-rid-hit" value="analyze-string($rid,'[0-9]{1,3}$')"/>
-      <let name="last-rid-no" value="$last-rid-hit//*:match"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       
       <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-1">
@@ -3307,7 +3299,10 @@
       <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-3">
         <value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
-      <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-4">
+      <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">
+        <value-of select="."/> - It looks like the citation content does not match what it directs to.</assert>
+      
+      <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-5">
         <value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
     </rule>
   </pattern>
@@ -3315,18 +3310,14 @@
   <pattern id="equation-xref-conformance-pattern">
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="label" value="ancestor::article//disp-formula[@id = $rid]/label"/>
-      <let name="text-hit" value="analyze-string(.,'[0-9]{1,3}')"/>
-      <let name="text-no" value="$text-hit//*:match"/>
-      <let name="label-hit" value="analyze-string($label,'[0-9]{1,3}')"/>
-      <let name="label-no" value="$label-hit//*:match"/>
+      <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       
       <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">
         <value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
-      <report test="if (contains($rid,' ')) then () else $text-no != $label-no" role="error" id="equ-xref-conformity-2">
-        <value-of select="$label-no"/> - equation link content does not match what it directs to. Check that it is correct.</report>
+      <assert test="contains(.,$label)" role="error" id="equ-xref-conformity-2">
+        <value-of select="$label"/> - equation link content does not match what it directs to. Check that it is correct.</assert>
     </rule>
   </pattern>
   
