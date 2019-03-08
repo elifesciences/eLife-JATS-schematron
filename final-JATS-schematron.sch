@@ -285,7 +285,9 @@
   <pattern id="research-article-pattern">
     <rule context="article[@article-type='research-article']" id="research-article">
 	
-	  <assert test="sub-article[@article-type='decision-letter']" role="error" id="test-r-article-d-letter">sub-article[@article-type="decision-letter"] must be present for article[@article-type="research-article"]</assert>
+	  
+	  
+	  <assert test="sub-article[@article-type='decision-letter']" role="error" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</assert>
 		
 	  <assert test="sub-article[@article-type='reply']" role="warning" id="test-r-article-a-reply">sub-article[@article-type="reply"] should be present for article[@article-type="research-article"]</assert>
 	
@@ -384,7 +386,7 @@
     <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
     <assert test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group must be present (as a child of article-meta) for research articles.</assert>
-	  
+     
      <assert test="contrib-group[@content-type='section']" role="error" id="test-contrib-group-presence-2">contrib-group must be present (as a child of article-meta) for research articles.</assert>
    
    </rule>
@@ -898,7 +900,7 @@
       
       <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>		
       
-      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard$')" role="error" id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
+      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
     </rule>
   </pattern>
   <pattern id="disp-formula-tests-pattern">
@@ -3253,6 +3255,28 @@
     </rule>
   </pattern>
   
+  <pattern id="ref-xref-conformance-pattern">
+    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
+      <let name="cite1" value="e:citation-format1($ref//year)"/>
+      <let name="cite2" value="e:citation-format2($ref//year)"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      
+      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="ref-xref-test-1">
+        <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
+      
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      
+      <assert test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/> </assert>
+      
+      <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/> </assert>
+    </rule>
+  </pattern>
+  
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -3368,23 +3392,6 @@
         <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
     </rule>
   </pattern>
-  <pattern id="ref-xref-tests-pattern">
-    <rule context="xref[@ref-type='bibr']" id="ref-xref-tests">
-      <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
-      <let name="cite1" value="e:citation-format1($ref//year)"/>
-      <let name="cite2" value="e:citation-format2($ref//year)"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      
-      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="ref-xref-conformity">
-        <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
-      
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
-      
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
-    </rule>
-  </pattern>
   <pattern id="journal-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
@@ -3416,6 +3423,12 @@
       <report test="(not(matches(.,'vs\.|[Cc]\. elegans|sp\.'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
+    </rule>
+  </pattern>
+  <pattern id="journal-tests-pattern">
+    <rule context="element-citation[@publication-type='journal']" id="journal-tests">
+      
+      <report test="not(fpage) and not(elocation-id)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
