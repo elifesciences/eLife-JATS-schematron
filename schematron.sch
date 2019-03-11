@@ -1182,8 +1182,12 @@
         id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
       
       <assert test="graphic"
+        role="warning"
+        id="pre-fig-test-7">fig does not have graphic. Esnure author query is added asking for file.</assert>
+      
+      <assert test="graphic"
         role="error"
-        id="fig-test-7">fig must have a graphic.</assert>
+        id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
     
     <rule context="graphic" 
@@ -1455,10 +1459,15 @@
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
+      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.','')"/>
       
-      <assert test="$no = string($pos)" 
+      <report test="not(ancestor::fig-group) and ($no != string($pos))" 
         role="error"
-        id="body-video-position-test-1"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</assert>
+        id="body-video-position-test-1"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
+      
+      <assert test="starts-with(label,$fig-label)" 
+        role="error"
+        id="fig-video-label-test"><value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
       
     </rule>
     
@@ -4011,21 +4020,25 @@
         role="error" 
         id="fig-xref-conformity-1"><value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="($type = 'Figure') and ($no != $target-no)" 
+      <report test="($type = 'Figure') and not(contains($no,$target-no))" 
         role="error" 
         id="fig-xref-conformity-2"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
+      <report test="($type = 'Figure') and ($no != $target-no)" 
+        role="warning" 
+        id="fig-xref-conformity-3"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      
       <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" 
         role="error" 
-        id="fig-xref-conformity-3"><value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
+        id="fig-xref-conformity-4"><value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
       <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $| ,[\s]?$')))"
         role="warning" 
-        id="fig-xref-conformity-4">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
+        id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
       <report test="($type = 'Figure supplement') and ($target-no != $no) and (substring($target-no,2) !=$no)"
         role="error" 
-        id="fig-xref-conformity-5">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
+        id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')"
         role="warning"
