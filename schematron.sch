@@ -23,7 +23,7 @@
     <ns uri="java.io.File" prefix="file"/>
     <ns uri="http://www.java.com/" prefix="java"/>
 
-<let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article')"/>
+<let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence')"/>
   <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
   
@@ -296,9 +296,9 @@
         role="error" 
         id="test-article-body">Article must have one child body. Currently there are <value-of select="count(body)"/></assert>
 		
-	  <assert test="count(back) = 1"
+      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
         role="error" 
-        id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/></assert>
+        id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/></report>
 		
  	</rule>
 	
@@ -412,40 +412,41 @@
         role="error" 
         id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
 		
-    <assert test="self-uri"
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)"
         role="error" 
-        id="test-self-uri-presence">There must be a child self-uri in article-meta.</assert>
+        id="test-self-uri-presence">There must be a child self-uri in article-meta.</report>
 		
-    <assert test="self-uri[@content-type='pdf']"
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])"
         role="error" 
-        id="test-self-uri-att">self-uri must have an @content-type="pdf"</assert>
+        id="test-self-uri-att">self-uri must have an @content-type="pdf"</report>
 		
-    <assert test="self-uri[starts-with(@xlink:href,concat('elife-', $article-id))]"
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])"
         role="error" 
-        id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</assert>
+        id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
     
-    <assert test="self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')]"
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])"
       role="error" 
-      id="test-self-uri-pdf-2">self-uri does not conform.</assert>
+      id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <assert test="count(history) = 1"
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1"
           role="error" 
-          id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></assert>
+          id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
 		  
     <assert test="count(permissions) = 1"
           role="error" 
           id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/></assert>
 		  
-     <assert test="count(abstract[not(@abstract-type='executive-summary')]) = 1 or (count(abstract[not(@abstract-type='executive-summary')]) = 1 and count(abstract[@abstract-type='executive-summary']) = 1)"
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))"
       role="error" 
-      id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</assert>
+      id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
 	 
-    <report test="if (($article-type = $features-article-types) or ($subj-type = 'Scientific Correspondence')) then ()
+    <report test="if ($article-type = $features-article-types) then ()
+      else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then ()
                    else count(funding-group) != 1"
            role="error" 
            id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     
-    <report test="if ($article-type = $exceptions) then ()
+    <report test="if ($subj-type = $exceptions) then ()
                   else count(custom-meta-group) != 1"
       role="error" 
       id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
@@ -637,9 +638,11 @@
 	
 	<rule context="article-meta//contrib" 
 		id="contrib-tests">
+	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if (collab) then ()
+    	<report test="if ($subj-type = ('Retraction','Correction')) then ()
+    	  else if (collab) then ()
     	  else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)
     	  else if (parent::contrib-group[@content-type='section']) then (count(xref[@ref-type='aff']) + count(aff) = 0)
     	  else count(xref[@ref-type='aff']) = 0"
@@ -1237,7 +1240,7 @@
         role="error"
         id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
       
-      <report test="@mime-subtype='octet-stream' and matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$||\.xlsx$||\.mp4$|\.gif$|')" 
+      <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" 
         role="warning"
         id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
@@ -2025,7 +2028,7 @@
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       
-      <report test="if ($article-type = $features-article-types) then ()
+      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()
                     else count(sec[@sec-type='additional-information']) != 1"
         role="error"
         id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
@@ -2057,7 +2060,7 @@
         role="error"
         id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$article-type"/> content.</report>
       
-      <report test="if ($article-type = $features-article-types) then ()
+      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()
         else (not(ack))"
         role="warning"
         id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement section, but there isn't one here. Is this correct?</report>
@@ -2284,7 +2287,7 @@
     
     <rule context="related-article" 
       id="related-articles-conformance">
-      <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article')"/>
+      <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article')"/>
       
       <assert test="@related-article-type"
         role="error"
@@ -4036,7 +4039,7 @@
         role="warning" 
         id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report test="($type = 'Figure supplement') and ($target-no != $no) and (substring($target-no,2) !=$no)"
+      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))"
         role="error" 
         id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
@@ -4210,7 +4213,11 @@
       
       <report test="(not(matches(.,'vs\.|[Cc]\. elegans|sp\.'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))"
         role="warning" 
-        id="article-title-fullstop-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+        id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      
+      <report test="matches(.,'\.$')"
+        role="error" 
+        id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')"
         role="warning" 
@@ -4316,6 +4323,34 @@
         role="warning" 
         id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
       
+    </rule>
+    
+    <rule context="article" 
+      id="KRT-check">
+      <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="KRT-subjs" value="('Research Advance', 'Research Article', 'Tools and Resources', 'Short Report', 'Research Communication')"/>
+      
+      <report test="($subj = $KRT-subjs) and not(descendant::table-wrap[@id = 'keyresource'])"
+        role="warning" 
+        id="KRT-presence">'<value-of select="$subj"/>' type articles usually have a key resources table, but this does not. Is this correct?</report>
+      
+    </rule>
+    
+    <rule context="th|td" 
+      id="colour-table">
+      
+      <report test="starts-with(@style,'author-callout')"
+        role="warning" 
+        id="colour-check-table"><value-of select="local-name()"/> element has colour background. Is this correct? It contains <value-of select="."/></report>
+    </rule>
+    
+    <rule context="named-content" 
+      id="colour-named-content">
+      <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
+      
+      <report test="starts-with(@content-type,'author-callout')"
+        role="warning" 
+        id="colour-named-content-check"><value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/></report>
     </rule>
     
     <rule context="article/body//p" 
