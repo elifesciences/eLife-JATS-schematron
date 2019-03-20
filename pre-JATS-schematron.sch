@@ -577,7 +577,10 @@
     
     <report test="if ($subj-type = $exceptions) then ()                   else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
 	   
-    <assert test="count(kwd-group[@kwd-group-type='author-keywords']) = 1" role="error" id="test-auth-kwd-group-presence">One author keyword group must be present in article-meta .</assert>
+    <report test="if ($subj-type = ('Correction','Retraction')) then ()       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" role="error" id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
+    
+    <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
+        <value-of select="$subj-type"/> articles must not have any author keywords</report>
     
     <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
    </rule>
@@ -648,8 +651,6 @@
     <report test="article-title//mml:math" role="error" id="article-title-test-5">Article title must not contain math.</report>
 	  
     <report test="article-title//bold" role="error" id="article-title-test-6">Article title must not contain bold.</report>
-	  
-	  <report test="matches($lc,$org-regex) and not(article-title/italic[text() = e:org-conform($lc)])" role="error" id="article-title-test-7">article title contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing.</report>
 	
 	</rule>
   </pattern>
@@ -1642,7 +1643,7 @@
   <pattern id="ack-child-tests-pattern">
     <rule context="back/ack/*" id="ack-child-tests">
     
-      <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <value-of select="local-name()"/> is not allowed.</assert>
+      <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
   </pattern>
   <pattern id="app-tests-pattern">
@@ -1784,7 +1785,7 @@
       
       <assert test="@related-article-type" role="error" id="related-articles-test-3">related-article element must contain a @related-article-type.</assert>
       
-      <assert test="@related-article-type = $allowed-values" role="error" id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', and 'corrected-article').</assert>
+      <assert test="@related-article-type = $allowed-values" role="error" id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article').</assert>
       
       <assert test="@ext-link-type='doi'" role="error" id="related-articles-test-5">related-article element must contain a @ext-link-type='doi'.</assert>
       
@@ -3452,7 +3453,7 @@
       <let name="hit-count" value="count($hit//*:match)"/>
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)" role="warning" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)" role="warning" id="rrid-test">'<name/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
       
       <report test="matches($lc,$org-regex) and not(descendant::italic[contains(.,e:org-conform($lc))])" role="warning" id="org-test">
         <name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
@@ -3572,38 +3573,295 @@
     </rule>
   </pattern>
   
+  <pattern id="org-ref-article-book-title-pattern">
+    <rule context="ref//article-title" id="org-ref-article-book-title">	
+      <let name="lc" value="lower-case(.)"/>
+      
+      <report test="matches($lc,'b\.\s?subtilis') and not(italic[text() ='B. subtilis'])" role="error" id="bssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[text() ='Bacillus subtilis'])" role="error" id="bacillusssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[text() ='D. melanogaster'])" role="error" id="dsmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[text() ='Drosophila melanogaster'])" role="error" id="drosophilasmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?coli') and not(italic[text() ='E. coli'])" role="error" id="escoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'escherichia\s?coli') and not(italic[text() ='Escherichia coli'])" role="error" id="escherichiascoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?pombe') and not(italic[text() ='S. pombe'])" role="error" id="sspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[text() ='Schizosaccharomyces pombe'])" role="error" id="schizosaccharomycesspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[text() ='S. cerevisiae'])" role="error" id="sscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[text() ='Saccharomyces cerevisiae'])" role="error" id="saccharomycesscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?elegans') and not(italic[text() ='C. elegans'])" role="error" id="cselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[text() ='Caenorhabditis elegans'])" role="error" id="caenorhabditisselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'a\.\s?thaliana') and not(italic[text() ='A. thaliana'])" role="error" id="asthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[text() ='Arabidopsis thaliana'])" role="error" id="arabidopsissthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?thermophila') and not(italic[text() ='M. thermophila'])" role="error" id="msthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[text() ='Myceliophthora thermophila'])" role="error" id="myceliophthorasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'dictyostelium') and not(italic[text() ='Dictyostelium'])" role="error" id="dictyostelium-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?falciparum') and not(italic[text() ='P. falciparum'])" role="error" id="psfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[text() ='Plasmodium falciparum'])" role="error" id="plasmodiumsfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?enterica') and not(italic[text() ='S. enterica'])" role="error" id="ssenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'salmonella\s?enterica') and not(italic[text() ='Salmonella enterica'])" role="error" id="salmonellasenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[text() ='S. pyogenes'])" role="error" id="sspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[text() ='Streptococcus pyogenes'])" role="error" id="streptococcusspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[text() ='P. dumerilii'])" role="error" id="psdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[text() ='Platynereis dumerilii'])" role="error" id="platynereissdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[text() ='P. cynocephalus'])" role="error" id="pscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[text() ='Papio cynocephalus'])" role="error" id="papioscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[text() ='O. fasciatus'])" role="error" id="osfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[text() ='Oncopeltus fasciatus'])" role="error" id="oncopeltussfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'n\.\s?crassa') and not(italic[text() ='N. crassa'])" role="error" id="nscrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'neurospora\s?crassa') and not(italic[text() ='Neurospora crassa'])" role="error" id="neurosporascrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[text() ='C. intestinalis'])" role="error" id="csintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[text() ='Ciona intestinalis'])" role="error" id="cionasintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[text() ='E. cuniculi'])" role="error" id="escuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[text() ='Encephalitozoon cuniculi'])" role="error" id="encephalitozoonscuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'h\.\s?salinarum') and not(italic[text() ='H. salinarum'])" role="error" id="hssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[text() ='Halobacterium salinarum'])" role="error" id="halobacteriumssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[text() ='S. solfataricus'])" role="error" id="sssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[text() ='Sulfolobus solfataricus'])" role="error" id="sulfolobusssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[text() ='S. mediterranea'])" role="error" id="ssmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[text() ='Schmidtea mediterranea'])" role="error" id="schmidteasmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?rosetta') and not(italic[text() ='S. rosetta'])" role="error" id="ssrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[text() ='Salpingoeca rosetta'])" role="error" id="salpingoecasrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'n\.\s?vectensis') and not(italic[text() ='N. vectensis'])" role="error" id="nsvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[text() ='Nematostella vectensis'])" role="error" id="nematostellasvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?aureus') and not(italic[text() ='S. aureus'])" role="error" id="ssaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[text() ='Staphylococcus aureus'])" role="error" id="staphylococcussaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'v\.\s?cholerae') and not(italic[text() ='V. cholerae'])" role="error" id="vscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[text() ='Vibrio cholerae'])" role="error" id="vibrioscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'t\.\s?thermophila') and not(italic[text() ='T. thermophila'])" role="error" id="tsthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[text() ='Tetrahymena thermophila'])" role="error" id="tetrahymenasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[text() ='C. reinhardtii'])" role="error" id="csreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[text() ='Chlamydomonas reinhardtii'])" role="error" id="chlamydomonassreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'n\.\s?attenuata') and not(italic[text() ='N. attenuata'])" role="error" id="nsattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[text() ='Nicotiana attenuata'])" role="error" id="nicotianasattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?carotovora') and not(italic[text() ='E. carotovora'])" role="error" id="escarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[text() ='Erwinia carotovora'])" role="error" id="erwiniascarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?faecalis') and not(italic[text() ='E. faecalis'])" role="error" id="esfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[text() ='Enterococcus faecalis'])" role="error" id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila') and not(italic[text() ='Drosophila'])" role="error" id="drosophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'xenopus') and not(italic[text() ='Xenopus'])" role="error" id="xenopus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="org-article-title-pattern">
+    <rule context="article//article-meta/title-group/article-title" id="org-article-title">		
+      <let name="lc" value="lower-case(.)"/>
+      
+      <report test="matches($lc,'b\.\s?subtilis') and not(italic[text() ='B. subtilis'])" role="error" id="bssubtilis-article-title-check">article title contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[text() ='Bacillus subtilis'])" role="error" id="bacillusssubtilis-article-title-check">article title contains an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[text() ='D. melanogaster'])" role="error" id="dsmelanogaster-article-title-check">article title contains an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[text() ='Drosophila melanogaster'])" role="error" id="drosophilasmelanogaster-article-title-check">article title contains an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?coli') and not(italic[text() ='E. coli'])" role="error" id="escoli-article-title-check">article title contains an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'escherichia\s?coli') and not(italic[text() ='Escherichia coli'])" role="error" id="escherichiascoli-article-title-check">article title contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?pombe') and not(italic[text() ='S. pombe'])" role="error" id="sspombe-article-title-check">article title contains an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[text() ='Schizosaccharomyces pombe'])" role="error" id="schizosaccharomycesspombe-article-title-check">article title contains an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[text() ='S. cerevisiae'])" role="error" id="sscerevisiae-article-title-check">article title contains an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[text() ='Saccharomyces cerevisiae'])" role="error" id="saccharomycesscerevisiae-article-title-check">article title contains an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?elegans') and not(italic[text() ='C. elegans'])" role="error" id="cselegans-article-title-check">article title contains an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[text() ='Caenorhabditis elegans'])" role="error" id="caenorhabditisselegans-article-title-check">article title contains an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'a\.\s?thaliana') and not(italic[text() ='A. thaliana'])" role="error" id="asthaliana-article-title-check">article title contains an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[text() ='Arabidopsis thaliana'])" role="error" id="arabidopsissthaliana-article-title-check">article title contains an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?thermophila') and not(italic[text() ='M. thermophila'])" role="error" id="msthermophila-article-title-check">article title contains an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[text() ='Myceliophthora thermophila'])" role="error" id="myceliophthorasthermophila-article-title-check">article title contains an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'dictyostelium') and not(italic[text() ='Dictyostelium'])" role="error" id="dictyostelium-article-title-check">article title contains an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?falciparum') and not(italic[text() ='P. falciparum'])" role="error" id="psfalciparum-article-title-check">article title contains an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[text() ='Plasmodium falciparum'])" role="error" id="plasmodiumsfalciparum-article-title-check">article title contains an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?enterica') and not(italic[text() ='S. enterica'])" role="error" id="ssenterica-article-title-check">article title contains an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'salmonella\s?enterica') and not(italic[text() ='Salmonella enterica'])" role="error" id="salmonellasenterica-article-title-check">article title contains an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[text() ='S. pyogenes'])" role="error" id="sspyogenes-article-title-check">article title contains an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[text() ='Streptococcus pyogenes'])" role="error" id="streptococcusspyogenes-article-title-check">article title contains an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[text() ='P. dumerilii'])" role="error" id="psdumerilii-article-title-check">article title contains an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[text() ='Platynereis dumerilii'])" role="error" id="platynereissdumerilii-article-title-check">article title contains an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[text() ='P. cynocephalus'])" role="error" id="pscynocephalus-article-title-check">article title contains an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[text() ='Papio cynocephalus'])" role="error" id="papioscynocephalus-article-title-check">article title contains an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[text() ='O. fasciatus'])" role="error" id="osfasciatus-article-title-check">article title contains an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[text() ='Oncopeltus fasciatus'])" role="error" id="oncopeltussfasciatus-article-title-check">article title contains an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'n\.\s?crassa') and not(italic[text() ='N. crassa'])" role="error" id="nscrassa-article-title-check">article title contains an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'neurospora\s?crassa') and not(italic[text() ='Neurospora crassa'])" role="error" id="neurosporascrassa-article-title-check">article title contains an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[text() ='C. intestinalis'])" role="error" id="csintestinalis-article-title-check">article title contains an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[text() ='Ciona intestinalis'])" role="error" id="cionasintestinalis-article-title-check">article title contains an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[text() ='E. cuniculi'])" role="error" id="escuniculi-article-title-check">article title contains an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[text() ='Encephalitozoon cuniculi'])" role="error" id="encephalitozoonscuniculi-article-title-check">article title contains an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'h\.\s?salinarum') and not(italic[text() ='H. salinarum'])" role="error" id="hssalinarum-article-title-check">article title contains an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[text() ='Halobacterium salinarum'])" role="error" id="halobacteriumssalinarum-article-title-check">article title contains an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[text() ='S. solfataricus'])" role="error" id="sssolfataricus-article-title-check">article title contains an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[text() ='Sulfolobus solfataricus'])" role="error" id="sulfolobusssolfataricus-article-title-check">article title contains an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[text() ='S. mediterranea'])" role="error" id="ssmediterranea-article-title-check">article title contains an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[text() ='Schmidtea mediterranea'])" role="error" id="schmidteasmediterranea-article-title-check">article title contains an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?rosetta') and not(italic[text() ='S. rosetta'])" role="error" id="ssrosetta-article-title-check">article title contains an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[text() ='Salpingoeca rosetta'])" role="error" id="salpingoecasrosetta-article-title-check">article title contains an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'n\.\s?vectensis') and not(italic[text() ='N. vectensis'])" role="error" id="nsvectensis-article-title-check">article title contains an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[text() ='Nematostella vectensis'])" role="error" id="nematostellasvectensis-article-title-check">article title contains an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'s\.\s?aureus') and not(italic[text() ='S. aureus'])" role="error" id="ssaureus-article-title-check">article title contains an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[text() ='Staphylococcus aureus'])" role="error" id="staphylococcussaureus-article-title-check">article title contains an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'v\.\s?cholerae') and not(italic[text() ='V. cholerae'])" role="error" id="vscholerae-article-title-check">article title contains an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[text() ='Vibrio cholerae'])" role="error" id="vibrioscholerae-article-title-check">article title contains an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'t\.\s?thermophila') and not(italic[text() ='T. thermophila'])" role="error" id="tsthermophila-article-title-check">article title contains an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[text() ='Tetrahymena thermophila'])" role="error" id="tetrahymenasthermophila-article-title-check">article title contains an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[text() ='C. reinhardtii'])" role="error" id="csreinhardtii-article-title-check">article title contains an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[text() ='Chlamydomonas reinhardtii'])" role="error" id="chlamydomonassreinhardtii-article-title-check">article title contains an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'n\.\s?attenuata') and not(italic[text() ='N. attenuata'])" role="error" id="nsattenuata-article-title-check">article title contains an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[text() ='Nicotiana attenuata'])" role="error" id="nicotianasattenuata-article-title-check">article title contains an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?carotovora') and not(italic[text() ='E. carotovora'])" role="error" id="escarotovora-article-title-check">article title contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[text() ='Erwinia carotovora'])" role="error" id="erwiniascarotovora-article-title-check">article title contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'e\.\s?faecalis') and not(italic[text() ='E. faecalis'])" role="error" id="esfaecalis-article-title-check">article title contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[text() ='Enterococcus faecalis'])" role="error" id="enterococcussfaecalis-article-title-check">article title contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila') and not(italic[text() ='Drosophila'])" role="error" id="drosophila-article-title-check">article title contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'xenopus') and not(italic[text() ='Xenopus'])" role="error" id="xenopus-article-title-check">article title contains an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+    </rule>
+  </pattern>
+  
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
       <report test="contains(.,'©')" role="error" id="copyright-symbol">
-        <value-of select="local-name()"/> element contains the copyright symbol, '©', which is not allowed.</report>
+        <name/> element contains the copyright symbol, '©', which is not allowed.</report>
       
       <report test="contains(.,'™')" role="error" id="trademark-symbol">
-        <value-of select="local-name()"/> element contains the trademark symbol, '™', which is not allowed.</report>
+        <name/> element contains the trademark symbol, '™', which is not allowed.</report>
       
       <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">
-        <value-of select="local-name()"/> element contains the registered trademark symbol, '®', which is not allowed.</report>
+        <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
       
       <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">
-        <value-of select="local-name()"/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
+        <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
       
       <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">
-        <value-of select="local-name()"/> element contains ' and and ' which is very likely to be incorrect.</report>
+        <name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
       <report test="matches(.,' [Ff]igure [Ff]igure ')" role="warning" id="figurefigure-presence">
-        <value-of select="local-name()"/> element contains ' figure figure ' which is very likely to be incorrect.</report>
+        <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
     <rule context="sup" id="unallowed-symbol-tests-sup">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<value-of select="local-name()"/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">'<value-of select="local-name()"/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">'<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<value-of select="local-name()"/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
+      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">'<value-of select="local-name()"/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">'<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
@@ -3617,6 +3875,16 @@
       
       <report test=". = 'UK'" role="error" id="united-kingdom-test-2">
         <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
+    </rule>
+  </pattern>
+  <pattern id="city-tests-pattern">
+    <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
+      <let name="lc" value="normalize-space(lower-case(.))"/>
+      <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^new york$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^washington$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
+      
+      <report test="matches($lc,$states-regex)" role="warning" id="pre-US-states-test">city contains a US state (or an abbreviation for it) - <value-of select="."/>. Please raise with eLife production staff.</report>
+      
+      
     </rule>
   </pattern>
   <pattern id="journal-title-tests-pattern">
@@ -3653,8 +3921,6 @@
       <report test="matches(.,'\.$')" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
-      
-      <report test="matches($lc,$org-regex) and not(italic[text() = e:org-conform($lc)])" role="error" id="ref-article-title-org-check">ref '<value-of select="ancestor::ref/@id"/>' references an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
   </pattern>
@@ -3743,7 +4009,7 @@
     <rule context="th|td" id="colour-table">
       
       <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">
-        <value-of select="local-name()"/> element has colour background. Is this correct? It contains <value-of select="."/>
+        <name/> element has colour background. Is this correct? It contains <value-of select="."/>
       </report>
     </rule>
   </pattern>
