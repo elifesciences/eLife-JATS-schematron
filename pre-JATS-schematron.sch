@@ -261,6 +261,194 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
+  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|xenopus|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|drosophila'"/>
+  
+  <xsl:function name="e:org-conform" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="matches($s,'b\.\s?subtilis')">
+        <xsl:value-of select="'B. subtilis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'bacillus\s?subtilis')">
+        <xsl:value-of select="'Bacillus subtilis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'d\.\s?melanogaster')">
+        <xsl:value-of select="'D. melanogaster'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'drosophila\s?melanogaster')">
+        <xsl:value-of select="'Drosophila melanogaster'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'e\.\s?coli')">
+        <xsl:value-of select="'E. coli'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'escherichia\s?coli')">
+        <xsl:value-of select="'Escherichia coli'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?pombe')">
+        <xsl:value-of select="'S. pombe'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'schizosaccharomyces\s?pombe')">
+        <xsl:value-of select="'Schizosaccharomyces pombe'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?cerevisiae')">
+        <xsl:value-of select="'S. cerevisiae'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'saccharomyces\s?cerevisiae')">
+        <xsl:value-of select="'Saccharomyces cerevisiae'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'c\.\s?elegans')">
+        <xsl:value-of select="'C. elegans'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'caenorhabditis\s?elegans')">
+        <xsl:value-of select="'Caenorhabditis elegans'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'a\.\s?thaliana')">
+        <xsl:value-of select="'A. thaliana'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'arabidopsis\s?thaliana')">
+        <xsl:value-of select="'Arabidopsis thaliana'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?thermophila')">
+        <xsl:value-of select="'M. thermophila'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'myceliophthora\s?thermophila')">
+        <xsl:value-of select="'Myceliophthora thermophila'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'dictyostelium')">
+        <xsl:value-of select="'Dictyostelium'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?falciparum')">
+        <xsl:value-of select="'P. falciparum'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plasmodium\s?falciparum')">
+        <xsl:value-of select="'Plasmodium falciparum'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?enterica')">
+        <xsl:value-of select="'S. enterica'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'salmonella\s?enterica')">
+        <xsl:value-of select="'Salmonella enterica'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?pyogenes')">
+        <xsl:value-of select="'S. pyogenes'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'streptococcus\s?pyogenes')">
+        <xsl:value-of select="'Streptococcus pyogenes'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?dumerilii')">
+        <xsl:value-of select="'P. dumerilii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'platynereis\s?dumerilii')">
+        <xsl:value-of select="'Platynereis dumerilii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?cynocephalus')">
+        <xsl:value-of select="'P. cynocephalus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'papio\s?cynocephalus')">
+        <xsl:value-of select="'Papio cynocephalus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'o\.\s?fasciatus')">
+        <xsl:value-of select="'O. fasciatus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'oncopeltus\s?fasciatus')">
+        <xsl:value-of select="'Oncopeltus fasciatus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'n\.\s?crassa')">
+        <xsl:value-of select="'N. crassa'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'neurospora\s?crassa')">
+        <xsl:value-of select="'Neurospora crassa'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'c\.\s?intestinalis')">
+        <xsl:value-of select="'C. intestinalis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'ciona\s?intestinalis')">
+        <xsl:value-of select="'Ciona intestinalis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'e\.\s?cuniculi')">
+        <xsl:value-of select="'E. cuniculi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'encephalitozoon\s?cuniculi')">
+        <xsl:value-of select="'Encephalitozoon cuniculi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'h\.\s?salinarum')">
+        <xsl:value-of select="'H. salinarum'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'halobacterium\s?salinarum')">
+        <xsl:value-of select="'Halobacterium salinarum'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?solfataricus')">
+        <xsl:value-of select="'S. solfataricus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'sulfolobus\s?solfataricus')">
+        <xsl:value-of select="'Sulfolobus solfataricus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?mediterranea')">
+        <xsl:value-of select="'S. mediterranea'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'schmidtea\s?mediterranea')">
+        <xsl:value-of select="'Schmidtea mediterranea'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?rosetta')">
+        <xsl:value-of select="'S. rosetta'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'salpingoeca\s?rosetta')">
+        <xsl:value-of select="'Salpingoeca rosetta'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'n\.\s?vectensis')">
+        <xsl:value-of select="'N. vectensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'nematostella\s?vectensis')">
+        <xsl:value-of select="'Nematostella vectensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\s?aureus')">
+        <xsl:value-of select="'S. aureus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'staphylococcus\s?aureus')">
+        <xsl:value-of select="'Staphylococcus aureus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'a\.\s?thaliana')">
+        <xsl:value-of select="'A. thaliana'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'arabidopsis\s?thaliana')">
+        <xsl:value-of select="'Arabidopsis thaliana'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'v\.\s?cholerae')">
+        <xsl:value-of select="'V. cholerae'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'vibrio\s?cholerae')">
+        <xsl:value-of select="'Vibrio cholerae'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'t\.\s?thermophila')">
+        <xsl:value-of select="'T. thermophila'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'tetrahymena\s?thermophila')">
+        <xsl:value-of select="'Tetrahymena thermophila'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'c\.\s?reinhardtii')">
+        <xsl:value-of select="'C. reinhardtii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'chlamydomonas\s?reinhardtii')">
+        <xsl:value-of select="'Chlamydomonas reinhardtii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'n\.\s?attenuata')">
+        <xsl:value-of select="'N. attenuata'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'nicotiana\s?attenuata')">
+        <xsl:value-of select="'Nicotiana attenuata'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'drosophila')">
+        <xsl:value-of select="'Drosophila'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'xenopus')">
+        <xsl:value-of select="'Xenopus'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'undefined'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
  <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
@@ -435,6 +623,7 @@
   </pattern>
   <pattern id="test-title-group-pattern">
     <rule context="article/front/article-meta/title-group" id="test-title-group">
+	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
 	
     <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop.</report>  
    
@@ -447,6 +636,8 @@
     <report test="article-title//mml:math" role="error" id="article-title-test-5">Article title must not contain math.</report>
 	  
     <report test="article-title//bold" role="error" id="article-title-test-6">Article title must not contain bold.</report>
+	  
+	  <report test="matches($lc,$org-regex) and not(article-title/italic[text() = e:org-conform($lc)])" role="error" id="article-title-test-7">article title contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing.</report>
 	
 	</rule>
   </pattern>
@@ -3239,13 +3430,18 @@
     </rule>
   </pattern>
   
-  <pattern id="rrid-presence-pattern">
-    <rule context="p|td|th" id="rrid-presence">		
+  <pattern id="rrid-org-presence-pattern">
+    <rule context="p|td|th" id="rrid-org-presence">		
       <let name="count" value="count(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')])"/>
       <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+')"/>
       <let name="hit-count" value="count($hit//*:match)"/>
+      <let name="lc" value="lower-case(.)"/>
+      
       
       <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)" role="warning" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+      
+      <report test="matches($lc,$org-regex) and not(descendant::italic[contains(.,e:org-conform($lc))])" role="warning" id="org-test">
+        <name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct?</report>
     </rule>
   </pattern>
   
@@ -3430,12 +3626,16 @@
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
+      <let name="lc" value="normalize-space(lower-case(.))"/>
       
       <report test="(not(matches(.,'vs\.|[Cc]\. elegans|sp\.'))) and (matches(.,'[A-Za-z]{2,}\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
       <report test="matches(.,'\.$')" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
+      
+      <report test="matches($lc,$org-regex) and not(italic[text() = e:org-conform($lc)])" role="error" id="ref-article-title-org-check">ref '<value-of select="ancestor::ref/@id"/>' references an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      
     </rule>
   </pattern>
   <pattern id="journal-tests-pattern">
