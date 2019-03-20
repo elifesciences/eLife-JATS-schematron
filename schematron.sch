@@ -2418,6 +2418,10 @@
       <assert test="count(body) = 1"
         role="error"
         id="dec-letter-reply-test-4">sub-article contain one and only one body.</assert>
+      
+      <report test="matches(.,'&#x003C;[/]?[Aa]uthor response')"
+        role="error"
+        id="dec-letter-reply-test-5"><value-of select="@article-type"/> contains what looks like pseudo-code, search - '&#x003C;/Author response' or '&#x003C;Author response'.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub"
@@ -4151,14 +4155,13 @@
       <let name="hit-count" value="count($hit//*:match)"/>
       <let name="lc" value="lower-case(.)"/>
       
-      
       <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)"
         role="warning"
         id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
       
       <report test="matches($lc,$org-regex) and not(descendant::italic[contains(.,e:org-conform($lc))])"
         role="warning" 
-        id="org-test"><name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct?</report>
+        id="org-test"><name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
     </rule>
     
   </pattern>
@@ -4216,6 +4219,14 @@
       <assert test="matches(normalize-space(.),'\p{L}')"
         role="error"
         id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/> </assert>
+      
+      <report test="matches($pre-text,'\($|\[$') and (. = $cite2)"
+        role="error"
+        id="ref-xref-test-6"><value-of select="concat(substring($pre-text, string-length($pre-text), 1),.)"/> - citation is in non-parenthetic style, but the preceding text ends with open parentheses, so this isn't correct.</report>
+      
+      <report test="matches($post-text,'^\)|^\]') and (. = $cite2)"
+        role="error"
+        id="ref-xref-test-7"><value-of select="concat(.,substring($post-text,1,1))"/> - citation is in non-parenthetic style, but the following text ends with closing parentheses, so this isn't correct.</report>
     </rule>
     
   </pattern>

@@ -262,7 +262,7 @@
     </xsl:choose>
   </xsl:function>
   
-  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|xenopus|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|drosophila'"/>
+  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|xenopus|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|enterococcus\s?faecalis|drosophila'"/>
   
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
@@ -438,6 +438,18 @@
       <xsl:when test="matches($s,'nicotiana\s?attenuata')">
         <xsl:value-of select="'Nicotiana attenuata'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'e\.\s?carotovora')">
+        <xsl:value-of select="'E. carotovora'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'erwinia\s?carotovora')">
+        <xsl:value-of select="'Erwinia carotovora'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'e\.\s?faecalis')">
+        <xsl:value-of select="'E. faecalis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'enterococcus\s?faecalis')">
+        <xsl:value-of select="'Enterococcus faecalis'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'drosophila')">
         <xsl:value-of select="'Drosophila'"/>
       </xsl:when>
@@ -449,7 +461,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-
+  
  <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
       
@@ -1712,6 +1724,9 @@
       <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article contain one and only one front-stub.</assert>
       
       <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article contain one and only one body.</assert>
+      
+      <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">
+        <value-of select="@article-type"/> contains what looks like pseudo-code, search - '&lt;/Author response' or '&lt;Author response'.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">
@@ -3437,11 +3452,10 @@
       <let name="hit-count" value="count($hit//*:match)"/>
       <let name="lc" value="lower-case(.)"/>
       
-      
       <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)" role="warning" id="rrid-test">'<value-of select="local-name()"/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
       
       <report test="matches($lc,$org-regex) and not(descendant::italic[contains(.,e:org-conform($lc))])" role="warning" id="org-test">
-        <name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct?</report>
+        <name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
     </rule>
   </pattern>
   
@@ -3478,6 +3492,12 @@
       <assert test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/> </assert>
       
       <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/> </assert>
+      
+      <report test="matches($pre-text,'\($|\[$') and (. = $cite2)" role="error" id="ref-xref-test-6">
+        <value-of select="concat(substring($pre-text, string-length($pre-text), 1),.)"/> - citation is in non-parenthetic style, but the preceding text ends with open parentheses, so this isn't correct.</report>
+      
+      <report test="matches($post-text,'^\)|^\]') and (. = $cite2)" role="error" id="ref-xref-test-7">
+        <value-of select="concat(.,substring($post-text,1,1))"/> - citation is in non-parenthetic style, but the following text ends with closing parentheses, so this isn't correct.</report>
     </rule>
   </pattern>
   
