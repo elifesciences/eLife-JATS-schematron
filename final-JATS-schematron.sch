@@ -3522,7 +3522,7 @@
       <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">
         <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
-      <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $| ,[\s]?$')))" role="warning" id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
+      <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" role="warning" id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
       <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
@@ -4001,6 +4001,13 @@
       <let name="KRT-subjs" value="('Research Advance', 'Research Article', 'Tools and Resources', 'Short Report', 'Research Communication')"/>
       
       <report test="($subj = $KRT-subjs) and not(descendant::table-wrap[@id = 'keyresource'])" role="warning" id="KRT-presence">'<value-of select="$subj"/>' type articles usually have a key resources table, but this does not. Is this correct?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="KRT-doi-check-pattern">
+    <rule context="table-wrap[@id='keyresource']//td" id="KRT-doi-check">
+      
+      <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
     </rule>
   </pattern>
