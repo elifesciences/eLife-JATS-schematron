@@ -846,6 +846,20 @@
 	<rule context="article-meta//contrib" 
 		id="contrib-tests">
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
+	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)]"/>
+	  <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
+	  <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)]"/>
+	  <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
+	  <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)]"/>
+	  <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
+	  <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)]"/>
+	  <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
+	  <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)]"/>
+	  <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
+	  <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
+	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
+	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]| AstraZeneca| Pfizer| R&amp;D'"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
     	<report test="if ($subj-type = ('Retraction','Correction')) then ()
@@ -868,6 +882,10 @@
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]"
 	       role="error" 
 	       id="contrib-email">Corresponding authors must have an email.</report>
+	  
+	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))"
+	       role="warning" 
+	       id="COI-test"><value-of select="concat(descendant::surname,' ',descendant::given-names)"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
 		
 		</rule>
 		
@@ -1951,6 +1969,15 @@
       <assert test="title = ('Acknowledgements','Acknowledgments')"
         role="error"
         id="ack-title-test">ack must have a title that contains 'Acknowledgements', or 'Acknowledgments'. Currently it is '<value-of select="title"/>'.</assert>
+      
+    </rule>
+    
+    <rule context="ack//p" 
+      id="ack-content-tests">
+      
+      <report test="matches(.,' [A-Z]\. ')"
+        role="warning"
+        id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like an intial with a full stop. Is it correct? - <value-of select="analyze-string(.,' [A-Z]\. ')//*:match[1]"/></report>
       
     </rule>
     
