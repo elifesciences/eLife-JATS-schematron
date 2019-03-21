@@ -3508,6 +3508,8 @@
       <let name="cite2" value="e:citation-format2($ref//year)"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
+      <let name="open" value="string-length(replace(substring-after($pre-text,'. '),'[^\(]',''))"/>
+      <let name="close" value="string-length(replace(substring-after($pre-text,'. '),'[^\)]',''))"/>
       
       <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="ref-xref-test-1">
         <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
@@ -3526,10 +3528,7 @@
       <report test="matches($post-text,'^\)|^\]') and (. = $cite2)" role="error" id="ref-xref-test-7">
         <value-of select="concat(.,substring($post-text,1,1))"/> - citation is in non-parenthetic style, but the following text ends with closing parentheses, so this isn't correct.</report>
       
-      <report test="matches($pre-text,'[\(][^\)]*$') and (. = $cite2)" role="warning" id="ref-xref-test-8">
-        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
-      
-      <report test="matches($pre-text,'[\(].*[\(].*[\)][^\)]*$') and (. = $cite2)" role="warning" id="ref-xref-test-9">
+      <report test="($open gt $close) and (. = $cite2)" role="warning" id="ref-xref-test-8">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
       
       <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
@@ -3599,13 +3598,13 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       
-      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-1">
+      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ')" role="warning" id="supp-file-xref-conformity-1">
         <value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
       
-      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-2">
+      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ')" role="warning" id="supp-file-xref-conformity-2">
         <value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
       
-      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="supp-file-xref-conformity-3">
+      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ')" role="warning" id="supp-file-xref-conformity-3">
         <value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
       <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">
@@ -3940,7 +3939,7 @@
   <pattern id="city-tests-pattern">
     <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
       <let name="lc" value="normalize-space(lower-case(.))"/>
-      <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^new york$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^washington$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
+      <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
       
       
       
