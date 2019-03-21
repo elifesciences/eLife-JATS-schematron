@@ -5127,11 +5127,10 @@
     <rule context="article" 
       id="KRT-check">
       <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
-      <let name="KRT-subjs" value="('Research Advance', 'Research Article', 'Tools and Resources', 'Short Report', 'Research Communication')"/>
       
-      <report test="($subj = $KRT-subjs) and not(descendant::table-wrap[@id = 'keyresource'])"
+      <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource'])"
         role="warning" 
-        id="KRT-presence">'<value-of select="$subj"/>' type articles usually have a key resources table, but this does not. Is this correct?</report>
+        id="KRT-presence">'<value-of select="$subj"/>' type articles often have a key resources table, but this does not. Is this correct?</report>
       
     </rule>
     
