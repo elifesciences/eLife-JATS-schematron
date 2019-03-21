@@ -826,6 +826,8 @@
 	
 	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
       </report>
+	  
+	  <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	
 	</rule>
   </pattern>
@@ -1045,18 +1047,18 @@
       
       <assert test="@position" role="error" id="fig-test-2">fig must have a @position.</assert>
       
-      <report test="if ($article-type = $features-article-types) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label.</report>
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label.</report>
       
       <report test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
-      <assert test="caption" role="error" id="fig-test-4">fig must have a caption.</assert>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="error" id="fig-test-4">fig must have a caption.</report>
       
-      <assert test="caption/title" role="warning" id="pre-fig-test-5">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="warning" id="pre-fig-test-5">
+        <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
       
       
       
-      <report test="matches(@id,'^fig[0-9]{1,3}$') and not(caption/p)" role="warning" id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" role="warning" id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
       
       <assert test="graphic" role="warning" id="pre-fig-test-7">fig does not have graphic. Esnure author query is added asking for file.</assert>
       
@@ -1266,10 +1268,10 @@
       <report test="if ($count = 0) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <assert test="(preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id])" role="warning" id="fig-specific-test-3">
-        <value-of select="label"/> does not appear directly after a paragraph citing it. Is that correct?</assert>
-  
-      <report test="if ($article-type = $features-article-types) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" role="warning" id="fig-specific-test-3">
+        <value-of select="label"/> does not appear directly after a paragraph citing it. Is that correct?</report>
+      
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</report>
       
       
       
