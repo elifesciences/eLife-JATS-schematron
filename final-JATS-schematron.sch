@@ -3525,6 +3525,16 @@
       
       <report test="matches($post-text,'^\)|^\]') and (. = $cite2)" role="error" id="ref-xref-test-7">
         <value-of select="concat(.,substring($post-text,1,1))"/> - citation is in non-parenthetic style, but the following text ends with closing parentheses, so this isn't correct.</report>
+      
+      <report test="matches($pre-text,'[\(][^\)]*$') and (. = $cite2)" role="warning" id="ref-xref-test-8">
+        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
+      
+      <report test="matches($pre-text,'[\(].*[\(].*[\)][^\)]*$') and (. = $cite2)" role="warning" id="ref-xref-test-9">
+        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
+      
+      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
+        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the following text ends with 'from' or 'in', which suggests it should be in the style - <value-of select="$cite2"/>
+      </report>
     </rule>
   </pattern>
   
@@ -4031,10 +4041,14 @@
       
     </rule>
   </pattern>
-  <pattern id="KRT-doi-check-pattern">
-    <rule context="table-wrap[@id='keyresource']//td" id="KRT-doi-check">
+  <pattern id="KRT-td-checks-pattern">
+    <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       
       <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
+      
+      <report test="matches(.,'[Pp][Mm][Ii][Dd]:\s?\d{5,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
+      
+      <report test="matches(.,'PMCID:\s?PMC\d{3,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
     </rule>
   </pattern>
