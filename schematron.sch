@@ -4328,7 +4328,33 @@
       <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')"
         role="warning"
         id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      
+      <report test="not(ancestor::supplementary-material) and (ancestor::fig/@id = $rid)"
+        role="warning"
+        id="fig-xref-test-4"><value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
     </rule>
+  </pattern>
+  
+  <pattern id="table-xref-pattern">
+    <rule context="xref[@ref-type='table']" id="table-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      
+      <report test="not(matches(.,'Table')) and ($prec-text != ' and ') and ($prec-text != '–') and $prec-text != ', '"
+        role="warning" 
+        id="table-xref-conformity-1"><value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
+      
+      <report test="($text-no != $rid-no) and not(contains(.,'–'))"
+        role="error" 
+        id="table-xref-conformity-2"><value-of select="."/> - Citation content does not match what it directs to.</report>
+      
+      <report test="ancestor::table-wrap/@id = $rid"
+        role="warning"
+        id="table-xref-test-1"><value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary?</report>
+    </rule>
+    
   </pattern>
   
   <pattern id="supp-xref-pattern">
@@ -4360,6 +4386,10 @@
       <assert test="$last-text-no = $last-rid-no" 
         role="warning" 
         id="supp-file-xref-conformity-5"><value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
+      
+      <report test="ancestor::supplementary-material/@id = $rid"
+        role="warning"
+        id="supp-file-xref-test-1"><value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>
   
@@ -4624,7 +4654,7 @@
         role="error" 
         id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila') and not(italic[text() ='Drosophila'])"
+      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])"
         role="error" 
         id="drosophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -4874,7 +4904,7 @@
         role="error" 
         id="enterococcussfaecalis-article-title-check">article title contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila') and not(italic[text() ='Drosophila'])"
+      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])"
         role="error" 
         id="drosophila-article-title-check">article title contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
