@@ -728,6 +728,8 @@
     <report test="article-title//mml:math" role="error" id="article-title-test-5">Article title must not contain math.</report>
 	  
     <report test="article-title//bold" role="error" id="article-title-test-6">Article title must not contain bold.</report>
+	  
+	  <report test="matches(article-title,'-Based ')" role="error" id="article-title-test-7">Article title contains the string '-Based '. this should be lower-case, '-based '.</report>
 	
 	</rule>
   </pattern>
@@ -1040,6 +1042,8 @@
       
       
       <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
+      
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="elocation-id-tests-pattern">
@@ -3540,6 +3544,37 @@
      
      <report test="matches(p,'[\p{P}]$')" role="error" id="feature-bio-test-3">bio cannot end in punctuation - '<value-of select="substring(p,string-length(p),1)"/>'.</report>
    </rule>
+  </pattern>
+  
+  <pattern id="correction-tests-pattern">
+    <rule context="article[@article-type = 'correction']" id="correction-tests">
+      
+      <report test="descendant::article-meta//aff" role="error" id="corr-aff-presence">Correction notices should not contain affiliations.</report>
+      
+      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">Correction notices should not contain competing interests.</report>
+      
+      <report test="descendant::self-uri" role="error" id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
+      
+      <report test="descendant::abstract" role="error" id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
+      
+      <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="retraction-tests-pattern">
+    <rule context="article[@article-type = 'retraction']" id="retraction-tests">
+      
+      <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">Retractions should not contain affiliations.</report>
+      
+      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="retr-COI-presence">Retractions should not contain competing interests.</report>
+      
+      <report test="descendant::self-uri" role="error" id="retr-self-uri-presence">Retractions should not contain a self-uri element (as the PDF is not published).</report>
+      
+      <report test="descendant::abstract" role="error" id="retr-abstract-presence">Retractions should not contain abstracts.</report>
+      
+      <report test="back" role="error" id="retr-back">Retractions should not contain a back.</report>
+      
+    </rule>
   </pattern>
   
   <pattern id="final-gene-primer-sequence-pattern">
