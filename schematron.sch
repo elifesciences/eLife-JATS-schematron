@@ -475,6 +475,83 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:rrid-text-count" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:variable name="uc" select="upper-case($s)"/>
+    <xsl:choose>
+      <xsl:when test="matches($uc,'RRID:')">
+        <xsl:choose>
+          <xsl:when test="matches(substring-after($uc,'RRID:'),'RRID:')">
+            <xsl:choose>
+              <xsl:when test="matches(substring-after(substring-after($uc,'RRID:'),'RRID:'),'RRID:')">
+                <xsl:choose>
+                  <xsl:when test="matches(substring-after(substring-after(substring-after($uc,'RRID:'),'RRID:'),'RRID:'),'RRID:')">
+                    <xsl:choose>
+                      <xsl:when test="matches(substring-after(substring-after(substring-after(substring-after($uc,'RRID:'),'RRID:'),'RRID:'),'RRID:'),'RRID:')">
+                        <xsl:value-of select="number('5')"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="number('4')"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="number('3')"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="number('2')"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="number('1')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="number('0')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:code-check">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:element name="code">
+      <xsl:if test="matches($s,'[Gg]ithub')">
+        <xsl:element name="match">
+        <xsl:value-of select="'github '"/>
+        </xsl:element>
+      </xsl:if>
+      <xsl:if test="matches($s,'[Gg]itlab')">
+        <xsl:element name="match">
+        <xsl:value-of select="'gitlab '"/>
+        </xsl:element>
+      </xsl:if>
+      <xsl:if test="matches($s,'[Cc]ode[Ff]lex')">
+        <xsl:element name="match">
+        <xsl:value-of select="'codeflex '"/>
+        </xsl:element>
+      </xsl:if>
+      <xsl:if test="matches($s,'[Ss]ource[Ff]orge')">
+        <xsl:element name="match">
+        <xsl:value-of select="'sourceforge '"/>
+        </xsl:element>
+      </xsl:if>
+      <xsl:if test="matches($s,'[Bb]it[Bb]ucket')">
+        <xsl:element name="match">
+        <xsl:value-of select="'bitbucket '"/>
+        </xsl:element>
+      </xsl:if>
+      <xsl:if test="matches($s,'[Aa]ssembla ')">
+        <xsl:element name="match">
+        <xsl:value-of select="'assembla '"/>
+        </xsl:element>
+      </xsl:if>
+    </xsl:element>
+  </xsl:function>
+  
  <pattern
  	id="article">
  
@@ -1983,10 +2060,17 @@
     
     <rule context="ack//p" 
       id="ack-content-tests">
+      <let name="string" value="tokenize(normalize-space(replace(.,'[^\p{Lu}(?=\.) ]','')))"/>
+      <let name="hit" value="string-join(for $x in $string return 
+        if (not(matches($x,'[\p{Lu}]{2,}')) and ($x != '.') and contains($x,'.')) then $x
+        else (),', ')"/>
+      <let name="hit-count" value="count(for $x in $string return 
+        if (not(matches($x,'[\p{Lu}]{2,}')) and ($x != '.') and contains($x,'.')) then $x
+        else ())"/>
       
       <report test="matches(.,' [A-Z]\. ')"
         role="warning"
-        id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like an intial with a full stop. Is it correct? - <value-of select="analyze-string(.,' [A-Z]\. ')//*:match[1]"/></report>
+        id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
       
     </rule>
     
@@ -4173,12 +4257,12 @@
     <rule context="p"
       id="final-gene-primer-sequence">
       <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
-      <let name="hit" value="analyze-string(.,'[ACGTacgt]{15,}')"/>
-      <let name="hit-count" value="count($hit//*:match)"/>
+      <let name="text-tokens" value="tokenize(normalize-space(replace(replace(.,'[^ACGTacgt ]',''),' [ACGTacgt]{1,14}','')),' ')"/>
+      <let name="text-count" value="count($text-tokens)"/>
       
-      <report test="matches(.,'[ACGTacgt]{15,}') and ($count != $hit-count)"
+      <report test="matches(.,'[ACGTacgt]{15,}') and ($count != $text-count)"
         role="warning"
-        id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - could it be '<value-of select="$hit//*:match[1]"/>'?</report>
+        id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - try searching '<value-of select="$text-tokens[1]"/>'.</report>
     </rule>
     
   </pattern>
@@ -4188,14 +4272,13 @@
     
     <rule context="p|td|th"
       id="rrid-org-presence">		
-      <let name="count" value="count(descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver')])"/>
-      <let name="hit" value="analyze-string(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_\d+')"/>
-      <let name="hit-count" value="count($hit//*:match)"/>
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
+      <let name="text-count" value="number(e:rrid-text-count(.))"/>
       
-      <report test="matches(.,'RRID:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID number:\s?[A-Za-z]{1,}_[A-Z]*?\d+|RRID no[\.]?:\s?[A-Za-z]{1,}_[A-Z]*?\d+') and ($count != $hit-count)"
+      <report test="($text-count gt $count)"
         role="warning"
-        id="rrid-test">'<name/>' element contains what looks like an unlinked RRID - could it be '<value-of select="$hit//*:match[1]"/>'?. These should always be linked using 'https://scicrunch.org/resolver/'.</report>
+        id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
       <report test="matches($lc,$org-regex) and not(descendant::italic[contains(.,e:org-conform($lc))])"
         role="warning" 
@@ -4237,8 +4320,10 @@
       <let name="cite2" value="e:citation-format2($ref//year)"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <let name="open" value="string-length(replace(substring-after($pre-text,'. '),'[^\(]',''))"/>
-      <let name="close" value="string-length(replace(substring-after($pre-text,'. '),'[^\)]',''))"/>
+      <let name="open" value="if (contains($pre-text,'. ')) then string-length(replace(substring-after($pre-text,'. '),'[^\(]',''))
+        else string-length(replace($pre-text,'[^\(]',''))"/>
+      <let name="close" value="if (contains($pre-text,'. ')) then string-length(replace(substring-after($pre-text,'. '),'[^\)]',''))
+        else string-length(replace($pre-text,'[^\)]',''))"/>
       
       <assert test="replace(.,'&#x00A0;',' ') = ($cite1,$cite2)" 
         role="error" 
@@ -5196,7 +5281,7 @@
         id="colour-named-content-check"><value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/></report>
     </rule>
     
-    <rule context="article/body//p" 
+    <rule context="article/body//p[not(parent::list-item)]" 
       id="p-punctuation">
       
       <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))"
@@ -5223,11 +5308,11 @@
     
     <rule context="article" 
       id="code-fork">
-      <let name="hit" value="analyze-string(.,'[Gg]it[Hh]ub|[Gg]it[Ll]ab|[Cc]ode[Ff]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket|[Aa]ssembla ')"/>
+      <let name="test" value="e:code-check(.)"/>
       
-      <report test="$hit//*:match"
+      <report test="$test//*:match"
         role="warning" 
-        id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join((for $x in $hit//*:match return $x),', ')"/></report>
+        id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/></report>
     </rule>
   </pattern>
   
