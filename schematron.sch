@@ -172,7 +172,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšùúûüx̌ýÿž','aaaaaacceeeeehiiiilnnoooooorsuuuuxyyz'),'æ','ae')"/>
+    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšùúûüýÿž','aaaaaacceeeeehiiiilnnoooooorsuuuuyyz'),'æ','ae')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1">
