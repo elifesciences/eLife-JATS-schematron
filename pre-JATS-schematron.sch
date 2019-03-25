@@ -155,7 +155,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêëħìíîïłñòóôõöøšùúûüýÿ','aaaaaacceeeehiiiilnoooooosuuuuyy'),'æ','ae')"/>
+    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšùúûüx̌ýÿž','aaaaaacceeeeehiiiilnnoooooorsuuuuxyyz'),'æ','ae')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1">
@@ -1167,7 +1167,7 @@
       
       <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
       
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
       
@@ -3560,6 +3560,10 @@
       
       <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
       
+      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
+      
+      <report test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
+      
     </rule>
   </pattern>
   <pattern id="retraction-tests-pattern">
@@ -3573,8 +3577,12 @@
       
       <report test="descendant::abstract" role="error" id="retr-abstract-presence">Retractions should not contain abstracts.</report>
       
-      <report test="back" role="error" id="retr-back">Retractions should not contain a back.</report>
+      <report test="back/*" role="error" id="retr-back">Retractions should not contain any content in the back.</report>
       
+      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="retr-impact-statement">Retractions should not contain an impact statement.</report>
+      
+      <report test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE">Retractions must not contain any Senior or Reviewing Editors.</report>
+       
     </rule>
   </pattern>
   
@@ -3646,8 +3654,12 @@
       <report test="($open gt $close) and (. = $cite2)" role="warning" id="ref-xref-test-8">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
       
-      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
-        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the following text ends with 'from' or 'in', which suggests it should be in the style - <value-of select="$cite2"/>
+      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $|by $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
+        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with 'from' or 'in', which suggests it should be in the style - <value-of select="$cite2"/>
+      </report>
+      
+      <report test="(matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         and (. = $cite1)" role="warning" id="ref-xref-test-11">
+        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
     </rule>
   </pattern>
@@ -3693,10 +3705,13 @@
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'Table')) and ($prec-text != ' and ') and ($prec-text != '–') and $prec-text != ', '" role="warning" id="table-xref-conformity-1">
+      <report test="not(matches(.,'Table')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ') and not(contains($rid,'app'))" role="warning" id="table-xref-conformity-1">
         <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
       
-      <report test="($text-no != $rid-no) and not(contains(.,'–'))" role="error" id="table-xref-conformity-2">
+      <report test="not(matches(.,'table')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
+        <value-of select="."/> - citation points to and Appendix table, but does not include the string 'table', which is very unusual.</report>
+      
+      <report test="($text-no != $rid-no) and not(contains(.,'–'))" role="error" id="table-xref-conformity-3">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report test="ancestor::table-wrap/@id = $rid" role="warning" id="table-xref-test-1">
