@@ -962,7 +962,11 @@
 	  
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]"
 	       role="error" 
-	       id="contrib-email">Corresponding authors must have an email.</report>
+	       id="contrib-email-1">Corresponding authors must have an email.</report>
+	  
+	     <report test="not(@corresp='yes') and (child::email)"
+	       role="error" 
+	       id="contrib-email-2">Non-corresponding authors must not have an email.</report>
 	  
 	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))"
 	       role="warning" 
@@ -4409,10 +4413,10 @@
       <let name="cite2" value="e:citation-format2($ref//year)"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <let name="open" value="if (contains($pre-text,'. ')) then string-length(replace(substring-after($pre-text,'. '),'[^\(]',''))
-        else string-length(replace($pre-text,'[^\(]',''))"/>
-      <let name="close" value="if (contains($pre-text,'. ')) then string-length(replace(substring-after($pre-text,'. '),'[^\)]',''))
-        else string-length(replace($pre-text,'[^\)]',''))"/>
+      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
+      
       
       <assert test="replace(.,'&#x00A0;',' ') = ($cite1,$cite2)" 
         role="error" 
@@ -4445,6 +4449,10 @@
       <report test="($open gt $close) and (. = $cite2)"
         role="warning"
         id="ref-xref-test-8"><value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
+      
+      <report test="(($open - $close) gt 1) and (. = $cite1)"
+        role="warning"
+        id="ref-xref-test-9">sentence before citation has more open brackets then closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>?</report>
       
       <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))
         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))
