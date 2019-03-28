@@ -3597,7 +3597,7 @@
       <let name="text-tokens" value="for $x in tokenize($gene-string,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
       
-      <report test="matches(.,'[ACGTacgt]{15,}') and ($count le $text-count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</report>
+      <assert test="(($text-count le $count) or ($text-count = $count))" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
   </pattern>
   
@@ -3606,11 +3606,12 @@
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(e:rrid-text-count(.))"/>
+      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
       
       <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
-      <report test="matches($lc,$org-regex) and not(descendant::italic[contains(.,e:org-conform($lc))])" role="warning" id="org-test">
-        <name/> element contains an organism - <value-of select="e:org-conform($lc)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))])" role="warning" id="org-test">
+        <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
     </rule>
   </pattern>
   
