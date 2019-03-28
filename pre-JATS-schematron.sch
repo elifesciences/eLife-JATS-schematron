@@ -3595,8 +3595,7 @@
   <pattern id="final-gene-primer-sequence-pattern">
     <rule context="p" id="final-gene-primer-sequence">
       <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
-      <let name="gene-string" value="replace(.,'[^ACGTacgt ]','')"/>
-      <let name="text-tokens" value="for $x in tokenize($gene-string,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
+      <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
       
       <assert test="(($text-count le $count) or ($text-count = $count))" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
@@ -3637,6 +3636,7 @@
       <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
       <let name="cite1" value="e:citation-format1($ref//year)"/>
       <let name="cite2" value="e:citation-format2($ref//year)"/>
+      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
@@ -3672,6 +3672,9 @@
       
       <report test="(matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         and (. = $cite1)" role="warning" id="ref-xref-test-11">
         <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style - <value-of select="$cite2"/>
+      </report>
+      
+      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-12">citation is preceded by text containing much of the citation text which seems unnecessary - <value-of select="concat($pre-sentence,.)"/>
       </report>
     </rule>
   </pattern>
