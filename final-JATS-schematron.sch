@@ -444,6 +444,12 @@
       <xsl:when test="matches($s,'erwinia\s?carotovora')">
         <xsl:value-of select="'Erwinia carotovora'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'h\.\s?sapiens')">
+        <xsl:value-of select="'H. sapiens'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'homo\s?sapiens')">
+        <xsl:value-of select="'Homo sapiens'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'e\.\s?faecalis')">
         <xsl:value-of select="'E. faecalis'"/>
       </xsl:when>
@@ -3639,6 +3645,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
+      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
@@ -3663,17 +3670,24 @@
       <report test="($open gt $close) and (. = $cite2)" role="warning" id="ref-xref-test-8">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
       
-      <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets then closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>?</report>
+      <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
       <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $| by $| of $| on $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' on $') and matches($pre-text,'[\(].*[\)].* on $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with 'from', 'in', 'by', 'of' or 'on' which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
-      <report test="(matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         and (. = $cite1)" role="warning" id="ref-xref-test-11">
+      <report test="((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-11">
         <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
-      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-12">citation is preceded by text containing much of the citation text which seems unnecessary - <value-of select="concat($pre-sentence,.)"/>
+      <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-12">
+        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'have', which suggests it should be in the style - <value-of select="$cite2"/>
+      </report>
+      
+      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-13">citation is preceded by text containing much of the citation text which seems unnecessary - <value-of select="concat($pre-sentence,.)"/>
+      </report>
+      
+      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is followed by text containing much of the citation text. Is this correct? - <value-of select="concat(.,$post-sentence)"/>
       </report>
     </rule>
   </pattern>
@@ -3896,6 +3910,10 @@
       
       <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="error" id="esfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="error" id="hsapiens-ref-article-title-check">article title contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="error" id="homosapiens-ref-article-title-check">article title contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="error" id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="error" id="drosophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -4022,6 +4040,10 @@
       
       <report test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="error" id="erwiniascarotovora-article-title-check">article title contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="error" id="hsapiens-article-title-check">article title contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="error" id="homosapiens-article-title-check">article title contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="error" id="esfaecalis-article-title-check">article title contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="error" id="enterococcussfaecalis-article-title-check">article title contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -4065,6 +4087,10 @@
       <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
       
       <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">'<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      
+      <report test="contains(.,'°')" role="error" id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.</report>
+      
+      <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">'<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
