@@ -522,9 +522,9 @@
         <xsl:value-of select="'gitlab '"/>
         </xsl:element>
       </xsl:if>
-      <xsl:if test="matches($s,'[Cc]ode[Ff]lex')">
+      <xsl:if test="matches($s,'[Cc]ode[Pp]lex')">
         <xsl:element name="match">
-        <xsl:value-of select="'codeflex '"/>
+        <xsl:value-of select="'codeplex '"/>
         </xsl:element>
       </xsl:if>
       <xsl:if test="matches($s,'[Ss]ource[Ff]orge')">
@@ -665,7 +665,10 @@
     <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
         <value-of select="$subj-type"/> articles must not have any author keywords</report>
     
-    <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
+    <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
+    
+    <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))        then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
+        <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
    </rule>
   </pattern>
   <pattern id="test-research-article-metadata-pattern">
@@ -995,12 +998,17 @@
     <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
       
       <assert test="@kwd-group-type='author-keywords'" role="error" id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
+      
+      <assert test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
   </pattern>
   <pattern id="ro-kwd-group-tests-pattern">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
+      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  
       <assert test="title = 'Research organism'" role="error" id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
+      
+      <assert test="kwd" role="warning" id="ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
 	
 	</rule>
   </pattern>
@@ -3672,8 +3680,8 @@
       
       <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
-      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $| by $| of $| on $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' on $') and matches($pre-text,'[\(].*[\)].* on $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
-        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with 'from', 'in', 'by', 'of' or 'on' which suggests it should be in the style - <value-of select="$cite2"/>
+      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]?$| see also [\(]?$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $| by $| of $| on $| to $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' on $') and matches($pre-text,'[\(].*[\)].* on $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' to $') and matches($pre-text,'[\(].*[\)].* to $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see $') and matches($pre-text,'[\(].*[\)].* see $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see also $') and matches($pre-text,'[\(].*[\)].* see also $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
+        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with '<value-of select="substring($pre-text,string-length($pre-text)-6)"/>' which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
       <report test="((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-11">
