@@ -1573,6 +1573,7 @@
                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))
                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))
                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))
+                    else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))
                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))
                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
@@ -3627,11 +3628,12 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>
       
       <!-- issue 5 on the eLife lists -->
-      <assert test="(string-length(@iso-8601-date) &gt; 4) and format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')=." role="error" id="err-elem-cit-web-11-4">[err-elem-cit-web-11-4]
+      <report test="if (string-length(@iso-8601-date) = 10) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.
+        else (string-length(@iso-8601-date) &lt; 10)" role="error" id="err-elem-cit-web-11-4">[err-elem-cit-web-11-4]
         The element content date must match the @iso-8601-date value.
         Reference '<value-of select="ancestor::ref/@id"/>' has element content of 
         <value-of select="."/> but an @iso-8601-date value of 
-        <value-of select="@iso-8601-date"/>.</assert>
+        <value-of select="@iso-8601-date"/>.</report>
       
     </rule>
   </pattern>
@@ -4476,8 +4478,8 @@
         role="warning"
         id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
-      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]?$| see also [\(]?$') and not(matches($pre-text,'[\(].*[\(]')))
-        or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))
+      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]?$| see also [\(]?$| at [\(]?$') and not(matches($pre-text,'[\(].*[\(]')))
+        or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))
         or (matches($pre-text,' from $| in $| by $| of $| on $| to $') and not(matches($pre-text,'[\(]+')))
         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))
         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))
@@ -4487,6 +4489,7 @@
         or (matches($pre-text,' to $') and matches($pre-text,'[\(].*[\)].* to $') and not(matches($pre-text,'[\(].*[\(]')))
         or (matches($pre-text,' see $') and matches($pre-text,'[\(].*[\)].* see $') and not(matches($pre-text,'[\(].*[\(]')))
         or (matches($pre-text,' see also $') and matches($pre-text,'[\(].*[\)].* see also $') and not(matches($pre-text,'[\(].*[\(]')))
+        or (matches($pre-text,' at $') and matches($pre-text,'[\(].*[\)].* at $') and not(matches($pre-text,'[\(].*[\(]')))
         ) 
         and (. = $cite1)"
         role="warning"
@@ -4511,6 +4514,10 @@
       <report test="matches($post-sentence,$cite3)"
         role="warning"
         id="ref-xref-test-14">citation is followed by text containing much of the citation text. Is this correct? - <value-of select="concat(.,$post-sentence)"/></report>
+      
+      <report test="matches($post-sentence,'^[\)]{2,}')"
+        role="error"
+        id="ref-xref-test-15">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/></report>
     </rule>
     
   </pattern>
