@@ -1807,7 +1807,7 @@
   
   <pattern id="video-tests">
     
-    <rule context="body//media[@mimetype='video']" 
+    <rule context="article/body//media[@mimetype='video']" 
       id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
@@ -5269,6 +5269,7 @@
     
     <rule context="front//aff/country"
       id="country-tests">
+      <let name="countries" value="'countries.xml'"/>
       
       <report test=". = 'United States of America'"
         role="error"
@@ -5281,6 +5282,10 @@
       <report test=". = 'UK'"
         role="error"
         id="united-kingdom-test-2"><value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
+      
+      <assert test=". = document($countries)/countries/country" 
+        role="error" 
+        id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>.</assert>
     </rule>
     
     <rule context="front//aff//named-content[@content-type='city']"
@@ -5369,9 +5374,9 @@
       id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="not(matches($lc,'biorxiv|arxiv'))"
-        role="error" 
-        id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which must be incorrect.</report>
+      <report test="not(matches($lc,'biorxiv|arxiv|chemrxiv|peerj preprints|psyarxiv|paleorxiv|preprints'))"
+        role="warning" 
+        id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</report>
       
       <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')"
         role="error" 
@@ -5380,6 +5385,22 @@
       <report test="matches($lc,'arxiv') and not(. = 'arXiv')"
         role="error" 
         id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
+      
+      <report test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')"
+        role="error" 
+        id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
+      
+      <report test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')"
+        role="error" 
+        id="peerjpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
+      
+      <report test="matches($lc,'psyarxiv') and not(. = 'PsyArXiv')"
+        role="error" 
+        id="psyarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'.</report>
+      
+      <report test="matches($lc,'paleorxiv') and not(. = 'PaleorXiv')"
+        role="error" 
+        id="paleorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'.</report>
       
     </rule>
     
