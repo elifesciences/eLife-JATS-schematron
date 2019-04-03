@@ -469,6 +469,12 @@
       <xsl:when test="matches($s,'enterococcus\s?faecalis')">
         <xsl:value-of select="'Enterococcus faecalis'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'c\.\s?trachomatis')">
+        <xsl:value-of select="'C. trachomatis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'chlamydia\s?trachomatis')">
+        <xsl:value-of select="'Chlamydia trachomatis'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'drosophila')">
         <xsl:value-of select="'Drosophila'"/>
       </xsl:when>
@@ -976,7 +982,7 @@
 	       role="error" 
 	       id="contrib-email-1">Corresponding authors must have an email.</report>
 	  
-	     <report test="not(@corresp='yes') and (child::email)"
+	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)"
 	       role="error" 
 	       id="contrib-email-2">Non-corresponding authors must not have an email.</report>
 	  
@@ -1808,7 +1814,7 @@
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.','')"/>
       
-      <report test="not(ancestor::fig-group) and ($no != string($pos))" 
+      <report test="not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))" 
         role="error"
         id="body-video-position-test-1"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
       
@@ -1830,6 +1836,9 @@
       <let name="count" value="count(ancestor::article//fig[matches(label,'Figure \d{1,4}\.')])"/>
       <let name="pos" value="$count - count(following::fig[matches(label,'Figure \d{1,4}\.')])"/>
       <let name="no" value="substring-after($id,'fig')"/>
+      <let name="pre-sib" value="preceding-sibling::*[1]"/>
+      <let name="fol-sib" value="following-sibling::*[1]"/>
+      <let name="lab" value="replace(label,'\.','')"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" 
         role="error"
@@ -1838,27 +1847,35 @@
       <report test="if ($count = 0) then ()
                     else $no != string($pos)" 
         role="error"
-        id="fig-specific-test-2"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
+        id="fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" 
         role="warning"
-        id="fig-specific-test-3"><value-of select="label"/> does not appear directly after a paragraph citing it. Is that correct?</report>
+        id="fig-specific-test-3"><value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning"
-        id="pre-fig-specific-test-4">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</report>
+        id="pre-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="error"
-        id="final-fig-specific-test-4">There is no citation to <value-of select="label"/> Esnure this is added.</report>
+        id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Esnure this is added.</report>
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
         else ()" 
         role="warning"
         id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
+      
+      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$')))" 
+        role="warning"
+        id="fig-specific-test-4"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
+      
+      <report test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$')))" 
+        role="warning"
+        id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
   
     </rule>
     
@@ -4509,7 +4526,7 @@
       
       <report test="matches($pre-sentence,$cite3)"
         role="warning"
-        id="ref-xref-test-13">citation is preceded by text containing much of the citation text which seems unnecessary - <value-of select="concat($pre-sentence,.)"/></report>
+        id="ref-xref-test-13">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/></report>
       
       <report test="matches($post-sentence,$cite3)"
         role="warning"
@@ -4518,6 +4535,10 @@
       <report test="matches($post-sentence,'^[\)]{2,}')"
         role="error"
         id="ref-xref-test-15">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/></report>
+      
+      <report test="matches(.,'^et al|^ and|^[\(]\d|^,')"
+        role="error"
+        id="ref-xref-test-16"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
     </rule>
     
   </pattern>
@@ -4891,11 +4912,19 @@
       
       <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])"
         role="error" 
-        id="hsapiens-ref-article-title-check">article title contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="hsapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])"
         role="error" 
-        id="homosapiens-ref-article-title-check">article title contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="homosapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])"
+        role="error" 
+        id="ctrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])"
+        role="error" 
+        id="chlamydiatrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])"
         role="error" 
@@ -5145,11 +5174,19 @@
       
       <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])"
         role="error" 
-        id="hsapiens-article-title-check">article title contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="hsapiens-article-title-check">article title contains an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])"
         role="error" 
-        id="homosapiens-article-title-check">article title contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="homosapiens-article-title-check">article title contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])"
+        role="error" 
+        id="ctrachomatis-article-title-check">article title contains an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])"
+        role="error" 
+        id="chlamydiatrachomatis-article-title-check">article title contains an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])"
         role="error" 
@@ -5322,6 +5359,28 @@
       <report test="not(fpage) and not(elocation-id)"
         role="warning" 
         id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
+      
+      <report test="matches(source,'[Bb]io[Rr]xiv|[Aa]r[Xx]iv')"
+        role="error" 
+        id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source"/>, but it is captured as a journal not a preprint.</report>
+    </rule>
+    
+    <rule context="element-citation[@publication-type='preprint']/source" 
+      id="preprint-title-tests">
+      <let name="lc" value="lower-case(.)"/>
+      
+      <report test="not(matches($lc,'biorxiv|arxiv'))"
+        role="error" 
+        id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which must be incorrect.</report>
+      
+      <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')"
+        role="error" 
+        id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
+      
+      <report test="matches($lc,'arxiv') and not(. = 'arXiv')"
+        role="error" 
+        id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
+      
     </rule>
     
     <rule context="element-citation[@publication-type='website']" 
@@ -5330,6 +5389,28 @@
       <report test="contains(ext-link,'github')"
         role="error" 
         id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
+    </rule>
+    
+    <rule context="element-citation[@publication-type='software']" 
+      id="software-ref-tests">
+      <let name="lc" value="lower-case(data-title)"/>
+      
+      <report test="($lc = 'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))"
+        role="error" 
+        id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but it does not have one collab element containing 'R Development Core Team'.</report>
+      
+      <report test="($lc = 'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)"
+        role="error" 
+        id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
+      
+      <report test="($lc = 'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)"
+        role="error"
+        id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
+      
+      <report test="($lc = 'r: a language and environment for statistical computing') and (count(ext-link[@xlink:href='http://www.r-project.org/']) != 1)"
+        role="error"
+        id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
+      
     </rule>
     
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
