@@ -2111,12 +2111,11 @@
     
     <rule context="ack//p" 
       id="ack-content-tests">
-      <let name="string" value="tokenize(normalize-space(replace(.,'[^\p{Lu}(?=\.) ]','')))"/>
-      <let name="hit" value="string-join(for $x in $string return 
-        if (not(matches($x,'[\p{Lu}]{2,}')) and ($x != '.') and contains($x,'.')) then $x
+      <let name="hit" value="string-join(for $x in tokenize(.,' ') return 
+        if (matches($x,'^[A-Z]{1}\.$')) then $x
         else (),', ')"/>
-      <let name="hit-count" value="count(for $x in $string return 
-        if (not(matches($x,'[\p{Lu}]{2,}')) and ($x != '.') and contains($x,'.')) then $x
+      <let name="hit-count" value="count(for $x in tokenize(.,' ') return 
+        if (matches($x,'^[A-Z]{1}\.$')) then $x
         else ())"/>
       
       <report test="matches(.,' [A-Z]\. ')"

@@ -1548,9 +1548,8 @@
   </pattern>
   <pattern id="ack-content-tests-pattern">
     <rule context="ack//p" id="ack-content-tests">
-      <let name="string" value="tokenize(normalize-space(replace(.,'[^\p{Lu}(?=\.) ]','')))"/>
-      <let name="hit" value="string-join(for $x in $string return          if (not(matches($x,'[\p{Lu}]{2,}')) and ($x != '.') and contains($x,'.')) then $x         else (),', ')"/>
-      <let name="hit-count" value="count(for $x in $string return          if (not(matches($x,'[\p{Lu}]{2,}')) and ($x != '.') and contains($x,'.')) then $x         else ())"/>
+      <let name="hit" value="string-join(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
+      <let name="hit-count" value="count(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       
       <report test="matches(.,' [A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
       </report>
