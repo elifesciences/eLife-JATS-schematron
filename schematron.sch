@@ -4535,9 +4535,13 @@
         role="error"
         id="ref-xref-test-15">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/></report>
       
+      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)"
+        role="warning"
+        id="ref-xref-test-16">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
+      
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')"
         role="error"
-        id="ref-xref-test-16"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
+        id="ref-xref-test-17"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
     </rule>
     
   </pattern>
@@ -5341,7 +5345,7 @@
     </rule>
     
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
-      <let name="rep" value="replace(.,' [I]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
+      <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       
       <report test="(matches($rep,'[A-Za-z]{2,}\. [A-Za-z]'))"
         role="warning" 
@@ -5381,7 +5385,7 @@
         role="error" 
         id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
-      <report test="matches($lc,'arxiv') and not(. = 'arXiv')"
+      <report test="matches($lc,'^arxiv$') and not(. = 'arXiv')"
         role="error" 
         id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
       
@@ -5564,12 +5568,13 @@
     
     <rule context="article/body//p[not(parent::list-item)]" 
       id="p-punctuation">
+      <let name="para" value="replace(.,'&#x00A0;',' ')"/>
       
-      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\p{P}\s*?$'))"
+      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))"
         role="warning" 
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches(.,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))"
+      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))"
         role="warning" 
         id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
