@@ -155,7 +155,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšùúûüýÿž','aaaaaacceeeeehiiiilnnoooooorsuuuuyyz'),'æ','ae')"/>
+    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšśùúûüýÿž','aaaaaacceeeeehiiiilnnoooooorssuuuuyyz'),'æ','ae')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1">
@@ -3649,11 +3649,13 @@
       <let name="title" value="element-citation/article-title"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
       
-      <report test="($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
+      <report test="(ref/element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
-      <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
+      <report test="(ref/element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
-      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-3">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
+      <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
+      
+      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-4">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
   
@@ -4111,8 +4113,11 @@
       <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">
         <name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
-      <report test="matches(.,' [Ff]igure [Ff]igure ')" role="warning" id="figurefigure-presence">
+      <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
         <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
+      
+      <report test="matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
+        <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -4315,9 +4320,9 @@
       
       <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
-      <report test="matches(.,'[Pp][Mm][Ii][Dd]:\s?\d{5,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
+      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?\d{5,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
       
-      <report test="matches(.,'PMCID:\s?PMC\d{3,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
+      <report test="matches(.,'PMCID[:]?\s?PMC\d{3,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
     </rule>
   </pattern>
