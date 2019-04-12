@@ -155,7 +155,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšśùúûüýÿž','aaaaaacceeeeehiiiilnnoooooorssuuuuyyz'),'æ','ae')"/>
+    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšśşùúûüýÿž','aaaaaacceeeeehiiiilnnoooooorsssuuuuyyz'),'æ','ae')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1">
@@ -753,7 +753,7 @@
 		
     <assert test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
 		  
-    <report test="count(contrib[@equal-contrib='yes']) = 1" role="error" id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'.This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check contrib with id <value-of select="contrib[@equal-contrib='yes']/@id"/>
+    <report test="count(contrib[@equal-contrib='yes']) = 1" role="error" id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'.This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/>
       </report>
 	
 	</rule>
@@ -3654,16 +3654,20 @@
   <pattern id="duplicate-ref-pattern">
     <rule context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
-      <let name="title" value="element-citation/article-title"/>
+      <let name="a-title" value="element-citation/article-title"/>
+      <let name="c-title" value="element-citation/chapter-title"/>
+      <let name="source" value="element-citation/source"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
       
       <report test="(ref/element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
-      <report test="(ref/element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
+      <report test="(ref/element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.</report>
       
-      <report test="($title = preceding-sibling::ref/element-citation/article-title)" role="warning" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title as another reference, which is likely to be incorrect - '<value-of select="$title"/>'. Is it a duplicate?</report>
+      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or          (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="error" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which must be incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
       
-      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-4">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
+      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and not($x/source = $source))         or          (($x/chapter-title = $c-title) and not($x/source = $source))         )" role="warning" id="duplicate-ref-test-4">ref '<value-of select="@id"/>' has the same title as another reference, but a different source. Is this correct? - '<value-of select="$a-title"/>'</report>
+      
+      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
   
@@ -3704,30 +3708,30 @@
       
       <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
-      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]?$| see also [\(]?$| at [\(]?$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $| by $| of $| on $| to $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' on $') and matches($pre-text,'[\(].*[\)].* on $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' to $') and matches($pre-text,'[\(].*[\)].* to $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see $') and matches($pre-text,'[\(].*[\)].* see $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see also $') and matches($pre-text,'[\(].*[\)].* see also $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' at $') and matches($pre-text,'[\(].*[\)].* at $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-10">
+      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]?$| see also [\(]?$| at [\(]?$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $| by $| of $| on $| to $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' on $') and matches($pre-text,'[\(].*[\)].* on $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' to $') and matches($pre-text,'[\(].*[\)].* to $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see $') and matches($pre-text,'[\(].*[\)].* see $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see also $') and matches($pre-text,'[\(].*[\)].* see also $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' at $') and matches($pre-text,'[\(].*[\)].* at $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-11">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with '<value-of select="substring($pre-text,string-length($pre-text)-6)"/>' which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
-      <report test="((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-11">
+      <report test="((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-12">
         <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
-      <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-12">
+      <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-13">
         <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'have', which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
-      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-13">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>
+      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>
       </report>
       
-      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is followed by text containing much of the citation text. Is this correct? - <value-of select="concat(.,$post-sentence)"/>
+      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - <value-of select="concat(.,$post-sentence)"/>
       </report>
       
-      <report test="matches($post-sentence,'^[\)]{2,}')" role="error" id="ref-xref-test-15">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/>
+      <report test="matches($post-sentence,'^[\)]{2,}')" role="error" id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/>
       </report>
       
-      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)" role="warning" id="ref-xref-test-16">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
+      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)" role="warning" id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
       
-      <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-17">
+      <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-18">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
     </rule>
   </pattern>
