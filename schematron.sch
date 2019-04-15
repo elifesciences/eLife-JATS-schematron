@@ -1704,6 +1704,9 @@
     
     <rule context="table-wrap" 
       id="table-wrap-tests">
+      <let name="id" value="@id"/>
+      <let name="lab" value="label"/>
+      <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert test="table"
         role="error"
@@ -1712,6 +1715,38 @@
       <report test="count(table) > 1"
         role="warning"
         id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
+      
+      <report test="(contains($id,'inline')) and (normalize-space($lab) != '')"
+        role="error"
+        id="table-wrap-test-3">table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct.</report>
+      
+      <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')"
+        role="error"
+        id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct.</report>
+      
+      <report test="($id = 'keyresource') and ($lab != 'Key resources table')"
+        role="error"
+        id="kr-table-wrap-test-1">table-wrap has an id <value-of select="$id"/> but it's label is not 'Key resources table', which is incorrect.</report>
+      
+      <report test="if ($id = 'keyresource') then ()
+        else if (contains($id,'inline')) then ()
+        else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else not(ancestor::article//xref[@rid = $id])" 
+        role="warning"
+        id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
+      
+      <report test="if ($id = 'keyresource') then ()
+        else if (contains($id,'inline')) then ()
+        else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else not(ancestor::article//xref[@rid = $id])" 
+        role="error"
+        id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Esnure this is added.</report>
+      
+      <report test="if (contains($id,'inline')) then () 
+        else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
+        else ()" 
+        role="warning"
+        id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
       
     </rule>
     
@@ -5462,7 +5497,7 @@
         role="error"
         id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(ext-link[@xlink:href='http://www.r-project.org/']) != 1)"
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(matches(ext-link/@xlink:href,'http[s]?://www.r-project.org/')) != 1)"
         role="error"
         id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
       
