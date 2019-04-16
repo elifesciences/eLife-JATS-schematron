@@ -1366,20 +1366,21 @@
   <pattern id="general-video-pattern">
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="id" value="@id"/>
-      <let name="xref1" value="ancestor::article/descendant::xref[@rid = $id][1]"/>
+      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::fig)][1]"/>
+      <let name="fig-xref1" value="ancestor::article/descendant::xref[(@rid = $id) and (ancestor::fig)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       
       
       
-      <report test="count($xref1) = 0" role="error" id="final-video-cite">There is no citation to <value-of select="label"/> Esnure this is added.</report>
+      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-video-cite">There is no citation to <value-of select="label"/> Esnure this is added.</assert>
       
-      <report test="(ancestor::sec[1]/@id != ($xref1/ancestor::sec[1]/@id))" role="error" id="video-placement-1">
+      <report test="if ((count($fig-xref1) = 1) and (count($xref1) = 0)) then (ancestor::sec[1]/@id != ($fig-xref1/ancestor::sec[1]/@id))         else (ancestor::sec[1]/@id != ($xref1/ancestor::sec[1]/@id))" role="error" id="video-placement-1">
         <value-of select="replace(label,'\.$','')"/> does not appear in the same section as where it is first cited, which is incorrect.</report>
       
       <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">
         <value-of select="replace(label,'\.$','')"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
       
-      <report test="($xref1//preceding::media/@id = $id)" role="error" id="video-placement-3">
+      <report test="if ((count($fig-xref1) = 1) and (count($xref1) = 0)) then ($fig-xref1//preceding::media/@id = $id)         else ($xref1//preceding::media/@id = $id)" role="error" id="video-placement-3">
         <value-of select="replace(label,'\.$','')"/> appears before its citation, which must be incorrect.</report>
       
     </rule>
