@@ -1139,7 +1139,7 @@
       <assert test="@xlink:href castable as xs:anyURI" role="error" id="broken-uri-test">Broken URI in @xlink:href</assert>
       
       <!-- Needs further testing. Presume that we want to ensure a url follows the HTTP/HTTPs/FTP protocol. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$')" role="warning" id="url-conformance-test">Contents of @xlink:href don't look like a URL. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
     </rule>
@@ -2690,10 +2690,10 @@
         The  &lt;patent&gt; element may not have child elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
       
-      <assert test="not(@country) or (@country = document($countries)/countries/country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
+      <report test="not(@country) or (@country = document($countries)/countries/country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
         The country attribute on the &lt;patent&gt; element is optional, but must have a value from the list if present.
         Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value 
-        '<value-of select="@country"/>', which is not in the list.</assert>
+        '<value-of select="@country"/>', which is not in the list.</report>
       
     </rule>
   </pattern>
