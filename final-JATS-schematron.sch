@@ -2690,10 +2690,10 @@
         The  &lt;patent&gt; element may not have child elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
       
-      <report test="not(@country) or (@country = document($countries)/countries/country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
-        The country attribute on the &lt;patent&gt; element is optional, but must have a value from the list if present.
+      <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
+        The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value.
         Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value 
-        '<value-of select="@country"/>', which is not in the list.</report>
+        '<value-of select="@country"/>', which is not in the list.</assert>
       
     </rule>
   </pattern>
