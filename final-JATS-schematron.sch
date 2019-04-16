@@ -3770,6 +3770,22 @@
       
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-18">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
+      
+    </rule>
+  </pattern>
+  
+  <pattern id="unlinked-ref-cite-pattern">
+    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
+      <let name="text" value="concat(ancestor::article/body,ancestor::article/back)"/>
+      <let name="id" value="parent::ref/@id"/>
+      <let name="cite1" value="e:citation-format1(year)"/>
+      <let name="cite2" value="e:citation-format2(year)"/>
+      <let name="cite-count" value="count(ancestor::article//xref[@rid = $id])"/>
+      <let name="regex" value="concat($cite1,'|',$cite2)"/>
+      <let name="text-count" value="count(for $x in tokenize($text,'\. ') return if (matches($x,$regex)) then $x else ())"/>
+      
+      <report test="($text-count &gt; $cite-count)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
+      
     </rule>
   </pattern>
   
