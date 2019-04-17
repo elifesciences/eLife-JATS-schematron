@@ -1198,7 +1198,7 @@
     </rule>
     
     <rule context="article-meta//aff/institution|addr-line/named-content[@content-type='city']|country" 
-      id="institution-tests">
+      id="city-country-tests">
       
       <report test="matches(.,'[\p{P}]$')"
         role="warning"
@@ -1692,14 +1692,39 @@
     
     <rule context="mml:math" 
       id="math-tests">
+      <let name="data" value="normalize-space(.)"/>
       
-      <report test="normalize-space(.)=''"
+      <report test="$data = ''"
         role="error"
         id="math-test-1">mml:math must not be empty.</report>
       
       <report test="descendant::mml:merror"
         role="error"
         id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
+      
+      <report test="$data = '±'"
+        role="error"
+        id="math-test-3">mml:math only contains '±', which is unnecessary. Cature this as a normal text '±' instead.</report>
+      
+      <report test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')"
+        role="error"
+        id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Cature this as a normal text instead.</report>
+      
+      <report test="$data = '×'"
+        role="error"
+        id="math-test-5">mml:math only contains '×', which is unnecessary. Cature this as a normal text '×' instead.</report>
+      
+      <report test="$data = '~'"
+        role="error"
+        id="math-test-6">mml:math only contains '~', which is unnecessary. Cature this as a normal text '~' instead.</report>
+      
+      <report test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')"
+        role="error"
+        id="math-test-7">mml:math only contains '~', which is unnecessary. Cature this as a normal text '~' instead.</report>
+      
+      <report test="$data = 'μ'"
+        role="warning"
+        id="math-test-8">mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
     </rule>
     
     <rule context="table-wrap" 
@@ -4761,6 +4786,10 @@
       <report test="not(ancestor::supplementary-material) and (ancestor::fig/@id = $rid)"
         role="warning"
         id="fig-xref-test-4"><value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
+      
+      <report test="($type = 'Figure') and (matches($post-text,'^ in $')) and (following-sibling::*[1]/@ref-type='bibr')"
+        role="error"
+        id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
     </rule>
   </pattern>
   
@@ -5477,6 +5506,15 @@
       <report test="matches($lc,$states-regex)"
         role="error"
         id="final-US-states-test">city contains a US state (or an abbreviation for it) - <value-of select="."/>.</report>
+    </rule>
+    
+    <rule context="aff/institution[not(@*)]" 
+      id="institution-tests">
+      
+      <report test="matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')"
+        role="error" 
+        id="UC-no-test1"><value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
+      
     </rule>
     
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
