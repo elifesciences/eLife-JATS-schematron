@@ -1197,18 +1197,6 @@
       id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
     
-    <rule context="article-meta//aff/institution|addr-line/named-content[@content-type='city']|country" 
-      id="city-country-tests">
-      
-      <report test="matches(.,'[\p{P}]$')"
-        role="warning"
-        id="institution-test-1">Institution ends in punctuation - '<value-of select="substring(.,string-length(.),1)"/>' - is this correct?</report>
-      
-      <report test="matches(.,'^US$|^USA$|^UK$')"
-        role="error"
-        id="institution-test-2">This element cannot contain an abbreviated country name.</report>
-    </rule>
-    
 	<rule context="article-meta/funding-group" 
 		id="funding-group-tests">
 	  <let name="author-count" value="count(parent::article-meta//contrib[@contrib-type='author'])"/>
@@ -1446,7 +1434,8 @@
     
     <rule context="p" 
       id="p-tests">
-    
+      <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
+      
       <!--<report test="not(matches(.,'^[\p{Lu}\p{N}\p{Ps}\p{S}\p{Pi}\p{Z}]')) and not(parent::list-item) and not(parent::td)"
         role="error" 
         id="p-test-1">p element begins with '<value-of select="substring(.,1,1)"/>'. Is this OK? Usually it should begin with an upper-case letter, or digit, or mathematic symbol, or open parenthesis, or open quote. Or perhaps it should not be the beginning of a new paragraph?</report>-->
@@ -1454,6 +1443,10 @@
       <report test="@*"
         role="error" 
         id="p-test-2">p element must not have any attributes.</report>
+      
+      <assert test="count($text-tokens) = 0"
+        role="error" 
+        id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
     </rule>
     
     <rule context="p/*" 
@@ -1463,7 +1456,7 @@
       <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')
                     else self::*/local-name() = $allowed-p-blocks"
         role="error" 
-        id="p-test-3">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</assert>
+        id="p-test-4">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</assert>
     </rule>
     
     <rule context="xref" 
@@ -4787,7 +4780,7 @@
         role="warning"
         id="fig-xref-test-4"><value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
-      <report test="($type = 'Figure') and (matches($post-text,'^ in $')) and (following-sibling::*[1]/@ref-type='bibr')"
+      <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $')) and (following-sibling::*[1]/@ref-type='bibr')"
         role="error"
         id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
     </rule>
