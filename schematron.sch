@@ -1864,11 +1864,11 @@
         role="warning"
         id="order-test-1">list-item is part of an ordered list, but it begins with a number. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='alpha-lower') and matches(.,'^\s?[a-z][\.|\)]? ')"
+      <report test="($type='alpha-lower') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)]? ')"
         role="warning"
         id="alpha-lower-test-1">list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='alpha-upper') and matches(.,'^\s?[A-Z][\.|\)]? ')"
+      <report test="($type='alpha-upper') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)]? ')"
         role="warning"
         id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/></report>
       
@@ -1879,6 +1879,26 @@
       <report test="($type='roman-upper') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')"
         role="warning"
         id="roman-upper-test-1">list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/></report>
+      
+      <report test="($type='simple') and matches(.,'^\s?[1-9][\.|\)]? ')"
+        role="warning"
+        id="simple-test-1">list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/></report>
+      
+      <report test="($type='simple') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)] ')"
+        role="warning"
+        id="simple-test-2">list-item is part of a simple list, but it begins with a single lower-case letter. Should the list-type be updated to 'alpha-lower' and this first letter removed? <value-of select="."/></report>
+      
+      <report test="($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')"
+        role="warning"
+        id="simple-test-3">list-item is part of a simple list, but it begins with a single upper-case letter. Should the list-type be updated to 'alpha-upper' and this first letter removed? <value-of select="."/></report>
+      
+      <report test="($type='simple') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')"
+        role="warning"
+        id="simple-test-4">list-item is part of a simple list, but it begins with a single roman-lower letter. Should the list-type be updated to 'roman-lower' and this first letter removed? <value-of select="."/></report>
+      
+      <report test="($type='simple') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')"
+        role="warning"
+        id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/></report>
     </rule>
     
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]"
