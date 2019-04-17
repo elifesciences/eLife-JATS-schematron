@@ -1060,6 +1060,15 @@
       <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
     </rule>
   </pattern>
+  <pattern id="meta-value-child-tests-pattern">
+    <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
+      <let name="allowed-elements" value="('italic','sup','sub')"/>
+      
+      <assert test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
+        <name/> is not allowed in impact statement.</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="elocation-id-tests-pattern">
     <rule context="article-meta/elocation-id" id="elocation-id-tests">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
