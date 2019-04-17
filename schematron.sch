@@ -1848,6 +1848,39 @@
         id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
     
+    <rule context="list-item" 
+      id="list-item-tests">
+      <let name="type" value="ancestor::list[1]/@list-type"/>
+      
+      <report test="($type='bullet') and matches(.,'^\s?•')"
+        role="error"
+        id="bullet-test-1">list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
+      
+      <report test="($type='simple') and matches(.,'^\s?•')"
+        role="error"
+        id="bullet-test-2">list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
+      
+      <report test="($type='order') and matches(.,'^\s?\d+')"
+        role="warning"
+        id="order-test-1">list-item is part of an ordered list, but it begins with a number. Is this correct? <value-of select="."/></report>
+      
+      <report test="($type='alpha-lower') and matches(.,'^\s?[a-z][\.|\)]? ')"
+        role="warning"
+        id="alpha-lower-test-1">list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/></report>
+      
+      <report test="($type='alpha-upper') and matches(.,'^\s?[A-Z][\.|\)]? ')"
+        role="warning"
+        id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/></report>
+      
+      <report test="($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')"
+        role="warning"
+        id="roman-lower-test-1">list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/></report>
+      
+      <report test="($type='roman-upper') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')"
+        role="warning"
+        id="roman-upper-test-1">list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/></report>
+    </rule>
+    
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]"
       id="general-video">
       <let name="id" value="@id"/>
@@ -4628,13 +4661,17 @@
         role="error"
         id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/></report>
       
-      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)"
+      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(matches($post-sentence,'^[\)]'))"
         role="warning"
         id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
       
+      <report test="($pre-sentence = ', ') and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)"
+        role="warning"
+        id="ref-xref-test-18">citation is in parenthetic format, but the preceding text is ', ' . Should the predecing text be '; ' instead? <value-of select="concat($pre-sentence,.)"/></report>
+      
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')"
         role="error"
-        id="ref-xref-test-18"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
+        id="ref-xref-test-19"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       
     </rule>
     
