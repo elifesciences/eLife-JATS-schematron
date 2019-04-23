@@ -3899,7 +3899,10 @@
       <report test="not(matches(.,'table')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
         <value-of select="."/> - citation points to and Appendix table, but does not include the string 'table', which is very unusual.</report>
       
-      <report test="($text-no != $rid-no) and not(contains(.,'–'))" role="error" id="table-xref-conformity-3">
+      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="error" id="table-xref-conformity-3">
+        <value-of select="."/> - Citation content does not match what it directs to.</report>
+      
+      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2,1)))) and not(contains(.,'–'))" role="error" id="table-xref-conformity-4">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report test="ancestor::table-wrap/@id = $rid" role="warning" id="table-xref-test-1">
