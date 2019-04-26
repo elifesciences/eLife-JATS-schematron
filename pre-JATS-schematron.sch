@@ -1172,6 +1172,19 @@
       
     </rule>
   </pattern>
+  <pattern id="ar-fig-tests-pattern">
+    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      
+      <assert test="@position" role="error" id="ar-fig-test-1">Author Response fig must have a @position.</assert>
+      
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">Author Response fig must have a label.</report>
+      
+      <assert test="graphic" role="warning" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Esnure author query is added asking for file.</assert>
+      
+      
+    </rule>
+  </pattern>
   <pattern id="graphic-tests-pattern">
     <rule context="graphic" id="graphic-tests">
       <let name="file" value="@xlink:href"/>
