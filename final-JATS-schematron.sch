@@ -983,6 +983,17 @@
 	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no xref from a contrib pointing to this award-group. This is incorrect.</assert>
 	</rule>
   </pattern>
+  <pattern id="award-id-tests-pattern">
+    <rule context="funding-group/award-group/award-id" id="award-id-tests">
+      <let name="id" value="parent::award-group/@id"/>
+      
+      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
@@ -1659,7 +1670,7 @@
   <pattern id="ack-title-tests-pattern">
     <rule context="ack" id="ack-title-tests">
       
-      <assert test="title = ('Acknowledgements','Acknowledgments')" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements', or 'Acknowledgments'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
     </rule>
   </pattern>
@@ -3919,7 +3930,7 @@
       <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2,1)))) and not(contains(.,'–'))" role="error" id="table-xref-conformity-4">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
       
-      <report test="ancestor::table-wrap/@id = $rid" role="warning" id="table-xref-test-1">
+      <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">
         <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>
