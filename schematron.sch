@@ -1259,6 +1259,10 @@
         role="error"
         id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
+      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')"
+        role="error"
+        id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      
     </rule>
     
     <rule context="article-meta//award-group//institution-wrap" 
