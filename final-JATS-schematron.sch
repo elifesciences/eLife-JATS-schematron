@@ -767,7 +767,7 @@
 		
 	  <assert test="matches(surname,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="surname"/> contains other characters.</assert>
 		
-	  <assert test="matches(surname,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter. Is this correct?</assert>
+	  <assert test="matches(surname,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="surname"/>. Is this correct?</assert>
 		
     	<report test="count(given-names) gt 1" role="error" id="given-names-test-1">Each name must contain only one given-names element.</report>
 		
@@ -3782,9 +3782,9 @@
       <let name="source" value="element-citation/source"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
       
-      <report test="(ref/element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
+      <report test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
-      <report test="(ref/element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.</report>
+      <report test="(element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.</report>
       
       <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or          (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="error" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which must be incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
       
@@ -4341,6 +4341,9 @@
       
       <report test="matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
         <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
+      
+      <report test="matches(.,'�')" role="error" id="replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -4390,6 +4393,9 @@
       
       <report test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')" role="error" id="singapore-test-2">
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
+      
+      <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
@@ -4397,6 +4403,29 @@
       
       <report test="matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
         <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
+      
+      <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="department-tests-pattern">
+    <rule context="aff/institution[@content-type='dept']" id="department-tests">
+      
+      <report test="matches(.,'[Dd]epartments')" role="error" id="plural-test-1">
+        <value-of select="ancestor::aff/@id"/> contains a department with the plural for department - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+      
+      <report test="matches(.,'^[Ii]nstitutes')" role="error" id="plural-test-2">
+        <value-of select="ancestor::aff/@id"/> contains a department with the plural for institute - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+      
+      <report test="matches(.,'^[Dd]epartment .* [Dd]epartment')" role="error" id="plural-test-3">
+        <value-of select="ancestor::aff/@id"/> contains a department wwhich has two instancest of the word 'department' - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+      
+      <report test="matches(.,'^[Ii]nstitute .* [Ii]nstitute')" role="error" id="plural-test-4">
+        <value-of select="ancestor::aff/@id"/> contains a department wwhich has two instancest of the word 'institution' - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+      
+      <report test="matches(.,'�')" role="error" id="dept-replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed.</report>
       
     </rule>
   </pattern>
@@ -4423,6 +4452,10 @@
       <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       
       <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
+      
+      <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
@@ -4434,6 +4467,13 @@
       <report test="matches(.,'\.$')" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
+      
+      <report test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
+      </report>
       
     </rule>
   </pattern>
@@ -4463,12 +4503,19 @@
       
       <report test="matches($lc,'paleorxiv') and not(. = 'PaleorXiv')" role="error" id="paleorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'.</report>
       
+      <report test="matches(.,'�')" role="error" id="preprint-replacement-character-presence">
+        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
+      </report>
+      
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
     <rule context="element-citation[@publication-type='website']" id="website-tests">
       
       <report test="contains(ext-link,'github')" role="error" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
+      
+      <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="software-ref-tests-pattern">
@@ -4485,6 +4532,9 @@
       
       <report test="matches(lower-case(source),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
       
+      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software citation contains the replacement character '�' which is unallowed - <value-of select="."/>
+      </report>
+      
     </rule>
   </pattern>
   <pattern id="publisher-name-tests-pattern">
@@ -4493,6 +4543,10 @@
       <report test="matches(.,':')" role="warning" id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
       
       <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed?</report>
+      
+      <report test="matches(.,'�')" role="error" id="pub-name-replacement-character-presence">
+        <name/> contains the replacement character '�' which is unallowed - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="ref-name-tests-pattern">
@@ -4603,6 +4657,17 @@
       
       
       <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
+    </rule>
+  </pattern>
+  <pattern id="xref-formatting-pattern">
+    <rule context="xref" id="xref-formatting">
+      <let name="parent" value="parent::*/local-name()"/>
+      <let name="child" value="child::*/local-name()"/>
+      <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
+      
+      <report test="$parent = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/>. Is this correct?</report>
+      
+      <report test="$child = $formatting-elems" role="warning" id="xref-parent-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/>. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="code-fork-pattern">
