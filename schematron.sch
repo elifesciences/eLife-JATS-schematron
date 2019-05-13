@@ -5925,6 +5925,16 @@
         id="colour-named-content-check"><value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/></report>
     </rule>
     
+    <rule context="styled-content" 
+      id="colour-styled-content">
+      <let name="parent" value="parent::*/local-name()"/>
+      <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
+      
+      <report test="."
+        role="warning" 
+        id="colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. Is this correct?  Preceding text - <value-of select="concat($prec-text,.)"/></report>
+    </rule>
+    
     <rule context="article/body//p[not(parent::list-item)]" 
       id="p-punctuation">
       <let name="para" value="replace(.,'&#x00A0;',' ')"/>
@@ -5949,6 +5959,15 @@
       <assert test="ancestor::article//xref[@rid = $id]"
         role="error" 
         id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
+    </rule>
+    
+    <rule context="fig|media[@mimetype='video']" 
+      id="fig-permissions-check">
+      <let name="label" value="replace(label,'\.','')"/>
+      
+      <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')"
+        role="warning" 
+        id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
     </rule>
     
     <rule context="xref" 
