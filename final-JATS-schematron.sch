@@ -768,6 +768,10 @@
 	  <assert test="matches(surname,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="surname"/> contains other characters.</assert>
 		
 	  <assert test="matches(surname,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="surname"/>. Is this correct?</assert>
+	  
+	  <report test="matches(surname,'^\s')" role="error" id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="surname"/>'.</report>
+	  
+	  <report test="matches(surname,'\s$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="surname"/>'.</report>
 		
     	<report test="count(given-names) gt 1" role="error" id="given-names-test-1">Each name must contain only one given-names element.</report>
 		
@@ -783,6 +787,10 @@
 	  
 	  <report test="matches(given-names,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="given-names"/>
       </report>
+	  
+	  <report test="matches(given-names,'^\s')" role="error" id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
+	  
+	  <report test="matches(given-names,'\s$')" role="error" id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
 		
 	</rule>
   </pattern>
@@ -3817,10 +3825,10 @@
       <let name="cite1" value="e:citation-format1($ref//year)"/>
       <let name="cite2" value="e:citation-format2($ref//year)"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <let name="pre-sentence" value="tokenize(replace(replace(replace($pre-text,' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie '),'\. ')[position() = last()]"/>
-      <let name="post-sentence" value="tokenize(replace(replace(replace($post-text,' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie '),'\. ')[position() = 1]"/>
+      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
+      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
@@ -3876,6 +3884,8 @@
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       
+      <report test="matches($post-text,'^[\)];\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
+      
     </rule>
   </pattern>
   
@@ -3892,6 +3902,30 @@
     </rule>
   </pattern>
   
+  <pattern id="vid-xref-conformance-pattern">
+    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="t-label" value="replace(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'\.','')"/>
+      <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      
+      <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
+        <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
+      
+      <report test="(. != $t-label)" role="warning" id="vid-xref-conformity-2">video citation does not matches the label of the video that it links to <value-of select="."/> -&gt; <value-of select="$t-label"/>. Is that correct?</report>
+      
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      
+      <report test="(ancestor::media[@mimetype='video']/@id = $rid)" role="warning" id="vid-xref-test-4">
+        <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
+      
+      <report test="(matches($post-text,'^ in $|^ from $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
+        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+    </rule>
+  </pattern>
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
