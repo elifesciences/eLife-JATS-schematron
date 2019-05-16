@@ -1497,12 +1497,16 @@
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.','')"/>
+      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label,$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label,$fig-label)])"/>
       
       <report test="not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))" role="error" id="body-video-position-test-1">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
       
       <assert test="starts-with(label,$fig-label)" role="error" id="fig-video-label-test">
         <value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
+      
+      <report test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
       
     </rule>
   </pattern>
