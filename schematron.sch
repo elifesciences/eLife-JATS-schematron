@@ -5636,24 +5636,30 @@
     
     <rule context="front//aff/country"
       id="country-tests">
+      <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
       <let name="city" value="parent::aff//named-content[@content-type='city']"/>
+      <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       
-      <report test=". = 'United States of America'"
+      <report test="$text = 'United States of America'"
         role="error"
         id="united-states-test-1"><value-of select="."/> is not allowed it. This should be 'United States'.</report>
       
-      <report test=". = 'USA'"
+      <report test="$text = 'USA'"
         role="error"
         id="united-states-test-2"><value-of select="."/> is not allowed it. This should be 'United States'</report>
       
-      <report test=". = 'UK'"
+      <report test="$text = 'UK'"
         role="error"
         id="united-kingdom-test-2"><value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
       
-      <assert test=". = document($countries)/countries/country" 
+      <assert test="$text = document($countries)/countries/country" 
         role="error" 
         id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>.</assert>
+      
+      <report test="($text = document($countries)/countries/country) and not(@country = $valid-country/@country)" 
+        role="warning" 
+        id="gen-country-iso-3166-test">country does not have a 2 letter ISO 3166-1 @country value. It should be @country='<value-of select="$valid-country/@country"/>'.</report>
       
       <report test="(. = 'Singapore') and ($city != 'Singapore')"
         role="error"
