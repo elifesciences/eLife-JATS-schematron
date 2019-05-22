@@ -1141,7 +1141,7 @@
       
       <assert test="count($text-tokens) = 0" role="error" id="p-test-4">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
-      <report test="(descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text())" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
+      <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}')" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
     </rule>
   </pattern>
   <pattern id="p-child-tests-pattern">
@@ -1228,7 +1228,7 @@
       
       <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
       
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
       
@@ -1352,6 +1352,9 @@
       <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="error" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Esnure this is added.</report>
       
       <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
+      
+      <report test="($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
+        <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
       
     </rule>
   </pattern>
@@ -1669,6 +1672,9 @@
       <report test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
       <report test="matches(.,'^\s')" role="error" id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+      
+      <report test="matches(.,'^\p{P}')" role="warning" id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="supplementary-material-title-tests-pattern">
@@ -3788,17 +3794,24 @@
     </rule>
   </pattern>
   
-  <pattern id="rrid-org-presence-pattern">
-    <rule context="p|td|th" id="rrid-org-presence">		
+  <pattern id="rrid-org-code-pattern">
+    <rule context="p|td|th" id="rrid-org-code">		
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(e:rrid-text-count(.))"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
+      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]{2,}')) then $x else (),'; ')"/>
       
       <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
       <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))])" role="warning" id="org-test">
         <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+      
+      <report test="not(descendant::monospace) and ($code-text != '')" role="warning" id="code-test">
+        <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
+      
+      <report test="matches(.,'\+cells|±cells')" role="warning" id="cell-spacing-test">
+        <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing.</report>
     </rule>
   </pattern>
   
@@ -3859,7 +3872,7 @@
       
       <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
-      <report test="((matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]?$| see also [\(]?$| at [\(]?$') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and matches($pre-text,'[\(].*[\(]') and matches($pre-text,'[\)]+'))         or (matches($pre-text,' from $| in $| by $| of $| on $| to $') and not(matches($pre-text,'[\(]+')))         or (matches($pre-text,' from $') and matches($pre-text,'[\(].*[\)].* from $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' in $') and matches($pre-text,'[\(].*[\)].* in $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' by $') and matches($pre-text,'[\(].*[\)].* by $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' of $') and matches($pre-text,'[\(].*[\)].* of $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' on $') and matches($pre-text,'[\(].*[\)].* on $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' to $') and matches($pre-text,'[\(].*[\)].* to $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see $') and matches($pre-text,'[\(].*[\)].* see $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' see also $') and matches($pre-text,'[\(].*[\)].* see also $') and not(matches($pre-text,'[\(].*[\(]')))         or (matches($pre-text,' at $') and matches($pre-text,'[\(].*[\)].* at $') and not(matches($pre-text,'[\(].*[\(]')))         )          and (. = $cite1)" role="warning" id="ref-xref-test-11">
+      <report test="(         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and (($open - $close) = 1))           or         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))           or          (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))           or         (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $') and (($open - $close) lt 0))          )         and (. = $cite1)" role="warning" id="ref-xref-test-11">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with '<value-of select="substring($pre-text,string-length($pre-text)-6)"/>' which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
@@ -3882,7 +3895,7 @@
       
       <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(matches($post-sentence,'^[\)]'))" role="warning" id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
       
-      <report test="($pre-sentence = ', ') and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)" role="warning" id="ref-xref-test-18">citation is in parenthetic format, but the preceding text is ', ' . Should the predecing text be '; ' instead? <value-of select="concat($pre-sentence,.)"/>
+      <report test="($pre-sentence = ', ') and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)" role="warning" id="ref-xref-test-18">citation is in parenthetic format, but the preceding text is ', ' . Should the preceding text be '; ' instead? <value-of select="concat($pre-sentence,.)"/>
       </report>
       
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-19">
@@ -3909,15 +3922,14 @@
   <pattern id="vid-xref-conformance-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="t-label" value="replace(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'\.','')"/>
-      <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="target-no" value="substring-after(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'ideo ')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
       <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
         <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="(. != $t-label)" role="warning" id="vid-xref-conformity-2">video citation does not matches the label of the video that it links to <value-of select="."/> -&gt; <value-of select="$t-label"/>. Is that correct?</report>
+      <report test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to (taget video label number is <value-of select="$target-no"/>, but that number is not in the citation).</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -4516,6 +4528,8 @@
       <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
+      
+      <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
@@ -4630,13 +4644,22 @@
   <pattern id="data-availability-statement-pattern">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
       
-      <assert test="matches(.,'.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
       <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="error" id="das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citationin the dataset section with a dryad assigning authority.</report>
       
       <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
       <report test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ethics-info-pattern">
+    <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
+      
+      <assert test="matches(.,'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
+      
+      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
     </rule>
   </pattern>
@@ -4741,9 +4764,9 @@
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
       
-      <report test="$parent = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/>. Is this correct?</report>
+      <report test="$parent = $formatting-elems" role="error" id="xref-child-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report test="$child = $formatting-elems" role="warning" id="xref-parent-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/>. Is this correct?</report>
+      <report test="$child = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
   </pattern>
   <pattern id="code-fork-pattern">
