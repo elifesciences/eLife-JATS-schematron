@@ -796,6 +796,7 @@
   </pattern>
   <pattern id="contrib-tests-pattern">
     <rule context="article-meta//contrib" id="contrib-tests">
+	  <let name="type" value="@contrib-type"/>
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
 	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)]"/>
@@ -813,9 +814,11 @@
 	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]| AstraZeneca| Pfizer| R&amp;D'"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if (parent::contrib-group[@content-type='section']) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
+    	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
 	  
-	     <report test="name and collab" role="error" id="contrib-test-2">author contains both a child name and a child collab. This is not correct.</report>
+	  <report test="($type != 'author') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="."/> - is this correct?</report>
+	  
+	     <report test="name and collab" role="error" id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
 	  
 	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has more than one name. This is not correct.</report>
 	  
@@ -3811,8 +3814,9 @@
       <report test="not(descendant::monospace) and ($code-text != '')" role="warning" id="code-test">
         <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
       
-      <report test="matches(.,'\+cells|±cells')" role="warning" id="cell-spacing-test">
-        <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing.</report>
+      <report test="matches(.,'\+cell[s]?|±cell[s]?')" role="warning" id="cell-spacing-test">
+        <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   
@@ -4757,6 +4761,8 @@
       <let name="label" value="replace(label,'\.','')"/>
       
       <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">

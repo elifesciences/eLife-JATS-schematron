@@ -958,6 +958,7 @@
 	
 	<rule context="article-meta//contrib" 
 		id="contrib-tests">
+	  <let name="type" value="@contrib-type"/>
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
 	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)]"/>
@@ -978,14 +979,18 @@
     	<report test="if ($subj-type = ('Retraction','Correction')) then ()
     	  else if (collab) then ()
     	  else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)
-    	  else if (parent::contrib-group[@content-type='section']) then (count(xref[@ref-type='aff']) + count(aff) = 0)
+    	  else if ($type != 'author') then ()
     	  else count(xref[@ref-type='aff']) = 0"
       	role="error" 
       	id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
 	  
+	  <report test="($type != 'author') and (count(xref[@ref-type='aff']) + count(aff) = 0)"
+	     role="warning" 
+	     id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="."/> - is this correct?</report>
+	  
 	     <report test="name and collab"
 	       role="error" 
-	       id="contrib-test-2">author contains both a child name and a child collab. This is not correct.</report>
+	       id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
 	  
 	     <report test="if (collab) then ()
 	       else count(name) != 1"
@@ -4690,9 +4695,9 @@
         role="warning" 
         id="code-test"><name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
       
-      <report test="matches(.,'\+cells|±cells')"
+      <report test="matches(.,'\+cell[s]?|±cell[s]?')"
         role="warning" 
-        id="cell-spacing-test"><name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing.</report>
+        id="cell-spacing-test"><name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/></report>
     </rule>
     
   </pattern>
@@ -6100,6 +6105,10 @@
       <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')"
         role="warning" 
         id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced [Ww]ith [Pp]ermission')"
+        role="warning" 
+        id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
     </rule>
     
     <rule context="xref" 
