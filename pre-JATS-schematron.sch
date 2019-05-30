@@ -729,6 +729,8 @@
   <pattern id="test-title-group-pattern">
     <rule context="article/front/article-meta/title-group" id="test-title-group">
 	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
+	  <let name="body" value="ancestor::front/following-sibling::body"/>
+	  <let name="tokens" value="string-join(for $x in tokenize(article-title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,lower-case($x))) then $x      else (),', ')"/>
 	
     <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop.</report>  
    
@@ -743,6 +745,9 @@
     <report test="article-title//bold" role="error" id="article-title-test-6">Article title must not contain bold.</report>
 	  
 	  <report test="matches(article-title,'-Based ')" role="error" id="article-title-test-7">Article title contains the string '-Based '. this should be lower-case, '-based '.</report>
+	  
+	  <report test="matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-8">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
+      </report>
 	
 	</rule>
   </pattern>
@@ -1232,7 +1237,7 @@
       
       <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
       
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
       
@@ -1355,7 +1360,7 @@
       
       
       
-      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
+      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
       
       <report test="($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
         <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
@@ -1595,7 +1600,7 @@
       
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
       
-      <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure i placed in the incorrect appendix or the label is incorrect.</report>
+      <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-tests-pattern">
@@ -1603,7 +1608,7 @@
       
       <assert test="matches(.,'^Appendix \d{1,4}—Figure \d{1,4}—figure Supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure Supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1—Figure Supplement 1.'.</assert>
       
-      <assert test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure i placed in the incorrect appendix or the label is incorrect.</assert>
+      <assert test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
   </pattern>
   
@@ -4412,6 +4417,9 @@
       
       <report test="matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
         <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
+      
+      <report test="matches(.,' [Rr]efs\. ')" role="error" id="refs-presence">
+        <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
       <report test="matches(.,'�')" role="error" id="replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>

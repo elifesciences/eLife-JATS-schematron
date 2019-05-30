@@ -843,6 +843,10 @@
 	<rule context="article/front/article-meta/title-group" 
 		id="test-title-group">
 	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
+	  <let name="body" value="ancestor::front/following-sibling::body"/>
+	  <let name="tokens" value="string-join(for $x in tokenize(article-title,' ')[position() > 1] return 
+	    if (matches($x,'^[A-Z]') and matches($body,lower-case($x))) then $x
+	    else (),', ')"/>
 	
     <report test="ends-with(replace(article-title,'\p{Z}',''),'.')"
       role="error" 
@@ -871,6 +875,10 @@
 	  <report test="matches(article-title,'-Based ')"
 	    role="error" 
 	    id="article-title-test-7">Article title contains the string '-Based '. this should be lower-case, '-based '.</report>
+	  
+	  <report test="matches($tokens,'[A-Za-z]')"
+	    role="warning" 
+	    id="article-title-test-8">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/></report>
 	
 	</rule>
 	
@@ -1653,6 +1661,7 @@
                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))
                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
+                    else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
@@ -1859,12 +1868,14 @@
       <report test="if ($id = 'keyresource') then ()
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else if (ancestor::app) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="error"
-        id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Esnure this is added.</report>
+        id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report test="if (contains($id,'inline')) then () 
         else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
+        else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))
         else ()" 
         role="warning"
         id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
@@ -2039,7 +2050,7 @@
       
       <assert test="ancestor::article//xref[@rid = $id]" 
         role="error"
-        id="final-video-cite">There is no citation to <value-of select="label"/> Esnure this is added.</assert>
+        id="final-video-cite">There is no citation to <value-of select="label"/> Ensure this is added.</assert>
       
       <report test="if ((count($fig-xref1) = 1) and (count($xref1) = 0)) then (ancestor::sec[1]/@id != ($fig-xref1/ancestor::sec[1]/@id))
         else (ancestor::sec[1]/@id != ($xref1/ancestor::sec[1]/@id))" 
@@ -2120,7 +2131,7 @@
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="error"
-        id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Esnure this is added.</report>
+        id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
         else ()" 
@@ -2200,7 +2211,7 @@
       
       <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" 
         role="error"
-        id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure i placed in the incorrect appendix or the label is incorrect.</report>
+        id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
     
     <rule context="article//app//fig[@specific-use='child-fig']/label" 
@@ -2212,7 +2223,7 @@
       
       <assert test="starts-with(.,ancestor::app/title)" 
         role="error"
-        id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure i placed in the incorrect appendix or the label is incorrect.</assert>
+        id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
   </pattern>
   
@@ -5614,6 +5625,10 @@
       <report test="matches(.,' [Rr]ef\. ')"
         role="error"
         id="ref-presence"><name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
+      
+      <report test="matches(.,' [Rr]efs\. ')"
+        role="error"
+        id="refs-presence"><name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
       <report test="matches(.,'�')"
         role="error"
