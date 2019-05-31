@@ -4872,7 +4872,7 @@
         if ($x/ancestor::sec[@sec-type='data-availability']) then ()
         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
         else if ($x/local-name() = 'xref') then ()
-        else $x/text())"/>
+        else $x/text(),'')"/>
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year)"/>
       <let name="cite2" value="e:citation-format2(year)"/>

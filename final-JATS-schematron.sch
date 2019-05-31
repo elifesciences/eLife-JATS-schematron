@@ -3917,7 +3917,7 @@
   
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
-      <let name="text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text())"/>
+      <let name="text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year)"/>
       <let name="cite2" value="e:citation-format2(year)"/>
