@@ -1519,6 +1519,9 @@
       <report test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
       
+      <report test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">
+        <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
+      
     </rule>
   </pattern>
   
