@@ -729,8 +729,9 @@
   <pattern id="test-title-group-pattern">
     <rule context="article/front/article-meta/title-group" id="test-title-group">
 	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
+	  <let name="title" value="replace(article-title,'\p{P}','')"/>
 	  <let name="body" value="ancestor::front/following-sibling::body"/>
-	  <let name="tokens" value="string-join(for $x in tokenize(article-title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
+	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
     <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop.</report>  
    
@@ -4417,6 +4418,14 @@
       
       <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
         <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
+      
+      <report test="matches(.,'\s?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">
+        <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
+      </report>
+      
+      <report test="matches(.,'/s?[Ss]upplemental [Ff]ile')" role="warning" id="supplementalfile-presence">
+        <name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
+      </report>
       
       <report test="matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
         <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
