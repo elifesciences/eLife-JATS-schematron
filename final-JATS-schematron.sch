@@ -728,6 +728,7 @@
   </pattern>
   <pattern id="test-title-group-pattern">
     <rule context="article/front/article-meta/title-group" id="test-title-group">
+	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
 	  <let name="title" value="replace(article-title,'\p{P}','')"/>
 	  <let name="body" value="ancestor::front/following-sibling::body"/>
@@ -741,13 +742,21 @@
 	  
 	  <report test="not(article-title/*) and normalize-space(article-title)=''" role="error" id="article-title-test-4">Article title must not be empty.</report>
 	  
-    <report test="article-title//mml:math" role="error" id="article-title-test-5">Article title must not contain math.</report>
+    <report test="article-title//mml:math" role="warning" id="article-title-test-5">Article title contains maths. Is this correct?</report>
 	  
     <report test="article-title//bold" role="error" id="article-title-test-6">Article title must not contain bold.</report>
 	  
-	  <report test="matches(article-title,'-Based ')" role="error" id="article-title-test-7">Article title contains the string '-Based '. this should be lower-case, '-based '.</report>
+	  <report test="article-title//underline" role="error" id="article-title-test-7">Article title must not contain underline.</report>
 	  
-	  <report test="matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-8">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
+	  <report test="article-title//break" role="error" id="article-title-test-8">Article title must not contain a line break (the element 'break').</report>
+	  
+	  <report test="matches(article-title,'-Based ')" role="error" id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/>
+      </report>
+	  
+	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and matches(article-title,':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
+      </report>
+	  
+	  <report test="matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	
 	</rule>
@@ -797,6 +806,14 @@
 	  <report test="matches(given-names,'^\s')" role="error" id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
 	  
 	  <report test="matches(given-names,'\s$')" role="error" id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
+	  
+	  <report test="matches(given-names,'[A-Za-z] [Dd]e')" role="error" id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+		
+	  <report test="matches(given-names,'[A-Za-z] [Vv]an')" role="error" id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+	  
+	  <report test="matches(given-names,'[A-Za-z] [Vv]on')" role="error" id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+	  
+	  <report test="matches(given-names,'[A-Za-z] [Ee]l')" role="error" id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
 		
 	</rule>
   </pattern>
@@ -1178,6 +1195,8 @@
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
+      
+      <report test="matches(@xlink:href,'scicrunch\.org.*resolver') and not(matches(@xlink:href,'[0-9]$'))" role="warning" id="rrid-number-check">ext-link links to scicrunch but, the link does not end with a number - '<value-of select="@xlink:href"/>' - this is almost certainly incorrect.</report>
     </rule>
   </pattern>
   <pattern id="fig-tests-pattern">
@@ -1538,7 +1557,7 @@
       
       <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
-      <report test="if ($count = 0) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
+      <report test="if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
         <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" role="warning" id="fig-specific-test-3">
@@ -1792,7 +1811,13 @@
   <pattern id="fig-ids-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
-      <assert test="matches(@id,'^fig[0-9]{1,3}$')" role="error" id="fig-id-test">fig must have an @id in the format fig0, fig00, or fig000.</assert>
+      <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes).</assert>
+      
+      <report test="matches(label,'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0.</report>
+      
+      <report test="matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^C[0-9]{1,3}$'))" role="error" id="fig-id-test-3">Chemical structures must have an @id in the format C0.</report>
+      
+      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-4">Schemes must have an @id in the format S0.</report>
     </rule>
   </pattern>
   <pattern id="fig-sup-ids-pattern">
@@ -3951,7 +3976,7 @@
       <report test="(ancestor::media[@mimetype='video']/@id = $rid)" role="warning" id="vid-xref-test-4">
         <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
-      <report test="(matches($post-text,'^ in $|^ from $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
+      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
     </rule>
   </pattern>
@@ -3987,7 +4012,7 @@
       <report test="not(ancestor::supplementary-material) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">
         <value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
-      <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
+      <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
     </rule>
   </pattern>
@@ -4648,13 +4673,17 @@
     </rule>
   </pattern>
   <pattern id="ref-name-tests-pattern">
-    <rule context="element-citation/person-group[@person-group-type='author']//name" id="ref-name-tests">
+    <rule context="element-citation//name" id="ref-name-tests">
       
       <report test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
       
       <report test="matches(.,'[Ed]itor')" role="warning" id="author-test-2">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Editor'. Is this correct?</report>
       
       <report test="matches(.,'[Pp]ress')" role="warning" id="author-test-3">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Press'. Is this correct?</report>
+      
+      <report test="matches(surname,'^[A-Z]*$')" role="warning" id="all-caps-surname">surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname"/>. Should this be captured as a collab? If not, Should it be - <value-of select="concat(substring(surname,1,1),lower-case(substring(surname,2)))"/>?</report>
+      
+      <report test="matches(.,'[0-9]')" role="warning" id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
     </rule>
   </pattern>
   <pattern id="isbn-conformity-pattern">
@@ -4764,6 +4793,17 @@
       <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
       <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="pubmed-link-pattern">
+    <rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link">
+      
+      <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')" role="warning" id="pubmed-presence">
+        <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PubMed article - <value-of select="."/> - should this be added a reference instead?</report>
+      
+      <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pmc/articles/PMC[\d]*')" role="warning" id="pmc-presence">
+        <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PMC article - <value-of select="."/> - should this be added a reference instead?</report>
+      
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
