@@ -18,7 +18,7 @@
   <ns uri="http://saxon.sf.net/" prefix="saxon" />
   <ns uri="http://purl.org/dc/terms/" prefix="dc"/>
 	<ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
-  <ns uri="https://elifesciences.org/" prefix="e"/>
+  <ns uri="https://elifesciences.org/namespace" prefix="e"/>
 	<!-- Added in case we want to validate the presence of ancillary files -->
     <ns uri="java.io.File" prefix="file"/>
     <ns uri="http://www.java.com/" prefix="java"/>
@@ -26,6 +26,12 @@
 <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence')"/>
   <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
+  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*
+    return 
+    if ($x/ancestor::sec[@sec-type='data-availability']) then ()
+    else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+    else if ($x/local-name() = 'xref') then ()
+    else $x/text(),'')"/>
   
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature article', 'Insight', 'Editorial')"/>
@@ -50,6 +56,9 @@
       <xsl:when test="lower-case($s)=('rna','dna')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
+      <xsl:when test="matches(lower-case($s),'[1-4]d')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="concat(upper-case(substring($s, 1, 1)), lower-case(substring($s, 2)))"/>
       </xsl:otherwise>
@@ -62,16 +71,35 @@
       <xsl:when test="contains($s,' ')">
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
-        <xsl:value-of select="concat(
-          concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),
-          ' ',
-          string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCase($x),' ')
-          )"/>
+        <xsl:choose>
+          <xsl:when test="lower-case($token1)=('rna','dna')">
+            <xsl:value-of select="concat(upper-case($token1),
+              ' ',
+              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              )"/>
+          </xsl:when>
+          <xsl:when test="matches(lower-case($token1),'[1-4]d')">
+            <xsl:value-of select="concat(upper-case($token1),
+              ' ',
+              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              )"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat(
+              concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),
+              ' ',
+              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              )"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:when test="lower-case($s)=('and','or','the','an','of')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
       <xsl:when test="lower-case($s)=('rna','dna')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case($s),'[1-4]d')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -1694,6 +1722,7 @@
                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))
                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))
                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
+                    else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
@@ -2256,7 +2285,7 @@
     <rule context="article//app//fig[@specific-use='child-fig']/label" 
       id="app-fig-sup-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—Figure \d{1,4}—figure Supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure Supplement \d{1,4}\.$')" 
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" 
         role="error"
         id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1—Figure Supplement 1.'.</assert>
       
@@ -4738,7 +4767,7 @@
     id="rrid-org-pattern">
     
     <rule context="p|td|th"
-      id="rrid-org-code">		
+      id="rrid-org-code">
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(e:rrid-text-count(.))"/>
@@ -4895,7 +4924,7 @@
         role="error"
         id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/></report>
       
-      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(matches($post-sentence,'^[\)]'))"
+      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(ancestor::th) and not(matches($post-sentence,'^[\)]'))"
         role="warning"
         id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
       
@@ -4918,18 +4947,12 @@
   <pattern id="unlinked-ref-cite-pattern">
     
     <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
-      <let name="text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
-        return 
-        if ($x/ancestor::sec[@sec-type='data-availability']) then ()
-        else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
-        else if ($x/local-name() = 'xref') then ()
-        else $x/text(),'')"/>
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year)"/>
       <let name="cite2" value="e:citation-format2(year)"/>
       <let name="regex" value="concat($cite1,'|',$cite2)"/>
       
-      <report test="matches($text,$regex)"
+      <report test="matches($article-text,$regex)"
         role="error" 
         id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
       
@@ -5673,19 +5696,19 @@
         role="warning"
         id="figurefigure-presence"><name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(.,'\s?[Ss]upplemental [Ff]igure')"
+      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')"
         role="warning"
         id="supplementalfigure-presence"><name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report test="matches(.,'/s?[Ss]upplemental [Ff]ile')"
+      <report test="not(ancestor::sub-article) and matches(.,'/s?[Ss]upplemental [Ff]ile')"
         role="warning"
         id="supplementalfile-presence"><name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report test="matches(.,' [Rr]ef\. ')"
+      <report test="not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')"
         role="error"
         id="ref-presence"><name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
       
-      <report test="matches(.,' [Rr]efs\. ')"
+      <report test="not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')"
         role="error"
         id="refs-presence"><name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
