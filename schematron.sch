@@ -2328,11 +2328,17 @@
     
     <rule context="body/sec" 
       id="top-level-sec-tests">
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
+      <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions')"/>
       
       <assert test="@id = concat('s', $pos)" 
         role="error"
         id="top-sec-id">top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
+      
+      <report test="not($type = $features-subj) and not(title = $allowed-titles)" 
+        role="error"
+        id="sec-conformity">top level sec with title - <value-of select="title"/> - is not allowed in <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>? Or perhaps there's a typo in the title. Here is an allowed list - 'Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions'.</report>
       
     </rule>
     
