@@ -697,7 +697,7 @@
    
     <assert test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group must be present (as a child of article-meta) for research articles.</assert>
      
-     <assert test="contrib-group[@content-type='section']" role="error" id="test-contrib-group-presence-2">contrib-group must be present (as a child of article-meta) for research articles.</assert>
+     <assert test="contrib-group[@content-type='section']" role="error" id="test-contrib-group-presence-2">contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles.</assert>
    
    </rule>
   </pattern>
