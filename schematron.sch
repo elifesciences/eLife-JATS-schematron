@@ -197,7 +197,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöøřšśşùúûüýÿž','aaaaaacceeeeehiiiilnnoooooorsssuuuuyyz'),'æ','ae')"/>
+    <xsl:value-of select="replace(replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaacceeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1">
@@ -943,82 +943,92 @@
     	<assert test="count(surname) = 1"
       	role="error" 
       	id="surname-test-1">Each name must contain only one surname.</assert>
+	  
+	  <report test="count(given-names) gt 1"
+	    role="error" 
+	    id="given-names-test-1">Each name must contain only one given-names element.</report>
+	  
+	  <assert test="given-names"
+	    role="warning" 
+	    id="given-names-test-2">This name - <value-of select="."/> - does not contain a given-name. Please check with eLife staff that this is correct.</assert>
+	  
+	</rule>
+	  
+	  <rule context="article-meta/contrib-group//name/surname" 
+	    id="surname-tests">
 		
-	  <report test="not(surname/*) and normalize-space(surname)=''"
+	  <report test="not(*) and (normalize-space(.)='')"
       	role="error" 
       	id="surname-test-2">surname must not be empty.</report>
 		
-    	<report test="surname[descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc]"
+    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc"
       	role="error" 
       	id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(surname,'^[\p{L}\p{M}\s-]*$')"
+	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')"
       	role="warning" 
       	id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="surname"/> contains other characters.</assert>
 		
-	  <assert test="matches(surname,'^\p{Lu}')"
+	  <assert test="matches(.,'^\p{Lu}')"
       	role="warning" 
       	id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="surname"/>. Is this correct?</assert>
 	  
-	  <report test="matches(surname,'^\s')"
+	  <report test="matches(.,'^\s')"
 	    role="error" 
 	    id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="surname"/>'.</report>
 	  
-	  <report test="matches(surname,'\s$')"
+	  <report test="matches(.,'\s$')"
 	    role="error" 
 	    id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="surname"/>'.</report>
 		
-    	<report test="count(given-names) gt 1"
-      	role="error" 
-      	id="given-names-test-1">Each name must contain only one given-names element.</report>
+	  </rule>
+    
+    <rule context="article-meta/contrib-group//name/given-names" 
+      id="given-names-tests">
 		
-    	<assert test="given-names"
-      	role="warning" 
-      	id="given-names-test-2">This name does not contain a given-name. Please check with eLife staff that this is correct.</assert>
-		
-	  <report test="not(given-names/*) and normalize-space(given-names)=''"
+	  <report test="not(*) and (normalize-space(.)='')"
       	role="error" 
       	id="given-names-test-3">given-names must not be empty.</report>
 		
-    	<report test="given-names[descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc]"
+    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc"
       	role="error" 
       	id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(given-names,'^[\p{L}\p{M}\s-]*$')"
+	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')"
       	role="warning" 
       	id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="given-names"/> contains other characters.</assert>
 		
-	  <assert test="matches(given-names,'^\p{Lu}')"
+	  <assert test="matches(.,'^\p{Lu}')"
       	role="warning" 
       	id="given-names-test-6">given-names doesn't begin with a capital letter. Is this correct?</assert>
 	  
-	  <report test="matches(given-names,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')"
+	  <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')"
 	    role="error" 
 	    id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="given-names"/></report>
 	  
-	  <report test="matches(given-names,'^\s')"
+	  <report test="matches(.,'^\s')"
 	    role="error" 
 	    id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
 	  
-	  <report test="matches(given-names,'\s$')"
+	  <report test="matches(.,'\s$')"
 	    role="error" 
 	    id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
 	  
-	  <report test="matches(given-names,'[A-Za-z] [Dd]e')"
+	  <report test="matches(.,'[A-Za-z] [Dd]e')"
 	    role="error" 
-	    id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+	    id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
-	  <report test="matches(given-names,'[A-Za-z] [Vv]an')"
+	  <report test="matches(.,'[A-Za-z] [Vv]an')"
 	    role="error" 
-	    id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+	    id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(given-names,'[A-Za-z] [Vv]on')"
+	  <report test="matches(.,'[A-Za-z] [Vv]on')"
 	    role="error" 
-	    id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+	    id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(given-names,'[A-Za-z] [Ee]l')"
+	  <report test="matches(.,'[A-Za-z] [Ee]l')"
 	    role="error" 
-	    id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="given-names"/>'.</report>
+	    id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
 	</rule>
 	
@@ -2169,8 +2179,8 @@
       id="fig-specific-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
-      <let name="count" value="count(ancestor::article//fig[matches(label,'Figure \d{1,4}\.')])"/>
-      <let name="pos" value="$count - count(following::fig[matches(label,'Figure \d{1,4}\.')])"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label,'^Figure \d{1,4}\.$')])"/>
       <let name="no" value="substring-after($id,'fig')"/>
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
@@ -5969,16 +5979,41 @@
       
     </rule>
     
-    <rule context="element-citation[@publication-type='website']" 
+    <rule context="element-citation[@publication-type='web']" 
       id="website-tests">
+      <let name="link" value="lower-case(ext-link)"/>
       
-      <report test="contains(ext-link,'github')"
+      <report test="contains($link,'github')"
         role="error" 
         id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
       
       <report test="matches(.,'�')"
         role="error"
         id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/></report>
+      
+      <report test="matches($link,'psyarxiv.com')"
+        role="error"
+        id="psyarxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PsyArXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/></report>
+      
+      <report test="matches($link,'/arxiv.com')"
+        role="error"
+        id="arxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, arXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/></report>
+      
+      <report test="matches($link,'biorxiv.org')"
+        role="error"
+        id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/></report>
+      
+      <report test="matches($link,'chemrxiv.org')"
+        role="error"
+        id="chemrxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/></report>
+      
+      <report test="matches($link,'peerj.com/preprints/')"
+        role="error"
+        id="peerj-preprints-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PeerJ Preprints, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/></report>
+      
+      <report test="matches($link,'paleorxiv.org')"
+          role="error"
+          id="paleorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/></report>
     </rule>
     
     <rule context="element-citation[@publication-type='software']" 
