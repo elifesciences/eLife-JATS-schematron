@@ -1045,12 +1045,12 @@
       
     </rule>
     
-    <rule context="article-meta/contrib-group//name/*[local-name() != ('surname','given-names','suffix')]" 
+    <rule context="article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]" 
       id="name-child-tests">
       
       <report test="true()"
         role="error" 
-        id="disallowed-child-assert"><value-of select="local-name()"/> is not allowd as a child of name.</report>
+        id="disallowed-child-assert"><value-of select="local-name()"/> is not allowed as a child of name.</report>
       
     </rule>
 	
