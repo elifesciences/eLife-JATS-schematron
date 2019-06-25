@@ -834,15 +834,33 @@
 	  
 	  <report test="matches(.,'\s$')" role="error" id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
 	  
-	  <report test="matches(.,'[A-Za-z] [Dd]e')" role="error" id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'[A-Za-z] [Dd]e$')" role="warning" id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
-	  <report test="matches(.,'[A-Za-z] [Vv]an')" role="error" id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'[A-Za-z] [Vv]an$')" role="warning" id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'[A-Za-z] [Vv]on')" role="error" id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      <report test="matches(.,'[A-Za-z] [Vv]on$')" role="warning" id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'[A-Za-z] [Ee]l')" role="error" id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      <report test="matches(.,'[A-Za-z] [Ee]l$')" role="warning" id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
 	</rule>
+  </pattern>
+  <pattern id="suffix-tests-pattern">
+    <rule context="article-meta/contrib-group//name/suffix" id="suffix-tests">
+      
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
+      
+      <report test="*" role="error" id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/>
+      </report>
+      
+    </rule>
+  </pattern>
+  <pattern id="name-child-tests-pattern">
+    <rule context="article-meta/contrib-group//name/*[local-name() != ('surname','given-names','suffix')]" id="name-child-tests">
+      
+      <report test="true()" role="error" id="disallowed-child-assert">
+        <value-of select="local-name()"/> is not allowd as a child of name.</report>
+      
+    </rule>
   </pattern>
   <pattern id="contrib-tests-pattern">
     <rule context="article-meta//contrib" id="contrib-tests">
@@ -1576,8 +1594,8 @@
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
-      <let name="count" value="count(ancestor::article//fig[matches(label,'Figure \d{1,4}\.')])"/>
-      <let name="pos" value="$count - count(following::fig[matches(label,'Figure \d{1,4}\.')])"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label,'^Figure \d{1,4}\.$')])"/>
       <let name="no" value="substring-after($id,'fig')"/>
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
@@ -1687,7 +1705,7 @@
       
       <assert test="@id = concat('s', $pos)" role="error" id="top-sec-id">top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
       
-      <report test="not($type = $features-subj) and not(title = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
+      <report test="not($type = $features-subj) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
     </rule>
   </pattern>
@@ -3870,6 +3888,7 @@
       <let name="text-count" value="number(e:rrid-text-count(.))"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]{2,}')) then $x else (),'; ')"/>
+      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       
       <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
@@ -3879,9 +3898,15 @@
       <report test="not(descendant::monospace) and ($code-text != '')" role="warning" id="code-test">
         <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
       
-      <report test="matches(.,'\+cell[s]?|±cell[s]?')" role="warning" id="cell-spacing-test">
+      <report test="($unequal-equal-text != '') and not(contains(disp-formula,'='))" role="warning" id="cell-spacing-test">
+        <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
+      </report>
+      
+      <report test="matches(.,'\+cell[s]?|±cell[s]?')" role="warning" id="equal-spacing-test">
         <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
       </report>
+      
+      <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   
@@ -3973,6 +3998,10 @@
       
       <report test="matches($post-text,'^[\)];\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
       
+      <report test="matches($pre-sentence,'[A-Za-z0-9][\(]$')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
+      
+      <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+      
     </rule>
   </pattern>
   
@@ -4009,6 +4038,11 @@
       
       <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+      
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      
     </rule>
   </pattern>
   <pattern id="fig-xref-conformance-pattern">
@@ -4045,6 +4079,11 @@
       
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+      
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      
     </rule>
   </pattern>
   
@@ -4053,12 +4092,13 @@
       <let name="rid" value="@rid"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'Table')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ') and not(contains($rid,'app'))" role="warning" id="table-xref-conformity-1">
+      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app'))" role="warning" id="table-xref-conformity-1">
         <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
       
-      <report test="not(matches(.,'table')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
+      <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
         <value-of select="."/> - citation points to and Appendix table, but does not include the string 'table', which is very unusual.</report>
       
       <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="error" id="table-xref-conformity-3">
@@ -4069,6 +4109,11 @@
       
       <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">
         <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary?</report>
+      
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      
     </rule>
   </pattern>
   
@@ -4079,15 +4124,16 @@
       <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
-      <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ')" role="warning" id="supp-file-xref-conformity-1">
+      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-1">
         <value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
       
-      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ')" role="warning" id="supp-file-xref-conformity-2">
+      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-2">
         <value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
       
-      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($prec-text != ' and ') and ($prec-text != '–') and ($prec-text != ', ')" role="warning" id="supp-file-xref-conformity-3">
+      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-3">
         <value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
       <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">
@@ -4098,6 +4144,11 @@
       
       <report test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">
         <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
+      
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      
     </rule>
   </pattern>
   
@@ -4507,7 +4558,9 @@
       
       <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">'<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'∘')" role="warning" id="Ring-op-symbol-sup">'<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">'<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      
+      <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
