@@ -300,7 +300,7 @@
     </xsl:choose>
   </xsl:function>
   
-  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|xenopus|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|enterococcus\s?faecalis|drosophila'"/>
+  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|xenopus|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|enterococcus\s?faecalis|xenopus\s?laevis|xenopus\s?tropicalis|xus\s?musculus|francisella\s?tularensis|d\.\s?rerio|danio\s?rerio|drosophila'"/>
   
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
@@ -499,6 +499,60 @@
       </xsl:when>
       <xsl:when test="matches($s,'chlamydia\s?trachomatis')">
         <xsl:value-of select="'Chlamydia trachomatis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'x\.\s?laevis')">
+        <xsl:value-of select="'X. laevis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'xenopus\s?laevis')">
+        <xsl:value-of select="'Xenopus laevis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'x\.\s?tropicalis')">
+        <xsl:value-of select="'X. tropicalis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'xenopus\s?tropicalis')">
+        <xsl:value-of select="'Xenopus tropicalis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'m\.\s?musculus')">
+        <xsl:value-of select="'M. musculus'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'mus\s?musculus')">
+        <xsl:value-of select="'Mus musculus'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'d\.\s?immigrans')">
+        <xsl:value-of select="'D. immigrans'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'drosophila\s?immigrans')">
+        <xsl:value-of select="'Drosophila immigrans'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'d\.\s?subobscura')">
+        <xsl:value-of select="'D. subobscura'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'drosophila\s?subobscura')">
+        <xsl:value-of select="'Drosophila subobscura'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'d\.\s?affinis')">
+        <xsl:value-of select="'D. affinis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'drosophila\s?affinis')">
+        <xsl:value-of select="'Drosophila affinis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'d\.\s?obscura')">
+        <xsl:value-of select="'D. obscura'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'drosophila\s?obscura')">
+        <xsl:value-of select="'Drosophila obscura'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'f\.\s?tularensis')">
+        <xsl:value-of select="'F. tularensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'francisella\s?tularensis')">
+        <xsl:value-of select="'Francisella tularensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'d\.\s?rerio')">
+        <xsl:value-of select="'D. rerio'"/>
+      </xsl:when>
+      <xsl:when test="matches($lc,'danio\s?rerio')">
+        <xsl:value-of select="'Danio rerio'"/>
       </xsl:when>
       <xsl:when test="matches($s,'drosophila')">
         <xsl:value-of select="'Drosophila'"/>
@@ -1626,6 +1680,9 @@
     
     <rule context="ext-link[@ext-link-type='uri']" 
       id="ext-link-tests">
+      <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
+      <let name="parent" value="parent::*/local-name()"/>
+      <let name="child" value="child::*/local-name()"/>
       
       <!-- Not entirely sure if this works -->
       <assert test="@xlink:href castable as xs:anyURI" 
@@ -1644,6 +1701,14 @@
       <report test="matches(@xlink:href,'scicrunch\.org.*resolver') and not(matches(@xlink:href,'[0-9]$'))" 
         role="warning"
         id="rrid-number-check">ext-link links to scicrunch but, the link does not end with a number - '<value-of select="@xlink:href"/>' - this is almost certainly incorrect.</report>
+      
+      <report test="$parent = $formatting-elems"
+        role="warning" 
+        id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
+      
+      <report test="$child = $formatting-elems"
+        role="error" 
+        id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
     
     <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" 
@@ -1833,6 +1898,10 @@
       <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" 
         role="error"
         id="supplementary-material-test-7">supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
+      
+      <report test="matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])"
+        role="error"
+        id="supplementary-material-test-8"><value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
     </rule>
     
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" 
@@ -5481,6 +5550,78 @@
         role="warning" 
         id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])"
+        role="warning" 
+        id="xlaevis-ref-article-title-check"><name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])"
+        role="warning" 
+        id="xenopuslaevis-ref-article-title-check"><name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])"
+        role="warning" 
+        id="xtropicalis-ref-article-title-check"><name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])"
+        role="warning" 
+        id="xenopustropicalis-ref-article-title-check"><name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])"
+        role="warning" 
+        id="mmusculus-ref-article-title-check"><name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])"
+        role="warning" 
+        id="musmusculus-ref-article-title-check"><name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])"
+        role="warning" 
+        id="dimmigrans-ref-article-title-check"><name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])"
+        role="warning" 
+        id="drosophilaimmigrans-ref-article-title-check"><name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])"
+        role="warning" 
+        id="dsubobscura-ref-article-title-check"><name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])"
+        role="warning" 
+        id="drosophilasubobscura-ref-article-title-check"><name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])"
+        role="warning" 
+        id="daffinis-ref-article-title-check"><name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])"
+        role="warning" 
+        id="drosophilaaffinis-ref-article-title-check"><name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])"
+        role="warning" 
+        id="dobscura-ref-article-title-check"><name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])"
+        role="warning" 
+        id="drosophilaobscura-ref-article-title-check"><name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])"
+        role="warning" 
+        id="ftularensis-ref-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])"
+        role="warning" 
+        id="francisellatularensis-ref-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
+        role="warning" 
+        id="drerio-ref-article-title-check"><name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])"
+        role="warning" 
+        id="daniorerio-ref-article-title-check"><name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])"
         role="warning" 
         id="drosophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -5746,6 +5887,78 @@
       <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])"
         role="warning" 
         id="enterococcussfaecalis-article-title-check"><name/> contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])"
+        role="warning" 
+        id="xlaevis-article-title-check"><name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])"
+        role="warning" 
+        id="xenopuslaevis-article-title-check"><name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])"
+        role="warning" 
+        id="xtropicalis-article-title-check"><name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])"
+        role="warning" 
+        id="xenopustropicalis-article-title-check"><name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])"
+        role="warning" 
+        id="mmusculus-article-title-check"><name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])"
+        role="warning" 
+        id="musmusculus-article-title-check"><name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])"
+        role="warning" 
+        id="dimmigrans-article-title-check"><name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])"
+        role="warning" 
+        id="drosophilaimmigrans-article-title-check"><name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])"
+      role="warning" 
+      id="dsubobscura-article-title-check"><name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])"
+        role="warning" 
+        id="drosophilasubobscura-article-title-check"><name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])"
+      role="warning" 
+      id="daffinis-article-title-check"><name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])"
+        role="warning" 
+        id="drosophilaaffinis-article-title-check"><name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])"
+      role="warning" 
+      id="dobscura-article-title-check"><name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])"
+        role="warning" 
+        id="drosophilaobscura-article-title-check"><name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])"
+        role="warning" 
+        id="ftularensis-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])"
+        role="warning" 
+        id="francisellatularensis-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
+        role="warning" 
+        id="drerio-article-title-check"><name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])"
+        role="warning" 
+        id="daniorerio-article-title-check"><name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])"
         role="warning" 
@@ -6359,11 +6572,11 @@
       
       <report test="$parent = $formatting-elems"
         role="error" 
-        id="xref-child-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
+        id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
       <report test="$child = $formatting-elems"
         role="error" 
-        id="xref-parent-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+        id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
     
     <rule context="article" 
