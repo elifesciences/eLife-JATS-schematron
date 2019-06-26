@@ -3989,7 +3989,7 @@
       <report test="not(descendant::monospace) and ($code-text != '')" role="warning" id="code-test">
         <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
       
-      <report test="($unequal-equal-text != '') and not(contains(disp-formula,'='))" role="warning" id="cell-spacing-test">
+      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')])" role="warning" id="cell-spacing-test">
         <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
       </report>
       
@@ -3997,7 +3997,7 @@
         <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
       </report>
       
-      <report test="contains(.,'˚') and not(descendant::p[contains(.,'˚')]) and not(descendant::td[contains(.,'˚')]) and not(descendant::th[contains(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   
