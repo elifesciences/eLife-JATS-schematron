@@ -1647,10 +1647,6 @@
         role="error" 
         id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
-      <assert test="count($text-tokens) = 0"
-        role="error" 
-        id="p-test-4">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
-      
       <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}')"
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
@@ -2204,8 +2200,8 @@
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]"
       id="general-video">
       <let name="id" value="@id"/>
-      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::fig)][1]"/>
-      <let name="fig-xref1" value="ancestor::article/descendant::xref[(@rid = $id) and (ancestor::fig)][1]"/>
+      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
+      <let name="cap-xref1" value="ancestor::article/descendant::xref[(@rid = $id) and (ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       
       <assert test="ancestor::article//xref[@rid = $id]" 
@@ -2216,7 +2212,7 @@
         role="error"
         id="final-video-cite">There is no citation to <value-of select="label"/> Ensure this is added.</assert>
       
-      <report test="if ((count($fig-xref1) = 1) and (count($xref1) = 0)) then (ancestor::sec[1]/@id != ($fig-xref1/ancestor::sec[1]/@id))
+      <report test="if ((count($cap-xref1) = 1) and (count($xref1) = 0)) then (ancestor::sec[1]/@id != ($cap-xref1/ancestor::sec[1]/@id))
         else (ancestor::sec[1]/@id != ($xref1/ancestor::sec[1]/@id))" 
         role="error"
         id="video-placement-1"><value-of select="replace(label,'\.$','')"/> does not appear in the same section as where it is first cited, which is incorrect.</report>
@@ -2225,7 +2221,7 @@
         role="warning"
         id="video-placement-2"><value-of select="replace(label,'\.$','')"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
       
-      <report test="if ((count($fig-xref1) = 1) and (count($xref1) = 0)) then ($fig-xref1//preceding::media/@id = $id)
+      <report test="if ((count($cap-xref1) = 1) and (count($xref1) = 0)) then ($cap-xref1//preceding::media/@id = $id)
         else ($xref1//preceding::media/@id = $id)" 
         role="error"
         id="video-placement-3"><value-of select="replace(label,'\.$','')"/> appears before its citation, which must be incorrect.</report>
@@ -2258,6 +2254,45 @@
       <report test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" 
         role="warning"
         id="fig-video-check-1"><value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'&#x2014;video x')"/> instead?</report>
+      
+    </rule>
+    
+  </pattern>
+  
+  <pattern id="table-pos-tests">
+    
+    <rule context="article/body//table-wrap[matches(@id,'^table[\d]+$')]" 
+      id="body-table-pos-conformance">
+      <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
+      <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
+      <let name="no" value="substring-after(@id,'table')"/>
+      
+      <assert test="($no = string($pos))" 
+        role="warning"
+        id="pre-body-table-report"><value-of select="label"/> does not appear in sequence. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="($no = string($pos))" 
+        role="error"
+        id="final-body-table-report"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>.</assert>
+      
+    </rule>
+    
+    <rule context="article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" 
+      id="app-table-pos-conformance">
+      <let name="app-id" value="ancestor::app/@id"/>
+      <let name="app-no" value="substring-after($app-id,'appendix-')"/>
+      <let name="id-regex" value="concat('^app',$app-no,'table[\d]+$')"/>
+      <let name="count" value="count(ancestor::app//table-wrap[matches(@id,$id-regex)])"/>
+      <let name="pos" value="$count - count(following::table-wrap[matches(@id,$id-regex)])"/>
+      <let name="no" value="substring-after(@id,concat($app-no,'table'))"/>
+      
+      <assert test="($no = string($pos))" 
+        role="warning"
+        id="pre-app-table-report"><value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="($no = string($pos))" 
+        role="error"
+        id="final-app-table-report"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
       
     </rule>
     
@@ -4898,11 +4933,11 @@
         role="warning" 
         id="cell-spacing-test"><name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/></report>
       
-      <report test="matches(.,'\+cell[s]?|±cell[s]?')"
+      <report test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])"
         role="warning" 
         id="equal-spacing-test"><name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/></report>
       
-      <report test="contains(.,'˚')"
+      <report test="contains(.,'˚') and not(descendant::p[contains(.,'˚')]) and not(descendant::td[contains(.,'˚')]) and not(descendant::th[contains(.,'˚')])"
         role="warning"
         id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
