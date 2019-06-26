@@ -500,58 +500,58 @@
       <xsl:when test="matches($s,'chlamydia\s?trachomatis')">
         <xsl:value-of select="'Chlamydia trachomatis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'x\.\s?laevis')">
+      <xsl:when test="matches($s,'x\.\s?laevis')">
         <xsl:value-of select="'X. laevis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'xenopus\s?laevis')">
+      <xsl:when test="matches($s,'xenopus\s?laevis')">
         <xsl:value-of select="'Xenopus laevis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'x\.\s?tropicalis')">
+      <xsl:when test="matches($s,'x\.\s?tropicalis')">
         <xsl:value-of select="'X. tropicalis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'xenopus\s?tropicalis')">
+      <xsl:when test="matches($s,'xenopus\s?tropicalis')">
         <xsl:value-of select="'Xenopus tropicalis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'m\.\s?musculus')">
+      <xsl:when test="matches($s,'m\.\s?musculus')">
         <xsl:value-of select="'M. musculus'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'mus\s?musculus')">
+      <xsl:when test="matches($s,'mus\s?musculus')">
         <xsl:value-of select="'Mus musculus'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'d\.\s?immigrans')">
+      <xsl:when test="matches($s,'d\.\s?immigrans')">
         <xsl:value-of select="'D. immigrans'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'drosophila\s?immigrans')">
+      <xsl:when test="matches($s,'drosophila\s?immigrans')">
         <xsl:value-of select="'Drosophila immigrans'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'d\.\s?subobscura')">
+      <xsl:when test="matches($s,'d\.\s?subobscura')">
         <xsl:value-of select="'D. subobscura'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'drosophila\s?subobscura')">
+      <xsl:when test="matches($s,'drosophila\s?subobscura')">
         <xsl:value-of select="'Drosophila subobscura'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'d\.\s?affinis')">
+      <xsl:when test="matches($s,'d\.\s?affinis')">
         <xsl:value-of select="'D. affinis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'drosophila\s?affinis')">
+      <xsl:when test="matches($s,'drosophila\s?affinis')">
         <xsl:value-of select="'Drosophila affinis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'d\.\s?obscura')">
+      <xsl:when test="matches($s,'d\.\s?obscura')">
         <xsl:value-of select="'D. obscura'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'drosophila\s?obscura')">
+      <xsl:when test="matches($s,'drosophila\s?obscura')">
         <xsl:value-of select="'Drosophila obscura'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'f\.\s?tularensis')">
+      <xsl:when test="matches($s,'f\.\s?tularensis')">
         <xsl:value-of select="'F. tularensis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'francisella\s?tularensis')">
+      <xsl:when test="matches($s,'francisella\s?tularensis')">
         <xsl:value-of select="'Francisella tularensis'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'d\.\s?rerio')">
+      <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
-      <xsl:when test="matches($lc,'danio\s?rerio')">
+      <xsl:when test="matches($s,'danio\s?rerio')">
         <xsl:value-of select="'Danio rerio'"/>
       </xsl:when>
       <xsl:when test="matches($s,'drosophila')">
