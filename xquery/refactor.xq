@@ -25,6 +25,7 @@ modify(
 for $x in $copy3//(*:report|*:assert)
 return 
 if (starts-with($x/@id,'final-')) then delete node $x
+else if ($x/@id = 'final-package') then delete node $x/ancestor::*:pattern
 else ()
 )
 return $copy3
@@ -48,11 +49,37 @@ modify(
 for $x in $copy3//(*:report|*:assert)
 return 
 if (starts-with($x/@id,'pre-')) then delete node $x
+else if ($x/@id = 'final-package') then delete node $x/ancestor::*:pattern
 else ()
 )
 return $copy3
 
+let $final-package-sch :=
+copy $copy1 := $sch
+modify(
+for $x in $copy1//*:pattern
+return replace node $x with $x/*
+)
+return
+copy $copy2 := $copy1
+modify(
+for $x in $copy2//*:rule
+let $id := ($x/@id || '-pattern')
+return replace node $x with <pattern id="{$id}">{$x}</pattern>
+)
+return
+copy $copy3 := $copy2
+modify(
+for $x in $copy3//(*:report|*:assert)
+return 
+if (starts-with($x/@id,'pre-')) then delete node $x
+else ()
+)
+return $copy3
+
+
 return (
   file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
-  file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch)
+  file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
+  file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch)
 )

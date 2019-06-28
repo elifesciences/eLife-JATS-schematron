@@ -618,6 +618,15 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
+ 
+  <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
+  <xsl:function name="java:file-exists" as="xs:boolean">
+    <xsl:param name="file" as="xs:string"/>
+    <xsl:param name="base-uri" as="xs:string"/>
+    
+    <xsl:variable name="absolute-uri" select="resolve-uri($file, $base-uri)" as="xs:anyURI"/>
+    <xsl:sequence select="file:exists(file:new($absolute-uri))"/>
+  </xsl:function>
   
  <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
@@ -860,13 +869,13 @@
 		
     	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="surname"/> contains other characters.</assert>
+	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="surname"/>. Is this correct?</assert>
+	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</assert>
 	  
-	  <report test="matches(.,'^\s')" role="error" id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="surname"/>'.</report>
+	  <report test="matches(.,'^\s')" role="error" id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\s$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="surname"/>'.</report>
+	  <report test="matches(.,'\s$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 		
 	  </rule>
   </pattern>
@@ -875,18 +884,18 @@
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">given-names must not be empty.</report>
 		
-    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
+    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="given-names"/> contains other characters.</assert>
+	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter. Is this correct?</assert>
+	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  
-	  <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="given-names"/>
+	  <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="."/>
       </report>
 	  
-	  <report test="matches(.,'^\s')" role="error" id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
+	  <report test="matches(.,'^\s')" role="error" id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\s$')" role="error" id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="given-names"/>'.</report>
+	  <report test="matches(.,'\s$')" role="error" id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
 	  <report test="matches(.,'[A-Za-z] [Dd]e$')" role="warning" id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
@@ -1193,7 +1202,7 @@
       
       
       
-      <report test="matches(.,'[\p{L}]{2,}\. .*$|[\p{L}\p{N}]{2,}\? .*$|[\p{L}\p{N}]{2,}! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      <report test="matches(.,'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
       <report test="matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
@@ -1464,7 +1473,7 @@
       
       <report test="matches($data,'∘')" role="warning" id="math-test-12">mml:math only contains '∘' (the ring operator symbol), which is likely unnecessary. Should this be the degree symbol instead - '°'?</report>
       
-      <report test="matches($data,'^±\d{1,}%$|^+\d{1,}%$|^-\d{1,}%$|^\d{1,}%$|^±\d{1,}$|^+\d{1,}$|^-\d{1,}$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report test="matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -3979,7 +3988,7 @@
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(e:rrid-text-count(.))"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
-      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]{2,}')) then $x else (),'; ')"/>
+      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       
       <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
@@ -3990,7 +3999,7 @@
       <report test="not(descendant::monospace) and ($code-text != '')" role="warning" id="code-test">
         <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
       
-      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')])" role="warning" id="cell-spacing-test">
+      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])" role="warning" id="cell-spacing-test">
         <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
       </report>
       
@@ -4077,7 +4086,7 @@
       <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - <value-of select="concat(.,$post-sentence)"/>
       </report>
       
-      <report test="matches($post-sentence,'^[\)]{2,}')" role="error" id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/>
+      <report test="matches($post-sentence,'^[\)][\)]+')" role="error" id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/>
       </report>
       
       <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(ancestor::th) and not(matches($post-sentence,'^[\)]'))" role="warning" id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
@@ -4869,7 +4878,7 @@
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       
-      <report test="(matches($rep,'[A-Za-z]{2,}\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
       <report test="matches(.,'\.$')" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
       
@@ -5024,6 +5033,8 @@
       
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
+      <report test="matches(.,'^[Aa]ppendix')" role="warning" id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
+      
     </rule>
   </pattern>
   <pattern id="abstract-house-tests-pattern">
@@ -5057,9 +5068,9 @@
       
       <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
-      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?\d{5,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
+      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
       
-      <report test="matches(.,'PMCID[:]?\s?PMC\d{3,}') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
+      <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
     </rule>
   </pattern>
@@ -5144,6 +5155,19 @@
       
       <report test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>
       </report>
+    </rule>
+  </pattern>
+  
+  <pattern id="final-package-pattern">
+    <rule context="graphic[@xlink:href]|media[@xlink:href]" id="final-package">
+      <let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
+      <let name="base" value="base-uri(.)"/>
+      <let name="base-path" value="substring-before(         substring-after($base,'file:'),         concat('elife-',$article-id,'.xml')         )"/>
+      
+      <assert test="java:file-exists(@xlink:href, $base)" role="error" id="graphic-media-presence">
+        <name/> element points to file <value-of select="@xlink:href"/> - but there is no file with that name in the same folder as the XML file. It should be placed here - <value-of select="$base-path"/>
+      </assert>
+      
     </rule>
   </pattern>
   
