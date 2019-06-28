@@ -6640,7 +6640,7 @@
   <pattern
     id="final-package-pattern">
     
-    <rule context="graphic[@xlink:href]|media[@xlink:href]" 
+    <rule context="graphic[@xlink:href]|media[@xlink:href]|self-uri[@xlink:href]" 
       id="final-package">
       <let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
       <let name="base" value="base-uri(.)"/>

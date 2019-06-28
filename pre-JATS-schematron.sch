@@ -5158,17 +5158,6 @@
     </rule>
   </pattern>
   
-  <pattern id="final-package-pattern">
-    <rule context="graphic[@xlink:href]|media[@xlink:href]" id="final-package">
-      <let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
-      <let name="base" value="base-uri(.)"/>
-      <let name="base-path" value="substring-before(         substring-after($base,'file:'),         concat('elife-',$article-id,'.xml')         )"/>
-      
-      <assert test="java:file-exists(@xlink:href, $base)" role="error" id="graphic-media-presence">
-        <name/> element points to file <value-of select="@xlink:href"/> - but there is no file with that name in the same folder as the XML file. It should be placed here - <value-of select="$base-path"/>
-      </assert>
-      
-    </rule>
-  </pattern>
+  
   
 </schema>

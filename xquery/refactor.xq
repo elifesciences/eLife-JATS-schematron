@@ -25,7 +25,7 @@ modify(
 for $x in $copy3//(*:report|*:assert)
 return 
 if (starts-with($x/@id,'final-')) then delete node $x
-else if ($x/@id = 'final-package') then delete node $x/ancestor::*:pattern
+else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
 else ()
 )
 return $copy3
@@ -49,7 +49,7 @@ modify(
 for $x in $copy3//(*:report|*:assert)
 return 
 if (starts-with($x/@id,'pre-')) then delete node $x
-else if ($x/@id = 'final-package') then delete node $x/ancestor::*:pattern
+else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
 else ()
 )
 return $copy3
