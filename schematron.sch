@@ -4745,9 +4745,13 @@
      id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject"/>
      
-     <report test="starts-with(.,$sub-disp-channel)"
+     <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)"
        role="error"
        id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
+     
+     <report test="count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) ge 1"
+       role="error"
+       id="feature-title-test-2">There is more than one sub-display-channel This is certainly incorrect.</report>
      
    </rule>
    
@@ -4949,6 +4953,14 @@
       <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])"
         role="warning"
         id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      
+      <report test="matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes')])"
+        role="error"
+        id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
+      
+      <report test="matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')])"
+        role="error"
+        id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
     </rule>
     
   </pattern>
@@ -6610,6 +6622,10 @@
       <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced [Ww]ith [Pp]ermission')"
         role="warning" 
         id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from')"
+        role="warning" 
+        id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'Adapted from ...', but has no permissions. Is this correct?</report>
     </rule>
     
     <rule context="xref" 
