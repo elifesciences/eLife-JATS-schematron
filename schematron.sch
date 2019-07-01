@@ -26,12 +26,6 @@
 <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence')"/>
   <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*
-    return 
-    if ($x/ancestor::sec[@sec-type='data-availability']) then ()
-    else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
-    else if ($x/local-name() = 'xref') then ()
-    else $x/text(),'')"/>
   
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature article', 'Insight', 'Editorial')"/>
@@ -651,6 +645,17 @@
     <xsl:variable name="absolute-uri" select="resolve-uri($file, $base-uri)" as="xs:anyURI"/>
     <xsl:sequence select="file:exists(file:new($absolute-uri))"/>
   </xsl:function>
+  
+  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*
+    return 
+    if ($x/ancestor::sec[@sec-type='data-availability']) then ()
+    else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+    else if ($x/local-name() = 'xref') then ()
+    else $x/text(),'')"/>
+  
+  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year
+    return concat(e:citation-format1($x),'|',e:citation-format2($x))
+    ,'|')"/>
   
  <pattern
  	id="article">
@@ -2856,7 +2861,7 @@
         id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.</assert>
     </rule>
     
-    <rule context="article//table-wrap[not(ancestor::app)]" 
+    <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" 
       id="table-wrap-ids">
       
       <assert test="if (label = 'Key resources table') then @id='keyresource'
@@ -5138,6 +5143,19 @@
       
     </rule>
     
+    <rule context="article"
+      id="missing-ref-cited">
+      <let name="missing-ref-text" value="replace($article-text,$ref-list-regex,'')"/>
+      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
+      
+      <report test="matches($missing-ref-text,$missing-ref-regex)"
+        role="warning" 
+        id="missing-ref-in-text-test">There may be citations to missing references in the text - search - <value-of select="string-join(for $x in tokenize($missing-ref-text,'\. ')
+          return 
+          if (matches($x,$missing-ref-regex)) then $x else (),' -- -- ')"/></report>
+      
+    </rule>
+    
   </pattern>
   
   <pattern id="video-xref-pattern">
@@ -6454,7 +6472,7 @@
       
       <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])"
         role="error" 
-        id="das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citationin the dataset section with a dryad assigning authority.</report>
+        id="das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority.</report>
       
       <report test="matches(.,'[Ss]upplemental [Ffigure]')"
         role="warning" 
@@ -6463,6 +6481,10 @@
       <report test="matches(.,'[Rr]equest')"
         role="warning" 
         id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
+      
+      <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'https://dx.doi.org/'))"
+        role="error" 
+        id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://dx.doi.org/'. All dois should be updated to include a full 'https://dx.doi.org/...' type link.</report>
       
     </rule>
     
@@ -6625,10 +6647,18 @@
       
       <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from')"
         role="warning" 
-        id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'Adapted from ...', but has no permissions. Is this correct?</report>
+        id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption,'[Rr]eprinted from')"
+        role="warning" 
+        id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption,'[Rr]eprinted [Ww]ith [Pp]ermission')"
+        role="warning" 
+        id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
     </rule>
     
-    <rule context="xref" 
+    <rule context="xref[not(@ref-type='bibr')]" 
       id="xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
@@ -6641,6 +6671,25 @@
       <report test="$child = $formatting-elems"
         role="error" 
         id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+    </rule>
+    
+    <rule context="xref[@ref-type='bibr']" 
+      id="ref-xref-formatting">
+      <let name="parent" value="parent::*/local-name()"/>
+      <let name="child" value="child::*/local-name()"/>
+      <let name="formatting-elems" value="('bold','fixed-case','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
+      
+      <report test="$parent = ($formatting-elems,'italic')"
+        role="error" 
+        id="ref-xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
+      
+      <report test="$child = $formatting-elems"
+        role="error" 
+        id="ref-xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      
+      <report test="italic"
+        role="warning" 
+        id="ref-xref-italic-child-test">xref - <value-of select="."/> - contains italic formatting. Is this correct?</report>
     </rule>
     
     <rule context="article" 
