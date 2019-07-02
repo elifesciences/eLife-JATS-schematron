@@ -1266,6 +1266,7 @@
   
   <pattern id="p-tests-pattern">
     <rule context="p" id="p-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
       
       <!--<report test="not(matches(.,'^[\p{Lu}\p{N}\p{Ps}\p{S}\p{Pi}\p{Z}]')) and not(parent::list-item) and not(parent::td)"
@@ -1277,6 +1278,11 @@
       <assert test="count($text-tokens) = 0" role="error" id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
       <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}')" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
+      
+      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and (($article-type != 'correction') or ($article-type != 'retraction'))" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
+      
+      <report test="matches(.,'^\s?•')" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="p-child-tests-pattern">
@@ -1614,6 +1620,9 @@
       </report>
       
       <report test="($type='simple') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'^\s?\p{Ll}')" role="warning" id="list-item-test-1">list-item begins with lowercase letter, is this correct? - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -4126,7 +4135,7 @@
     </rule>
   </pattern>
   <pattern id="missing-ref-cited-pattern">
-    <rule context="article" id="missing-ref-cited">
+    <rule context="article[back/ref-list]" id="missing-ref-cited">
       <let name="missing-ref-text" value="replace($article-text,$ref-list-regex,'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
       
@@ -5035,7 +5044,7 @@
       
       <report test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
       
-      <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'https://dx.doi.org/'))" role="error" id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://dx.doi.org/'. All dois should be updated to include a full 'https://dx.doi.org/...' type link.</report>
+      <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://dx.doi.org/'))" role="error" id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://dx.doi.org/'. All dois should be updated to include a full 'https://dx.doi.org/...' type link.</report>
       
     </rule>
   </pattern>
@@ -5127,6 +5136,30 @@
       <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
       <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="italic-house-style-pattern">
+    <rule context="italic" id="italic-house-style">
+      
+      <report test="matches(.,'et al[\.]?')" role="warning" id="et-al-italic-test">
+        <name/> element contains 'et al.' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ii]n [Vv]itro')" role="warning" id="in-vitro-italic-test">
+        <name/> element contains 'in vitro' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="in-vivo-italic-test">
+        <name/> element contains 'in vitro' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+    </rule>
+  </pattern>
+  <pattern id="list-house-style-pattern">
+    <rule context="list[@list-type]" id="list-house-style">
+      <let name="usual-types" value="('bullet','simple','order')"/>
+      
+      <assert test="@list-type = $usual-types" role="warning" id="list-type-house-style-test">
+        <name/> element is a list-type='<value-of select="@list-type"/>'. According to house style, bullets, numbers or no indicators should be used. Usual values - ('bullet','simple','order').</assert>
     </rule>
   </pattern>
   <pattern id="pubmed-link-pattern">
