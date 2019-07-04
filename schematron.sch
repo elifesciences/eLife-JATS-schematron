@@ -4756,6 +4756,20 @@
     </rule>
   </pattern>
   
+  <pattern
+    id="pub-id-pattern">
+    
+    <rule context="element-citation/pub-id[@xlink:href]" 
+      id="pub-id-tests">
+      
+      <assert test="matches(@xlink:href,'^http[s]?://|^ftp://')"
+        role="error"
+        id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</assert>
+      
+    </rule>
+    
+  </pattern>
+  
  <pattern
  	id="features">
    

@@ -3876,6 +3876,14 @@
     </rule>
   </pattern>
   
+  <pattern id="pub-id-tests-pattern">
+    <rule context="element-citation/pub-id[@xlink:href]" id="pub-id-tests">
+      
+      <assert test="matches(@xlink:href,'^http[s]?://|^ftp://')" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</assert>
+      
+    </rule>
+  </pattern>
+  
  <pattern id="feature-title-tests-pattern">
     <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject"/>
