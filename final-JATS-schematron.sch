@@ -1273,7 +1273,7 @@
       
       <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}')" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and (($article-type != 'correction') or ($article-type != 'retraction'))" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
+      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and (($article-type != 'correction') or ($article-type != 'retraction')) and not(ancestor::sub-article[@article-type='reply']) and ((count(*) != 1) and child::*/local-name() = 'supplementary-material')" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
       
       <report test="matches(.,'^\s?•')" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
@@ -5149,6 +5149,14 @@
       
       <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="in-vivo-italic-test">
         <name/> element contains 'in vitro' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="a-priori-italic-test">
+        <name/> element contains 'a priori' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="a-posteriori-italic-test">
+        <name/> element contains 'a posteriori' - this should not be in italics (eLife house style). - <value-of select="."/>
       </report>
     </rule>
   </pattern>
