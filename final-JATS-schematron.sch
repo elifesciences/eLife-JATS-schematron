@@ -5156,7 +5156,7 @@
       </report>
       
       <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="in-vivo-italic-test">
-        <name/> element contains 'in vitro' - this should not be in italics (eLife house style). - <value-of select="."/>
+        <name/> element contains 'in vivo' - this should not be in italics (eLife house style). - <value-of select="."/>
       </report>
       
       <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="a-priori-italic-test">
