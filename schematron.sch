@@ -1836,11 +1836,12 @@
                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))
                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))
                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))
-                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))
                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$'))
+                    else if ($file='html') then not(matches(@xlink:href,'\.html$'))
+                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
@@ -1863,6 +1864,10 @@
         else ()"
         role="error"
         id="media-test-8">video does not contain a label, which is incorrect.</report>
+      
+      <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')"
+        role="error"
+        id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
     </rule>
     
     <rule context="media[child::label]" 
@@ -1961,6 +1966,7 @@
     <rule context="mml:math" 
       id="math-tests">
       <let name="data" value="normalize-space(.)"/>
+      <!--<let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name())"/>-->
       
       <report test="$data = ''"
         role="error"
@@ -1969,6 +1975,11 @@
       <report test="descendant::mml:merror"
         role="error"
         id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
+      
+      <!-- Need to think about how to implement this so that the user isn't also bombarded by the other tests in this rule. A '±3' formula would report 1 error, and 2 warnings with this included, which is a bit much.
+        <report test="$children=''"
+        role="warning"
+        id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="."/>'. Is it necessary for this to be set as a formlua, or can it be captured with as normal text instead?</report>-->
       
       <report test="$data = '±'"
         role="error"
@@ -6496,6 +6507,16 @@
       <assert test="number($sum) = 0"
         role="error" 
         id="isbn-conformity-test">pub-id contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
+    </rule>
+    
+    <rule context="isbn" 
+      id="isbn-conformity-2">
+      <let name="t" value="translate(.,'-','')"/>
+      <let name="sum" value="e:isbn-sum($t)"/>
+      
+      <assert test="number($sum) = 0"
+        role="error" 
+        id="isbn-conformity-test-2">isbn contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
     </rule>
     
     <rule context="sec[@sec-type='data-availability']/p[1]" 
