@@ -1103,9 +1103,9 @@
     <rule context="article-meta/contrib-group//name/suffix" 
       id="suffix-tests">
       
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')"
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')"
         role="error" 
-        id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
+        id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
       <report test="*"
         role="error" 
@@ -1662,7 +1662,7 @@
         role="error" 
         id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
-      <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}')"
+      <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')"
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
@@ -1708,8 +1708,8 @@
         role="error"
         id="broken-uri-test">Broken URI in @xlink:href</assert>
       
-      <!-- Needs further testing. Presume that we want to ensure a url follows the HTTP/HTTPs/FTP protocol. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.')" 
+      <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
         role="warning"
         id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
       
@@ -1779,10 +1779,6 @@
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" 
       id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      
-      <assert test="@position" 
-        role="error"
-        id="ar-fig-test-1">Author Response fig must have a @position.</assert>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(label)" 
@@ -1966,7 +1962,7 @@
     <rule context="mml:math" 
       id="math-tests">
       <let name="data" value="normalize-space(.)"/>
-      <!--<let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name())"/>-->
+      <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name())"/>
       
       <report test="$data = ''"
         role="error"
@@ -1976,10 +1972,9 @@
         role="error"
         id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
       
-      <!-- Need to think about how to implement this so that the user isn't also bombarded by the other tests in this rule. A '±3' formula would report 1 error, and 2 warnings with this included, which is a bit much.
-        <report test="$children=''"
+      <report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')"
         role="warning"
-        id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="."/>'. Is it necessary for this to be set as a formlua, or can it be captured with as normal text instead?</report>-->
+        id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formlua, or can it be captured with as normal text instead?</report>
       
       <report test="$data = '±'"
         role="error"
@@ -1999,15 +1994,19 @@
       
       <report test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')"
         role="error"
-        id="math-test-7">mml:math only contains '~', which is unnecessary. Cature this as a normal text '~' instead.</report>
+        id="math-test-7">mml:math only contains '~' and digits, which is unnecessary. Cature this as a normal text instead.</report>
       
       <report test="$data = 'μ'"
         role="warning"
         id="math-test-8">mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
       
-      <report test="matches($data,'^%[\d]+$|^%[\d]+\.[\d]+$')"
+      <report test="matches($data,'^%[\d]+$|^%[\d]+\.[\d]+$|^%$')"
         role="error"
-        id="math-test-9">mml:math only contains '%', which is unnecessary. Cature this as a normal text '%' instead.</report>
+        id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Cature this as a normal text instead.</report>
+      
+      <report test="matches($data,'^%$')"
+        role="error"
+        id="math-test-12">mml:math only contains '%', which is unnecessary. Cature this as a normal text instead.</report>
       
       <report test="$data = '°'"
         role="error"
@@ -2015,11 +2014,7 @@
       
       <report test="matches($data,'○')"
         role="warning"
-        id="math-test-11">mml:math only contains '○' (the white circle symbol), which is likely unnecessary. Should this be the degree symbol instead - '°'?</report>
-      
-      <report test="matches($data,'∘')"
-        role="warning"
-        id="math-test-12">mml:math only contains '∘' (the ring operator symbol), which is likely unnecessary. Should this be the degree symbol instead - '°'?</report>
+        id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
       <report test="matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')"
         role="warning"
@@ -4792,10 +4787,6 @@
        role="error"
        id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
      
-     <report test="count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) ge 1"
-       role="error"
-       id="feature-title-test-2">There is more than one sub-display-channel This is certainly incorrect.</report>
-     
    </rule>
    
    <rule context="front//abstract[@abstract-type='executive-summary']" 
@@ -4832,8 +4823,26 @@
      <report test="ends-with(.,':')"
        role="error"
        id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
+     
+     <report test="preceding-sibling::subject"
+       role="error"
+       id="feature-subj-test-4">There is more than one sub-display-channel subjects. This is incorrect.</report>
 		
 	</rule>
+   
+   <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
+     id="feature-article-category-tests">
+     <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
+     
+     <assert test="($count = 1) or ($count = 0)"
+       role="error"
+       id="feature-article-category-test-1">article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
+     
+     <report test="$count = 0"
+       role="warning"
+       id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is lmost certainly not right.</report>
+     
+   </rule>
    
    <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']"
      id="feature-author-tests">
