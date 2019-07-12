@@ -1451,7 +1451,7 @@
   <pattern id="math-tests-pattern">
     <rule context="mml:math" id="math-tests">
       <let name="data" value="normalize-space(.)"/>
-      <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name())"/>
+      <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
       <report test="$data = ''" role="error" id="math-test-1">mml:math must not be empty.</report>
       
@@ -4796,7 +4796,10 @@
         <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
       <report test="matches(.,'�')" role="error" id="replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed.</report>
+        <name/> element contains the replacement character '�' which is not allowed.</report>
+      
+      <report test="matches(.,'')" role="error" id="junk-character-presence">
+        <name/> element contains a junk character '' which should be replaced.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -5115,8 +5118,9 @@
   <pattern id="KRT-check-pattern">
     <rule context="article" id="KRT-check">
       <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="methods" value="('model', 'methods', 'materials|methods')"/>
       
-      <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource'])" role="warning" id="KRT-presence">'<value-of select="$subj"/>' type articles often have a key resources table, but this does not. Is this correct?</report>
+      <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
       
     </rule>
   </pattern>
@@ -5181,12 +5185,48 @@
         <name/> element contains 'in vivo' - this should not be in italics (eLife house style). - <value-of select="."/>
       </report>
       
+      <report test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="ex-vivo-italic-test">
+        <name/> element contains 'ex vivo' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
       <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="a-priori-italic-test">
         <name/> element contains 'a priori' - this should not be in italics (eLife house style). - <value-of select="."/>
       </report>
       
       <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="a-posteriori-italic-test">
         <name/> element contains 'a posteriori' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Dd]e [Nn]ovo')" role="warning" id="de-novo-italic-test">
+        <name/> element contains 'de novo' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ii]n [Uu]tero')" role="warning" id="in-utero-italic-test">
+        <name/> element contains 'in utero' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ii]n [Nn]atura')" role="warning" id="in-natura-italic-test">
+        <name/> element contains 'in natura' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ii]n [Ss]itu')" role="warning" id="in-situ-italic-test">
+        <name/> element contains 'in situ' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="rete-mirabile-italic-test">
+        <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Nn]omen [Nn]ovum')" role="warning" id="nomen-novum-italic-test">
+        <name/> element contains 'nomen novum' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ss]ativum')" role="warning" id="sativum-italic-test">
+        <name/> element contains 'sativum' - this should not be in italics (eLife house style). - <value-of select="."/>
+      </report>
+      
+      <report test="matches(.,'[Ss]ensu')" role="warning" id="sensu-italic-test">
+        <name/> element contains 'sensu' - this should not be in italics (eLife house style). - <value-of select="."/>
       </report>
     </rule>
   </pattern>
