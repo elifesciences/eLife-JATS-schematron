@@ -15,8 +15,8 @@
     <ns uri="java.io.File" prefix="file"/>
     <ns uri="http://www.java.com/" prefix="java"/>
 
-<let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence')"/>
+<let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
   
   <!-- Features specific values included here for convenience -->
@@ -785,7 +785,7 @@
       
       <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>.</assert>
       
-      <assert test="if ($article-type = 'research-article') then . = $research-disp-channels         else if ($article-type = 'article-commentary') then . = 'Insight'         else if ($article-type = 'editorial') then . = 'Editorial'         else if ($article-type = 'correction') then . = 'Correction'         else if ($article-type = 'discussion') then . = 'Feature article'         else . = 'Retraction'" role="error" id="disp-subj-value-test-2">Content of the display channel must correspond with the correct NLM article type defined in article[@artilce-type].</assert>
+      <assert test="if ($article-type = 'research-article') then . = $research-disp-channels         else if ($article-type = 'article-commentary') then . = 'Insight'         else if ($article-type = 'editorial') then . = 'Editorial'         else if ($article-type = 'correction') then . = 'Correction'         else if ($article-type = 'discussion') then . = 'Feature article'         else if ($article-type = 'review-article') then . = 'Review Article'         else . = 'Retraction'" role="error" id="disp-subj-value-test-2">Content of the display channel must correspond with the correct NLM article type defined in article[@artilce-type].</assert>
   </rule>
   </pattern>
   <pattern id="MSA-checks-pattern">
@@ -1814,7 +1814,7 @@
       
       <assert test="@id = concat('s', $pos)" role="error" id="top-sec-id">top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
       
-      <report test="not($type = $features-subj) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
+      <report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
     </rule>
   </pattern>
