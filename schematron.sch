@@ -4766,12 +4766,20 @@
   <pattern
     id="pub-id-pattern">
     
-    <rule context="element-citation/pub-id[@xlink:href]" 
+    <rule context="element-citation/pub-id" 
       id="pub-id-tests">
       
-      <assert test="matches(@xlink:href,'^http[s]?://|^ftp://')"
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))"
         role="error"
-        id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</assert>
+        id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</report>
+      
+      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;]+$'))"
+        role="error"
+        id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/></report>
+      
+      <report test="(@pub-id-type='pmid') and matches(.,'\D')"
+        role="error"
+        id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/></report>
       
     </rule>
     
@@ -6252,7 +6260,7 @@
       
       <report test="matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')"
         role="error" 
-        id="UC-no-test1"><value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
+        id="UC-no-test1"><value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
       
       <report test="matches(.,'�')"
         role="error"

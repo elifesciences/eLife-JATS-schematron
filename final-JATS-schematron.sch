@@ -3880,9 +3880,15 @@
   </pattern>
   
   <pattern id="pub-id-tests-pattern">
-    <rule context="element-citation/pub-id[@xlink:href]" id="pub-id-tests">
+    <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <assert test="matches(@xlink:href,'^http[s]?://|^ftp://')" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</assert>
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</report>
+      
+      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
+      </report>
+      
+      <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
+      </report>
       
     </rule>
   </pattern>
@@ -3932,7 +3938,7 @@
      
      <assert test="($count = 1) or ($count = 0)" role="error" id="feature-article-category-test-1">article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
      
-     <report test="$count = 0" role="warning" id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is lmost certainly not right.</report>
+     <report test="$count = 0" role="warning" id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
      
    </rule>
   </pattern>
@@ -4865,7 +4871,7 @@
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       
       <report test="matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
-        <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
+        <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
       
       <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
