@@ -2020,6 +2020,14 @@
       <report test="matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')"
         role="warning"
         id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
+      
+      <report test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')"
+        role="warning"
+        id="math-test-15">mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
+      
+      <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')"
+        role="warning"
+        id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
     </rule>
     
     <rule context="table-wrap" 
@@ -6223,10 +6231,10 @@
       <assert test="$text = document($countries)/countries/country" 
         role="error" 
         id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>.</assert>
-      
+      <!-- Commented out until this is implemented
       <report test="($text = document($countries)/countries/country) and not(@country = $valid-country/@country)" 
         role="warning" 
-        id="gen-country-iso-3166-test">country does not have a 2 letter ISO 3166-1 @country value. It should be @country='<value-of select="$valid-country/@country"/>'.</report>
+        id="gen-country-iso-3166-test">country does not have a 2 letter ISO 3166-1 @country value. It should be @country='<value-of select="$valid-country/@country"/>'.</report>-->
       
       <report test="(. = 'Singapore') and ($city != 'Singapore')"
         role="error"
@@ -6589,6 +6597,10 @@
       <report test="matches(.,'^[Aa]ppendix')"
         role="warning" 
         id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
+      
+      <report test="matches(.,'^[Aa]bbreviation[s]?')"
+        role="warning" 
+        id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
     </rule>
     
