@@ -650,6 +650,7 @@
     return 
     if ($x/ancestor::sec[@sec-type='data-availability']) then ()
     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+    else if ($x/ancestor::ref-list) then ()
     else if ($x/local-name() = 'xref') then ()
     else $x/text(),'')"/>
   
@@ -5778,8 +5779,8 @@
       
     </rule>
     
-    <rule context="article//article-meta/title-group/article-title | article/body//sec/title"
-      id="org-title">		
+    <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd"
+      id="org-title-kwd">		
       <let name="lc" value="lower-case(.)"/>
       
       <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])"
@@ -6699,64 +6700,64 @@
     </rule>
     
     <!-- When this can be shared with typesetters add duplicate tests for 'pre' which are errors, and make these 'final' tests -->
-    <rule context="italic" 
+    <rule context="italic[not(ancestor::ref)]" 
       id="italic-house-style">
       
       <report test="matches(.,'et al[\.]?')"
         role="warning" 
-        id="et-al-italic-test"><name/> element contains 'et al.' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="et-al-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Vv]itro')"
         role="warning" 
-        id="in-vitro-italic-test"><name/> element contains 'in vitro' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="in-vitro-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Vv]ivo')"
         role="warning" 
-        id="in-vivo-italic-test"><name/> element contains 'in vivo' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="in-vivo-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ee]x [Vv]ivo')"
         role="warning" 
-        id="ex-vivo-italic-test"><name/> element contains 'ex vivo' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="ex-vivo-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Aa] [Pp]riori')"
         role="warning" 
-        id="a-priori-italic-test"><name/> element contains 'a priori' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="a-priori-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Aa] [Pp]osteriori')"
         role="warning" 
-        id="a-posteriori-italic-test"><name/> element contains 'a posteriori' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="a-posteriori-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Dd]e [Nn]ovo')"
         role="warning" 
-        id="de-novo-italic-test"><name/> element contains 'de novo' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="de-novo-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Uu]tero')"
         role="warning" 
-        id="in-utero-italic-test"><name/> element contains 'in utero' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="in-utero-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Nn]atura')"
         role="warning" 
-        id="in-natura-italic-test"><name/> element contains 'in natura' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="in-natura-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Ss]itu')"
         role="warning" 
-        id="in-situ-italic-test"><name/> element contains 'in situ' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="in-situ-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Rr]ete [Mm]irabile')"
         role="warning" 
-        id="rete-mirabile-italic-test"><name/> element contains 'rete mirabile' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="rete-mirabile-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Nn]omen [Nn]ovum')"
         role="warning" 
-        id="nomen-novum-italic-test"><name/> element contains 'nomen novum' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="nomen-novum-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ss]ativum')"
         role="warning" 
-        id="sativum-italic-test"><name/> element contains 'sativum' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="sativum-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ss]ensu')"
         role="warning" 
-        id="sensu-italic-test"><name/> element contains 'sensu' - this should not be in italics (eLife house style). - <value-of select="."/></report>
+        id="sensu-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
     </rule>
     
     <rule context="list[@list-type]" 
@@ -6860,6 +6861,16 @@
       <report test="$test//*:match"
         role="warning" 
         id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/></report>
+    </rule>
+    
+    <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" 
+      id="auth-kwd-style">
+      <let name="lower" value="lower-case(.)"/>
+      <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
+      
+      <report test="(. != $lower) and not(contains($t,.))"
+        role="warning" 
+        id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
     </rule>
   </pattern>
   
