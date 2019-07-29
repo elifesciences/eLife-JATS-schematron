@@ -1752,7 +1752,7 @@
       
       <assert test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
       
-      <assert test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-sup-test-2">fig which has a @specific-use='child-fig' must have a label which contains 'supplement'.</assert>
+      <assert test="label[matches(.,'^Figure [\d]+—figure supplement [\d]+\.$')]" role="error" id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure X—figure supplement X.' (where X is one or more digits).</assert>
       
       <assert test="starts-with(label,concat('Figure ',$parent-fig-no))" role="error" id="fig-sup-test-3">
         <value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
@@ -4945,6 +4945,8 @@
       <report test="matches(.,'\.$')" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
+      
+      <report test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal title (source) erroneously included in the title? - '<value-of select="."/>'</report>
       
       <report test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
       </report>
