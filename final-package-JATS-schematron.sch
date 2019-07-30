@@ -702,6 +702,7 @@
     <let name="article-type" value="ancestor::article/@article-type"/>
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
     <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+    <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
       </assert> 
@@ -742,6 +743,8 @@
       </assert>
 		  
     <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
+    
+    <report test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
     <report test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then ()                    else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     
@@ -1195,6 +1198,7 @@
   </pattern>
   <pattern id="meta-value-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
       
@@ -1207,7 +1211,7 @@
       
       <report test="matches(.,'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
-      <report test="matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
+      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
       
       
@@ -1218,6 +1222,9 @@
       
       
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="error" id="final-custom-meta-test-12">Impact statement contains 'our'. This is not allowed</report>
+      
+      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="meta-value-child-tests-pattern">
