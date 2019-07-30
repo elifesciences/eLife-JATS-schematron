@@ -1453,7 +1453,7 @@
   </pattern>
   <pattern id="math-tests-pattern">
     <rule context="mml:math" id="math-tests">
-      <let name="data" value="normalize-space(.)"/>
+      <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
       <report test="$data = ''" role="error" id="math-test-1">mml:math must not be empty.</report>
@@ -1474,7 +1474,7 @@
       
       <report test="$data = 'μ'" role="warning" id="math-test-8">mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
       
-      <report test="matches($data,'^%[\d]+$|^%[\d]+\.[\d]+$|^%$')" role="error" id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Cature this as a normal text instead.</report>
+      <report test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')" role="error" id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Cature this as a normal text instead.</report>
       
       <report test="matches($data,'^%$')" role="error" id="math-test-12">mml:math only contains '%', which is unnecessary. Cature this as a normal text instead.</report>
       
@@ -1791,7 +1791,7 @@
   <pattern id="app-fig-sup-tests-pattern">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—Figure 1—Figure Supplement 1.'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
       
       <assert test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
@@ -2121,17 +2121,17 @@
       
       <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
       
-      <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">One and only one sec[@sec-type="supplementary-material"] may be present in back.</report>
+      <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
       
       <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for '<value-of select="$article-type"/>'.</report>
       
       <report test="count(ack) gt 1" role="error" id="back-test-4">One and only one ack may be present in back.</report>
       
-      <report test="if ($article-type != ('research-article','article-commentary')) then ()                     else count(ref-list) != 1" role="error" id="back-test-5">One and only one ref-list must be present in <value-of select="$article-type"/> content.</report>
+      <report test="if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1)                                           else ()" role="error" id="back-test-5">One and only one ref-list must be present in <value-of select="$article-type"/> content.</report>
       
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type != 'article-commentary') then ()               else (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$article-type"/> content.</report>
+      <report test="if ($article-type = 'article-commentary') then ()         else (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$article-type"/> content.</report>
       
       <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
       
