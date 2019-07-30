@@ -605,6 +605,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+      <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
       <assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is<value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
     </rule>

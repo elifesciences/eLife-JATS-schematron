@@ -605,6 +605,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+      <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
       <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
         <value-of select="$subj-type"/>articles must not have any author keywords</report>
     </rule>

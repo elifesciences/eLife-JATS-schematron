@@ -605,6 +605,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+      <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
       <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are<value-of select="count(article-categories)"/>
       </assert>
     </rule>

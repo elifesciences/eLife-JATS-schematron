@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
-      <let name="publisher-locations" value="'publisher-locations.xml'"/>
+      <let name="publisher-locations" value="'../../../publisher-locations.xml'"/>
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-report-2-1">[err-elem-cit-report-2-1]
         One and only one person-group element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has<value-of select="count(person-group)"/>&lt;person-group&gt; elements.</assert>

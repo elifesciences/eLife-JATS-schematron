@@ -602,7 +602,7 @@
   <pattern id="house-style">
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
-      <let name="countries" value="'countries.xml'"/>
+      <let name="countries" value="'../../../countries.xml'"/>
       <let name="city" value="parent::aff//named-content[@content-type='city']"/>
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">

@@ -605,6 +605,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+      <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
       <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
     </rule>
   </pattern>

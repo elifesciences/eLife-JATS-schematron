@@ -1,2 +1,10 @@
 <?oxygen SCHSchema="united-states-test-1.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <aff>
+                <country>United States of America</country>
+            </aff>
+        </article-meta>
+    </front>
+</article>

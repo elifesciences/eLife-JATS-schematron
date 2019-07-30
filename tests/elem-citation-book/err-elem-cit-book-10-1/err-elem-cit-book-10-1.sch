@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'publisher-locations.xml'"/>
+      <let name="publisher-locations" value="'../../../publisher-locations.xml'"/>
       <assert test="count(source)=1" role="error" id="err-elem-cit-book-10-1">[err-elem-book-book-10-1]
         Each  &lt;element-citation&gt; of type 'book' must contain one and
         only one &lt;source&gt; element.

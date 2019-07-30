@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'publisher-locations.xml'"/>
+      <let name="publisher-locations" value="'../../../publisher-locations.xml'"/>
       <assert test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" role="error" id="err-elem-cit-book-2-3">[err-elem-cit-book-2-3]
         In a book reference, there should be a single person-group element (either author or editor) or
         one person-group with @person-group-type="author" and one person-group with @person-group-type=editor.

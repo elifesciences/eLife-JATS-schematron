@@ -605,6 +605,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+      <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
       <assert test="elocation-id" role="error" id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
     </rule>
   </pattern>

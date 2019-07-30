@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'publisher-locations.xml'"/>
+      <let name="publisher-locations" value="'../../../publisher-locations.xml'"/>
       <report test="some $p in document($publisher-locations)/locations/location/text()       satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">[warning-elem-cit-book-13-3]
         The content of &lt;publisher-name&gt; may not end with a publisher location. 
         Reference '<value-of select="ancestor::ref/@id"/>' contains the string<value-of select="publisher-name"/>,

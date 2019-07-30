@@ -1,2 +1,13 @@
 <?oxygen SCHSchema="gen-country-test.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <aff>
+                <country>United Kingdom</country>
+            </aff>
+            <aff>
+                <country>United States</country>
+            </aff>
+        </article-meta>
+    </front>
+</article>

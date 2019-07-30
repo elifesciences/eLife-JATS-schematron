@@ -19,6 +19,11 @@ declare function test:schema-let($assert-or-report){
         for $x in $copy1//xsl:function[@name="java:file-exists"]
 return delete node $x,
 
+        for $x in $copy1//*:let[@name="countries" or @name="publisher-locations"]
+        let $new-v := concat("'../../../",substring-after($x/@value,"'"))
+        return 
+        replace value of node $x/@value with $new-v,
+
 for $x in $copy1//comment()
 return delete node $x
        )

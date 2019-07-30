@@ -602,7 +602,8 @@
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="pre-custom-meta-test-11">Impact statement contains 'our'. This is not allowed</report>
+      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not -<value-of select="."/>
+      </report>
     </rule>
   </pattern>
 </schema>

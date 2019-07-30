@@ -601,6 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="error" id="final-custom-meta-test-12">Impact statement contains 'our'. This is not allowed</report>
     </rule>
   </pattern>

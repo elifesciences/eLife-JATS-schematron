@@ -600,9 +600,13 @@
   <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*     return      if ($x/ancestor::sec[@sec-type='data-availability']) then ()     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()     else if ($x/ancestor::ref-list) then ()     else if ($x/local-name() = 'xref') then ()     else $x/text(),'')"/>
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="article-metadata">
-    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
-      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="pre-custom-meta-test-11">Impact statement contains 'our'. This is not allowed</report>
+    <rule context="article/front/article-meta" id="test-article-metadata">
+      <let name="article-id" value="article-id[@pub-id-type='publisher-id']"/>
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+      <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
+      <report test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
     </rule>
   </pattern>
 </schema>

@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent">
-      <let name="countries" value="'countries.xml'"/>
+      <let name="countries" value="'../../../countries.xml'"/>
       <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
         The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value.
         Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value 

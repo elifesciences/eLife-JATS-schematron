@@ -1,2 +1,10 @@
 <?oxygen SCHSchema="united-kingdom-test-2.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <aff>
+                <country>UK</country>
+            </aff>
+        </article-meta>
+    </front>
+</article>
