@@ -755,7 +755,7 @@
     <let name="article-type" value="ancestor::article/@article-type"/>
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
     <let name="exceptions" value="('Insight','Retraction','Correction')"/>
-    <let name="no-digest" value="('Short Report','Replicaiton Study','Research Advance','Registered Report',$features-subj)"/>
+    <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
     
 	<assert test="matches($article-id,'^\d{5}$')"
       role="error" 
