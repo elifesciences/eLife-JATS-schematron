@@ -1,2 +1,14 @@
 <?oxygen SCHSchema="body-table-label-test-1.sch"?>
-<article/>
+<article>
+    <body>
+        <table-wrap>
+            <label>Tabel 1.</label>
+        </table-wrap>
+        <table-wrap>
+            <label>Table2.</label>
+        </table-wrap>
+        <table-wrap>
+            <label>Resources.</label>
+        </table-wrap>
+    </body>
+</article>

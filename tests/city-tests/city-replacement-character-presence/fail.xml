@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="city-replacement-character-presence.sch"?>
-<article/>
+<article>
+    <front>
+        <aff>
+            <named-content content-type="city">Cambridge �</named-content>
+        </aff>
+    </front>
+</article>

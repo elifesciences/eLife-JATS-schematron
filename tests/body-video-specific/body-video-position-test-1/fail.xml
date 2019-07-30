@@ -1,2 +1,12 @@
 <?oxygen SCHSchema="body-video-position-test-1.sch"?>
-<article/>
+<article>
+    <body>
+        <media mimetype="video" id="video2">
+            <label>Video 2.</label>
+        </media>
+        <p/>
+        <media mimetype="video" id="video1">
+            <label>Video 1.</label>
+        </media>
+    </body>
+</article>

@@ -1,2 +1,10 @@
 <?oxygen SCHSchema="award-group-test-1.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <funding-group>
+                <award-group id="fund1"/>
+            </funding-group>
+        </article-meta>
+    </front>
+</article>

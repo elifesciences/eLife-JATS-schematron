@@ -1,2 +1,10 @@
 <?oxygen SCHSchema="auth-cont-title-test.sch"?>
-<article/>
+<article>
+    <back>
+        <fn-group content-type="author-contribution">
+            <title>Author contributions</title>
+            <fn fn-type="con"/>
+            <fn fn-type="con"/>
+        </fn-group>
+    </back>
+</article>

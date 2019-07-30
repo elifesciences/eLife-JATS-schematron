@@ -603,7 +603,7 @@
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="if ($article-type != 'article-commentary') then ()               else (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in<value-of select="$article-type"/>content.</report>
+      <report test="if ($article-type = 'article-commentary') then ()         else (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in<value-of select="$article-type"/>content.</report>
     </rule>
   </pattern>
 </schema>

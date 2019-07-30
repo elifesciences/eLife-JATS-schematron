@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="content-containers">
     <rule context="mml:math" id="math-tests">
-      <let name="data" value="normalize-space(.)"/>
+      <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
     </rule>

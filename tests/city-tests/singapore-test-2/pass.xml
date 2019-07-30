@@ -1,2 +1,9 @@
 <?oxygen SCHSchema="singapore-test-2.sch"?>
-<article/>
+<article>
+    <front>
+        <aff>
+            <named-content content-type="city">Singapore</named-content>
+            <country>Singapore</country>
+        </aff>
+    </front>
+</article>

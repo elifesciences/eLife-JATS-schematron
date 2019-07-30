@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="content-containers">
     <rule context="mml:math" id="math-tests">
-      <let name="data" value="normalize-space(.)"/>
+      <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       <report test="matches($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
     </rule>

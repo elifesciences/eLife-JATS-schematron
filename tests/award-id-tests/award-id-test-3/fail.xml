@@ -1,2 +1,20 @@
 <?oxygen SCHSchema="award-id-test-3.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <funding-group>
+                <funding-group>
+                    <award-group>
+                        <award-id>None</award-id>
+                    </award-group>
+                    <award-group>
+                        <award-id>none.</award-id>
+                    </award-group>
+                    <award-group>
+                        <award-id>None </award-id>
+                    </award-group>
+                </funding-group>
+            </funding-group>
+        </article-meta>
+    </front>
+</article>

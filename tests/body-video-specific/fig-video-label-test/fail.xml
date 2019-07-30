@@ -1,2 +1,18 @@
 <?oxygen SCHSchema="fig-video-label-test.sch"?>
-<article/>
+<article>
+    <body>
+        <fig-group>
+            <fig id="fig1">
+                <label>Figure 1.</label>
+                <graphic/>
+                <media mimetype="video" id="video2">
+                    <label>Video 2.</label>
+                    <caption>
+                        <title>...</title>
+                        <p>... </p>
+                    </caption>
+                </media>
+            </fig>
+        </fig-group>
+    </body>
+</article>

@@ -1,2 +1,9 @@
 <?oxygen SCHSchema="auth-cont-fn-test-1.sch"?>
-<article/>
+<article>
+    <back>
+        <fn-group content-type="author-contribution">
+            <fn fn-type="con"/>
+            <fn fn-type="con"/>
+        </fn-group>
+    </back>
+</article>

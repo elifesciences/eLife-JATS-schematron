@@ -1,2 +1,11 @@
 <?oxygen SCHSchema="app-fig-sup-test-2.sch"?>
-<article/>
+<article>
+    <back>
+        <app id="app1">
+            <title>Appendix 1</title>
+            <fig id="app1fig1s1" specific-use="child-fig">
+                <label>Appendix 1—figure 1—figure supplement 1.</label>
+            </fig>
+        </app>
+    </back>
+</article>

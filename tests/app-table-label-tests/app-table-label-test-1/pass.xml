@@ -1,2 +1,11 @@
 <?oxygen SCHSchema="app-table-label-test-1.sch"?>
-<article/>
+<article>
+    <back>
+        <app>
+            <title>Appendix 1</title>
+            <table-wrap>
+                <label>Appendix 1—table 1.</label>
+            </table-wrap>
+        </app>
+    </back>
+</article>

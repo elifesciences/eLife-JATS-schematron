@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="pre-US-states-test.sch"?>
-<article/>
+<article>
+    <front>
+        <aff>
+            <named-content content-type="city">New Hampshire</named-content>
+        </aff>
+    </front>
+</article>

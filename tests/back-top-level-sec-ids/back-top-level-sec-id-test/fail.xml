@@ -1,2 +1,11 @@
 <?oxygen SCHSchema="back-top-level-sec-id-test.sch"?>
-<article/>
+<article>
+    <body>
+        <sec id="s2"/>
+        <sec id="s3"/>
+    </body>
+    <back>
+        <sec id="s5"/>
+        <sec id="s1"/>
+    </back>
+</article>

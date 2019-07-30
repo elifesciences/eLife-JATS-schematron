@@ -1,2 +1,13 @@
 <?oxygen SCHSchema="app-title-test.sch"?>
-<article/>
+<article>
+    <back>
+        <app-group>
+            <app id="appendix-1">
+                <title>Extra content 1</title>
+            </app>
+            <app id="appendix-2">
+                <title>Supplementary material</title>
+            </app>
+        </app-group>
+    </back>
+</article>

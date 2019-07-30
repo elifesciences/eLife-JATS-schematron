@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="box-fig-id-1.sch"?>
-<article/>
+<article>
+    <body>
+        <boxed-text id="box1">
+            <fig id="box1fig1"/>
+        </boxed-text>
+    </body>
+</article>

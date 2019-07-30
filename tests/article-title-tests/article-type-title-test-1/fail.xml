@@ -1,2 +1,11 @@
 <?oxygen SCHSchema="article-type-title-test-1.sch"?>
-<article/>
+<article article-type="correction">
+    <article-meta>
+        <subj-group subj-group-type="display-channel">
+            <subject>Correction</subject>
+        </subj-group>
+        <title-group>
+            <article-title>Correction for Article title</article-title>
+        </title-group>
+    </article-meta>
+</article>

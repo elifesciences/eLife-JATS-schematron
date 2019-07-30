@@ -603,7 +603,7 @@
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="if ($article-type != ('research-article','article-commentary')) then ()                     else count(ref-list) != 1" role="error" id="back-test-5">One and only one ref-list must be present in<value-of select="$article-type"/>content.</report>
+      <report test="if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1)                                           else ()" role="error" id="back-test-5">One and only one ref-list must be present in<value-of select="$article-type"/>content.</report>
     </rule>
   </pattern>
 </schema>

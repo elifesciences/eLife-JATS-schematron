@@ -1,2 +1,9 @@
 <?oxygen SCHSchema="body-top-level-sec-id-test.sch"?>
-<article/>
+<article>
+    <body>
+        <sec id="s1"/>
+        <sec id="s2"/>
+        <sec id="s3"/>
+        <sec id="s4"/>
+    </body>
+</article>

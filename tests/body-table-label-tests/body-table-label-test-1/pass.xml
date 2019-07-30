@@ -1,2 +1,11 @@
 <?oxygen SCHSchema="body-table-label-test-1.sch"?>
-<article/>
+<article>
+    <body>
+        <table-wrap>
+            <label>Key resources table</label>
+        </table-wrap>
+        <table-wrap>
+            <label>Table 1.</label>
+        </table-wrap>
+    </body>
+</article>

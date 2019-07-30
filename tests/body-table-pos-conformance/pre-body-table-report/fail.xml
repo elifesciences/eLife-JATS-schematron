@@ -1,2 +1,14 @@
 <?oxygen SCHSchema="pre-body-table-report.sch"?>
-<article/>
+<article>
+    <body>
+        <table-wrap id="table3">
+            <label>Table 3.</label>
+        </table-wrap>
+        <table-wrap id="table1">
+            <label>Table 1.</label>
+        </table-wrap>
+        <table-wrap id="table2">
+            <label>Table 2.</label>
+        </table-wrap>
+    </body>
+</article>

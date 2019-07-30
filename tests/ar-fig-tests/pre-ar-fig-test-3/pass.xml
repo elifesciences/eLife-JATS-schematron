@@ -1,2 +1,9 @@
 <?oxygen SCHSchema="pre-ar-fig-test-3.sch"?>
-<article/>
+<article article-type="research-article">
+    <sub-article article-type="reply">
+        <fig>
+            <label></label>
+            <graphic/>
+        </fig>
+    </sub-article>
+</article>

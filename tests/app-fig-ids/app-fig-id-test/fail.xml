@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="app-fig-id-test.sch"?>
-<article/>
+<article>
+    <back>
+        <app id="app1">
+            <fig id="fig1"/>
+        </app>
+    </back>
+</article>

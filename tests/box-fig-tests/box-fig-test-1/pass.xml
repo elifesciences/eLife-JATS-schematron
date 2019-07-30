@@ -1,2 +1,10 @@
 <?oxygen SCHSchema="box-fig-test-1.sch"?>
-<article/>
+<article>
+    <body>
+        <boxed-text id="box1">
+            <fig id="box1fig1">
+                <label>Box 1—figure 1.</label>
+            </fig>
+        </boxed-text>
+    </body>
+</article>

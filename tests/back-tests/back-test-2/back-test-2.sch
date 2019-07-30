@@ -603,7 +603,7 @@
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">One and only one sec[@sec-type="supplementary-material"] may be present in back.</report>
+      <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
     </rule>
   </pattern>
 </schema>

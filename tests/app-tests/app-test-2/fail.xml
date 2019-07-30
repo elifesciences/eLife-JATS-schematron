@@ -1,2 +1,14 @@
 <?oxygen SCHSchema="app-test-2.sch"?>
-<article/>
+<article>
+    <back>
+        <app-group>
+            <app id="appendix-1">
+                
+            </app>
+            <app id="appendix-2">
+                <title>Appendix 2</title>
+                <title>Superfluous title</title>
+            </app>
+        </app-group>
+    </back>
+</article>

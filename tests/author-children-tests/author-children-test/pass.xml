@@ -1,2 +1,20 @@
 <?oxygen SCHSchema="author-children-test.sch"?>
-<article/>
+<article article-type="article-commentary">
+    <front>
+        <article-meta>
+            <contrib-group>
+                <contrib contrib-type="author">
+                    <name/>
+                    <email/>
+                    <contrib-id/>
+                    <xref/>
+                </contrib>
+                <contrib contrib-type="author">
+                    <collab/>
+                    <email/>
+                    <bio/>
+                </contrib>
+            </contrib-group>
+        </article-meta>
+    </front>
+</article>

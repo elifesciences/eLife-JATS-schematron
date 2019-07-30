@@ -1,2 +1,21 @@
 <?oxygen SCHSchema="math-test-15.sch"?>
-<article/>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <mml:math>
+        <mml:mi>Na</mml:mi>
+        <mml:msup>
+            <mml:mn>2</mml:mn>
+        </mml:msup>
+        <mml:mo>+</mml:mo>
+    </mml:math>
+    <mml:math>
+        <mml:mi>Ca</mml:mi>
+        <mml:msup>
+            <mml:mn>2</mml:mn>
+        </mml:msup>
+        <mml:mo>+</mml:mo>
+    </mml:math>
+    <mml:math>
+        <mml:mi>H</mml:mi>
+        <mml:mo>+</mml:mo>
+    </mml:math>
+</article>

@@ -1,2 +1,16 @@
 <?oxygen SCHSchema="auth-cont-test-1.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <contrib-group>
+                <contrib contrib-type="author"/>
+                <contrib contrib-type="author"/>
+            </contrib-group>
+        </article-meta>
+    </front>
+    <back>
+        <fn-group content-type="author-contribution">
+            <fn fn-type="con"/>
+        </fn-group>
+    </back>
+</article>

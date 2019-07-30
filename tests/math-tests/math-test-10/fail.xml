@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="math-test-10.sch"?>
-<article/>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <mml:math>
+        <mml:mi>°</mml:mi>
+    </mml:math>
+</article>

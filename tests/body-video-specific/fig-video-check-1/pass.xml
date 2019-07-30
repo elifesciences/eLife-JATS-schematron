@@ -1,2 +1,25 @@
 <?oxygen SCHSchema="fig-video-check-1.sch"?>
-<article/>
+<article>
+    <body>
+        <media mimetype="video" id="video1">
+            <label>Video 1.</label>
+            <caption>
+                <title>...</title>
+                <p>... </p>
+            </caption>
+        </media>
+        <p/>
+        <fig-group>
+            <fig id="fig1">
+                <graphic/>
+                <media mimetype="video" id="video2">
+                    <label>Video 2.</label>
+                    <caption>
+                        <title>...</title>
+                        <p>... </p>
+                    </caption>
+                </media>
+            </fig>
+        </fig-group>
+    </body>
+</article>

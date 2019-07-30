@@ -1,2 +1,21 @@
 <?oxygen SCHSchema="auth-kwd-check.sch"?>
-<article/>
+<article>
+    <front>
+        <article-meta>
+            <kwd-group kwd-group-type="author-keywords">
+                <kwd>Inflammation</kwd>
+                <kwd>Macrophage</kwd>
+                <kwd>type I IFN</kwd>
+                <kwd>Negative feedback</kwd>
+                <kwd>Signal integration</kwd>
+            </kwd-group>
+        </article-meta> 
+    </front>
+    <body>
+        <sec>
+            <title>Intro</title>
+            <p>There is infalmmation. Macrophage means macrophage. I will not accept negative feedback without signal integration.</p>
+            <p>type I IFN</p>
+        </sec>
+    </body>    
+</article>

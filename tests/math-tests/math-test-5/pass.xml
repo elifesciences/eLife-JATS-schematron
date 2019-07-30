@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="math-test-5.sch"?>
-<article/>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <mml:math>
+        <mml:mn>2</mml:mn>
+        <mml:mo>×</mml:mo>
+        <mml:mn>2</mml:mn>
+    </mml:math>
+</article>

@@ -1,2 +1,11 @@
 <?oxygen SCHSchema="sc-title-test-1.sch"?>
-<article/>
+<article article-type="research-article">
+    <article-meta>
+        <subj-group subj-group-type="display-channel">
+            <subject>Scientific Correspondence</subject>
+        </subj-group>
+        <title-group>
+            <article-title>Comment on “Article title'</article-title>
+        </title-group>
+    </article-meta>
+</article>

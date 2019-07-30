@@ -1,2 +1,16 @@
 <?oxygen SCHSchema="back-test-4.sch"?>
-<article/>
+<article article-type="research-article">
+    <front>
+        <article-meta>
+            <article-catergories>
+                <subj-group subj-group-type="display-channel">
+                    <subject>Research Communication</subject>
+                </subj-group>
+            </article-catergories>
+        </article-meta>
+    </front>
+    <back>
+        <ack/>
+        <ack/>
+    </back>
+</article>

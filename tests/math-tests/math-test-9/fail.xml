@@ -1,2 +1,16 @@
 <?oxygen SCHSchema="math-test-9.sch"?>
-<article/>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <mml:math>
+        <mml:mn>2</mml:mn>
+        <mml:mi>%</mml:mi>
+    </mml:math>
+    
+    <mml:math>
+        <mml:mn>2.2</mml:mn>
+        <mml:mi>%</mml:mi>
+    </mml:math>
+    
+    <mml:math>
+        <mml:mi>%</mml:mi>
+    </mml:math>
+</article>
