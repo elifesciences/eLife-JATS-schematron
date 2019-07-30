@@ -1,2 +1,28 @@
 <?oxygen SCHSchema="additional-info-test-2.sch"?>
-<article/>
+<article article-type="research-article" dtd-version="1.1">
+    <front>
+        <article-meta>
+            ...
+            <contrib-group>
+                <contrib contrib-type="author" id="author-125026" equal-contrib="yes">
+                    <name>
+                        <surname>Mevers</surname>
+                        <given-names>Emily</given-names>
+                    </name>
+                    <xref ref-type="fn" rid="conf1"/>
+                </contrib>
+            </contrib-group>
+        </article-meta>
+    </front>
+    <back>
+        <sec sec-type="additional-information" id="s4">
+            <title>Additional information</title>
+            <fn-group content-type="competing-interest">
+                <title>Competing interests</title>
+                <fn fn-type="COI-statement" id="conf1">
+                    <p>No competing interests declared</p>
+                </fn>
+            </fn-group>  
+        </sec>
+    </back>
+</article>

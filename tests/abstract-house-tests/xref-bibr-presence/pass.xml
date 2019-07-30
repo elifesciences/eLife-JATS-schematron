@@ -1,2 +1,15 @@
 <?oxygen SCHSchema="xref-bibr-presence.sch"?>
-<article/>
+<article article-type="research-article">
+    <front>
+        <article-meta>
+            <article-categories>
+                <subj-group subj-group-type='display-channel'>
+                    <subject>Research Article</subject>
+                </subj-group>
+            </article-categories>
+            <abstract>
+                <p/>
+            </abstract>
+        </article-meta>
+    </front>    
+</article>

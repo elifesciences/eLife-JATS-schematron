@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="house-style">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
     </rule>
   </pattern>

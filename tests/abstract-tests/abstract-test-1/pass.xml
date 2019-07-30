@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="abstract-test-1.sch"?>
-<article/>
+<article article-type="research-article">
+<front>
+    <abstract>
+        <object-id pub-id-type="doi"/>
+    </abstract>
+</front>    
+</article>

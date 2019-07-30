@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="house-style">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>

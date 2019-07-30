@@ -1,2 +1,29 @@
 <?oxygen SCHSchema="additional-info-test-3.sch"?>
-<article/>
+<article article-type="research-article" dtd-version="1.1">
+    <front>
+        <article-meta>
+            ...
+            <contrib-group>
+                <contrib contrib-type="author" id="author-125026" equal-contrib="yes">
+                    <name>
+                        <surname>Mevers</surname>
+                        <given-names>Emily</given-names>
+                    </name>
+                    <xref ref-type="fn" rid="con1"/>
+                </contrib>
+            </contrib-group>
+        </article-meta>
+    </front>
+    <back>
+        <sec sec-type="additional-information" id="s4">
+            <title>Additional information</title>
+            <fn-group content-type="author-contribution">
+                <title>Author contributions</title>
+                <fn fn-type="con" id="con1">
+                    <p>Conceptualization, Data curation, Formal analysis, Writing&#x2014;original
+                        draft, Writing&#x2014;review and editing</p>
+                </fn>
+            </fn-group>
+        </sec>
+    </back>
+</article>

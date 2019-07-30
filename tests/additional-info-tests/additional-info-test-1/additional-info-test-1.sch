@@ -603,7 +603,7 @@
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <assert test="parent::back" role="error" id="additional-info-test-1">This type of sec must be a child of back.</assert>
+      <assert test="parent::back" role="error" id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
     </rule>
   </pattern>
 </schema>

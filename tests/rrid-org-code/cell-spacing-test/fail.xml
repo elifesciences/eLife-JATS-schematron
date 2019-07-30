@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="cell-spacing-test.sch"?>
-<article/>
+<article>
+    <p>1+1 =2</p>
+    <th>1+1 =2</th>
+    <td>1+1= 2</td>
+</article>

@@ -602,7 +602,7 @@
   <pattern id="article-metadata">
     <rule context="front//abstract" id="abstract-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="count(p) lt 1" role="error" id="abstract-test-2">At least 1 p element must be present in abstract.</report>
+      <report test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
     </rule>
   </pattern>
 </schema>

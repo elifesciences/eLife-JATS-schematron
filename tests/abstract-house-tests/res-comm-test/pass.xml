@@ -1,2 +1,16 @@
 <?oxygen SCHSchema="res-comm-test.sch"?>
-<article/>
+<article article-type="research-communication">
+    <front>
+        <article-meta>
+            <article-categories>
+                <subj-group subj-group-type='display-channel'>
+                    <subject>Research Communication</subject>
+                </subj-group>
+            </article-categories>
+            <abstract>
+                <p/>
+                <p>Editorial note: </p>
+            </abstract>
+        </article-meta>
+    </front>    
+</article>

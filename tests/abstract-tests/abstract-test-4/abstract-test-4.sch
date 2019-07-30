@@ -602,7 +602,7 @@
   <pattern id="article-metadata">
     <rule context="front//abstract" id="abstract-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="p/disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
+      <report test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
     </rule>
   </pattern>
 </schema>

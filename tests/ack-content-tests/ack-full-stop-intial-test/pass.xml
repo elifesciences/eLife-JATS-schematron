@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="ack-full-stop-intial-test.sch"?>
-<article/>
+<article>
+    <back>
+        <ack>
+            <p>... S Zizek ...</p>
+        </ack>
+    </back>
+</article>

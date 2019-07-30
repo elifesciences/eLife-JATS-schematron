@@ -1,4 +1,8 @@
-(: Splits out schematron.xq into schemalets consisting only of one test. This schemalet is then validated against a pass and fail file.   :)
+(: 
+Splits out schematron.xq into schemalets consisting only of one test. This schemalet is then validated against a pass and fail file.
+item/@status in the output report indicates which test cases pass and fail. 
+An output with no item[@status="fail"] would indicate that all tests have passed.  
+:)
 
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace test = 'test' at 'test.xqm';
@@ -23,6 +27,7 @@ if (file:exists($pass) and file:exists($fail)) then
    let $sch := schematron:compile($schema-let)
    let $sch-pass := test:validate($pass,$sch)
    let $sch-fail := test:validate($fail, $sch)
+   order by lower-case($rule-id)
    return
    
   (

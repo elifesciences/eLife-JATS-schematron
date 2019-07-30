@@ -1,2 +1,14 @@
 <?oxygen SCHSchema="aff-id-test.sch"?>
-<article/>
+<article>
+    <aff id="aff3">
+        <label>1</label>
+    </aff>
+    <aff id="aff1">
+        <label>2</label>
+    </aff>
+    <aff id="aff2">
+        <label>3</label>
+    </aff>
+    <aff id="bfehjiwqbvrie">
+    </aff>
+</article>

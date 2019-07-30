@@ -601,7 +601,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="house-style">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="error" id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
     </rule>
   </pattern>

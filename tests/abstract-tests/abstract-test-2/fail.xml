@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="abstract-test-2.sch"?>
-<article/>
+<article article-type="research-article">
+    <front>
+        <abstract>
+            <sec/>
+        </abstract>
+    </front>    
+</article>

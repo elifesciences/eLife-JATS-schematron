@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="additional-info-test-1.sch"?>
-<article/>
+<article>
+    <body>
+    </body>
+    <back>
+        <sec sec-type="additional-information"/>
+    </back>
+</article>
