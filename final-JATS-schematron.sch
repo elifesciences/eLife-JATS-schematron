@@ -1080,9 +1080,9 @@
 	<!-- Exception for Features article-types -->	
 	<report test="if ($article-type = $features-article-types) then () else count(object-id[@pub-id-type='doi']) != 1" role="error" id="abstract-test-1">object-id[@pub-id-type='doi'] must be present in abstract in <value-of select="$article-type"/> content.</report>
 	
-	<report test="count(p) lt 1" role="error" id="abstract-test-2">At least 1 p element must be present in abstract.</report>
+	<report test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
 	
-	<report test="p/disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
+	<report test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
 		
     </rule>
   </pattern>
@@ -1913,7 +1913,7 @@
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       
-      <report test="matches(.,' [A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
+      <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
       </report>
       
     </rule>
@@ -2168,7 +2168,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
       
-      <assert test="parent::back" role="error" id="additional-info-test-1">This type of sec must be a child of back.</assert>
+      <assert test="parent::back" role="error" id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
       
       <!-- Exception for article with no authors -->
       <report test="if ($author-count = 0) then ()                     else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
@@ -5118,7 +5118,7 @@
   </pattern>
   <pattern id="abstract-house-tests-pattern">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       
       <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       

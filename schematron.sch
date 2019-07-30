@@ -1366,11 +1366,11 @@
   	role="error" 
   	id="abstract-test-1">object-id[@pub-id-type='doi'] must be present in abstract in <value-of select="$article-type"/> content.</report>
 	
-	<report test="count(p) lt 1"
+	<report test="(count(p) + count(sec[descendant::p])) lt 1"
   	role="error" 
-  	id="abstract-test-2">At least 1 p element must be present in abstract.</report>
+  	id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
 	
-	<report test="p/disp-formula"
+	<report test="descendant::disp-formula"
   	role="error" 
   	id="abstract-test-4">abstracts cannot contain display formulas.</report>
 		
@@ -2664,7 +2664,7 @@
         if (matches($x,'^[A-Z]{1}\.$')) then $x
         else ())"/>
       
-      <report test="matches(.,' [A-Z]\. ')"
+      <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')"
         role="warning"
         id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
       
@@ -3047,7 +3047,7 @@
       
       <assert test="parent::back"
         role="error"
-        id="additional-info-test-1">This type of sec must be a child of back.</assert>
+        id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
       
       <!-- Exception for article with no authors -->
       <report test="if ($author-count = 0) then ()
@@ -6619,7 +6619,7 @@
     
     <rule context="abstract[not(@*)]" 
       id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       
       <report test="descendant::xref[@ref-type='bibr']"
         role="warning" 
