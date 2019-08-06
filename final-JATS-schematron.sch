@@ -22,6 +22,8 @@
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
+  <let name="not-features-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+	 
 	 
 <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
@@ -275,7 +277,7 @@
     </xsl:choose>
   </xsl:function>
   
-  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
+  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
@@ -522,6 +524,18 @@
       </xsl:when>
       <xsl:when test="matches($s,'francisella\s?tularensis')">
         <xsl:value-of select="'Francisella tularensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?plantaginis')">
+        <xsl:value-of select="'P. plantaginis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'podosphaera\s?plantaginis')">
+        <xsl:value-of select="'Podosphaera plantaginis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?plantaginis')">
+        <xsl:value-of select="'P. lanceolata'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plantago\s?lanceolata')">
+        <xsl:value-of select="'Plantago lanceolata'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
@@ -1193,11 +1207,14 @@
   <pattern id="meta-value-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
       
       
-      <report test="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x) gt 30" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
+      <report test="($count gt 30) and ($subj = $features-subj)" role="warning" id="final-feature-custom-meta-test-5">Impact statement contains more than 30 words. Is this OK?</report>
+      
+      <report test="($count gt 30) and ($subj = $not-features-subj)" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       
       
       
@@ -4512,6 +4529,18 @@
       <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="warning" id="francisellatularensis-ref-article-title-check">
         <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-ref-article-title-check">
+        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-ref-article-title-check">
+        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-ref-article-title-check">
+        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-ref-article-title-check">
+        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-ref-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -4763,6 +4792,18 @@
         <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="warning" id="francisellatularensis-article-title-check">
+        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-article-title-check">
+        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-article-title-check">
+        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">
+        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">
         <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">
