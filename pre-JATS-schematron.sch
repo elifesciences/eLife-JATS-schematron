@@ -12,15 +12,15 @@
 	<ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
   <ns uri="https://elifesciences.org/namespace" prefix="e"/>
 	<!-- Added in case we want to validate the presence of ancillary files -->
-    <ns uri="java.io.File" prefix="file"/>
-    <ns uri="http://www.java.com/" prefix="java"/>
+  <ns uri="java.io.File" prefix="file"/>
+  <ns uri="http://www.java.com/" prefix="java"/>
 
 <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
   
   <!-- Features specific values included here for convenience -->
-  <let name="features-subj" value="('Feature article', 'Insight', 'Editorial')"/>
+  <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="not-features-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
 	 
