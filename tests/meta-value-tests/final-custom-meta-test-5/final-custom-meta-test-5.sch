@@ -16,7 +16,7 @@
   <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
-  <let name="not-features-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   <xsl:function name="e:titleCaseToken" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
@@ -616,7 +616,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="($count gt 30) and ($subj = $not-features-subj)" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
+      <report test="($count gt 30) and ($subj = $research-subj)" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
     </rule>
   </pattern>
 </schema>

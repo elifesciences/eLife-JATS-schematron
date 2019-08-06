@@ -22,7 +22,7 @@
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
-  <let name="not-features-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
 	 
 	 
 <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
@@ -1220,7 +1220,7 @@
       
       <report test="($count gt 30) and ($subj = $features-subj)" role="warning" id="final-feature-custom-meta-test-5">Impact statement contains more than 30 words. Is this OK?</report>
       
-      <report test="($count gt 30) and ($subj = $not-features-subj)" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
+      <report test="($count gt 30) and ($subj = $research-subj)" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       
       
       
@@ -2161,9 +2161,11 @@
       
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type = 'article-commentary') then ()         else (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$article-type"/> content.</report>
-      
       <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
+      
+      <report test="($subj-type = $features-subj) and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) + count(fn-group[@content-type='competing-interest']) != 1) " role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$subj-type"/> content.</report>
+      
+      <report test="($subj-type = $research-subj) and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$subj-type"/> content.</report>
       
     </rule>
   </pattern>
