@@ -616,7 +616,7 @@
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="($subj-type = $features-subj) and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) + count(fn-group[@content-type='competing-interest']) != 1) " role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present in back in<value-of select="$subj-type"/>content.</report>
+      <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present as a child of back<value-of select="$subj-type"/>content.</report>
     </rule>
   </pattern>
 </schema>

@@ -2163,9 +2163,9 @@
       
       <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
       
-      <report test="($subj-type = $features-subj) and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) + count(fn-group[@content-type='competing-interest']) != 1) " role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$subj-type"/> content.</report>
+      <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present as a child of back <value-of select="$subj-type"/> content.</report>
       
-      <report test="($subj-type = $research-subj) and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back in <value-of select="$subj-type"/> content.</report>
+      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
       
     </rule>
   </pattern>
