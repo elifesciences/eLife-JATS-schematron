@@ -1303,7 +1303,7 @@
       
       <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and (($article-type != 'correction') or ($article-type != 'retraction')) and not(ancestor::sub-article[@article-type='reply']) and ((count(*) != 1) and child::*/local-name() = 'supplementary-material')" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
       
-      <report test="matches(.,'^\s?•')" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
+      <report test="matches(.,'^\s?•') and not(ancestor::disp-quote[@content-type='editor-comment'])" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -1379,13 +1379,13 @@
   </pattern>
   <pattern id="graphic-tests-pattern">
     <rule context="graphic" id="graphic-tests">
-      <let name="file" value="@xlink:href"/>
+      <let name="file" value="lower-case(@xlink:href)"/>
       
-      <report test="contains(@mime-subtype,'tiff') and not(ends-with($file,'.tif'))" role="error" id="graphic-test-1">graphic has tif mime-subtype but filename does not end with '.tif'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">graphic has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
       <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">graphic has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'jpeg') and not(ends-with($file,'.jpg'))" role="error" id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="media-tests-pattern">
@@ -1484,7 +1484,7 @@
       
       <report test="descendant::mml:merror" role="error" id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
       
-      <report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" role="warning" id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formlua, or can it be captured with as normal text instead?</report>
+      <report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" role="warning" id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</report>
       
       <report test="$data = '±'" role="error" id="math-test-3">mml:math only contains '±', which is unnecessary. Cature this as a normal text '±' instead.</report>
       

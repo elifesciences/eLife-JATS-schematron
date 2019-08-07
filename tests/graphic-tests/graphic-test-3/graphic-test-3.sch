@@ -614,8 +614,8 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="content-containers">
     <rule context="graphic" id="graphic-tests">
-      <let name="file" value="@xlink:href"/>
-      <report test="contains(@mime-subtype,'jpeg') and not(ends-with($file,'.jpg'))" role="error" id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg'. This cannot be correct.</report>
+      <let name="file" value="lower-case(@xlink:href)"/>
+      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
     </rule>
   </pattern>
 </schema>

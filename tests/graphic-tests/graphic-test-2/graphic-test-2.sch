@@ -614,7 +614,7 @@
   <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="content-containers">
     <rule context="graphic" id="graphic-tests">
-      <let name="file" value="@xlink:href"/>
+      <let name="file" value="lower-case(@xlink:href)"/>
       <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">graphic has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
     </rule>
   </pattern>
