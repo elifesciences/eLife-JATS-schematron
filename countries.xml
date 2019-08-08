@@ -36,14 +36,14 @@
     <country country="BQ">Bonaire Sint Eustatius Saba</country>
     <country country="BA">Bosnia and Herzegovina</country>
     <country country="BW">Botswana</country>
-    <country country="BV">Bouvert Island</country>
+    <country country="BV">Bouvet Island</country>
     <country country="BR">Brazil</country>
-    <country country="IO">The British Indian Ocean Territory</country>
+    <country country="IO">British Indian Ocean Territory</country>
     <country country="BN">Brunei Darussalam</country>
     <country country="BG">Bulgaria</country>
     <country country="BF">Burkina Faso</country>
     <country country="BI">Burundi</country>
-    <country country="CV">Cape Verde</country>
+    <country country="CV">Cabo Verde</country>
     <country country="KH">Cambodia</country>
     <country country="CM">Cameroon</country>
     <country country="CA">Canada</country>
@@ -55,7 +55,7 @@
     <country country="CCK">The Territory of Cocos (Keeling) Islands</country>
     <country country="CO">Colombia</country>
     <country country="KM">Comoros</country>
-    <country country="CD">Congo (the Democratic Republic of the)</country>
+    <country country="CD">Democratic Republic of the Congo</country>
     <country country="CG">The Congo</country>
     <country country="CK">Cook Islands</country>
     <country country="CR">Costa Rica</country>
@@ -83,10 +83,10 @@
     <country country="FI">Finland</country>
     <country country="GF">French Guiana</country>
     <country country="PF">French Polynesia</country>
-    <country country="TF">The French Southern Territories</country>
+    <country country="TF">French Southern Territories</country>
     <country country="GA">Gabon</country>
     <country country="GM">Gambia</country>
-    <country country="GE">Georgia, Republic of</country>
+    <country country="GE">Georgia</country>
     <country country="GH">Ghana</country>
     <country country="GI">Gibraltar</country>
     <country country="GR">Greece</country>
@@ -108,7 +108,7 @@
     <country country="IS">Iceland</country>
     <country country="IN">India</country>
     <country country="ID">Indonesia</country>
-    <country country="IR">Iran (Islamic Republic of)</country>
+    <country country="IR">Islamic Republic of Iran</country>
     <country country="IQ">Iraq</country>
     <country country="IE">Ireland</country>
     <country country="IM">Isle of Man</country>
@@ -120,8 +120,8 @@
     <country country="KZ">Kazakhstan</country>
     <country country="KE">Kenya</country>
     <country country="KI">Kiribati</country>
-    <country country="KP">Korea (the Democratic People's Republic of)</country>
-    <country country="KR">Korea (the Republic of)</country>
+    <country country="KP">Democratic People's Republic of Korea</country>
+    <country country="KR">Republic of Korea</country>
     <country country="KW">Kuwait</country>
     <country country="KG">Kyrgyzstan</country>
     <country country="LA">Lao People's Democratic Republic</country>
@@ -147,7 +147,7 @@
     <country country="MU">Mauritius</country>
     <country country="YT">Mayotte</country>
     <country country="MX">Mexico</country>
-    <country country="FM">Micronesia, Federated States of</country>
+    <country country="FM">Federated States of Micronesia</country>
     <country country="MD">Moldova</country>
     <country country="MC">Monaco</country>
     <country country="MN">Mongolia</country>
@@ -209,7 +209,6 @@
     <country country="SB">Solomon Islands</country>
     <country country="SO">Somalia</country>
     <country country="ZA">South Africa</country>
-    <country country="GS">South Georgia and the South Sandwich Islands</country>
     <country country="SS">South Sudan</country>
     <country country="ES">Spain</country>
     <country country="LK">Sri Lanka</country>
@@ -221,7 +220,7 @@
     <country country="SY">Syrian Arab Republic</country>
     <country country="TW">Taiwan, Republic of China</country>
     <country country="TJ">Tajikistan</country>
-    <country country="TZ">Tanzania, United Republic of</country>
+    <country country="TZ">United Republic of Tanzania</country>
     <country country="TH">Thailand</country>
     <country country="TL">Timor-Leste</country>
     <country country="TG">Togo</country>
