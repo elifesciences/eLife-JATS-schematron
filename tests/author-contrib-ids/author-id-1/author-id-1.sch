@@ -610,8 +610,6 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*     return      if ($x/ancestor::sec[@sec-type='data-availability']) then ()     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()     else if ($x/ancestor::ref-list) then ()     else if ($x/local-name() = 'xref') then ()     else $x/text(),'')"/>
-  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="id-conformance">
     <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
       <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string.</report>

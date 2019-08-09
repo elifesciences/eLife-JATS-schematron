@@ -610,8 +610,6 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*     return      if ($x/ancestor::sec[@sec-type='data-availability']) then ()     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()     else if ($x/ancestor::ref-list) then ()     else if ($x/local-name() = 'xref') then ()     else $x/text(),'')"/>
-  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="article-metadata">
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
       <assert test="matches(.,'http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>

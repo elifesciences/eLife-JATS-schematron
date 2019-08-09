@@ -610,8 +610,6 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*     return      if ($x/ancestor::sec[@sec-type='data-availability']) then ()     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()     else if ($x/ancestor::ref-list) then ()     else if ($x/local-name() = 'xref') then ()     else $x/text(),'')"/>
-  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="id-conformance">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       <report test="matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^C[0-9]{1,3}$'))" role="error" id="fig-id-test-3">Chemical structures must have an @id in the format C0.</report>

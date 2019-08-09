@@ -610,8 +610,6 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*     return      if ($x/ancestor::sec[@sec-type='data-availability']) then ()     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()     else if ($x/ancestor::ref-list) then ()     else if ($x/local-name() = 'xref') then ()     else $x/text(),'')"/>
-  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title">
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-8-2-2">[err-elem-cit-web-8-2-2]

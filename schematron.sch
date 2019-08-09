@@ -660,18 +660,6 @@
     <xsl:sequence select="file:exists(file:new($absolute-uri))"/>
   </xsl:function>
   
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*
-    return 
-    if ($x/ancestor::sec[@sec-type='data-availability']) then ()
-    else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
-    else if ($x/ancestor::ref-list) then ()
-    else if ($x/local-name() = 'xref') then ()
-    else $x/text(),'')"/>
-  
-  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year
-    return concat(e:citation-format1($x),'|',e:citation-format2($x))
-    ,'|')"/>
-  
  <pattern
  	id="article">
  
@@ -922,13 +910,13 @@
       
       <assert test=". = $allowed-disp-subj"
         role="error" 
-        id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>.</assert>
+        id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>.</assert>
       
       <assert test="if ($article-type = 'research-article') then . = $research-disp-channels
         else if ($article-type = 'article-commentary') then . = 'Insight'
         else if ($article-type = 'editorial') then . = 'Editorial'
         else if ($article-type = 'correction') then . = 'Correction'
-        else if ($article-type = 'discussion') then . = 'Feature article'
+        else if ($article-type = 'discussion') then . = 'Feature Article'
         else if ($article-type = 'review-article') then . = 'Review Article'
         else . = 'Retraction'"
         role="error" 
@@ -5240,6 +5228,13 @@
       <let name="cite1" value="e:citation-format1(year)"/>
       <let name="cite2" value="e:citation-format2(year)"/>
       <let name="regex" value="concat($cite1,'|',$cite2)"/>
+      <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
+        return 
+        if ($x/ancestor::sec[@sec-type='data-availability']) then ()
+        else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+        else if ($x/ancestor::ref-list) then ()
+        else if ($x/local-name() = 'xref') then ()
+        else $x/text(),'')"/>
       
       <report test="matches($article-text,$regex)"
         role="error" 
@@ -5249,10 +5244,20 @@
     
     <rule context="article[back/ref-list]"
       id="missing-ref-cited">
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*
+        return 
+        if ($x/ancestor::sec[@sec-type='data-availability']) then ()
+        else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+        else if ($x/ancestor::ref-list) then ()
+        else if ($x/local-name() = 'xref') then ()
+        else $x/text(),'')"/>
+      <let name="ref-list-regex" value="string-join(for $x in self::*//ref-list/ref/element-citation/year
+        return concat(e:citation-format1($x),'|',e:citation-format2($x))
+        ,'|')"/>
       <let name="missing-ref-text" value="replace($article-text,$ref-list-regex,'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
       
-      <report test="matches($missing-ref-text,$missing-ref-regex)"
+      <report test="($ref-list-regex !='') and matches($missing-ref-text,$missing-ref-regex)"
         role="warning" 
         id="missing-ref-in-text-test">There may be citations to missing references in the text - search - <value-of select="string-join(for $x in tokenize($missing-ref-text,'\. ')
           return 
@@ -6427,9 +6432,13 @@
         role="warning" 
         id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
-      <report test="matches(.,'\.$')"
+      <report test="matches(.,'\.$') and not(matches(.,'\.\.$'))"
         role="error" 
-        id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct.</report>
+        id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct - <value-of select="."/></report>
+      
+      <report test="matches(.,'\.$') and matches(.,'\.\.$')"
+        role="warning" 
+        id="article-title-fullstop-check-3">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/></report>
       
       <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')"
         role="warning" 
@@ -6940,6 +6949,13 @@
     
     <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" 
       id="auth-kwd-style">
+      <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
+        return 
+        if ($x/ancestor::sec[@sec-type='data-availability']) then ()
+        else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+        else if ($x/ancestor::ref-list) then ()
+        else if ($x/local-name() = 'xref') then ()
+        else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
       <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
       

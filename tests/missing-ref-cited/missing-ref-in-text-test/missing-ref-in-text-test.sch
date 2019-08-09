@@ -610,13 +610,13 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <let name="article-text" value="string-join(for $x in //article/*[local-name() = 'body' or local-name() = 'back']//*     return      if ($x/ancestor::sec[@sec-type='data-availability']) then ()     else if ($x/ancestor::sec[@sec-type='additional-information']) then ()     else if ($x/ancestor::ref-list) then ()     else if ($x/local-name() = 'xref') then ()     else $x/text(),'')"/>
-  <let name="ref-list-regex" value="string-join(for $x in //ref-list/ref/element-citation/year     return concat(e:citation-format1($x),'|',e:citation-format2($x))     ,'|')"/>
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="article[back/ref-list]" id="missing-ref-cited">
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
+      <let name="ref-list-regex" value="string-join(for $x in self::*//ref-list/ref/element-citation/year         return concat(e:citation-format1($x),'|',e:citation-format2($x))         ,'|')"/>
       <let name="missing-ref-text" value="replace($article-text,$ref-list-regex,'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
-      <report test="matches($missing-ref-text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">There may be citations to missing references in the text - search -<value-of select="string-join(for $x in tokenize($missing-ref-text,'\. ')           return            if (matches($x,$missing-ref-regex)) then $x else (),' -- -- ')"/>
+      <report test="($ref-list-regex !='') and matches($missing-ref-text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">There may be citations to missing references in the text - search -<value-of select="string-join(for $x in tokenize($missing-ref-text,'\. ')           return            if (matches($x,$missing-ref-regex)) then $x else (),' -- -- ')"/>
       </report>
     </rule>
   </pattern>
