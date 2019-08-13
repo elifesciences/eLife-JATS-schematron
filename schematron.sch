@@ -24,8 +24,7 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
 <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
   
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
@@ -3226,7 +3225,7 @@
   <pattern
     id="related-articles">
     
-    <rule context="article[$disp-channel = 'Research Advance']//article-meta" 
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" 
       id="research-advance-test">
       
       <assert test="count(related-article[@related-article-type='article-reference']) gt 0"
@@ -3235,7 +3234,7 @@
       
     </rule>
     
-    <rule context="article[$disp-channel = 'Insight']//article-meta" 
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" 
       id="insight-test">
       
       <assert test="count(related-article) gt 0"
@@ -5157,13 +5156,13 @@
         id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
       <report test="(
-        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and (($open - $close) = 1))
+        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$') and (($open - $close) = 1))
           or
-        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))
+        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))
           or 
-        (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))
+        (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))
           or
-        (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $') and (($open - $close) lt 0))
+        (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $') and (($open - $close) lt 0))
          )
         and (. = $cite1)"
         role="warning"
