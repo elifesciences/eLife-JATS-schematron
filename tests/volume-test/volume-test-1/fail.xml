@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="volume-test-1.sch"?>
-<article/>
+<!--Context: article-meta/volume
+Test: . = number($pub-date) - 2011-->
+<root>
+  <article/>
+</root>

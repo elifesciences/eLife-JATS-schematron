@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="orcid-test-2.sch"?>
-<article/>
+<!--Context: contrib-id[@contrib-id-type='orcid']
+Test: matches(.,'http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]')-->
+<root>
+  <article/>
+</root>

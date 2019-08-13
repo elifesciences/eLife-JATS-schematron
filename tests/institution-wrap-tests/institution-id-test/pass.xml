@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="institution-id-test.sch"?>
-<article/>
+<!--Context: article-meta//award-group//institution-wrap
+Test: institution-id[@institution-id-type='FundRef']-->
+<root>
+  <article/>
+</root>

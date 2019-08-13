@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="funding-group-test-3.sch"?>
-<article/>
+<!--Context: article-meta/funding-group
+Test: if (count(award-group) = 0) then if ($author-count = 1) then funding-statement != 'The author declares that there was no funding for this work.' else if ($author-count gt 1) then funding-statement != 'The authors declare that there was no funding for this work.' else () else ()-->
+<root>
+  <article/>
+</root>

@@ -1,7 +1,11 @@
 <?oxygen SCHSchema="code-fork-info.sch"?>
-<article>
+<!--Context: article
+Test: $test//*:match-->
+<root>
+  <article>
     <p>Github</p>
     <p>Sourceforge</p>
     <p>BitBucket</p>
     <p>GitLab</p>
-</article>
+  </article>
+</root>

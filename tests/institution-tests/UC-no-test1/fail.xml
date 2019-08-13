@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="UC-no-test1.sch"?>
-<article/>
+<!--Context: aff/institution[not(@*)]
+Test: matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')-->
+<root>
+  <article/>
+</root>

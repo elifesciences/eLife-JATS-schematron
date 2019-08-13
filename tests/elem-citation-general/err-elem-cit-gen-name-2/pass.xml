@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-2.sch"?>
-<article/>
+<!--Context: element-citation
+Test: person-group/name[not(surname)]-->
+<root>
+  <article/>
+</root>

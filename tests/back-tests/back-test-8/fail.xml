@@ -1,20 +1,23 @@
 <?oxygen SCHSchema="back-test-8.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
     <back>
-        
-        <sec sec-type="additional-information">
-            <fn-group content-type="competing-interest"/>
-        </sec>
-        <ref-list/>
-        <app-group/>
+      <sec sec-type="additional-information">
+        <fn-group content-type="competing-interest"/>
+      </sec>
+      <ref-list/>
+      <app-group/>
     </back>
-</article>
+  </article>
+</root>

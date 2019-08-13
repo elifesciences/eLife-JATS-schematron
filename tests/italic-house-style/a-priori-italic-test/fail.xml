@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="a-priori-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Aa] [Pp]riori')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-sup-id-test.sch"?>
-<article/>
+<!--Context: article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]
+Test: matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')-->
+<root>
+  <article/>
+</root>

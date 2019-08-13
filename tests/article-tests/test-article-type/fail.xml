@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-article-type.sch"?>
-<article/>
+<!--Context: article
+Test: @article-type = $allowed-article-types-->
+<root>
+  <article/>
+</root>

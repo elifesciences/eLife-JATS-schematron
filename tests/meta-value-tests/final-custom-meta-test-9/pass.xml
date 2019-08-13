@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="final-custom-meta-test-9.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+Test: matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')-->
+<root>
+  <article/>
+</root>

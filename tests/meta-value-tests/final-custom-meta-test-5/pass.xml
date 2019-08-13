@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="final-custom-meta-test-5.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+Test: ($count gt 30) and ($subj = $research-subj)-->
+<root>
+  <article/>
+</root>

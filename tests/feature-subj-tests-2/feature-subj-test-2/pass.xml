@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-subj-test-2.sch"?>
-<article/>
+<!--Context: subj-group[@subj-group-type='sub-display-channel']/subject
+Test: . != e:titleCase(.)-->
+<root>
+  <article/>
+</root>

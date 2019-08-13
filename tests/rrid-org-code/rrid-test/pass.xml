@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="rrid-test.sch"?>
-<article/>
+<!--Context: p|td|th
+Test: ($text-count gt $count)-->
+<root>
+  <article/>
+</root>

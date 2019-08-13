@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="resp-fig-test-2.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']//fig
+Test: label-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="table-wrap-test-3.sch"?>
-<article/>
+<!--Context: table-wrap
+Test: (contains($id,'inline')) and (normalize-space($lab) != '')-->
+<root>
+  <article/>
+</root>

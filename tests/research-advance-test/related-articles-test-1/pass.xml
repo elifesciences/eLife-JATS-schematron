@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="related-articles-test-1.sch"?>
-<article/>
+<!--Context: article[$disp-channel = 'Research Advance']//article-meta
+Test: count(related-article[@related-article-type='article-reference']) gt 0-->
+<root>
+  <article/>
+</root>

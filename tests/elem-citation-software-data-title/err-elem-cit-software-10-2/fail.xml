@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-software-10-2.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type = 'software']/data-title
+Test: count(*) = count(sub | sup | italic)-->
+<root>
+  <article/>
+</root>

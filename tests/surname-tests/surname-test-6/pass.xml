@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="surname-test-6.sch"?>
-<article/>
+<!--Context: article-meta/contrib-group//name/surname
+Test: matches(.,'^\s')-->
+<root>
+  <article/>
+</root>

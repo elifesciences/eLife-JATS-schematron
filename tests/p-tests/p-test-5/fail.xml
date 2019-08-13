@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="p-test-5.sch"?>
-<article/>
+<!--Context: p
+Test: (ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')-->
+<root>
+  <article/>
+</root>

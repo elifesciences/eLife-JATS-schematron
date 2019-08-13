@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="dec-letter-title-test.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='decision-letter']/front-stub/title-group
+Test: article-title = 'Decision letter'-->
+<root>
+  <article/>
+</root>

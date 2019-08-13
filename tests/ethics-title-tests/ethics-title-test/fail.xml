@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ethics-title-test.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='ethics-information']
+Test: title = 'Ethics'-->
+<root>
+  <article/>
+</root>

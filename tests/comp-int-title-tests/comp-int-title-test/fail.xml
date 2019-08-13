@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="comp-int-title-test.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='competing-interest']
+Test: title = 'Competing interests'-->
+<root>
+  <article/>
+</root>

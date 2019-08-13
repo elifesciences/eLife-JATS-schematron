@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="COI-test.sch"?>
-<article/>
+<!--Context: article-meta//contrib
+Test: (@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="de-novo-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Dd]e [Nn]ovo')-->
+<root>
+  <article/>
+</root>

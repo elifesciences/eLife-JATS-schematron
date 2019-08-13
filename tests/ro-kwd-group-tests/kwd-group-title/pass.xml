@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="kwd-group-title.sch"?>
-<article/>
+<!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']
+Test: title = 'Research organism'-->
+<root>
+  <article/>
+</root>

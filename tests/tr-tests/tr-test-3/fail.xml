@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="tr-test-3.sch"?>
-<article/>
+<!--Context: tr
+Test: td and (tr/parent::thead)-->
+<root>
+  <article/>
+</root>

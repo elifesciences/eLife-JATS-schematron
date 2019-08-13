@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="name-test.sch"?>
-<article/>
+<!--Context: article-meta//contrib
+Test: if (collab) then () else count(name) != 1-->
+<root>
+  <article/>
+</root>

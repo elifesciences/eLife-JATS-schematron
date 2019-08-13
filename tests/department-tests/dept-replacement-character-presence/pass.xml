@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="dept-replacement-character-presence.sch"?>
-<article/>
+<!--Context: aff/institution[@content-type='dept']
+Test: matches(.,'�')-->
+<root>
+  <article/>
+</root>

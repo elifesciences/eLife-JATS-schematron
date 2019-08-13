@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="institution-replacement-character-presence.sch"?>
-<article/>
+<!--Context: aff/institution[not(@*)]
+Test: matches(.,'�')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sec-title-list-check.sch"?>
-<article/>
+<!--Context: sec/title
+Test: matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')-->
+<root>
+  <article/>
+</root>

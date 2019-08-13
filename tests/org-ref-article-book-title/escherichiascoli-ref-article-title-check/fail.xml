@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="escherichiascoli-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])-->
+<root>
+  <article/>
+</root>

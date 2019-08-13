@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-book-36-6.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='book']
+Test: count(lpage) > 1 or count(fpage) > 1-->
+<root>
+  <article/>
+</root>

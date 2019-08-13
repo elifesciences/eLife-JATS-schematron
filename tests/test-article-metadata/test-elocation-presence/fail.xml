@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-elocation-presence.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: elocation-id-->
+<root>
+  <article/>
+</root>

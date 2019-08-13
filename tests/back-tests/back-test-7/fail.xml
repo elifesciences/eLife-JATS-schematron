@@ -1,18 +1,22 @@
 <?oxygen SCHSchema="back-test-7.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: ($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
     <back>
-        <ack/>
-        <sec sec-type="additional-information"/>
-        <ref-list/>
-        <app-group/>
+      <ack/>
+      <sec sec-type="additional-information"/>
+      <ref-list/>
+      <app-group/>
     </back>
-</article>
+  </article>
+</root>

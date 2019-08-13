@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="resp-table-wrap-id-test.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']//table-wrap
+Test: if (label) then matches(@id, '^resptable[0-9]{1,3}$') else matches(@id, '^respinlinetable[0-9]{1,3}$')-->
+<root>
+  <article/>
+</root>

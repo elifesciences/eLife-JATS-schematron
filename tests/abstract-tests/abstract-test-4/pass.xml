@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="abstract-test-4.sch"?>
-<article>
+<!--Context: front//abstract
+Test: descendant::disp-formula-->
+<root>
+  <article>
     <front>
-        <abstract>
-            <p/>
-        </abstract>
+      <abstract>
+        <p/>
+      </abstract>
     </front>
-</article>
+  </article>
+</root>

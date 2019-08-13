@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="retr-aff-presence.sch"?>
-<article/>
+<!--Context: article[@article-type = 'retraction']
+Test: descendant::article-meta//aff-->
+<root>
+  <article/>
+</root>

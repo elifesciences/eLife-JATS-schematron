@@ -1,8 +1,11 @@
 <?oxygen SCHSchema="additional-info-test-1.sch"?>
-<article>
+<!--Context: sec[@sec-type='additional-information']
+Test: parent::back-->
+<root>
+  <article>
     <body>
-        <sec sec-type="additional-information"/>
+      <sec sec-type="additional-information"/>
     </body>
-    <back>
-    </back>
-</article>
+    <back/>
+  </article>
+</root>

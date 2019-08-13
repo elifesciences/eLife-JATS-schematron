@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="all-caps-surname.sch"?>
-<article/>
+<!--Context: element-citation//name
+Test: matches(surname,'^[A-Z]*$')-->
+<root>
+  <article/>
+</root>

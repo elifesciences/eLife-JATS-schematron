@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="corr-auth-kw-presence.sch"?>
-<article/>
+<!--Context: article[@article-type = 'correction']
+Test: descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']-->
+<root>
+  <article/>
+</root>

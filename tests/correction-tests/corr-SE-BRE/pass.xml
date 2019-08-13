@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="corr-SE-BRE.sch"?>
-<article/>
+<!--Context: article[@article-type = 'correction']
+Test: descendant::contrib-group[@content-type='section']-->
+<root>
+  <article/>
+</root>

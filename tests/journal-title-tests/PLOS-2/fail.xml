@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="PLOS-2.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: ($uc = 'PLOS ONE') and (. != 'PLOS ONE')-->
+<root>
+  <article/>
+</root>

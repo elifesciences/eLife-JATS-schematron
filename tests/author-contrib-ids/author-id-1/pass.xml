@@ -1,20 +1,24 @@
 <?oxygen SCHSchema="author-id-1.sch"?>
-<article article-type="article-commentary">
+<!--Context: article-meta//contrib[@contrib-type='author']
+Test: if (collab) then () else if (ancestor::collab) then () else not(matches(@id,'^[a-z]+-[0-9]+$'))-->
+<root>
+  <article article-type="article-commentary">
     <front>
-        <article-meta>
-            <contrib-group>
-                <contrib contrib-type="author" id="author-001">
-                    <name/>
-                    <email/>
-                    <contrib-id/>
-                    <xref/>
-                </contrib>
-                <contrib contrib-type="author">
-                    <collab/>
-                    <email/>
-                    <bio/>
-                </contrib>
-            </contrib-group>
-        </article-meta>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" id="author-001">
+            <name/>
+            <email/>
+            <contrib-id/>
+            <xref/>
+          </contrib>
+          <contrib contrib-type="author">
+            <collab/>
+            <email/>
+            <bio/>
+          </contrib>
+        </contrib-group>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

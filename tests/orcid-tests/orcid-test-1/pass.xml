@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="orcid-test-1.sch"?>
-<article/>
+<!--Context: contrib-id[@contrib-id-type='orcid']
+Test: @authenticated='true'-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="history-date-test-2.sch"?>
-<article/>
+<!--Context: article-meta/history
+Test: date[@date-type='accepted']-->
+<root>
+  <article/>
+</root>

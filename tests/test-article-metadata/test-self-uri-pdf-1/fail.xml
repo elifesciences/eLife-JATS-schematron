@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-self-uri-pdf-1.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: (($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])-->
+<root>
+  <article/>
+</root>

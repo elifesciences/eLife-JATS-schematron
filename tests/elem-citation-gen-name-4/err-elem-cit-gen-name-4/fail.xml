@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-4.sch"?>
-<article/>
+<!--Context: element-citation/person-group/name
+Test: not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')]-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="permissions-test-5.sch"?>
-<article/>
+<!--Context: front//permissions
+Test: license-->
+<root>
+  <article/>
+</root>

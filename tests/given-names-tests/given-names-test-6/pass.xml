@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="given-names-test-6.sch"?>
-<article/>
+<!--Context: article-meta/contrib-group//name/given-names
+Test: matches(.,'^\p{Lu}')-->
+<root>
+  <article/>
+</root>

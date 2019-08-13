@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-12-4.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='confproc']
+Test: count(fpage/*)=0 and count(lpage/*)=0-->
+<root>
+  <article/>
+</root>

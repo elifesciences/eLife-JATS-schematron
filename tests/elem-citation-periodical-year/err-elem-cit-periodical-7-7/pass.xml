@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-7.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='periodical']/string-date/year
+Test: not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz', 'abcdefghijklmnopqrstuvwxy'))) and ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname)-->
+<root>
+  <article/>
+</root>

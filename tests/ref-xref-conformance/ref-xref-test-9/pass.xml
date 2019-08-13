@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-9.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: (($open - $close) gt 1) and (. = $cite1)-->
+<root>
+  <article/>
+</root>

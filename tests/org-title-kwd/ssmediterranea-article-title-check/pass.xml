@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ssmediterranea-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pub-date-test-3.sch"?>
-<article/>
+<!--Context: pub-date[not(@pub-type='collection')]
+Test: matches(year,'^[0-9]{4}$')-->
+<root>
+  <article/>
+</root>

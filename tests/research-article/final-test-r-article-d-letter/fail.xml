@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="final-test-r-article-d-letter.sch"?>
-<article/>
+<!--Context: article[@article-type='research-article']
+Test: ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])-->
+<root>
+  <article/>
+</root>

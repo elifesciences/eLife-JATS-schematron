@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="equal-author-test-2.sch"?>
-<article/>
+<!--Context: article-meta//contrib[@contrib-type='author']
+Test: xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')-->
+<root>
+  <article/>
+</root>

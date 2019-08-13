@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="contrib-test-1.sch"?>
-<article/>
+<!--Context: article-meta//contrib
+Test: if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0-->
+<root>
+  <article/>
+</root>

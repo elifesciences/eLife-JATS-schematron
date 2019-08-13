@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="francisellatularensis-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])-->
+<root>
+  <article/>
+</root>

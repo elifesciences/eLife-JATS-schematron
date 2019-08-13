@@ -1,18 +1,22 @@
 <?oxygen SCHSchema="award-id-test-1.sch"?>
-<article>
+<!--Context: funding-group/award-group/award-id
+Test: matches(.,',|;')-->
+<root>
+  <article>
     <front>
-        <article-meta>
-            <funding-group>
-                <award-group>
-                    <award-id>number1, number 2</award-id>
-                </award-group>
-                <award-group>
-                    <award-id>number1; number 2</award-id>
-                </award-group>
-                <award-group>
-                    <award-id>number1 | number 2</award-id>
-                </award-group>
-            </funding-group>
-        </article-meta>
+      <article-meta>
+        <funding-group>
+          <award-group>
+            <award-id>number1, number 2</award-id>
+          </award-group>
+          <award-group>
+            <award-id>number1; number 2</award-id>
+          </award-group>
+          <award-group>
+            <award-id>number1 | number 2</award-id>
+          </award-group>
+        </funding-group>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

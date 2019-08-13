@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="corr-back-sec.sch"?>
-<article/>
+<!--Context: article[@article-type = 'correction']
+Test: (back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)-->
+<root>
+  <article/>
+</root>

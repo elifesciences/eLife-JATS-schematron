@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="supplementalfile-presence.sch"?>
-<article/>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+Test: not(ancestor::sub-article) and matches(.,'/s?[Ss]upplemental [Ff]ile')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="asthaliana-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])-->
+<root>
+  <article/>
+</root>

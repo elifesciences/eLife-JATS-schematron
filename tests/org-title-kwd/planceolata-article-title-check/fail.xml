@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="planceolata-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])-->
+<root>
+  <article/>
+</root>

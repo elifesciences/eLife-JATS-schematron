@@ -1,14 +1,17 @@
 <?oxygen SCHSchema="aff-id-test.sch"?>
-<article>
+<!--Context: aff[not(parent::contrib)]
+Test: if (label) then @id = concat('aff',label) else starts-with(@id,'aff')-->
+<root>
+  <article>
     <aff id="aff1">
-        <label>1</label>
+      <label>1</label>
     </aff>
     <aff id="aff2">
-        <label>2</label>
+      <label>2</label>
     </aff>
     <aff id="aff3">
-        <label>3</label>
+      <label>3</label>
     </aff>
-    <aff id="aff4">
-    </aff>
-</article>
+    <aff id="aff4"/>
+  </article>
+</root>

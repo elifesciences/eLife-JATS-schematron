@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="award-group-test-6.sch"?>
-<article/>
+<!--Context: funding-group/award-group
+Test: count(funding-source/institution-wrap/institution) = 1-->
+<root>
+  <article/>
+</root>

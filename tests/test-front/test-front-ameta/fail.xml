@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-front-ameta.sch"?>
-<article/>
+<!--Context: article/front
+Test: count(article-meta) = 1-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="vid-xref-test-6.sch"?>
-<article/>
+<!--Context: xref[@ref-type='video']
+Test: matches($pre-text,'[A-Za-z0-9][\(]$')-->
+<root>
+  <article/>
+</root>

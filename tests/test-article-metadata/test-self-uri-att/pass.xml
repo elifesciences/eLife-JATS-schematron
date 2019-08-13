@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-self-uri-att.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: (($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])-->
+<root>
+  <article/>
+</root>

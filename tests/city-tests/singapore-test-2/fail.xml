@@ -1,9 +1,13 @@
 <?oxygen SCHSchema="singapore-test-2.sch"?>
-<article>
+<!--Context: front//aff//named-content[@content-type='city']
+Test: (. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')-->
+<root>
+  <article>
     <front>
-        <aff>
-            <named-content content-type="city">Singapore</named-content>
-            <country>United Kingdom</country>
-        </aff>
+      <aff>
+        <named-content content-type="city">Singapore</named-content>
+        <country>United Kingdom</country>
+      </aff>
     </front>
-</article>
+  </article>
+</root>

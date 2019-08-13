@@ -1,13 +1,17 @@
 <?oxygen SCHSchema="gen-country-test.sch"?>
-<article>
+<!--Context: front//aff/country
+Test: $text = document($countries)/countries/country-->
+<root>
+  <article>
     <front>
-        <article-meta>
-            <aff>
-                <country>United Kingdom</country>
-            </aff>
-            <aff>
-                <country>United States</country>
-            </aff>
-        </article-meta>
+      <article-meta>
+        <aff>
+          <country>United Kingdom</country>
+        </aff>
+        <aff>
+          <country>United States</country>
+        </aff>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

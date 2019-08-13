@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-list-title-test.sch"?>
-<article/>
+<!--Context: ref-list
+Test: title = 'References'-->
+<root>
+  <article/>
+</root>

@@ -1,9 +1,13 @@
 <?oxygen SCHSchema="body-top-level-sec-id-test.sch"?>
-<article>
+<!--Context: article/body/sec
+Test: @id = concat('s',$pos)-->
+<root>
+  <article>
     <body>
-        <sec id="s4"/>
-        <sec id="s1"/>
-        <sec id="s2"/>
-        <sec id="s3"/>
+      <sec id="s4"/>
+      <sec id="s1"/>
+      <sec id="s2"/>
+      <sec id="s3"/>
     </body>
-</article>
+  </article>
+</root>

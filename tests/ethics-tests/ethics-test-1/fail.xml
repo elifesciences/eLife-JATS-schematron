@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ethics-test-1.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='ethics-information']
+Test: parent::sec[@sec-type='additional-information']-->
+<root>
+  <article/>
+</root>

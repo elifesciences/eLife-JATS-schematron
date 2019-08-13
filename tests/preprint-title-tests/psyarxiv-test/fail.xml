@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="psyarxiv-test.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='preprint']/source
+Test: matches($lc,'psyarxiv') and not(. = 'PsyArXiv')-->
+<root>
+  <article/>
+</root>

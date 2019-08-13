@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="comp-int-fn-test-2.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='competing-interest']/fn
+Test: @fn-type='COI-statement'-->
+<root>
+  <article/>
+</root>

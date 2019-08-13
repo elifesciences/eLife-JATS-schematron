@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-auth-kwd-group-presence-2.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0) else ()-->
+<root>
+  <article/>
+</root>

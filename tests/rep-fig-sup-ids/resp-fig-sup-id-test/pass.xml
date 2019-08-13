@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="resp-fig-sup-id-test.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']//fig[@specific-use='child-fig']
+Test: matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$')-->
+<root>
+  <article/>
+</root>

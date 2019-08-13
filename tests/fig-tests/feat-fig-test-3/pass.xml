@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feat-fig-test-3.sch"?>
-<article/>
+<!--Context: fig[not(ancestor::sub-article[@article-type='reply'])]
+Test: ($article-type = $features-article-types) and not(label)-->
+<root>
+  <article/>
+</root>

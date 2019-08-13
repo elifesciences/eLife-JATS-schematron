@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="publisher-name-inc.sch"?>
-<article/>
+<!--Context: element-citation/publisher-name
+Test: matches(.,'[Ii]nc\.')-->
+<root>
+  <article/>
+</root>

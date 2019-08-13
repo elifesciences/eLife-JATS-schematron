@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="math-test-6.sch"?>
-<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<!--Context: mml:math
+Test: $data = '~'-->
+<root>
+  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
     <mml:math>
-        <mml:mo>~</mml:mo>
+      <mml:mo>~</mml:mo>
     </mml:math>
-</article>
+  </article>
+</root>

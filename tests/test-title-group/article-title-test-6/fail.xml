@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-test-6.sch"?>
-<article/>
+<!--Context: article/front/article-meta/title-group
+Test: article-title//bold-->
+<root>
+  <article/>
+</root>

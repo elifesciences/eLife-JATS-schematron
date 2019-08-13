@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-book-16.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='book']
+Test: (lpage or fpage) and not(chapter-title)-->
+<root>
+  <article/>
+</root>

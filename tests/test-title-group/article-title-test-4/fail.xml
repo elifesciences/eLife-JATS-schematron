@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-test-4.sch"?>
-<article/>
+<!--Context: article/front/article-meta/title-group
+Test: not(article-title/*) and normalize-space(article-title)=''-->
+<root>
+  <article/>
+</root>

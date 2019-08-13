@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-subj-test-1.sch"?>
-<article/>
+<!--Context: article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]
+Test: subj-group[@subj-group-type='sub-display-channel']-->
+<root>
+  <article/>
+</root>

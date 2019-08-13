@@ -1,15 +1,19 @@
 <?oxygen SCHSchema="back-test-4.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: count(ack) gt 1-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
     <back>
-        <ack/>
+      <ack/>
     </back>
-</article>
+  </article>
+</root>

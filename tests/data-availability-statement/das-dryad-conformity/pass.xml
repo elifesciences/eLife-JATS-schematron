@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="das-dryad-conformity.sch"?>
-<article/>
+<!--Context: sec[@sec-type='data-availability']/p[1]
+Test: matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])-->
+<root>
+  <article/>
+</root>

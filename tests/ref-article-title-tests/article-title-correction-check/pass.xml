@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-correction-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches(.,'^[Cc]orrection|^[Rr]etraction')-->
+<root>
+  <article/>
+</root>

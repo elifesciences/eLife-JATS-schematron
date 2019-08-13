@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="org-test.sch"?>
-<article/>
+<!--Context: p|td|th
+Test: matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))])-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="retr-impact-statement.sch"?>
-<article/>
+<!--Context: article[@article-type = 'retraction']
+Test: descendant::meta-name[text() = 'Author impact statement']-->
+<root>
+  <article/>
+</root>

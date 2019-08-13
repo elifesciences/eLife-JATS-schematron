@@ -19,7 +19,9 @@ let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"')
 
 let $node := 
 (processing-instruction {'oxygen'}{$pi-content},
-<article/>)
+comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
+Test: ',normalize-space($test/@test/string()))},
+<root><article/></root>)
 
 return 
 (

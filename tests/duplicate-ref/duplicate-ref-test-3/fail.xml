@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="duplicate-ref-test-3.sch"?>
-<article/>
+<!--Context: ref-list//ref
+Test: some $x in preceding-sibling::ref/element-citation satisfies ( (($x/article-title = $a-title) and ($x/source = $source)) or (($x/chapter-title = $c-title) and ($x/source = $source)) )-->
+<root>
+  <article/>
+</root>

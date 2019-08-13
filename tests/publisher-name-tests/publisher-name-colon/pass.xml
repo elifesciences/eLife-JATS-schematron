@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="publisher-name-colon.sch"?>
-<article/>
+<!--Context: element-citation/publisher-name
+Test: matches(.,':')-->
+<root>
+  <article/>
+</root>

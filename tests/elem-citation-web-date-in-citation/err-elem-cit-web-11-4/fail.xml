@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-web-11-4.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='web']/date-in-citation
+Test: if (string-length(@iso-8601-date) = 10) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=. else (string-length(@iso-8601-date) < 10)-->
+<root>
+  <article/>
+</root>

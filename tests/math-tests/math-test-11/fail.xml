@@ -1,9 +1,13 @@
 <?oxygen SCHSchema="math-test-11.sch"?>
-<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<!--Context: mml:math
+Test: matches($data,'○')-->
+<root>
+  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
     <mml:math>
-        <mml:mn>2</mml:mn>
-        <mml:mi>μ</mml:mi>
-        <mml:mn>2</mml:mn>
-        <mml:mi>○</mml:mi>
+      <mml:mn>2</mml:mn>
+      <mml:mi>μ</mml:mi>
+      <mml:mn>2</mml:mn>
+      <mml:mi>○</mml:mi>
     </mml:math>
-</article>
+  </article>
+</root>

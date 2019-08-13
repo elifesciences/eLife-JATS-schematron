@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-subj-test-3.sch"?>
-<article/>
+<!--Context: subj-group[@subj-group-type='sub-display-channel']/subject
+Test: ends-with(.,':')-->
+<root>
+  <article/>
+</root>

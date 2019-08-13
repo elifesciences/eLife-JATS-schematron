@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="duplicate-ref-test-6.sch"?>
-<article/>
+<!--Context: ref-list//ref
+Test: $top-doi = $doi-->
+<root>
+  <article/>
+</root>

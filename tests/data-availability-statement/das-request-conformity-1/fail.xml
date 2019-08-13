@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="das-request-conformity-1.sch"?>
-<article/>
+<!--Context: sec[@sec-type='data-availability']/p[1]
+Test: matches(.,'[Rr]equest')-->
+<root>
+  <article/>
+</root>

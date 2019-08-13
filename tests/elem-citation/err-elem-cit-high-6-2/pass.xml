@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-high-6-2.sch"?>
-<article/>
+<!--Context: element-citation
+Test: @publication-type = 'journal' or @publication-type = 'book' or @publication-type = 'data' or @publication-type = 'patent' or @publication-type = 'software' or @publication-type = 'preprint' or @publication-type = 'web' or @publication-type = 'periodical' or @publication-type = 'report' or @publication-type = 'confproc' or @publication-type = 'thesis'-->
+<root>
+  <article/>
+</root>

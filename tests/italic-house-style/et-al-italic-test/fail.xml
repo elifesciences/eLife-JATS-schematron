@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="et-al-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'et al[\.]?')-->
+<root>
+  <article/>
+</root>

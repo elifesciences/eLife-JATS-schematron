@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="award-group-test-7.sch"?>
-<article/>
+<!--Context: funding-group/award-group
+Test: ancestor::article//article-meta//contrib//xref/@rid = $id-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="date-test-4.sch"?>
-<article/>
+<!--Context: date
+Test: @iso-8601-date = concat(year,'-',month,'-',day)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="colour-named-content-check.sch"?>
-<article/>
+<!--Context: named-content
+Test: starts-with(@content-type,'author-callout')-->
+<root>
+  <article/>
+</root>

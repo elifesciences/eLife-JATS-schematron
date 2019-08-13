@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="xref-colum-test.sch"?>
-<article/>
+<!--Context: table-wrap[@id='keyresource']//xref[@ref-type='bibr']
+Test: (count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)-->
+<root>
+  <article/>
+</root>

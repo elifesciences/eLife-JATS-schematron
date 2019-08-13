@@ -1,20 +1,24 @@
 <?oxygen SCHSchema="award-id-test-2.sch"?>
-<article>
+<!--Context: funding-group/award-group/award-id
+Test: matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')-->
+<root>
+  <article>
     <front>
-        <article-meta>
-            <funding-group>
-                <funding-group>
-                    <award-group>
-                        <award-id>NA</award-id>
-                    </award-group>
-                    <award-group>
-                        <award-id> na </award-id>
-                    </award-group>
-                    <award-group>
-                        <award-id>N/A</award-id>
-                    </award-group>
-                </funding-group>
-            </funding-group>
-        </article-meta>
+      <article-meta>
+        <funding-group>
+          <funding-group>
+            <award-group>
+              <award-id>NA</award-id>
+            </award-group>
+            <award-group>
+              <award-id>na</award-id>
+            </award-group>
+            <award-group>
+              <award-id>N/A</award-id>
+            </award-group>
+          </funding-group>
+        </funding-group>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

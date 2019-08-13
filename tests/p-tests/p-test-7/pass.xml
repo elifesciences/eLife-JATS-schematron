@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="p-test-7.sch"?>
-<article/>
+<!--Context: p
+Test: matches(.,'^\s?•') and not(ancestor::disp-quote[@content-type='editor-comment'])-->
+<root>
+  <article/>
+</root>

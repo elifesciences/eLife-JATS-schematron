@@ -1,20 +1,26 @@
 <?oxygen SCHSchema="fig-video-check-1.sch"?>
-<article>
+<!--Context: article/body//media[@mimetype='video']
+Test: (not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])-->
+<root>
+  <article>
     <body>
-        <media mimetype="video" id="video1">
-            <label>Video 1.</label>
-            <caption>
-                <title>...</title>
-                <p>... <xref ref-type="fig" rid="fig1">Figure 1</xref></p>
-            </caption>
-        </media>
-        <p/>
-        <media mimetype="video" id="video2">
-            <label>Video 2.</label>
-            <caption>
-                <title>...</title>
-                <p>... <xref ref-type="fig" rid="fig1">Figure 1</xref></p>
-            </caption>
-        </media>
+      <media mimetype="video" id="video1">
+        <label>Video 1.</label>
+        <caption>
+          <title>...</title>
+          <p>...<xref ref-type="fig" rid="fig1">Figure 1</xref>
+          </p>
+        </caption>
+      </media>
+      <p/>
+      <media mimetype="video" id="video2">
+        <label>Video 2.</label>
+        <caption>
+          <title>...</title>
+          <p>...<xref ref-type="fig" rid="fig1">Figure 1</xref>
+          </p>
+        </caption>
+      </media>
     </body>
-</article>
+  </article>
+</root>

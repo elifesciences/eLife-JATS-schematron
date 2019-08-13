@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="comp-int-fn-group-test-1.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='competing-interest']
+Test: ancestor::back-->
+<root>
+  <article/>
+</root>

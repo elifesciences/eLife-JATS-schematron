@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-9.sch"?>
-<article/>
+<!--Context: element-citation
+Test: count(year)>1-->
+<root>
+  <article/>
+</root>

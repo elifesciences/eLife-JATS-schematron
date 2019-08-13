@@ -1,9 +1,13 @@
 <?oxygen SCHSchema="ack-test-1.sch"?>
-<article>
+<!--Context: back/ack
+Test: count(title) = 1-->
+<root>
+  <article>
     <back>
-        <ack>
-            <title/>
-            <title/>
-        </ack>
+      <ack>
+        <title/>
+        <title/>
+      </ack>
     </back>
-</article>
+  </article>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="oncopeltussfasciatus-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])-->
+<root>
+  <article/>
+</root>

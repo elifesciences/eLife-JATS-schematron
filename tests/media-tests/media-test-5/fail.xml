@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="media-test-5.sch"?>
-<article/>
+<!--Context: media
+Test: matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')-->
+<root>
+  <article/>
+</root>

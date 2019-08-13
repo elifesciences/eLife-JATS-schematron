@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="license-test-2.sch"?>
-<article/>
+<!--Context: front//permissions/license
+Test: count(license-p) = 1-->
+<root>
+  <article/>
+</root>

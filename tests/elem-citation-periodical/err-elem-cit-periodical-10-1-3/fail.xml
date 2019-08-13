@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-10-1-3.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='periodical']
+Test: count(volume) le 1-->
+<root>
+  <article/>
+</root>

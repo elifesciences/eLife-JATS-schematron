@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="inline-formula-test-1.sch"?>
-<article/>
+<!--Context: inline-formula
+Test: mml:math-->
+<root>
+  <article/>
+</root>

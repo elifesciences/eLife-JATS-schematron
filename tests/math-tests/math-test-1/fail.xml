@@ -1,4 +1,8 @@
 <?oxygen SCHSchema="math-test-1.sch"?>
-<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
-    <mml:math></mml:math>
-</article>
+<!--Context: mml:math
+Test: $data = ''-->
+<root>
+  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <mml:math/>
+  </article>
+</root>

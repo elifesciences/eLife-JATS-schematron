@@ -1,11 +1,15 @@
 <?oxygen SCHSchema="app-table-label-test-2.sch"?>
-<article>
+<!--Context: app//table-wrap/label
+Test: starts-with(.,$app)-->
+<root>
+  <article>
     <back>
-        <app>
-            <title>Appendix 1</title>
-            <table-wrap>
-                <label>Appendix 1—table 1.</label>
-            </table-wrap>
-        </app>
+      <app>
+        <title>Appendix 1</title>
+        <table-wrap>
+          <label>Appendix 1—table 1.</label>
+        </table-wrap>
+      </app>
     </back>
-</article>
+  </article>
+</root>

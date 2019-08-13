@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="PMID-link-test.sch"?>
-<article/>
+<!--Context: table-wrap[@id='keyresource']//td
+Test: matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)-->
+<root>
+  <article/>
+</root>

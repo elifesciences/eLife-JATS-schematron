@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-test-1.sch"?>
-<article/>
+<!--Context: article/front/article-meta/title-group
+Test: ends-with(replace(article-title,'\p{Z}',''),'.')-->
+<root>
+  <article/>
+</root>

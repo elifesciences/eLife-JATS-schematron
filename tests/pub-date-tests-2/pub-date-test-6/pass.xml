@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pub-date-test-6.sch"?>
-<article/>
+<!--Context: pub-date[@pub-type='collection']
+Test: year = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year-->
+<root>
+  <article/>
+</root>

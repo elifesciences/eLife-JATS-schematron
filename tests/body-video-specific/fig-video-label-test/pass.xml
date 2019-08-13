@@ -1,18 +1,22 @@
 <?oxygen SCHSchema="fig-video-label-test.sch"?>
-<article>
+<!--Context: article/body//media[@mimetype='video']
+Test: starts-with(label,$fig-label)-->
+<root>
+  <article>
     <body>
-        <fig-group>
-            <fig id="fig1">
-                <label>Figure 1.</label>
-                <graphic/>
-                <media mimetype="video" id="video2">
-                    <label>Figure 1-video 1.</label>
-                    <caption>
-                        <title>...</title>
-                        <p>... </p>
-                    </caption>
-                </media>
-            </fig>
-        </fig-group>
+      <fig-group>
+        <fig id="fig1">
+          <label>Figure 1.</label>
+          <graphic/>
+          <media mimetype="video" id="video2">
+            <label>Figure 1-video 1.</label>
+            <caption>
+              <title>...</title>
+              <p>...</p>
+            </caption>
+          </media>
+        </fig>
+      </fig-group>
     </body>
-</article>
+  </article>
+</root>

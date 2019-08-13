@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sensu-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Ss]ensu')-->
+<root>
+  <article/>
+</root>

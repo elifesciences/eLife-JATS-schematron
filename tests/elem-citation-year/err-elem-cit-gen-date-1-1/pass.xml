@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-1.sch"?>
-<article/>
+<!--Context: ref/element-citation/year
+Test: matches(normalize-space(.),'(^\d{4}[a-z]?)')-->
+<root>
+  <article/>
+</root>

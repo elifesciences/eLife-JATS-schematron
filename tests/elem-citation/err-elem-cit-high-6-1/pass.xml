@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-high-6-1.sch"?>
-<article/>
+<!--Context: element-citation
+Test: @publication-type-->
+<root>
+  <article/>
+</root>

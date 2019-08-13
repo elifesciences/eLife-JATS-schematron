@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="oncopeltussfasciatus-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])-->
+<root>
+  <article/>
+</root>

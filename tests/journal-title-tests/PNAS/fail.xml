@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="PNAS.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: if (starts-with($doi,'10.1073')) then . != 'PNAS' else()-->
+<root>
+  <article/>
+</root>

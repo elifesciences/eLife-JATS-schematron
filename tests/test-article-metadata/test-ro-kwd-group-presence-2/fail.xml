@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-ro-kwd-group-presence-2.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication')) then (count(kwd-group[@kwd-group-type='research-organism']) = 0) else ()-->
+<root>
+  <article/>
+</root>

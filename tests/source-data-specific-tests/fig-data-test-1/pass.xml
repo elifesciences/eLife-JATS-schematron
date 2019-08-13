@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-data-test-1.sch"?>
-<article/>
+<!--Context: supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]
+Test: matches(label,'^Figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])-->
+<root>
+  <article/>
+</root>

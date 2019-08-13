@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-journal-6-3.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/elocation-id
+Test: count(../fpage) eq 0 and count(../comment) eq 0-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="permissions-test-1.sch"?>
-<article/>
+<!--Context: front//permissions
+Test: if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-statement)-->
+<root>
+  <article/>
+</root>

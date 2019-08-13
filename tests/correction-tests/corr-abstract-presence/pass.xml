@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="corr-abstract-presence.sch"?>
-<article/>
+<!--Context: article[@article-type = 'correction']
+Test: descendant::abstract-->
+<root>
+  <article/>
+</root>

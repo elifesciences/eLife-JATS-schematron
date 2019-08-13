@@ -1,16 +1,20 @@
 <?oxygen SCHSchema="back-test-5.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1) else ()-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
     <back>
-        <ack/>
-        <ref-list/>
+      <ack/>
+      <ref-list/>
     </back>
-</article>
+  </article>
+</root>

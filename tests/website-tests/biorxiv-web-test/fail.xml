@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="biorxiv-web-test.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='web']
+Test: matches($link,'biorxiv.org')-->
+<root>
+  <article/>
+</root>

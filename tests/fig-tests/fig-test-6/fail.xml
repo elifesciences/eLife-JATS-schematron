@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-test-6.sch"?>
-<article/>
+<!--Context: fig[not(ancestor::sub-article[@article-type='reply'])]
+Test: if ($article-type = ('correction','retraction')) then () else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))-->
+<root>
+  <article/>
+</root>

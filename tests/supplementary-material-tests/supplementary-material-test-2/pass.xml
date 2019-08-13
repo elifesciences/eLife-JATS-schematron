@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="supplementary-material-test-2.sch"?>
-<article/>
+<!--Context: supplementary-material
+Test: if (contains(label,'Transparent reporting form')) then () else not(caption)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-17.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='confproc']
+Test: count(*) = count(person-group | article-title | year| source | conf-loc | conf-name | lpage | fpage | elocation-id | ext-link | pub-id)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="reply-title-test.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']/front-stub/title-group
+Test: article-title = 'Author response'-->
+<root>
+  <article/>
+</root>

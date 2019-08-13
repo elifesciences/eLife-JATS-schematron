@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="supplementary-material-test-5.sch"?>
-<article/>
+<!--Context: supplementary-material
+Test: media-->
+<root>
+  <article/>
+</root>

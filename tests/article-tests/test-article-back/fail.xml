@@ -1,2 +1,8 @@
 <?oxygen SCHSchema="test-article-back.sch"?>
-<article/>
+<!--Context: article
+Test: (@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1-->
+<root>
+  <article article-type="research-article">
+    <front/>
+  </article>
+</root>

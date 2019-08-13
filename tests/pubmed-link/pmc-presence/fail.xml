@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pmc-presence.sch"?>
-<article/>
+<!--Context: p//ext-link[not(ancestor::table-wrap)]
+Test: matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pmc/articles/PMC[\d]*')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-abstract-test-2.sch"?>
-<article/>
+<!--Context: front//abstract[@abstract-type='executive-summary']
+Test: title = 'eLife digest'-->
+<root>
+  <article/>
+</root>

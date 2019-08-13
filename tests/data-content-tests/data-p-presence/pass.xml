@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="data-p-presence.sch"?>
-<article/>
+<!--Context: back/sec[@sec-type='data-availability']
+Test: count(p) gt 0-->
+<root>
+  <article/>
+</root>

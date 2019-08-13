@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="graphic-test-3.sch"?>
-<article/>
+<!--Context: graphic
+Test: contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))-->
+<root>
+  <article/>
+</root>

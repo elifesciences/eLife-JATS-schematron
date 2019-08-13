@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-6.sch"?>
-<article/>
+<!--Context: ref/element-citation/year
+Test: not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,'b')) and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1] )))-->
+<root>
+  <article/>
+</root>

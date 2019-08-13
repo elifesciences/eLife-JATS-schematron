@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-contrib-group-presence-1.sch"?>
-<article/>
+<!--Context: article[@article-type='research-article']/front/article-meta
+Test: contrib-group-->
+<root>
+  <article/>
+</root>

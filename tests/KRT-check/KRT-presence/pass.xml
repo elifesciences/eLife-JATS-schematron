@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="KRT-presence.sch"?>
-<article/>
+<!--Context: article
+Test: ($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-14-2.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='confproc']/ext-link
+Test: starts-with(@xlink:href, 'http://') or starts-with(@xlink:href, 'https://')-->
+<root>
+  <article/>
+</root>

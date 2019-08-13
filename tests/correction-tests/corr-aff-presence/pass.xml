@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="corr-aff-presence.sch"?>
-<article/>
+<!--Context: article[@article-type = 'correction']
+Test: descendant::article-meta//aff-->
+<root>
+  <article/>
+</root>

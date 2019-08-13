@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="ar-fig-test-2.sch"?>
-<article article-type="research-article">
+<!--Context: fig[ancestor::sub-article[@article-type='reply']]
+Test: if ($article-type = ($features-article-types,'correction','retraction')) then () else not(label)-->
+<root>
+  <article article-type="research-article">
     <sub-article article-type="reply">
-        <fig>
-            <label></label>
-        </fig>
+      <fig>
+        <label/>
+      </fig>
     </sub-article>
-</article>
+  </article>
+</root>

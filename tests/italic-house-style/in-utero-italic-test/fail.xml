@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="in-utero-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Ii]n [Uu]tero')-->
+<root>
+  <article/>
+</root>

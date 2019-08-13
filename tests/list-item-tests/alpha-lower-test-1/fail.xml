@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="alpha-lower-test-1.sch"?>
-<article/>
+<!--Context: list-item
+Test: ($type='alpha-lower') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)]? ')-->
+<root>
+  <article/>
+</root>

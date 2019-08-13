@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-thesis-2-3.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='thesis']/person-group
+Test: count(name)=1-->
+<root>
+  <article/>
+</root>

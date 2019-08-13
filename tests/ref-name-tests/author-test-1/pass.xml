@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="author-test-1.sch"?>
-<article/>
+<!--Context: element-citation//name
+Test: matches(.,'[Aa]uthor')-->
+<root>
+  <article/>
+</root>

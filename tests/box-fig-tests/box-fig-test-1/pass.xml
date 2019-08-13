@@ -1,10 +1,14 @@
 <?oxygen SCHSchema="box-fig-test-1.sch"?>
-<article>
+<!--Context: article/body//boxed-text//fig[not(@specific-use='child-fig')]/label
+Test: matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')-->
+<root>
+  <article>
     <body>
-        <boxed-text id="box1">
-            <fig id="box1fig1">
-                <label>Box 1—figure 1.</label>
-            </fig>
-        </boxed-text>
+      <boxed-text id="box1">
+        <fig id="box1fig1">
+          <label>Box 1—figure 1.</label>
+        </fig>
+      </boxed-text>
     </body>
-</article>
+  </article>
+</root>

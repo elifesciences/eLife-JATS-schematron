@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="video-title-test-1.sch"?>
-<article/>
+<!--Context: media/caption/title
+Test: matches(.,'^\([A-Za-z]|^[A-Za-z]\)')-->
+<root>
+  <article/>
+</root>

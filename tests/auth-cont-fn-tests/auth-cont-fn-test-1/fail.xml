@@ -1,10 +1,14 @@
 <?oxygen SCHSchema="auth-cont-fn-test-1.sch"?>
-<article>
+<!--Context: fn-group[@content-type='author-contribution']/fn
+Test: @fn-type='con'-->
+<root>
+  <article>
     <back>
-        <fn-group content-type="author-contribution">
-            <fn/>
-            <fn fn-type="con"/>
-            <fn fn-type="contfnejw"/>
-        </fn-group>
+      <fn-group content-type="author-contribution">
+        <fn/>
+        <fn fn-type="con"/>
+        <fn fn-type="contfnejw"/>
+      </fn-group>
     </back>
-</article>
+  </article>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-journal-pubid-4.sch"?>
-<article/>
+<!--Context: article/front/journal-meta
+Test: issn[@publication-format='electronic'][@pub-type='epub']-->
+<root>
+  <article/>
+</root>

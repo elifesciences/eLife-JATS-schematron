@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sec-title-appendix-check.sch"?>
-<article/>
+<!--Context: sec/title
+Test: matches(.,'^[Aa]ppendix')-->
+<root>
+  <article/>
+</root>

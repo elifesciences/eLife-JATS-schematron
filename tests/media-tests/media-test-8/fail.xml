@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="media-test-8.sch"?>
-<article/>
+<!--Context: media
+Test: if (ancestor::sec[@sec-type='supplementary-material']) then () else if (@mimetype='video') then (not(label)) else ()-->
+<root>
+  <article/>
+</root>

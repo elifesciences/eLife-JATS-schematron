@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="permissions-test-6.sch"?>
-<article/>
+<!--Context: front//permissions
+Test: if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="gene-primer-sequence-test.sch"?>
-<article/>
+<!--Context: p
+Test: (($text-count le $count) or ($text-count = $count))-->
+<root>
+  <article/>
+</root>

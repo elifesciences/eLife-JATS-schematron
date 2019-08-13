@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="custom-meta-child-test-1.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group/custom-meta/meta-value/*
+Test: local-name() = $allowed-elements-->
+<root>
+  <article/>
+</root>

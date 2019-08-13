@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="table-wrap-test-4.sch"?>
-<article/>
+<!--Context: table-wrap
+Test: (matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')-->
+<root>
+  <article/>
+</root>

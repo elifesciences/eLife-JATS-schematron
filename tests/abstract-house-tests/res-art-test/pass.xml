@@ -1,15 +1,19 @@
 <?oxygen SCHSchema="res-art-test.sch"?>
-<article article-type="research-article">
+<!--Context: abstract[not(@*)]
+Test: (count(p) > 1) and ($subj = 'Research Article')-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-categories>
-                <subj-group subj-group-type='display-channel'>
-                    <subject>Research Article</subject>
-                </subj-group>
-            </article-categories>
-            <abstract>
-                <p/>
-            </abstract>
-        </article-meta>
-    </front>    
-</article>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+        </article-categories>
+        <abstract>
+          <p/>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>

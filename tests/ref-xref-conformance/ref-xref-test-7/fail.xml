@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-7.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: matches($post-text,'^\)|^\]') and (. = $cite2)-->
+<root>
+  <article/>
+</root>

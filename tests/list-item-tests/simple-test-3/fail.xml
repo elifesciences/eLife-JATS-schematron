@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="simple-test-3.sch"?>
-<article/>
+<!--Context: list-item
+Test: ($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')-->
+<root>
+  <article/>
+</root>

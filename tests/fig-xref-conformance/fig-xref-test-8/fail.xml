@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-xref-test-8.sch"?>
-<article/>
+<!--Context: xref[@ref-type='fig']
+Test: matches($pre-text,'their $')-->
+<root>
+  <article/>
+</root>

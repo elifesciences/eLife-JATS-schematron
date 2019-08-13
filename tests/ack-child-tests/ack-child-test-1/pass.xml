@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="ack-child-test-1.sch"?>
-<article>
+<!--Context: back/ack/*
+Test: local-name() = ('p','sec','title')-->
+<root>
+  <article>
     <back>
-        <ack>
-            <title></title>
-        </ack>
+      <ack>
+        <title/>
+      </ack>
     </back>
-</article>
+  </article>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-author-test-1.sch"?>
-<article/>
+<!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']
+Test: bio-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-12-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='confproc']
+Test: (fpage and elocation-id) or (lpage and elocation-id)-->
+<root>
+  <article/>
+</root>

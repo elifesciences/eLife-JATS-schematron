@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="media-test-1.sch"?>
-<article/>
+<!--Context: media
+Test: @mimetype-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="back-test-9.sch"?>
-<article/>
+<!--Context: back
+Test: ($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)-->
+<root>
+  <article/>
+</root>

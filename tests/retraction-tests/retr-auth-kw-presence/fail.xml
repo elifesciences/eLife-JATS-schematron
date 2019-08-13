@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="retr-auth-kw-presence.sch"?>
-<article/>
+<!--Context: article[@article-type = 'retraction']
+Test: descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="vid-xref-conformity-1.sch"?>
-<article/>
+<!--Context: xref[@ref-type='video']
+Test: matches(.,'\p{N}')-->
+<root>
+  <article/>
+</root>

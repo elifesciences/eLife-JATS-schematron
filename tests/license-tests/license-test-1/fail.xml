@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="license-test-1.sch"?>
-<article/>
+<!--Context: front//permissions/license
+Test: ali:license_ref-->
+<root>
+  <article/>
+</root>

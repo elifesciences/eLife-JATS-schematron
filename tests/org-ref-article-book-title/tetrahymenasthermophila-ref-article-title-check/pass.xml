@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="tetrahymenasthermophila-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="video-title-test-2.sch"?>
-<article/>
+<!--Context: media/caption/title
+Test: matches(.,'\.$')-->
+<root>
+  <article/>
+</root>

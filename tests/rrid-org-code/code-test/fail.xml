@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="code-test.sch"?>
-<article/>
+<!--Context: p|td|th
+Test: not(descendant::monospace) and ($code-text != '')-->
+<root>
+  <article/>
+</root>

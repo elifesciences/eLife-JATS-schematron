@@ -1,15 +1,19 @@
 <?oxygen SCHSchema="math-test-15.sch"?>
-<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<!--Context: mml:math
+Test: matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')-->
+<root>
+  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
     <mml:math>
-        <mml:mi>Na</mml:mi>
-        <mml:msup>
-            <mml:mn>2</mml:mn>
-        </mml:msup>
+      <mml:mi>Na</mml:mi>
+      <mml:msup>
+        <mml:mn>2</mml:mn>
+      </mml:msup>
     </mml:math>
     <mml:math>
-        <mml:mi>Ca</mml:mi>
-        <mml:msup>
-            <mml:mn>2</mml:mn>
-        </mml:msup>  
+      <mml:mi>Ca</mml:mi>
+      <mml:msup>
+        <mml:mn>2</mml:mn>
+      </mml:msup>
     </mml:math>
-</article>
+  </article>
+</root>

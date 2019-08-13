@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="final-ref-link-presence.sch"?>
-<article/>
+<!--Context: ref-list/ref
+Test: ancestor::article//xref[@rid = $id]-->
+<root>
+  <article/>
+</root>

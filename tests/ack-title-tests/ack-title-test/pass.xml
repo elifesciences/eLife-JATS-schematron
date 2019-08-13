@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="ack-title-test.sch"?>
-<article>
+<!--Context: ack
+Test: title = 'Acknowledgements'-->
+<root>
+  <article>
     <back>
-        <ack>
-            <title>Acknowledgements</title>
-        </ack>
+      <ack>
+        <title>Acknowledgements</title>
+      </ack>
     </back>
-</article>
+  </article>
+</root>

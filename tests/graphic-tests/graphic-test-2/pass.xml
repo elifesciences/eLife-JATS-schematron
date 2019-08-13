@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="graphic-test-2.sch"?>
-<article/>
+<!--Context: graphic
+Test: contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))-->
+<root>
+  <article/>
+</root>

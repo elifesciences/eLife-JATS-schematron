@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pre-table-wrap-cite-1.sch"?>
-<article/>
+<!--Context: table-wrap
+Test: if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])-->
+<root>
+  <article/>
+</root>

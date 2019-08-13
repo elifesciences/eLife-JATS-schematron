@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-article-category-test-1.sch"?>
-<article/>
+<!--Context: article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]
+Test: ($count = 1) or ($count = 0)-->
+<root>
+  <article/>
+</root>

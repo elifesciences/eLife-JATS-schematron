@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="xenopustropicalis-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])-->
+<root>
+  <article/>
+</root>

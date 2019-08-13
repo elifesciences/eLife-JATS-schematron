@@ -1,9 +1,12 @@
 <?oxygen SCHSchema="app-test-1.sch"?>
-<article>
+<!--Context: back//app
+Test: parent::app-group-->
+<root>
+  <article>
     <back>
-        <app id="appendix-1">
-            <title>Appendix 1</title>
-            
-        </app>
+      <app id="appendix-1">
+        <title>Appendix 1</title>
+      </app>
     </back>
-</article>
+  </article>
+</root>

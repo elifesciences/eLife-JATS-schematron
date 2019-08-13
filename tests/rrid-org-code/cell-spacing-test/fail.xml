@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="cell-spacing-test.sch"?>
-<article>
+<!--Context: p|td|th
+Test: ($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])-->
+<root>
+  <article>
     <p>1+1 =2</p>
     <th>1+1 =2</th>
     <td>1+1= 2</td>
-</article>
+  </article>
+</root>

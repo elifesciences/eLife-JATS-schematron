@@ -1,9 +1,13 @@
 <?oxygen SCHSchema="math-test-16.sch"?>
-<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<!--Context: mml:math
+Test: matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')-->
+<root>
+  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
     <mml:math>
-        <mml:mi>O</mml:mi>
-        <mml:msup>
-            <mml:mn>2</mml:mn>
-        </mml:msup>
+      <mml:mi>O</mml:mi>
+      <mml:msup>
+        <mml:mn>2</mml:mn>
+      </mml:msup>
     </mml:math>
-</article>
+  </article>
+</root>

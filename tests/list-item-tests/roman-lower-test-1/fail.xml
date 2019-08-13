@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="roman-lower-test-1.sch"?>
-<article/>
+<!--Context: list-item
+Test: ($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')-->
+<root>
+  <article/>
+</root>

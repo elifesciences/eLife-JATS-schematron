@@ -1,25 +1,29 @@
 <?oxygen SCHSchema="fig-video-position-test.sch"?>
-<article>
+<!--Context: article/body//media[@mimetype='video']
+Test: (ancestor::fig-group) and ($no != string($fig-pos))-->
+<root>
+  <article>
     <body>
-        <fig-group>
-            <fig id="fig1">
-                <label>Figure 1.</label>
-                <graphic/>
-                <media mimetype="video" id="video1">
-                    <label>Figure 1-video 1.</label>
-                    <caption>
-                        <title>...</title>
-                        <p>... </p>
-                    </caption>
-                </media>
-                <media mimetype="video" id="video2">
-                    <label>Figure 1-video 2.</label>
-                    <caption>
-                        <title>...</title>
-                        <p>... </p>
-                    </caption>
-                </media>
-            </fig>
-        </fig-group>
+      <fig-group>
+        <fig id="fig1">
+          <label>Figure 1.</label>
+          <graphic/>
+          <media mimetype="video" id="video1">
+            <label>Figure 1-video 1.</label>
+            <caption>
+              <title>...</title>
+              <p>...</p>
+            </caption>
+          </media>
+          <media mimetype="video" id="video2">
+            <label>Figure 1-video 2.</label>
+            <caption>
+              <title>...</title>
+              <p>...</p>
+            </caption>
+          </media>
+        </fig>
+      </fig-group>
     </body>
-</article>
+  </article>
+</root>

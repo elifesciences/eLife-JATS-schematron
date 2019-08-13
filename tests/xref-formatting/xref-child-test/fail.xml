@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="xref-child-test.sch"?>
-<article/>
+<!--Context: xref[not(@ref-type='bibr')]
+Test: $child = $formatting-elems-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-book-28-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='book']/chapter-title
+Test: count(../person-group[@person-group-type='editor']) le 1-->
+<root>
+  <article/>
+</root>

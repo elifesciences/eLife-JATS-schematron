@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-sup-test-3.sch"?>
-<article/>
+<!--Context: article/body//fig[@specific-use='child-fig']
+Test: starts-with(label,concat('Figure ',$parent-fig-no))-->
+<root>
+  <article/>
+</root>

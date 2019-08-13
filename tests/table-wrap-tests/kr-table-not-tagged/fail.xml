@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="kr-table-not-tagged.sch"?>
-<article/>
+<!--Context: table-wrap
+Test: ($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')-->
+<root>
+  <article/>
+</root>

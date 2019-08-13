@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="dec-letter-reply-test-2.sch"?>
-<article/>
+<!--Context: article/sub-article
+Test: @id = concat('SA',$pos)-->
+<root>
+  <article/>
+</root>

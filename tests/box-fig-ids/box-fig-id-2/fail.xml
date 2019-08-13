@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="box-fig-id-2.sch"?>
-<article>
+<!--Context: article/body//boxed-text//fig[not(@specific-use='child-fig')]
+Test: contains(@id,$box-id)-->
+<root>
+  <article>
     <body>
-        <boxed-text id="box1">
-            <fig id="box2fig1"/>
-        </boxed-text>
+      <boxed-text id="box1">
+        <fig id="box2fig1"/>
+      </boxed-text>
     </body>
-</article>
+  </article>
+</root>

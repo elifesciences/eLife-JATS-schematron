@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="order-test-1.sch"?>
-<article/>
+<!--Context: list-item
+Test: ($type='order') and matches(.,'^\s?\d+')-->
+<root>
+  <article/>
+</root>

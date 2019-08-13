@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="reply-fig-test-2.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']//fig
+Test: matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')-->
+<root>
+  <article/>
+</root>

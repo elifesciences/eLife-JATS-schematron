@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="disp-subj-value-test-1.sch"?>
-<article/>
+<!--Context: article-categories/subj-group[@subj-group-type='display-channel']/subject
+Test: . = $allowed-disp-subj-->
+<root>
+  <article/>
+</root>

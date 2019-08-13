@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="given-names-test-10.sch"?>
-<article/>
+<!--Context: article-meta/contrib-group//name/given-names
+Test: matches(.,'[A-Za-z] [Dd]e$')-->
+<root>
+  <article/>
+</root>

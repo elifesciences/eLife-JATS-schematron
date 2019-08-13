@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ethics-test-3.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='ethics-information']
+Test: count(fn) = 0-->
+<root>
+  <article/>
+</root>

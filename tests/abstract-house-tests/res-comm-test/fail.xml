@@ -1,16 +1,20 @@
 <?oxygen SCHSchema="res-comm-test.sch"?>
-<article article-type="research-communication">
+<!--Context: abstract[not(@*)]
+Test: ($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))-->
+<root>
+  <article article-type="research-communication">
     <front>
-        <article-meta>
-            <article-categories>
-                <subj-group subj-group-type='display-channel'>
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-categories>
-            <abstract>
-                <p/>
-                <p/>
-            </abstract>
-        </article-meta>
-    </front>    
-</article>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-categories>
+        <abstract>
+          <p/>
+          <p/>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>

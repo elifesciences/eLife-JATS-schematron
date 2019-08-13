@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="retr-back.sch"?>
-<article/>
+<!--Context: article[@article-type = 'retraction']
+Test: back/*-->
+<root>
+  <article/>
+</root>

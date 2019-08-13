@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="reproduce-test-1.sch"?>
-<article/>
+<!--Context: fig|media[@mimetype='video']
+Test: not(descendant::permissions) and matches(caption,'[Rr]eproduced from')-->
+<root>
+  <article/>
+</root>

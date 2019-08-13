@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-data-18.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='data']
+Test: count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)-->
+<root>
+  <article/>
+</root>

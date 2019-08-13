@@ -1,15 +1,21 @@
 <?oxygen SCHSchema="xref-bibr-presence.sch"?>
-<article article-type="research-article">
+<!--Context: abstract[not(@*)]
+Test: descendant::xref[@ref-type='bibr']-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-categories>
-                <subj-group subj-group-type='display-channel'>
-                    <subject>Research Article</subject>
-                </subj-group>
-            </article-categories>
-            <abstract>
-                <p><xref ref-type="bibr" rid="bib1">Smith et al., 1991</xref></p>
-            </abstract>
-        </article-meta>
-    </front>    
-</article>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+        </article-categories>
+        <abstract>
+          <p>
+            <xref ref-type="bibr" rid="bib1">Smith et al., 1991</xref>
+          </p>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>

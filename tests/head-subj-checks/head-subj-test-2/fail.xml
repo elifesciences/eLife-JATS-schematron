@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="head-subj-test-2.sch"?>
-<article/>
+<!--Context: article-categories/subj-group[@subj-group-type='heading']
+Test: if ($article-type = 'editorial') then () else count(subject) = 0-->
+<root>
+  <article/>
+</root>

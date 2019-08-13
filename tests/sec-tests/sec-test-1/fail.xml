@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sec-test-1.sch"?>
-<article/>
+<!--Context: sec
+Test: title-->
+<root>
+  <article/>
+</root>

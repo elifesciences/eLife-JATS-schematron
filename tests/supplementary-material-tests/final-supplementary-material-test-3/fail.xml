@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="final-supplementary-material-test-3.sch"?>
-<article/>
+<!--Context: supplementary-material
+Test: if (caption) then not(caption/title) else ()-->
+<root>
+  <article/>
+</root>

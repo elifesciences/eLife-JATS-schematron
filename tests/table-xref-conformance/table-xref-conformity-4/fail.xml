@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="table-xref-conformity-4.sch"?>
-<article/>
+<!--Context: xref[@ref-type='table']
+Test: (contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2,1)))) and not(contains(.,'–'))-->
+<root>
+  <article/>
+</root>

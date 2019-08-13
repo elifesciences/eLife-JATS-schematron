@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-xref-test-7.sch"?>
-<article/>
+<!--Context: xref[@ref-type='fig']
+Test: matches($post-text,'^[\)][A-Za-z0-9]')-->
+<root>
+  <article/>
+</root>

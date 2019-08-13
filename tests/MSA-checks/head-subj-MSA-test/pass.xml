@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="head-subj-MSA-test.sch"?>
-<article/>
+<!--Context: article-categories/subj-group[@subj-group-type='heading']/subject
+Test: . = $MSAs-->
+<root>
+  <article/>
+</root>

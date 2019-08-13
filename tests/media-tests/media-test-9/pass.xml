@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="media-test-9.sch"?>
-<article/>
+<!--Context: media
+Test: matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')-->
+<root>
+  <article/>
+</root>

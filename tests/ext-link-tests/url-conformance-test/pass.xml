@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="url-conformance-test.sch"?>
-<article/>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')-->
+<root>
+  <article/>
+</root>

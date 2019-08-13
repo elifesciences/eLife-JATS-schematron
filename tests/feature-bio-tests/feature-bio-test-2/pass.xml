@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="feature-bio-test-2.sch"?>
-<article/>
+<!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio
+Test: if (count($aff) > 1) then () else not(contains(.,$aff))-->
+<root>
+  <article/>
+</root>

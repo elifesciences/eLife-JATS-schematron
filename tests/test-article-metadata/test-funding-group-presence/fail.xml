@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-funding-group-presence.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1-->
+<root>
+  <article/>
+</root>

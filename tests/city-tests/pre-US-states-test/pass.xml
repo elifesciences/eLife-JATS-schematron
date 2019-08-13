@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="pre-US-states-test.sch"?>
-<article>
+<!--Context: front//aff//named-content[@content-type='city']
+Test: matches($lc,$states-regex)-->
+<root>
+  <article>
     <front>
-        <aff>
-            <named-content content-type="city">New York</named-content>
-        </aff>
+      <aff>
+        <named-content content-type="city">New York</named-content>
+      </aff>
     </front>
-</article>
+  </article>
+</root>

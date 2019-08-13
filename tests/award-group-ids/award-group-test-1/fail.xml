@@ -1,10 +1,14 @@
 <?oxygen SCHSchema="award-group-test-1.sch"?>
-<article>
+<!--Context: funding-group/award-group
+Test: matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')-->
+<root>
+  <article>
     <front>
-        <article-meta>
-            <funding-group>
-                <award-group id="fundreqvrew1"/>
-            </funding-group>
-        </article-meta>
+      <article-meta>
+        <funding-group>
+          <award-group id="fundreqvrew1"/>
+        </funding-group>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

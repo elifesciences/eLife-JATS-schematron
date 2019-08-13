@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="media-test-3.sch"?>
-<article/>
+<!--Context: media
+Test: @xlink:href-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-parent-test.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: $parent = ($formatting-elems,'italic')-->
+<root>
+  <article/>
+</root>

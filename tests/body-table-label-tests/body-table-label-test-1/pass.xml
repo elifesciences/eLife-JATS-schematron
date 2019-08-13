@@ -1,11 +1,15 @@
 <?oxygen SCHSchema="body-table-label-test-1.sch"?>
-<article>
+<!--Context: body//table-wrap/label
+Test: matches(.,'^Table \d{1,4}\.$|^Key resources table$')-->
+<root>
+  <article>
     <body>
-        <table-wrap>
-            <label>Key resources table</label>
-        </table-wrap>
-        <table-wrap>
-            <label>Table 1.</label>
-        </table-wrap>
+      <table-wrap>
+        <label>Key resources table</label>
+      </table-wrap>
+      <table-wrap>
+        <label>Table 1.</label>
+      </table-wrap>
     </body>
-</article>
+  </article>
+</root>

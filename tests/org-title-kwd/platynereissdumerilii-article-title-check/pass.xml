@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="platynereissdumerilii-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])-->
+<root>
+  <article/>
+</root>

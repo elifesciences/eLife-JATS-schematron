@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-title-group-presence.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: title-group[article-title]-->
+<root>
+  <article/>
+</root>

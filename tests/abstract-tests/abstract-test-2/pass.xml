@@ -1,11 +1,15 @@
 <?oxygen SCHSchema="abstract-test-2.sch"?>
-<article article-type="research-article">
+<!--Context: front//abstract
+Test: (count(p) + count(sec[descendant::p])) lt 1-->
+<root>
+  <article article-type="research-article">
     <front>
-        <abstract>
-            <sec>
-                <title></title>
-                <p></p>
-            </sec>
-        </abstract>
-    </front>    
-</article>
+      <abstract>
+        <sec>
+          <title/>
+          <p/>
+        </sec>
+      </abstract>
+    </front>
+  </article>
+</root>

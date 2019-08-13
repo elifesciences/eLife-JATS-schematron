@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="surname-number-check.sch"?>
-<article/>
+<!--Context: element-citation//name
+Test: matches(.,'[0-9]')-->
+<root>
+  <article/>
+</root>

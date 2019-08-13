@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-high-3-1.sch"?>
-<article/>
+<!--Context: ref
+Test: @id-->
+<root>
+  <article/>
+</root>

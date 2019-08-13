@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-fullstop-check-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: (matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))-->
+<root>
+  <article/>
+</root>

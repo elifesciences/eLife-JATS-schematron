@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-label-test-1.sch"?>
-<article/>
+<!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label
+Test: matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')-->
+<root>
+  <article/>
+</root>

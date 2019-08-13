@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-elocation-conformance.sch"?>
-<article/>
+<!--Context: article-meta/elocation-id
+Test: . = concat('e' , $article-id)-->
+<root>
+  <article/>
+</root>

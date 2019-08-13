@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="award-group-test-3.sch"?>
-<article/>
+<!--Context: funding-group/award-group
+Test: principal-award-recipient-->
+<root>
+  <article/>
+</root>

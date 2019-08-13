@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="schmidteasmediterranea-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])-->
+<root>
+  <article/>
+</root>

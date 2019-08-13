@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-patent-11-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='patent']
+Test: ext-link-->
+<root>
+  <article/>
+</root>

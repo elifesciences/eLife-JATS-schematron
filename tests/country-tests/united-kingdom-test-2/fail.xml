@@ -1,10 +1,14 @@
 <?oxygen SCHSchema="united-kingdom-test-2.sch"?>
-<article>
+<!--Context: front//aff/country
+Test: $text = 'UK'-->
+<root>
+  <article>
     <front>
-        <article-meta>
-            <aff>
-                <country>UK</country>
-            </aff>
-        </article-meta>
+      <article-meta>
+        <aff>
+          <country>UK</country>
+        </aff>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

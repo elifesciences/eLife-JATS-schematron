@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="kwd-upper-case.sch"?>
-<article/>
+<!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']/kwd
+Test: substring(.,1,1) = upper-case(substring(.,1,1))-->
+<root>
+  <article/>
+</root>

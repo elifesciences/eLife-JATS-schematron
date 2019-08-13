@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="supplementary-material-title-test-2.sch"?>
-<article/>
+<!--Context: supplementary-material/caption/title
+Test: matches(.,'\.$')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="arxiv-web-test.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='web']
+Test: matches($link,'/arxiv.com')-->
+<root>
+  <article/>
+</root>

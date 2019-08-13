@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="surname-test-3.sch"?>
-<article/>
+<!--Context: article-meta/contrib-group//name/surname
+Test: descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc-->
+<root>
+  <article/>
+</root>

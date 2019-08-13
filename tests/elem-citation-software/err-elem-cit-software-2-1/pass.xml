@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-software-2-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type = 'software']
+Test: count(person-group) = 1 or (count(person-group/@person-group-type = 'author') + count(person-group/@person-group-type = 'editor') = 2)-->
+<root>
+  <article/>
+</root>

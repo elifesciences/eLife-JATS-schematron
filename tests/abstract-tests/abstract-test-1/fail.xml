@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="abstract-test-1.sch"?>
-<article article-type="research-article">
+<!--Context: front//abstract
+Test: if ($article-type = $features-article-types) then () else count(object-id[@pub-id-type='doi']) != 1-->
+<root>
+  <article article-type="research-article">
     <front>
-        <abstract></abstract>
-    </front>    
-</article>
+      <abstract/>
+    </front>
+  </article>
+</root>

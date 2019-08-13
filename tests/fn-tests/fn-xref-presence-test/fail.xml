@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fn-xref-presence-test.sch"?>
-<article/>
+<!--Context: fn[@id][not(@fn-type='other')]
+Test: ancestor::article//xref/@rid = @id-->
+<root>
+  <article/>
+</root>

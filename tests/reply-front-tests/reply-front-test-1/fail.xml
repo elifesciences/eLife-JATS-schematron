@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="reply-front-test-1.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']/front-stub
+Test: count(article-id[@pub-id-type='doi']) = 1-->
+<root>
+  <article/>
+</root>

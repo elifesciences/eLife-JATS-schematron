@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="low-level-sec-id-test.sch"?>
-<article/>
+<!--Context: article/body/sec//sec|article/back/sec//sec
+Test: @id = concat($parent-sec,'-',$pos)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ssmediterranea-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])-->
+<root>
+  <article/>
+</root>

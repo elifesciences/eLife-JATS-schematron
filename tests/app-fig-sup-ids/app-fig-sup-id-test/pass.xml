@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="app-fig-sup-id-test.sch"?>
-<article>
+<!--Context: article/back//app//fig[@specific-use='child-fig']
+Test: matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')-->
+<root>
+  <article>
     <back>
-        <app id="app1">
-            <fig id="app1fig1s1" specific-use="child-fig"/>
-        </app>
+      <app id="app1">
+        <fig id="app1fig1s1" specific-use="child-fig"/>
+      </app>
     </back>
-</article>
+  </article>
+</root>

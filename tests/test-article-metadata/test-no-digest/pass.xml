@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-no-digest.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: ($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']-->
+<root>
+  <article/>
+</root>

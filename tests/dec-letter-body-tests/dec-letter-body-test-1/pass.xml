@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="dec-letter-body-test-1.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='decision-letter']/body
+Test: child::*[1]/local-name() = 'boxed-text'-->
+<root>
+  <article/>
+</root>

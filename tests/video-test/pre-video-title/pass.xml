@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pre-video-title.sch"?>
-<article/>
+<!--Context: media[child::label]
+Test: caption/title-->
+<root>
+  <article/>
+</root>

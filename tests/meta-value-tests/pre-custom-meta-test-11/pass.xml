@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pre-custom-meta-test-11.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+Test: matches(.,' [Oo]ur |^[Oo]ur ')-->
+<root>
+  <article/>
+</root>

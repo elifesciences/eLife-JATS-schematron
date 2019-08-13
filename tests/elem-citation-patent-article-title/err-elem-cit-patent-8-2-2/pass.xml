@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-patent-8-2-2.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='patent']/article-title
+Test: count(*)=count(italic | sub | sup)-->
+<root>
+  <article/>
+</root>

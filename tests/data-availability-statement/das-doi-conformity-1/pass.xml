@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="das-doi-conformity-1.sch"?>
-<article/>
+<!--Context: sec[@sec-type='data-availability']/p[1]
+Test: matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))-->
+<root>
+  <article/>
+</root>

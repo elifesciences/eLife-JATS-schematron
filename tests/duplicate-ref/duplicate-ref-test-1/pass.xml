@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="duplicate-ref-test-1.sch"?>
-<article/>
+<!--Context: ref-list//ref
+Test: (element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])-->
+<root>
+  <article/>
+</root>

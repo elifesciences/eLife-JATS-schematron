@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="reply-body-test-2.sch"?>
-<article/>
+<!--Context: sub-article[@article-type='reply']/body
+Test: count(p) = 0-->
+<root>
+  <article/>
+</root>

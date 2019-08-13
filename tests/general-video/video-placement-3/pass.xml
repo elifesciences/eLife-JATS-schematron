@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="video-placement-3.sch"?>
-<article/>
+<!--Context: media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]
+Test: if ((count($cap-xref1) = 1) and (count($xref1) = 0)) then ($cap-xref1//preceding::media/@id = $id) else ($xref1//preceding::media/@id = $id)-->
+<root>
+  <article/>
+</root>

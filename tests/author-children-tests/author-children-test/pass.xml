@@ -1,20 +1,24 @@
 <?oxygen SCHSchema="author-children-test.sch"?>
-<article article-type="article-commentary">
+<!--Context: article-meta//contrib[@contrib-type='author']/*
+Test: if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] else self::*[local-name() = $allowed-contrib-blocks]-->
+<root>
+  <article article-type="article-commentary">
     <front>
-        <article-meta>
-            <contrib-group>
-                <contrib contrib-type="author">
-                    <name/>
-                    <email/>
-                    <contrib-id/>
-                    <xref/>
-                </contrib>
-                <contrib contrib-type="author">
-                    <collab/>
-                    <email/>
-                    <bio/>
-                </contrib>
-            </contrib-group>
-        </article-meta>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name/>
+            <email/>
+            <contrib-id/>
+            <xref/>
+          </contrib>
+          <contrib contrib-type="author">
+            <collab/>
+            <email/>
+            <bio/>
+          </contrib>
+        </contrib-group>
+      </article-meta>
     </front>
-</article>
+  </article>
+</root>

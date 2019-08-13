@@ -1,14 +1,18 @@
 <?oxygen SCHSchema="pre-app-table-report.sch"?>
-<article>
+<!--Context: article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]
+Test: ($no = string($pos))-->
+<root>
+  <article>
     <back>
-        <app id="appendix-1">
-            <title>Appendix 1</title>
-            <table-wrap id="app1table1">
-                <label>Appendix 1—table 1.</label>
-            </table-wrap>
-            <table-wrap id="app1table2">
-                <label>Appendix 1—table 2.</label>
-            </table-wrap>
-        </app>
+      <app id="appendix-1">
+        <title>Appendix 1</title>
+        <table-wrap id="app1table1">
+          <label>Appendix 1—table 1.</label>
+        </table-wrap>
+        <table-wrap id="app1table2">
+          <label>Appendix 1—table 2.</label>
+        </table-wrap>
+      </app>
     </back>
-</article>
+  </article>
+</root>

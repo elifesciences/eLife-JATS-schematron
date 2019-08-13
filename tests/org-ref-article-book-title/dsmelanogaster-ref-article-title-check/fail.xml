@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="dsmelanogaster-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])-->
+<root>
+  <article/>
+</root>

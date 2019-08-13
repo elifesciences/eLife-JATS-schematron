@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ring-op-symbol-sup.sch"?>
-<article/>
+<!--Context: sup
+Test: contains(.,'∘')-->
+<root>
+  <article/>
+</root>

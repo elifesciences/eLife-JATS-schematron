@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-1.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: replace(.,' ',' ') = ($cite1,$cite2)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="related-articles-test-6.sch"?>
-<article/>
+<!--Context: related-article
+Test: matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')-->
+<root>
+  <article/>
+</root>

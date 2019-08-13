@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="contrib-email-2.sch"?>
-<article/>
+<!--Context: article-meta//contrib
+Test: not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)-->
+<root>
+  <article/>
+</root>

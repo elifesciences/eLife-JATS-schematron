@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="andand-presence.sch"?>
-<article/>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+Test: matches(.,' [Aa]nd [Aa]nd ')-->
+<root>
+  <article/>
+</root>

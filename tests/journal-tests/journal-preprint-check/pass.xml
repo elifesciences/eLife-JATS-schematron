@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="journal-preprint-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']
+Test: matches(source,'[Bb]io[Rr]xiv|[Aa]r[Xx]iv')-->
+<root>
+  <article/>
+</root>

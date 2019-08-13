@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="das-supplemental-conformity.sch"?>
-<article/>
+<!--Context: sec[@sec-type='data-availability']/p[1]
+Test: matches(.,'[Ss]upplemental [Ffigure]')-->
+<root>
+  <article/>
+</root>

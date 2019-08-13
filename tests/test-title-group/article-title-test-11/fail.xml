@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-test-11.sch"?>
-<article/>
+<!--Context: article/front/article-meta/title-group
+Test: matches($tokens,'[A-Za-z]')-->
+<root>
+  <article/>
+</root>

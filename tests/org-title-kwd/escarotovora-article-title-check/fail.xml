@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="escarotovora-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])-->
+<root>
+  <article/>
+</root>

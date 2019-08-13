@@ -1,33 +1,31 @@
 <?oxygen SCHSchema="aff-test-1.sch"?>
-<article>
+<!--Context: article-meta/contrib-group/aff
+Test: parent::contrib-group//contrib//xref/@rid = @id-->
+<root>
+  <article>
     <article-meta>
-        <contrib-group>
-            <contrib contrib-type="author" id="author-000001">
-                <name>
-                    <surname>Zoolander</surname>
-                    <given-names>Derek</given-names>
-                </name>
-                <xref ref-type="aff" rid="aff1">1</xref>
-            </contrib>
-            <contrib contrib-type="author" id="author-000002">
-                <name>
-                    <surname>Hansel</surname>
-                </name>
-                <xref ref-type="aff" rid="aff2">2</xref>
-                <xref ref-type="aff" rid="aff3">3</xref>
-            </contrib>
-            <aff id="aff1">
-                <label>1</label>
-                ...
-            </aff>
-            <aff id="aff2">
-                <label>2</label>
-                ...
-            </aff>
-            <aff id="aff3">
-                <label>3</label>
-                ...
-            </aff>
-        </contrib-group>        
+      <contrib-group>
+        <contrib contrib-type="author" id="author-000001">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" id="author-000002">
+          <name>
+            <surname>Hansel</surname>
+          </name>
+          <xref ref-type="aff" rid="aff2">2</xref>
+          <xref ref-type="aff" rid="aff3">3</xref>
+        </contrib>
+        <aff id="aff1">
+          <label>1</label>...</aff>
+        <aff id="aff2">
+          <label>2</label>...</aff>
+        <aff id="aff3">
+          <label>3</label>...</aff>
+      </contrib-group>
     </article-meta>
-</article>
+  </article>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="media-test-6.sch"?>
-<article/>
+<!--Context: media
+Test: matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$') and (@mime-subtype='octet-stream')-->
+<root>
+  <article/>
+</root>

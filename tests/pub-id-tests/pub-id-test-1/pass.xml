@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="pub-id-test-1.sch"?>
-<article/>
+<!--Context: element-citation/pub-id
+Test: (@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ext-link-child-test.sch"?>
-<article/>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: $child = $formatting-elems-->
+<root>
+  <article/>
+</root>

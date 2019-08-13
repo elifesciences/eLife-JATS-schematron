@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="colour-styled-content-check.sch"?>
-<article/>
+<!--Context: styled-content
+Test: .-->
+<root>
+  <article/>
+</root>

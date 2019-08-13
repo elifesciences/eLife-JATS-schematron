@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-article-type.sch"?>
-<article article-type="research-article" dtd-version="1.1" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ali="http://www.niso.org/schemas/ali/1.0/"/>
+<!--Context: article
+Test: @article-type = $allowed-article-types-->
+<root>
+  <article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article" dtd-version="1.1"/>
+</root>

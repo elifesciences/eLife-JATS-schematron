@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="head-subj-test3.sch"?>
-<article/>
+<!--Context: article-meta/article-categories
+Test: ($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1-->
+<root>
+  <article/>
+</root>

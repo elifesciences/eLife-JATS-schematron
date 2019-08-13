@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="p-test-3.sch"?>
-<article/>
+<!--Context: p
+Test: count($text-tokens) = 0-->
+<root>
+  <article/>
+</root>

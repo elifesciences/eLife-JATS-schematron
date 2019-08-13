@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="math-test-7.sch"?>
-<article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<!--Context: mml:math
+Test: matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')-->
+<root>
+  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
     <mml:math>
-        <mml:mn>2</mml:mn>
-        <mml:mo>~</mml:mo>
-        <mml:mn>2</mml:mn>
+      <mml:mn>2</mml:mn>
+      <mml:mo>~</mml:mo>
+      <mml:mn>2</mml:mn>
     </mml:math>
-</article>
+  </article>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-volume-presence.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: volume-->
+<root>
+  <article/>
+</root>

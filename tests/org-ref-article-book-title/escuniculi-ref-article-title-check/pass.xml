@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="escuniculi-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])-->
+<root>
+  <article/>
+</root>

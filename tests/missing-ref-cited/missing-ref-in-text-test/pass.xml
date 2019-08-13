@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="missing-ref-in-text-test.sch"?>
-<article/>
+<!--Context: article[back/ref-list]
+Test: ($ref-list-regex !='') and matches($missing-ref-text,$missing-ref-regex)-->
+<root>
+  <article/>
+</root>

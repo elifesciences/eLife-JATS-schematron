@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-epub-date.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: pub-date[@publication-format='electronic'][@date-type='publication']-->
+<root>
+  <article/>
+</root>

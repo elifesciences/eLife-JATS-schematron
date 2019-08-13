@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="dtd-info.sch"?>
-<article/>
+<!--Context: article
+Test: @dtd-version-->
+<root>
+  <article dtd-version="1.1"/>
+</root>

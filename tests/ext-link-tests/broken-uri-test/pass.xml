@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="broken-uri-test.sch"?>
-<article/>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: @xlink:href castable as xs:anyURI-->
+<root>
+  <article/>
+</root>

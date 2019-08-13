@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="salmonellasenterica-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])-->
+<root>
+  <article/>
+</root>

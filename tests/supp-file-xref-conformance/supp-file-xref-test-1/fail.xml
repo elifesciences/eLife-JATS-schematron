@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="supp-file-xref-test-1.sch"?>
-<article/>
+<!--Context: xref[@ref-type='supplementary-material']
+Test: ancestor::supplementary-material/@id = $rid-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="article-title-journal-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches(.,' [Jj]ournal ')-->
+<root>
+  <article/>
+</root>

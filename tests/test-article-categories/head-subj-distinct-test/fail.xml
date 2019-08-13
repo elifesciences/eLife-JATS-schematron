@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="head-subj-distinct-test.sch"?>
-<article/>
+<!--Context: article-meta/article-categories
+Test: count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))-->
+<root>
+  <article/>
+</root>

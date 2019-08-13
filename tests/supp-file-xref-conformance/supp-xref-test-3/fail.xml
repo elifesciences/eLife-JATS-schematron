@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="supp-xref-test-3.sch"?>
-<article/>
+<!--Context: xref[@ref-type='supplementary-material']
+Test: matches($post-text,'^[\)][A-Za-z0-9]')-->
+<root>
+  <article/>
+</root>

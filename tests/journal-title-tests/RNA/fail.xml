@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="RNA.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: ($uc = 'RNA') and (. != 'RNA')-->
+<root>
+  <article/>
+</root>

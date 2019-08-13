@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="list-item-test-1.sch"?>
-<article/>
+<!--Context: list-item
+Test: matches(.,'^\s?\p{Ll}')-->
+<root>
+  <article/>
+</root>

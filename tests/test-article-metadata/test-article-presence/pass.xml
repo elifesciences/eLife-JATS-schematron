@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-article-presence.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: count(article-categories) = 1-->
+<root>
+  <article/>
+</root>

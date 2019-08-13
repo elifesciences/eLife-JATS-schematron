@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="head-subj-test-1.sch"?>
-<article/>
+<!--Context: article-categories/subj-group[@subj-group-type='heading']
+Test: count(subject) le 3-->
+<root>
+  <article/>
+</root>

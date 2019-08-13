@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sscerevisiae-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])-->
+<root>
+  <article/>
+</root>

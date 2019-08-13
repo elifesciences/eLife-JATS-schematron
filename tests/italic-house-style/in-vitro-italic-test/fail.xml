@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="in-vitro-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Ii]n [Vv]itro')-->
+<root>
+  <article/>
+</root>

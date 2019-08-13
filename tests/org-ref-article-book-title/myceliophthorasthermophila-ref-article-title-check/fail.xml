@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="myceliophthorasthermophila-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-presence.sch"?>
-<article/>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+Test: not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="streptococcusspyogenes-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])-->
+<root>
+  <article/>
+</root>

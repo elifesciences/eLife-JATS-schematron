@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="allowed-p-test.sch"?>
-<article/>
+<!--Context: p/*
+Test: if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation') else self::*/local-name() = $allowed-p-blocks-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="equal-count-test.sch"?>
-<article/>
+<!--Context: article/front/article-meta/contrib-group
+Test: count(contrib[@equal-contrib='yes']) = 1-->
+<root>
+  <article/>
+</root>

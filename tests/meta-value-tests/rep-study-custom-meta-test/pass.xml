@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="rep-study-custom-meta-test.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+Test: ($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))-->
+<root>
+  <article/>
+</root>

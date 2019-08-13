@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="kwd-child-test.sch"?>
-<article/>
+<!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']/kwd
+Test: *[local-name() != 'italic']-->
+<root>
+  <article/>
+</root>

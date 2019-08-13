@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ampersand-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')-->
+<root>
+  <article/>
+</root>

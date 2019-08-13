@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="in-natura-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Ii]n [Nn]atura')-->
+<root>
+  <article/>
+</root>

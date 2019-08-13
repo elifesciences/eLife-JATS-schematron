@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="comp-int-fn-test-1.sch"?>
-<article/>
+<!--Context: fn-group[@content-type='competing-interest']
+Test: count(fn) gt 0-->
+<root>
+  <article/>
+</root>

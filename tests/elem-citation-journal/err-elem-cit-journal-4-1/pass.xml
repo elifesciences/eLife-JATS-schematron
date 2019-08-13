@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-journal-4-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']
+Test: count(source)=1-->
+<root>
+  <article/>
+</root>

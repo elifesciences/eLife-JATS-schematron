@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-8.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='periodical']/string-date/year
+Test: . = preceding::year and ancestor::element-citation/person-group[1]/name[1]/surname = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname-->
+<root>
+  <article/>
+</root>

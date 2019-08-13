@@ -1,22 +1,24 @@
 <?oxygen SCHSchema="additional-info-test-2.sch"?>
-<article article-type="research-article" dtd-version="1.1">
+<!--Context: sec[@sec-type='additional-information']
+Test: if ($author-count = 0) then () else not(fn-group[@content-type='competing-interest'])-->
+<root>
+  <article article-type="research-article" dtd-version="1.1">
     <front>
-        <article-meta>
-           ...
-            <contrib-group>
-                <contrib contrib-type="author" id="author-125026" equal-contrib="yes">
-                    <name>
-                        <surname>Mevers</surname>
-                        <given-names>Emily</given-names>
-                    </name>
-                    <xref ref-type="fn" rid="conf1"/>
-                </contrib>
-            </contrib-group>
-        </article-meta>
+      <article-meta>...<contrib-group>
+          <contrib contrib-type="author" id="author-125026" equal-contrib="yes">
+            <name>
+              <surname>Mevers</surname>
+              <given-names>Emily</given-names>
+            </name>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+        </contrib-group>
+      </article-meta>
     </front>
     <back>
-        <sec sec-type="additional-information" id="s4">
-            <title>Additional information</title>  
-        </sec>
+      <sec sec-type="additional-information" id="s4">
+        <title>Additional information</title>
+      </sec>
     </back>
-</article>
+  </article>
+</root>

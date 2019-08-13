@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="custom-meta-test-2.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group/custom-meta
+Test: meta-name = 'Author impact statement'-->
+<root>
+  <article/>
+</root>

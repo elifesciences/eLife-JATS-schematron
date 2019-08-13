@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="related-articles-test-4.sch"?>
-<article/>
+<!--Context: related-article
+Test: @related-article-type = $allowed-values-->
+<root>
+  <article/>
+</root>

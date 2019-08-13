@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-6.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: matches($pre-text,'\($|\[$') and (. = $cite2)-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="preprint-replacement-character-presence.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='preprint']/source
+Test: matches(.,'�')-->
+<root>
+  <article/>
+</root>

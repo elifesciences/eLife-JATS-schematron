@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="custom-meta-presence.sch"?>
-<article/>
+<!--Context: article-meta/custom-meta-group
+Test: count(custom-meta[@specific-use='meta-only']) = 1-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="suffix-child-test.sch"?>
-<article/>
+<!--Context: article-meta/contrib-group//name/suffix
+Test: *-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sspombe-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])-->
+<root>
+  <article/>
+</root>

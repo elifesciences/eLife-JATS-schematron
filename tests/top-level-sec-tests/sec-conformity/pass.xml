@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sec-conformity.sch"?>
-<article/>
+<!--Context: body/sec
+Test: not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)-->
+<root>
+  <article/>
+</root>

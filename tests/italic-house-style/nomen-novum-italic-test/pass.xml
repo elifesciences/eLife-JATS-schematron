@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="nomen-novum-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Nn]omen [Nn]ovum')-->
+<root>
+  <article/>
+</root>

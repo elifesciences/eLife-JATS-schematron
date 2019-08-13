@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-12.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: ((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+'))) or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($'))) and (. = $cite1)-->
+<root>
+  <article/>
+</root>

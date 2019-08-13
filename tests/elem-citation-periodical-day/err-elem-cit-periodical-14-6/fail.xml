@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-6.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='periodical']/string-date/day
+Test: matches(normalize-space(.),'([1-9])|([1-2][0-9])|(3[0-1])')-->
+<root>
+  <article/>
+</root>

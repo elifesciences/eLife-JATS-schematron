@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="plural-test-1.sch"?>
-<article/>
+<!--Context: aff/institution[@content-type='dept']
+Test: matches(.,'[Dd]epartments')-->
+<root>
+  <article/>
+</root>

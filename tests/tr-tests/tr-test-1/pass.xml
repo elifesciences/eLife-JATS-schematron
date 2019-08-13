@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="tr-test-1.sch"?>
-<article/>
+<!--Context: tr
+Test: $count = 0-->
+<root>
+  <article/>
+</root>

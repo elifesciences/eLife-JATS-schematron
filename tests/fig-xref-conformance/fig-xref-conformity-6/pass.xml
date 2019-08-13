@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-xref-conformity-6.sch"?>
-<article/>
+<!--Context: xref[@ref-type='fig']
+Test: ($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))-->
+<root>
+  <article/>
+</root>

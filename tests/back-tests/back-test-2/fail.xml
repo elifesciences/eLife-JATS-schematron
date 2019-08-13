@@ -1,16 +1,20 @@
 <?oxygen SCHSchema="back-test-2.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: count(sec[@sec-type='supplementary-material']) gt 1-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
     <back>
-        <sec sec-type="supplementary-material"/>
-        <sec sec-type="supplementary-material"/>
+      <sec sec-type="supplementary-material"/>
+      <sec sec-type="supplementary-material"/>
     </back>
-</article>
+  </article>
+</root>

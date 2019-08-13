@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="tbody-test-1.sch"?>
-<article/>
+<!--Context: table/tbody
+Test: count(tr) = 0-->
+<root>
+  <article/>
+</root>

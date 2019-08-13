@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-title-test-5.sch"?>
-<article/>
+<!--Context: fig/caption/title
+Test: matches(.,'^\p{P}')-->
+<root>
+  <article/>
+</root>

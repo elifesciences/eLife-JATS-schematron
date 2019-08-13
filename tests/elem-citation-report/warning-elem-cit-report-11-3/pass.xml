@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="warning-elem-cit-report-11-3.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='report']
+Test: some $p in document($publisher-locations)/locations/location/text() satisfies ends-with(publisher-name,$p)-->
+<root>
+  <article/>
+</root>

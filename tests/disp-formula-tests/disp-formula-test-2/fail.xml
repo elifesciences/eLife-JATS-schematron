@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="disp-formula-test-2.sch"?>
-<article/>
+<!--Context: disp-formula
+Test: mml:math-->
+<root>
+  <article/>
+</root>

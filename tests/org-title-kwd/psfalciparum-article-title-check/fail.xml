@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="psfalciparum-article-title-check.sch"?>
-<article/>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])-->
+<root>
+  <article/>
+</root>

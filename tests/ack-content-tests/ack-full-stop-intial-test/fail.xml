@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="ack-full-stop-intial-test.sch"?>
-<article>
+<!--Context: ack//p
+Test: matches(.,' [A-Z]\. |^[A-Z]\. ')-->
+<root>
+  <article>
     <back>
-        <ack>
-            <p>S. Zizek ...</p>
-        </ack>
+      <ack>
+        <p>S. Zizek ...</p>
+      </ack>
     </back>
-</article>
+  </article>
+</root>

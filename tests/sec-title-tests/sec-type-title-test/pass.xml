@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="sec-type-title-test.sch"?>
-<article/>
+<!--Context: sec[@sec-type]/title
+Test: if ($title = 'undefined') then () else . != $title-->
+<root>
+  <article/>
+</root>

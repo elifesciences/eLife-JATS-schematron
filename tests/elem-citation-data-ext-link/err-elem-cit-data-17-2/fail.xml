@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-data-17-2.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='data']/ext-link
+Test: @xlink:href-->
+<root>
+  <article/>
+</root>

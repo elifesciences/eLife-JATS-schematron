@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="a-posteriori-italic-test.sch"?>
-<article/>
+<!--Context: italic[not(ancestor::ref)]
+Test: matches(.,'[Aa] [Pp]osteriori')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="fig-xref-test-9.sch"?>
-<article/>
+<!--Context: xref[@ref-type='fig']
+Test: matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="alpha-upper-test-1.sch"?>
-<article/>
+<!--Context: list-item
+Test: ($type='alpha-upper') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)]? ')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-3.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='periodical']/string-date
+Test: count(day) le 1-->
+<root>
+  <article/>
+</root>

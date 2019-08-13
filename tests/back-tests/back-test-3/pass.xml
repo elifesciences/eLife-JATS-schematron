@@ -1,15 +1,19 @@
 <?oxygen SCHSchema="back-test-3.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then () else count(sec[@sec-type='data-availability']) != 1-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
     <back>
-        <sec sec-type="data-availability"/>
+      <sec sec-type="data-availability"/>
     </back>
-</article>
+  </article>
+</root>

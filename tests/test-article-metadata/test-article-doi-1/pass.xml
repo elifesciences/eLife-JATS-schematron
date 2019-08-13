@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-article-doi-1.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')-->
+<root>
+  <article/>
+</root>

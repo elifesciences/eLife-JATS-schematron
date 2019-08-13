@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-data-11-3-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='data']
+Test: count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)-->
+<root>
+  <article/>
+</root>

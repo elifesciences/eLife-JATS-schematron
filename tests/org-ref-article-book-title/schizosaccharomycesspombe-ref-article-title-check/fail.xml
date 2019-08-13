@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="schizosaccharomycesspombe-ref-article-title-check.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])-->
+<root>
+  <article/>
+</root>

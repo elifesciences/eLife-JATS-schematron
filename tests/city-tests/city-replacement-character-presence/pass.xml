@@ -1,8 +1,12 @@
 <?oxygen SCHSchema="city-replacement-character-presence.sch"?>
-<article>
+<!--Context: front//aff//named-content[@content-type='city']
+Test: matches(.,'�')-->
+<root>
+  <article>
     <front>
-        <aff>
-            <named-content content-type="city">Cambridge �</named-content>
-        </aff>
+      <aff>
+        <named-content content-type="city">Cambridge �</named-content>
+      </aff>
     </front>
-</article>
+  </article>
+</root>

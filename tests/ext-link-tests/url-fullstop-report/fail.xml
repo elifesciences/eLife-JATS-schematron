@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="url-fullstop-report.sch"?>
-<article/>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: matches(@xlink:href,'\.$')-->
+<root>
+  <article/>
+</root>

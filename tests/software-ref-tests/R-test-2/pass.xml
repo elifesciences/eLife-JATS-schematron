@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="R-test-2.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='software']
+Test: matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)-->
+<root>
+  <article/>
+</root>

@@ -1,11 +1,15 @@
 <?oxygen SCHSchema="sc-title-test-1.sch"?>
-<article article-type="research-article">
+<!--Context: article-meta//article-title
+Test: ($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')-->
+<root>
+  <article article-type="research-article">
     <article-meta>
-        <subj-group subj-group-type="display-channel">
-            <subject>Scientific Correspondence</subject>
-        </subj-group>
-        <title-group>
-            <article-title>Comment on “Article title'</article-title>
-        </title-group>
+      <subj-group subj-group-type="display-channel">
+        <subject>Scientific Correspondence</subject>
+      </subj-group>
+      <title-group>
+        <article-title>Comment on “Article title'</article-title>
+      </title-group>
     </article-meta>
-</article>
+  </article>
+</root>

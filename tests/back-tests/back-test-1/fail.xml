@@ -1,15 +1,17 @@
 <?oxygen SCHSchema="back-test-1.sch"?>
-<article article-type="research-article">
+<!--Context: back
+Test: if ($article-type = ($features-article-types,'retraction','correction')) then () else count(sec[@sec-type='additional-information']) != 1-->
+<root>
+  <article article-type="research-article">
     <front>
-        <article-meta>
-            <article-catergories>
-                <subj-group subj-group-type="display-channel">
-                    <subject>Research Communication</subject>
-                </subj-group>
-            </article-catergories>
-        </article-meta>
+      <article-meta>
+        <article-catergories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-catergories>
+      </article-meta>
     </front>
-    <back>
-        
-    </back>
-</article>
+    <back/>
+  </article>
+</root>

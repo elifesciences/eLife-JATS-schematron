@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-patent-2-1.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='patent']
+Test: count(person-group[@person-group-type='inventor'])=1-->
+<root>
+  <article/>
+</root>

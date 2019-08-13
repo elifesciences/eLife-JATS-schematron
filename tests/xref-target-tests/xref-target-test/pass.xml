@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="xref-target-test.sch"?>
-<article/>
+<!--Context: xref
+Test: if (@ref-type='aff') then $target/local-name() != 'aff' else if (@ref-type='fn') then $target/local-name() != 'fn' else ()-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="non-ro-kwd-presence-test.sch"?>
-<article/>
+<!--Context: article-meta/kwd-group[not(@kwd-group-type='research-organism')]
+Test: kwd-->
+<root>
+  <article/>
+</root>

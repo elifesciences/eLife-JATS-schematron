@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="reg-trademark-symbol.sch"?>
-<article/>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+Test: contains(.,'®')-->
+<root>
+  <article/>
+</root>

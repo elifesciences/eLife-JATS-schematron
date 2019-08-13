@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-5.sch"?>
-<article/>
+<!--Context: element-citation
+Test: descendant::etal-->
+<root>
+  <article/>
+</root>

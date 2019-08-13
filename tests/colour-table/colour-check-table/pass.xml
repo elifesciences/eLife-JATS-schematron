@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="colour-check-table.sch"?>
-<article/>
+<!--Context: th|td
+Test: starts-with(@style,'author-callout')-->
+<root>
+  <article/>
+</root>

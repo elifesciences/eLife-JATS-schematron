@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="test-volume-contents.sch"?>
-<article/>
+<!--Context: article/front/article-meta
+Test: matches(volume,'^[0-9]*$')-->
+<root>
+  <article/>
+</root>

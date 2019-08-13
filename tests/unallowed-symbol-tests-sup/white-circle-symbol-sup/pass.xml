@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="white-circle-symbol-sup.sch"?>
-<article/>
+<!--Context: sup
+Test: contains(.,'○')-->
+<root>
+  <article/>
+</root>

@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="journal-off-presence.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: matches(.,'[Oo]fficial [Jj]ournal')-->
+<root>
+  <article/>
+</root>

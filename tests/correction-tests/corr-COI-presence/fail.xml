@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="corr-COI-presence.sch"?>
-<article/>
+<!--Context: article[@article-type = 'correction']
+Test: descendant::fn-group[@content-type='competing-interest']-->
+<root>
+  <article/>
+</root>

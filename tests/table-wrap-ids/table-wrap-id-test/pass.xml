@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="table-wrap-id-test.sch"?>
-<article/>
+<!--Context: article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]
+Test: if (label = 'Key resources table') then @id='keyresource' else if (label) then matches(@id, '^table[0-9]{1,3}$') else matches(@id, '^inlinetable[0-9]{1,3}$')-->
+<root>
+  <article/>
+</root>

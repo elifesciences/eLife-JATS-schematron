@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="err-xref-high-2-1.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or (some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))-->
+<root>
+  <article/>
+</root>

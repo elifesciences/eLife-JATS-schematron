@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="software-replacement-character-presence.sch"?>
-<article/>
+<!--Context: element-citation[@publication-type='software']
+Test: matches(.,'�')-->
+<root>
+  <article/>
+</root>

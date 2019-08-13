@@ -1,2 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-19.sch"?>
-<article/>
+<!--Context: xref[@ref-type='bibr']
+Test: matches(.,'^et al|^ and|^[\(]\d|^,')-->
+<root>
+  <article/>
+</root>
