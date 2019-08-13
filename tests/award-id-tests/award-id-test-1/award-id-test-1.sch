@@ -13,7 +13,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
@@ -615,6 +614,11 @@
       <let name="id" value="parent::award-group/@id"/>
       <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id<value-of select="$id"/>has a comma or semi-colon in the award id. Should this be separated out into several funding entries? -<value-of select="."/>
       </report>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

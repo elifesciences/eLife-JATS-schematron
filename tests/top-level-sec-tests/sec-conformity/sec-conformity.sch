@@ -13,7 +13,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
@@ -616,6 +615,11 @@
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions', 'Model and methods')"/>
       <report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title -<value-of select="title"/>- is not a usual title for<value-of select="$type"/>content. Should this be captured as a sub-level of<value-of select="preceding-sibling::sec[1]/title"/>?</report>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

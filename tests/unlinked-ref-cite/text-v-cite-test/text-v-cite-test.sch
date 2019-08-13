@@ -13,7 +13,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
@@ -618,6 +617,11 @@
       <let name="regex" value="concat($cite1,'|',$cite2)"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id<value-of select="$id"/>has unlinked citations in the text - search<value-of select="$cite1"/>or<value-of select="$cite2"/>.</report>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::ref-list/ref/element-citation" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

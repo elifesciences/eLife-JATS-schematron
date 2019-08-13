@@ -13,7 +13,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
@@ -614,6 +613,11 @@
     <rule context="object-id[@pub-id-type='doi']" id="object-id-tests">
       <let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
       <assert test="matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')" role="error" id="object-id-test-2">object-id must follow this convention - '10.7554/eLife.00000.000'.</assert>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::object-id[@pub-id-type='doi']" role="error" id="object-id-tests-xspec-assert">object-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

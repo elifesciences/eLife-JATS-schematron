@@ -24,9 +24,9 @@ return delete node $x,
         return 
         replace value of node $x/@value with $new-v,
 
-for $x in $copy1//comment()
-return delete node $x
-       )
+        for $x in $copy1//comment()
+        return delete node $x
+    )
 
   return
 
@@ -39,7 +39,26 @@ return delete node $x
     return 
      if ($x/@id = $id) then ()
      else if ($x/local-name() = 'let') then ()
-     else delete node $x 
+     else delete node $x,
+     
+    for $x in $copy2//*:schema
+    let $rule := $x//*[@id = $id]/parent::*:rule
+    let $test := $rule/@context/string()
+    let $q := 
+            if (matches($test,'\|')) then <assert test="{string-join(
+                              for $x in tokenize($test,'\|')
+                              return concat('descendant::',$x)
+                              ,
+                              ' or ')}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert>
+            else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
+    
+    return insert node 
+        <pattern id="root-pattern">
+        <rule context="root" id="root-rule">
+        {$q}
+        </rule>
+        </pattern>
+    as last into $x 
     )
 
 return $copy2

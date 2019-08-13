@@ -16,8 +16,7 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
 <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
   
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
@@ -635,8 +634,7 @@
   <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
   
   
- <pattern id="article">
- 
+ <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
       
 	  <report test="@dtd-version" role="info" id="dtd-info">DTD version is <value-of select="@dtd-version"/>
@@ -655,8 +653,9 @@
       </report>
 		
  	</rule>
-	
-	<rule context="article[@article-type='research-article']" id="research-article">
+  </pattern>
+  <pattern id="research-article-pattern">
+    <rule context="article[@article-type='research-article']" id="research-article">
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
 	
 	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
@@ -666,11 +665,10 @@
 	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
 	
 	</rule>
- </pattern>
+  </pattern>
 
-  <pattern id="front"> 
-	 
-	 <rule context="article/front" id="test-front">
+  <pattern id="test-front-pattern">
+    <rule context="article/front" id="test-front">
 	 
   	  <assert test="count(journal-meta) = 1" role="error" id="test-front-jmeta">There must be one journal-meta that is a child of front. Currently there are <value-of select="count(journal-meta)"/>
       </assert>
@@ -681,9 +679,8 @@
 	 </rule>
   </pattern>
 
-  <pattern id="journal-meta">
-	 
-	 <rule context="article/front/journal-meta" id="test-journal-meta">
+  <pattern id="test-journal-meta-pattern">
+    <rule context="article/front/journal-meta" id="test-journal-meta">
 	 
 		<assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" role="error" id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/>
       </assert>
@@ -702,9 +699,8 @@
 	 </rule>
   </pattern>
 
-  <pattern id="article-metadata">         
-			 
-  <rule context="article/front/article-meta" id="test-article-metadata">
+  <pattern id="test-article-metadata-pattern">
+    <rule context="article/front/article-meta" id="test-article-metadata">
     <let name="article-id" value="article-id[@pub-id-type='publisher-id']"/>
     <let name="article-type" value="ancestor::article/@article-type"/>
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
@@ -767,16 +763,18 @@
     <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))        then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
         <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
    </rule>
-   
-   <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
+  </pattern>
+  <pattern id="test-research-article-metadata-pattern">
+    <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
     <assert test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
      
      <assert test="contrib-group[@content-type='section']" role="error" id="test-contrib-group-presence-2">contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</assert>
    
    </rule>
-	 
-   <rule context="article-meta/article-categories" id="test-article-categories">
+  </pattern>
+  <pattern id="test-article-categories-pattern">
+    <rule context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
 	   
      <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
@@ -791,7 +789,8 @@
 	   
      <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
 	</rule>
-    
+  </pattern>
+  <pattern id="disp-channel-checks-pattern">
     <rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject" id="disp-channel-checks">
     <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
@@ -800,12 +799,14 @@
       
       <assert test="if ($article-type = 'research-article') then . = $research-disp-channels         else if ($article-type = 'article-commentary') then . = 'Insight'         else if ($article-type = 'editorial') then . = 'Editorial'         else if ($article-type = 'correction') then . = 'Correction'         else if ($article-type = 'discussion') then . = 'Feature Article'         else if ($article-type = 'review-article') then . = 'Review Article'         else . = 'Retraction'" role="error" id="disp-subj-value-test-2">Content of the display channel must correspond with the correct NLM article type defined in article[@artilce-type].</assert>
   </rule>
-    
+  </pattern>
+  <pattern id="MSA-checks-pattern">
     <rule context="article-categories/subj-group[@subj-group-type='heading']/subject" id="MSA-checks">
       
       <assert test=". = $MSAs" role="error" id="head-subj-MSA-test">Content of the heading must match one of the MSAs.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="head-subj-checks-pattern">
     <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
@@ -813,8 +814,9 @@
       
       <report test="if ($article-type = 'editorial') then ()         else count(subject) = 0" role="error" id="head-subj-test-2">There must be at least one MSA.</report>
     </rule>
-	
-	<rule context="article/front/article-meta/title-group" id="test-title-group">
+  </pattern>
+  <pattern id="test-title-group-pattern">
+    <rule context="article/front/article-meta/title-group" id="test-title-group">
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
 	  <let name="title" value="replace(article-title,'\p{P}','')"/>
@@ -847,8 +849,9 @@
       </report>
 	
 	</rule>
-	
-	<rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
+  </pattern>
+  <pattern id="test-contrib-group-pattern">
+    <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
 		
     <assert test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
 		  
@@ -856,8 +859,9 @@
       </report>
 	
 	</rule>
-	
-	<rule context="article-meta/contrib-group//name" id="name-tests">
+  </pattern>
+  <pattern id="name-tests-pattern">
+    <rule context="article-meta/contrib-group//name" id="name-tests">
 		
     	<assert test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
 	  
@@ -866,8 +870,9 @@
 	  <assert test="given-names" role="warning" id="given-names-test-2">This name - <value-of select="."/> - does not contain a given-name. Please check with eLife staff that this is correct.</assert>
 	  
 	</rule>
-	  
-	  <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
+  </pattern>
+  <pattern id="surname-tests-pattern">
+    <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">surname must not be empty.</report>
 		
@@ -882,7 +887,8 @@
 	  <report test="matches(.,'\s$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 		
 	  </rule>
-    
+  </pattern>
+  <pattern id="given-names-tests-pattern">
     <rule context="article-meta/contrib-group//name/given-names" id="given-names-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">given-names must not be empty.</report>
@@ -909,7 +915,8 @@
       <report test="matches(.,'[A-Za-z] [Ee]l$')" role="warning" id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
 	</rule>
-    
+  </pattern>
+  <pattern id="suffix-tests-pattern">
     <rule context="article-meta/contrib-group//name/suffix" id="suffix-tests">
       
       <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
@@ -918,15 +925,17 @@
       </report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="name-child-tests-pattern">
     <rule context="article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]" id="name-child-tests">
       
       <report test="true()" role="error" id="disallowed-child-assert">
         <value-of select="local-name()"/> is not allowed as a child of name.</report>
       
     </rule>
-	
-	<rule context="article-meta//contrib" id="contrib-tests">
+  </pattern>
+  <pattern id="contrib-tests-pattern">
+    <rule context="article-meta//contrib" id="contrib-tests">
 	  <let name="type" value="@contrib-type"/>
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
@@ -961,8 +970,9 @@
         <value-of select="concat(descendant::surname,' ',descendant::given-names)"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
 		
 		</rule>
-		
-		<rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
+  </pattern>
+  <pattern id="author-children-tests-pattern">
+    <rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
 			<let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref')"/>
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
@@ -972,22 +982,25 @@
         <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
 		
 		</rule>
-
-	<rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
+  </pattern>
+  <pattern id="orcid-tests-pattern">
+    <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
 		
     	<assert test="@authenticated='true'" role="error" id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
 		
 	  <assert test="matches(.,'http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
 		
 		</rule>
-	
-	<rule context="article-meta//email" id="email-tests">
+  </pattern>
+  <pattern id="email-tests-pattern">
+    <rule context="article-meta//email" id="email-tests">
 		
     	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$')" role="error" id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
 	</rule>
-	
-	<rule context="article-meta/history" id="history-tests">
+  </pattern>
+  <pattern id="history-tests-pattern">
+    <rule context="article-meta/history" id="history-tests">
 		
     	<assert test="date[@date-type='received']" role="error" id="history-date-test-1">history must contain date[@date-type='received']</assert>
 		
@@ -995,8 +1008,9 @@
 	
 	
 	</rule>
-	
-	<rule context="date" id="date-tests">
+  </pattern>
+  <pattern id="date-tests-pattern">
+    <rule context="date" id="date-tests">
 	  
 	  <assert test="matches(day,'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
@@ -1007,7 +1021,8 @@
     	<assert test="@iso-8601-date = concat(year,'-',month,'-',day)" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
 	
 	</rule>
-    
+  </pattern>
+  <pattern id="pub-date-tests-1-pattern">
     <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
       
       <assert test="matches(day,'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-1">day is not present in pub-date.</assert>
@@ -1021,7 +1036,8 @@
       <assert test="matches(year,'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="pub-date-tests-2-pattern">
     <rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
       
       <assert test="matches(year,'^[0-9]{4}$')" role="error" id="pub-date-test-4">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
@@ -1031,8 +1047,9 @@
       <assert test="year = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year" role="error" id="pub-date-test-6">pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
       
     </rule>
-	
-	<rule context="front//permissions" id="front-permissions-tests">
+  </pattern>
+  <pattern id="front-permissions-tests-pattern">
+    <rule context="front//permissions" id="front-permissions-tests">
 	<let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
@@ -1058,16 +1075,18 @@
 	  <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	
 	</rule>
-	
-	<rule context="front//permissions/license" id="license-tests">
+  </pattern>
+  <pattern id="license-tests-pattern">
+    <rule context="front//permissions/license" id="license-tests">
 	
 	<assert test="ali:license_ref" role="error" id="license-test-1">license must contain ali:license_ref.</assert>
 	
 	<assert test="count(license-p) = 1" role="error" id="license-test-2">license must contain one and only one license-p.</assert>
 	
 	</rule>
-	
-	<rule context="front//abstract" id="abstract-tests">
+  </pattern>
+  <pattern id="abstract-tests-pattern">
+    <rule context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
 		
 	<!-- Exception for Features article-types -->	
@@ -1078,13 +1097,15 @@
 	<report test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
 		
     </rule>
-	
+  </pattern>
+  <pattern id="aff-tests-pattern">
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
       
     <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
-    
-	<rule context="article-meta/funding-group" id="funding-group-tests">
+  </pattern>
+  <pattern id="funding-group-tests-pattern">
+    <rule context="article-meta/funding-group" id="funding-group-tests">
 	  <let name="author-count" value="count(parent::article-meta//contrib[@contrib-type='author'])"/>
 		
 		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
@@ -1095,8 +1116,9 @@
 		
 		
     </rule>
-	
-	<rule context="funding-group/award-group" id="award-group-tests">
+  </pattern>
+  <pattern id="award-group-tests-pattern">
+    <rule context="funding-group/award-group" id="award-group-tests">
 	  <let name="id" value="@id"/>
 		
 		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source.</assert>
@@ -1111,7 +1133,8 @@
 	  
 	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no xref from a contrib pointing to this award-group. This is incorrect.</assert>
 	</rule>
-    
+  </pattern>
+  <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       
@@ -1123,20 +1146,23 @@
       <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
       <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, institution-id[@institution-id-type="FundRef"] should be present in institution-wrap; warn staff if not</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="kwd-group-tests-pattern">
     <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
       
       <assert test="@kwd-group-type='author-keywords'" role="error" id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
       
       <assert test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="ro-kwd-group-tests-pattern">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  
@@ -1145,7 +1171,8 @@
       <assert test="kwd" role="warning" id="ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
 	
 	</rule>
-    
+  </pattern>
+  <pattern id="ro-kwd-tests-pattern">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
       
       <assert test="substring(.,1,1) = upper-case(substring(.,1,1))" role="error" id="kwd-upper-case">research-organism kwd elements should start with an upper-case letter.</assert>
@@ -1153,13 +1180,15 @@
       <report test="*[local-name() != 'italic']" role="error" id="kwd-child-test">research-organism keywords cannot have child elements such as <value-of select="*/local-name()"/>.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="custom-meta-group-tests-pattern">
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
       
       <assert test="count(custom-meta[@specific-use='meta-only']) = 1" role="error" id="custom-meta-presence">custom-meta[@specific-use='meta-only'] must be present in custom-meta-group.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="custom-meta-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
       
       <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
@@ -1169,7 +1198,8 @@
       <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
       
     </rule>
-      
+  </pattern>
+  <pattern id="meta-value-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
@@ -1202,7 +1232,8 @@
       <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="meta-value-child-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       
@@ -1210,16 +1241,16 @@
         <name/> is not allowed in impact statement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elocation-id-tests-pattern">
     <rule context="article-meta/elocation-id" id="elocation-id-tests">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
       <assert test=". = concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
     </rule>
- </pattern>
+  </pattern>
   
-  <pattern id="journal-volume">
-    
+  <pattern id="volume-test-pattern">
     <rule context="article-meta/volume" id="volume-test">
       <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>
       
@@ -1227,21 +1258,18 @@
     </rule>
   </pattern>
 
-  <pattern id="equal-author-checks">
-
-  <rule context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
+  <pattern id="equal-author-tests-pattern">
+    <rule context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
     	
     <report test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
     
     <report test="xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')" role="error" id="equal-author-test-2">author contains an xref[@ref-type='fn'] with a 'equal-contrib0' type @rid, but the contrib has no @equal-contrib='yes'.</report>
 		
 		</rule>
-  
-</pattern> 
+  </pattern> 
 
- <pattern id="object-id">
-	
-	<rule context="object-id[@pub-id-type='doi']" id="object-id-tests">
+ <pattern id="object-id-tests-pattern">
+    <rule context="object-id[@pub-id-type='doi']" id="object-id-tests">
 	<let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
 	
 	  <assert test="starts-with(.,concat('10.7554/eLife.' , $article-id))" role="error" id="object-id-test-1">object-id must start with the elife doi prefix, '10.7554/eLife.' and the article id <value-of select="$article-id"/>.</assert>
@@ -1251,10 +1279,9 @@
 	  <report test="(. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])" role="error" id="object-id-test-3">object-ids must always be distinct. <value-of select="."/> is not distinct.</report>
 
     </rule>
- </pattern>	
+  </pattern>	
   
-  <pattern id="content-containers">
-    
+  <pattern id="p-tests-pattern">
     <rule context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
@@ -1274,20 +1301,23 @@
       <report test="matches(.,'^\s?•') and not(ancestor::disp-quote[@content-type='editor-comment'])" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="p-child-tests-pattern">
     <rule context="p/*" id="p-child-tests">
       <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap')"/>
       
       <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')                     else self::*/local-name() = $allowed-p-blocks" role="error" id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="xref-target-tests-pattern">
     <rule context="xref" id="xref-target-tests">
       <let name="rid" value="@rid"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       
       <report test="if (@ref-type='aff') then $target/local-name() != 'aff'                     else if (@ref-type='fn') then $target/local-name() != 'fn'                     else ()" role="error" id="xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="ext-link-tests-pattern">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
       <let name="parent" value="parent::*/local-name()"/>
@@ -1307,7 +1337,8 @@
       
       <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="fig-tests-pattern">
     <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
@@ -1330,7 +1361,8 @@
       
       <assert test="graphic" role="error" id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="ar-fig-tests-pattern">
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
@@ -1340,7 +1372,8 @@
       
       <assert test="graphic" role="error" id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="graphic-tests-pattern">
     <rule context="graphic" id="graphic-tests">
       <let name="file" value="lower-case(@xlink:href)"/>
       
@@ -1350,7 +1383,8 @@
       
       <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="media-tests-pattern">
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
       
@@ -1372,7 +1406,8 @@
       
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
     </rule>
-    
+  </pattern>
+  <pattern id="video-test-pattern">
     <rule context="media[child::label]" id="video-test">
       
       <assert test="caption/title" role="warning" id="pre-video-title">
@@ -1382,7 +1417,8 @@
         <value-of select="label"/> does not have a title, which is incorrect.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="supplementary-material-tests-pattern">
     <rule context="supplementary-material" id="supplementary-material-tests">
       
       <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
@@ -1410,19 +1446,22 @@
       <report test="matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
         <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="source-data-specific-tests-pattern">
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
       <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">
         <value-of select="label"/> is figure level source data, but contains a link to a figure supplement - should it be figure supplement source data?</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="disp-formula-tests-pattern">
     <rule context="disp-formula" id="disp-formula-tests">
       
       <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="inline-formula-tests-pattern">
     <rule context="inline-formula" id="inline-formula-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
@@ -1433,7 +1472,8 @@
       
       <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]') and not(matches(.,'\s+$'))" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="math-tests-pattern">
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
@@ -1470,7 +1510,8 @@
       
       <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="table-wrap-tests-pattern">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
       <let name="lab" value="label"/>
@@ -1496,14 +1537,16 @@
         <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="body-table-label-tests-pattern">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
       <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$')" role="error" id="body-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="app-table-label-tests-pattern">
     <rule context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title"/>
       
@@ -1514,24 +1557,28 @@
         <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="table-tests-pattern">
     <rule context="table" id="table-tests">
       
       <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one tbody.</report>
       
       <assert test="thead" role="warning" id="table-test-2">table doesn't have a thead. Is this correct?</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="tbody-tests-pattern">
     <rule context="table/tbody" id="tbody-tests">
       
       <report test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one tr.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="thead-tests-pattern">
     <rule context="table/thead" id="thead-tests">
       
       <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one tr.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="tr-tests-pattern">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       
@@ -1541,13 +1588,15 @@
       
       <report test="td and (tr/parent::thead)" role="warning" id="tr-test-3">table row in body contains a td element (table data), which is unusual. Please check that this is correct.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="td-child-tests-pattern">
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/> 
       
       <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold','italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace', and 'xref'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula')"/> 
       
@@ -1555,12 +1604,14 @@
       
       <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="fn-tests-pattern">
     <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
       
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="list-item-tests-pattern">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
       
@@ -1601,7 +1652,8 @@
       <report test="matches(.,'^\s?\p{Ll}')" role="warning" id="list-item-test-1">list-item begins with lowercase letter, is this correct? - <value-of select="."/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="general-video-pattern">
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="id" value="@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
@@ -1624,8 +1676,7 @@
     </rule>
   </pattern>
   
-  <pattern id="video-tests">
-    
+  <pattern id="body-video-specific-pattern">
     <rule context="article/body//media[@mimetype='video']" id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
@@ -1646,11 +1697,9 @@
         <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="table-pos-tests">
-    
+  <pattern id="body-table-pos-conformance-pattern">
     <rule context="article/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
       <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
@@ -1663,7 +1712,8 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="app-table-pos-conformance-pattern">
     <rule context="article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" id="app-table-pos-conformance">
       <let name="app-id" value="ancestor::app/@id"/>
       <let name="app-no" value="substring-after($app-id,'appendix-')"/>
@@ -1679,11 +1729,9 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="further-fig-tests">
-  
+  <pattern id="fig-specific-tests-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
@@ -1715,12 +1763,14 @@
         <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
   
     </rule>
-    
+  </pattern>
+  <pattern id="fig-label-tests-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" id="fig-label-tests">
       
       <assert test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="fig-sup-tests-pattern">
     <rule context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
@@ -1738,7 +1788,8 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="rep-fig-tests-pattern">
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       
       <assert test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>
@@ -1746,19 +1797,22 @@
       <assert test="matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="box-fig-tests-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests"> 
       
       <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="app-fig-tests-pattern">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
       
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
       
       <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="app-fig-sup-tests-pattern">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
       
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
@@ -1767,8 +1821,7 @@
     </rule>
   </pattern>
   
-  <pattern id="body">
-    
+  <pattern id="ra-body-tests-pattern">
     <rule context="article/body[ancestor::article/@article-type='research-article']" id="ra-body-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
@@ -1784,7 +1837,8 @@
       <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
     
     </rule>
-    
+  </pattern>
+  <pattern id="top-level-sec-tests-pattern">
     <rule context="body/sec" id="top-level-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
@@ -1795,7 +1849,8 @@
       <report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="lower-level-sec-tests-pattern">
     <rule context="body/sec//sec" id="lower-level-sec-tests">
       <let name="parent-id" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
@@ -1805,8 +1860,7 @@
     </rule>
   </pattern>
   
-  <pattern id="title-conformance">
-    
+  <pattern id="article-title-tests-pattern">
     <rule context="article-meta//article-title" id="article-title-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="string" value="e:article-type2title($type)"/>
@@ -1820,14 +1874,16 @@
       
       <report test="($type = 'Scientific Correspondence') and matches(.,'”')" role="warning" id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="sec-title-tests-pattern">
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
       <let name="title" value="e:sec-type2title(parent::sec/@sec-type)"/>
       
       <report test="if ($title = 'undefined') then ()          else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="fig-title-tests-pattern">
     <rule context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label"/>
       
@@ -1842,7 +1898,8 @@
       <report test="matches(.,'^\p{P}')" role="warning" id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="supplementary-material-title-tests-pattern">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label"/>
       
@@ -1854,7 +1911,8 @@
       
       <report test="matches(.,'^\s')" role="error" id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="video-title-tests-pattern">
     <rule context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label"/>
       
@@ -1866,13 +1924,15 @@
       
       <report test="matches(.,'^\s')" role="error" id="video-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="ack-title-tests-pattern">
     <rule context="ack" id="ack-title-tests">
       
       <assert test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="ack-content-tests-pattern">
     <rule context="ack//p" id="ack-content-tests">
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
@@ -1881,57 +1941,65 @@
       </report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="ref-list-title-tests-pattern">
     <rule context="ref-list" id="ref-list-title-tests">
       
       <assert test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="app-title-tests-pattern">
     <rule context="app/title" id="app-title-tests">
       
       <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="warning" id="app-title-test">app title should usually be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="comp-int-title-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
       
       <assert test="title = 'Competing interests'" role="error" id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="auth-cont-title-tests-pattern">
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-title-tests">
       
       <assert test="title = 'Author contributions'" role="error" id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="ethics-title-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
       
       <assert test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="dec-letter-title-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="reply-title-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
       <assert test="article-title = 'Author response'" role="error" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
     </rule>
   </pattern>
   
-  <pattern id="id-conformance">
-    
+  <pattern id="author-contrib-ids-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
       
       <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="award-group-ids-pattern">
     <rule context="funding-group/award-group" id="award-group-ids">
       
       <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="fig-ids-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
       <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes).</assert>
@@ -1942,12 +2010,14 @@
       
       <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^S[0-9]{1,3}$'))" role="error" id="fig-id-test-4">Schemes must have an @id in the format S0.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="fig-sup-ids-pattern">
     <rule context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
       
       <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="box-fig-ids-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
@@ -1955,56 +2025,65 @@
       
       <assert test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="app-fig-ids-pattern">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       
       <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="app-fig-id-test">figures in appendices must have an @id in the format app0fig0.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="app-fig-sup-ids-pattern">
     <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
       
       <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="rep-fig-ids-pattern">
     <rule context="sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       
       <assert test="matches(@id,'^respfig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">author response fig must have @id in the format respfig0.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="rep-fig-sup-ids-pattern">
     <rule context="sub-article[@article-type='reply']//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
       
       <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="resp-fig-sup-id-test">author response figure supplement must have @id in the format respfig0s0.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="related-articles-ids-pattern">
     <rule context="related-article" id="related-articles-ids">
       
       <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">related-article element must contain a @id, the value of which should be in the form ra0.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="aff-ids-pattern">
     <rule context="aff[not(parent::contrib)]" id="aff-ids">
       
       <assert test="if (label) then @id = concat('aff',label)                     else starts-with(@id,'aff')" role="error" id="aff-id-test">aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label)"/>.</assert>
     </rule>
-    
-    <!-- @id for fn[parent::table-wrap-foot] not accounted for -->
+  </pattern>
+  <pattern id="fn-ids-pattern">
     <rule context="fn" id="fn-ids">
       <let name="type" value="@fn-type"/>
       <let name="parent" value="self::*/parent::*/local-name()"/>
       
       <report test="if ($parent = 'table-wrap-foot') then ()         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'con') then           if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))           else not(matches(@id,'^con[0-9]{1,3}$'))         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))         else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))         else ()" role="error" id="fn-id-test">fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="disp-formula-ids-pattern">
     <rule context="disp-formula" id="disp-formula-ids">
       
       <assert test="matches(@id,'^equ[0-9]{1,9}$')" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="mml-math-ids-pattern">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
       <assert test="matches(@id,'^m[0-9]{1,9}$')" role="error" id="mml-math-id-test">disp-formula @id must be in the format 'm0'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="app-table-wrap-ids-pattern">
     <rule context="app/table-wrap" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app/@id,'-')"/>
     
@@ -2012,29 +2091,34 @@
       
       <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="resp-table-wrap-ids-pattern">
     <rule context="sub-article[@article-type='reply']//table-wrap" id="resp-table-wrap-ids">
  
       <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$')" role="error" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="table-wrap-ids-pattern">
     <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" id="table-wrap-ids">
       
       <assert test="if (label = 'Key resources table') then @id='keyresource'                     else if (label) then matches(@id, '^table[0-9]{1,3}$')                     else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="body-top-level-sec-ids-pattern">
     <rule context="article/body/sec" id="body-top-level-sec-ids">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
     
       <assert test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
       </rule>
-    
+  </pattern>
+  <pattern id="back-top-level-sec-ids-pattern">
     <rule context="article/back/sec" id="back-top-level-sec-ids">
       <let name="pos" value="count(ancestor::article/body/sec) + count(parent::back/sec) - count(following-sibling::sec)"/>
       
       <assert test="@id = concat('s',$pos)" role="error" id="back-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="low-level-sec-ids-pattern">
     <rule context="article/body/sec//sec|article/back/sec//sec" id="low-level-sec-ids">
       <let name="parent-sec" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
@@ -2043,8 +2127,7 @@
     </rule>
   </pattern>
   
-  <pattern id="sec-specific">
-    
+  <pattern id="sec-tests-pattern">
     <rule context="sec" id="sec-tests">
       <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material)"/>
       
@@ -2055,8 +2138,7 @@
     </rule>
   </pattern>
   
-  <pattern id="back">
-    
+  <pattern id="back-tests-pattern">
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
@@ -2080,30 +2162,34 @@
       <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
       
     </rule>
-    
-    <!-- Included as a separate rule so that it won't be flagged in features content -->
+  </pattern>
+  <pattern id="data-content-tests-pattern">
     <rule context="back/sec[@sec-type='data-availability']" id="data-content-tests">
       
       <assert test="count(p) gt 0" role="error" id="data-p-presence">At least one p element must be present in sec[@sec-type='data=availability'].</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="ack-tests-pattern">
     <rule context="back/ack" id="ack-tests">
       
       <assert test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="ack-child-tests-pattern">
     <rule context="back/ack/*" id="ack-child-tests">
     
       <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="app-tests-pattern">
     <rule context="back//app" id="app-tests">
       
       <assert test="parent::app-group" role="error" id="app-test-1">app must be captured as a child of an app-group element.</assert>
       
       <assert test="count(title) = 1" role="error" id="app-test-2">app must have one title.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="additional-info-tests-pattern">
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
@@ -2116,31 +2202,36 @@
       <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="additional-info-test-3">This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="comp-int-fn-group-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
       
       <assert test="count(fn) gt 0" role="error" id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
       
       <assert test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="comp-int-fn-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
       
       <assert test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="auth-cont-tests-pattern">
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-tests">
       <let name="author-count" value="count(ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author'])"/>
       
       <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">fn-group does not contain one fn for each author. Currently there are <value-of select="$author-count"/> authors but <value-of select="count(fn)"/> footnotes. Is this correct?</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="auth-cont-fn-tests-pattern">
     <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
       
       <assert test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="ethics-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
       
       <assert test="parent::sec[@sec-type='additional-information']" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</assert>
@@ -2149,7 +2240,8 @@
       
       <report test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="ethics-fn-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
       
       <assert test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
@@ -2157,8 +2249,7 @@
     </rule>
   </pattern>
   
-  <pattern id="dec-letter-auth-response">
-    
+  <pattern id="dec-letter-reply-tests-pattern">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
       
@@ -2173,51 +2264,57 @@
       <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">
         <value-of select="@article-type"/> contains what looks like pseudo-code, search - '&lt;/Author response' or '&lt;Author response'.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="dec-letter-front-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       
       <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
       <assert test="count(contrib-group) gt 0" role="error" id="dec-letter-front-test-2">sub-article front-stub must contain at least 1 contrib-group element.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="dec-letter-body-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
       <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="reply-front-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
       
       <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="reply-body-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
       
       <report test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" id="reply-body-test-1">author response doesn't contain a disp-quote. This has to be incorrect.</report>
       
       <report test="count(p) = 0" role="error" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="reply-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
   
-  <pattern id="related-articles">
-    
-    <rule context="article[$disp-channel = 'Research Advance']//article-meta" id="research-advance-test">
+  <pattern id="research-advance-test-pattern">
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
       
       <assert test="count(related-article[@related-article-type='article-reference']) gt 0" role="error" id="related-articles-test-1">Research Advance must contain an article-reference link to the original article it is building upon.</assert>
       
     </rule>
-    
-    <rule context="article[$disp-channel = 'Insight']//article-meta" id="insight-test">
+  </pattern>
+  <pattern id="insight-test-pattern">
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
       
       <assert test="count(related-article) gt 0" role="error" id="related-articles-test-2">Insight must contain an article-reference link to the original article it is discussing.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="related-articles-conformance-pattern">
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article')"/>
       
@@ -2230,11 +2327,9 @@
       <assert test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')" role="error" id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-general-tests">
-    
+  <pattern id="elem-citation-general-pattern">
     <rule context="element-citation" id="elem-citation-general">
       
       <report test="person-group/name[not(surname)]" role="error" id="err-elem-cit-gen-name-2">[err-elem-cit-gen-name-2]
@@ -2251,8 +2346,9 @@
         &lt;year&gt; elements.
       </report>
       
-    </rule> 
-    
+    </rule>
+  </pattern>
+  <pattern id="elem-citation-gen-name-3-1-pattern">
     <rule context="element-citation/person-group" id="elem-citation-gen-name-3-1">
       
       <report test=".[not (name or collab)]" role="error" id="err-elem-cit-gen-name-3-1">[err-elem-cit-gen-name-3-1]
@@ -2261,7 +2357,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-gen-name-3-2-pattern">
     <rule context="element-citation/person-group/collab" id="elem-citation-gen-name-3-2">
       
       <assert test="count(*) = count(italic | sub | sup)" role="error" id="err-elem-cit-gen-name-3-2">[err-elem-cit-gen-name-3-2]
@@ -2270,7 +2367,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' contains addiitonal elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-gen-name-4-pattern">
     <rule context="element-citation/person-group/name" id="elem-citation-gen-name-4">
       
       <assert test="not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')] " role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
@@ -2280,7 +2378,8 @@
         as it contains the value '<value-of select="suffix"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-year-pattern">
     <rule context="ref/element-citation/year" id="elem-citation-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
@@ -2335,11 +2434,9 @@
         '<value-of select="e:stripDiacritics(ancestor::element-citation/person-group[1]/name[1]/surname)"/>', which occurs in at least one other reference.</report>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-high-tests">
-    
+  <pattern id="ref-pattern">
     <rule context="ref" id="ref">
       <let name="pre-name" value="lower-case(if (local-name(element-citation/person-group[1]/*[1])='name')       then (element-citation/person-group[1]/name[1]/surname)       else (element-citation/person-group[1]/*[1]))"/>
       <let name="name" value="e:stripDiacritics($pre-name)"/>
@@ -2431,7 +2528,8 @@
       </assert> -->
       
     </rule>
-    
+  </pattern>
+  <pattern id="xref-pattern">
     <rule context="xref[@ref-type='bibr']" id="xref">
       
       <assert test="not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or        (some $x in preceding::xref       satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))" role="error" id="err-xref-high-2-1">[err-xref-high-2-1]
@@ -2441,7 +2539,8 @@
       </assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-pattern">
     <rule context="element-citation" id="elem-citation">
       
       <assert test="@publication-type" role="error" id="err-elem-cit-high-6-1">[err-elem-cit-high-6-1]
@@ -2457,10 +2556,9 @@
         '<value-of select="@publication-type"/>'.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-journal-tests">
+  <pattern id="elem-citation-journal-pattern">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
       
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-journal-2-1">[err-elem-cit-journal-2-1]
@@ -2530,7 +2628,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-article-title-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="elem-citation-journal-article-title">
       
       <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">[err-elem-cit-journal-3-2]
@@ -2539,7 +2638,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-volume-pattern">
     <rule context="element-citation[@publication-type='journal']/volume" id="elem-citation-journal-volume">
       <assert test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">[err-elem-cit-journal-5-1-2]
         A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
@@ -2547,7 +2647,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
         child elements.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-fpage-pattern">
     <rule context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
       
       <assert test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">[err-elem-cit-journal-6-2]
@@ -2560,7 +2661,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-elocation-id-pattern">
     <rule context="element-citation[@publication-type='journal']/elocation-id" id="elem-citation-journal-elocation-id">
       
       <assert test="count(../fpage) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-3">[err-elem-cit-journal-6-3]
@@ -2568,7 +2670,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;elocation-id&gt; and one of those elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-comment-pattern">
     <rule context="element-citation[@publication-type='journal']/comment" id="elem-citation-journal-comment">
       
       <assert test="count(../fpage) eq 0 and count(../elocation-id) eq 0" role="error" id="err-elem-cit-journal-6-4">[err-elem-cit-journal-6-4]
@@ -2580,7 +2683,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-pub-id-pmid-pattern">
     <rule context="element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']" id="elem-citation-journal-pub-id-pmid">
       
       <report test="matches(.,'\D')" role="error" id="err-elem-cit-journal-10">[err-elem-cit-journal-10]
@@ -2589,7 +2693,8 @@
         is <value-of select="."/>.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-journal-pub-id-pattern">
     <rule context="element-citation[@publication-type='journal']/pub-id" id="elem-citation-journal-pub-id">
       
       <assert test="@pub-id-type='doi' or @pub-id-type='pmid'" role="error" id="err-elem-cit-journal-9-1">[err-elem-cit-journal-9-1]
@@ -2600,7 +2705,7 @@
     </rule>
   </pattern>
   
-  <pattern id="element-citation-book-tests">
+  <pattern id="elem-citation-book-pattern">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'publisher-locations.xml'"/>
       
@@ -2666,14 +2771,16 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-book-person-group-pattern">
     <rule context="element-citation[@publication-type='book']/person-group" id="elem-citation-book-person-group">
       <assert test="@person-group-type" role="error" id="err-elem-cit-book-2-1">[err-elem-cit-book-2-1]
         Each &lt;person-group&gt; must have a @person-group-type attribute.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with no @person-group-type attribute.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-book-chapter-title-pattern">
     <rule context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
       
       <assert test="count(../person-group[@person-group-type='author'])=1" role="error" id="err-elem-cit-book-22">[err-elem-cit-book-22]
@@ -2690,7 +2797,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-book-publisher-name-pattern">
     <rule context="element-citation[@publication-type='book']/publisher-name" id="elem-citation-book-publisher-name">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-book-13-2">[err-elem-cit-book-13-2]
@@ -2699,7 +2807,8 @@
         &lt;publisher-name&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-book-edition-pattern">
     <rule context="element-citation[@publication-type='book']/edition" id="elem-citation-book-edition">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-book-15">[err-elem-cit-book-15]
@@ -2708,7 +2817,8 @@
         &lt;edition&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-book-pub-id-pmid-pattern">
     <rule context="element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']" id="elem-citation-book-pub-id-pmid">
       
       <report test="matches(.,'\D')" role="error" id="err-elem-cit-book-18">[err-elem-cit-book-18]
@@ -2717,7 +2827,8 @@
         is <value-of select="."/>.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-book-pub-id-pattern">
     <rule context="element-citation[@publication-type='book']/pub-id" id="elem-citation-book-pub-id">
       
       <assert test="@pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'" role="error" id="err-elem-cit-book-17">[err-elem-cit-book-17]
@@ -2726,10 +2837,9 @@
         is <value-of select="@pub-id-type"/>.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-data-tests">
+  <pattern id="elem-citation-data-pattern">
     <rule context="element-citation[@publication-type='data']" id="elem-citation-data">
       
       <assert test="count(person-group[@person-group-type='author']) le 1 and       count(person-group[@person-group-type='compiler']) le 1 and       count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1]
@@ -2783,7 +2893,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-data-pub-id-doi-pattern">
     <rule context="element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
       
       <assert test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">[err-elem-cit-data-14-2]
@@ -2792,7 +2903,8 @@
         @link-href with value '<value-of select="@link-href"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-data-pub-id-pattern">
     <rule context="element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
       <assert test="@pub-id-type=('accession', 'archive', 'ark', 'doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
@@ -2806,7 +2918,8 @@
         '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-data-ext-link-pattern">
     <rule context="element-citation[@publication-type='data']/ext-link" id="elem-citation-data-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-data-17-2">[err-elem-cit-data-17-2]
@@ -2826,7 +2939,7 @@
     </rule>
   </pattern>
   
-  <pattern id="element-citation-patent-tests">
+  <pattern id="elem-citation-patent-pattern">
     <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
       
       <assert test="count(person-group[@person-group-type='inventor'])=1" role="error" id="err-elem-cit-patent-2-1">[err-elem-cit-patent-2-1]
@@ -2870,7 +2983,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-patent-ext-link-pattern">
     <rule context="element-citation[@publication-type='patent']/ext-link" id="elem-citation-patent-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-patent-11-2">[err-elem-cit-patent-11-2]
@@ -2888,7 +3002,8 @@
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-patent-article-title-pattern">
     <rule context="element-citation[@publication-type='patent']/article-title" id="elem-citation-patent-article-title"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">[err-elem-cit-patent-8-2-1]
         A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
@@ -2901,7 +3016,8 @@
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-patent-source-pattern">
     <rule context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-9-2-1">[err-elem-cit-patent-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
@@ -2915,7 +3031,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-patent-patent-pattern">
     <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent"> 
       <let name="countries" value="'countries.xml'"/>
       
@@ -2931,7 +3048,7 @@
     </rule>
   </pattern>
   
-  <pattern id="element-citation-software-tests">
+  <pattern id="elem-citation-software-pattern">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
       
       <assert test="count(person-group) = 1 or (count(person-group/@person-group-type = 'author') +         count(person-group/@person-group-type = 'editor') = 2)" role="error" id="err-elem-cit-software-2-1">[err-elem-cit-software-2-1] Each
@@ -2956,7 +3073,8 @@
         has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-software-data-title-pattern">
     <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
       
       <assert test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters
@@ -2964,7 +3082,8 @@
         '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-software-ext-link-pattern">
     <rule context="element-citation[@publication-type = 'software']/ext-link" id="elem-citation-software-ext-link">
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-software-15-1">[err-elem-cit-software-15-1] Each &lt;ext-link&gt; element must contain @xlink:href. The
@@ -2982,7 +3101,7 @@
     </rule>
   </pattern>
   
-  <pattern id="element-citation-preprint-tests">
+  <pattern id="elem-citation-preprint-pattern">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
       
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">[err-elem-cit-preprint-2-1]
@@ -3017,7 +3136,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-preprint-person-group-pattern">
     <rule context="element-citation[@publication-type='preprint']/person-group" id="elem-citation-preprint-person-group"> 
       
       <assert test="@person-group-type='author'" role="error" id="err-elem-cit-preprint-2-2">[err-elem-cit-preprint-2-2]
@@ -3025,7 +3145,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-preprint-pub-id-pattern">
     <rule context="element-citation[@publication-type='preprint']/pub-id" id="elem-citation-preprint-pub-id"> 
       
       <assert test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">[err-elem-cit-preprint-10-2]
@@ -3034,7 +3155,8 @@
         contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-preprint-ext-link-pattern">
     <rule context="element-citation[@publication-type='preprint']/ext-link" id="elem-citation-preprint-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-preprint-11-1">[err-elem-cit-preprint-11-1]
@@ -3052,7 +3174,8 @@
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-preprint-article-title-pattern">
     <rule context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">[err-elem-cit-preprint-8-2-1]
         A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
@@ -3064,7 +3187,8 @@
         elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-preprint-source-pattern">
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-9-2-1">[err-elem-cit-preprint-9-2-1]
         A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
@@ -3079,7 +3203,7 @@
     </rule>
   </pattern>
   
-  <pattern id="element-citation-web-tests">
+  <pattern id="elem-citation-web-pattern">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
       
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-web-2-1">[err-elem-cit-web-2-1]
@@ -3115,7 +3239,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-web-person-group-pattern">
     <rule context="element-citation[@publication-type='web']/person-group" id="elem-citation-web-person-group"> 
       
       <assert test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">[err-elem-cit-web-2-2]
@@ -3123,7 +3248,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-web-ext-link-pattern">
     <rule context="element-citation[@publication-type='web']/ext-link" id="elem-citation-web-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-web-10-2">[err-elem-cit-web-10-2]
@@ -3141,7 +3267,8 @@
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-web-article-title-pattern">
     <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">[err-elem-cit-web-8-2-1]
         A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
@@ -3154,7 +3281,8 @@
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-web-source-pattern">
     <rule context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-9-2-1">[err-elem-cit-web-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
@@ -3168,7 +3296,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-web-date-in-citation-pattern">
     <rule context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation"> 
       <assert test="./@iso-8601-date" role="error" id="err-elem-cit-web-11-2-1">[err-elem-cit-web-11-2-1]
         The &lt;date-in-citation&gt; element must have an @iso-8601-date attribute.
@@ -3196,7 +3325,7 @@
     </rule>
   </pattern>
   
-  <pattern id="element-citation-report-tests">
+  <pattern id="elem-citation-report-pattern">
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'publisher-locations.xml'"/> 
       
@@ -3227,14 +3356,16 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-report-preson-group-pattern">
     <rule context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
       <assert test="@person-group-type='author'" role="error" id="err-elem-cit-report-2-2">[err-elem-cit-report-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-report-source-pattern">
     <rule context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
       <assert test="(./string-length() + sum(*/string-length()) ge 2)" role="error" id="err-elem-cit-report-9-2-1">[err-elem-cit-report-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' must contain 
@@ -3247,7 +3378,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-report-publisher-name-pattern">
     <rule context="element-citation[@publication-type='report']/publisher-name" id="elem-citation-report-publisher-name">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-report-11-2">[err-elem-cit-report-11-2]
@@ -3256,7 +3388,8 @@
         &lt;publisher-name&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-report-pub-id-pattern">
     <rule context="element-citation[@publication-type='report']/pub-id" id="elem-citation-report-pub-id">
       
       <assert test="@pub-id-type='doi' or @pub-id-type='isbn'" role="error" id="err-elem-cit-report-12-2">[err-elem-cit-report-12-2]
@@ -3265,7 +3398,8 @@
         '<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-report-ext-link-pattern">
     <rule context="element-citation[@publication-type='report']/ext-link" id="elem-citation-report-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-report-14-1">[err-elem-cit-report-14-1]
@@ -3283,10 +3417,9 @@
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-confproc-tests">
+  <pattern id="elem-citation-confproc-pattern">
     <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc"> 
       
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-confproc-2-1">[err-elem-cit-confproc-2-1]
@@ -3344,14 +3477,16 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-preson-group-pattern">
     <rule context="element-citation[@publication-type='confproc']/person-group" id="elem-citation-confproc-preson-group">
       <assert test="@person-group-type='author'" role="error" id="err-elem-cit-confproc-2-2">[err-elem-cit-confproc-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-source-pattern">
     <rule context="element-citation[@publication-type='confproc']/source" id="elem-citation-confproc-source">
       <assert test="(./string-length() + sum(*/string-length()) ge 2)" role="error" id="err-elem-cit-confproc-9-2-1">[err-elem-cit-confproc-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' must contain 
@@ -3365,7 +3500,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-article-title-pattern">
     <rule context="element-citation[@publication-type='confproc']/article-title" id="elem-citation-confproc-article-title">
       
       <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-confproc-8-2">[err-elem-cit-confproc-8-2]
@@ -3374,7 +3510,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-conf-name-pattern">
     <rule context="element-citation[@publication-type='confproc']/conf-name" id="elem-citation-confproc-conf-name">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-confproc-10-2">[err-elem-cit-confproc-10-2]
@@ -3383,7 +3520,8 @@
         &lt;conf-name&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-conf-loc-pattern">
     <rule context="element-citation[@publication-type='confproc']/conf-loc" id="elem-citation-confproc-conf-loc">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-confproc-11-2">[err-elem-cit-confproc-11-2]
@@ -3392,7 +3530,8 @@
         &lt;conf-loc&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-fpage-pattern">
     <rule context="element-citation[@publication-type='confproc']/fpage" id="elem-citation-confproc-fpage">
       
       <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]
@@ -3402,7 +3541,8 @@
         and &lt;lpage&gt;='<value-of select="../lpage"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-pub-id-pattern">
     <rule context="element-citation[@publication-type='confproc']/pub-id" id="elem-citation-confproc-pub-id">
       
       <assert test="@pub-id-type='doi' or @pub-id-type='pmid'" role="error" id="err-elem-cit-confproc-16-2">[err-elem-cit-confproc-16-2]
@@ -3411,7 +3551,8 @@
         '<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-confproc-ext-link-pattern">
     <rule context="element-citation[@publication-type='confproc']/ext-link" id="elem-citation-confproc-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-confproc-14-1">[err-elem-cit-confproc-14-1]
@@ -3429,11 +3570,9 @@
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-thesis-tests">
-    
+  <pattern id="elem-citation-thesis-pattern">
     <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis"> 
       
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-thesis-2-1">[err-elem-cit-thesis-2-1]
@@ -3474,7 +3613,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-thesis-preson-group-pattern">
     <rule context="element-citation[@publication-type='thesis']/person-group" id="elem-citation-thesis-preson-group">
       
       <assert test="@person-group-type='author'" role="error" id="err-elem-cit-thesis-2-2">[err-elem-cit-thesis-2-2]
@@ -3487,7 +3627,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has a thesis citation 
         with <value-of select="count(name)"/> authors.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-thesis-article-title-pattern">
     <rule context="element-citation[@publication-type='thesis']/article-title" id="elem-citation-thesis-article-title">
       
       <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-thesis-8-2">[err-elem-cit-thesis-8-2]
@@ -3496,7 +3637,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-thesis-publisher-name-pattern">
     <rule context="element-citation[@publication-type='thesis']/publisher-name" id="elem-citation-thesis-publisher-name">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-thesis-9-2">[err-elem-cit-thesis-9-2]
@@ -3505,7 +3647,8 @@
         &lt;publisher-name&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-thesis-publisher-loc-pattern">
     <rule context="element-citation[@publication-type='thesis']/publisher-loc" id="elem-citation-thesis-publisher-loc">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-thesis-10-2">[err-elem-cit-thesis-10-2]
@@ -3514,7 +3657,8 @@
         &lt;publisher-loc&gt; element.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-thesis-pub-id-pattern">
     <rule context="element-citation[@publication-type='thesis']/pub-id" id="elem-citation-thesis-pub-id">
       
       <assert test="@pub-id-type='doi'" role="error" id="err-elem-cit-thesis-11-2">[err-elem-cit-thesis-11-2]
@@ -3523,7 +3667,8 @@
         '<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-thesis-ext-link-pattern">
     <rule context="element-citation[@publication-type='thesis']/ext-link" id="elem-citation-thesis-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-thesis-12-1">[err-elem-cit-thesis-12-1]
@@ -3541,11 +3686,9 @@
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="element-citation-periodical-tests">
-    
+  <pattern id="elem-citation-periodical-pattern">
     <rule context="element-citation[@publication-type='periodical']" id="elem-citation-periodical">
       
       <assert test="count(person-group)=1" role="error" id="err-elem-cit-periodical-2-1">[err-elem-cit-periodical-2-1]
@@ -3625,7 +3768,8 @@
         &lt;string-date&gt; elements.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-year-pattern">
     <rule context="element-citation[@publication-type='periodical']/string-date/year" id="elem-citation-periodical-year">
       
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
@@ -3679,7 +3823,8 @@
         '<value-of select="ancestor::element-citation/person-group[1]/name[1]/surname"/>'.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-article-title-pattern">
     <rule context="element-citation[@publication-type='periodical']/article-title" id="elem-citation-periodical-article-title">
       
       <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-periodical-8-2">[err-elem-cit-periodical-8-2]
@@ -3688,7 +3833,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-volume-pattern">
     <rule context="element-citation[@publication-type='periodical']/volume" id="elem-citation-periodical-volume">
       <assert test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-periodical-10-1-2">[err-elem-cit-periodical-10-1-2]
         A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'periodical' must contain 
@@ -3696,7 +3842,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
         child elements.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-fpage-pattern">
     <rule context="element-citation[@publication-type='periodical']/fpage" id="elem-citation-periodical-fpage">
       
       <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-periodical-11-5">[err-elem-cit-periodical-11-4]
@@ -3706,7 +3853,8 @@
         and &lt;lpage&gt;='<value-of select="../lpage"/>'.</assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-string-date-pattern">
     <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
       
       <assert test="count(month)=1 and count(year)=1" role="error" id="err-elem-cit-periodical-14-2">[err-elem-cit-periodical-14-2]
@@ -3727,7 +3875,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>    
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-month-pattern">
     <rule context="element-citation[@publication-type='periodical']/string-date/month" id="elem-citation-periodical-month">
       
       <assert test=".=('January','February','March','April','May','June','July','August','September','October','November','December')" role="error" id="err-elem-cit-periodical-14-4">[err-elem-cit-periodical-14-4]
@@ -3744,7 +3893,8 @@
       </assert>
       
     </rule>
-    
+  </pattern>
+  <pattern id="elem-citation-periodical-day-pattern">
     <rule context="element-citation[@publication-type='periodical']/string-date/day" id="elem-citation-periodical-day">
       
       <assert test="matches(normalize-space(.),'([1-9])|([1-2][0-9])|(3[0-1])')" role="error" id="err-elem-cit-periodical-14-6">[err-elem-cit-periodical-14-6]
@@ -3763,8 +3913,7 @@
     </rule>
   </pattern>
   
-  <pattern id="pub-id-pattern">
-    
+  <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
       <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</report>
@@ -3776,19 +3925,18 @@
       </report>
       
     </rule>
-    
   </pattern>
   
- <pattern id="features">
-   
-   <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
+ <pattern id="feature-title-tests-pattern">
+    <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject"/>
      
      <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
      
    </rule>
-   
-   <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
+  </pattern>
+  <pattern id="feature-abstract-tests-pattern">
+    <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
      
      <assert test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
      
@@ -3796,14 +3944,16 @@
       </assert>
      
    </rule>
-	
-   <rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]" id="feature-subj-tests-1">		
+  </pattern>
+  <pattern id="feature-subj-tests-1-pattern">
+    <rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]" id="feature-subj-tests-1">		
 		
      <assert test="subj-group[@subj-group-type='sub-display-channel']" role="error" id="feature-subj-test-1">Feature content must contain subj-group[@subj-group-type='sub-display-channel'].</assert>
      
    </rule>
-   
-   <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">		
+  </pattern>
+  <pattern id="feature-subj-tests-2-pattern">
+    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">		
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
@@ -3815,8 +3965,9 @@
      <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">There is more than one sub-display-channel subjects. This is incorrect.</report>
 		
 	</rule>
-   
-   <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
+  </pattern>
+  <pattern id="feature-article-category-tests-pattern">
+    <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
      <assert test="($count = 1) or ($count = 0)" role="error" id="feature-article-category-test-1">article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
@@ -3824,13 +3975,15 @@
      <report test="$count = 0" role="warning" id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
      
    </rule>
-   
-   <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" id="feature-author-tests">
+  </pattern>
+  <pattern id="feature-author-tests-pattern">
+    <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" id="feature-author-tests">
      
      <assert test="bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
    </rule>
-   
-   <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
+  </pattern>
+  <pattern id="feature-bio-tests-pattern">
+    <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
      <let name="name" value="concat(parent::contrib/name/given-names,' ',parent::contrib/name/surname)"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)]/normalize-space(.)"/>
@@ -3844,8 +3997,7 @@
    </rule>
   </pattern>
   
-  <pattern id="correction-retraction">
-    
+  <pattern id="correction-tests-pattern">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
       
       <report test="descendant::article-meta//aff" role="error" id="corr-aff-presence">Correction notices should not contain affiliations.</report>
@@ -3865,7 +4017,8 @@
       <report test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="retraction-tests-pattern">
     <rule context="article[@article-type = 'retraction']" id="retraction-tests">
       
       <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">Retractions should not contain affiliations.</report>
@@ -3885,11 +4038,9 @@
       <report test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE">Retractions must not contain any Senior or Reviewing Editors.</report>
        
     </rule>
-    
   </pattern>
   
-  <pattern id="gene-primer-sequence-pattern">
-    
+  <pattern id="final-gene-primer-sequence-pattern">
     <rule context="p" id="final-gene-primer-sequence">
       <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
@@ -3897,11 +4048,9 @@
       
       <assert test="(($text-count le $count) or ($text-count = $count))" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
-    
   </pattern>
   
-  <pattern id="rrid-org-pattern">
-    
+  <pattern id="rrid-org-code-pattern">
     <rule context="p|td|th" id="rrid-org-code">
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
@@ -3932,11 +4081,9 @@
       
       <report test="matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
     </rule>
-    
   </pattern>
   
-  <pattern id="reference">
-    
+  <pattern id="duplicate-ref-pattern">
     <rule context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
       <let name="a-title" value="element-citation/article-title"/>
@@ -3954,11 +4101,9 @@
       
       <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
-    
   </pattern>
   
-  <pattern id="ref-xref-pattern">
-    
+  <pattern id="ref-xref-conformance-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
@@ -3995,7 +4140,7 @@
       
       <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
-      <report test="(         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and (($open - $close) = 1))           or         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))           or          (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))           or         (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $') and (($open - $close) lt 0))          )         and (. = $cite1)" role="warning" id="ref-xref-test-11">
+      <report test="(         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$') and (($open - $close) = 1))           or         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))           or          (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))           or         (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $') and (($open - $close) lt 0))          )         and (. = $cite1)" role="warning" id="ref-xref-test-11">
         <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with '<value-of select="substring($pre-text,string-length($pre-text)-6)"/>' which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
@@ -4031,11 +4176,9 @@
       <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
     </rule>
-    
   </pattern>
   
   <pattern id="unlinked-ref-cite-pattern">
-    
     <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year)"/>
@@ -4046,13 +4189,9 @@
       <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
       
     </rule>
-    
-    
-    
   </pattern>
   
-  <pattern id="video-xref-pattern">
-    
+  <pattern id="vid-xref-conformance-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="target-no" value="substring-after(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'ideo ')"/>
@@ -4080,8 +4219,7 @@
       
     </rule>
   </pattern>
-  <pattern id="figure-xref-pattern">
-    
+  <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="type" value="e:fig-id-type($rid)"/>
@@ -4127,7 +4265,7 @@
     </rule>
   </pattern>
   
-  <pattern id="table-xref-pattern">
+  <pattern id="table-xref-conformance-pattern">
     <rule context="xref[@ref-type='table']" id="table-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
@@ -4155,11 +4293,9 @@
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="supp-xref-pattern">
-    
+  <pattern id="supp-file-xref-conformance-pattern">
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
@@ -4194,8 +4330,7 @@
     </rule>
   </pattern>
   
-  <pattern id="equation-xref-pattern">
-    
+  <pattern id="equation-xref-conformance-pattern">
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
@@ -4207,11 +4342,9 @@
       <assert test="contains(.,$label)" role="error" id="equ-xref-conformity-2">
         <value-of select="$label"/> - equation link content does not match what it directs to. Check that it is correct.</assert>
     </rule>
-    
   </pattern>
   
-  <pattern id="org-pattern">
-    
+  <pattern id="org-ref-article-book-title-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="org-ref-article-book-title">	
       <let name="lc" value="lower-case(.)"/>
       
@@ -4412,7 +4545,8 @@
       <report test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="warning" id="xenopus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="org-title-kwd-pattern">
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">		
       <let name="lc" value="lower-case(.)"/>
       
@@ -4678,11 +4812,9 @@
         <name/> contains an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
-    
   </pattern>
   
-  <pattern id="house-style">
-    
+  <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
       <report test="contains(.,'©')" role="error" id="copyright-symbol">
@@ -4723,7 +4855,8 @@
       <report test="matches(.,'')" role="error" id="junk-character-presence">
         <name/> element contains a junk character '' which should be replaced.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="unallowed-symbol-tests-sup-pattern">
     <rule context="sup" id="unallowed-symbol-tests-sup">		
       
       <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
@@ -4742,7 +4875,8 @@
       
       <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="country-tests-pattern">
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
@@ -4767,7 +4901,8 @@
       <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="city-tests-pattern">
     <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
       <let name="lc" value="normalize-space(lower-case(.))"/>
       <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
@@ -4782,7 +4917,8 @@
       <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="institution-tests-pattern">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       
       <report test="matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
@@ -4792,7 +4928,8 @@
         <name/> element contains the replacement character '�' which is unallowed.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="department-tests-pattern">
     <rule context="aff/institution[@content-type='dept']" id="department-tests">
       
       <report test="matches(.,'[Dd]epartments')" role="error" id="plural-test-1">
@@ -4811,7 +4948,8 @@
         <name/> element contains the replacement character '�' which is unallowed.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="journal-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
       <let name="uc" value="upper-case(.)"/>
@@ -4841,7 +4979,8 @@
       
       <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       
@@ -4865,14 +5004,16 @@
       </report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="journal-tests-pattern">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
       
       <report test="not(fpage) and not(elocation-id)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
       <report test="matches(source,'[Bb]io[Rr]xiv|[Aa]r[Xx]iv')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source"/>, but it is captured as a journal not a preprint.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="preprint-title-tests-pattern">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
@@ -4895,7 +5036,8 @@
       </report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="website-tests-pattern">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link)"/>
       
@@ -4922,7 +5064,8 @@
       <report test="matches($link,'paleorxiv.org')" role="error" id="paleorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="software-ref-tests-pattern">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title)"/>
       
@@ -4940,7 +5083,8 @@
       </report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="publisher-name-tests-pattern">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
       
       <report test="matches(.,':')" role="warning" id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
@@ -4951,7 +5095,8 @@
         <name/> contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="ref-name-tests-pattern">
     <rule context="element-citation//name" id="ref-name-tests">
       
       <report test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
@@ -4964,21 +5109,24 @@
       
       <report test="matches(.,'[0-9]')" role="warning" id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="isbn-conformity-pattern">
     <rule context="element-citation/pub-id[@pub-id-type='isbn']" id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
       <assert test="number($sum) = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="isbn-conformity-2-pattern">
     <rule context="isbn" id="isbn-conformity-2">
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
       <assert test="number($sum) = 0" role="error" id="isbn-conformity-test-2">isbn contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="data-availability-statement-pattern">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
       
       <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
@@ -4992,7 +5140,8 @@
       <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="ethics-info-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
       <assert test="matches(.,'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
@@ -5000,7 +5149,8 @@
       <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="sec-title-conformity-pattern">
     <rule context="sec/title" id="sec-title-conformity">
       
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
@@ -5010,7 +5160,8 @@
       <report test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="abstract-house-tests-pattern">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       
@@ -5020,13 +5171,15 @@
      
       <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="KRT-xref-tests-pattern">
     <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       
       <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="KRT-check-pattern">
     <rule context="article" id="KRT-check">
       <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
@@ -5034,7 +5187,8 @@
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="KRT-td-checks-pattern">
     <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       
       <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
@@ -5044,14 +5198,16 @@
       <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="colour-table-pattern">
     <rule context="th|td" id="colour-table">
       
       <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">
         <name/> element has colour background. Is this correct? It contains <value-of select="."/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="colour-named-content-pattern">
     <rule context="named-content" id="colour-named-content">
       <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       
@@ -5059,7 +5215,8 @@
         <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="colour-styled-content-pattern">
     <rule context="styled-content" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
@@ -5067,7 +5224,8 @@
       <report test="." role="warning" id="colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. Is this correct?  Preceding text - <value-of select="concat($prec-text,.)"/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="p-punctuation-pattern">
     <rule context="article/body//p[not(parent::list-item)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
@@ -5075,8 +5233,8 @@
       
       <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
-    
-    <!-- When this can be shared with typesetters add duplicate tests for 'pre' which are errors, and make these 'final' tests -->
+  </pattern>
+  <pattern id="italic-house-style-pattern">
     <rule context="italic[not(ancestor::ref)]" id="italic-house-style">
       
       <report test="matches(.,'et al[\.]?')" role="warning" id="et-al-italic-test">
@@ -5121,14 +5279,16 @@
       <report test="matches(.,'[Ss]ensu')" role="warning" id="sensu-italic-test">
         <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>
     </rule>
-    
+  </pattern>
+  <pattern id="list-house-style-pattern">
     <rule context="list[@list-type]" id="list-house-style">
       <let name="usual-types" value="('bullet','simple','order')"/>
       
       <assert test="@list-type = $usual-types" role="warning" id="list-type-house-style-test">
         <name/> element is a list-type='<value-of select="@list-type"/>'. According to house style, bullets, numbers or no indicators should be used. Usual values - ('bullet','simple','order').</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="pubmed-link-pattern">
     <rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link">
       
       <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')" role="warning" id="pubmed-presence">
@@ -5138,7 +5298,8 @@
         <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PMC article - <value-of select="."/> - should this be added a reference instead?</report>
       
     </rule>
-    
+  </pattern>
+  <pattern id="ref-link-mandate-pattern">
     <rule context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
       
@@ -5146,7 +5307,8 @@
       
       <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
     </rule>
-    
+  </pattern>
+  <pattern id="fig-permissions-check-pattern">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
       <let name="label" value="replace(label,'\.','')"/>
       
@@ -5160,7 +5322,8 @@
       
       <report test="not(descendant::permissions) and matches(caption,'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="xref-formatting-pattern">
     <rule context="xref[not(@ref-type='bibr')]" id="xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
@@ -5170,7 +5333,8 @@
       
       <report test="$child = $formatting-elems" role="error" id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
-    
+  </pattern>
+  <pattern id="ref-xref-formatting-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
@@ -5182,14 +5346,16 @@
       
       <report test="italic" role="warning" id="ref-xref-italic-child-test">xref - <value-of select="."/> - contains italic formatting. Is this correct?</report>
     </rule>
-    
+  </pattern>
+  <pattern id="code-fork-pattern">
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(.)"/>
       
       <report test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>
       </report>
     </rule>
-    
+  </pattern>
+  <pattern id="auth-kwd-style-pattern">
     <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" id="auth-kwd-style">
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
@@ -5201,4 +5367,282 @@
   
   
   
+<pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
+      <assert test="descendant::article/front" role="error" id="test-front-xspec-assert">article/front must be present.</assert>
+      <assert test="descendant::article/front/journal-meta" role="error" id="test-journal-meta-xspec-assert">article/front/journal-meta must be present.</assert>
+      <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']/front/article-meta" role="error" id="test-research-article-metadata-xspec-assert">article[@article-type='research-article']/front/article-meta must be present.</assert>
+      <assert test="descendant::article-meta/article-categories" role="error" id="test-article-categories-xspec-assert">article-meta/article-categories must be present.</assert>
+      <assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject" role="error" id="disp-channel-checks-xspec-assert">article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</assert>
+      <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject" role="error" id="MSA-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading']/subject must be present.</assert>
+      <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']" role="error" id="head-subj-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading'] must be present.</assert>
+      <assert test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
+      <assert test="descendant::article/front/article-meta/contrib-group" role="error" id="test-contrib-group-xspec-assert">article/front/article-meta/contrib-group must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group//name" role="error" id="name-tests-xspec-assert">article-meta/contrib-group//name must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">article-meta/contrib-group//name/surname must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">article-meta/contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">article-meta/contrib-group//name/suffix must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]" role="error" id="name-child-tests-xspec-assert">article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</assert>
+      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert test="descendant::article-meta//contrib[@contrib-type='author']/*" role="error" id="author-children-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/* must be present.</assert>
+      <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
+      <assert test="descendant::article-meta//email" role="error" id="email-tests-xspec-assert">article-meta//email must be present.</assert>
+      <assert test="descendant::article-meta/history" role="error" id="history-tests-xspec-assert">article-meta/history must be present.</assert>
+      <assert test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
+      <assert test="descendant::pub-date[not(@pub-type='collection')]" role="error" id="pub-date-tests-1-xspec-assert">pub-date[not(@pub-type='collection')] must be present.</assert>
+      <assert test="descendant::pub-date[@pub-type='collection']" role="error" id="pub-date-tests-2-xspec-assert">pub-date[@pub-type='collection'] must be present.</assert>
+      <assert test="descendant::front//permissions" role="error" id="front-permissions-tests-xspec-assert">front//permissions must be present.</assert>
+      <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>
+      <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group/aff" role="error" id="aff-tests-xspec-assert">article-meta/contrib-group/aff must be present.</assert>
+      <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
+      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
+      <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
+      <assert test="descendant::article-meta//award-group//institution-wrap" role="error" id="institution-wrap-tests-xspec-assert">article-meta//award-group//institution-wrap must be present.</assert>
+      <assert test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]" role="error" id="kwd-group-tests-xspec-assert">article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</assert>
+      <assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']" role="error" id="ro-kwd-group-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism'] must be present.</assert>
+      <assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" role="error" id="ro-kwd-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</assert>
+      <assert test="descendant::article-meta/custom-meta-group" role="error" id="custom-meta-group-tests-xspec-assert">article-meta/custom-meta-group must be present.</assert>
+      <assert test="descendant::article-meta/custom-meta-group/custom-meta" role="error" id="custom-meta-tests-xspec-assert">article-meta/custom-meta-group/custom-meta must be present.</assert>
+      <assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta/meta-value must be present.</assert>
+      <assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value/*" role="error" id="meta-value-child-tests-xspec-assert">article-meta/custom-meta-group/custom-meta/meta-value/* must be present.</assert>
+      <assert test="descendant::article-meta/elocation-id" role="error" id="elocation-id-tests-xspec-assert">article-meta/elocation-id must be present.</assert>
+      <assert test="descendant::article-meta/volume" role="error" id="volume-test-xspec-assert">article-meta/volume must be present.</assert>
+      <assert test="descendant::article-meta//contrib[@contrib-type='author']" role="error" id="equal-author-tests-xspec-assert">article-meta//contrib[@contrib-type='author'] must be present.</assert>
+      <assert test="descendant::object-id[@pub-id-type='doi']" role="error" id="object-id-tests-xspec-assert">object-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::p" role="error" id="p-tests-xspec-assert">p must be present.</assert>
+      <assert test="descendant::p/*" role="error" id="p-child-tests-xspec-assert">p/* must be present.</assert>
+      <assert test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
+      <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
+      <assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</assert>
+      <assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type='reply']] must be present.</assert>
+      <assert test="descendant::graphic" role="error" id="graphic-tests-xspec-assert">graphic must be present.</assert>
+      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
+      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" role="error" id="source-data-specific-tests-xspec-assert">supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</assert>
+      <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
+      <assert test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
+      <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
+      <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
+      <assert test="descendant::body//table-wrap/label" role="error" id="body-table-label-tests-xspec-assert">body//table-wrap/label must be present.</assert>
+      <assert test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
+      <assert test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
+      <assert test="descendant::table/tbody" role="error" id="tbody-tests-xspec-assert">table/tbody must be present.</assert>
+      <assert test="descendant::table/thead" role="error" id="thead-tests-xspec-assert">table/thead must be present.</assert>
+      <assert test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
+      <assert test="descendant::td/*" role="error" id="td-child-tests-xspec-assert">td/* must be present.</assert>
+      <assert test="descendant::th/*" role="error" id="th-child-tests-xspec-assert">th/* must be present.</assert>
+      <assert test="descendant::fn[@id][not(@fn-type='other')]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other')] must be present.</assert>
+      <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
+      <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
+      <assert test="descendant::article/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::article/body//table-wrap[matches(@id,'^table[\d]+$')]" role="error" id="body-table-pos-conformance-xspec-assert">article/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</assert>
+      <assert test="descendant::article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" role="error" id="app-table-pos-conformance-xspec-assert">article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</assert>
+      <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
+      <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" role="error" id="fig-label-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label must be present.</assert>
+      <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']//fig" role="error" id="rep-fig-tests-xspec-assert">sub-article[@article-type='reply']//fig must be present.</assert>
+      <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" role="error" id="box-fig-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]/label must be present.</assert>
+      <assert test="descendant::article//app//fig[not(@specific-use='child-fig')]/label" role="error" id="app-fig-tests-xspec-assert">article//app//fig[not(@specific-use='child-fig')]/label must be present.</assert>
+      <assert test="descendant::article//app//fig[@specific-use='child-fig']/label" role="error" id="app-fig-sup-tests-xspec-assert">article//app//fig[@specific-use='child-fig']/label must be present.</assert>
+      <assert test="descendant::article/body[ancestor::article/@article-type='research-article']" role="error" id="ra-body-tests-xspec-assert">article/body[ancestor::article/@article-type='research-article'] must be present.</assert>
+      <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
+      <assert test="descendant::body/sec//sec" role="error" id="lower-level-sec-tests-xspec-assert">body/sec//sec must be present.</assert>
+      <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>
+      <assert test="descendant::sec[@sec-type]/title" role="error" id="sec-title-tests-xspec-assert">sec[@sec-type]/title must be present.</assert>
+      <assert test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
+      <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
+      <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
+      <assert test="descendant::ack" role="error" id="ack-title-tests-xspec-assert">ack must be present.</assert>
+      <assert test="descendant::ack//p" role="error" id="ack-content-tests-xspec-assert">ack//p must be present.</assert>
+      <assert test="descendant::ref-list" role="error" id="ref-list-title-tests-xspec-assert">ref-list must be present.</assert>
+      <assert test="descendant::app/title" role="error" id="app-title-tests-xspec-assert">app/title must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-title-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='author-contribution']" role="error" id="auth-cont-title-tests-xspec-assert">fn-group[@content-type='author-contribution'] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/title-group" role="error" id="dec-letter-title-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/title-group must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']/front-stub/title-group" role="error" id="reply-title-tests-xspec-assert">sub-article[@article-type='reply']/front-stub/title-group must be present.</assert>
+      <assert test="descendant::article-meta//contrib[@contrib-type='author']" role="error" id="author-contrib-ids-xspec-assert">article-meta//contrib[@contrib-type='author'] must be present.</assert>
+      <assert test="descendant::funding-group/award-group" role="error" id="award-group-ids-xspec-assert">funding-group/award-group must be present.</assert>
+      <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-ids-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
+      <assert test="descendant::article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" role="error" id="fig-sup-ids-xspec-assert">article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)] must be present.</assert>
+      <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]" role="error" id="box-fig-ids-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert test="descendant::article/back//app//fig[not(@specific-use='child-fig')]" role="error" id="app-fig-ids-xspec-assert">article/back//app//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert test="descendant::article/back//app//fig[@specific-use='child-fig']" role="error" id="app-fig-sup-ids-xspec-assert">article/back//app//fig[@specific-use='child-fig'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" role="error" id="rep-fig-ids-xspec-assert">sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']//fig[@specific-use='child-fig']" role="error" id="rep-fig-sup-ids-xspec-assert">sub-article[@article-type='reply']//fig[@specific-use='child-fig'] must be present.</assert>
+      <assert test="descendant::related-article" role="error" id="related-articles-ids-xspec-assert">related-article must be present.</assert>
+      <assert test="descendant::aff[not(parent::contrib)]" role="error" id="aff-ids-xspec-assert">aff[not(parent::contrib)] must be present.</assert>
+      <assert test="descendant::fn" role="error" id="fn-ids-xspec-assert">fn must be present.</assert>
+      <assert test="descendant::disp-formula" role="error" id="disp-formula-ids-xspec-assert">disp-formula must be present.</assert>
+      <assert test="descendant::disp-formula/mml:math" role="error" id="mml-math-ids-xspec-assert">disp-formula/mml:math must be present.</assert>
+      <assert test="descendant::app/table-wrap" role="error" id="app-table-wrap-ids-xspec-assert">app/table-wrap must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']//table-wrap" role="error" id="resp-table-wrap-ids-xspec-assert">sub-article[@article-type='reply']//table-wrap must be present.</assert>
+      <assert test="descendant::article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" role="error" id="table-wrap-ids-xspec-assert">article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])] must be present.</assert>
+      <assert test="descendant::article/body/sec" role="error" id="body-top-level-sec-ids-xspec-assert">article/body/sec must be present.</assert>
+      <assert test="descendant::article/back/sec" role="error" id="back-top-level-sec-ids-xspec-assert">article/back/sec must be present.</assert>
+      <assert test="descendant::article/body/sec//sec or descendant::article/back/sec//sec" role="error" id="low-level-sec-ids-xspec-assert">article/body/sec//sec|article/back/sec//sec must be present.</assert>
+      <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
+      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
+      <assert test="descendant::back/ack" role="error" id="ack-tests-xspec-assert">back/ack must be present.</assert>
+      <assert test="descendant::back/ack/*" role="error" id="ack-child-tests-xspec-assert">back/ack/* must be present.</assert>
+      <assert test="descendant::back//app" role="error" id="app-tests-xspec-assert">back//app must be present.</assert>
+      <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-fn-group-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='author-contribution']" role="error" id="auth-cont-tests-xspec-assert">fn-group[@content-type='author-contribution'] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='author-contribution']/fn" role="error" id="auth-cont-fn-tests-xspec-assert">fn-group[@content-type='author-contribution']/fn must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-fn-tests-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
+      <assert test="descendant::article/sub-article" role="error" id="dec-letter-reply-tests-xspec-assert">article/sub-article must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/body" role="error" id="dec-letter-body-tests-xspec-assert">sub-article[@article-type='decision-letter']/body must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']/front-stub" role="error" id="reply-front-tests-xspec-assert">sub-article[@article-type='reply']/front-stub must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type='reply']/body must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//disp-quote must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" role="error" id="insight-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</assert>
+      <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
+      <assert test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
+      <assert test="descendant::element-citation/person-group" role="error" id="elem-citation-gen-name-3-1-xspec-assert">element-citation/person-group must be present.</assert>
+      <assert test="descendant::element-citation/person-group/collab" role="error" id="elem-citation-gen-name-3-2-xspec-assert">element-citation/person-group/collab must be present.</assert>
+      <assert test="descendant::element-citation/person-group/name" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name must be present.</assert>
+      <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
+      <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="xref-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="elem-citation-journal-article-title-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/volume" role="error" id="elem-citation-journal-volume-xspec-assert">element-citation[@publication-type='journal']/volume must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/fpage" role="error" id="elem-citation-journal-fpage-xspec-assert">element-citation[@publication-type='journal']/fpage must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/elocation-id" role="error" id="elem-citation-journal-elocation-id-xspec-assert">element-citation[@publication-type='journal']/elocation-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='journal']/comment must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']" role="error" id="elem-citation-journal-pub-id-pmid-xspec-assert">element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/pub-id" role="error" id="elem-citation-journal-pub-id-xspec-assert">element-citation[@publication-type='journal']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/person-group" role="error" id="elem-citation-book-person-group-xspec-assert">element-citation[@publication-type='book']/person-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/publisher-name" role="error" id="elem-citation-book-publisher-name-xspec-assert">element-citation[@publication-type='book']/publisher-name must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/edition" role="error" id="elem-citation-book-edition-xspec-assert">element-citation[@publication-type='book']/edition must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']" role="error" id="elem-citation-book-pub-id-pmid-xspec-assert">element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/pub-id" role="error" id="elem-citation-book-pub-id-xspec-assert">element-citation[@publication-type='book']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" role="error" id="elem-citation-data-pub-id-doi-xspec-assert">element-citation[@publication-type='data']/pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']/pub-id" role="error" id="elem-citation-data-pub-id-xspec-assert">element-citation[@publication-type='data']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']/ext-link" role="error" id="elem-citation-data-ext-link-xspec-assert">element-citation[@publication-type='data']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='patent']" role="error" id="elem-citation-patent-xspec-assert">element-citation[@publication-type='patent'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='patent']/ext-link" role="error" id="elem-citation-patent-ext-link-xspec-assert">element-citation[@publication-type='patent']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='patent']/article-title" role="error" id="elem-citation-patent-article-title-xspec-assert">element-citation[@publication-type='patent']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='patent']/source" role="error" id="elem-citation-patent-source-xspec-assert">element-citation[@publication-type='patent']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='patent']/patent" role="error" id="elem-citation-patent-patent-xspec-assert">element-citation[@publication-type='patent']/patent must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type = 'software']" role="error" id="elem-citation-software-xspec-assert">element-citation[@publication-type = 'software'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type = 'software']/data-title" role="error" id="elem-citation-software-data-title-xspec-assert">element-citation[@publication-type = 'software']/data-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type = 'software']/ext-link" role="error" id="elem-citation-software-ext-link-xspec-assert">element-citation[@publication-type = 'software']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']" role="error" id="elem-citation-preprint-xspec-assert">element-citation[@publication-type='preprint'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/person-group" role="error" id="elem-citation-preprint-person-group-xspec-assert">element-citation[@publication-type='preprint']/person-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/pub-id" role="error" id="elem-citation-preprint-pub-id-xspec-assert">element-citation[@publication-type='preprint']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/ext-link" role="error" id="elem-citation-preprint-ext-link-xspec-assert">element-citation[@publication-type='preprint']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/article-title" role="error" id="elem-citation-preprint-article-title-xspec-assert">element-citation[@publication-type='preprint']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/source" role="error" id="elem-citation-preprint-source-xspec-assert">element-citation[@publication-type='preprint']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']/person-group" role="error" id="elem-citation-web-person-group-xspec-assert">element-citation[@publication-type='web']/person-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']/ext-link" role="error" id="elem-citation-web-ext-link-xspec-assert">element-citation[@publication-type='web']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']/article-title" role="error" id="elem-citation-web-article-title-xspec-assert">element-citation[@publication-type='web']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']/source" role="error" id="elem-citation-web-source-xspec-assert">element-citation[@publication-type='web']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']/date-in-citation" role="error" id="elem-citation-web-date-in-citation-xspec-assert">element-citation[@publication-type='web']/date-in-citation must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='report']" role="error" id="elem-citation-report-xspec-assert">element-citation[@publication-type='report'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='report']/person-group" role="error" id="elem-citation-report-preson-group-xspec-assert">element-citation[@publication-type='report']/person-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='report']/source" role="error" id="elem-citation-report-source-xspec-assert">element-citation[@publication-type='report']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='report']/publisher-name" role="error" id="elem-citation-report-publisher-name-xspec-assert">element-citation[@publication-type='report']/publisher-name must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='report']/pub-id" role="error" id="elem-citation-report-pub-id-xspec-assert">element-citation[@publication-type='report']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='report']/ext-link" role="error" id="elem-citation-report-ext-link-xspec-assert">element-citation[@publication-type='report']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/person-group" role="error" id="elem-citation-confproc-preson-group-xspec-assert">element-citation[@publication-type='confproc']/person-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/source" role="error" id="elem-citation-confproc-source-xspec-assert">element-citation[@publication-type='confproc']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/article-title" role="error" id="elem-citation-confproc-article-title-xspec-assert">element-citation[@publication-type='confproc']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/conf-name" role="error" id="elem-citation-confproc-conf-name-xspec-assert">element-citation[@publication-type='confproc']/conf-name must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/conf-loc" role="error" id="elem-citation-confproc-conf-loc-xspec-assert">element-citation[@publication-type='confproc']/conf-loc must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/fpage" role="error" id="elem-citation-confproc-fpage-xspec-assert">element-citation[@publication-type='confproc']/fpage must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/pub-id" role="error" id="elem-citation-confproc-pub-id-xspec-assert">element-citation[@publication-type='confproc']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='confproc']/ext-link" role="error" id="elem-citation-confproc-ext-link-xspec-assert">element-citation[@publication-type='confproc']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']" role="error" id="elem-citation-thesis-xspec-assert">element-citation[@publication-type='thesis'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']/person-group" role="error" id="elem-citation-thesis-preson-group-xspec-assert">element-citation[@publication-type='thesis']/person-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']/article-title" role="error" id="elem-citation-thesis-article-title-xspec-assert">element-citation[@publication-type='thesis']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']/publisher-name" role="error" id="elem-citation-thesis-publisher-name-xspec-assert">element-citation[@publication-type='thesis']/publisher-name must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']/publisher-loc" role="error" id="elem-citation-thesis-publisher-loc-xspec-assert">element-citation[@publication-type='thesis']/publisher-loc must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']/pub-id" role="error" id="elem-citation-thesis-pub-id-xspec-assert">element-citation[@publication-type='thesis']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='thesis']/ext-link" role="error" id="elem-citation-thesis-ext-link-xspec-assert">element-citation[@publication-type='thesis']/ext-link must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']" role="error" id="elem-citation-periodical-xspec-assert">element-citation[@publication-type='periodical'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/string-date/year" role="error" id="elem-citation-periodical-year-xspec-assert">element-citation[@publication-type='periodical']/string-date/year must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/article-title" role="error" id="elem-citation-periodical-article-title-xspec-assert">element-citation[@publication-type='periodical']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/volume" role="error" id="elem-citation-periodical-volume-xspec-assert">element-citation[@publication-type='periodical']/volume must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/fpage" role="error" id="elem-citation-periodical-fpage-xspec-assert">element-citation[@publication-type='periodical']/fpage must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/string-date" role="error" id="elem-citation-periodical-string-date-xspec-assert">element-citation[@publication-type='periodical']/string-date must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/string-date/month" role="error" id="elem-citation-periodical-month-xspec-assert">element-citation[@publication-type='periodical']/string-date/month must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/string-date/day" role="error" id="elem-citation-periodical-day-xspec-assert">element-citation[@publication-type='periodical']/string-date/day must be present.</assert>
+      <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
+      <assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" role="error" id="feature-title-tests-xspec-assert">article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type='executive-summary']" role="error" id="feature-abstract-tests-xspec-assert">front//abstract[@abstract-type='executive-summary'] must be present.</assert>
+      <assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]" role="error" id="feature-subj-tests-1-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]] must be present.</assert>
+      <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-2-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
+      <assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-article-category-tests-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
+      <assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author'] must be present.</assert>
+      <assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio must be present.</assert>
+      <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
+      <assert test="descendant::article[@article-type = 'retraction']" role="error" id="retraction-tests-xspec-assert">article[@article-type = 'retraction'] must be present.</assert>
+      <assert test="descendant::p" role="error" id="final-gene-primer-sequence-xspec-assert">p must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
+      <assert test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::ref-list/ref/element-citation" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation must be present.</assert>
+      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='fig']" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert test="descendant::article//article-meta/title-group/article-title  or descendant:: article/body//sec/title  or descendant:: article//article-meta//kwd" role="error" id="org-title-kwd-xspec-assert">article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
+      <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
+      <assert test="descendant::front//aff/country" role="error" id="country-tests-xspec-assert">front//aff/country must be present.</assert>
+      <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
+      <assert test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
+      <assert test="descendant::aff/institution[@content-type='dept']" role="error" id="department-tests-xspec-assert">aff/institution[@content-type='dept'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/source" role="error" id="journal-title-tests-xspec-assert">element-citation[@publication-type='journal']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/source" role="error" id="preprint-title-tests-xspec-assert">element-citation[@publication-type='preprint']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="website-tests-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
+      <assert test="descendant::element-citation/publisher-name" role="error" id="publisher-name-tests-xspec-assert">element-citation/publisher-name must be present.</assert>
+      <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
+      <assert test="descendant::element-citation/pub-id[@pub-id-type='isbn']" role="error" id="isbn-conformity-xspec-assert">element-citation/pub-id[@pub-id-type='isbn'] must be present.</assert>
+      <assert test="descendant::isbn" role="error" id="isbn-conformity-2-xspec-assert">isbn must be present.</assert>
+      <assert test="descendant::sec[@sec-type='data-availability']/p[1]" role="error" id="data-availability-statement-xspec-assert">sec[@sec-type='data-availability']/p[1] must be present.</assert>
+      <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-info-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
+      <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
+      <assert test="descendant::abstract[not(@*)]" role="error" id="abstract-house-tests-xspec-assert">abstract[not(@*)] must be present.</assert>
+      <assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::article" role="error" id="KRT-check-xspec-assert">article must be present.</assert>
+      <assert test="descendant::table-wrap[@id='keyresource']//td" role="error" id="KRT-td-checks-xspec-assert">table-wrap[@id='keyresource']//td must be present.</assert>
+      <assert test="descendant::th or descendant::td" role="error" id="colour-table-xspec-assert">th|td must be present.</assert>
+      <assert test="descendant::named-content" role="error" id="colour-named-content-xspec-assert">named-content must be present.</assert>
+      <assert test="descendant::styled-content" role="error" id="colour-styled-content-xspec-assert">styled-content must be present.</assert>
+      <assert test="descendant::article/body//p[not(parent::list-item)]" role="error" id="p-punctuation-xspec-assert">article/body//p[not(parent::list-item)] must be present.</assert>
+      <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
+      <assert test="descendant::list[@list-type]" role="error" id="list-house-style-xspec-assert">list[@list-type] must be present.</assert>
+      <assert test="descendant::p//ext-link[not(ancestor::table-wrap)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap)] must be present.</assert>
+      <assert test="descendant::ref-list/ref" role="error" id="ref-link-mandate-xspec-assert">ref-list/ref must be present.</assert>
+      <assert test="descendant::fig or descendant::media[@mimetype='video']" role="error" id="fig-permissions-check-xspec-assert">fig|media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::article" role="error" id="code-fork-xspec-assert">article must be present.</assert>
+      <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
+    </rule>
+  </pattern>
 </schema>

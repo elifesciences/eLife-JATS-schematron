@@ -13,7 +13,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
@@ -613,6 +612,11 @@
   <pattern id="id-conformance">
     <rule context="sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       <assert test="matches(@id,'^respfig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">author response fig must have @id in the format respfig0.</assert>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" role="error" id="rep-fig-ids-xspec-assert">sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

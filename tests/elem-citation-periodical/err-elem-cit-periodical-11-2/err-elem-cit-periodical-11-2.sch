@@ -13,7 +13,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
   <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  <let name="disp-channel" value="//article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
@@ -615,6 +614,11 @@
       <report test="count(fpage) gt 1 or count(lpage) gt 1" role="error" id="err-elem-cit-periodical-11-2">[err-elem-cit-periodical-11-2]
         The citation may contain no more than one &lt;fpage&gt; or &lt;lpage&gt; elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has<value-of select="count(fpage)"/>&lt;fpage&gt; elements and<value-of select="count(lpage)"/>&lt;lpage&gt; elements.</report>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::element-citation[@publication-type='periodical']" role="error" id="elem-citation-periodical-xspec-assert">element-citation[@publication-type='periodical'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
