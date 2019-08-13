@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="test-article-body.sch"?>
-<!-- Context: article
+<!--Context: article
 Test: count(body) = 1-->
 <root>
   <article article-type="research-article">

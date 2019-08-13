@@ -16,11 +16,12 @@ let $fail := concat($path,'fail.xml')
 let $schema-let := test:schema-let($test)
 
 let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"') 
+let $comment := comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
+Test: ',normalize-space($test/@test/string()))}
 
 let $node := 
 (processing-instruction {'oxygen'}{$pi-content},
-comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
-Test: ',normalize-space($test/@test/string()))},
+$comment,
 <root><article/></root>)
 
 return 
@@ -29,10 +30,24 @@ return
   then () 
   else file:create-dir($path)
   ,
-  if(file:exists($pass)) then ()
+  if(file:exists($pass)) then 
+    let $new-pass := 
+    (
+      processing-instruction {'oxygen'}{$pi-content},
+      $comment,
+      doc($pass)//*:root
+    )
+    return file:write($pass,$new-pass)
   else file:write($pass,$node)
   ,
-  if(file:exists($fail)) then ()
+  if(file:exists($fail)) then 
+   let $new-fail := 
+    (
+      processing-instruction {'oxygen'}{$pi-content},
+      $comment,
+      doc($fail)//*:root
+    )
+    return file:write($fail,$new-fail)
   else file:write($fail,$node)
   ,
   file:write(concat($path,$test/@id,'.sch'),$schema-let)
