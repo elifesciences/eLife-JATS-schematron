@@ -2,5 +2,11 @@
 <!--Context: article[@article-type = 'correction']
 Test: descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']-->
 <root>
-  <article/>
+  <article article-type="correction">
+    <front>
+      <article-meta>
+        <kwd-group kwd-group-type="author-keywords"></kwd-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

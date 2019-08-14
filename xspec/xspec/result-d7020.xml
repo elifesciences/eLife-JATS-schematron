@@ -47,12 +47,6 @@
                           location="/root[1]/article[1]">
          <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="count(body) = 1"
-                          id="test-article-body"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-group-test-1/fail.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
@@ -329,6 +323,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-group-test-1/fail.xml"
                            id="comp-int-title-tests-pattern"
                            name="comp-int-title-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='competing-interest']"
+                       id="comp-int-title-tests"/>
+      <svrl:failed-assert test="title = 'Competing interests'"
+                          id="comp-int-title-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/fn-group[1]">
+         <svrl:text>fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-group-test-1/fail.xml"
                            id="auth-cont-title-tests-pattern"
                            name="auth-cont-title-tests-pattern"/>
@@ -425,6 +427,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-group-test-1/fail.xml"
                            id="comp-int-fn-group-tests-pattern"
                            name="comp-int-fn-group-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='competing-interest']"
+                       id="comp-int-fn-group-tests"/>
+      <svrl:failed-assert test="count(fn) gt 0"
+                          id="comp-int-fn-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/fn-group[1]">
+         <svrl:text>At least one child fn element should be present in fn-group[@content-type='competing-interest'].</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="ancestor::back"
+                          id="comp-int-fn-group-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/fn-group[1]">
+         <svrl:text>This fn-group must be a descendant of back.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-group-test-1/fail.xml"
                            id="comp-int-fn-tests-pattern"
                            name="comp-int-fn-tests-pattern"/>
@@ -1424,12 +1440,6 @@
                           location="/root[1]">
          <svrl:text>app/title must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
-                          id="comp-int-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='competing-interest'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn-group[@content-type='author-contribution']"
                           id="auth-cont-title-tests-xspec-assert"
                           role="error"
@@ -1615,12 +1625,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>sec[@sec-type='additional-information'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
-                          id="comp-int-fn-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='competing-interest'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']/fn"
                           id="comp-int-fn-tests-xspec-assert"

@@ -2,5 +2,14 @@
 <!--Context: article[@article-type = 'correction']
 Test: descendant::meta-name[text() = 'Author impact statement']-->
 <root>
-  <article/>
+  <article article-type="correction">
+    <front>
+      <article-meta>
+        
+      </article-meta>
+    </front>
+    <back>
+      <sec sec-type="supplementary-material"/>
+    </back>
+  </article>
 </root>

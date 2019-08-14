@@ -610,7 +610,7 @@
     </xsl:element>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="p|td|th|title|xref|bold|italic|sub|sup|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">
         <name/>element contains the phrase ' Supplemental figure ' which almost certainly needs updating.<name/>starts with -<value-of select="substring(.,1,25)"/>
       </report>
@@ -618,7 +618,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sup or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sup|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
     </rule>
   </pattern>
 </schema>

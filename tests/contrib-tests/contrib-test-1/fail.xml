@@ -2,5 +2,16 @@
 <!--Context: article-meta//contrib
 Test: if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0-->
 <root>
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes">
+            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+            <email>d.zoolander@bluesteel.com</email>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

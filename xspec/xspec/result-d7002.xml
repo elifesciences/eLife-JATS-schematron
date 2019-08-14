@@ -329,6 +329,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-test-1/fail.xml"
                            id="comp-int-title-tests-pattern"
                            name="comp-int-title-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='competing-interest']"
+                       id="comp-int-title-tests"/>
+      <svrl:failed-assert test="title = 'Competing interests'"
+                          id="comp-int-title-test"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/fn-group[1]">
+         <svrl:text>fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-test-1/fail.xml"
                            id="auth-cont-title-tests-pattern"
                            name="auth-cont-title-tests-pattern"/>
@@ -407,6 +415,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-test-1/fail.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
+      <svrl:fired-rule context="back" id="back-tests"/>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else count(sec[@sec-type='additional-information']) != 1"
+                              id="back-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>One and only one sec[@sec-type="additional-information"] must be present in back.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then () else count(sec[@sec-type='data-availability']) != 1"
+                              id="back-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>One and only one sec[@sec-type="data-availability"] must be present as a child of back for ''.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))"
+                              id="back-test-8"
+                              role="warning"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>'' usually have acknowledgement sections, but there isn't one here. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-test-1/fail.xml"
                            id="data-content-tests-pattern"
                            name="data-content-tests-pattern"/>
@@ -425,6 +452,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-test-1/fail.xml"
                            id="comp-int-fn-group-tests-pattern"
                            name="comp-int-fn-group-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='competing-interest']"
+                       id="comp-int-fn-group-tests"/>
+      <svrl:failed-assert test="count(fn) gt 0"
+                          id="comp-int-fn-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/fn-group[1]">
+         <svrl:text>At least one child fn element should be present in fn-group[@content-type='competing-interest'].</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/comp-int-fn-group-tests/comp-int-fn-test-1/fail.xml"
                            id="comp-int-fn-tests-pattern"
                            name="comp-int-fn-tests-pattern"/>
@@ -1424,12 +1459,6 @@
                           location="/root[1]">
          <svrl:text>app/title must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
-                          id="comp-int-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='competing-interest'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn-group[@content-type='author-contribution']"
                           id="auth-cont-title-tests-xspec-assert"
                           role="error"
@@ -1580,12 +1609,6 @@
                           location="/root[1]">
          <svrl:text>sec must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::back"
-                          id="back-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>back must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back/sec[@sec-type='data-availability']"
                           id="data-content-tests-xspec-assert"
                           role="error"
@@ -1615,12 +1638,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>sec[@sec-type='additional-information'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
-                          id="comp-int-fn-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='competing-interest'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']/fn"
                           id="comp-int-fn-tests-xspec-assert"

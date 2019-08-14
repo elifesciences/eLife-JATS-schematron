@@ -2,5 +2,9 @@
 <!--Context: fn-group[@content-type='competing-interest']
 Test: ancestor::back-->
 <root>
-  <article/>
+  <article>
+    <body>
+      <fn-group content-type="competing-interest"/>
+    </body>
+  </article>
 </root>

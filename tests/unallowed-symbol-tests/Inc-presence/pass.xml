@@ -1,6 +1,8 @@
 <?oxygen SCHSchema="Inc-presence.sch"?>
-<!--Context: p|td|th|title|xref|bold|italic|sub|sup|sc|named-content|monospace|code|underline|fn|institution|ext-link
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
 Test: matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')-->
 <root>
-  <article/>
+  <article>
+    <bold>test incorporated</bold>
+  </article>
 </root>

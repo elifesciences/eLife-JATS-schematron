@@ -2,5 +2,16 @@
 <!--Context: article-meta//contrib
 Test: not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)-->
 <root>
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+            <email>d.zoolander@bluesteel.com</email>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

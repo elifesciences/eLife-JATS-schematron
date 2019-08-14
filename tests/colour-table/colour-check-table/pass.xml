@@ -2,5 +2,7 @@
 <!--Context: th|td
 Test: starts-with(@style,'author-callout')-->
 <root>
-  <article/>
+  <article>
+    <td>test</td>
+  </article>
 </root>

@@ -2,5 +2,15 @@
 <!--Context: article-meta//contrib
 Test: self::*[@corresp='yes'][not(child::*:email)]-->
 <root>
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes">
+            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

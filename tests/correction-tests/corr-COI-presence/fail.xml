@@ -2,5 +2,15 @@
 <!--Context: article[@article-type = 'correction']
 Test: descendant::fn-group[@content-type='competing-interest']-->
 <root>
-  <article/>
+  <article article-type="correction">
+    <front>
+      <article-meta>
+        
+      </article-meta>
+    </front>
+    <back>
+      <sec sec-type="supplementary-material"/>
+      <fn-group content-type="competing-interest"/>
+    </back>
+  </article>
 </root>

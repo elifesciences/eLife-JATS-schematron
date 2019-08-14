@@ -1,6 +1,8 @@
 <?oxygen SCHSchema="replacement-character-presence.sch"?>
-<!--Context: p|td|th|title|xref|bold|italic|sub|sup|sc|named-content|monospace|code|underline|fn|institution|ext-link
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
 Test: matches(.,'�')-->
 <root>
-  <article/>
+  <article>
+    <underline/>
+  </article>
 </root>

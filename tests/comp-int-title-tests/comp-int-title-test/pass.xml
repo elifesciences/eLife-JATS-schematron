@@ -2,5 +2,12 @@
 <!--Context: fn-group[@content-type='competing-interest']
 Test: title = 'Competing interests'-->
 <root>
-  <article/>
+  <article>
+    <back>
+      <fn-group content-type="competing-interest">
+        <title>Competing interests</title>
+        <fn/>
+      </fn-group>
+    </back>
+  </article>
 </root>

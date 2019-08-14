@@ -2,5 +2,11 @@
 <!--Context: fn-group[@content-type='competing-interest']/fn
 Test: @fn-type='COI-statement'-->
 <root>
-  <article/>
+  <article>
+    <back>
+      <fn-group content-type="competing-interest">
+        <fn fn-type="COI-statement"/>
+      </fn-group>
+    </back>
+  </article>
 </root>

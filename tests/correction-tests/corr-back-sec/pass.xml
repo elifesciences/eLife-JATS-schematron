@@ -2,5 +2,14 @@
 <!--Context: article[@article-type = 'correction']
 Test: (back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)-->
 <root>
-  <article/>
+  <article article-type="correction">
+    <front>
+      <article-meta>
+        
+      </article-meta>
+    </front>
+    <back>
+      <sec sec-type="supplementary-material"/>
+    </back>
+  </article>
 </root>

@@ -2,5 +2,11 @@
 <!--Context: article[@article-type = 'correction']
 Test: descendant::article-meta//aff-->
 <root>
-  <article/>
+  <article article-type="correction">
+    <front>
+      <article-meta>
+        
+      </article-meta>
+    </front>
+  </article>
 </root>

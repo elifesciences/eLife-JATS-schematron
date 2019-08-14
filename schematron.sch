@@ -1147,7 +1147,7 @@
 	  <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
 	  <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
 	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
-	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]| AstraZeneca| Pfizer| R&amp;D'"/>
+	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
     	<report test="if ($subj-type = ('Retraction','Correction')) then ()
@@ -1158,7 +1158,7 @@
       	role="error" 
       	id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
 	  
-	  <report test="($type != 'author') and (count(xref[@ref-type='aff']) + count(aff) = 0)"
+	  <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)"
 	     role="warning" 
 	     id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="."/> - is this correct?</report>
 	  
@@ -6228,7 +6228,7 @@
         role="warning"
         id="supplementalfigure-presence"><name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'/s?[Ss]upplemental [Ff]ile')"
+      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')"
         role="warning"
         id="supplementalfile-presence"><name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       

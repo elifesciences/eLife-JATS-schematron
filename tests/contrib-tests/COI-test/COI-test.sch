@@ -626,7 +626,7 @@
       <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
       <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
       <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
-      <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]| AstraZeneca| Pfizer| R&amp;D'"/>
+      <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
       <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">
         <value-of select="concat(descendant::surname,' ',descendant::given-names)"/>is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
     </rule>

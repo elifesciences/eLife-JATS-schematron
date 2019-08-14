@@ -2,5 +2,11 @@
 <!--Context: fn-group[@content-type='competing-interest']
 Test: count(fn) gt 0-->
 <root>
-  <article/>
+  <article>
+    <back>
+      <fn-group content-type="competing-interest">
+        <fn/>
+      </fn-group>
+    </back>
+  </article>
 </root>

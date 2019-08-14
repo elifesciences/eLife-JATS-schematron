@@ -2,5 +2,15 @@
 <!--Context: article[@article-type = 'correction']
 Test: descendant::self-uri-->
 <root>
-  <article/>
+  <article article-type="correction" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <front>
+      <article-meta>
+        <contrib-group/>
+        <self-uri xlink:href="elife-number.pdf"/>
+      </article-meta>
+    </front>
+    <back>
+      <sec sec-type="supplementary-material"/>
+    </back>
+  </article>
 </root>
