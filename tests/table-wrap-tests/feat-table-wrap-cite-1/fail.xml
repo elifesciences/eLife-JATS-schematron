@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="feat-table-wrap-cite-1.sch"?>
 <!--Context: table-wrap
 Test: if (contains($id,'inline')) then () else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id])) else ()-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

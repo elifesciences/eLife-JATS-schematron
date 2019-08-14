@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="paleorxiv-test.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/source
 Test: matches($lc,'paleorxiv') and not(. = 'PaleorXiv')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

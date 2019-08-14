@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="math-test-1.sch"?>
 <!--Context: mml:math
 Test: $data = ''-->
-<root>
-  <article xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
     <mml:math>
       <mml:mi>λ</mml:mi>
       <mml:mo>=</mml:mo>

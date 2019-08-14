@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="media-test-5.sch"?>
 <!--Context: media
 Test: matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

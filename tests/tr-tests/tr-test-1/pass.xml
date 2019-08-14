@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="tr-test-1.sch"?>
 <!--Context: tr
 Test: $count = 0-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

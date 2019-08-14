@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="feature-bio-test-3.sch"?>
 <!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio
 Test: matches(p,'[\p{P}]$')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

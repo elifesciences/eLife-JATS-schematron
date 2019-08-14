@@ -1,12 +1,10 @@
 <?oxygen SCHSchema="corr-COI-presence.sch"?>
 <!--Context: article[@article-type = 'correction']
 Test: descendant::fn-group[@content-type='competing-interest']-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">
     <front>
-      <article-meta>
-        
-      </article-meta>
+      <article-meta/>
     </front>
     <back>
       <sec sec-type="supplementary-material"/>

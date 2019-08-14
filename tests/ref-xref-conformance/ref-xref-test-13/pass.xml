@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-13.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: ((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+'))) or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($'))) and (. = $cite1)-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-data-3-1.sch"?>
 <!--Context: element-citation[@publication-type='data']
 Test: count(person-group[@person-group-type='author']) le 1 and count(person-group[@person-group-type='compiler']) le 1 and count(person-group[@person-group-type='curator']) le 1-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

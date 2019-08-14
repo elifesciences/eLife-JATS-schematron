@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="warning-elem-cit-book-13-3.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: some $p in document($publisher-locations)/locations/location/text() satisfies ends-with(publisher-name[1],$p)-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

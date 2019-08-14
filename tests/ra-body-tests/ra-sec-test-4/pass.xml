@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ra-sec-test-4.sch"?>
 <!--Context: article/body[ancestor::article/@article-type='research-article']
 Test: if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

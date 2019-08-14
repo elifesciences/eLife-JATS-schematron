@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-3.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/year
 Test: matches(normalize-space(@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

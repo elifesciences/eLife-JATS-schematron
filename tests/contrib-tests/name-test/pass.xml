@@ -1,18 +1,23 @@
 <?oxygen SCHSchema="name-test.sch"?>
 <!--Context: article-meta//contrib
 Test: if (collab) then () else count(name) != 1-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>
         <contrib-group content-type="section">
           <contrib>
-            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
             <xref ref-type="aff" rid="aff1"/>
           </contrib>
           <aff id="aff1">
             <institution>University of Cambridge</institution>
-            <addr-line><named-content content-type="city">Cambdrige</named-content></addr-line>
+            <addr-line>
+              <named-content content-type="city">Cambdrige</named-content>
+            </addr-line>
             <country>United Kingdom</country>
           </aff>
         </contrib-group>

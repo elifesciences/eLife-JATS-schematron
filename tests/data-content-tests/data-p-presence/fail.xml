@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="data-p-presence.sch"?>
 <!--Context: back/sec[@sec-type='data-availability']
 Test: count(p) gt 0-->
-<root>
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <back>
+      <sec sec-type="data-availability"/>
+    </back>
+  </article>
 </root>

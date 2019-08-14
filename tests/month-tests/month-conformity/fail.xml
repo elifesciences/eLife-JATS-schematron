@@ -1,0 +1,6 @@
+<?oxygen SCHSchema="month-conformity.sch"?>
+<!--Context: month
+Test: matches(.,'^[0][1-9]$|^[1][0-2]$')-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article/>
+</root>

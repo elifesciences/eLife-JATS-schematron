@@ -22,7 +22,7 @@ Test: ',normalize-space($test/@test/string()))}
 let $node := 
 (processing-instruction {'oxygen'}{$pi-content},
 $comment,
-<root><article/></root>)
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>)
 
 return 
 (

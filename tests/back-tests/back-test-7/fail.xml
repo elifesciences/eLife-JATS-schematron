@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="back-test-7.sch"?>
 <!--Context: back
 Test: ($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)-->
-<root>
-  <article article-type="research-article">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article article-type="discussion">
     <front>
       <article-meta>
         <article-catergories>
           <subj-group subj-group-type="display-channel">
-            <subject>Research Communication</subject>
+            <subject>Insight</subject>
           </subj-group>
         </article-catergories>
       </article-meta>

@@ -1,6 +1,17 @@
 <?oxygen SCHSchema="custom-meta-test-3.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta
 Test: count(meta-value) = 1-->
-<root>
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>Impact statement</meta-name>
+            <meta-value>...</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

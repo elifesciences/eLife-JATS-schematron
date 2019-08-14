@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-high-3-2.sch"?>
 <!--Context: ref
 Test: matches(normalize-space(@id) ,'^bib\d+$')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

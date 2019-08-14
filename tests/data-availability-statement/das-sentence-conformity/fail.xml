@@ -1,6 +1,13 @@
 <?oxygen SCHSchema="das-sentence-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
 Test: matches(.,'\.$|\?$')-->
-<root>
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <sec sec-type="data-availability">
+      <p>Dryad</p>
+      <element-citation>
+        <pub-id assigning-authority="Dryad">000001</pub-id>
+      </element-citation>
+    </sec>
+  </article>
 </root>

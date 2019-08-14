@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="media-test-6.sch"?>
 <!--Context: media
 Test: matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$') and (@mime-subtype='octet-stream')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

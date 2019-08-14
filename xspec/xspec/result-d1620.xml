@@ -202,7 +202,10 @@
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[1]">
          <svrl:text>non-author contrib doesn't have an affiliation - 
-            ZoolanderDerek
+            
+              Zoolander
+              Derek
+            
            - is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/contrib-test-2/fail.xml"

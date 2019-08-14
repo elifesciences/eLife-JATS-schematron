@@ -1,6 +1,12 @@
 <?oxygen SCHSchema="date-test-4.sch"?>
 <!--Context: date
 Test: @iso-8601-date = concat(year,'-',month,'-',day)-->
-<root>
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <date iso-8601-date="2000-02-02">
+      <day>02</day>
+      <month>02</month>
+      <year>2000</year>
+    </date>
+  </article>
 </root>

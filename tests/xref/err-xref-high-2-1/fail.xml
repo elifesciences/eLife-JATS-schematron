@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-xref-high-2-1.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or (some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

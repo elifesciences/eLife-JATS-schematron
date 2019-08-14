@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-volume-contents.sch"?>
 <!--Context: article/front/article-meta
 Test: matches(volume,'^[0-9]*$')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

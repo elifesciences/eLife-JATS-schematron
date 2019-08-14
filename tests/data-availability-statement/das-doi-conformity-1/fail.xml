@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="das-doi-conformity-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
 Test: matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))-->
-<root>
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <sec sec-type="data-availability">
+      <p>doi: 10.7554/eLife.42906</p>
+    </sec>
+  </article>
 </root>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="orcid-test-2.sch"?>
 <!--Context: contrib-id[@contrib-id-type='orcid']
 Test: matches(.,'http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

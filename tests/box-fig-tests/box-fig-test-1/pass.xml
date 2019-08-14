@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="box-fig-test-1.sch"?>
 <!--Context: article/body//boxed-text//fig[not(@specific-use='child-fig')]/label
 Test: matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>
       <boxed-text id="box1">

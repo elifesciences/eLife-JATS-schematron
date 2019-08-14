@@ -177,7 +177,9 @@
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[2]">
-         <svrl:text>This name - Hansen - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+         <svrl:text>This name - 
+              Hansen
+             - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/name-test/fail.xml"
                            id="surname-tests-pattern"

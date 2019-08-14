@@ -1,19 +1,24 @@
 <?oxygen SCHSchema="COI-test.sch"?>
 <!--Context: article-meta//contrib
 Test: (@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>
         <contrib-group>
           <contrib contrib-type="author">
-            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
             <xref ref-type="aff" rid="aff1"/>
             <xref ref-type="fn" rid="conf1"/>
           </contrib>
           <aff id="aff1">
             <institution>University of Cambridge</institution>
-            <addr-line><named-content content-type="city">Cambdrige</named-content></addr-line>
+            <addr-line>
+              <named-content content-type="city">Cambdrige</named-content>
+            </addr-line>
             <country>United Kingdom</country>
           </aff>
         </contrib-group>
@@ -21,7 +26,9 @@ Test: (@contrib-type='author') and ($coi = 'No competing interests declared') an
     </front>
     <back>
       <fn-group content-type="competing-interest">
-        <fn id="conf1"><p>No competing interests declared</p></fn>
+        <fn id="conf1">
+          <p>No competing interests declared</p>
+        </fn>
       </fn-group>
     </back>
   </article>

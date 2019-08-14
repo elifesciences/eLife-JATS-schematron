@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-8.sch"?>
 <!--Context: ref/element-citation/year
 Test: some $x in (preceding::year[ancestor::ref-list]) satisfies e:citation-format1($x) = $citation-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

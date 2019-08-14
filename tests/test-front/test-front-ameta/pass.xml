@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-front-ameta.sch"?>
 <!--Context: article/front
 Test: count(article-meta) = 1-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

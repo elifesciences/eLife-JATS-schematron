@@ -398,18 +398,59 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/data-content-tests/data-p-presence/fail.xml"
                            id="back-top-level-sec-ids-pattern"
                            name="back-top-level-sec-ids-pattern"/>
+      <svrl:fired-rule context="article/back/sec" id="back-top-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat('s',$pos)"
+                          id="back-top-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]">
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be s1.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/data-content-tests/data-p-presence/fail.xml"
                            id="low-level-sec-ids-pattern"
                            name="low-level-sec-ids-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/data-content-tests/data-p-presence/fail.xml"
                            id="sec-tests-pattern"
                            name="sec-tests-pattern"/>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/data-content-tests/data-p-presence/fail.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
+      <svrl:fired-rule context="back" id="back-tests"/>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else count(sec[@sec-type='additional-information']) != 1"
+                              id="back-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>One and only one sec[@sec-type="additional-information"] must be present in back.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))"
+                              id="back-test-8"
+                              role="warning"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>'' usually have acknowledgement sections, but there isn't one here. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/data-content-tests/data-p-presence/fail.xml"
                            id="data-content-tests-pattern"
                            name="data-content-tests-pattern"/>
+      <svrl:fired-rule context="back/sec[@sec-type='data-availability']"
+                       id="data-content-tests"/>
+      <svrl:failed-assert test="count(p) gt 0"
+                          id="data-p-presence"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]">
+         <svrl:text>At least one p element must be present in sec[@sec-type='data=availability'].</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/data-content-tests/data-p-presence/fail.xml"
                            id="ack-tests-pattern"
                            name="ack-tests-pattern"/>
@@ -1562,35 +1603,11 @@
                           location="/root[1]">
          <svrl:text>article/body/sec must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/back/sec"
-                          id="back-top-level-sec-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/back/sec must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body/sec//sec or descendant::article/back/sec//sec"
                           id="low-level-sec-ids-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sec"
-                          id="sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::back"
-                          id="back-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>back must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::back/sec[@sec-type='data-availability']"
-                          id="data-content-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>back/sec[@sec-type='data-availability'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back/ack"
                           id="ack-tests-xspec-assert"

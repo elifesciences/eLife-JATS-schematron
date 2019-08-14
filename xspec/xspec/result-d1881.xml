@@ -119,6 +119,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/date-tests/date-test-4/pass.xml"
                            id="date-tests-pattern"
                            name="date-tests-pattern"/>
+      <svrl:fired-rule context="date" id="date-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/date-tests/date-test-4/pass.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
@@ -1003,12 +1004,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/history must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::date"
-                          id="date-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
                           id="pub-date-tests-1-xspec-assert"

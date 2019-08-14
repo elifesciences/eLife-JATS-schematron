@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="das-dryad-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
 Test: matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])-->
-<root>
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <sec sec-type="data-availability">
+      <p>Dryad</p>
+    </sec>
+  </article>
 </root>

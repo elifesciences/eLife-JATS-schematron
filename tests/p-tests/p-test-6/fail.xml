@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="p-test-6.sch"?>
 <!--Context: p
 Test: (ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and (($article-type != 'correction') or ($article-type != 'retraction')) and not(ancestor::sub-article[@article-type='reply']) and ((count(*) != 1) and child::*/local-name() = 'supplementary-material')-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

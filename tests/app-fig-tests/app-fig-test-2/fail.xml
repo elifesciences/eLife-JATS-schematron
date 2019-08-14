@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-fig-test-2.sch"?>
 <!--Context: article//app//fig[not(@specific-use='child-fig')]/label
 Test: matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>
       <app id="app9">

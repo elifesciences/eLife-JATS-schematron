@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-type-title-test-1.sch"?>
 <!--Context: article-meta//article-title
-Test: if ($type = $specifics) then not(starts-with(.,$string)) else ()-->
-<root>
+Test: if ($type = $specifics) then not(starts-with(.,e:article-type2title($type))) else ()-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">
     <article-meta>
       <subj-group subj-group-type="display-channel">

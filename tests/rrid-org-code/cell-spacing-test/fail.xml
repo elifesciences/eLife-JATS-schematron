@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="cell-spacing-test.sch"?>
 <!--Context: p|td|th
 Test: ($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>1+1 =2</p>
     <th>1+1 =2</th>

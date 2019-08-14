@@ -119,6 +119,31 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/date-tests/date-test-1/fail.xml"
                            id="date-tests-pattern"
                            name="date-tests-pattern"/>
+      <svrl:fired-rule context="date" id="date-tests"/>
+      <svrl:failed-assert test="matches(day,'^[0-9]2$')"
+                          id="date-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/date[1]">
+         <svrl:text>date must contain day in the format 00. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(month,'^[0-9]2$')"
+                          id="date-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/date[1]">
+         <svrl:text>date must contain month in the format 00. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(year,'^[0-9]4$')"
+                          id="date-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/date[1]">
+         <svrl:text>date must contain year in the format 0000. Currently it is Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@iso-8601-date = concat(year,'-',month,'-',day)"
+                          id="date-test-4"
+                          role="error"
+                          location="/root[1]/article[1]/date[1]">
+         <svrl:text>date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is , when it should be --.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/date-tests/date-test-1/fail.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
@@ -1003,12 +1028,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/history must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::date"
-                          id="date-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
                           id="pub-date-tests-1-xspec-assert"

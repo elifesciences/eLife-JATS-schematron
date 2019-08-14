@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="schmidteasmediterranea-article-title-check.sch"?>
 <!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
 Test: matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])-->
-<root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>
