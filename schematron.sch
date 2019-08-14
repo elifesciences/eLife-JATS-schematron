@@ -1903,7 +1903,7 @@
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$'))
                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))
-                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$'))
+                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      

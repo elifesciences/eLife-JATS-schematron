@@ -3,6 +3,6 @@
 Test: not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <sub> Refs. 2 and 3</sub>
+    <sub>Refs. 2 and 3</sub>
   </article>
 </root>
