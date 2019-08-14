@@ -847,6 +847,9 @@
 	  
 	  <report test="matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
+	  
+	  <report test="matches(article-title,' [Bb]ased ') and not(matches(article-title,' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
+      </report>
 	
 	</rule>
   </pattern>
@@ -1021,6 +1024,34 @@
     	<assert test="@iso-8601-date = concat(year,'-',month,'-',day)" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
 	
 	</rule>
+  </pattern>
+  <pattern id="day-tests-pattern">
+    <rule context="day" id="day-tests">
+      
+      <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="month-tests-pattern">
+    <rule context="month" id="month-tests">
+      
+      <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')" role="error" id="month-conformity">month must contain 2 digits which are between '01' and '12' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="year-article-meta-tests-pattern">
+    <rule context="year[ancestor::article-meta]" id="year-article-meta-tests">
+      
+      <assert test="matches(.,'^[2]0[0-2][0-9]$')" role="error" id="year-article-meta-conformity">year in article-meta must contain 4 digits which match the regular expression '^[2]0[0-2][0-9]$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="year-element-citation-tests-pattern">
+    <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
+      
+      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      
+    </rule>
   </pattern>
   <pattern id="pub-date-tests-1-pattern">
     <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
@@ -1863,10 +1894,9 @@
   <pattern id="article-title-tests-pattern">
     <rule context="article-meta//article-title" id="article-title-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
-      <let name="string" value="e:article-type2title($type)"/>
       <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
       
-      <report test="if ($type = $specifics) then not(starts-with(.,$string))                     else ()" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="$string"/>'.</report>
+      <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))                     else ()" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
       
       <report test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" role="error" id="article-type-title-test-2">title of a '<value-of select="$type"/>' must start with 'Comment on' or 'Response to comment on', but this starts with something else - <value-of select="."/>.</report>
       
@@ -4523,16 +4553,16 @@
         <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-ref-article-title-check">
-        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-ref-article-title-check">
-        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-ref-article-title-check">
-        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-ref-article-title-check">
-        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-ref-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -4788,16 +4818,16 @@
         <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-article-title-check">
-        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-article-title-check">
-        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">
-        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">
-        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -5392,6 +5422,10 @@
       <assert test="descendant::article-meta//email" role="error" id="email-tests-xspec-assert">article-meta//email must be present.</assert>
       <assert test="descendant::article-meta/history" role="error" id="history-tests-xspec-assert">article-meta/history must be present.</assert>
       <assert test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
+      <assert test="descendant::day" role="error" id="day-tests-xspec-assert">day must be present.</assert>
+      <assert test="descendant::month" role="error" id="month-tests-xspec-assert">month must be present.</assert>
+      <assert test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
+      <assert test="descendant::year[ancestor::element-citation]" role="error" id="year-element-citation-tests-xspec-assert">year[ancestor::element-citation] must be present.</assert>
       <assert test="descendant::pub-date[not(@pub-type='collection')]" role="error" id="pub-date-tests-1-xspec-assert">pub-date[not(@pub-type='collection')] must be present.</assert>
       <assert test="descendant::pub-date[@pub-type='collection']" role="error" id="pub-date-tests-2-xspec-assert">pub-date[@pub-type='collection'] must be present.</assert>
       <assert test="descendant::front//permissions" role="error" id="front-permissions-tests-xspec-assert">front//permissions must be present.</assert>

@@ -120,6 +120,18 @@
                            id="date-tests-pattern"
                            name="date-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-title-group/article-title-test-11/pass.xml"
+                           id="day-tests-pattern"
+                           name="day-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-title-group/article-title-test-11/pass.xml"
+                           id="month-tests-pattern"
+                           name="month-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-title-group/article-title-test-11/pass.xml"
+                           id="year-article-meta-tests-pattern"
+                           name="year-article-meta-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-title-group/article-title-test-11/pass.xml"
+                           id="year-element-citation-tests-pattern"
+                           name="year-element-citation-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-title-group/article-title-test-11/pass.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-title-group/article-title-test-11/pass.xml"
@@ -1009,6 +1021,30 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::day"
+                          id="day-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>day must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::month"
+                          id="month-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>month must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
+                          id="year-article-meta-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>year[ancestor::article-meta] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::year[ancestor::element-citation]"
+                          id="year-element-citation-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>year[ancestor::element-citation] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
                           id="pub-date-tests-1-xspec-assert"

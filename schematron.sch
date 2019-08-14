@@ -5845,19 +5845,19 @@
       
       <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])"
         role="warning" 
-        id="pplantaginis-ref-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="pplantaginis-ref-article-title-check"><name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])"
         role="warning" 
-        id="podosphaeraplantaginis-ref-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="podosphaeraplantaginis-ref-article-title-check"><name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])"
         role="warning" 
-        id="planceolata-ref-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="planceolata-ref-article-title-check"><name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])"
         role="warning" 
-        id="plantagolanceolata-ref-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="plantagolanceolata-ref-article-title-check"><name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="warning" 
@@ -6199,19 +6199,19 @@
       
       <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])"
         role="warning" 
-        id="pplantaginis-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="pplantaginis-article-title-check"><name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])"
         role="warning" 
-        id="podosphaeraplantaginis-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="podosphaeraplantaginis-article-title-check"><name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])"
         role="warning" 
-        id="planceolata-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="planceolata-article-title-check"><name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])"
         role="warning" 
-        id="plantagolanceolata-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        id="plantagolanceolata-article-title-check"><name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="warning" 

@@ -3,7 +3,7 @@
 Test: matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <bold>test Inc. </bold>
-    <italic>bio Inc. </italic>
+    <bold>test Inc.</bold>
+    <italic>bio Inc.</italic>
   </article>
 </root>

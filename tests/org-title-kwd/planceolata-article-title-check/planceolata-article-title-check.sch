@@ -613,7 +613,7 @@
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       <let name="lc" value="lower-case(.)"/>
       <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">
-        <name/>contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+        <name/>contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

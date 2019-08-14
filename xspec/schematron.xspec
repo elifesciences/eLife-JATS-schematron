@@ -651,6 +651,16 @@
         <x:expect-report id="article-title-test-11" role="warning"/>
         <x:expect-not-assert id="test-title-group-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="article-title-test-12-pass">
+        <x:context href="../tests/test-title-group/article-title-test-12/pass.xml"/>
+        <x:expect-not-report id="article-title-test-12" role="warning"/>
+        <x:expect-not-assert id="test-title-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-test-12-fail">
+        <x:context href="../tests/test-title-group/article-title-test-12/fail.xml"/>
+        <x:expect-report id="article-title-test-12" role="warning"/>
+        <x:expect-not-assert id="test-title-group-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="test-contrib-group">
       <x:scenario label="contrib-presence-test-pass">
@@ -1094,6 +1104,54 @@
         <x:context href="../tests/date-tests/date-test-4/fail.xml"/>
         <x:expect-assert id="date-test-4" role="error"/>
         <x:expect-not-assert id="date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="day-tests">
+      <x:scenario label="day-conformity-pass">
+        <x:context href="../tests/day-tests/day-conformity/pass.xml"/>
+        <x:expect-not-assert id="day-conformity" role="error"/>
+        <x:expect-not-assert id="day-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="day-conformity-fail">
+        <x:context href="../tests/day-tests/day-conformity/fail.xml"/>
+        <x:expect-assert id="day-conformity" role="error"/>
+        <x:expect-not-assert id="day-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="month-tests">
+      <x:scenario label="month-conformity-pass">
+        <x:context href="../tests/month-tests/month-conformity/pass.xml"/>
+        <x:expect-not-assert id="month-conformity" role="error"/>
+        <x:expect-not-assert id="month-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="month-conformity-fail">
+        <x:context href="../tests/month-tests/month-conformity/fail.xml"/>
+        <x:expect-assert id="month-conformity" role="error"/>
+        <x:expect-not-assert id="month-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="year-article-meta-tests">
+      <x:scenario label="year-article-meta-conformity-pass">
+        <x:context href="../tests/year-article-meta-tests/year-article-meta-conformity/pass.xml"/>
+        <x:expect-not-assert id="year-article-meta-conformity" role="error"/>
+        <x:expect-not-assert id="year-article-meta-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="year-article-meta-conformity-fail">
+        <x:context href="../tests/year-article-meta-tests/year-article-meta-conformity/fail.xml"/>
+        <x:expect-assert id="year-article-meta-conformity" role="error"/>
+        <x:expect-not-assert id="year-article-meta-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="year-element-citation-tests">
+      <x:scenario label="year-element-citation-conformity-pass">
+        <x:context href="../tests/year-element-citation-tests/year-element-citation-conformity/pass.xml"/>
+        <x:expect-not-assert id="year-element-citation-conformity" role="error"/>
+        <x:expect-not-assert id="year-element-citation-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="year-element-citation-conformity-fail">
+        <x:context href="../tests/year-element-citation-tests/year-element-citation-conformity/fail.xml"/>
+        <x:expect-assert id="year-element-citation-conformity" role="error"/>
+        <x:expect-not-assert id="year-element-citation-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="pub-date-tests-1">

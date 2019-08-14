@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="drosophila-ref-article-title-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']/article-title
 Test: matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article>
+    <element-citation publication-type="journal">
+      <article-title>test<italic>Drosophila</italic>test</article-title>
+    </element-citation>
+  </article>
 </root>
