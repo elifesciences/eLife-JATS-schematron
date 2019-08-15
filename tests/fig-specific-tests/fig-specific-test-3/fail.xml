@@ -3,5 +3,26 @@
 Test: report    if ($article-type = ('correction','retraction')) then () else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))
 Message: does not appear directly after a paragraph citing it. Is that correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <body>
+      <p><xref ref-type="fig" rid="fig1"/></p>
+      <fig id="fig1">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Reproduced from Smith et al., 19992</p>
+        </caption>
+      </fig>
+      <p></p>
+      <p></p>
+      <fig id="fig2">
+        <label>Figure 2.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Reproduced from Smith et al., 19992</p>
+        </caption>
+      </fig>
+      <p><xref ref-type="fig" rid="fig2"/></p>
+    </body>
+  </article>
 </root>

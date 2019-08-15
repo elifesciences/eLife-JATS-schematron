@@ -3,5 +3,16 @@
 Test: report    . != e:titleCase(.)
 Message: The content of the subdisplaychannel should be in title case -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Feature Article</subject>
+        </subj-group>
+        <subj-group subj-group-type="sub-display-channel">
+          <subject>DNA</subject>
+        </subj-group>
+      </article-categories>
+    </article-meta>
+  </article>
 </root>

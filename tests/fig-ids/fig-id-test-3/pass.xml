@@ -3,5 +3,11 @@
 Test: report    matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^C[0-9]{1,3}$'))
 Message: Chemical structures must have an @id in the format C0.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <fig id="C0">
+        <label>Chemical structure 1</label>
+      </fig>
+    </body>
+  </article>
 </root>

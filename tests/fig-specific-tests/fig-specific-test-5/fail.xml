@@ -3,5 +3,29 @@
 Test: report    ($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))
 Message: is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <body>
+      <p><xref ref-type="fig" rid="fig1"/> ... <xref ref-type="other" rid="equ1">Equation 1</xref> which is:</p>
+      <fig id="fig1">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Reproduced from Smith et al., 19992</p>
+        </caption>
+      </fig>
+      <disp-formula id="equ1">
+        <mml:math></mml:math>
+      </disp-formula>
+      <p></p>
+      <p></p>
+      <p><xref ref-type="fig" rid="fig2"/></p>
+      <fig id="fig2">
+        <label>Figure 2.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Reproduced from Smith et al., 19992</p>
+        </caption>
+      </fig>
+    </body>
+  </article>
 </root>

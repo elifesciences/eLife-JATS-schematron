@@ -35,12 +35,6 @@
                            id="article-tests-pattern"
                            name="article-tests-pattern"/>
       <svrl:fired-rule context="article" id="article-tests"/>
-      <svrl:failed-assert test="@article-type = $allowed-article-types"
-                          id="test-article-type"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
@@ -53,6 +47,12 @@
                           location="/root[1]/article[1]">
          <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
+      <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
+                              id="test-article-back"
+                              role="error"
+                              location="/root[1]/article[1]">
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
@@ -71,9 +71,18 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="test-article-categories-pattern"
                            name="test-article-categories-pattern"/>
+      <svrl:fired-rule context="article-meta/article-categories" id="test-article-categories"/>
+      <svrl:successful-report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1"
+                              id="head-subj-test3"
+                              role="warning"
+                              location="/root[1]/article[1]/article-meta[1]/article-categories[1]">
+         <svrl:text>article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="disp-channel-checks-pattern"
                            name="disp-channel-checks-pattern"/>
+      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject"
+                       id="disp-channel-checks"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
@@ -725,12 +734,26 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="feature-subj-tests-1-pattern"
                            name="feature-subj-tests-1-pattern"/>
+      <svrl:fired-rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]"
+                       id="feature-subj-tests-1"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="feature-subj-tests-2-pattern"
                            name="feature-subj-tests-2-pattern"/>
+      <svrl:fired-rule context="subj-group[@subj-group-type='sub-display-channel']/subject"
+                       id="feature-subj-tests-2"/>
+      <svrl:fired-rule context="subj-group[@subj-group-type='sub-display-channel']/subject"
+                       id="feature-subj-tests-2"/>
+      <svrl:successful-report test="preceding-sibling::subject"
+                              id="feature-subj-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/article-meta[1]/article-categories[1]/subj-group[2]/subject[2]">
+         <svrl:text>There is more than one sub-display-channel subjects. This is incorrect.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="feature-article-category-tests-pattern"
                            name="feature-article-category-tests-pattern"/>
+      <svrl:fired-rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
+                       id="feature-article-category-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"
                            id="feature-author-tests-pattern"
                            name="feature-author-tests-pattern"/>
@@ -922,18 +945,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article']/front/article-meta must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/article-categories"
-                          id="test-article-categories-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/article-categories must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject"
-                          id="disp-channel-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
                           id="MSA-checks-xspec-assert"
@@ -2230,24 +2241,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>front//abstract[@abstract-type='executive-summary'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]"
-                          id="feature-subj-tests-1-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject"
-                          id="feature-subj-tests-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>subj-group[@subj-group-type='sub-display-channel']/subject must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
-                          id="feature-article-category-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']"
                           id="feature-author-tests-xspec-assert"

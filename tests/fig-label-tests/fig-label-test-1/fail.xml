@@ -3,5 +3,11 @@
 Test: assert    matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')
 Message: fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <fig id="fig1">
+        <label>Figure 1</label>
+      </fig>
+    </body>
+  </article>
 </root>

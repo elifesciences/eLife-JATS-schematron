@@ -14,7 +14,7 @@
           xmlns:file="java.io.File"
           xmlns:java="http://www.java.com/"
           stylesheet="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.sch-preprocessed.xsl"
-          date="2019-08-15T11:25:44.964+01:00"
+          date="2019-08-15T11:52:11.626+01:00"
           xspec="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.xspec"
           schematron="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.sch">
    <x:scenario>
@@ -9354,7 +9354,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9364,12 +9364,12 @@
             <x:label>fig-specific-test-1-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-1/fail.xml"/>
             <x:result href="result-d5472.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-specific-test-1 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9384,7 +9384,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9394,12 +9394,12 @@
             <x:label>fig-specific-test-2-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-2/fail.xml"/>
             <x:result href="result-d5490.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-specific-test-2 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9414,7 +9414,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9424,12 +9424,12 @@
             <x:label>fig-specific-test-3-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-3/fail.xml"/>
             <x:result href="result-d5508.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-specific-test-3 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9444,7 +9444,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'pre-fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9454,12 +9454,12 @@
             <x:label>pre-fig-specific-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/pre-fig-specific-test-4/fail.xml"/>
             <x:result href="result-d5526.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report pre-fig-specific-test-4 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'pre-fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9474,7 +9474,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'final-fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9484,12 +9484,12 @@
             <x:label>final-fig-specific-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/final-fig-specific-test-4/fail.xml"/>
             <x:result href="result-d5544.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report final-fig-specific-test-4 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'final-fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9504,7 +9504,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feat-fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9514,12 +9514,12 @@
             <x:label>feat-fig-specific-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/fail.xml"/>
             <x:result href="result-d5562.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report feat-fig-specific-test-4 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feat-fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9534,7 +9534,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9544,12 +9544,12 @@
             <x:label>fig-specific-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-4/fail.xml"/>
             <x:result href="result-d5580.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-specific-test-4 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9564,7 +9564,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-5'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9574,12 +9574,12 @@
             <x:label>fig-specific-test-5-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-5/fail.xml"/>
             <x:result href="result-d5598.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-specific-test-5 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-test-5'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-specific-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-specific-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9597,7 +9597,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-label-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-label-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-label-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -9607,12 +9607,12 @@
             <x:label>fig-label-test-1-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-label-tests/fig-label-test-1/fail.xml"/>
             <x:result href="result-d5616.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>assert fig-label-test-1 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-label-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-label-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-label-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11112,7 +11112,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11122,12 +11122,12 @@
             <x:label>fig-id-test-1-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-ids/fig-id-test-1/fail.xml"/>
             <x:result href="result-d6480.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>assert fig-id-test-1 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11142,7 +11142,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11152,12 +11152,12 @@
             <x:label>fig-id-test-2-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-ids/fig-id-test-2/fail.xml"/>
             <x:result href="result-d6498.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-id-test-2 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11172,7 +11172,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11182,12 +11182,12 @@
             <x:label>fig-id-test-3-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-ids/fig-id-test-3/fail.xml"/>
             <x:result href="result-d6516.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-id-test-3 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11202,7 +11202,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -11212,12 +11212,12 @@
             <x:label>fig-id-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-ids/fig-id-test-4/fail.xml"/>
             <x:result href="result-d6534.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report fig-id-test-4 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-id-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-ids-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-ids-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20166,7 +20166,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-title-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-title-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-title-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20176,12 +20176,12 @@
             <x:label>feature-title-test-1-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-title-tests/feature-title-test-1/fail.xml"/>
             <x:result href="result-d11700.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report feature-title-test-1 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-title-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-title-tests-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-title-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20295,7 +20295,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-subj-tests-2-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-tests-2-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20305,12 +20305,12 @@
             <x:label>feature-subj-test-2-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-2/fail.xml"/>
             <x:result href="result-d11772.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report feature-subj-test-2 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-subj-tests-2-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-tests-2-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20325,7 +20325,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-subj-tests-2-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-tests-2-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20335,12 +20335,12 @@
             <x:label>feature-subj-test-3-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-3/fail.xml"/>
             <x:result href="result-d11790.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report feature-subj-test-3 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-subj-tests-2-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-tests-2-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20355,7 +20355,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-subj-tests-2-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-tests-2-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -20365,12 +20365,12 @@
             <x:label>feature-subj-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-subj-tests-2/feature-subj-test-4/fail.xml"/>
             <x:result href="result-d11808.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report feature-subj-test-4 error</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert feature-subj-tests-2-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'feature-subj-tests-2-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32502,7 +32502,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32512,12 +32512,12 @@
             <x:label>reproduce-test-1-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-1/fail.xml"/>
             <x:result href="result-d19008.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report reproduce-test-1 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32532,7 +32532,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32542,12 +32542,12 @@
             <x:label>reproduce-test-2-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-2/fail.xml"/>
             <x:result href="result-d19026.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report reproduce-test-2 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-2'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32562,7 +32562,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32572,12 +32572,12 @@
             <x:label>reproduce-test-3-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-3/fail.xml"/>
             <x:result href="result-d19044.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report reproduce-test-3 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-3'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32592,7 +32592,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32602,12 +32602,12 @@
             <x:label>reproduce-test-4-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-4/fail.xml"/>
             <x:result href="result-d19062.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report reproduce-test-4 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32622,7 +32622,7 @@
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-5'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>
@@ -32632,12 +32632,12 @@
             <x:label>reproduce-test-5-fail</x:label>
             <x:context href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-5/fail.xml"/>
             <x:result href="result-d19080.xml"/>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>report reproduce-test-5 warning</x:label>
                <x:expect test="exists(svrl:schematron-output/svrl:successful-report[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'reproduce-test-5'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'warning'])"
                          select="()"/>
             </x:test>
-            <x:test successful="false">
+            <x:test successful="true">
                <x:label>not assert fig-permissions-check-xspec-assert error</x:label>
                <x:expect test="boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'fig-permissions-check-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])"
                          select="()"/>

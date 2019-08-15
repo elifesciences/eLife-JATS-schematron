@@ -3,5 +3,16 @@
 Test: report    label[contains(lower-case(.),'supplement')]
 Message: fig label contains 'supplement', but it does not have a @specificuse='childfig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <body>
+      <xref ref-type="fig" rid="fig1"/>
+      <fig id="fig1">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Reproduced from Smith et al., 19992</p>
+        </caption>
+      </fig>
+    </body>
+  </article>
 </root>

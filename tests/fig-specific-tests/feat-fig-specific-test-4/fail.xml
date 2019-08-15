@@ -3,5 +3,16 @@
 Test: report    if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else ()
 Message: There is no citation toIs this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <body>
+
+      <fig id="fig1">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Reproduced from Smith et al., 19992</p>
+        </caption>
+      </fig>
+    </body>
+  </article>
 </root>

@@ -3,5 +3,9 @@
 Test: assert    matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')
 Message: fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <fig id="fig1"/>
+    </body>
+  </article>
 </root>

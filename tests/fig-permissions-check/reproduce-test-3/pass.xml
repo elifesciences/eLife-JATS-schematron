@@ -3,5 +3,15 @@
 Test: report    not(descendant::permissions) and matches(caption,'[Aa]dapted from')
 Message: The caption forcontains the text 'adapted from ...', but has no permissions. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <fig id="fig1">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Smith et al., 19992</p>
+        </caption>
+      </fig>
+    </body>
+  </article>
 </root>
