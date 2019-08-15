@@ -39,13 +39,13 @@
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/abstract-tests/abstract-test-1/fail.xml"
                            id="research-article-pattern"
@@ -60,13 +60,13 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-meta) = 1"
                           id="test-front-ameta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one article-meta that is a child of front. Currently there are0</svrl:text>
+         <svrl:text>There must be one article-meta that is a child of front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/abstract-tests/abstract-test-1/fail.xml"
                            id="test-journal-meta-pattern"
@@ -160,7 +160,7 @@
                               id="abstract-test-1"
                               role="error"
                               location="/root[1]/article[1]/front[1]/abstract[1]">
-         <svrl:text>object-id[@pub-id-type='doi'] must be present in abstract inresearch-articlecontent.</svrl:text>
+         <svrl:text>object-id[@pub-id-type='doi'] must be present in abstract in research-article content.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(count(p) + count(sec[descendant::p])) lt 1"
                               id="abstract-test-2"
@@ -258,6 +258,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/abstract-tests/abstract-test-1/fail.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/abstract-tests/abstract-test-1/fail.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/abstract-tests/abstract-test-1/fail.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
@@ -1260,6 +1263,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"

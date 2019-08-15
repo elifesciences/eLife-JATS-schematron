@@ -1,6 +1,14 @@
 <?oxygen SCHSchema="test-elocation-conformance.sch"?>
 <!--Context: article-meta/elocation-id
 Test: . = concat('e' , $article-id)-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">45009</article-id>
+        <elocation-id>e45090</elocation-id>
+      </article-meta>
+    </front>
+  </article>
 </root>

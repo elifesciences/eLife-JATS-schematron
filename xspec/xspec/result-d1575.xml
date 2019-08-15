@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/given-names-tests/given-names-test-9/pass.xml"
                            id="research-article-pattern"
@@ -236,6 +236,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/given-names-tests/given-names-test-9/pass.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/given-names-tests/given-names-test-9/pass.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/given-names-tests/given-names-test-9/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
@@ -1255,6 +1258,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"

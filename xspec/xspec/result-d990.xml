@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-8/fail.xml"
                            id="research-article-pattern"
@@ -74,7 +74,7 @@
                               id="disp-subj-value-test-8"
                               role="error"
                               location="/root[1]/article[1]/article-categories[1]/subj-group[1]/subject[1]">
-         <svrl:text>Articles is an @article-type="retraction" but the display channel isCorrection. It should be 'Retraction' according to the article-type.</svrl:text>
+         <svrl:text>Articles is an @article-type="retraction" but the display channel is Correction. It should be 'Retraction' according to the article-type.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-8/fail.xml"
                            id="MSA-checks-pattern"
@@ -238,6 +238,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-8/fail.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-8/fail.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-8/fail.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
@@ -1252,6 +1255,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"

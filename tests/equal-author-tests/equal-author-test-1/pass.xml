@@ -1,6 +1,27 @@
 <?oxygen SCHSchema="equal-author-test-1.sch"?>
 <!--Context: article-meta//contrib[@contrib-type='author']
 Test: @equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" equal-contrib="yes" id="author-00001">
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
+            <xref ref-type="fn" rid="equal-contrib1"/>
+          </contrib>
+          <contrib contrib-type="author" equal-contrib="yes" id="author-00002">
+            <name>
+              <surname>Hansen</surname>
+            </name>
+            <xref ref-type="fn" rid="equal-contrib1"/>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

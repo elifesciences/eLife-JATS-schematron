@@ -39,19 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="count(front) = 1"
-                          id="test-article-front"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="research-article-pattern"
@@ -59,12 +53,98 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
+      <svrl:fired-rule context="article/front" id="test-front"/>
+      <svrl:failed-assert test="count(journal-meta) = 1"
+                          id="test-front-jmeta"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]">
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="test-journal-meta-pattern"
                            name="test-journal-meta-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="test-article-metadata-pattern"
                            name="test-article-metadata-pattern"/>
+      <svrl:fired-rule context="article/front/article-meta" id="test-article-metadata"/>
+      <svrl:failed-assert test="matches($article-id,'^\d5$')"
+                          id="test-article-id"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
+                          id="test-article-doi-1"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
+                          id="test-article-doi-2"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(article-categories) = 1"
+                          id="test-article-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one article-categories element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="title-group[article-title]"
+                          id="test-title-group-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>title-group containing article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="pub-date[@publication-format='electronic'][@date-type='publication']"
+                          id="test-epub-date"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="pub-date[@pub-type='collection']"
+                          id="test-pub-collection-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="volume"
+                          id="test-volume-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child volume in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="elocation-id"
+                          id="test-elocation-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child elocation-id in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(permissions) = 1"
+                          id="test-permissions-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1"
+                              id="test-funding-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
+                              id="test-custom-meta-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1"
+                              id="test-auth-kwd-group-presence-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One author keyword group must be present in article-meta.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="test-research-article-metadata-pattern"
                            name="test-research-article-metadata-pattern"/>
@@ -86,15 +166,31 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="test-contrib-group-pattern"
                            name="test-contrib-group-pattern"/>
+      <svrl:fired-rule context="article/front/article-meta/contrib-group"
+                       id="test-contrib-group"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="name-tests-pattern"
                            name="name-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
+      <svrl:failed-assert test="given-names"
+                          id="given-names-test-2"
+                          role="warning"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[2]/name[1]">
+         <svrl:text>This name - 
+              Hansen
+             - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="surname-tests-pattern"
                            name="surname-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/surname" id="surname-tests"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/surname" id="surname-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="given-names-tests-pattern"
                            name="given-names-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/given-names"
+                       id="given-names-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="suffix-tests-pattern"
                            name="suffix-tests-pattern"/>
@@ -104,9 +200,31 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="contrib-tests-pattern"
                            name="contrib-tests-pattern"/>
+      <svrl:fired-rule context="article-meta//contrib" id="contrib-tests"/>
+      <svrl:successful-report test="if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0"
+                              id="contrib-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[1]">
+         <svrl:text>author contrib should contain at least 1 xref[@ref-type='aff'].</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="article-meta//contrib" id="contrib-tests"/>
+      <svrl:successful-report test="if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0"
+                              id="contrib-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[2]">
+         <svrl:text>author contrib should contain at least 1 xref[@ref-type='aff'].</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="author-children-tests-pattern"
                            name="author-children-tests-pattern"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']/*"
+                       id="author-children-tests"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']/*"
+                       id="author-children-tests"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']/*"
+                       id="author-children-tests"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']/*"
+                       id="author-children-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="orcid-tests-pattern"
                            name="orcid-tests-pattern"/>
@@ -191,6 +309,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="equal-author-tests-pattern"
                            name="equal-author-tests-pattern"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']"
+                       id="equal-author-tests"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']"
+                       id="equal-author-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="object-id-tests-pattern"
                            name="object-id-tests-pattern"/>
@@ -203,6 +325,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
@@ -236,6 +360,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
@@ -356,6 +483,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="author-contrib-ids-pattern"
                            name="author-contrib-ids-pattern"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']"
+                       id="author-contrib-ids"/>
+      <svrl:fired-rule context="article-meta//contrib[@contrib-type='author']"
+                       id="author-contrib-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="award-group-ids-pattern"
                            name="award-group-ids-pattern"/>
@@ -779,6 +910,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -876,6 +1011,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
+      <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
+      <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/equal-author-tests/equal-author-test-2/pass.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
@@ -896,23 +1033,11 @@
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front"
-                          id="test-front-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front/journal-meta"
                           id="test-journal-meta-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article/front/journal-meta must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front/article-meta"
-                          id="test-article-metadata-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front/article-meta must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[@article-type='research-article']/front/article-meta"
                           id="test-research-article-metadata-xspec-assert"
@@ -950,30 +1075,6 @@
                           location="/root[1]">
          <svrl:text>article/front/article-meta/title-group must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front/article-meta/contrib-group"
-                          id="test-contrib-group-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front/article-meta/contrib-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name"
-                          id="name-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/surname"
-                          id="surname-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/surname must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/given-names"
-                          id="given-names-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/given-names must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta/contrib-group//name/suffix"
                           id="suffix-tests-xspec-assert"
                           role="error"
@@ -985,18 +1086,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//contrib"
-                          id="contrib-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//contrib must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']/*"
-                          id="author-children-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//contrib[@contrib-type='author']/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::contrib-id[@contrib-id-type='orcid']"
                           id="orcid-tests-xspec-assert"
@@ -1160,12 +1249,6 @@
                           location="/root[1]">
          <svrl:text>article-meta/volume must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']"
-                          id="equal-author-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::object-id[@pub-id-type='doi']"
                           id="object-id-tests-xspec-assert"
                           role="error"
@@ -1183,12 +1266,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>p/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref"
-                          id="xref-target-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
                           id="ext-link-tests-xspec-assert"
@@ -1255,6 +1332,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"
@@ -1489,12 +1572,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>sub-article[@article-type='reply']/front-stub/title-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']"
-                          id="author-contrib-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::funding-group/award-group"
                           id="award-group-ids-xspec-assert"
@@ -2336,12 +2413,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2521,12 +2592,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
-                          id="xref-formatting-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="ref-xref-formatting-xspec-assert"

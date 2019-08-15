@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-body/pass.xml"
                            id="research-article-pattern"
@@ -233,6 +233,9 @@
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-body/pass.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-body/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-body/pass.xml"
@@ -313,19 +316,19 @@
                               id="ra-sec-test-2"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
+         <svrl:text> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else $method-count != 1"
                               id="ra-sec-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body incontent doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
+         <svrl:text>main body in  content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
                               id="ra-sec-test-4"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body incontent doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
+         <svrl:text>main body in  content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-body/pass.xml"
                            id="top-level-sec-tests-pattern"
@@ -1271,6 +1274,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"

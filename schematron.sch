@@ -2113,6 +2113,18 @@
         id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
     </rule>
     
+    <rule context="disp-formula/*|inline-formula/*" 
+      id="formula-child-tests">
+      
+      <report test="(parent::disp-formula) and not(local-name()=('label','math'))"
+        role="error"
+        id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
+      
+      <report test="(parent::inline-formula) and (local-name()!='math')"
+        role="error"
+        id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
+    </rule>
+    
     <rule context="table-wrap" 
       id="table-wrap-tests">
       <let name="id" value="@id"/>
@@ -5155,7 +5167,7 @@
       
       <report test="$top-doi = $doi"
         role="error" 
-        id="duplicate-ref-test-6">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
+        id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
     
   </pattern>

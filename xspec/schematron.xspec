@@ -2644,6 +2644,28 @@
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="formula-child-tests">
+      <x:scenario label="disp-formula-child-test-1-pass">
+        <x:context href="../tests/formula-child-tests/disp-formula-child-test-1/pass.xml"/>
+        <x:expect-not-report id="disp-formula-child-test-1" role="error"/>
+        <x:expect-not-assert id="formula-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-child-test-1-fail">
+        <x:context href="../tests/formula-child-tests/disp-formula-child-test-1/fail.xml"/>
+        <x:expect-report id="disp-formula-child-test-1" role="error"/>
+        <x:expect-not-assert id="formula-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-child-test-1-pass">
+        <x:context href="../tests/formula-child-tests/inline-formula-child-test-1/pass.xml"/>
+        <x:expect-not-report id="inline-formula-child-test-1" role="error"/>
+        <x:expect-not-assert id="formula-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-child-test-1-fail">
+        <x:context href="../tests/formula-child-tests/inline-formula-child-test-1/fail.xml"/>
+        <x:expect-report id="inline-formula-child-test-1" role="error"/>
+        <x:expect-not-assert id="formula-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="table-wrap-tests">
       <x:scenario label="table-wrap-test-1-pass">
         <x:context href="../tests/table-wrap-tests/table-wrap-test-1/pass.xml"/>

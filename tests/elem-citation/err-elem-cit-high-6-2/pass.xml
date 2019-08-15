@@ -2,5 +2,17 @@
 <!--Context: element-citation
 Test: @publication-type = 'journal' or @publication-type = 'book' or @publication-type = 'data' or @publication-type = 'patent' or @publication-type = 'software' or @publication-type = 'preprint' or @publication-type = 'web' or @publication-type = 'periodical' or @publication-type = 'report' or @publication-type = 'confproc' or @publication-type = 'thesis'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal"/>
+    <element-citation publication-type="book"/>
+    <element-citation publication-type="data"/>
+    <element-citation publication-type="patent"/>
+    <element-citation publication-type="software"/>
+    <element-citation publication-type="preprint"/>
+    <element-citation publication-type="web"/>
+    <element-citation publication-type="periodical"/>
+    <element-citation publication-type="report"/>
+    <element-citation publication-type="confproc"/>
+    <element-citation publication-type="thesis"/>
+  </article>
 </root>

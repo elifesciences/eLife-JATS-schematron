@@ -1557,6 +1557,16 @@
       <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
     </rule>
   </pattern>
+  <pattern id="formula-child-tests-pattern">
+    <rule context="disp-formula/*|inline-formula/*" id="formula-child-tests">
+      
+      <report test="(parent::disp-formula) and not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
+        <name/> element is not allowed as a child of disp-formula.</report>
+      
+      <report test="(parent::inline-formula) and (local-name()!='math')" role="error" id="inline-formula-child-test-1">
+        <name/> element is not allowed as a child of inline-formula.</report>
+    </rule>
+  </pattern>
   <pattern id="table-wrap-tests-pattern">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
@@ -4142,7 +4152,7 @@
       
       <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and not($x/source = $source))         or          (($x/chapter-title = $c-title) and not($x/source = $source))         )" role="warning" id="duplicate-ref-test-4">ref '<value-of select="@id"/>' has the same title as another reference, but a different source. Is this correct? - '<value-of select="$a-title"/>'</report>
       
-      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="ancestor::ref/@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
+      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
   

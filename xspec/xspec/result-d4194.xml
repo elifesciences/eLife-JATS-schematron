@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="research-article-pattern"
@@ -230,12 +230,22 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="disp-formula-tests-pattern"
                            name="disp-formula-tests-pattern"/>
+      <svrl:fired-rule context="disp-formula" id="disp-formula-tests"/>
+      <svrl:failed-assert test="mml:math"
+                          id="disp-formula-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/disp-formula[1]">
+         <svrl:text>disp-formula must contain an mml:math element.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="inline-formula-tests-pattern"
                            name="inline-formula-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
@@ -392,6 +402,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="disp-formula-ids-pattern"
                            name="disp-formula-ids-pattern"/>
+      <svrl:fired-rule context="disp-formula" id="disp-formula-ids"/>
+      <svrl:failed-assert test="matches(@id,'^equ[0-9]1 9$')"
+                          id="disp-formula-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/disp-formula[1]">
+         <svrl:text>disp-formula @id must be in the format 'equ0'.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-formula-tests/disp-formula-test-2/fail.xml"
                            id="mml-math-ids-pattern"
                            name="mml-math-ids-pattern"/>
@@ -1238,12 +1255,6 @@
                           location="/root[1]">
          <svrl:text>supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::disp-formula"
-                          id="disp-formula-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>disp-formula must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::inline-formula"
                           id="inline-formula-tests-xspec-assert"
                           role="error"
@@ -1255,6 +1266,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"
@@ -1561,12 +1578,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fn must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::disp-formula"
-                          id="disp-formula-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>disp-formula must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::disp-formula/mml:math"
                           id="mml-math-ids-xspec-assert"

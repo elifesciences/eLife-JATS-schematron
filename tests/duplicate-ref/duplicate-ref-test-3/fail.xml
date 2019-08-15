@@ -2,5 +2,76 @@
 <!--Context: ref-list//ref
 Test: some $x in preceding-sibling::ref/element-citation satisfies ( (($x/article-title = $a-title) and ($x/source = $source)) or (($x/chapter-title = $c-title) and ($x/source = $source)) )-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andrés</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Maroja</surname>
+              <given-names>LS</given-names>
+            </name>
+            <name>
+              <surname>Bogdanowicz</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Swanson</surname>
+              <given-names>WJ</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>RG</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2006">2006</year>
+          <article-title>Molecular evolution of seminal proteins in field crickets</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <volume>23</volume>
+          <fpage>1574</fpage>
+          <lpage>1584</lpage>
+          <pub-id pub-id-type="doi">10.1093/molbev/msl020</pub-id>
+          <pub-id pub-id-type="pmid">16731569</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andrés</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Maroja</surname>
+              <given-names>LS</given-names>
+            </name>
+            <name>
+              <surname>Bogdanowicz</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Swanson</surname>
+              <given-names>WJ</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>RG</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2006">2006</year>
+          <article-title>Molecular evolution of seminal proteins in field crickets</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <volume>23</volume>
+          <fpage>1574</fpage>
+          <lpage>1584</lpage>
+          <pub-id pub-id-type="doi">10.1093/molbev/msl020</pub-id>
+          <pub-id pub-id-type="pmid">16731569</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>

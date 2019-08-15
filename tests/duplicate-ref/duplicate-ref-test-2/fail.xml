@@ -2,5 +2,44 @@
 <!--Context: ref-list//ref
 Test: (element-citation/@publication-type = 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mackensen</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="1948">1948</year>
+          <source>A Manual for the Artificial Insemination of Queen </source>
+          <publisher-name>U.S. Dept. of Agriculture, Agricultural Research Administration, Bureau of Entomology and Plant Quarantine</publisher-name>
+          <pub-id pub-id-type="doi">10.5962/bhl.title.122353</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mackensen</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="1948">1948</year>
+          <source>A Manual for the Artificial Insemination of Queen </source>
+          <publisher-name>U.S. Dept. of Agriculture, Agricultural Research Administration, Bureau of Entomology and Plant Quarantine</publisher-name>
+          <pub-id pub-id-type="doi">10.5962/bhl.title.122353</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>
