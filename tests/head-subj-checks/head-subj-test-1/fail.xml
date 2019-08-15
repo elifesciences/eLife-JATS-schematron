@@ -3,5 +3,14 @@
 Test: assert    count(subject) le 3
 Message: There cannot be more than two MSAs.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="heading">
+        <subject/>
+        <subject/>
+        <subject/>
+        <subject/>
+      </subj-group>
+    </article-categories>
+  </article>
 </root>

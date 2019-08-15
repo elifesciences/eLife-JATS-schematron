@@ -3,5 +3,7 @@
 Test: report    contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))
 Message: graphic has jpeg mimesubtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <graphic mime-subtype="jpeg" xlink:href="file.eps"/>
+  </article>
 </root>

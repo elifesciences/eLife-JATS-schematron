@@ -215,6 +215,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/graphic-tests/graphic-test-3/pass.xml"
                            id="graphic-tests-pattern"
                            name="graphic-tests-pattern"/>
+      <svrl:fired-rule context="graphic" id="graphic-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/graphic-tests/graphic-test-3/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
@@ -1210,12 +1211,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fig[ancestor::sub-article[@article-type='reply']] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::graphic"
-                          id="graphic-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>graphic must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media"
                           id="media-tests-xspec-assert"

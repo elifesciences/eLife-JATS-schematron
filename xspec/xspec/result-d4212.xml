@@ -233,6 +233,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-1/fail.xml"
                            id="inline-formula-tests-pattern"
                            name="inline-formula-tests-pattern"/>
+      <svrl:fired-rule context="inline-formula" id="inline-formula-tests"/>
+      <svrl:failed-assert test="mml:math"
+                          id="inline-formula-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/inline-formula[1]">
+         <svrl:text>inline-formula must contain an mml:math element.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-1/fail.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
@@ -1246,12 +1253,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>disp-formula must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::inline-formula"
-                          id="inline-formula-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>inline-formula must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::mml:math"
                           id="math-tests-xspec-assert"

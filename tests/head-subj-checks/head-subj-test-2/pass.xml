@@ -3,5 +3,9 @@
 Test: report    if ($article-type = 'editorial') then () else count(subject) = 0
 Message: There must be at least one MSA.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="heading"><subject/></subj-group>
+    </article-categories>
+  </article>
 </root>

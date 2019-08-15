@@ -2,6 +2,20 @@
 <!--Context: article-meta/history
 Test: assert    date[@date-type='received']
 Message: history must contain date[@datetype='received']-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <history>
+          
+          <date date-type="accepted" iso-8601-date="2019-08-05">
+            <day>05</day>
+            <month>08</month>
+            <year>2019</year>
+          </date>
+        </history>
+      </article-meta>
+    </front>
+  </article>
 </root>

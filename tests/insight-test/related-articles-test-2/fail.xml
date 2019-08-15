@@ -2,6 +2,18 @@
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta
 Test: assert    count(related-article) gt 0
 Message: Insight must contain an articlereference link to the original article it is discussing.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Insight</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+      <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article" xlink:href="10.7554/eLife.47815"/>
+    </front>
+  </article>
 </root>

@@ -215,6 +215,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/graphic-tests/graphic-test-1/fail.xml"
                            id="graphic-tests-pattern"
                            name="graphic-tests-pattern"/>
+      <svrl:fired-rule context="graphic" id="graphic-tests"/>
+      <svrl:successful-report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))"
+                              id="graphic-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/graphic[1]">
+         <svrl:text>graphic has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/graphic-tests/graphic-test-1/fail.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
@@ -1210,12 +1217,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fig[ancestor::sub-article[@article-type='reply']] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::graphic"
-                          id="graphic-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>graphic must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media"
                           id="media-tests-xspec-assert"

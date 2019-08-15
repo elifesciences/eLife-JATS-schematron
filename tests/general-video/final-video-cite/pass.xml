@@ -3,5 +3,10 @@
 Test: assert    ancestor::article//xref[@rid = $id]
 Message: There is no citation toEnsure this is added.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <xref rid="video1"/>
+    <media id="video1" mimetype="video">
+      <label>Video 1.</label>
+    </media>
+  </article>
 </root>

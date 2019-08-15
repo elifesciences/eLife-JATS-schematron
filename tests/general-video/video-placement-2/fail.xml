@@ -3,5 +3,15 @@
 Test: report    ($xref-sib = 'p') and ($xref1//following::media/@id = $id)
 Message: appears after it's first citation but not directly after it's first citation. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sec id="sec1">
+      <p><xref rid="video1"/></p>
+      <p/>
+      <p/>
+      <media id="video1" mimetype="video">
+        <label>Video 1.</label>
+      </media>
+    </sec>
+    <sec id="sec2"/>
+  </article>
 </root>

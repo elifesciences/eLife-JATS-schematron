@@ -233,12 +233,27 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-1/pass.xml"
                            id="inline-formula-tests-pattern"
                            name="inline-formula-tests-pattern"/>
+      <svrl:fired-rule context="inline-formula" id="inline-formula-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-1/pass.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
+      <svrl:fired-rule context="mml:math" id="math-tests"/>
+      <svrl:successful-report test="$data = ''"
+                              id="math-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/inline-formula[1]/*:math[namespace-uri()='http://www.w3.org/1998/Math/MathML'][1]">
+         <svrl:text>mml:math must not be empty.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')"
+                              id="math-test-14"
+                              role="warning"
+                              location="/root[1]/article[1]/inline-formula[1]/*:math[namespace-uri()='http://www.w3.org/1998/Math/MathML'][1]">
+         <svrl:text>mml:math only contains numbers and/or operators - ''. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-1/pass.xml"
                            id="formula-child-tests-pattern"
                            name="formula-child-tests-pattern"/>
+      <svrl:fired-rule context="disp-formula/*|inline-formula/*" id="formula-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-1/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
@@ -1246,24 +1261,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>disp-formula must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::inline-formula"
-                          id="inline-formula-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>inline-formula must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::mml:math"
-                          id="math-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>mml:math must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
-                          id="formula-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table-wrap"
                           id="table-wrap-tests-xspec-assert"

@@ -3,5 +3,14 @@
 Test: report    count(award-group) = 0
 Message: fundinggroup contains no awardgroups. Is this correct? Please check with eLife staff.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <funding-group>
+          <award-group/>
+          <funding-statement></funding-statement>
+        </funding-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

@@ -3,5 +3,7 @@
 Test: report    contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))
 Message: graphic has postscript mimesubtype but filename does not end with '.eps'. This cannot be correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <graphic mime-subtype="postscript" xlink:href="file.tif"/>
+  </article>
 </root>

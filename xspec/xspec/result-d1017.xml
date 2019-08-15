@@ -77,9 +77,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/head-subj-checks/head-subj-test-1/pass.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
+      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='heading']/subject"
+                       id="MSA-checks"/>
+      <svrl:failed-assert test=". = $MSAs"
+                          id="head-subj-MSA-test"
+                          role="error"
+                          location="/root[1]/article[1]/article-categories[1]/subj-group[1]/subject[1]">
+         <svrl:text>Content of the heading must match one of the MSAs.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/head-subj-checks/head-subj-test-1/pass.xml"
                            id="head-subj-checks-pattern"
                            name="head-subj-checks-pattern"/>
+      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='heading']"
+                       id="head-subj-checks"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/head-subj-checks/head-subj-test-1/pass.xml"
                            id="test-title-group-pattern"
                            name="test-title-group-pattern"/>
@@ -934,18 +944,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
-                          id="MSA-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories/subj-group[@subj-group-type='heading']/subject must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']"
-                          id="head-subj-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories/subj-group[@subj-group-type='heading'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front/article-meta/title-group"
                           id="test-title-group-xspec-assert"

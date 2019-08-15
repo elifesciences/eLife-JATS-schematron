@@ -3,5 +3,8 @@
 Test: assert    ancestor::article//xref/@rid = @id
 Message: fn element with an id must have at least one xref element pointing to it.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    
+    <fn fn-type="fn" id="fn1"/>
+  </article>
 </root>
