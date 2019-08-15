@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="ext-link-parent-test.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: $parent = $formatting-elems-->
+Test: report    $parent = $formatting-elems
+Message: extlink  has a formatting parent element  which almost certainly unnecessary.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+  </article>
 </root>

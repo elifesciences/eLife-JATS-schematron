@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="sec-title-list-check.sch"?>
 <!--Context: sec/title
-Test: matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')-->
+Test: report    matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')
+Message: Section title might start with a list indicator  ''. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

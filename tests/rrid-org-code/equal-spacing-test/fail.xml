@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="equal-spacing-test.sch"?>
 <!--Context: p|td|th
-Test: matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])-->
+Test: report    matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])
+Message: element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

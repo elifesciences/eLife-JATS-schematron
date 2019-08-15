@@ -787,6 +787,12 @@
                            name="unallowed-symbol-tests-pattern"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
+      <svrl:successful-report test="matches(.,' [Aa]nd [Aa]nd ')"
+                              id="andand-presence"
+                              role="warning"
+                              location="/root[1]/article[1]/p[1]">
+         <svrl:text>p element contains ' and and ' which is very likely to be incorrect.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/unallowed-symbol-tests/andand-presence/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>

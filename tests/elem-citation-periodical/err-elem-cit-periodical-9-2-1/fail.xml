@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-9-2-1.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
-Test: count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)-->
+Test: assert    count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)
+Message: [errelemcitperiodical921]
+        A  <source> element within a <elementcitation> of type 'periodical' must contain 
+        at least two characters.
+        Reference '' has too few characters.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

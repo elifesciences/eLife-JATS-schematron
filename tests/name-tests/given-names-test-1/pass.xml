@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="given-names-test-1.sch"?>
 <!--Context: article-meta/contrib-group//name
-Test: count(given-names) gt 1-->
+Test: report    count(given-names) gt 1
+Message: Each name must contain only one givennames element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-data-11-3-2.sch"?>
 <!--Context: element-citation[@publication-type='data']
-Test: count(source)=1 and count(source/*)=count(source/(italic | sub | sup))-->
+Test: assert    count(source)=1 and count(source/*)=count(source/(italic | sub | sup))
+Message: [errelemcitdata1132]
+        A  <source> element within a <elementcitation> of type 'data' may only contain the child 
+        elements<italic>, <sub>, and <sup>. No other elements are allowed.
+        Reference '' has disallowed child elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

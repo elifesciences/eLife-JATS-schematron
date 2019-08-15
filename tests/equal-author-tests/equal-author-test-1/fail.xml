@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="equal-author-test-1.sch"?>
 <!--Context: article-meta//contrib[@contrib-type='author']
-Test: @equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Test: report    @equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])
+Message: Equal authors must contain an xref[@reftype='fn'] with an @rid that starts with 'equalcontrib' and ends in a digit.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>
@@ -18,7 +18,6 @@ Test: @equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])--
             <name>
               <surname>Hansen</surname>
             </name>
-            
           </contrib>
         </contrib-group>
       </article-meta>

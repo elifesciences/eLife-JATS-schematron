@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="retr-auth-kw-presence.sch"?>
 <!--Context: article[@article-type = 'retraction']
-Test: descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']-->
+Test: report    descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']
+Message: Retractions should not contain any author keywords.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

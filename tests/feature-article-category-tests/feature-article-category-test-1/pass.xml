@@ -1,6 +1,16 @@
 <?oxygen SCHSchema="feature-article-category-test-1.sch"?>
 <!--Context: article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]
-Test: ($count = 1) or ($count = 0)-->
+Test: assert    ($count = 1) or ($count = 0)
+Message: article categories contains more than one subjgroup[@subjgrouptype='subdisplaychannel'], which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="display-channel">
+        <subject>Feature Article</subject>
+      </subj-group>
+      <subj-group subj-group-type="sub-display-channel">
+        <subject>DNA</subject>
+      </subj-group>
+    </article-categories>
+  </article>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="das-sentence-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
-Test: matches(.,'\.$|\?$')-->
+Test: assert    matches(.,'\.$|\?$')
+Message: The Data Availability Statement must end with a full stop.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="data-availability">

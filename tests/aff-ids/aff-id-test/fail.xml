@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="aff-id-test.sch"?>
 <!--Context: aff[not(parent::contrib)]
-Test: if (label) then @id = concat('aff',label) else starts-with(@id,'aff')-->
+Test: assert    if (label) then @id = concat('aff',label) else starts-with(@id,'aff')
+Message: aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <aff id="aff3">

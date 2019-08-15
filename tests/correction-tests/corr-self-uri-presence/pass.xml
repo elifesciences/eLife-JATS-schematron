@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="corr-self-uri-presence.sch"?>
 <!--Context: article[@article-type = 'correction']
-Test: descendant::self-uri-->
+Test: report    descendant::self-uri
+Message: Correction notices should not contain a selfuri element (as the PDF is not published).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">
     <front>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="dec-letter-front-test-1.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub
-Test: count(article-id[@pub-id-type='doi']) = 1-->
+Test: assert    count(article-id[@pub-id-type='doi']) = 1
+Message: subarticle frontstub must contain articleid[@pubidtype='doi'].-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="decision-letter">

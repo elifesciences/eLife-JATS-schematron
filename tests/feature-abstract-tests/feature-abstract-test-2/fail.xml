@@ -1,6 +1,13 @@
 <?oxygen SCHSchema="feature-abstract-test-2.sch"?>
 <!--Context: front//abstract[@abstract-type='executive-summary']
-Test: title = 'eLife digest'-->
+Test: assert    title = 'eLife digest'
+Message: abstract title must contain 'eLife digest'. Possible superfluous characters -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <abstract abstract-type="executive-summary">
+        <title>digest</title>
+      </abstract>
+    </front>
+  </article>
 </root>

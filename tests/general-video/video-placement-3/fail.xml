@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="video-placement-3.sch"?>
 <!--Context: media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]
-Test: if ((count($cap-xref1) = 1) and (count($xref1) = 0)) then ($cap-xref1//preceding::media/@id = $id) else ($xref1//preceding::media/@id = $id)-->
+Test: report    if ((count($cap-xref1) = 1) and (count($xref1) = 0)) then ($cap-xref1//preceding::media/@id = $id) else ($xref1//preceding::media/@id = $id)
+Message: appears before its citation, which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="surname-test-5.sch"?>
 <!--Context: article-meta/contrib-group//name/surname
-Test: matches(.,'^\p{Lu}')-->
+Test: assert    matches(.,'^\p{Lu}')
+Message: surname doesn't begin with a capital letter . Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

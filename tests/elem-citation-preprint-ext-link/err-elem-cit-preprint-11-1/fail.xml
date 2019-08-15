@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-preprint-11-1.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/ext-link
-Test: @xlink:href-->
+Test: assert    @xlink:href
+Message: [errelemcitpreprint111]
+        Each <extlink> element must contain @xlink:href.
+        The <extlink> element in Reference '' does not.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

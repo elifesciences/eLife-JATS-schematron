@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="back-test-3.sch"?>
 <!--Context: back
-Test: if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then () else count(sec[@sec-type='data-availability']) != 1-->
+Test: report    if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then () else count(sec[@sec-type='data-availability']) != 1
+Message: One and only one sec[@sectype="dataavailability"] must be present as a child of back for ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

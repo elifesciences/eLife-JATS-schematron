@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ack-child-test-1.sch"?>
 <!--Context: back/ack/*
-Test: local-name() = ('p','sec','title')-->
+Test: assert    local-name() = ('p','sec','title')
+Message: Only p, sec or title can be children of ack.is not allowed.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

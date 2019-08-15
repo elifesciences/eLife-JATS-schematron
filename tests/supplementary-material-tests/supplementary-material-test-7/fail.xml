@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-test-7.sch"?>
 <!--Context: supplementary-material
-Test: (ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])-->
+Test: report    (ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])
+Message: supplementarymaterial in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

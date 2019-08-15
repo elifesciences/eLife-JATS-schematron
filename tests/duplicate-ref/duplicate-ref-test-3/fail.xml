@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="duplicate-ref-test-3.sch"?>
 <!--Context: ref-list//ref
-Test: some $x in preceding-sibling::ref/element-citation satisfies ( (($x/article-title = $a-title) and ($x/source = $source)) or (($x/chapter-title = $c-title) and ($x/source = $source)) )-->
+Test: report    some $x in preceding-sibling::ref/element-citation satisfies ( (($x/article-title = $a-title) and ($x/source = $source)) or (($x/chapter-title = $c-title) and ($x/source = $source)) )
+Message: ref '' has the same title and source as another reference, which must be incorrect  '', ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="test-title-group-presence.sch"?>
 <!--Context: article/front/article-meta
-Test: title-group[article-title]-->
+Test: assert    title-group[article-title]
+Message: titlegroup containing articletitle must be present.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

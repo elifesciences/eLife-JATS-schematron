@@ -17,7 +17,8 @@ let $schema-let := test:schema-let($test)
 
 let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"') 
 let $comment := comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
-Test: ',normalize-space($test/@test/string()))}
+Test: ',$test/local-name(),'    ',normalize-space($test/@test/string()),'
+Message: ',replace($test/data(),'-',''))}
 
 let $node := 
 (processing-instruction {'oxygen'}{$pi-content},

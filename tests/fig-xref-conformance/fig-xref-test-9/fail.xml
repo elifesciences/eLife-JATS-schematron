@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="fig-xref-test-9.sch"?>
 <!--Context: xref[@ref-type='fig']
-Test: matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')-->
+Test: report    matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')
+Message: Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? '.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

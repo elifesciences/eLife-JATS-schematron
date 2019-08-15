@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="year-article-meta-conformity.sch"?>
 <!--Context: year[ancestor::article-meta]
-Test: matches(.,'^[2]0[0-2][0-9]$')-->
+Test: assert    matches(.,'^[2]0[0-2][0-9]$')
+Message: year in articlemeta must contain 4 digits which match the regular expression '^[2]0[02][09]$'  '' doesn't meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

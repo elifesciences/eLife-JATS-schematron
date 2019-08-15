@@ -784,6 +784,12 @@
                            name="unallowed-symbol-tests-pattern"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
+      <svrl:successful-report test="not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')"
+                              id="refs-presence"
+                              role="error"
+                              location="/root[1]/article[1]/sub[1]">
+         <svrl:text>sub element contains 'Refs.' which is either incorrect or unnecessary.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/unallowed-symbol-tests/refs-presence/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>

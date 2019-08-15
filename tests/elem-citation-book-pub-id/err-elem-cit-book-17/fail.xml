@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-book-17.sch"?>
 <!--Context: element-citation[@publication-type='book']/pub-id
-Test: @pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'-->
+Test: assert    @pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'
+Message: [errelemcitbook17]
+        Each <pubid>, if present in a book reference, must have a @pubidtype of one of these values: doi, pmid, isbn. 
+        The pubidtype attribute on <pubid> in Reference '' 
+        is.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

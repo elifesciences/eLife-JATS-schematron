@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-6.sch"?>
 <!--Context: related-article
-Test: matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')-->
+Test: assert    matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')
+Message: relatedarticle element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

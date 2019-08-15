@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-patent-2-3.sch"?>
 <!--Context: element-citation[@publication-type='patent']
-Test: every $type in person-group/@person-group-type satisfies $type = ('assignee','inventor')-->
+Test: assert    every $type in person-group/@person-group-type satisfies $type = ('assignee','inventor')
+Message: [errelemcitpatent23]
+        The only allowed types of persongroup elements are "assignee" and "inventor".
+        Reference '' has <persongroup> elements of other types.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

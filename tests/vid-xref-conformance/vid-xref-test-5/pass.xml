@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="vid-xref-test-5.sch"?>
 <!--Context: xref[@ref-type='video']
-Test: (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')-->
+Test: report    (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')
+Message:  Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

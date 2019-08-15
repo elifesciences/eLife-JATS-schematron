@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="disp-subj-value-test-7.sch"?>
 <!--Context: article-categories/subj-group[@subj-group-type='display-channel']/subject
-Test: ($article-type = 'review-article') and not(.='Review Article')-->
+Test: report    ($article-type = 'review-article') and not(.='Review Article')
+Message: Articles is an @articletype="" but the display channel is. It should be 'Review Article' according to the articletype.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="review-article">
     <article-categories>

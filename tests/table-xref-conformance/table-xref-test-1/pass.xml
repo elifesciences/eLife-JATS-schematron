@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="table-xref-test-1.sch"?>
 <!--Context: xref[@ref-type='table']
-Test: (ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)-->
+Test: report    (ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)
+Message:  Citation is in the caption of the Table that it links to. Is it correct or necessary?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

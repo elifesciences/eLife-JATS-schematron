@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-book-22.sch"?>
 <!--Context: element-citation[@publication-type='book']/chapter-title
-Test: count(../person-group[@person-group-type='author'])=1-->
+Test: assert    count(../person-group[@person-group-type='author'])=1
+Message: [errelemcitbook22]
+        If there is a <chaptertitle> element there must be one and only one <persongroup persongrouptype="author">.
+        Reference '' does not meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

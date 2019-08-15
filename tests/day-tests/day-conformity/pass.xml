@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="day-conformity.sch"?>
 <!--Context: day
-Test: matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')-->
+Test: assert    matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')
+Message: day must contain 2 digits which are between '01' and '31'  '' doesn't meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <day>31</day>

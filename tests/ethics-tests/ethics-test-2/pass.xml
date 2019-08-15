@@ -1,6 +1,15 @@
 <?oxygen SCHSchema="ethics-test-2.sch"?>
 <!--Context: fn-group[@content-type='ethics-information']
-Test: count(fn) gt 3-->
+Test: report    count(fn) gt 3
+Message: Ethics fngroup may not have more than 3 fn elements. Currently there are.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sec sec-type="additional-information">
+      <fn-group content-type="ethics-information">
+        <fn fn-type="other">Supplementary figure</fn>
+        <fn fn-type="other">Supplementary figure</fn>
+        <fn fn-type="other">Supplementary figure</fn>
+      </fn-group>
+    </sec>
+  </article>
 </root>

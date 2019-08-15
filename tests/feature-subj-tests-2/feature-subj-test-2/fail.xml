@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="feature-subj-test-2.sch"?>
 <!--Context: subj-group[@subj-group-type='sub-display-channel']/subject
-Test: . != e:titleCase(.)-->
+Test: report    . != e:titleCase(.)
+Message: The content of the subdisplaychannel should be in title case -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

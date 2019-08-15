@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-data-18.sch"?>
 <!--Context: element-citation[@publication-type='data']
-Test: count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)-->
+Test: assert    count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)
+Message: [errelemcitdata18]
+        The only tags that are allowed as children of <elementcitation> with the publicationtype="data" are:
+        <persongroup>, <datatitle>, <source>, <year>, <pubid>, <version>, and <extlink>.
+        Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

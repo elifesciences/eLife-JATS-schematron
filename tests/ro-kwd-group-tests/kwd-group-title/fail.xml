@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="kwd-group-title.sch"?>
 <!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']
-Test: title = 'Research organism'-->
+Test: assert    title = 'Research organism'
+Message: kwdgroup title is, which is wrong. It should be 'Research organism'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

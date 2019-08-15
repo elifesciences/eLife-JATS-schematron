@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="object-id-test-1.sch"?>
 <!--Context: object-id[@pub-id-type='doi']
-Test: starts-with(.,concat('10.7554/eLife.' , $article-id))-->
+Test: assert    starts-with(.,concat('10.7554/eLife.' , $article-id))
+Message: objectid must start with the elife doi prefix, '10.7554/eLife.' and the article id.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

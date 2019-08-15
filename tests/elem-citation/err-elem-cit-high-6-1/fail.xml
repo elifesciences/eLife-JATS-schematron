@@ -1,8 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-high-6-1.sch"?>
 <!--Context: element-citation
-Test: @publication-type-->
+Test: assert    @publication-type
+Message: [errelemcithigh61]
+        The elementcitation element must have a publicationtype attribute.
+        Reference '' does not.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <element-citation />
+    <element-citation/>
   </article>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="vid-xref-test-6.sch"?>
 <!--Context: xref[@ref-type='video']
-Test: matches($pre-text,'[A-Za-z0-9][\(]$')-->
+Test: report    matches($pre-text,'[A-Za-z0-9][\(]$')
+Message: citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?   ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

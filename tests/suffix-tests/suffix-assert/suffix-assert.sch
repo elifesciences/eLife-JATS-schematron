@@ -221,6 +221,26 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:get-name" as="xs:string">
+    <xsl:param name="name"/>
+    <xsl:choose>
+      <xsl:when test="$name/given-names and $name/surname and $name/suffix">
+        <xsl:value-of select="concat($name/given-names,' ',$name/surname,' ',$name/suffix)"/>
+      </xsl:when>
+      <xsl:when test="not($name/given-names) and $name/surname and $name/suffix">
+        <xsl:value-of select="concat($name/surname,' ',$name/suffix)"/>
+      </xsl:when>
+      <xsl:when test="$name/given-names and $name/surname and not($name/suffix)">
+        <xsl:value-of select="concat($name/given-names,' ',$name/surname)"/>
+      </xsl:when>
+      <xsl:when test="not($name/given-names) and $name/surname and not($name/suffix)">
+        <xsl:value-of select="$name/surname"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'No elements present'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:isbn-sum" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>

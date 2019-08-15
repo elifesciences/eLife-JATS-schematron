@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="colour-check-table.sch"?>
 <!--Context: th|td
-Test: starts-with(@style,'author-callout')-->
+Test: report    starts-with(@style,'author-callout')
+Message: element has colour background. Is this correct? It contains-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <td style="author-callout-red">test-red</td>

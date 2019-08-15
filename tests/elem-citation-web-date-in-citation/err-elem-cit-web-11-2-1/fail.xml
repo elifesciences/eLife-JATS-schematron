@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-web-11-2-1.sch"?>
 <!--Context: element-citation[@publication-type='web']/date-in-citation
-Test: ./@iso-8601-date-->
+Test: assert    ./@iso-8601-date
+Message: [errelemcitweb1121]
+        The <dateincitation> element must have an @iso8601date attribute.
+        Reference '' does not.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="test-ro-kwd-group-presence-2.sch"?>
 <!--Context: article/front/article-meta
-Test: if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication')) then (count(kwd-group[@kwd-group-type='research-organism']) = 0) else ()-->
+Test: report    if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication')) then (count(kwd-group[@kwd-group-type='research-organism']) = 0) else ()
+Message: does not contain a Research Organism keyword group. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

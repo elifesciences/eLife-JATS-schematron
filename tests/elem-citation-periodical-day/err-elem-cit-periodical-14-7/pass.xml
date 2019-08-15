@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-7.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/day
-Test: .=format-date(xs:date(../year/@iso-8601-date), '[D]')-->
+Test: assert    .=format-date(xs:date(../year/@iso-8601-date), '[D]')
+Message: [errelemcitperiodical147]
+        The content of <day>, if present, must match the content of the day section of @iso8601date on the 
+        sibling year element.
+        Reference '' does not meet this requirement as it contains
+        the value <day>='' but <year>/@iso8601date=''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

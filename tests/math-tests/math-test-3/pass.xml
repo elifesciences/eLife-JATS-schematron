@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="math-test-3.sch"?>
 <!--Context: mml:math
-Test: $data = '±'-->
+Test: report    $data = '±'
+Message: mml:math only contains '±', which is unnecessary. Cature this as a normal text '±' instead.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <mml:math>

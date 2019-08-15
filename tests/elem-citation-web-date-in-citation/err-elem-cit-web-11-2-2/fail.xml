@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-web-11-2-2.sch"?>
 <!--Context: element-citation[@publication-type='web']/date-in-citation
-Test: matches(./@iso-8601-date,'^\d{4}-\d{2}-\d{2}$')-->
+Test: assert    matches(./@iso-8601-date,'^\d{4}-\d{2}-\d{2}$')
+Message: [errelemcitweb1122]
+        The <dateincitation> element's @iso8601date attribute must have the format
+        'YYYYMMDD'.
+        Reference '' has '',
+        which does not have that format.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

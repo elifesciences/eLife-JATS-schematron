@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="app-test-1.sch"?>
 <!--Context: back//app
-Test: parent::app-group-->
+Test: assert    parent::app-group
+Message: app must be captured as a child of an appgroup element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

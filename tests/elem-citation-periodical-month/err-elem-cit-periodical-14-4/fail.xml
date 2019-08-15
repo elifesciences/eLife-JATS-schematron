@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-4.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/month
-Test: .=('January','February','March','April','May','June','July','August','September','October','November','December')-->
+Test: assert    .=('January','February','March','April','May','June','July','August','September','October','November','December')
+Message: [errelemcitperiodical144]
+        The content of <month> must be the month, written out, with correct capitalization.
+        Reference '' does not meet this requirement as it contains
+        the value  <month>=''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ampersand-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']/source
-Test: matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')-->
+Test: report    matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')
+Message: ref '' appears to contain the text 'amp', is this a broken ampersand?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

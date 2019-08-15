@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="test-elocation-conformance.sch"?>
 <!--Context: article-meta/elocation-id
-Test: . = concat('e' , $article-id)-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Test: assert    . = concat('e' , $article-id)
+Message: elocationid is incorrect. It's value should be a concatenation of 'e' and the article id, in this case.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>

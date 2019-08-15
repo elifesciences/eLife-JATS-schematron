@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="custom-meta-child-test-1.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta/meta-value/*
-Test: local-name() = $allowed-elements-->
+Test: assert    local-name() = $allowed-elements
+Message: is not allowed in impact statement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

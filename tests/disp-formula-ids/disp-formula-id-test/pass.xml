@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="disp-formula-id-test.sch"?>
 <!--Context: disp-formula
-Test: matches(@id,'^equ[0-9]{1,9}$')-->
+Test: assert    matches(@id,'^equ[0-9]{1,9}$')
+Message: dispformula @id must be in the format 'equ0'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <disp-formula id="equ0"/>

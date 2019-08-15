@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-high-3-3.sch"?>
 <!--Context: ref
-Test: count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))-->
+Test: assert    count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))
+Message: [errelemcithigh33]
+        The sequence of ids in the <ref> elements must increase monotonically
+        (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
+        Reference '' has the value 
+        '', which does not fit this pattern.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

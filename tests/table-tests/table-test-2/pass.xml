@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="table-test-2.sch"?>
 <!--Context: table
-Test: thead-->
+Test: assert    thead
+Message: table doesn't have a thead. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

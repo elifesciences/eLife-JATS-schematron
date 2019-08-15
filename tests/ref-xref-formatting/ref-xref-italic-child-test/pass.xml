@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ref-xref-italic-child-test.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: italic-->
+Test: report    italic
+Message: xref  contains italic formatting. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

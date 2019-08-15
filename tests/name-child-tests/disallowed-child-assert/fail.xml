@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="disallowed-child-assert.sch"?>
 <!--Context: article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]
-Test: true()-->
+Test: report    true()
+Message: is not allowed as a child of name.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

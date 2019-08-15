@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="contrib-email-2.sch"?>
 <!--Context: article-meta//contrib
-Test: not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)-->
+Test: report    not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)
+Message: Noncorresponding authors must not have an email.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

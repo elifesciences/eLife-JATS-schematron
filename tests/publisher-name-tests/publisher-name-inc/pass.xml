@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="publisher-name-inc.sch"?>
 <!--Context: element-citation/publisher-name
-Test: matches(.,'[Ii]nc\.')-->
+Test: report    matches(.,'[Ii]nc\.')
+Message: ref '' has a publishername containing the text 'Inc.' Should the fullstop be removed?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

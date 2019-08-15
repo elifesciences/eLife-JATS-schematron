@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-journal-6-6.sch"?>
 <!--Context: element-citation[@publication-type='journal']/fpage
-Test: matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1)) or count(../lpage) eq 0-->
+Test: assert    matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1)) or count(../lpage) eq 0
+Message: [errelemcitjournal66]
+        If the content of <fpage> begins with a letter, then the content of  <lpage> must begin with 
+        the same letter. 
+        Reference '' does not.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

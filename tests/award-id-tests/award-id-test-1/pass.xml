@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="award-id-test-1.sch"?>
 <!--Context: funding-group/award-group/award-id
-Test: matches(.,',|;')-->
+Test: report    matches(.,',|;')
+Message: Funding entry with idhas a comma or semicolon in the award id. Should this be separated out into several funding entries? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="math-test-2.sch"?>
 <!--Context: mml:math
-Test: descendant::mml:merror-->
+Test: report    descendant::mml:merror
+Message: math contains an mml:merror with ''. This will almost certainly not render correctly.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <mml:math>

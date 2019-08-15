@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="contrib-test-3.sch"?>
 <!--Context: article-meta//contrib
-Test: name and collab-->
+Test: report    name and collab
+Message: author contains both a child name and a child collab. This is not correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

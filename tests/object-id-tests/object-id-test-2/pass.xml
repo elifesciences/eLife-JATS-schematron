@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="object-id-test-2.sch"?>
 <!--Context: object-id[@pub-id-type='doi']
-Test: matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')-->
+Test: assert    matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')
+Message: objectid must follow this convention  '10.7554/eLife.00000.000'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

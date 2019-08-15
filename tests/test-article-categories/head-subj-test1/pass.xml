@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="head-subj-test1.sch"?>
 <!--Context: article-meta/article-categories
-Test: count(subj-group[@subj-group-type='heading']) gt 2-->
+Test: report    count(subj-group[@subj-group-type='heading']) gt 2
+Message: articlecategories must contain one and or two subjgroup[@subjgrouptype='heading'] elements. Currently there are.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="das-doi-conformity-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
-Test: matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))-->
+Test: report    matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))
+Message: Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="data-availability">

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="award-group-test-5.sch"?>
 <!--Context: funding-group/award-group
-Test: funding-source/institution-wrap-->
+Test: assert    funding-source/institution-wrap
+Message: fundingsource must contain an institutionwrap.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

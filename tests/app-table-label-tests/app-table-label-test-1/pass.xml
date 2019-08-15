@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="app-table-label-test-1.sch"?>
 <!--Context: app//table-wrap/label
-Test: matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')-->
+Test: assert    matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')
+Message:  Table label does not conform to the usual format.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

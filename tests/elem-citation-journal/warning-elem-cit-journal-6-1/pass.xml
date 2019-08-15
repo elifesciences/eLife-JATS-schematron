@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="warning-elem-cit-journal-6-1.sch"?>
 <!--Context: element-citation[@publication-type='journal']
-Test: (count(fpage) eq 1) or (count(elocation-id) eq 1) or (count(comment/text()='In press') eq 1)-->
+Test: assert    (count(fpage) eq 1) or (count(elocation-id) eq 1) or (count(comment/text()='In press') eq 1)
+Message: [warningelemcitjournal61]
+        One of <fpage>, <elocationid>, or <comment>In press</comment> should be present. 
+        Reference '' has missing page or elocation information.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

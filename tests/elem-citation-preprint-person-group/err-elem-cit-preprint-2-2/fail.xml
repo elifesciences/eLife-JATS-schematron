@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-preprint-2-2.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/person-group
-Test: @person-group-type='author'-->
+Test: assert    @person-group-type='author'
+Message: [errelemcitpreprint22]
+        The <persongroup> element must contain @persongrouptype='author'. The <persongroup> element in 
+        Reference '' contains @persongrouptype=''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

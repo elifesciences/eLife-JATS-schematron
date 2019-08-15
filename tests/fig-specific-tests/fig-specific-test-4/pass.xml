@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="fig-specific-test-4.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
-Test: ($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))-->
+Test: report    ($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))
+Message: is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

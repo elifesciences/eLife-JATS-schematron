@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="disp-subj-test.sch"?>
 <!--Context: article-meta/article-categories
-Test: count(subj-group[@subj-group-type='display-channel']) = 1-->
+Test: assert    count(subj-group[@subj-group-type='display-channel']) = 1
+Message: There must be one subjgroup[@subjgrouptype='displaychannel'] which is a child of articlecategories. Currently there are.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

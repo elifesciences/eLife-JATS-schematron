@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-thesis-2-3.sch"?>
 <!--Context: element-citation[@publication-type='thesis']/person-group
-Test: count(name)=1-->
+Test: assert    count(name)=1
+Message: [errelemcitthesis23]
+        Each thesis citation must have one and only one author.
+        Reference '' has a thesis citation 
+        withauthors.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

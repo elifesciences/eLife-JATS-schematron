@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="award-group-test-1.sch"?>
 <!--Context: funding-group/award-group
-Test: matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')-->
+Test: assert    matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')
+Message: awardgroup must have an @id, the value of which conforms to the convention 'fund', followed by a digit.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

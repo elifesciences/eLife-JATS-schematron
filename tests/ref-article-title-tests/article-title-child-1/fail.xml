@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="article-title-child-1.sch"?>
 <!--Context: element-citation[@publication-type='journal']/article-title
-Test: (count(child::*) = 1) and (count(child::text()) = 0)-->
+Test: report    (count(child::*) = 1) and (count(child::text()) = 0)
+Message: ref '' has an articletitle with one childelement, and no text. This is almost certainly incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

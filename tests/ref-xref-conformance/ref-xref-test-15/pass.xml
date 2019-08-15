@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-15.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: matches($post-sentence,$cite3)-->
+Test: report    matches($post-sentence,$cite3)
+Message: citation is followed by text containing much of the citation text. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

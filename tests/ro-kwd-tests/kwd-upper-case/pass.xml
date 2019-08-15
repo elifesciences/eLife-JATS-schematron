@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="kwd-upper-case.sch"?>
 <!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']/kwd
-Test: substring(.,1,1) = upper-case(substring(.,1,1))-->
+Test: assert    substring(.,1,1) = upper-case(substring(.,1,1))
+Message: researchorganism kwd elements should start with an uppercase letter.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

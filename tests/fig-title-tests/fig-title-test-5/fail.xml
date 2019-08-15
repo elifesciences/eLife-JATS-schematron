@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="fig-title-test-5.sch"?>
 <!--Context: fig/caption/title
-Test: matches(.,'^\p{P}')-->
+Test: report    matches(.,'^\p{P}')
+Message: title forbegins with punctuation. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

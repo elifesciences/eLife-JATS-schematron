@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="object-id-test-3.sch"?>
 <!--Context: object-id[@pub-id-type='doi']
-Test: (. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])-->
+Test: report    (. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])
+Message: objectids must always be distinct.is not distinct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

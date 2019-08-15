@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-data-14-2.sch"?>
 <!--Context: element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']
-Test: not(@xlink:href)-->
+Test: assert    not(@xlink:href)
+Message: [errelemcitdata142]
+        If the pubid is of pubidtype doi, it may not have an @xlink:href.
+        Reference '' has a <pubid element with type doi and an
+        @linkhref with value ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

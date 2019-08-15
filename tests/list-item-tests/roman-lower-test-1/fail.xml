@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="roman-lower-test-1.sch"?>
 <!--Context: list-item
-Test: ($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')-->
+Test: report    ($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')
+Message: listitem is part of an romanlower list, but it begins with a single romanlower letter. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

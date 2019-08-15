@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="final-custom-meta-test-6.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta/meta-value
-Test: matches(.,'[\.|\?]$')-->
+Test: assert    matches(.,'[\.|\?]$')
+Message: Impact statement must end with a full stop or question mark.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

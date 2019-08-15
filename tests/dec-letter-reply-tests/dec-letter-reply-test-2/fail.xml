@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reply-test-2.sch"?>
 <!--Context: article/sub-article
-Test: @id = concat('SA',$pos)-->
+Test: assert    @id = concat('SA',$pos)
+Message: subarticle id must be in the format 'SA0', where '0' is it's position (1 or 2).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="reply" id="SA2">

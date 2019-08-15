@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="simple-test-3.sch"?>
 <!--Context: list-item
-Test: ($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')-->
+Test: report    ($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')
+Message: listitem is part of a simple list, but it begins with a single uppercase letter. Should the listtype be updated to 'alphaupper' and this first letter removed?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

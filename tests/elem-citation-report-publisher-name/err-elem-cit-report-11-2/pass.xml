@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-report-11-2.sch"?>
 <!--Context: element-citation[@publication-type='report']/publisher-name
-Test: count(*)=0-->
+Test: assert    count(*)=0
+Message: [errelemcitreport112]
+        No elements are allowed inside <publishername>.
+        Reference '' has child elements within the
+        <publishername> element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

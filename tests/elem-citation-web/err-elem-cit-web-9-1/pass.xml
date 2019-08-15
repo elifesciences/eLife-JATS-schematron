@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-web-9-1.sch"?>
 <!--Context: element-citation[@publication-type='web']
-Test: count(source) > 1-->
+Test: report    count(source) > 1
+Message: [errelemcitweb91]
+        Each  <elementcitation> of type 'web' may contain one and only one <source> element.
+        Reference '' has<source> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

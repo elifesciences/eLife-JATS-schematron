@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="equal-count-test.sch"?>
 <!--Context: article/front/article-meta/contrib-group
-Test: count(contrib[@equal-contrib='yes']) = 1-->
+Test: report    count(contrib[@equal-contrib='yes']) = 1
+Message: There is one contrib with the attribute equalcontrib='yes'.This cannot be correct. Either 2 or more contribs within the same contribgroup should have this attribute, or none. Check-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

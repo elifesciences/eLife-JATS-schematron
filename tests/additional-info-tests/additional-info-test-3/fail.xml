@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="additional-info-test-3.sch"?>
 <!--Context: sec[@sec-type='additional-information']
-Test: if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution'])) else ()-->
+Test: report    if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution'])) else ()
+Message: This type of sec in research content must have a child fngroup[@contenttype='authorcontribution'].-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article" dtd-version="1.1">
     <front>

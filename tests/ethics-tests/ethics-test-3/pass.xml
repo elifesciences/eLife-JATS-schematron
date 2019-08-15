@@ -1,6 +1,15 @@
 <?oxygen SCHSchema="ethics-test-3.sch"?>
 <!--Context: fn-group[@content-type='ethics-information']
-Test: count(fn) = 0-->
+Test: report    count(fn) = 0
+Message: Ethics fngroup must have at least one fn element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sec sec-type="additional-information">
+      <fn-group content-type="ethics-information">
+        <fn fn-type="other">Supplementary figure</fn>
+        <fn fn-type="other">Supplementary figure</fn>
+        <fn fn-type="other">Supplementary figure</fn>
+      </fn-group>
+    </sec>
+  </article>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="given-names-test-12.sch"?>
 <!--Context: article-meta/contrib-group//name/given-names
-Test: matches(.,'[A-Za-z] [Vv]on$')-->
+Test: report    matches(.,'[A-Za-z] [Vv]on$')
+Message: givennames ends with ' von'  should this be captured as the beginning of the surname instead?  ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

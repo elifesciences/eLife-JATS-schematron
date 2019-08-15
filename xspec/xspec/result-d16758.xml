@@ -784,8 +784,20 @@
                            name="unallowed-symbol-tests-pattern"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
+      <svrl:successful-report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')"
+                              id="Inc-presence"
+                              role="warning"
+                              location="/root[1]/article[1]/bold[1]">
+         <svrl:text>bold element contains 'Inc.' with a full stop. Remove the full stop.</svrl:text>
+      </svrl:successful-report>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
+      <svrl:successful-report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')"
+                              id="Inc-presence"
+                              role="warning"
+                              location="/root[1]/article[1]/italic[1]">
+         <svrl:text>italic element contains 'Inc.' with a full stop. Remove the full stop.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/unallowed-symbol-tests/Inc-presence/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>

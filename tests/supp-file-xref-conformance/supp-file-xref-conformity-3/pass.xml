@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="supp-file-xref-conformity-3.sch"?>
 <!--Context: xref[@ref-type='supplementary-material']
-Test: contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')-->
+Test: report    contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')
+Message:  citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

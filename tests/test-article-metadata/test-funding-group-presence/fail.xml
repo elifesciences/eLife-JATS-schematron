@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="test-funding-group-presence.sch"?>
 <!--Context: article/front/article-meta
-Test: if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1-->
+Test: report    if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1
+Message: There must be one and only one fundinggroup element in the articlemeta. Currently there are.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

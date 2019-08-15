@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="award-group-test-6.sch"?>
 <!--Context: funding-group/award-group
-Test: count(funding-source/institution-wrap/institution) = 1-->
+Test: assert    count(funding-source/institution-wrap/institution) = 1
+Message: One and only one institution must be present.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

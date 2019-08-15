@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="pre-fig-specific-test-4.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
-Test: if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])-->
+Test: report    if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])
+Message: There is no citation toEnsure to query the author asking for a citation.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

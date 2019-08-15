@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="duplicate-ref-test-6.sch"?>
 <!--Context: ref-list//ref
-Test: $top-doi = $doi-->
+Test: report    $top-doi = $doi
+Message: ref '' has a doi which is the same as the article itself '' which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

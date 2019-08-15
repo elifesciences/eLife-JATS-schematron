@@ -1,6 +1,49 @@
 <?oxygen SCHSchema="feature-bio-test-1.sch"?>
 <!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio
-Test: p/bold = $name-->
+Test: assert    p/bold = $name
+Message: bio must contain a bold element which contains the name of the author .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Feature Article</subject>
+        </subj-group>
+        <subj-group subj-group-type="sub-display-channel">
+          <subject>DNA</subject>
+        </subj-group>
+      </article-categories>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+          <bio>
+            <p>
+              <bold>Zoolander</bold>is in Modelling</p>
+          </bio>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hansen</surname>
+          </name>
+          <bio>
+            <p>
+              <bold>Hansen Jr</bold>is in Modelling</p>
+          </bio>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mugatu</surname>
+            <suffix>Jr</suffix>
+          </name>
+          <bio>
+            <p>
+              <bold>Mugatu</bold>is in Modelling</p>
+          </bio>
+        </contrib>
+      </contrib-group>
+    </article-meta>
+  </article>
 </root>

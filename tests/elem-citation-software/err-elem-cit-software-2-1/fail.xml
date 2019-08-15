@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-software-2-1.sch"?>
 <!--Context: element-citation[@publication-type = 'software']
-Test: count(person-group) = 1 or (count(person-group/@person-group-type = 'author') + count(person-group/@person-group-type = 'editor') = 2)-->
+Test: assert    count(person-group) = 1 or (count(person-group/@person-group-type = 'author') + count(person-group/@person-group-type = 'editor') = 2)
+Message: [errelemcitsoftware21] Each
+        <elementcitation> of type 'software' must contain one <persongroup> element (either
+        author or curator) or one <persongroup> with attribute persongrouptype = author and one
+        <persongroup> with attribute persongrouptype = curator. Reference '' has<persongroup> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

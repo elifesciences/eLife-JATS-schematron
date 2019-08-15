@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="final-supplementary-material-test-3.sch"?>
 <!--Context: supplementary-material
-Test: if (caption) then not(caption/title) else ()-->
+Test: report    if (caption) then not(caption/title) else ()
+Message: doesn't have a title. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

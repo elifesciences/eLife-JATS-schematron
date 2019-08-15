@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="table-wrap-test-4.sch"?>
 <!--Context: table-wrap
-Test: (matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')-->
+Test: report    (matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')
+Message: tablewrap with idhas no label which is not correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

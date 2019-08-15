@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-book-28-1.sch"?>
 <!--Context: element-citation[@publication-type='book']/chapter-title
-Test: count(../person-group[@person-group-type='editor']) le 1-->
+Test: assert    count(../person-group[@person-group-type='editor']) le 1
+Message: [errelemcitbook281]
+        If there is a <chaptertitle> element there may be a maximum of one <persongroup persongrouptype="editor">.
+        Reference '' does not meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

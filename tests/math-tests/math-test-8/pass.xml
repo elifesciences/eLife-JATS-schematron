@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="math-test-8.sch"?>
 <!--Context: mml:math
-Test: $data = 'μ'-->
+Test: report    $data = 'μ'
+Message: mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <mml:math>

@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-4.sch"?>
 <!--Context: element-citation/person-group/name
-Test: not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')]-->
+Test: assert    not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')]
+Message: [errelemcitgenname4]
+        The <suffix> element in a reference may only contain one of the specified values
+        Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
+        Reference '' does not meet this requirement
+        as it contains the value ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

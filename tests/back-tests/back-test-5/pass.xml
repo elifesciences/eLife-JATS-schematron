@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="back-test-5.sch"?>
 <!--Context: back
-Test: if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1) else ()-->
+Test: report    if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1) else ()
+Message: One and only one reflist must be present incontent.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

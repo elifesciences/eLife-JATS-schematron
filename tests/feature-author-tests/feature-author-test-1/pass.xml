@@ -1,6 +1,23 @@
 <?oxygen SCHSchema="feature-author-test-1.sch"?>
 <!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']
-Test: bio-->
+Test: assert    bio
+Message: Author must contain child bio in feature content.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="discussion">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Feature Article</subject>
+        </subj-group>
+        <subj-group subj-group-type="sub-display-channel">
+          <subject>DNA</subject>
+        </subj-group>
+      </article-categories>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <bio/>
+        </contrib>
+      </contrib-group>
+    </article-meta>
+  </article>
 </root>

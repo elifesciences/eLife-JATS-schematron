@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="feature-abstract-test-1.sch"?>
 <!--Context: front//abstract[@abstract-type='executive-summary']
-Test: count(title) = 1-->
+Test: assert    count(title) = 1
+Message: abstract must contain one and only one title.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <abstract abstract-type="executive-summary"/>
+    </front>
+  </article>
 </root>

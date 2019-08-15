@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="fig-specific-test-1.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
-Test: label[contains(lower-case(.),'supplement')]-->
+Test: report    label[contains(lower-case(.),'supplement')]
+Message: fig label contains 'supplement', but it does not have a @specificuse='childfig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

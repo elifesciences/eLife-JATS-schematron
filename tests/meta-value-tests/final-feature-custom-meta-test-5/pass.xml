@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="final-feature-custom-meta-test-5.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta/meta-value
-Test: ($count gt 30) and ($subj = $features-subj)-->
+Test: report    ($count gt 30) and ($subj = $features-subj)
+Message: Impact statement contains more than 30 words. Is this OK?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

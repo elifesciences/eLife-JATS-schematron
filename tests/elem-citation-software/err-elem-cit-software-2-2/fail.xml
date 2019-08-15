@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-software-2-2.sch"?>
 <!--Context: element-citation[@publication-type = 'software']
-Test: person-group[@person-group-type = ('author', 'curator')]-->
+Test: assert    person-group[@person-group-type = ('author', 'curator')]
+Message: [errelemcitsoftware22] Each <elementcitation> of type
+        'software' must contain one <persongroup> with the attribute persongrouptype set to
+        'author'or 'curator'. Reference '' has a
+        <persongroup> type of ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

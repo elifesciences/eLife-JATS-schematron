@@ -1,6 +1,59 @@
 <?oxygen SCHSchema="ext-link-parent-test.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: $parent = $formatting-elems-->
+Test: report    $parent = $formatting-elems
+Message: extlink  has a formatting parent element  which almost certainly unnecessary.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <bold>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </bold>
+    <fixed-case>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </fixed-case>
+    <italic>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </italic>
+    <monospace>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </monospace>
+    <overline>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </overline>
+    <overline-start>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </overline-start>
+    <overline-end>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </overline-end>
+    <roman>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </roman>
+    <sans-serif>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </sans-serif>
+    <sc>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </sc>
+    <strike>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </strike>
+    <underline>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </underline>
+    <underline-start>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </underline-start>
+    <underline-end>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </underline-end>
+    <ruby>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </ruby>
+    <sub>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </sub>
+    <sup>
+      <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>
+    </sup>
+  </article>
 </root>

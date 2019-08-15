@@ -74,6 +74,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-article-category-tests/feature-article-category-test-2/pass.xml"
                            id="disp-channel-checks-pattern"
                            name="disp-channel-checks-pattern"/>
+      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject"
+                       id="disp-channel-checks"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-article-category-tests/feature-article-category-test-2/pass.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
@@ -725,12 +727,18 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-article-category-tests/feature-article-category-test-2/pass.xml"
                            id="feature-subj-tests-1-pattern"
                            name="feature-subj-tests-1-pattern"/>
+      <svrl:fired-rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]"
+                       id="feature-subj-tests-1"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-article-category-tests/feature-article-category-test-2/pass.xml"
                            id="feature-subj-tests-2-pattern"
                            name="feature-subj-tests-2-pattern"/>
+      <svrl:fired-rule context="subj-group[@subj-group-type='sub-display-channel']/subject"
+                       id="feature-subj-tests-2"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-article-category-tests/feature-article-category-test-2/pass.xml"
                            id="feature-article-category-tests-pattern"
                            name="feature-article-category-tests-pattern"/>
+      <svrl:fired-rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
+                       id="feature-article-category-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-article-category-tests/feature-article-category-test-2/pass.xml"
                            id="feature-author-tests-pattern"
                            name="feature-author-tests-pattern"/>
@@ -928,12 +936,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/article-categories must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject"
-                          id="disp-channel-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
                           id="MSA-checks-xspec-assert"
@@ -2230,24 +2232,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>front//abstract[@abstract-type='executive-summary'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]"
-                          id="feature-subj-tests-1-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject"
-                          id="feature-subj-tests-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>subj-group[@subj-group-type='sub-display-channel']/subject must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
-                          id="feature-article-category-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']"
                           id="feature-author-tests-xspec-assert"

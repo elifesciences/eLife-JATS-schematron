@@ -350,6 +350,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="ethics-title-tests-pattern"
                            name="ethics-title-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='ethics-information']"
+                       id="ethics-title-tests"/>
+      <svrl:failed-assert test="title = 'Ethics'"
+                          id="ethics-title-test"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]/fn-group[1]">
+         <svrl:text>fn-group[@content-type='ethics-information'] must have a title that contains 'Author contributions'. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="dec-letter-title-tests-pattern"
                            name="dec-letter-title-tests-pattern"/>
@@ -419,6 +427,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="sec-tests-pattern"
                            name="sec-tests-pattern"/>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
@@ -437,6 +452,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="additional-info-tests-pattern"
                            name="additional-info-tests-pattern"/>
+      <svrl:fired-rule context="sec[@sec-type='additional-information']"
+                       id="additional-info-tests"/>
+      <svrl:failed-assert test="parent::back"
+                          id="additional-info-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]">
+         <svrl:text>sec[@sec-type='additional-information'] must be a child of back.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="comp-int-fn-group-tests-pattern"
                            name="comp-int-fn-group-tests-pattern"/>
@@ -452,6 +475,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="ethics-tests-pattern"
                            name="ethics-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='ethics-information']"
+                       id="ethics-tests"/>
+      <svrl:successful-report test="count(fn) = 0"
+                              id="ethics-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/sec[1]/fn-group[1]">
+         <svrl:text>Ethics fn-group must have at least one fn element.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-tests/ethics-test-3/fail.xml"
                            id="ethics-fn-tests-pattern"
                            name="ethics-fn-tests-pattern"/>
@@ -1481,12 +1512,6 @@
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='author-contribution'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']"
-                          id="ethics-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='ethics-information'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/title-group"
                           id="dec-letter-title-tests-xspec-assert"
                           role="error"
@@ -1619,12 +1644,6 @@
                           location="/root[1]">
          <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sec"
-                          id="sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sec must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back"
                           id="back-tests-xspec-assert"
                           role="error"
@@ -1655,12 +1674,6 @@
                           location="/root[1]">
          <svrl:text>back//app must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sec[@sec-type='additional-information']"
-                          id="additional-info-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sec[@sec-type='additional-information'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
                           id="comp-int-fn-group-tests-xspec-assert"
                           role="error"
@@ -1684,12 +1697,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='author-contribution']/fn must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']"
-                          id="ethics-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='ethics-information'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']/fn"
                           id="ethics-fn-tests-xspec-assert"

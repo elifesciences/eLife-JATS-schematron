@@ -935,7 +935,7 @@
                           id="feature-bio-test-1"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[2]/bio[1]">
-         <svrl:text>bio must contain a bold element which contains the name of the author -  .</svrl:text>
+         <svrl:text>bio must contain a bold element which contains the name of the author - No elements present.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/author-contrib-ids/author-id-1/pass.xml"
                            id="correction-tests-pattern"

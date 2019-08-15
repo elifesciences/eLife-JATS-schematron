@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="supp-file-xref-conformity-4.sch"?>
 <!--Context: xref[@ref-type='supplementary-material']
-Test: contains(.,$last-rid-no)-->
+Test: assert    contains(.,$last-rid-no)
+Message:  It looks like the citation content does not match what it directs to.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

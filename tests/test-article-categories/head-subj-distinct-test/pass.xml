@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="head-subj-distinct-test.sch"?>
 <!--Context: article-meta/article-categories
-Test: count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))-->
+Test: assert    count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))
+Message: Where there are two headings, the content of one must not match the content of the other (each heading should be unique)-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

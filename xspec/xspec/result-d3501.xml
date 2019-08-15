@@ -206,6 +206,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/rrid-number-check/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/rrid-number-check/pass.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
@@ -782,6 +783,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/rrid-number-check/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/rrid-number-check/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -1192,12 +1195,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
-                          id="ext-link-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
                           id="fig-tests-xspec-assert"
@@ -2344,12 +2341,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"

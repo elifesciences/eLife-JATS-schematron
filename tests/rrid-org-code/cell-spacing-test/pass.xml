@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="cell-spacing-test.sch"?>
 <!--Context: p|td|th
-Test: ($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])-->
+Test: report    ($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])
+Message: element contains an equal sign with content directly next to one side, but a space on the other, is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>1+1=2</p>

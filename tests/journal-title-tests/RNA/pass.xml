@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="RNA.sch"?>
 <!--Context: element-citation[@publication-type='journal']/source
-Test: ($uc = 'RNA') and (. != 'RNA')-->
+Test: report    ($uc = 'RNA') and (. != 'RNA')
+Message: ref '' contains. 'RNA' should be uppercase.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

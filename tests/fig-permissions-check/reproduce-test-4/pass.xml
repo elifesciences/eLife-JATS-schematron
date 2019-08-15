@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="reproduce-test-4.sch"?>
 <!--Context: fig|media[@mimetype='video']
-Test: not(descendant::permissions) and matches(caption,'[Rr]eprinted from')-->
+Test: report    not(descendant::permissions) and matches(caption,'[Rr]eprinted from')
+Message: The caption forcontains the text 'reprinted from', but has no permissions. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="date-test-1.sch"?>
 <!--Context: date
-Test: matches(day,'^[0-9]{2}$')-->
+Test: assert    matches(day,'^[0-9]{2}$')
+Message: date must contain day in the format 00. Currently it is ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <date/>

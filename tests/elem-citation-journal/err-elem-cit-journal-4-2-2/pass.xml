@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-journal-4-2-2.sch"?>
 <!--Context: element-citation[@publication-type='journal']
-Test: count(source)=1 and count(source/*)=0-->
+Test: assert    count(source)=1 and count(source/*)=0
+Message: [errelemcitjournal422]
+        A  <source> element within a <elementcitation> of type 'journal' may not contain child 
+        elements.
+        Reference '' has disallowed child elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

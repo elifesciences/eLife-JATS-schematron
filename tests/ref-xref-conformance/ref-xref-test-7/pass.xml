@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-7.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: matches($post-text,'^\)|^\]') and (. = $cite2)-->
+Test: report    matches($post-text,'^\)|^\]') and (. = $cite2)
+Message:  citation is in nonparenthetic style, but the following text ends with closing parentheses, so this isn't correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

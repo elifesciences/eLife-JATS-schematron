@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="back-test-8.sch"?>
 <!--Context: back
-Test: if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))-->
+Test: report    if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))
+Message: '' usually have acknowledgement sections, but there isn't one here. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

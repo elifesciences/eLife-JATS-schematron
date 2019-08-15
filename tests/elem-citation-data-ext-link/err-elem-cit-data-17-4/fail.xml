@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-data-17-4.sch"?>
 <!--Context: element-citation[@publication-type='data']/ext-link
-Test: normalize-space(@xlink:href)=normalize-space(.)-->
+Test: assert    normalize-space(@xlink:href)=normalize-space(.)
+Message: [errelemcitdata174]
+        The value of @xlink:href must be the same as the element content of <extlink>.
+        The <extlink> element in Reference '' 
+        has @xlink:href='' and content ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

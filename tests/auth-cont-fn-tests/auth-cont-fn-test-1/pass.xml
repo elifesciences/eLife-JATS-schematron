@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="auth-cont-fn-test-1.sch"?>
 <!--Context: fn-group[@content-type='author-contribution']/fn
-Test: @fn-type='con'-->
+Test: assert    @fn-type='con'
+Message: This fn must have an @fntype='con'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

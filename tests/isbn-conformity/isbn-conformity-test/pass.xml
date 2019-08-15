@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="isbn-conformity-test.sch"?>
 <!--Context: element-citation/pub-id[@pub-id-type='isbn']
-Test: number($sum) = 0-->
+Test: assert    number($sum) = 0
+Message: pubid contains an invalid ISBN. Should it be captured as another type of pubid?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

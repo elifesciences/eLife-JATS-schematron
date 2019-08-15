@@ -238,6 +238,27 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:get-name" as="xs:string">
+    <xsl:param name="name"/>
+    <xsl:choose>
+      <xsl:when test="$name/given-names and $name/surname and $name/suffix">
+        <xsl:value-of select="concat($name/given-names,' ',$name/surname,' ',$name/suffix)"/>
+      </xsl:when>
+      <xsl:when test="not($name/given-names) and $name/surname and $name/suffix">
+        <xsl:value-of select="concat($name/surname,' ',$name/suffix)"/>
+      </xsl:when>
+      <xsl:when test="$name/given-names and $name/surname and not($name/suffix)">
+        <xsl:value-of select="concat($name/given-names,' ',$name/surname)"/>
+      </xsl:when>
+      <xsl:when test="not($name/given-names) and $name/surname and not($name/suffix)">
+        <xsl:value-of select="$name/surname"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'No elements present'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
   <xsl:function name="e:isbn-sum" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -4036,7 +4057,7 @@
   </pattern>
   <pattern id="feature-bio-tests-pattern">
     <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
-     <let name="name" value="concat(parent::contrib/name/given-names,' ',parent::contrib/name/surname)"/>
+     <let name="name" value="e:get-name(parent::contrib/name)"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)]/normalize-space(.)"/>
      

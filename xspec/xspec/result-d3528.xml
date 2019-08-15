@@ -206,6 +206,125 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/bold[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - bold - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/fixed-case[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - fixed-case - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/italic[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - italic - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/monospace[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - monospace - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/overline[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - overline - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/overline-start[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - overline-start - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/overline-end[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - overline-end - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/roman[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - roman - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/sans-serif[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sans-serif - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/sc[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sc - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/strike[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - strike - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/underline[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - underline - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/underline-start[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - underline-start - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/underline-end[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - underline-end - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/ruby[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - ruby - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/sub[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sub - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
+      <svrl:successful-report test="$parent = $formatting-elems"
+                              id="ext-link-parent-test"
+                              role="warning"
+                              location="/root[1]/article[1]/sup[1]/ext-link[1]">
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sup - which almost certainly unnecessary.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
@@ -782,9 +901,56 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
+      <svrl:fired-rule context="sup" id="unallowed-symbol-tests-sup"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="country-tests-pattern"
                            name="country-tests-pattern"/>
@@ -864,6 +1030,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="italic-house-style-pattern"
                            name="italic-house-style-pattern"/>
+      <svrl:fired-rule context="italic[not(ancestor::ref)]" id="italic-house-style"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="list-house-style-pattern"
                            name="list-house-style-pattern"/>
@@ -1192,12 +1359,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
-                          id="ext-link-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
                           id="fig-tests-xspec-assert"
@@ -2345,18 +2506,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sup"
-                          id="unallowed-symbol-tests-sup-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sup must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::front//aff/country"
                           id="country-tests-xspec-assert"
                           role="error"
@@ -2500,12 +2649,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body//p[not(parent::list-item)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::italic[not(ancestor::ref)]"
-                          id="italic-house-style-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>italic[not(ancestor::ref)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::list[@list-type]"
                           id="list-house-style-xspec-assert"

@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="ethics-info-conformity.sch"?>
 <!--Context: fn-group[@content-type='ethics-information']/fn
-Test: matches(.,'\.$|\?$')-->
+Test: assert    matches(.,'\.$|\?$')
+Message: The ethics statement must end with a full stop.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <fn-group content-type="ethics-information">
+      <fn fn-type="other"/>
+    </fn-group>
+  </article>
 </root>

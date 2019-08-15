@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="fig-xref-conformity-1.sch"?>
 <!--Context: xref[@ref-type='fig']
-Test: matches(.,'\p{N}')-->
+Test: assert    matches(.,'\p{N}')
+Message:  figure citation does not contain any numbers which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

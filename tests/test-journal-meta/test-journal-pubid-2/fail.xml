@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="test-journal-pubid-2.sch"?>
 <!--Context: article/front/journal-meta
-Test: journal-title-group/journal-title = 'eLife'-->
+Test: assert    journal-title-group/journal-title = 'eLife'
+Message: journalmeta must contain a journaltitlegroup with a child journaltitle which must be equal to 'eLife'. Currently it is-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

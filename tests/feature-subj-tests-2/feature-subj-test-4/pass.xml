@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="feature-subj-test-4.sch"?>
 <!--Context: subj-group[@subj-group-type='sub-display-channel']/subject
-Test: preceding-sibling::subject-->
+Test: report    preceding-sibling::subject
+Message: There is more than one subdisplaychannel subjects. This is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

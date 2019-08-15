@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="R-test-3.sch"?>
 <!--Context: element-citation[@publication-type='software']
-Test: matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)-->
+Test: report    matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)
+Message: software ref '' has a datatitle  but does not have a <publisherloc>Vienna, Austria</publisherloc> element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="singapore-test-2.sch"?>
 <!--Context: front//aff//named-content[@content-type='city']
-Test: (. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')-->
+Test: report    (. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')
+Message: has 'Singapore' as its city but '' as its country, which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

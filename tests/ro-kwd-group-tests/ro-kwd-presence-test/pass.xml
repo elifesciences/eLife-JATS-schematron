@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ro-kwd-presence-test.sch"?>
 <!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']
-Test: kwd-->
+Test: assert    kwd
+Message: kwdgroup must contain at least one kwd-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

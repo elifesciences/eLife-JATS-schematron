@@ -798,12 +798,6 @@
                            name="unallowed-symbol-tests-pattern"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
-      <svrl:successful-report test="matches(.,'�')"
-                              id="replacement-character-presence"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/aff[1]/named-content[1]">
-         <svrl:text>named-content element contains the replacement character '�' which is not allowed.</svrl:text>
-      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/city-tests/city-replacement-character-presence/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -815,12 +809,6 @@
                            name="city-tests-pattern"/>
       <svrl:fired-rule context="front//aff//named-content[@content-type='city']"
                        id="city-tests"/>
-      <svrl:successful-report test="matches(.,'�')"
-                              id="city-replacement-character-presence"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/aff[1]/named-content[1]">
-         <svrl:text>named-content element contains the replacement character '�' which is unallowed.</svrl:text>
-      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/city-tests/city-replacement-character-presence/pass.xml"
                            id="institution-tests-pattern"
                            name="institution-tests-pattern"/>

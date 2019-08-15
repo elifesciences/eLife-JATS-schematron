@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="ack-full-stop-intial-test.sch"?>
 <!--Context: ack//p
-Test: matches(.,' [A-Z]\. |^[A-Z]\. ')-->
+Test: report    matches(.,' [A-Z]\. |^[A-Z]\. ')
+Message: p element in Acknowledgements contains what looks likeintial(s) followed by a full stop. Is it correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

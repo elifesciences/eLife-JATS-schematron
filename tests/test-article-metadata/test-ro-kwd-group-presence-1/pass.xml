@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="test-ro-kwd-group-presence-1.sch"?>
 <!--Context: article/front/article-meta
-Test: count(kwd-group[@kwd-group-type='research-organism']) gt 1-->
+Test: report    count(kwd-group[@kwd-group-type='research-organism']) gt 1
+Message: More than 1 Research organism keyword group is present in articlemeta. This is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

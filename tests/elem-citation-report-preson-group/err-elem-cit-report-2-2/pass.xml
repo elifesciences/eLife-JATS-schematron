@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-report-2-2.sch"?>
 <!--Context: element-citation[@publication-type='report']/person-group
-Test: @person-group-type='author'-->
+Test: assert    @person-group-type='author'
+Message: [errelemcitreport22]
+        Each <persongroup> must have a @persongrouptype attribute of type 'author'.
+        Reference '' has a <persongroup> 
+        element with @persongrouptype attribute ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

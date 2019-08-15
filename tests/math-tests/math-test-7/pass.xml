@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="math-test-7.sch"?>
 <!--Context: mml:math
-Test: matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')-->
+Test: report    matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')
+Message: mml:math only contains '~' and digits, which is unnecessary. Cature this as a normal text instead.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <mml:math>

@@ -1,6 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-thesis-13.sch"?>
 <!--Context: element-citation[@publication-type='thesis']
-Test: count(*) = count(person-group | article-title | year| source | publisher-loc | publisher-name | ext-link | pub-id)-->
+Test: assert    count(*) = count(person-group | article-title | year| source | publisher-loc | publisher-name | ext-link | pub-id)
+Message: [errelemcitthesis13]
+        The only tags that are allowed as children of <elementcitation> with the publicationtype="thesis" are:
+        <persongroup>, <year>, <articletitle>, <source>, <publisherloc>, <publishername>, 
+        <extlink>, and <pubid>.
+        Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

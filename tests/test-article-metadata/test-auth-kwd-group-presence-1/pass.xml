@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="test-auth-kwd-group-presence-1.sch"?>
 <!--Context: article/front/article-meta
-Test: if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1-->
+Test: report    if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1
+Message: One author keyword group must be present in articlemeta.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

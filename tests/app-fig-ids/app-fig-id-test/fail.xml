@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="app-fig-id-test.sch"?>
 <!--Context: article/back//app//fig[not(@specific-use='child-fig')]
-Test: matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')-->
+Test: assert    matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')
+Message: figures in appendices must have an @id in the format app0fig0.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

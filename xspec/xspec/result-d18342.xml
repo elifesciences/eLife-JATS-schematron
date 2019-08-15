@@ -350,6 +350,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="ethics-title-tests-pattern"
                            name="ethics-title-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='ethics-information']"
+                       id="ethics-title-tests"/>
+      <svrl:failed-assert test="title = 'Ethics'"
+                          id="ethics-title-test"
+                          role="error"
+                          location="/root[1]/article[1]/fn-group[1]">
+         <svrl:text>fn-group[@content-type='ethics-information'] must have a title that contains 'Author contributions'. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="dec-letter-title-tests-pattern"
                            name="dec-letter-title-tests-pattern"/>
@@ -392,6 +400,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="fn-ids-pattern"
                            name="fn-ids-pattern"/>
+      <svrl:fired-rule context="fn" id="fn-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="disp-formula-ids-pattern"
                            name="disp-formula-ids-pattern"/>
@@ -452,9 +461,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="ethics-tests-pattern"
                            name="ethics-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='ethics-information']"
+                       id="ethics-tests"/>
+      <svrl:failed-assert test="parent::sec[@sec-type='additional-information']"
+                          id="ethics-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/fn-group[1]">
+         <svrl:text>Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="ethics-fn-tests-pattern"
                            name="ethics-fn-tests-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='ethics-information']/fn"
+                       id="ethics-fn-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="dec-letter-reply-tests-pattern"
                            name="dec-letter-reply-tests-pattern"/>
@@ -782,6 +801,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -833,6 +854,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="ethics-info-pattern"
                            name="ethics-info-pattern"/>
+      <svrl:fired-rule context="fn-group[@content-type='ethics-information']/fn"
+                       id="ethics-info"/>
+      <svrl:failed-assert test="matches(.,'\.$|\?$')"
+                          id="ethics-info-conformity"
+                          role="error"
+                          location="/root[1]/article[1]/fn-group[1]/fn[1]">
+         <svrl:text>The ethics statement must end with a full stop.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ethics-info/ethics-info-conformity/fail.xml"
                            id="sec-title-conformity-pattern"
                            name="sec-title-conformity-pattern"/>
@@ -1481,12 +1510,6 @@
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='author-contribution'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']"
-                          id="ethics-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='ethics-information'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/title-group"
                           id="dec-letter-title-tests-xspec-assert"
                           role="error"
@@ -1564,12 +1587,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>aff[not(parent::contrib)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn"
-                          id="fn-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::disp-formula"
                           id="disp-formula-ids-xspec-assert"
@@ -1684,18 +1701,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='author-contribution']/fn must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']"
-                          id="ethics-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='ethics-information'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']/fn"
-                          id="ethics-fn-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/sub-article"
                           id="dec-letter-reply-tests-xspec-assert"
@@ -2345,12 +2350,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2446,12 +2445,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>sec[@sec-type='data-availability']/p[1] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']/fn"
-                          id="ethics-info-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sec/title"
                           id="sec-title-conformity-xspec-assert"

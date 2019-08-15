@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="mml-math-id-test.sch"?>
 <!--Context: disp-formula/mml:math
-Test: matches(@id,'^m[0-9]{1,9}$')-->
+Test: assert    matches(@id,'^m[0-9]{1,9}$')
+Message: dispformula @id must be in the format 'm0'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

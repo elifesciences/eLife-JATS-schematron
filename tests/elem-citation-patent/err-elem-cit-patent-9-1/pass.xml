@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-patent-9-1.sch"?>
 <!--Context: element-citation[@publication-type='patent']
-Test: count(source) le 1-->
+Test: assert    count(source) le 1
+Message: [errelemcitpatent91]
+        Each  <elementcitation> of type 'patent' may contain zero or one <source> elements.
+        Reference '' has<source> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

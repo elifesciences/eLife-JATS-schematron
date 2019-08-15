@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="app-fig-sup-test-1.sch"?>
 <!--Context: article//app//fig[@specific-use='child-fig']/label
-Test: matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')-->
+Test: assert    matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')
+Message: label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

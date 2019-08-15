@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="duplicate-ref-test-2.sch"?>
 <!--Context: ref-list//ref
-Test: (element-citation/@publication-type = 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])-->
+Test: report    (element-citation/@publication-type = 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])
+Message: ref '' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

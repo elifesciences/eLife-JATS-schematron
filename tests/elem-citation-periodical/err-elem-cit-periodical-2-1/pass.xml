@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-2-1.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
-Test: count(person-group)=1-->
+Test: assert    count(person-group)=1
+Message: [errelemcitperiodical21]
+        Each  <elementcitation> of type 'periodical' must contain one and
+        only one <persongroup> element.
+        Reference '' has<persongroup> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

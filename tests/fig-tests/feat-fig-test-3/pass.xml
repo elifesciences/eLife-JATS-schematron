@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="feat-fig-test-3.sch"?>
 <!--Context: fig[not(ancestor::sub-article[@article-type='reply'])]
-Test: ($article-type = $features-article-types) and not(label)-->
+Test: report    ($article-type = $features-article-types) and not(label)
+Message: fig doesn't have a label. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

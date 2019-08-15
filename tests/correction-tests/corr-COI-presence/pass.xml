@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="corr-COI-presence.sch"?>
 <!--Context: article[@article-type = 'correction']
-Test: descendant::fn-group[@content-type='competing-interest']-->
+Test: report    descendant::fn-group[@content-type='competing-interest']
+Message: Correction notices should not contain competing interests.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">
     <front>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="list-item-test-1.sch"?>
 <!--Context: list-item
-Test: matches(.,'^\s?\p{Ll}')-->
+Test: report    matches(.,'^\s?\p{Ll}')
+Message: listitem begins with lowercase letter, is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

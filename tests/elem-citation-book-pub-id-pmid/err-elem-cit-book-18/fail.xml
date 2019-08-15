@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-book-18.sch"?>
 <!--Context: element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']
-Test: matches(.,'\D')-->
+Test: report    matches(.,'\D')
+Message: [errelemcitbook18]
+        If <pubid pubidtype="pmid"> is present, the content must be all numeric. The content of 
+        <pubid pubidtype="pmid"> in Reference '' 
+        is.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="auth-cont-test-1.sch"?>
 <!--Context: fn-group[@content-type='author-contribution']
-Test: $author-count = count(fn)-->
+Test: assert    $author-count = count(fn)
+Message: fngroup does not contain one fn for each author. Currently there areauthors butfootnotes. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

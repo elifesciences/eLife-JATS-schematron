@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="license-test-2.sch"?>
 <!--Context: front//permissions/license
-Test: count(license-p) = 1-->
+Test: assert    count(license-p) = 1
+Message: license must contain one and only one licensep.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

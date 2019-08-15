@@ -1,6 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-12-4.sch"?>
 <!--Context: element-citation[@publication-type='confproc']
-Test: count(fpage/*)=0 and count(lpage/*)=0-->
+Test: assert    count(fpage/*)=0 and count(lpage/*)=0
+Message: [errelemcitconfproc124]
+        The content of the <fpage> and <lpage> elements can contain any alpha numeric value but no child elements are allowed.
+        Reference '' haschild elements in
+        <fpage> andchild elements in <lpage>.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

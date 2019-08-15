@@ -1,6 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-1.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
-Test: count(string-date)=1-->
+Test: assert    count(string-date)=1
+Message: [errelemcitperiodical141]
+        There must be one and only one <stringdate> element within a <elementcitation> of type 'periodical'.
+        Reference '' has<stringdate> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

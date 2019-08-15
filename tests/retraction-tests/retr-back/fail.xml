@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="retr-back.sch"?>
 <!--Context: article[@article-type = 'retraction']
-Test: back/*-->
+Test: report    back/*
+Message: Retractions should not contain any content in the back.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

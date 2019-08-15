@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="table-xref-test-3.sch"?>
 <!--Context: xref[@ref-type='table']
-Test: matches($post-text,'^[\)][A-Za-z0-9]')-->
+Test: report    matches($post-text,'^[\)][A-Za-z0-9]')
+Message: citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?   ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

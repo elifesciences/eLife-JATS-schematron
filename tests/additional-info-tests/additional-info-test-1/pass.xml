@@ -1,6 +1,7 @@
 <?oxygen SCHSchema="additional-info-test-1.sch"?>
 <!--Context: sec[@sec-type='additional-information']
-Test: parent::back-->
+Test: assert    parent::back
+Message: sec[@sectype='additionalinformation'] must be a child of back.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body/>
