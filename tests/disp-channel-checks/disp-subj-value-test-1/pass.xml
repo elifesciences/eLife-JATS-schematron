@@ -2,5 +2,11 @@
 <!--Context: article-categories/subj-group[@subj-group-type='display-channel']/subject
 Test: . = $allowed-disp-subj-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="display-channel">
+        <subject>Research Article</subject>
+      </subj-group>
+    </article-categories>
+  </article>
 </root>

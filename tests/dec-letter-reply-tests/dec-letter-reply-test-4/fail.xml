@@ -2,5 +2,16 @@
 <!--Context: article/sub-article
 Test: count(body) = 1-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="decision-letter" id="SA1">
+      <front-stub>
+        <contrib-group/>
+      </front-stub>
+    </sub-article>
+    <sub-article article-type="reply" id="SA2">
+      <front-stub>
+        <contrib-group/>
+      </front-stub>
+    </sub-article>
+  </article>
 </root>

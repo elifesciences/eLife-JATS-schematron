@@ -613,7 +613,7 @@
     <rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject" id="disp-channel-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
-      <assert test="if ($article-type = 'research-article') then . = $research-disp-channels         else if ($article-type = 'article-commentary') then . = 'Insight'         else if ($article-type = 'editorial') then . = 'Editorial'         else if ($article-type = 'correction') then . = 'Correction'         else if ($article-type = 'discussion') then . = 'Feature Article'         else if ($article-type = 'review-article') then . = 'Review Article'         else . = 'Retraction'" role="error" id="disp-subj-value-test-2">Content of the display channel must correspond with the correct NLM article type defined in article[@artilce-type].</assert>
+      <report test="($article-type = 'research-article') and not(.=$research-disp-channels)" role="error" id="disp-subj-value-test-2">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is<value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

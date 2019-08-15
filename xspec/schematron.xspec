@@ -497,12 +497,72 @@
       </x:scenario>
       <x:scenario label="disp-subj-value-test-2-pass">
         <x:context href="../tests/disp-channel-checks/disp-subj-value-test-2/pass.xml"/>
-        <x:expect-not-assert id="disp-subj-value-test-2" role="error"/>
+        <x:expect-not-report id="disp-subj-value-test-2" role="error"/>
         <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="disp-subj-value-test-2-fail">
         <x:context href="../tests/disp-channel-checks/disp-subj-value-test-2/fail.xml"/>
-        <x:expect-assert id="disp-subj-value-test-2" role="error"/>
+        <x:expect-report id="disp-subj-value-test-2" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-3-pass">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-3/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-3" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-3-fail">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-3/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-3" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-4-pass">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-4/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-4" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-4-fail">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-4/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-4" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-5-pass">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-5/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-5" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-5-fail">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-5/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-5" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-6-pass">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-6/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-6" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-6-fail">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-6/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-6" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-7-pass">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-7/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-7" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-7-fail">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-7/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-7" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-8-pass">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-8/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-8" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-8-fail">
+        <x:context href="../tests/disp-channel-checks/disp-subj-value-test-8/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-8" role="error"/>
         <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

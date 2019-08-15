@@ -797,7 +797,19 @@
       
       <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>.</assert>
       
-      <assert test="if ($article-type = 'research-article') then . = $research-disp-channels         else if ($article-type = 'article-commentary') then . = 'Insight'         else if ($article-type = 'editorial') then . = 'Editorial'         else if ($article-type = 'correction') then . = 'Correction'         else if ($article-type = 'discussion') then . = 'Feature Article'         else if ($article-type = 'review-article') then . = 'Review Article'         else . = 'Retraction'" role="error" id="disp-subj-value-test-2">Content of the display channel must correspond with the correct NLM article type defined in article[@artilce-type].</assert>
+      <report test="($article-type = 'research-article') and not(.=$research-disp-channels)" role="error" id="disp-subj-value-test-2">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
+      
+      <report test="($article-type = 'article-commentary') and not(.='Insight')" role="error" id="disp-subj-value-test-3">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
+      
+      <report test="($article-type = 'editorial') and not(.='Editorial')" role="error" id="disp-subj-value-test-4">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
+      
+      <report test="($article-type = 'correction') and not(.='Correction')" role="error" id="disp-subj-value-test-5">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
+      
+      <report test="($article-type = 'discussion') and not(.='Feature Article')" role="error" id="disp-subj-value-test-6">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
+      
+      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
+      
+      <report test="($article-type = 'retraction') and not(.='Retraction')" role="error" id="disp-subj-value-test-8">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
   </rule>
   </pattern>
   <pattern id="MSA-checks-pattern">

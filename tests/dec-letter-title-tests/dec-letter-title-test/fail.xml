@@ -2,5 +2,13 @@
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/title-group
 Test: article-title = 'Decision letter'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="decision-letter">
+      <front-stub>
+        <title-group>
+          <article-title>Decision Letter</article-title>
+        </title-group>
+      </front-stub>
+    </sub-article>
+  </article>
 </root>

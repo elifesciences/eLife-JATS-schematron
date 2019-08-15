@@ -1,6 +1,12 @@
 <?oxygen SCHSchema="disp-subj-value-test-2.sch"?>
 <!--Context: article-categories/subj-group[@subj-group-type='display-channel']/subject
-Test: if ($article-type = 'research-article') then . = $research-disp-channels else if ($article-type = 'article-commentary') then . = 'Insight' else if ($article-type = 'editorial') then . = 'Editorial' else if ($article-type = 'correction') then . = 'Correction' else if ($article-type = 'discussion') then . = 'Feature Article' else if ($article-type = 'review-article') then . = 'Review Article' else . = 'Retraction'-->
+Test: ($article-type = 'research-article') and not(.=$research-disp-channels)-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="research-article">
+    <article-categories>
+      <subj-group subj-group-type="display-channel">
+        <subject>Research Article</subject>
+      </subj-group>
+    </article-categories>
+  </article>
 </root>

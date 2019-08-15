@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="disp-subj-value-test-3.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='display-channel']/subject
+Test: ($article-type = 'article-commentary') and not(.='Insight')-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article article-type="article-commentary">
+    <article-categories>
+      <subj-group subj-group-type="display-channel">
+        <subject>Feature Article</subject>
+      </subj-group>
+    </article-categories>
+  </article>
+</root>

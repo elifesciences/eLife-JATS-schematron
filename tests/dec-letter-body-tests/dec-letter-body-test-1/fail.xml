@@ -2,5 +2,9 @@
 <!--Context: sub-article[@article-type='decision-letter']/body
 Test: child::*[1]/local-name() = 'boxed-text'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="decision-letter">
+      <body/>
+    </sub-article>
+  </article>
 </root>
