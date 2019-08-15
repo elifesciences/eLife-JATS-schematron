@@ -2,6 +2,27 @@
 <!--Context: table-wrap[@id='keyresource']//td
 Test: report    matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)
 Message: td element containing  ''  looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+    <body>
+      <sec sec-type="methods">
+        <title/>
+        <table-wrap id="keyresource">
+          <table>
+            <td><ext-link ext-link-type="uri" xlink:href="http://doi.org/10.7554/eLife.48220"></ext-link>10.7554/eLife.48220</td>
+          </table>
+        </table-wrap>
+      </sec>
+    </body>
+  </article>
 </root>

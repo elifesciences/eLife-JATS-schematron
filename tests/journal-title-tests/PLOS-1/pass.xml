@@ -3,5 +3,10 @@
 Test: report    ($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')
 Message: ref '' contains. 'PLOS' should be uppercase.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal">
+      <source>PLOS Biology</source>
+      <pub-id pub-id-type="doi">...</pub-id>
+    </element-citation>
+  </article>
 </root>

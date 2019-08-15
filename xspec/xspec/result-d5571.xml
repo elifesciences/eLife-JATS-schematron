@@ -487,7 +487,7 @@
                           id="mml-math-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/p[2]/disp-formula[1]/*:math[namespace-uri()='http://www.w3.org/1998/Math/MathML'][1]">
-         <svrl:text>disp-formula @id must be in the format 'm0'.</svrl:text>
+         <svrl:text>mml:math @id in disp-formula must be in the format 'm0'.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-4/pass.xml"
                            id="app-table-wrap-ids-pattern"

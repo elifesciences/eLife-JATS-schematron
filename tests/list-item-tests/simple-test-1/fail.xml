@@ -3,5 +3,10 @@
 Test: report    ($type='simple') and matches(.,'^\s?[1-9][\.|\)]? ')
 Message: listitem is part of a simple list, but it begins with a number. Should the listtype be updated to ordered and this number removed?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="simple">
+      <list-item>1. this</list-item>
+      <list-item>2) that</list-item>
+    </list>
+  </article>
 </root>

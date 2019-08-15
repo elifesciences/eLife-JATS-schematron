@@ -3,5 +3,10 @@
 Test: report    ($type='bullet') and matches(.,'^\s?•')
 Message: listitem is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the listitem.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="bullet">
+      <list-item>• this</list-item>
+      <list-item>• that</list-item>
+    </list>
+  </article>
 </root>

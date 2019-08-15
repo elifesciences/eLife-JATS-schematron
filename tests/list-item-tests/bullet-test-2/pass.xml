@@ -3,5 +3,10 @@
 Test: report    ($type='simple') and matches(.,'^\s?•')
 Message: listitem is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="simple">
+      <list-item>this</list-item>
+      <list-item>that</list-item>
+    </list>
+  </article>
 </root>

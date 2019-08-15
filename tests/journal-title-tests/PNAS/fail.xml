@@ -3,5 +3,10 @@
 Test: report    if (starts-with($doi,'10.1073')) then . != 'PNAS' else()
 Message: ref '' has the doi for 'PNAS' but the title is, which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal">
+      <source>Proceedings of the ...</source>
+      <pub-id pub-id-type="doi">10.1073/0001</pub-id>
+    </element-citation>
+  </article>
 </root>

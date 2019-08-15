@@ -3,5 +3,10 @@
 Test: report    matches(.,'[Oo]fficial [Jj]ournal')
 Message: ref '' has a source title which contains the text 'official journal'  ''. Is this necessary?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal">
+      <source>G3: Genes|Genomes|Genetics - Official journal of the Gs</source>
+      <pub-id pub-id-type="doi">10.1534/g3/0001</pub-id>
+    </element-citation>
+  </article>
 </root>

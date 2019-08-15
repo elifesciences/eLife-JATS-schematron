@@ -3,5 +3,10 @@
 Test: report    ($type='order') and matches(.,'^\s?\d+')
 Message: listitem is part of an ordered list, but it begins with a number. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="order">
+      <list-item>1. this</list-item>
+      <list-item>2 that</list-item>
+    </list>
+  </article>
 </root>

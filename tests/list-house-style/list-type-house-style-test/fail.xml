@@ -3,5 +3,7 @@
 Test: assert    @list-type = $usual-types
 Message: element is a listtype=''. According to house style, bullets, numbers or no indicators should be used. Usual values  ('bullet','simple','order').-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="roman-alpha"/>
+  </article>
 </root>

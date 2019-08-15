@@ -3,5 +3,10 @@
 Test: report    ($type='alpha-upper') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)]? ')
 Message: listitem is part of an alphaupper list, but it begins with a single uppercase letter. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="alpha-upper">
+      <list-item>this</list-item>
+      <list-item>that</list-item>
+    </list>
+  </article>
 </root>

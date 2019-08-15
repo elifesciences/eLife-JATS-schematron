@@ -1,7 +1,16 @@
 <?oxygen SCHSchema="journal-preprint-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']
-Test: report    matches(source,'[Bb]io[Rr]xiv|[Aa]r[Xx]iv')
+Test: report    matches(normalize-space(lower-case(source)),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')
 Message: ref '' has a source, but it is captured as a journal not a preprint.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref id="bib1">
+      <element-citation publication-type="journal">
+        <source>bioRxiv</source>
+      </element-citation>
+      <element-citation publication-type="journal">
+        <source>ARXIV</source>
+      </element-citation>
+    </ref>
+  </article>
 </root>

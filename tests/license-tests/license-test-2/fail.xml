@@ -2,6 +2,20 @@
 <!--Context: front//permissions/license
 Test: assert    count(license-p) = 1
 Message: license must contain one and only one licensep.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <permissions>
+        <copyright-statement>&#x00A9; 2019, Liberti et al</copyright-statement>
+        <copyright-year>2019</copyright-year>
+        <copyright-holder>Liberti et al</copyright-holder>
+        <ali:free_to_read/>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+          
+        </license>
+      </permissions>
+    </front>
+  </article>
 </root>

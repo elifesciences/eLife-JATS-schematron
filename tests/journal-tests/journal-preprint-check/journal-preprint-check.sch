@@ -631,7 +631,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
-      <report test="matches(source,'[Bb]io[Rr]xiv|[Aa]r[Xx]iv')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source<value-of select="source"/>, but it is captured as a journal not a preprint.</report>
+      <report test="matches(normalize-space(lower-case(source)),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source<value-of select="source"/>, but it is captured as a journal not a preprint.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

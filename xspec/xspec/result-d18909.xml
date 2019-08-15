@@ -867,6 +867,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-house-style/list-type-house-style-test/pass.xml"
                            id="list-house-style-pattern"
                            name="list-house-style-pattern"/>
+      <svrl:fired-rule context="list[@list-type]" id="list-house-style"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-house-style/list-type-house-style-test/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
@@ -2506,12 +2507,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>italic[not(ancestor::ref)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::list[@list-type]"
-                          id="list-house-style-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>list[@list-type] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
                           id="pubmed-link-xspec-assert"

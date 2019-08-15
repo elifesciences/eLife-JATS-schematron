@@ -3,5 +3,10 @@
 Test: report    matches(.,'^\s?\p{Ll}')
 Message: listitem begins with lowercase letter, is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <list list-type="simple">
+      <list-item>This</list-item>
+      <list-item>That</list-item>
+    </list>
+  </article>
 </root>

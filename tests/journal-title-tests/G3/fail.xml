@@ -3,5 +3,10 @@
 Test: report    starts-with($doi,'10.1534/g3') and (. != 'G3: Genes|Genomes|Genetics') and (. != 'G3: Genes, Genomes, Genetics')
 Message: ref '' has the doi for 'G3' but the title is it should be either 'G3: Genes|Genomes|Genetics' or 'G3: Genes, Genomes, Genetics'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal">
+      <source> . . . </source>
+      <pub-id pub-id-type="doi">10.1534/g3/0001</pub-id>
+    </element-citation>
+  </article>
 </root>

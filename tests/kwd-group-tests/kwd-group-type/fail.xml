@@ -3,5 +3,11 @@
 Test: assert    @kwd-group-type='author-keywords'
 Message: kwdgroup must have a @kwdgrouptype 'researchorganism', or 'authorkeywords'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <kwd-group/>
+      </article-meta>
+    </front>
+  </article>
 </root>

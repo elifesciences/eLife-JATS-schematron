@@ -47,12 +47,6 @@
                           location="/root[1]/article[1]">
          <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="count(body) = 1"
-                          id="test-article-body"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
@@ -311,9 +305,56 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="top-level-sec-tests-pattern"
                            name="top-level-sec-tests-pattern"/>
+      <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
+      <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
+                              id="sec-conformity"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>top level sec with title -  - is not a usual title for  content. Should this be captured as a sub-level of ?</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
+      <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
+                              id="sec-conformity"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[2]">
+         <svrl:text>top level sec with title -  - is not a usual title for  content. Should this be captured as a sub-level of ?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="lower-level-sec-tests-pattern"
                            name="lower-level-sec-tests-pattern"/>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:failed-assert test="@id = concat($parent-id,'-',$pos)"
+                          id="lower-sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[1]">
+         <svrl:text>This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - s1-1.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:failed-assert test="@id = concat($parent-id,'-',$pos)"
+                          id="lower-sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[2]">
+         <svrl:text>This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - s1-2.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:failed-assert test="@id = concat($parent-id,'-',$pos)"
+                          id="lower-sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[2]">
+         <svrl:text>This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - s2-3-2.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="body/sec//sec" id="lower-level-sec-tests"/>
+      <svrl:failed-assert test="@id = concat($parent-id,'-',$pos)"
+                          id="lower-sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[3]">
+         <svrl:text>This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - s2-3-3.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="article-title-tests-pattern"
                            name="article-title-tests-pattern"/>
@@ -410,18 +451,271 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="body-top-level-sec-ids-pattern"
                            name="body-top-level-sec-ids-pattern"/>
+      <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="back-top-level-sec-ids-pattern"
                            name="back-top-level-sec-ids-pattern"/>
+      <svrl:fired-rule context="article/back/sec" id="back-top-level-sec-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="low-level-sec-ids-pattern"
                            name="low-level-sec-ids-pattern"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat($parent-sec,'-',$pos)"
+                          id="low-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[1]">
+         <svrl:text>sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be s1-1.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat($parent-sec,'-',$pos)"
+                          id="low-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[2]">
+         <svrl:text>sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be s1-2.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat($parent-sec,'-',$pos)"
+                          id="low-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[2]">
+         <svrl:text>sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be s2-3-2.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat($parent-sec,'-',$pos)"
+                          id="low-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[3]">
+         <svrl:text>sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be s2-3-3.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat($parent-sec,'-',$pos)"
+                          id="low-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[1]">
+         <svrl:text>sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be s3-1.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:fired-rule context="article/body/sec//sec|article/back/sec//sec"
+                       id="low-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat($parent-sec,'-',$pos)"
+                          id="low-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[3]">
+         <svrl:text>sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be s3-3.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="sec-tests-pattern"
                            name="sec-tests-pattern"/>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[1]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[2]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[2]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[3]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/sec[3]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[1]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[2]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[2]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[1]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[2]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[2]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[3]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/sec[3]/sec[3]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[1]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[2]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[2]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[3]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/back[1]/sec[1]/sec[3]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
+      <svrl:fired-rule context="back" id="back-tests"/>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else count(sec[@sec-type='additional-information']) != 1"
+                              id="back-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>One and only one sec[@sec-type="additional-information"] must be present in back.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then () else count(sec[@sec-type='data-availability']) != 1"
+                              id="back-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>One and only one sec[@sec-type="data-availability"] must be present as a child of back for ''.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))"
+                              id="back-test-8"
+                              role="warning"
+                              location="/root[1]/article[1]/back[1]">
+         <svrl:text>'' usually have acknowledgement sections, but there isn't one here. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/low-level-sec-ids/low-level-sec-id-test/fail.xml"
                            id="data-content-tests-pattern"
                            name="data-content-tests-pattern"/>
@@ -1403,18 +1697,6 @@
                           location="/root[1]">
          <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::body/sec"
-                          id="top-level-sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>body/sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::body/sec//sec"
-                          id="lower-level-sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>body/sec//sec must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//article-title"
                           id="article-title-tests-xspec-assert"
                           role="error"
@@ -1600,36 +1882,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body/sec"
-                          id="body-top-level-sec-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/body/sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/back/sec"
-                          id="back-top-level-sec-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/back/sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body/sec//sec or descendant::article/back/sec//sec"
-                          id="low-level-sec-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sec"
-                          id="sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::back"
-                          id="back-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>back must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back/sec[@sec-type='data-availability']"
                           id="data-content-tests-xspec-assert"

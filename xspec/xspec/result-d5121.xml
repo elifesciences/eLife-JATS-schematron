@@ -272,6 +272,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/simple-test-1/pass.xml"
                            id="list-item-tests-pattern"
                            name="list-item-tests-pattern"/>
+      <svrl:fired-rule context="list-item" id="list-item-tests"/>
+      <svrl:successful-report test="matches(.,'^\s?\p')"
+                              id="list-item-test-1"
+                              role="warning"
+                              location="/root[1]/article[1]/list[1]/list-item[1]">
+         <svrl:text>list-item begins with lowercase letter, is this correct? - this</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="list-item" id="list-item-tests"/>
+      <svrl:successful-report test="matches(.,'^\s?\p')"
+                              id="list-item-test-1"
+                              role="warning"
+                              location="/root[1]/article[1]/list[1]/list-item[2]">
+         <svrl:text>list-item begins with lowercase letter, is this correct? - that</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/simple-test-1/pass.xml"
                            id="general-video-pattern"
                            name="general-video-pattern"/>
@@ -867,6 +881,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/simple-test-1/pass.xml"
                            id="list-house-style-pattern"
                            name="list-house-style-pattern"/>
+      <svrl:fired-rule context="list[@list-type]" id="list-house-style"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/simple-test-1/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
@@ -1324,12 +1339,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fn[@id][not(@fn-type='other')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::list-item"
-                          id="list-item-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>list-item must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]1 3$')]"
                           id="general-video-xspec-assert"
@@ -2506,12 +2515,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>italic[not(ancestor::ref)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::list[@list-type]"
-                          id="list-house-style-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>list[@list-type] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
                           id="pubmed-link-xspec-assert"
