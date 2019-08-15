@@ -3,5 +3,8 @@
 Test: assert    number($sum) = 0
 Message: isbn contains an invalid ISBN. Should it be captured as another type of pubid?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <isbn>2844674428</isbn>
+    <isbn>978-1644674428</isbn>
+  </article>
 </root>

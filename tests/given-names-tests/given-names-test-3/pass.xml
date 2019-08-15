@@ -9,7 +9,7 @@ Message: givennames must not be empty.-->
         <contrib-group>
           <contrib contrib-type="author">
             <name>
-              <given-names></given-names>
+              <given-names/>
               <surname>Zoolander</surname>
             </name>
           </contrib>

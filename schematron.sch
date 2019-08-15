@@ -2979,7 +2979,7 @@
       
       <assert test="matches(@id,'^m[0-9]{1,9}$')"
         role="error"
-        id="mml-math-id-test">disp-formula @id must be in the format 'm0'.</assert>
+        id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.</assert>
     </rule>
     
     <rule context="app/table-wrap" 

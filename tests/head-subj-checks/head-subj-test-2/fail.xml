@@ -5,7 +5,7 @@ Message: There must be at least one MSA.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-categories>
-      <subj-group subj-group-type="heading"></subj-group>
+      <subj-group subj-group-type="heading"/>
     </article-categories>
   </article>
 </root>

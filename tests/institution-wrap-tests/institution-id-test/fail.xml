@@ -3,5 +3,15 @@
 Test: assert    institution-id[@institution-id-type='FundRef']
 Message: Whenever possible, institutionid[@institutionidtype="FundRef"] should be present in institutionwrap; warn staff if not-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <award-group>
+          <institution-wrap>
+            <institution>Australian Research Council</institution>
+          </institution-wrap>
+        </award-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

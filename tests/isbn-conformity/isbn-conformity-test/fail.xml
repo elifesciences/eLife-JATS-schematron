@@ -3,5 +3,12 @@
 Test: assert    number($sum) = 0
 Message: pubid contains an invalid ISBN. Should it be captured as another type of pubid?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation>
+      <pub-id pub-id-type="isbn">1844674429</pub-id>
+    </element-citation>
+    <element-citation>
+      <pub-id pub-id-type="isbn">978-1844673428</pub-id>
+    </element-citation>
+  </article>
 </root>

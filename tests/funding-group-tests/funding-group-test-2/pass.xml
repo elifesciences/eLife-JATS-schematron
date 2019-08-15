@@ -8,7 +8,7 @@ Message: fundinggroup contains no awardgroups. Is this correct? Please check wit
       <article-meta>
         <funding-group>
           <award-group/>
-          <funding-statement></funding-statement>
+          <funding-statement/>
         </funding-group>
       </article-meta>
     </front>

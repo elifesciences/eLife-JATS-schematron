@@ -631,7 +631,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
-      <assert test="matches(@id,'^m[0-9]{1,9}$')" role="error" id="mml-math-id-test">disp-formula @id must be in the format 'm0'.</assert>
+      <assert test="matches(@id,'^m[0-9]{1,9}$')" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

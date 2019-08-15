@@ -5,7 +5,9 @@ Message: appears after it's first citation but not directly after it's first cit
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec id="sec1">
-      <p><xref rid="video1"/></p>
+      <p>
+        <xref rid="video1"/>
+      </p>
       <media id="video1" mimetype="video">
         <label>Video 1.</label>
       </media>

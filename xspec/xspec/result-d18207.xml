@@ -485,6 +485,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation-general"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation-general"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
@@ -506,6 +508,48 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation"/>
+      <svrl:failed-assert test="@publication-type"
+                          id="err-elem-cit-high-6-1"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-high-6-1]
+        The element-citation element must have a publication-type attribute.
+        Reference '' does not.
+      </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@publication-type = 'journal' or @publication-type = 'book' or @publication-type = 'data' or @publication-type = 'patent' or @publication-type = 'software' or @publication-type = 'preprint' or @publication-type = 'web' or @publication-type = 'periodical' or @publication-type = 'report' or @publication-type = 'confproc' or @publication-type = 'thesis'"
+                          id="err-elem-cit-high-6-2"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-high-6-2]
+        The publication-type attribute may only take the values 'journal', 'book', 'data', 
+        'patent', 'software', 'preprint', 'web', 
+        'periodical', 'report', 'confproc', or 'thesis'. 
+        Reference '' has the publication-type 
+        ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="element-citation" id="elem-citation"/>
+      <svrl:failed-assert test="@publication-type"
+                          id="err-elem-cit-high-6-1"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[2]">
+         <svrl:text>[err-elem-cit-high-6-1]
+        The element-citation element must have a publication-type attribute.
+        Reference '' does not.
+      </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@publication-type = 'journal' or @publication-type = 'book' or @publication-type = 'data' or @publication-type = 'patent' or @publication-type = 'software' or @publication-type = 'preprint' or @publication-type = 'web' or @publication-type = 'periodical' or @publication-type = 'report' or @publication-type = 'confproc' or @publication-type = 'thesis'"
+                          id="err-elem-cit-high-6-2"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[2]">
+         <svrl:text>[err-elem-cit-high-6-2]
+        The publication-type attribute may only take the values 'journal', 'book', 'data', 
+        'patent', 'software', 'preprint', 'web', 
+        'periodical', 'report', 'confproc', or 'thesis'. 
+        Reference '' has the publication-type 
+        ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="elem-citation-journal-pattern"
                            name="elem-citation-journal-pattern"/>
@@ -716,6 +760,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="pub-id-tests-pattern"
                            name="pub-id-tests-pattern"/>
+      <svrl:fired-rule context="element-citation/pub-id" id="pub-id-tests"/>
+      <svrl:fired-rule context="element-citation/pub-id" id="pub-id-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="feature-title-tests-pattern"
                            name="feature-title-tests-pattern"/>
@@ -824,6 +870,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="isbn-conformity-pattern"
                            name="isbn-conformity-pattern"/>
+      <svrl:fired-rule context="element-citation/pub-id[@pub-id-type='isbn']"
+                       id="isbn-conformity"/>
+      <svrl:fired-rule context="element-citation/pub-id[@pub-id-type='isbn']"
+                       id="isbn-conformity"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity/isbn-conformity-test/pass.xml"
                            id="isbn-conformity-2-pattern"
                            name="isbn-conformity-2-pattern"/>
@@ -1751,12 +1801,6 @@
                           location="/root[1]">
          <svrl:text>related-article must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-general-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation/person-group"
                           id="elem-citation-gen-name-3-1-xspec-assert"
                           role="error"
@@ -1792,12 +1836,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
                           id="elem-citation-journal-xspec-assert"
@@ -2213,12 +2251,6 @@
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='periodical']/string-date/day must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/pub-id"
-                          id="pub-id-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/pub-id must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title"
                           id="feature-title-tests-xspec-assert"
                           role="error"
@@ -2428,12 +2460,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation//name must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/pub-id[@pub-id-type='isbn']"
-                          id="isbn-conformity-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/pub-id[@pub-id-type='isbn'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::isbn"
                           id="isbn-conformity-2-xspec-assert"

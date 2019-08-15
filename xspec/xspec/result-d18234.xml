@@ -827,6 +827,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity-2/isbn-conformity-test-2/fail.xml"
                            id="isbn-conformity-2-pattern"
                            name="isbn-conformity-2-pattern"/>
+      <svrl:fired-rule context="isbn" id="isbn-conformity-2"/>
+      <svrl:failed-assert test="number($sum) = 0"
+                          id="isbn-conformity-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/isbn[1]">
+         <svrl:text>isbn contains an invalid ISBN. Should it be captured as another type of pub-id?</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="isbn" id="isbn-conformity-2"/>
+      <svrl:failed-assert test="number($sum) = 0"
+                          id="isbn-conformity-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/isbn[2]">
+         <svrl:text>isbn contains an invalid ISBN. Should it be captured as another type of pub-id?</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity-2/isbn-conformity-test-2/fail.xml"
                            id="data-availability-statement-pattern"
                            name="data-availability-statement-pattern"/>
@@ -2434,12 +2448,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation/pub-id[@pub-id-type='isbn'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::isbn"
-                          id="isbn-conformity-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>isbn must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sec[@sec-type='data-availability']/p[1]"
                           id="data-availability-statement-xspec-assert"

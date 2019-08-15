@@ -6,9 +6,7 @@ Message: One fundingstatement should be present in fundinggroup.-->
   <article>
     <front>
       <article-meta>
-        <funding-group>
-          
-        </funding-group>
+        <funding-group/>
       </article-meta>
     </front>
   </article>

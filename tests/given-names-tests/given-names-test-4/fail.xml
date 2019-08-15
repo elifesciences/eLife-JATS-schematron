@@ -9,7 +9,9 @@ Message: givennames must not contain any formatting (bold, or italic emphasis, o
         <contrib-group>
           <contrib contrib-type="author">
             <name>
-              <given-names><bold>Derek</bold></given-names>
+              <given-names>
+                <bold>Derek</bold>
+              </given-names>
               <surname>Zoolander</surname>
             </name>
           </contrib>

@@ -782,6 +782,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/italic-house-style/sensu-italic-test/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/italic-house-style/sensu-italic-test/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -864,6 +866,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/italic-house-style/sensu-italic-test/fail.xml"
                            id="italic-house-style-pattern"
                            name="italic-house-style-pattern"/>
+      <svrl:fired-rule context="italic[not(ancestor::ref)]" id="italic-house-style"/>
+      <svrl:successful-report test="matches(.,'[Ss]ensu')"
+                              id="sensu-italic-test"
+                              role="warning"
+                              location="/root[1]/article[1]/italic[1]">
+         <svrl:text>italic element contains 'sensu' - this should not be in italics (eLife house style).</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/italic-house-style/sensu-italic-test/fail.xml"
                            id="list-house-style-pattern"
                            name="list-house-style-pattern"/>
@@ -2345,12 +2354,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2500,12 +2503,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body//p[not(parent::list-item)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::italic[not(ancestor::ref)]"
-                          id="italic-house-style-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>italic[not(ancestor::ref)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::list[@list-type]"
                           id="list-house-style-xspec-assert"

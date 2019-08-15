@@ -5,7 +5,8 @@ Message: There is no citation toEnsure to query the author asking for a citation
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <body>
-      <p>... <xref ref-type="fig" rid="fig1"/> ... <xref ref-type="fig" rid="fig2"/></p>
+      <p>...<xref ref-type="fig" rid="fig1"/>...<xref ref-type="fig" rid="fig2"/>
+      </p>
       <fig id="fig1">
         <label>Figure 1.</label>
         <caption>

@@ -4,6 +4,8 @@ Test: assert    (($text-count le $count) or ($text-count = $count))
 Message: p element contains what looks like an untagged primer or gene sequence .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <p><named-content content-type="sequence">CGTCGGTTAGTGGAATCTTCATGCGTCGGTTAGTGGAATCTTCATG</named-content></p>
+    <p>
+      <named-content content-type="sequence">CGTCGGTTAGTGGAATCTTCATGCGTCGGTTAGTGGAATCTTCATG</named-content>
+    </p>
   </article>
 </root>

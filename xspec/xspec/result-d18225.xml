@@ -827,6 +827,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity-2/isbn-conformity-test-2/pass.xml"
                            id="isbn-conformity-2-pattern"
                            name="isbn-conformity-2-pattern"/>
+      <svrl:fired-rule context="isbn" id="isbn-conformity-2"/>
+      <svrl:fired-rule context="isbn" id="isbn-conformity-2"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/isbn-conformity-2/isbn-conformity-test-2/pass.xml"
                            id="data-availability-statement-pattern"
                            name="data-availability-statement-pattern"/>
@@ -2434,12 +2436,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation/pub-id[@pub-id-type='isbn'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::isbn"
-                          id="isbn-conformity-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>isbn must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sec[@sec-type='data-availability']/p[1]"
                           id="data-availability-statement-xspec-assert"

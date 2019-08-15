@@ -8,7 +8,9 @@ Message: appears before its citation, which must be incorrect.-->
       <media id="video1" mimetype="video">
         <label>Video 1.</label>
       </media>
-      <p><xref rid="video1"/></p>
+      <p>
+        <xref rid="video1"/>
+      </p>
       <p/>
       <p/>
     </sec>

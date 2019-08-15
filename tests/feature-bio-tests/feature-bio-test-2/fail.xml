@@ -2,8 +2,7 @@
 <!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio
 Test: report    if (count($aff) > 1) then () else not(contains(.,$aff))
 Message: bio does not contain top level insutution text as it appears in their affiliation (''). Is this correct?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <article-meta>
       <article-categories>
@@ -21,7 +20,8 @@ Message: bio does not contain top level insutution text as it appears in their a
             <given-names>Derek</given-names>
           </name>
           <bio>
-            <p><bold>Derek Zoolander</bold> is in the Department of Biology</p>
+            <p>
+              <bold>Derek Zoolander</bold>is in the Department of Biology</p>
           </bio>
           <xref ref-type="aff" rid="aff1"/>
         </contrib>
@@ -30,7 +30,8 @@ Message: bio does not contain top level insutution text as it appears in their a
             <surname>Hansen</surname>
           </name>
           <bio>
-            <p><bold>Hansen</bold> is in the Department of Biology</p>
+            <p>
+              <bold>Hansen</bold>is in the Department of Biology</p>
           </bio>
           <xref ref-type="aff" rid="aff1"/>
         </contrib>
@@ -40,7 +41,8 @@ Message: bio does not contain top level insutution text as it appears in their a
             <suffix>Jr</suffix>
           </name>
           <bio>
-            <p><bold>Mugatu Jr</bold> is in the Department of Biology</p>
+            <p>
+              <bold>Mugatu Jr</bold>is in the Department of Biology</p>
           </bio>
           <xref ref-type="aff" rid="aff1"/>
         </contrib>

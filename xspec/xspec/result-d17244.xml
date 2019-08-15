@@ -389,6 +389,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/institution-tests/institution-replacement-character-presence/fail.xml"
                            id="aff-ids-pattern"
                            name="aff-ids-pattern"/>
+      <svrl:fired-rule context="aff[not(parent::contrib)]" id="aff-ids"/>
+      <svrl:failed-assert test="if (label) then @id = concat('aff',label) else starts-with(@id,'aff')"
+                          id="aff-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/aff[1]">
+         <svrl:text>aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be aff.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/institution-tests/institution-replacement-character-presence/fail.xml"
                            id="fn-ids-pattern"
                            name="fn-ids-pattern"/>
@@ -782,6 +789,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/institution-tests/institution-replacement-character-presence/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:successful-report test="matches(.,'�')"
+                              id="replacement-character-presence"
+                              role="error"
+                              location="/root[1]/article[1]/aff[1]/institution[1]">
+         <svrl:text>institution element contains the replacement character '�' which is not allowed.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/institution-tests/institution-replacement-character-presence/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -794,6 +809,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/institution-tests/institution-replacement-character-presence/fail.xml"
                            id="institution-tests-pattern"
                            name="institution-tests-pattern"/>
+      <svrl:fired-rule context="aff/institution[not(@*)]" id="institution-tests"/>
+      <svrl:successful-report test="matches(.,'�')"
+                              id="institution-replacement-character-presence"
+                              role="error"
+                              location="/root[1]/article[1]/aff[1]/institution[1]">
+         <svrl:text>institution element contains the replacement character '�' which is unallowed.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/institution-tests/institution-replacement-character-presence/fail.xml"
                            id="department-tests-pattern"
                            name="department-tests-pattern"/>
@@ -1558,12 +1580,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>related-article must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::aff[not(parent::contrib)]"
-                          id="aff-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>aff[not(parent::contrib)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn"
                           id="fn-ids-xspec-assert"
@@ -2345,12 +2361,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2368,12 +2378,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>front//aff//named-content[@content-type='city'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::aff/institution[not(@*)]"
-                          id="institution-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>aff/institution[not(@*)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::aff/institution[@content-type='dept']"
                           id="department-tests-xspec-assert"

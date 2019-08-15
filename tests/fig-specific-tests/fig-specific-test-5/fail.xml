@@ -5,7 +5,8 @@ Message: is immediately followed by a display formula, and preceded by a paragra
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <body>
-      <p><xref ref-type="fig" rid="fig1"/> ... <xref ref-type="other" rid="equ1">Equation 1</xref> which is:</p>
+      <p>
+        <xref ref-type="fig" rid="fig1"/>...<xref ref-type="other" rid="equ1">Equation 1</xref>which is:</p>
       <fig id="fig1">
         <label>Figure 1.</label>
         <caption>
@@ -14,11 +15,13 @@ Message: is immediately followed by a display formula, and preceded by a paragra
         </caption>
       </fig>
       <disp-formula id="equ1">
-        <mml:math></mml:math>
+        <mml:math/>
       </disp-formula>
-      <p></p>
-      <p></p>
-      <p><xref ref-type="fig" rid="fig2"/></p>
+      <p/>
+      <p/>
+      <p>
+        <xref ref-type="fig" rid="fig2"/>
+      </p>
       <fig id="fig2">
         <label>Figure 2.</label>
         <caption>
