@@ -6,9 +6,7 @@ Message: listitem is part of an romanupper list, but it begins with a single rom
   <article>
     <list list-type="roman-upper">
       <list-item>I this</list-item>
-      <list-item>II) that</list-item>
-      ...
-      <list-item>X) that</list-item>
+      <list-item>II) that</list-item>...<list-item>X) that</list-item>
     </list>
   </article>
 </root>
