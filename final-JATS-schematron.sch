@@ -575,47 +575,6 @@
     </xsl:choose>
   </xsl:function>
   
-  <xsl:function name="e:rrid-text-count" as="xs:string">
-    <xsl:param name="s" as="xs:string"/>
-    <xsl:variable name="uc" select="upper-case($s)"/>
-    <xsl:choose>
-      <xsl:when test="matches($uc,'RRID:')">
-        <xsl:choose>
-          <xsl:when test="matches(substring-after($uc,'RRID:'),'RRID:')">
-            <xsl:choose>
-              <xsl:when test="matches(substring-after(substring-after($uc,'RRID:'),'RRID:'),'RRID:')">
-                <xsl:choose>
-                  <xsl:when test="matches(substring-after(substring-after(substring-after($uc,'RRID:'),'RRID:'),'RRID:'),'RRID:')">
-                    <xsl:choose>
-                      <xsl:when test="matches(substring-after(substring-after(substring-after(substring-after($uc,'RRID:'),'RRID:'),'RRID:'),'RRID:'),'RRID:')">
-                        <xsl:value-of select="number('5')"/>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <xsl:value-of select="number('4')"/>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:value-of select="number('3')"/>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="number('2')"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="number('1')"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="number('0')"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
-  
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
@@ -4122,7 +4081,7 @@
     <rule context="p|td|th" id="rrid-org-code">
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
-      <let name="text-count" value="number(e:rrid-text-count(.))"/>
+      <let name="text-count" value="number(count(for $x in tokenize(.,'RRID:') return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>

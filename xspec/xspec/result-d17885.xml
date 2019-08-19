@@ -1,0 +1,2553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:result xmlns:x="http://www.jenitennison.com/xslt/xspec" select="/element()">
+   <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                           xmlns:saxon="http://saxon.sf.net/"
+                           xmlns:schold="http://www.ascc.net/xml/schematron"
+                           xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                           xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                           xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
+                           xmlns:xlink="http://www.w3.org/1999/xlink"
+                           xmlns:xi="http://www.w3.org/2001/XInclude"
+                           xmlns:mml="http://www.w3.org/1998/Math/MathML"
+                           xmlns:dc="http://purl.org/dc/terms/"
+                           xmlns:e="https://elifesciences.org/namespace"
+                           xmlns:file="java.io.File"
+                           xmlns:java="http://www.java.com/"
+                           title="eLife Schematron"
+                           schemaVersion=""><!--   
+		   
+		   
+		 -->
+      <svrl:ns-prefix-in-attribute-values uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XInclude" prefix="xi"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/1998/Math/MathML" prefix="mml"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://saxon.sf.net/" prefix="saxon"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://purl.org/dc/terms/" prefix="dc"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+      <svrl:ns-prefix-in-attribute-values uri="https://elifesciences.org/namespace" prefix="e"/>
+      <svrl:ns-prefix-in-attribute-values uri="java.io.File" prefix="file"/>
+      <svrl:ns-prefix-in-attribute-values uri="http://www.java.com/" prefix="java"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="article-tests-pattern"
+                           name="article-tests-pattern"/>
+      <svrl:fired-rule context="article" id="article-tests"/>
+      <svrl:failed-assert test="@article-type = $allowed-article-types"
+                          id="test-article-type"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(front) = 1"
+                          id="test-article-front"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(body) = 1"
+                          id="test-article-body"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="research-article-pattern"
+                           name="research-article-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-front-pattern"
+                           name="test-front-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-journal-meta-pattern"
+                           name="test-journal-meta-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-article-metadata-pattern"
+                           name="test-article-metadata-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-research-article-metadata-pattern"
+                           name="test-research-article-metadata-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-article-categories-pattern"
+                           name="test-article-categories-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="disp-channel-checks-pattern"
+                           name="disp-channel-checks-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="MSA-checks-pattern"
+                           name="MSA-checks-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="head-subj-checks-pattern"
+                           name="head-subj-checks-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-title-group-pattern"
+                           name="test-title-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="test-contrib-group-pattern"
+                           name="test-contrib-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="name-tests-pattern"
+                           name="name-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="surname-tests-pattern"
+                           name="surname-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="given-names-tests-pattern"
+                           name="given-names-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="suffix-tests-pattern"
+                           name="suffix-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="name-child-tests-pattern"
+                           name="name-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="contrib-tests-pattern"
+                           name="contrib-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="author-children-tests-pattern"
+                           name="author-children-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="orcid-tests-pattern"
+                           name="orcid-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="email-tests-pattern"
+                           name="email-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="history-tests-pattern"
+                           name="history-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="date-tests-pattern"
+                           name="date-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="day-tests-pattern"
+                           name="day-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="month-tests-pattern"
+                           name="month-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="year-article-meta-tests-pattern"
+                           name="year-article-meta-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="year-element-citation-tests-pattern"
+                           name="year-element-citation-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="pub-date-tests-1-pattern"
+                           name="pub-date-tests-1-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="pub-date-tests-2-pattern"
+                           name="pub-date-tests-2-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="front-permissions-tests-pattern"
+                           name="front-permissions-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="license-tests-pattern"
+                           name="license-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="abstract-tests-pattern"
+                           name="abstract-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="aff-tests-pattern"
+                           name="aff-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="funding-group-tests-pattern"
+                           name="funding-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="award-group-tests-pattern"
+                           name="award-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="award-id-tests-pattern"
+                           name="award-id-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="institution-wrap-tests-pattern"
+                           name="institution-wrap-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="kwd-group-tests-pattern"
+                           name="kwd-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ro-kwd-group-tests-pattern"
+                           name="ro-kwd-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ro-kwd-tests-pattern"
+                           name="ro-kwd-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="custom-meta-group-tests-pattern"
+                           name="custom-meta-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="custom-meta-tests-pattern"
+                           name="custom-meta-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="meta-value-tests-pattern"
+                           name="meta-value-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="meta-value-child-tests-pattern"
+                           name="meta-value-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elocation-id-tests-pattern"
+                           name="elocation-id-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="volume-test-pattern"
+                           name="volume-test-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="equal-author-tests-pattern"
+                           name="equal-author-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="object-id-tests-pattern"
+                           name="object-id-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="p-tests-pattern"
+                           name="p-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="p-child-tests-pattern"
+                           name="p-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="xref-target-tests-pattern"
+                           name="xref-target-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ext-link-tests-pattern"
+                           name="ext-link-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-tests-pattern"
+                           name="fig-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ar-fig-tests-pattern"
+                           name="ar-fig-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="graphic-tests-pattern"
+                           name="graphic-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="media-tests-pattern"
+                           name="media-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="video-test-pattern"
+                           name="video-test-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="supplementary-material-tests-pattern"
+                           name="supplementary-material-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="source-data-specific-tests-pattern"
+                           name="source-data-specific-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="disp-formula-tests-pattern"
+                           name="disp-formula-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="inline-formula-tests-pattern"
+                           name="inline-formula-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="math-tests-pattern"
+                           name="math-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="formula-child-tests-pattern"
+                           name="formula-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="table-wrap-tests-pattern"
+                           name="table-wrap-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="body-table-label-tests-pattern"
+                           name="body-table-label-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-table-label-tests-pattern"
+                           name="app-table-label-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="table-tests-pattern"
+                           name="table-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="tbody-tests-pattern"
+                           name="tbody-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="thead-tests-pattern"
+                           name="thead-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="tr-tests-pattern"
+                           name="tr-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="td-child-tests-pattern"
+                           name="td-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="th-child-tests-pattern"
+                           name="th-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fn-tests-pattern"
+                           name="fn-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="list-item-tests-pattern"
+                           name="list-item-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="general-video-pattern"
+                           name="general-video-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="body-video-specific-pattern"
+                           name="body-video-specific-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="body-table-pos-conformance-pattern"
+                           name="body-table-pos-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-table-pos-conformance-pattern"
+                           name="app-table-pos-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-specific-tests-pattern"
+                           name="fig-specific-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-label-tests-pattern"
+                           name="fig-label-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-sup-tests-pattern"
+                           name="fig-sup-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="rep-fig-tests-pattern"
+                           name="rep-fig-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="box-fig-tests-pattern"
+                           name="box-fig-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-fig-tests-pattern"
+                           name="app-fig-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-fig-sup-tests-pattern"
+                           name="app-fig-sup-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ra-body-tests-pattern"
+                           name="ra-body-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="top-level-sec-tests-pattern"
+                           name="top-level-sec-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="lower-level-sec-tests-pattern"
+                           name="lower-level-sec-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="article-title-tests-pattern"
+                           name="article-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="sec-title-tests-pattern"
+                           name="sec-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-title-tests-pattern"
+                           name="fig-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="supplementary-material-title-tests-pattern"
+                           name="supplementary-material-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="video-title-tests-pattern"
+                           name="video-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ack-title-tests-pattern"
+                           name="ack-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ack-content-tests-pattern"
+                           name="ack-content-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-list-title-tests-pattern"
+                           name="ref-list-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-title-tests-pattern"
+                           name="app-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="comp-int-title-tests-pattern"
+                           name="comp-int-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="auth-cont-title-tests-pattern"
+                           name="auth-cont-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ethics-title-tests-pattern"
+                           name="ethics-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="dec-letter-title-tests-pattern"
+                           name="dec-letter-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="reply-title-tests-pattern"
+                           name="reply-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="author-contrib-ids-pattern"
+                           name="author-contrib-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="award-group-ids-pattern"
+                           name="award-group-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-ids-pattern"
+                           name="fig-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-sup-ids-pattern"
+                           name="fig-sup-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="box-fig-ids-pattern"
+                           name="box-fig-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-fig-ids-pattern"
+                           name="app-fig-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-fig-sup-ids-pattern"
+                           name="app-fig-sup-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="rep-fig-ids-pattern"
+                           name="rep-fig-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="rep-fig-sup-ids-pattern"
+                           name="rep-fig-sup-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="related-articles-ids-pattern"
+                           name="related-articles-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="aff-ids-pattern"
+                           name="aff-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fn-ids-pattern"
+                           name="fn-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="disp-formula-ids-pattern"
+                           name="disp-formula-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="mml-math-ids-pattern"
+                           name="mml-math-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-table-wrap-ids-pattern"
+                           name="app-table-wrap-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="resp-table-wrap-ids-pattern"
+                           name="resp-table-wrap-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="table-wrap-ids-pattern"
+                           name="table-wrap-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="body-top-level-sec-ids-pattern"
+                           name="body-top-level-sec-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="back-top-level-sec-ids-pattern"
+                           name="back-top-level-sec-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="low-level-sec-ids-pattern"
+                           name="low-level-sec-ids-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="sec-tests-pattern"
+                           name="sec-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="back-tests-pattern"
+                           name="back-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="data-content-tests-pattern"
+                           name="data-content-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ack-tests-pattern"
+                           name="ack-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ack-child-tests-pattern"
+                           name="ack-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="app-tests-pattern"
+                           name="app-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="additional-info-tests-pattern"
+                           name="additional-info-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="comp-int-fn-group-tests-pattern"
+                           name="comp-int-fn-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="comp-int-fn-tests-pattern"
+                           name="comp-int-fn-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="auth-cont-tests-pattern"
+                           name="auth-cont-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="auth-cont-fn-tests-pattern"
+                           name="auth-cont-fn-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ethics-tests-pattern"
+                           name="ethics-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ethics-fn-tests-pattern"
+                           name="ethics-fn-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="dec-letter-reply-tests-pattern"
+                           name="dec-letter-reply-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="dec-letter-front-tests-pattern"
+                           name="dec-letter-front-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="dec-letter-body-tests-pattern"
+                           name="dec-letter-body-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="reply-front-tests-pattern"
+                           name="reply-front-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="reply-body-tests-pattern"
+                           name="reply-body-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="reply-disp-quote-tests-pattern"
+                           name="reply-disp-quote-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="research-advance-test-pattern"
+                           name="research-advance-test-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="insight-test-pattern"
+                           name="insight-test-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="related-articles-conformance-pattern"
+                           name="related-articles-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-general-pattern"
+                           name="elem-citation-general-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-gen-name-3-1-pattern"
+                           name="elem-citation-gen-name-3-1-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-gen-name-3-2-pattern"
+                           name="elem-citation-gen-name-3-2-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-gen-name-4-pattern"
+                           name="elem-citation-gen-name-4-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-year-pattern"
+                           name="elem-citation-year-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-pattern"
+                           name="ref-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="xref-pattern"
+                           name="xref-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-pattern"
+                           name="elem-citation-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-pattern"
+                           name="elem-citation-journal-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-article-title-pattern"
+                           name="elem-citation-journal-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-volume-pattern"
+                           name="elem-citation-journal-volume-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-fpage-pattern"
+                           name="elem-citation-journal-fpage-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-elocation-id-pattern"
+                           name="elem-citation-journal-elocation-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-comment-pattern"
+                           name="elem-citation-journal-comment-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-pub-id-pmid-pattern"
+                           name="elem-citation-journal-pub-id-pmid-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-journal-pub-id-pattern"
+                           name="elem-citation-journal-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-pattern"
+                           name="elem-citation-book-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-person-group-pattern"
+                           name="elem-citation-book-person-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-chapter-title-pattern"
+                           name="elem-citation-book-chapter-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-publisher-name-pattern"
+                           name="elem-citation-book-publisher-name-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-edition-pattern"
+                           name="elem-citation-book-edition-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-pub-id-pmid-pattern"
+                           name="elem-citation-book-pub-id-pmid-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-book-pub-id-pattern"
+                           name="elem-citation-book-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-data-pattern"
+                           name="elem-citation-data-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-data-pub-id-doi-pattern"
+                           name="elem-citation-data-pub-id-doi-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-data-pub-id-pattern"
+                           name="elem-citation-data-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-data-ext-link-pattern"
+                           name="elem-citation-data-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-patent-pattern"
+                           name="elem-citation-patent-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-patent-ext-link-pattern"
+                           name="elem-citation-patent-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-patent-article-title-pattern"
+                           name="elem-citation-patent-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-patent-source-pattern"
+                           name="elem-citation-patent-source-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-patent-patent-pattern"
+                           name="elem-citation-patent-patent-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-software-pattern"
+                           name="elem-citation-software-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-software-data-title-pattern"
+                           name="elem-citation-software-data-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-software-ext-link-pattern"
+                           name="elem-citation-software-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-preprint-pattern"
+                           name="elem-citation-preprint-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-preprint-person-group-pattern"
+                           name="elem-citation-preprint-person-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-preprint-pub-id-pattern"
+                           name="elem-citation-preprint-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-preprint-ext-link-pattern"
+                           name="elem-citation-preprint-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-preprint-article-title-pattern"
+                           name="elem-citation-preprint-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-preprint-source-pattern"
+                           name="elem-citation-preprint-source-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-web-pattern"
+                           name="elem-citation-web-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-web-person-group-pattern"
+                           name="elem-citation-web-person-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-web-ext-link-pattern"
+                           name="elem-citation-web-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-web-article-title-pattern"
+                           name="elem-citation-web-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-web-source-pattern"
+                           name="elem-citation-web-source-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-web-date-in-citation-pattern"
+                           name="elem-citation-web-date-in-citation-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-report-pattern"
+                           name="elem-citation-report-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-report-preson-group-pattern"
+                           name="elem-citation-report-preson-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-report-source-pattern"
+                           name="elem-citation-report-source-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-report-publisher-name-pattern"
+                           name="elem-citation-report-publisher-name-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-report-pub-id-pattern"
+                           name="elem-citation-report-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-report-ext-link-pattern"
+                           name="elem-citation-report-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-pattern"
+                           name="elem-citation-confproc-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-preson-group-pattern"
+                           name="elem-citation-confproc-preson-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-source-pattern"
+                           name="elem-citation-confproc-source-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-article-title-pattern"
+                           name="elem-citation-confproc-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-conf-name-pattern"
+                           name="elem-citation-confproc-conf-name-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-conf-loc-pattern"
+                           name="elem-citation-confproc-conf-loc-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-fpage-pattern"
+                           name="elem-citation-confproc-fpage-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-pub-id-pattern"
+                           name="elem-citation-confproc-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-confproc-ext-link-pattern"
+                           name="elem-citation-confproc-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-pattern"
+                           name="elem-citation-thesis-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-preson-group-pattern"
+                           name="elem-citation-thesis-preson-group-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-article-title-pattern"
+                           name="elem-citation-thesis-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-publisher-name-pattern"
+                           name="elem-citation-thesis-publisher-name-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-publisher-loc-pattern"
+                           name="elem-citation-thesis-publisher-loc-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-pub-id-pattern"
+                           name="elem-citation-thesis-pub-id-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-thesis-ext-link-pattern"
+                           name="elem-citation-thesis-ext-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-pattern"
+                           name="elem-citation-periodical-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-year-pattern"
+                           name="elem-citation-periodical-year-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-article-title-pattern"
+                           name="elem-citation-periodical-article-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-volume-pattern"
+                           name="elem-citation-periodical-volume-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-fpage-pattern"
+                           name="elem-citation-periodical-fpage-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-string-date-pattern"
+                           name="elem-citation-periodical-string-date-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-month-pattern"
+                           name="elem-citation-periodical-month-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="elem-citation-periodical-day-pattern"
+                           name="elem-citation-periodical-day-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="pub-id-tests-pattern"
+                           name="pub-id-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-title-tests-pattern"
+                           name="feature-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-abstract-tests-pattern"
+                           name="feature-abstract-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-subj-tests-1-pattern"
+                           name="feature-subj-tests-1-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-subj-tests-2-pattern"
+                           name="feature-subj-tests-2-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-article-category-tests-pattern"
+                           name="feature-article-category-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-author-tests-pattern"
+                           name="feature-author-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="feature-bio-tests-pattern"
+                           name="feature-bio-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="correction-tests-pattern"
+                           name="correction-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="retraction-tests-pattern"
+                           name="retraction-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="final-gene-primer-sequence-pattern"
+                           name="final-gene-primer-sequence-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="rrid-org-code-pattern"
+                           name="rrid-org-code-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="duplicate-ref-pattern"
+                           name="duplicate-ref-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-xref-conformance-pattern"
+                           name="ref-xref-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="unlinked-ref-cite-pattern"
+                           name="unlinked-ref-cite-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="vid-xref-conformance-pattern"
+                           name="vid-xref-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-xref-conformance-pattern"
+                           name="fig-xref-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="table-xref-conformance-pattern"
+                           name="table-xref-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="supp-file-xref-conformance-pattern"
+                           name="supp-file-xref-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="equation-xref-conformance-pattern"
+                           name="equation-xref-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="org-ref-article-book-title-pattern"
+                           name="org-ref-article-book-title-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="org-title-kwd-pattern"
+                           name="org-title-kwd-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="unallowed-symbol-tests-pattern"
+                           name="unallowed-symbol-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="unallowed-symbol-tests-sup-pattern"
+                           name="unallowed-symbol-tests-sup-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="country-tests-pattern"
+                           name="country-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="city-tests-pattern"
+                           name="city-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="institution-tests-pattern"
+                           name="institution-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="department-tests-pattern"
+                           name="department-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="journal-title-tests-pattern"
+                           name="journal-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-article-title-tests-pattern"
+                           name="ref-article-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="journal-tests-pattern"
+                           name="journal-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="preprint-title-tests-pattern"
+                           name="preprint-title-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="website-tests-pattern"
+                           name="website-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="software-ref-tests-pattern"
+                           name="software-ref-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="publisher-name-tests-pattern"
+                           name="publisher-name-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-name-tests-pattern"
+                           name="ref-name-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="isbn-conformity-pattern"
+                           name="isbn-conformity-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="isbn-conformity-2-pattern"
+                           name="isbn-conformity-2-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="data-availability-statement-pattern"
+                           name="data-availability-statement-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ethics-info-pattern"
+                           name="ethics-info-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="sec-title-conformity-pattern"
+                           name="sec-title-conformity-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="abstract-house-tests-pattern"
+                           name="abstract-house-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="KRT-xref-tests-pattern"
+                           name="KRT-xref-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="KRT-check-pattern"
+                           name="KRT-check-pattern"/>
+      <svrl:fired-rule context="article" id="KRT-check"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="KRT-td-checks-pattern"
+                           name="KRT-td-checks-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="colour-table-pattern"
+                           name="colour-table-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="colour-named-content-pattern"
+                           name="colour-named-content-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="colour-styled-content-pattern"
+                           name="colour-styled-content-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="p-punctuation-pattern"
+                           name="p-punctuation-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="italic-house-style-pattern"
+                           name="italic-house-style-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="list-house-style-pattern"
+                           name="list-house-style-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="pubmed-link-pattern"
+                           name="pubmed-link-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-link-mandate-pattern"
+                           name="ref-link-mandate-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="fig-permissions-check-pattern"
+                           name="fig-permissions-check-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="xref-formatting-pattern"
+                           name="xref-formatting-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="ref-xref-formatting-pattern"
+                           name="ref-xref-formatting-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="code-fork-pattern"
+                           name="code-fork-pattern"/>
+      <svrl:fired-rule context="article" id="code-fork"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="auth-kwd-style-pattern"
+                           name="auth-kwd-style-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/biorxiv-web-test/pass.xml"
+                           id="root-pattern"
+                           name="root-pattern"/>
+      <svrl:fired-rule context="root" id="root-rule"/>
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']"
+                          id="research-article-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front"
+                          id="test-front-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front/journal-meta"
+                          id="test-journal-meta-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front/journal-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front/article-meta"
+                          id="test-article-metadata-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front/article-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/front/article-meta"
+                          id="test-research-article-metadata-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type='research-article']/front/article-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/article-categories"
+                          id="test-article-categories-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/article-categories must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject"
+                          id="disp-channel-checks-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
+                          id="MSA-checks-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-categories/subj-group[@subj-group-type='heading']/subject must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']"
+                          id="head-subj-checks-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-categories/subj-group[@subj-group-type='heading'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front/article-meta/title-group"
+                          id="test-title-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front/article-meta/title-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front/article-meta/contrib-group"
+                          id="test-contrib-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front/article-meta/contrib-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name"
+                          id="name-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/contrib-group//name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/surname"
+                          id="surname-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/contrib-group//name/surname must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/given-names"
+                          id="given-names-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/contrib-group//name/given-names must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/suffix"
+                          id="suffix-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/contrib-group//name/suffix must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]"
+                          id="name-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//contrib"
+                          id="contrib-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//contrib must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']/*"
+                          id="author-children-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//contrib[@contrib-type='author']/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::contrib-id[@contrib-id-type='orcid']"
+                          id="orcid-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>contrib-id[@contrib-id-type='orcid'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//email"
+                          id="email-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//email must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/history"
+                          id="history-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/history must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::date"
+                          id="date-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>date must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::day"
+                          id="day-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>day must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::month"
+                          id="month-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>month must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
+                          id="year-article-meta-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>year[ancestor::article-meta] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::year[ancestor::element-citation]"
+                          id="year-element-citation-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>year[ancestor::element-citation] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
+                          id="pub-date-tests-1-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>pub-date[not(@pub-type='collection')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::pub-date[@pub-type='collection']"
+                          id="pub-date-tests-2-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>pub-date[@pub-type='collection'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::front//permissions"
+                          id="front-permissions-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>front//permissions must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::front//permissions/license"
+                          id="license-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>front//permissions/license must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::front//abstract"
+                          id="abstract-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>front//abstract must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/contrib-group/aff"
+                          id="aff-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/contrib-group/aff must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/funding-group"
+                          id="funding-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/funding-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::funding-group/award-group"
+                          id="award-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>funding-group/award-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::funding-group/award-group/award-id"
+                          id="award-id-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>funding-group/award-group/award-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//award-group//institution-wrap"
+                          id="institution-wrap-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//award-group//institution-wrap must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]"
+                          id="kwd-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']"
+                          id="ro-kwd-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/kwd-group[@kwd-group-type='research-organism'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']/kwd"
+                          id="ro-kwd-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/custom-meta-group"
+                          id="custom-meta-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/custom-meta-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta"
+                          id="custom-meta-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/custom-meta-group/custom-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value"
+                          id="meta-value-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/custom-meta-group/custom-meta/meta-value must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value/*"
+                          id="meta-value-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/custom-meta-group/custom-meta/meta-value/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/elocation-id"
+                          id="elocation-id-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/elocation-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/volume"
+                          id="volume-test-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/volume must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']"
+                          id="equal-author-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::object-id[@pub-id-type='doi']"
+                          id="object-id-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>object-id[@pub-id-type='doi'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p"
+                          id="p-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p/*"
+                          id="p-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref"
+                          id="xref-target-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
+                          id="ext-link-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
+                          id="fig-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]"
+                          id="ar-fig-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig[ancestor::sub-article[@article-type='reply']] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::graphic"
+                          id="graphic-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>graphic must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::media"
+                          id="media-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>media must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::media[child::label]"
+                          id="video-test-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>media[child::label] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::supplementary-material"
+                          id="supplementary-material-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>supplementary-material must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]"
+                          id="source-data-specific-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula"
+                          id="disp-formula-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::inline-formula"
+                          id="inline-formula-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>inline-formula must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::mml:math"
+                          id="math-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/* or descendant::inline-formula/*"
+                          id="formula-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table-wrap"
+                          id="table-wrap-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table-wrap must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::body//table-wrap/label"
+                          id="body-table-label-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>body//table-wrap/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::app//table-wrap/label"
+                          id="app-table-label-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>app//table-wrap/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table"
+                          id="table-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table/tbody"
+                          id="tbody-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table/tbody must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table/thead"
+                          id="thead-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table/thead must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::tr"
+                          id="tr-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>tr must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::td/*"
+                          id="td-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>td/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::th/*"
+                          id="th-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>th/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn[@id][not(@fn-type='other')]"
+                          id="fn-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn[@id][not(@fn-type='other')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::list-item"
+                          id="list-item-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>list-item must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]1 3$')]"
+                          id="general-video-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//media[@mimetype='video']"
+                          id="body-video-specific-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//media[@mimetype='video'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//table-wrap[matches(@id,'^table[\d]+$')]"
+                          id="body-table-pos-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]"
+                          id="app-table-pos-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
+                          id="fig-specific-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label"
+                          id="fig-label-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[@specific-use='child-fig']"
+                          id="fig-sup-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[@specific-use='child-fig'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//fig"
+                          id="rep-fig-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']//fig must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]/label"
+                          id="box-fig-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//boxed-text//fig[not(@specific-use='child-fig')]/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//app//fig[not(@specific-use='child-fig')]/label"
+                          id="app-fig-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//app//fig[not(@specific-use='child-fig')]/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//app//fig[@specific-use='child-fig']/label"
+                          id="app-fig-sup-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+                          id="ra-body-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::body/sec"
+                          id="top-level-sec-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>body/sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::body/sec//sec"
+                          id="lower-level-sec-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>body/sec//sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//article-title"
+                          id="article-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec[@sec-type]/title"
+                          id="sec-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec[@sec-type]/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig/caption/title"
+                          id="fig-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig/caption/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::supplementary-material/caption/title"
+                          id="supplementary-material-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>supplementary-material/caption/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::media/caption/title"
+                          id="video-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>media/caption/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ack"
+                          id="ack-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ack must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ack//p"
+                          id="ack-content-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ack//p must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ref-list"
+                          id="ref-list-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ref-list must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::app/title"
+                          id="app-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>app/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
+                          id="comp-int-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='competing-interest'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='author-contribution']"
+                          id="auth-cont-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='author-contribution'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']"
+                          id="ethics-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='ethics-information'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/title-group"
+                          id="dec-letter-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='decision-letter']/front-stub/title-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']/front-stub/title-group"
+                          id="reply-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']/front-stub/title-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']"
+                          id="author-contrib-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::funding-group/award-group"
+                          id="award-group-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>funding-group/award-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
+                          id="fig-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]"
+                          id="fig-sup-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]"
+                          id="box-fig-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/back//app//fig[not(@specific-use='child-fig')]"
+                          id="app-fig-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/back//app//fig[not(@specific-use='child-fig')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/back//app//fig[@specific-use='child-fig']"
+                          id="app-fig-sup-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/back//app//fig[@specific-use='child-fig'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]"
+                          id="rep-fig-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//fig[@specific-use='child-fig']"
+                          id="rep-fig-sup-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']//fig[@specific-use='child-fig'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::related-article"
+                          id="related-articles-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>related-article must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::aff[not(parent::contrib)]"
+                          id="aff-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>aff[not(parent::contrib)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn"
+                          id="fn-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula"
+                          id="disp-formula-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::disp-formula/mml:math"
+                          id="mml-math-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>disp-formula/mml:math must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::app/table-wrap"
+                          id="app-table-wrap-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>app/table-wrap must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//table-wrap"
+                          id="resp-table-wrap-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']//table-wrap must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
+                          id="table-wrap-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body/sec"
+                          id="body-top-level-sec-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body/sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/back/sec"
+                          id="back-top-level-sec-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/back/sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body/sec//sec or descendant::article/back/sec//sec"
+                          id="low-level-sec-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec"
+                          id="sec-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::back"
+                          id="back-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>back must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::back/sec[@sec-type='data-availability']"
+                          id="data-content-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>back/sec[@sec-type='data-availability'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::back/ack"
+                          id="ack-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>back/ack must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::back/ack/*"
+                          id="ack-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>back/ack/* must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::back//app"
+                          id="app-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>back//app must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec[@sec-type='additional-information']"
+                          id="additional-info-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec[@sec-type='additional-information'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']"
+                          id="comp-int-fn-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='competing-interest'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='competing-interest']/fn"
+                          id="comp-int-fn-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='competing-interest']/fn must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='author-contribution']"
+                          id="auth-cont-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='author-contribution'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='author-contribution']/fn"
+                          id="auth-cont-fn-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='author-contribution']/fn must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']"
+                          id="ethics-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='ethics-information'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']/fn"
+                          id="ethics-fn-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/sub-article"
+                          id="dec-letter-reply-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/sub-article must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub"
+                          id="dec-letter-front-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='decision-letter']/front-stub must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/body"
+                          id="dec-letter-body-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='decision-letter']/body must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']/front-stub"
+                          id="reply-front-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']/front-stub must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']/body"
+                          id="reply-body-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']/body must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']/body//disp-quote"
+                          id="reply-disp-quote-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sub-article[@article-type='reply']/body//disp-quote must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta"
+                          id="research-advance-test-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta"
+                          id="insight-test-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::related-article"
+                          id="related-articles-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>related-article must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation"
+                          id="elem-citation-general-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/person-group"
+                          id="elem-citation-gen-name-3-1-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/person-group/collab"
+                          id="elem-citation-gen-name-3-2-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/person-group/collab must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/person-group/name"
+                          id="elem-citation-gen-name-4-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/person-group/name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ref/element-citation/year"
+                          id="elem-citation-year-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ref/element-citation/year must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ref"
+                          id="ref-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ref must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
+                          id="xref-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation"
+                          id="elem-citation-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
+                          id="elem-citation-journal-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/article-title"
+                          id="elem-citation-journal-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/volume"
+                          id="elem-citation-journal-volume-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/volume must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/fpage"
+                          id="elem-citation-journal-fpage-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/fpage must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/elocation-id"
+                          id="elem-citation-journal-elocation-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/elocation-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/comment"
+                          id="elem-citation-journal-comment-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/comment must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']"
+                          id="elem-citation-journal-pub-id-pmid-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/pub-id"
+                          id="elem-citation-journal-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']"
+                          id="elem-citation-book-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']/person-group"
+                          id="elem-citation-book-person-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book']/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']/chapter-title"
+                          id="elem-citation-book-chapter-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book']/chapter-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']/publisher-name"
+                          id="elem-citation-book-publisher-name-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book']/publisher-name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']/edition"
+                          id="elem-citation-book-edition-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book']/edition must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']"
+                          id="elem-citation-book-pub-id-pmid-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='book']/pub-id"
+                          id="elem-citation-book-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='book']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='data']"
+                          id="elem-citation-data-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='data'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']"
+                          id="elem-citation-data-pub-id-doi-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='data']/pub-id[@pub-id-type='doi'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='data']/pub-id"
+                          id="elem-citation-data-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='data']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='data']/ext-link"
+                          id="elem-citation-data-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='data']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='patent']"
+                          id="elem-citation-patent-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='patent'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='patent']/ext-link"
+                          id="elem-citation-patent-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='patent']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='patent']/article-title"
+                          id="elem-citation-patent-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='patent']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='patent']/source"
+                          id="elem-citation-patent-source-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='patent']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='patent']/patent"
+                          id="elem-citation-patent-patent-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='patent']/patent must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']"
+                          id="elem-citation-software-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type = 'software'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']/data-title"
+                          id="elem-citation-software-data-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type = 'software']/data-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']/ext-link"
+                          id="elem-citation-software-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type = 'software']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']"
+                          id="elem-citation-preprint-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/person-group"
+                          id="elem-citation-preprint-person-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/pub-id"
+                          id="elem-citation-preprint-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/ext-link"
+                          id="elem-citation-preprint-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/article-title"
+                          id="elem-citation-preprint-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/source"
+                          id="elem-citation-preprint-source-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']"
+                          id="elem-citation-web-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']/person-group"
+                          id="elem-citation-web-person-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web']/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']/ext-link"
+                          id="elem-citation-web-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']/article-title"
+                          id="elem-citation-web-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']/source"
+                          id="elem-citation-web-source-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']/date-in-citation"
+                          id="elem-citation-web-date-in-citation-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web']/date-in-citation must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='report']"
+                          id="elem-citation-report-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='report'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='report']/person-group"
+                          id="elem-citation-report-preson-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='report']/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='report']/source"
+                          id="elem-citation-report-source-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='report']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='report']/publisher-name"
+                          id="elem-citation-report-publisher-name-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='report']/publisher-name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='report']/pub-id"
+                          id="elem-citation-report-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='report']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='report']/ext-link"
+                          id="elem-citation-report-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='report']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']"
+                          id="elem-citation-confproc-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/person-group"
+                          id="elem-citation-confproc-preson-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/source"
+                          id="elem-citation-confproc-source-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/article-title"
+                          id="elem-citation-confproc-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/conf-name"
+                          id="elem-citation-confproc-conf-name-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/conf-name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/conf-loc"
+                          id="elem-citation-confproc-conf-loc-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/conf-loc must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/fpage"
+                          id="elem-citation-confproc-fpage-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/fpage must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/pub-id"
+                          id="elem-citation-confproc-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/ext-link"
+                          id="elem-citation-confproc-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='confproc']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']"
+                          id="elem-citation-thesis-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']/person-group"
+                          id="elem-citation-thesis-preson-group-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis']/person-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']/article-title"
+                          id="elem-citation-thesis-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']/publisher-name"
+                          id="elem-citation-thesis-publisher-name-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis']/publisher-name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']/publisher-loc"
+                          id="elem-citation-thesis-publisher-loc-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis']/publisher-loc must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']/pub-id"
+                          id="elem-citation-thesis-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']/ext-link"
+                          id="elem-citation-thesis-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='thesis']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']"
+                          id="elem-citation-periodical-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date/year"
+                          id="elem-citation-periodical-year-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/string-date/year must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/article-title"
+                          id="elem-citation-periodical-article-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/volume"
+                          id="elem-citation-periodical-volume-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/volume must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/fpage"
+                          id="elem-citation-periodical-fpage-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/fpage must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date"
+                          id="elem-citation-periodical-string-date-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/string-date must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date/month"
+                          id="elem-citation-periodical-month-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/string-date/month must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date/day"
+                          id="elem-citation-periodical-day-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='periodical']/string-date/day must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/pub-id"
+                          id="pub-id-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title"
+                          id="feature-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::front//abstract[@abstract-type='executive-summary']"
+                          id="feature-abstract-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>front//abstract[@abstract-type='executive-summary'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]"
+                          id="feature-subj-tests-1-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject"
+                          id="feature-subj-tests-2-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>subj-group[@subj-group-type='sub-display-channel']/subject must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
+                          id="feature-article-category-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']"
+                          id="feature-author-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio"
+                          id="feature-bio-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[@article-type = 'correction']"
+                          id="correction-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type = 'correction'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[@article-type = 'retraction']"
+                          id="retraction-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type = 'retraction'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p"
+                          id="final-gene-primer-sequence-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
+                          id="rrid-org-code-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p|td|th must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ref-list//ref"
+                          id="duplicate-ref-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ref-list//ref must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
+                          id="ref-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ref-list/ref/element-citation"
+                          id="unlinked-ref-cite-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ref-list/ref/element-citation must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='video']"
+                          id="vid-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='video'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='fig']"
+                          id="fig-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='fig'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='table']"
+                          id="table-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='table'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='supplementary-material']"
+                          id="supp-file-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='supplementary-material'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='disp-formula']"
+                          id="equation-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='disp-formula'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/article-title"
+                          id="org-ref-article-book-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//article-meta/title-group/article-title or descendant:: article/body//sec/title or descendant:: article//article-meta//kwd"
+                          id="org-title-kwd-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
+                          id="unallowed-symbol-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sup"
+                          id="unallowed-symbol-tests-sup-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sup must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::front//aff/country"
+                          id="country-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>front//aff/country must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::front//aff//named-content[@content-type='city']"
+                          id="city-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>front//aff//named-content[@content-type='city'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::aff/institution[not(@*)]"
+                          id="institution-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>aff/institution[not(@*)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::aff/institution[@content-type='dept']"
+                          id="department-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>aff/institution[@content-type='dept'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/source"
+                          id="journal-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/article-title"
+                          id="ref-article-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
+                          id="journal-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='journal'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/source"
+                          id="preprint-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/source must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='web']"
+                          id="website-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='web'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='software']"
+                          id="software-ref-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='software'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/publisher-name"
+                          id="publisher-name-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/publisher-name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation//name"
+                          id="ref-name-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation//name must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/pub-id[@pub-id-type='isbn']"
+                          id="isbn-conformity-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/pub-id[@pub-id-type='isbn'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::isbn"
+                          id="isbn-conformity-2-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>isbn must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec[@sec-type='data-availability']/p[1]"
+                          id="data-availability-statement-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec[@sec-type='data-availability']/p[1] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fn-group[@content-type='ethics-information']/fn"
+                          id="ethics-info-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec/title"
+                          id="sec-title-conformity-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::abstract[not(@*)]"
+                          id="abstract-house-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>abstract[not(@*)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']"
+                          id="KRT-xref-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table-wrap[@id='keyresource']//td"
+                          id="KRT-td-checks-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table-wrap[@id='keyresource']//td must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::th or descendant::td"
+                          id="colour-table-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>th|td must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::named-content"
+                          id="colour-named-content-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>named-content must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::styled-content"
+                          id="colour-styled-content-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>styled-content must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
+                          id="p-punctuation-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//p[not(parent::list-item)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::italic[not(ancestor::ref)]"
+                          id="italic-house-style-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>italic[not(ancestor::ref)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::list[@list-type]"
+                          id="list-house-style-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>list[@list-type] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
+                          id="pubmed-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p//ext-link[not(ancestor::table-wrap)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ref-list/ref"
+                          id="ref-link-mandate-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ref-list/ref must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
+                          id="fig-permissions-check-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
+                          id="xref-formatting-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
+                          id="ref-xref-formatting-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd"
+                          id="auth-kwd-style-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</svrl:text>
+      </svrl:failed-assert>
+   </svrl:schematron-output>
+</x:result>
