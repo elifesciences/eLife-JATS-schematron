@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fig-group-test-2.sch"?>
+<!--Context: fig-group
+Test: report    not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])
+Message: figgroup does not contain a figure supplement, figurelevel course data or code file, or a figurelevel video, which must be incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <fig-group>
+      <fig/>
+    </fig-group>
+  </article>
+</root>

@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="fig-group-test-1.sch"?>
+<!--Context: fig-group
+Test: assert    count(child::fig[not(@specific-use='child-fig')]) = 1
+Message: figgroup must have one and only one main figure.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <fig-group>
+      <fig specific-use="child-fig"/>
+      <fig specific-use="child-fig"/>
+    </fig-group>
+    <fig-group>
+      <fig/>
+      <fig/>
+    </fig-group>
+  </article>
+</root>

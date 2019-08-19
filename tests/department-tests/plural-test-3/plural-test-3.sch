@@ -592,7 +592,7 @@
   <pattern id="house-style">
     <rule context="aff/institution[@content-type='dept']" id="department-tests">
       <report test="matches(.,'^[Dd]epartment .* [Dd]epartment')" role="error" id="plural-test-3">
-        <value-of select="ancestor::aff/@id"/>contains a department wwhich has two instancest of the word 'department' -<value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+        <value-of select="ancestor::aff/@id"/>contains a department which has two instances of the word 'department' -<value-of select="."/>. Should this be split out into two separate affiliations?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

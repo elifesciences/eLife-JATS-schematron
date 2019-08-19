@@ -2074,6 +2074,50 @@
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-group-tests">
+      <x:scenario label="fig-group-test-1-pass">
+        <x:context href="../tests/fig-group-tests/fig-group-test-1/pass.xml"/>
+        <x:expect-not-assert id="fig-group-test-1" role="error"/>
+        <x:expect-not-assert id="fig-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-group-test-1-fail">
+        <x:context href="../tests/fig-group-tests/fig-group-test-1/fail.xml"/>
+        <x:expect-assert id="fig-group-test-1" role="error"/>
+        <x:expect-not-assert id="fig-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-group-test-2-pass">
+        <x:context href="../tests/fig-group-tests/fig-group-test-2/pass.xml"/>
+        <x:expect-not-report id="fig-group-test-2" role="error"/>
+        <x:expect-not-assert id="fig-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-group-test-2-fail">
+        <x:context href="../tests/fig-group-tests/fig-group-test-2/fail.xml"/>
+        <x:expect-report id="fig-group-test-2" role="error"/>
+        <x:expect-not-assert id="fig-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="fig-group-child-tests">
+      <x:scenario label="fig-group-child-test-1-pass">
+        <x:context href="../tests/fig-group-child-tests/fig-group-child-test-1/pass.xml"/>
+        <x:expect-not-assert id="fig-group-child-test-1" role="error"/>
+        <x:expect-not-assert id="fig-group-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-group-child-test-1-fail">
+        <x:context href="../tests/fig-group-child-tests/fig-group-child-test-1/fail.xml"/>
+        <x:expect-assert id="fig-group-child-test-1" role="error"/>
+        <x:expect-not-assert id="fig-group-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-group-child-test-2-pass">
+        <x:context href="../tests/fig-group-child-tests/fig-group-child-test-2/pass.xml"/>
+        <x:expect-not-report id="fig-group-child-test-2" role="error"/>
+        <x:expect-not-assert id="fig-group-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-group-child-test-2-fail">
+        <x:context href="../tests/fig-group-child-tests/fig-group-child-test-2/fail.xml"/>
+        <x:expect-report id="fig-group-child-test-2" role="error"/>
+        <x:expect-not-assert id="fig-group-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-tests">
       <x:scenario label="fig-test-2-pass">
         <x:context href="../tests/fig-tests/fig-test-2/pass.xml"/>

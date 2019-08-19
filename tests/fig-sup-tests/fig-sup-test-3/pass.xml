@@ -3,5 +3,16 @@
 Test: assert    starts-with(label,concat('Figure ',$parent-fig-no))
 Message: does not start with the main figure number it is associated with .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <fig-group>
+        <fig id="fig1">
+          <label>Figure 1.</label>
+        </fig>
+        <fig id="fig1s1" specific-use="child-fig">
+          <label>Figure 1—figure supplement 1.</label>
+        </fig>
+      </fig-group>
+    </body>
+  </article>
 </root>

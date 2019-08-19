@@ -296,6 +296,12 @@
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/name-test/pass.xml"
+                           id="fig-group-tests-pattern"
+                           name="fig-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/name-test/pass.xml"
+                           id="fig-group-child-tests-pattern"
+                           name="fig-group-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/name-test/pass.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/name-test/pass.xml"
@@ -1246,6 +1252,18 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig-group"
+                          id="fig-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig-group/*"
+                          id="fig-group-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig-group/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
                           id="fig-tests-xspec-assert"

@@ -306,6 +306,12 @@
                            name="ext-link-tests-pattern"/>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/front-permissions-tests/permissions-test-6/fail.xml"
+                           id="fig-group-tests-pattern"
+                           name="fig-group-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/front-permissions-tests/permissions-test-6/fail.xml"
+                           id="fig-group-child-tests-pattern"
+                           name="fig-group-child-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/front-permissions-tests/permissions-test-6/fail.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/front-permissions-tests/permissions-test-6/fail.xml"
@@ -1245,6 +1251,18 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig-group"
+                          id="fig-group-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig-group/*"
+                          id="fig-group-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig-group/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
                           id="fig-tests-xspec-assert"

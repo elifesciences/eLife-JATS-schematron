@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="fig-group-child-test-2.sch"?>
+<!--Context: fig-group/*
+Test: report    (local-name() = 'media') and not(@mimetype='video')
+Message: which is a child of figgroup, must have an @mimetype='video'  i.e. only video type media is allowed as a child of figgroup.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <fig-group>
+      <fig/>
+      <media mimetype="video"/>
+    </fig-group>
+  </article>
+</root>

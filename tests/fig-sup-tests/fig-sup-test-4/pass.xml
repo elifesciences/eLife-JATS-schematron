@@ -3,5 +3,19 @@
 Test: assert    $no = string($pos)
 Message: does not appear in sequence which is incorrect. Relative to the other figures it is placed in position.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <fig-group>
+        <fig id="fig1">
+          <label>Figure 1.</label>
+        </fig>
+        <fig id="fig1s1" specific-use="child-fig">
+          <label>Figure 1—figure supplement 1.</label>
+        </fig>
+        <fig id="fig1s2" specific-use="child-fig">
+          <label>Figure 1—figure supplement 2.</label>
+        </fig>
+      </fig-group>
+    </body>
+  </article>
 </root>
