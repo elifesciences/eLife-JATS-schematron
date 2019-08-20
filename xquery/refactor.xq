@@ -1,97 +1,38 @@
-(: This query derives two separate schematron files from one: one for pre-author and one for final XML. It places each rule in its own pattern, thereby esnuring every test is run. If a report/@id or assert/@id begins with the string 'pre-' it is only placed in the pre-author file. If it begins with 'final-' then it only goes in the final file. If it begins with neither, then the test is applicable to both. It is assumed that having two separate files is preferable to two <phase> elements in one file. :)
+(:
+ ~ This query generate the pre, final, and final-package Schematron files from the base schematron.sch.
+ ~ It also generates the xspec and manipulated version of schematron.sch, as well as updating any schemalet files and writing new test files at the same time, for the purposes of testing. 
+ 
+ :)
+import module namespace schematron = "http://github.com/Schematron/schematron-basex";
+import module namespace elife = 'elife' at 'elife.xqm';
 declare namespace xsl="http://www.w3.org/1999/XSL/Transform";
-declare variable $outputDir := '/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron';
+declare namespace sch = "http://purl.oclc.org/dsdl/schematron";
+declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 
-let $sch-file := doc($outputDir||'/schematron.sch')
+(: Base schematron file :)
+declare variable $sch := doc('../schematron.sch');
 
-for $sch in $sch-file/*:schema
+(: Output directory :)
+declare variable $outputDir := substring-before(base-uri($sch),'/schematron.sch');
 
-let $pre-sch := 
-copy $copy1 := $sch
-modify(
-for $x in $copy1//*:pattern
-return replace node $x with $x/*
-)
-return
-copy $copy2 := $copy1
-modify(
-for $x in $copy2//*:rule
-let $id := ($x/@id || '-pattern')
-return replace node $x with <pattern id="{$id}">{$x}</pattern>
-)
-return
-copy $copy3 := $copy2
-modify(
-for $x in $copy3//(*:report|*:assert)
-return 
-if (starts-with($x/@id,'final-')) then delete node $x
-else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
-else (),
 
-for $x in $copy3//xsl:function[@name="java:file-exists"]
-return delete node $x,
-
-for $x in $copy3//*:let[@name="article-text"]/preceding-sibling::comment()[1]
-return delete node $x
-)
-return $copy3
-
-let $final-sch :=
-copy $copy1 := $sch
-modify(
-for $x in $copy1//*:pattern
-return replace node $x with $x/*
-)
-return
-copy $copy2 := $copy1
-modify(
-for $x in $copy2//*:rule
-let $id := ($x/@id || '-pattern')
-return replace node $x with <pattern id="{$id}">{$x}</pattern>
-)
-return
-copy $copy3 := $copy2
-modify(
-for $x in $copy3//(*:report|*:assert)
-return 
-if (starts-with($x/@id,'pre-')) then delete node $x
-else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
-else (),
-
-for $x in $copy3//xsl:function[@name="java:file-exists"]
-return delete node $x,
-
-for $x in $copy3//*:let[@name="article-text"]/preceding-sibling::comment()[1]
-return delete node $x
-)
-return $copy3
-
-let $final-package-sch :=
-copy $copy1 := $sch
-modify(
-for $x in $copy1//*:pattern
-return replace node $x with $x/*
-)
-return
-copy $copy2 := $copy1
-modify(
-for $x in $copy2//*:rule
-let $id := ($x/@id || '-pattern')
-return replace node $x with <pattern id="{$id}">{$x}</pattern>
-)
-return
-copy $copy3 := $copy2
-modify(
-for $x in $copy3//(*:report|*:assert)
-return 
-if (starts-with($x/@id,'pre-')) then delete node $x
-else ()
-)
-return $copy3
+for $sch in $sch/*:schema
+(: schematron for pre-author :)
+let $pre-sch := elife:sch2pre($sch)
+(: schematron for post-author :)
+let $final-sch := elife:sch2final($sch)
+(: schematron for final-package - niche use :)
+let $final-package-sch :=  elife:sch2final-package($sch)
+(: Generate xspec specific sch :)
+let $xspec-sch := elife:sch2xspec-sch($sch)
+(: Generate xspec file from xspec specific sch :)
+let $xspec := elife:sch2xspec($xspec-sch)
 
 
 return (
   file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
   file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
-  file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch)
+  file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
+  file:write(($outputDir||'/xspec/schematron.sch'),$xspec-sch),
+  file:write(($outputDir||'/xspec/schematron.xspec'),$xspec)
 )

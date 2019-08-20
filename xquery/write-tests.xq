@@ -1,7 +1,7 @@
 (: Initial creation of test files. This can be continuously ran as tests are added since the schemalet files are always overwritten, but the test files are not in intsnaces where they already exist. :)
 
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
-import module namespace test = 'test' at 'test.xqm';
+import module namespace elife = 'elife' at 'elife.xqm';
 
 declare option db:chop 'true';
 
@@ -13,7 +13,7 @@ let $rule-id := $test/parent::*:rule/@id
 let $path := concat($base-uri,'/tests/',$rule-id,'/',$test/@id,'/')
 let $pass := concat($path,'pass.xml')
 let $fail := concat($path,'fail.xml')
-let $schema-let := test:schema-let($test)
+let $schema-let := elife:schema-let($test)
 
 let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"') 
 let $comment := comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
