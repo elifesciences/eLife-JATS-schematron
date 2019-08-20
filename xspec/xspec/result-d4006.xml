@@ -224,9 +224,99 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:successful-report test="matches(label,'^Animation [0-9]1 3') and not(@mime-subtype='gif')"
+                              id="media-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/media[4]">
+         <svrl:text>media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>Video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>Video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/media[2]">
+         <svrl:text>Figure 1—video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/media[2]">
+         <svrl:text>Figure 1—video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/media[3]">
+         <svrl:text>Table 1—video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/media[3]">
+         <svrl:text>Table 1—video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/media[4]">
+         <svrl:text>Animation 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/media[4]">
+         <svrl:text>Animation 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/app[1]/media[1]">
+         <svrl:text>Appendix 1—video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/app[1]/media[1]">
+         <svrl:text>Appendix 1—video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/sub-article[1]/media[1]">
+         <svrl:text>Author response video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]/media[1]">
+         <svrl:text>Author response video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
@@ -464,6 +554,31 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="dec-letter-reply-tests-pattern"
                            name="dec-letter-reply-tests-pattern"/>
+      <svrl:fired-rule context="article/sub-article" id="dec-letter-reply-tests"/>
+      <svrl:failed-assert test="if ($pos = 1) then @article-type='decision-letter' else @article-type='reply'"
+                          id="dec-letter-reply-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>1st sub-article must be the decision letter. 2nd sub-article must be the author response.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@id = concat('SA',$pos)"
+                          id="dec-letter-reply-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article id must be in the format 'SA0', where '0' is it's position (1 or 2).</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(front-stub) = 1"
+                          id="dec-letter-reply-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article contain one and only one front-stub.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(body) = 1"
+                          id="dec-letter-reply-test-4"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article contain one and only one body.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="dec-letter-front-tests-pattern"
                            name="dec-letter-front-tests-pattern"/>
@@ -882,6 +997,12 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
@@ -1234,18 +1355,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media[child::label]"
-                          id="video-test-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media[child::label] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material"
                           id="supplementary-material-tests-xspec-assert"
@@ -1714,12 +1823,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/sub-article"
-                          id="dec-letter-reply-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/sub-article must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub"
                           id="dec-letter-front-tests-xspec-assert"
@@ -2542,12 +2645,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref-list/ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
-                          id="fig-permissions-check-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
                           id="xref-formatting-xspec-assert"

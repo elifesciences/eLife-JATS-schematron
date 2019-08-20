@@ -1,9 +1,8 @@
 <?oxygen SCHSchema="fig-title-test-3.sch"?>
 <!--Context: fig/caption/title
 Test: report    matches(.,' vs\.$')
-Message: title forends with 'vs.', which indicates that the title sentence may be split across title and caption.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Message: title for  ends with 'vs.', which indicates that the title sentence may be split across title and caption.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article article-type="research-article">
         <fig id="fig1">
             <label>Figure 1.</label>

@@ -224,6 +224,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-3/fail.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:failed-assert test="@xlink:href"
+                          id="media-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have @xlink:href.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(matches(@xlink:href,'\.m$')) else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$')) else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$')) else if ($file='html') then not(matches(@xlink:href,'\.html$')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$')) else not(ends-with(@xlink:href,concat('.',$file)))"
+                              id="media-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-3/fail.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
@@ -1234,12 +1247,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media[child::label]"
                           id="video-test-xspec-assert"

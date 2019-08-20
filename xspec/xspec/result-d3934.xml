@@ -224,6 +224,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-3/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:successful-report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')"
+                              id="media-test-9"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-3/pass.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
@@ -1234,12 +1241,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media[child::label]"
                           id="video-test-xspec-assert"

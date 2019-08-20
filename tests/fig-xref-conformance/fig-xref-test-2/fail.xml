@@ -1,9 +1,8 @@
 <?oxygen SCHSchema="fig-xref-test-2.sch"?>
 <!--Context: xref[@ref-type='fig']
 Test: report    matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')
-Message: There is no space between citation and the preceding text  Is this correct?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Message: There is no space between citation and the preceding text    Is this correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>
         <p>... See<xref ref-type="fig" rid="fig1s1">Figure 1-figure supplement 1</xref> ...</p>
         <fig-group>

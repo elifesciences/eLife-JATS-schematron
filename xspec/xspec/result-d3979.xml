@@ -224,9 +224,35 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-5/fail.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:successful-report test="matches(label,'^Animation [0-9]1 3') and not(@mime-subtype='gif')"
+                              id="media-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')"
+                              id="media-test-9"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-5/fail.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>Animation 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>Animation 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-5/fail.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
@@ -1234,18 +1260,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media[child::label]"
-                          id="video-test-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media[child::label] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material"
                           id="supplementary-material-tests-xspec-assert"

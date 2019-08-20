@@ -71,9 +71,12 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="test-article-categories-pattern"
                            name="test-article-categories-pattern"/>
+      <svrl:fired-rule context="article-meta/article-categories" id="test-article-categories"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="disp-channel-checks-pattern"
                            name="disp-channel-checks-pattern"/>
+      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject"
+                       id="disp-channel-checks"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
@@ -173,12 +176,47 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="custom-meta-group-tests-pattern"
                            name="custom-meta-group-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/custom-meta-group" id="custom-meta-group-tests"/>
+      <svrl:failed-assert test="count(custom-meta[@specific-use='meta-only']) = 1"
+                          id="custom-meta-presence"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]">
+         <svrl:text>custom-meta[@specific-use='meta-only'] must be present in custom-meta-group.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="custom-meta-tests-pattern"
                            name="custom-meta-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/custom-meta-group/custom-meta"
+                       id="custom-meta-tests"/>
+      <svrl:failed-assert test="count(meta-name) = 1"
+                          id="custom-meta-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]">
+         <svrl:text>One meta-name must be present in custom-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="meta-name = 'Author impact statement'"
+                          id="custom-meta-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]">
+         <svrl:text>The value of meta-name can only be 'Author impact statement'. Currently it is .</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="meta-value-tests-pattern"
                            name="meta-value-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/custom-meta-group/custom-meta/meta-value"
+                       id="meta-value-tests"/>
+      <svrl:failed-assert test="matches(.,'[\.|\?]$')"
+                          id="pre-custom-meta-test-6"
+                          role="warning"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]/meta-value[1]">
+         <svrl:text>Impact statement should end with a full stop or question mark - please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(.,'[\.|\?]$')"
+                          id="final-custom-meta-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]/meta-value[1]">
+         <svrl:text>Impact statement must end with a full stop or question mark.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/pre-custom-meta-test-5/pass.xml"
                            id="meta-value-child-tests-pattern"
                            name="meta-value-child-tests-pattern"/>
@@ -929,18 +967,6 @@
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article']/front/article-meta must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/article-categories"
-                          id="test-article-categories-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/article-categories must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject"
-                          id="disp-channel-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
                           id="MSA-checks-xspec-assert"
                           role="error"
@@ -1132,24 +1158,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/custom-meta-group"
-                          id="custom-meta-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/custom-meta-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta"
-                          id="custom-meta-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/custom-meta-group/custom-meta must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value"
-                          id="meta-value-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/custom-meta-group/custom-meta/meta-value must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value/*"
                           id="meta-value-child-tests-xspec-assert"

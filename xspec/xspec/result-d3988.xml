@@ -224,6 +224,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-6/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-6/pass.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
@@ -1234,12 +1235,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media[child::label]"
                           id="video-test-xspec-assert"

@@ -14,11 +14,7 @@ Message:  is immediately followed by a display formula, and preceded by a paragr
           <p>Reproduced from Smith et al., 19992</p>
         </caption>
       </fig>
-      <p>
-        <disp-formula id="equ1">
-          <mml:math/>
-        </disp-formula>
-      </p>
+      <p><disp-formula id="equ1"><mml:math/></disp-formula></p>
       <p/>
       <p/>
       <p>

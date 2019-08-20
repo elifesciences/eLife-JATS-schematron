@@ -3,5 +3,18 @@
 Test: assert    matches(.,'[\.|\?]$')
 Message: Impact statement must end with a full stop or question mark.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-value>test content.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
 </root>

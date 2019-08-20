@@ -3,5 +3,13 @@
 Test: assert    local-name() = $allowed-elements
 Message:  is not allowed in impact statement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-value>The P300, an <italic>electroencephalography</italic> (EEG) component known to be evoked by surprising events, predicts learning in a bidirectional manner that depends critically on the surrounding statistical context.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
 </root>

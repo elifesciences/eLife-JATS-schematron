@@ -3,5 +3,9 @@
 Test: report    matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')
 Message: media whose label is in the format 'Animation 0' must have a @mimesubtype='gif'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <media mimetype="text" mime-subtype="gif" xlink:href="file.gif">
+      <label>Animation 1.</label>
+    </media>
+  </article>
 </root>

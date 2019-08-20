@@ -224,12 +224,64 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-8/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:failed-assert test="@xlink:href"
+                          id="media-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have @xlink:href.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(matches(@xlink:href,'\.m$')) else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$')) else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$')) else if ($file='html') then not(matches(@xlink:href,'\.html$')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$')) else not(ends-with(@xlink:href,concat('.',$file)))"
+                              id="media-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:successful-report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')"
+                              id="media-test-9"
+                              role="error"
+                              location="/root[1]/article[1]/supplementary-material[1]/media[1]">
+         <svrl:text>media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-8/pass.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>Video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>Video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-8/pass.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
+      <svrl:fired-rule context="supplementary-material" id="supplementary-material-tests"/>
+      <svrl:failed-assert test="label"
+                          id="supplementary-material-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a label.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if (contains(label,'Transparent reporting form')) then () else not(caption)"
+                              id="supplementary-material-test-2"
+                              role="error"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material have a child caption.</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="matches(label,'^Transparent reporting form$|^Figure \d1 4—source data \d1 4\.$|^Figure \d1 4—figure supplement \d1 4—source data \d1 4\.$|^Table \d1 4—source data \d1 4\.$|^Video \d1 4—source data \d1 4\.$|^Figure \d1 4—source code \d1 4\.$|^Figure \d1 4—figure supplement \d1 4—source code \d1 4\.$|^Table \d1 4—source code \d1 4\.$|^Video \d1 4—source code \d1 4\.$|^Supplementary file \d1 4\.$|^Source data \d1 4\.$|^Source code \d1 4\.$|^Reporting standard \d1 4\.$')"
+                          id="supplementary-material-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material label does not conform to eLife's usual label format.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-8/pass.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
@@ -882,6 +934,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-8/pass.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-8/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
@@ -1234,24 +1287,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media[child::label]"
-                          id="video-test-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media[child::label] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::supplementary-material"
-                          id="supplementary-material-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>supplementary-material must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]"
                           id="source-data-specific-tests-xspec-assert"
@@ -2542,12 +2577,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref-list/ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
-                          id="fig-permissions-check-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
                           id="xref-formatting-xspec-assert"

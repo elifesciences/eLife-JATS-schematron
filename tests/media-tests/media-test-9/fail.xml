@@ -3,5 +3,9 @@
 Test: report    matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')
 Message: media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <media mimetype="text" mime-subtype="xml" xlink:href="file.xml"/>
+    <media mimetype="text" mime-subtype="html" xlink:href="file.HTML"/>
+    <media mimetype="text" mime-subtype="json" xlink:href="file.json"/>
+  </article>
 </root>

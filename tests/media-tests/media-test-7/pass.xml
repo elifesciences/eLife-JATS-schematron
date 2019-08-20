@@ -3,5 +3,28 @@
 Test: report    if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$')) else ()
 Message: video label does not conform to eLife's usual label format.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <media mimetype="video" mime-subtype="mp4" xlink:href="file.mp4">
+      <label>Video 1.</label>
+    </media>
+    <media mimetype="video" mime-subtype="mp4" xlink:href="file.mp4">
+      <label>Figure 1—video 1.</label>
+    </media>
+    <media mimetype="video" mime-subtype="mp4" xlink:href="file.mp4">
+      <label>Table 1—video 1.</label>
+    </media>
+    <media mimetype="video" mime-subtype="mp4" xlink:href="file.mp4">
+      <label>Animation 1.</label>
+    </media>
+    <app>
+      <media mimetype="video" mime-subtype="mp4" xlink:href="file.mp4">
+        <label>Appendix 1—video 1.</label>
+      </media>
+    </app>
+    <sub-article>
+      <media mimetype="video" mime-subtype="mp4" xlink:href="file.mp4">
+        <label>Author response video 1.</label>
+      </media>
+    </sub-article>
+  </article>
 </root>

@@ -1,9 +1,8 @@
 <?oxygen SCHSchema="fig-xref-test-4.sch"?>
 <!--Context: xref[@ref-type='fig']
 Test: report    not(ancestor::supplementary-material) and (ancestor::fig/@id = $rid)
-Message:  Figure citation is in the caption of the figure that it links to. Is it correct or necessary?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Message:   Figure citation is in the caption of the figure that it links to. Is it correct or necessary?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>
         <fig-group>
             <fig id="fig1"><label>Figure 1.</label>...</fig>
