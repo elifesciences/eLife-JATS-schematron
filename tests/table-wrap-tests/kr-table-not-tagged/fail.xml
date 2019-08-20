@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-not-tagged.sch"?>
 <!--Context: table-wrap
 Test: report    ($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')
-Message: has headings that are for the Key reources table, but it does not have an @id='keyresource'.-->
+Message:  has headings that are for the Key reources table, but it does not have an @id='keyresource'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

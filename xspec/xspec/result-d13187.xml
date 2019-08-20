@@ -197,24 +197,124 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="p-tests-pattern"
                            name="p-tests-pattern"/>
+      <svrl:fired-rule context="p" id="p-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="p-child-tests-pattern"
                            name="p-child-tests-pattern"/>
+      <svrl:fired-rule context="p/*" id="p-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="fig-group-tests-pattern"
                            name="fig-group-tests-pattern"/>
+      <svrl:fired-rule context="fig-group" id="fig-group-tests"/>
+      <svrl:failed-assert test="count(child::fig[not(@specific-use='child-fig')]) = 1"
+                          id="fig-group-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/fig-group[1]">
+         <svrl:text>fig-group must have one and only one main figure.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])"
+                              id="fig-group-test-2"
+                              role="error"
+                              location="/root[1]/article[1]/fig-group[1]">
+         <svrl:text>fig-group does not contain a figure supplement, figure-level course data or code file, or a figure-level video, which must be incorrect.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="fig-group-child-tests-pattern"
                            name="fig-group-child-tests-pattern"/>
+      <svrl:fired-rule context="fig-group/*" id="fig-group-child-tests"/>
+      <svrl:fired-rule context="fig-group/*" id="fig-group-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
+      <svrl:fired-rule context="fig[not(ancestor::sub-article[@article-type='reply'])]"
+                       id="fig-tests"/>
+      <svrl:failed-assert test="@position"
+                          id="fig-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>fig must have a @position.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption)"
+                              id="fig-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>fig must have a caption.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
+                              id="pre-fig-test-5"
+                              role="warning"
+                              location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>Figure 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
+                              id="final-fig-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>fig caption must have a title.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else (matches(@id,'^fig[0-9]1 3$') and not(caption/p))"
+                              id="fig-test-6"
+                              role="warning"
+                              location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>Figure does not have a legend, which is very unorthadox. Is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="graphic"
+                          id="pre-fig-test-7"
+                          role="warning"
+                          location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>fig does not have graphic. Esnure author query is added asking for file.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="graphic"
+                          id="final-fig-test-7"
+                          role="error"
+                          location="/root[1]/article[1]/fig-group[1]/fig[1]">
+         <svrl:text>fig must have a graphic.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="fig[not(ancestor::sub-article[@article-type='reply'])]"
+                       id="fig-tests"/>
+      <svrl:failed-assert test="@position"
+                          id="fig-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/fig-group[1]/fig[2]">
+         <svrl:text>fig must have a @position.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption)"
+                              id="fig-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/fig-group[1]/fig[2]">
+         <svrl:text>fig must have a caption.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
+                              id="pre-fig-test-5"
+                              role="warning"
+                              location="/root[1]/article[1]/fig-group[1]/fig[2]">
+         <svrl:text>Figure 1-figure supplement 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
+                              id="final-fig-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/fig-group[1]/fig[2]">
+         <svrl:text>fig caption must have a title.</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="graphic"
+                          id="pre-fig-test-7"
+                          role="warning"
+                          location="/root[1]/article[1]/fig-group[1]/fig[2]">
+         <svrl:text>fig does not have graphic. Esnure author query is added asking for file.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="graphic"
+                          id="final-fig-test-7"
+                          role="error"
+                          location="/root[1]/article[1]/fig-group[1]/fig[2]">
+         <svrl:text>fig must have a graphic.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="ar-fig-tests-pattern"
                            name="ar-fig-tests-pattern"/>
@@ -752,9 +852,11 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="final-gene-primer-sequence-pattern"
                            name="final-gene-primer-sequence-pattern"/>
+      <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
@@ -770,6 +872,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="fig-xref-conformance-pattern"
                            name="fig-xref-conformance-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='fig']" id="fig-xref-conformance"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="table-xref-conformance-pattern"
                            name="table-xref-conformance-pattern"/>
@@ -788,6 +891,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -882,9 +989,12 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
+      <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-xref-conformance/fig-xref-test-2/pass.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
@@ -1181,47 +1291,11 @@
                           location="/root[1]">
          <svrl:text>object-id[@pub-id-type='doi'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p"
-                          id="p-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p/*"
-                          id="p-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref"
-                          id="xref-target-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
                           id="ext-link-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig-group"
-                          id="fig-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig-group/*"
-                          id="fig-group-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig-group/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
-                          id="fig-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]"
                           id="ar-fig-tests-xspec-assert"
@@ -2291,18 +2365,6 @@
                           location="/root[1]">
          <svrl:text>article[@article-type = 'retraction'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p"
-                          id="final-gene-primer-sequence-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
-                          id="rrid-org-code-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list//ref"
                           id="duplicate-ref-xspec-assert"
                           role="error"
@@ -2326,12 +2388,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[@ref-type='video'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='fig']"
-                          id="fig-xref-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='fig'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='table']"
                           id="table-xref-conformance-xspec-assert"
@@ -2362,12 +2418,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2542,18 +2592,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref-list/ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
-                          id="fig-permissions-check-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
-                          id="xref-formatting-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="ref-xref-formatting-xspec-assert"

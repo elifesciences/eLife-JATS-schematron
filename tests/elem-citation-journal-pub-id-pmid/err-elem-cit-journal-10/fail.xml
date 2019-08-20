@@ -4,7 +4,7 @@ Test: report    matches(.,'\D')
 Message: [errelemcitjournal10]
         If <pubid pubidtype="pmid"> is present, the content must be all numeric.
         The content of <pubid pubidtype="pmid"> in Reference '' 
-        is.-->
+        is .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

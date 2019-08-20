@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-title-test.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/title-group
 Test: assert    article-title = 'Decision letter'
-Message: titlegroup must contain articletitle which contains 'Decision letter'. Currently it is.-->
+Message: titlegroup must contain articletitle which contains 'Decision letter'. Currently it is .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="decision-letter">

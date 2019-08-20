@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-journal-pubid-3.sch"?>
 <!--Context: article/front/journal-meta
 Test: assert    issn = '2050-084X'
-Message: ISSN must be 2050084X. Currently it is-->
+Message: ISSN must be 2050084X. Currently it is -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

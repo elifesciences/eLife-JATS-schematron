@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="abstract-test-1.sch"?>
 <!--Context: front//abstract
 Test: report    if ($article-type = $features-article-types) then () else count(object-id[@pub-id-type='doi']) != 1
-Message: objectid[@pubidtype='doi'] must be present in abstract incontent.-->
+Message: objectid[@pubidtype='doi'] must be present in abstract in  content.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-article-front.sch"?>
 <!--Context: article
 Test: assert    count(front) = 1
-Message: Article must have one child front. Currently there are-->
+Message: Article must have one child front. Currently there are -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front/>

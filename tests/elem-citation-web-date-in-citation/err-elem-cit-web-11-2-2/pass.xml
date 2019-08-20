@@ -5,7 +5,8 @@ Message: [errelemcitweb1122]
         The <dateincitation> element's @iso8601date attribute must have the format
         'YYYYMMDD'.
         Reference '' has '',
-        which does not have that format.-->
+        which does not have that format.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="de-novo-italic-test.sch"?>
 <!--Context: italic[not(ancestor::ref)]
 Test: report    matches(.,'[Dd]e [Nn]ovo')
-Message: element contains 'de novo'  this should not be in italics (eLife house style).-->
+Message:  element contains 'de novo'  this should not be in italics (eLife house style).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <italic>de novo</italic>

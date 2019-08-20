@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-US-states-test.sch"?>
 <!--Context: front//aff//named-content[@content-type='city']
 Test: report    matches($lc,$states-regex)
-Message: city contains a US state (or an abbreviation for it) . Please raise with eLife production staff.-->
+Message: city contains a US state (or an abbreviation for it)  . Please raise with eLife production staff.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

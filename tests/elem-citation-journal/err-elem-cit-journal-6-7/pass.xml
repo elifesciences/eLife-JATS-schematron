@@ -4,7 +4,10 @@ Test: report    count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt
 Message: [errelemcitjournal67]
         The following elements may not occur more than once in an <elementcitation>: <fpage>, <lpage>, 
         <elocationid>, and <comment>In press</comment>. 
-        Reference '' has<fpage>,<lpage>,<elocationid>, and<comment> elements.-->
+        Reference '' has 
+         <fpage>,  <lpage>,
+         <elocationid>, and 
+         <comment> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

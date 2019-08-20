@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ext-link-child-test.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
 Test: report    $child = $formatting-elems
-Message: xref  has a formatting child element  which is not correct.-->
+Message: xref    has a formatting child element    which is not correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46080">https://elifesciences.org/articles/46080</ext-link>

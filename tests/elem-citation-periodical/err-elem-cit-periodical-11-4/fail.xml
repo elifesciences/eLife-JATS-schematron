@@ -3,8 +3,8 @@
 Test: assert    count(fpage/*)=0 and count(lpage/*)=0
 Message: [errelemcitperiodical114]
         The content of the <fpage> and <lpage> elements can contain any alpha numeric value but no child elements are allowed.
-        Reference '' haschild elements in
-        <fpage> andchild elements in <lpage>.-->
+        Reference '' has  child elements in
+        <fpage> and   child elements in <lpage>.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

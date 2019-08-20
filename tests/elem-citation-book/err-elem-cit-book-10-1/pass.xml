@@ -4,7 +4,8 @@ Test: assert    count(source)=1
 Message: [errelembookbook101]
         Each  <elementcitation> of type 'book' must contain one and
         only one <source> element.
-        Reference '' has<source> elements.-->
+        Reference '' has 
+         <source> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

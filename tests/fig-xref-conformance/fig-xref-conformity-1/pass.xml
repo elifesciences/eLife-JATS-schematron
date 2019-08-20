@@ -2,6 +2,9 @@
 <!--Context: xref[@ref-type='fig']
 Test: assert    matches(.,'\p{N}')
 Message:  figure citation does not contain any numbers which must be incorrect.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+    <article>
+        <xref ref-type="fig" rid="fig1">Figure 1</xref>
+    </article>
 </root>

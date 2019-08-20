@@ -3,8 +3,8 @@
 Test: assert    count(pub-id) ge 1 or count(ext-link) ge 1
 Message: [errelemcitdata171]
         The <extlink> element is required if there is no <pubid>.
-        Reference '' has<pubid> elements
-        and<extlink> elements.-->
+        Reference '' has  <pubid> elements
+        and   <extlink> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -2,6 +2,13 @@
 <!--Context: xref[@ref-type='fig']
 Test: report    ($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))
 Message: figure citation contains the textbut links to a figure supplement with the idwhich cannot be correct.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+    <article>
+        <xref ref-type="fig" rid="fig1s1">Figure 1-figure supplement 1</xref>
+        <fig-group>
+            <fig id="fig1"><label>Figure 1.</label>...</fig>
+            <fig id="fig1s1"><label>Figure 1-figure supplement 1.</label>...</fig>
+        </fig-group>
+    </article>
 </root>

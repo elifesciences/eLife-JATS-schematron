@@ -4,7 +4,8 @@ Test: assert    .=('January','February','March','April','May','June','July','Aug
 Message: [errelemcitperiodical144]
         The content of <month> must be the month, written out, with correct capitalization.
         Reference '' does not meet this requirement as it contains
-        the value  <month>=''.-->
+        the value  <month>=''.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

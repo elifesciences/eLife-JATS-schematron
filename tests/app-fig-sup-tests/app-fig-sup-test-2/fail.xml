@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-fig-sup-test-2.sch"?>
 <!--Context: article//app//fig[@specific-use='child-fig']/label
 Test: assert    starts-with(.,ancestor::app/title)
-Message: label fordoes not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.-->
+Message: label for  does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

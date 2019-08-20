@@ -3,7 +3,8 @@
 Test: assert    count(person-group) ge 1
 Message: [errelemcitdata32]
         Each  <elementcitation> of type 'data' must contain at least one <persongroup> element.
-        Reference '' has<persongroup> elements.-->
+        Reference '' has 
+         <persongroup> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

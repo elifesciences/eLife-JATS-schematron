@@ -3,7 +3,9 @@
 Test: report    count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1
 Message: [errelemcitconfproc122]
         The citation may contain no more than one of any of <fpage>, <lpage>, and <elocationid> elements.
-        Reference '' has<fpage> elements,<lpage> elements, and<elocationid> elements.-->
+        Reference '' has 
+        <fpage> elements,   <lpage> elements, and 
+         <elocationid> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

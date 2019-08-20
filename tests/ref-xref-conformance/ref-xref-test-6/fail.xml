@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-6.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($pre-text,'\($|\[$') and (. = $cite2)
-Message:  citation is in nonparenthetic style, but the preceding text ends with open parentheses, so this isn't correct.-->
+Message:   citation is in nonparenthetic style, but the preceding text ends with open parentheses, so this isn't correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

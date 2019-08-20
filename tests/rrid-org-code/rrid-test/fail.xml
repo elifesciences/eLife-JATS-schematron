@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="rrid-test.sch"?>
 <!--Context: p|td|th
 Test: report    ($text-count gt $count)
-Message: '' element contains what looks likeunlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with.-->
+Message: '' element contains what looks like  unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

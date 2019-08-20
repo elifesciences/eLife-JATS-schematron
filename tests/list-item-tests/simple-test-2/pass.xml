@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="simple-test-2.sch"?>
 <!--Context: list-item
 Test: report    ($type='simple') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)] ')
-Message: listitem is part of a simple list, but it begins with a single lowercase letter. Should the listtype be updated to 'alphalower' and this first letter removed?-->
+Message: listitem is part of a simple list, but it begins with a single lowercase letter. Should the listtype be updated to 'alphalower' and this first letter removed? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <list list-type="simple">

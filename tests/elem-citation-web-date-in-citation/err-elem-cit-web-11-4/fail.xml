@@ -3,7 +3,9 @@
 Test: report    if (string-length(@iso-8601-date) = 10) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=. else (string-length(@iso-8601-date) < 10)
 Message: [errelemcitweb114]
         The element content date must match the @iso8601date value.
-        Reference '' has element content ofbut an @iso8601date value of.-->
+        Reference '' has element content of 
+         but an @iso8601date value of 
+        .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -3,7 +3,8 @@
 Test: assert    ./@iso-8601-date
 Message: [errelemcitperiodical72]
         The <year> element must have an @iso8601date attribute.
-        Reference '' does not.-->
+        Reference '' does not.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -4,7 +4,7 @@ Test: assert    @pub-id-type='doi' or @pub-id-type='pmid'
 Message: [errelemcitjournal91]
         Each <pubid>, if present in a journal reference, must have a @pubidtype of either "doi" or "pmid".
         The pubidtype attribute on <pubid> in Reference '' 
-        is.-->
+        is .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

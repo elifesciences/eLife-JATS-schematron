@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ra-sec-test-3.sch"?>
 <!--Context: article/body[ancestor::article/@article-type='research-article']
 Test: report    if ($type = ('Short Report','Scientific Correspondence')) then () else $method-count != 1
-Message: main body incontent doesn't have a child sec with @sectype whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.-->
+Message: main body in  content doesn't have a child sec with @sectype whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,22 +1,34 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:java="http://www.java.com/" xmlns:file="java.io.File" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" queryBinding="xslt2">
+
   <title>eLife Schematron</title>
-  <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
-  <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
-  <ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
+
+	<ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
+	<ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
+	<ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
   <ns uri="http://www.w3.org/2001/XInclude" prefix="xi"/>
   <ns uri="http://www.w3.org/1998/Math/MathML" prefix="mml"/>
   <ns uri="http://saxon.sf.net/" prefix="saxon"/>
   <ns uri="http://purl.org/dc/terms/" prefix="dc"/>
-  <ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+	<ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
   <ns uri="https://elifesciences.org/namespace" prefix="e"/>
+	
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
+
+  
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
+
+  
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
+  
+  
+  
+  
   <xsl:function name="e:titleCaseToken" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -37,6 +49,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:titleCase" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -69,6 +82,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:article-type2title" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -89,6 +103,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:sec-type2title" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -126,7 +141,8 @@
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:function>
+  </xsl:function>  
+  
   <xsl:function name="e:fig-id-type" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -153,10 +169,12 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaacceeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
+
   <xsl:function name="e:citation-format1">
     <xsl:param name="year"/>
     <xsl:choose>
@@ -189,6 +207,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+
   <xsl:function name="e:citation-format2">
     <xsl:param name="year"/>
     <xsl:choose>
@@ -221,6 +240,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -237,10 +257,12 @@
         <xsl:value-of select="$name/surname"/>
       </xsl:when>
       <xsl:otherwise>
+        
         <xsl:value-of select="'No elements present'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:isbn-sum" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -278,7 +300,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
+  
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
+  
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -554,47 +579,158 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
       <xsl:if test="matches($s,'[Gg]ithub')">
         <xsl:element name="match">
-          <xsl:value-of select="'github '"/>
+        <xsl:value-of select="'github '"/>
         </xsl:element>
       </xsl:if>
       <xsl:if test="matches($s,'[Gg]itlab')">
         <xsl:element name="match">
-          <xsl:value-of select="'gitlab '"/>
+        <xsl:value-of select="'gitlab '"/>
         </xsl:element>
       </xsl:if>
       <xsl:if test="matches($s,'[Cc]ode[Pp]lex')">
         <xsl:element name="match">
-          <xsl:value-of select="'codeplex '"/>
+        <xsl:value-of select="'codeplex '"/>
         </xsl:element>
       </xsl:if>
       <xsl:if test="matches($s,'[Ss]ource[Ff]orge')">
         <xsl:element name="match">
-          <xsl:value-of select="'sourceforge '"/>
+        <xsl:value-of select="'sourceforge '"/>
         </xsl:element>
       </xsl:if>
       <xsl:if test="matches($s,'[Bb]it[Bb]ucket')">
         <xsl:element name="match">
-          <xsl:value-of select="'bitbucket '"/>
+        <xsl:value-of select="'bitbucket '"/>
         </xsl:element>
       </xsl:if>
       <xsl:if test="matches($s,'[Aa]ssembla ')">
         <xsl:element name="match">
-          <xsl:value-of select="'assembla '"/>
+        <xsl:value-of select="'assembla '"/>
         </xsl:element>
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="features">
-    <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" id="feature-author-tests">
-      <assert test="bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
-    </rule>
+ 
+  
+  
+  
+ 
+
+  
+
+  
+
+  
+  
+  
+
+   
+
+ 	
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ <pattern id="features">
+   
+   
+   
+   
+	
+   
+   
+   
+   
+   
+   
+   <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" id="feature-author-tests">
+     
+     <assert test="bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
+   </rule>
+   
+   
   </pattern>
-  <pattern id="root-pattern">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<pattern id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author'] must be present.</assert>
     </rule>

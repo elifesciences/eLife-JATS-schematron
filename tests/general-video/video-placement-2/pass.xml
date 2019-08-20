@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="video-placement-2.sch"?>
 <!--Context: media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]
 Test: report    ($xref-sib = 'p') and ($xref1//following::media/@id = $id)
-Message: appears after it's first citation but not directly after it's first citation. Is this correct?-->
+Message:  appears after it's first citation but not directly after it's first citation. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec id="sec1">

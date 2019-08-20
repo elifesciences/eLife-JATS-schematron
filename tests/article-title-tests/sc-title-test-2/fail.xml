@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sc-title-test-2.sch"?>
 <!--Context: article-meta//article-title
 Test: report    ($type = 'Scientific Correspondence') and matches(.,'”')
-Message: title of a '' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe .-->
+Message: title of a '' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe  .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <article-meta>

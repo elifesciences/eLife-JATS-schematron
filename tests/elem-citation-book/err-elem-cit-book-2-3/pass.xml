@@ -4,7 +4,8 @@ Test: assert    count(person-group)=1 or (count(person-group[@person-group-type=
 Message: [errelemcitbook23]
         In a book reference, there should be a single persongroup element (either author or editor) or
         one persongroup with @persongrouptype="author" and one persongroup with @persongrouptype=editor.
-        Reference '' has<persongroup> elements.-->
+        Reference '' has 
+         <persongroup> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

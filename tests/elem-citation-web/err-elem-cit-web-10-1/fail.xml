@@ -3,7 +3,8 @@
 Test: assert    count(ext-link)=1
 Message: [errelemcitweb101]
         One and only one <extlink> element is required.
-        Reference '' has<extlink> elements.-->
+        Reference '' has  
+        <extlink> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

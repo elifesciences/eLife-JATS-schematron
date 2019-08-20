@@ -3,7 +3,7 @@
 Test: assert    matches(normalize-space(.),'^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}')
 Message: [errelemcitweb113]
         The format of the element content must match month, space, day, comma, year.
-        Reference '' has.-->
+        Reference '' has .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

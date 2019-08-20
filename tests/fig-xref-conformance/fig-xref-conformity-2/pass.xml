@@ -2,6 +2,12 @@
 <!--Context: xref[@ref-type='fig']
 Test: report    ($type = 'Figure') and not(contains($no,$target-no))
 Message:  figure citation does not appear to link to the same place as the content of the citation suggests it should.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+    <article>
+        <xref ref-type="fig" rid="fig1">Figure 1</xref>
+        <fig id="fig1">
+            <label>Figure 1.</label>
+        </fig>
+    </article>
 </root>

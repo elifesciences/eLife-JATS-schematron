@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="copyright-symbol.sch"?>
 <!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
 Test: report    contains(.,'©')
-Message: element contains the copyright symbol, '©', which is not allowed.-->
+Message:  element contains the copyright symbol, '©', which is not allowed.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p/>

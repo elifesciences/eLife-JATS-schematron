@@ -3,7 +3,7 @@
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace elife = 'elife' at 'elife.xqm';
 
-declare option db:chop 'true';
+declare option db:chop 'false';
 
 let $base := doc('../schematron.sch')
 let $base-uri := substring-before(base-uri($base),'/schematron.sch')
@@ -32,23 +32,13 @@ return
   else file:create-dir($path)
   ,
   if(file:exists($pass)) then 
-    let $new-pass := 
-    (
-      processing-instruction {'oxygen'}{$pi-content},
-      $comment,
-      doc($pass)//*:root
-    )
-    return file:write($pass,$new-pass)
+    let $new-pass := elife:new-test-case($pass,$comment)
+    return file:write($pass,$new-pass,map{'indent':'no'})
   else file:write($pass,$node)
   ,
   if(file:exists($fail)) then 
-   let $new-fail := 
-    (
-      processing-instruction {'oxygen'}{$pi-content},
-      $comment,
-      doc($fail)//*:root
-    )
-    return file:write($fail,$new-fail)
+   let $new-fail := elife:new-test-case($fail,$comment)
+    return file:write($fail,$new-fail,map{'indent':'no'})
   else file:write($fail,$node)
   ,
   file:write(concat($path,$test/@id,'.sch'),$schema-let)

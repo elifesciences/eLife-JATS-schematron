@@ -4,7 +4,8 @@ Test: assert    not(matches(substring(normalize-space(.),string-length(.)),'[b-z
 Message: [errxrefhigh21]
         Citations in the text to references with the same author(s) in the same year must be arranged in the same 
         order as the reference list. The xref with the value '' is in the wrong order in the 
-        text. Check all the references to citations for the same authors to determine which need to be changed.-->
+        text. Check all the references to citations for the same authors to determine which need to be changed.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

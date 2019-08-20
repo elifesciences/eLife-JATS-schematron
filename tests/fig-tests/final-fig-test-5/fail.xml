@@ -2,6 +2,14 @@
 <!--Context: fig[not(ancestor::sub-article[@article-type='reply'])]
 Test: report    if ($article-type = ('correction','retraction')) then () else not(caption/title)
 Message: fig caption must have a title.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+    <article article-type="research-article">
+        <fig id="fig1">
+            <label/>
+            <caption>
+                <p/>
+            </caption>
+        </fig>
+    </article>
 </root>

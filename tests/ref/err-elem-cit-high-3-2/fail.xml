@@ -5,7 +5,8 @@ Message: [errelemcithigh32]
         Each <ref> element must have an @id attribute that starts with 'bib' and ends with 
         a number. 
         Reference '' has the value 
-        '', which is incorrect.-->
+        '', which is incorrect.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

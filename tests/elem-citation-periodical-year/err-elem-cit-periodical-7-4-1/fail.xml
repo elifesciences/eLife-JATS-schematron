@@ -4,7 +4,8 @@ Test: assert    matches(normalize-space(.),'(^\d{4}[a-z]?)')
 Message: [errelemcitperiodical741]
         The <year> element in a reference must contain 4 digits, possibly followed by one (but not more) lowercase letter.
         Reference '' does not meet this requirement as it contains
-        the value ''.-->
+        the value ''.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

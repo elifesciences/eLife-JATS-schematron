@@ -5,7 +5,8 @@ Message: [errelemcitperiodical145]
         The content of <month> must match the content of the month section of @iso8601date on the 
         sibling year element.
         Reference '' does not meet this requirement as it contains
-        the value <month>='' but <year>/@iso8601date=''.-->
+        the value <month>='' but <year>/@iso8601date=''.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

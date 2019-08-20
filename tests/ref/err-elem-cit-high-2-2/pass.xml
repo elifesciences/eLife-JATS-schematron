@@ -6,7 +6,8 @@ Message: [errelemcithigh22]
         by the first author’s surname, or by the value of the first <collab> element. In the case of
         two authors, the sequence should be arranged by both authors' surnames, then date. For
         three or more authors, the sequence should be the first author's surname, then date.
-        Reference '' appears to be in a different order.-->
+        Reference '' appears to be in a different order.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

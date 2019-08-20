@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="alpha-lower-test-1.sch"?>
 <!--Context: list-item
 Test: report    ($type='alpha-lower') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)]? ')
-Message: listitem is part of an alphalower list, but it begins with a single lowercase letter. Is this correct?-->
+Message: listitem is part of an alphalower list, but it begins with a single lowercase letter. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <list list-type="alpha-lower">

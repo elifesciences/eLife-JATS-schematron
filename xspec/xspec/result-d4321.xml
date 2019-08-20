@@ -242,6 +242,18 @@
                            id="inline-formula-tests-pattern"
                            name="inline-formula-tests-pattern"/>
       <svrl:fired-rule context="inline-formula" id="inline-formula-tests"/>
+      <svrl:successful-report test="matches($pre-text,'[\p\p\p]$') and not(matches(.,'^\s+'))"
+                              id="inline-formula-test-2"
+                              role="warning"
+                              location="/root[1]/article[1]/p[1]/inline-formula[1]">
+         <svrl:text>There is no space between inline-formula and the preceding text - test - Is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="matches($post-text,'^[\p\p\p]') and not(matches(.,'\s+$'))"
+                              id="inline-formula-test-3"
+                              role="warning"
+                              location="/root[1]/article[1]/p[1]/inline-formula[1]">
+         <svrl:text>There is no space between inline-formula and the following text - test - Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/inline-formula-tests/inline-formula-test-3/fail.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>

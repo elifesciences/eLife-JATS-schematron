@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-xref-conformity-3.sch"?>
 <!--Context: xref[@ref-type='table']
 Test: report    (not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))
-Message:  Citation content does not match what it directs to.-->
+Message:   Citation content does not match what it directs to.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

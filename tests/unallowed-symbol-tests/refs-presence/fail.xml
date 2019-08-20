@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="refs-presence.sch"?>
 <!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
 Test: report    not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')
-Message: element contains 'Refs.' which is either incorrect or unnecessary.-->
+Message:  element contains 'Refs.' which is either incorrect or unnecessary.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub>refer to Refs. 2 and 3 for E. coli</sub>

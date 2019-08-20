@@ -3,7 +3,8 @@
 Test: assert    count(pub-id) le 1
 Message: [errelemcitthesis111]
         A maximum of one <pubid> element is allowed.
-        Reference '' has<pubid> elements.-->
+        Reference '' has 
+        <pubid> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-article-id.sch"?>
 <!--Context: article/front/article-meta
 Test: assert    matches($article-id,'^\d{5}$')
-Message: articleid must consist only of 5 digits. Currently it is-->
+Message: articleid must consist only of 5 digits. Currently it is -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

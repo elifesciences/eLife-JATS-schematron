@@ -2,6 +2,15 @@
 <!--Context: fig[not(ancestor::sub-article[@article-type='reply'])]
 Test: assert    graphic
 Message: fig must have a graphic.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+    <article article-type="research-article">
+        <fig id="fig1">
+            <label/>
+            <caption>
+                <title/>
+                <p/>
+            </caption>
+        </fig>
+    </article>
 </root>

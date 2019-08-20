@@ -4,7 +4,8 @@ Test: assert    matches(normalize-space(@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^
 Message: [errelemcitperiodical73]
         The @iso8601date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
         Reference '' does not meet this requirement as it contains
-        the value ''.-->
+        the value ''.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

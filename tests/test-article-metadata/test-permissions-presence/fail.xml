@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-permissions-presence.sch"?>
 <!--Context: article/front/article-meta
 Test: assert    count(permissions) = 1
-Message: There must be one and only one permissions element in the articlemeta. Currently there are-->
+Message: There must be one and only one permissions element in the articlemeta. Currently there are -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

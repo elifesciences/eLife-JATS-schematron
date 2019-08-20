@@ -3,7 +3,7 @@
 Test: assert    (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=' ' and name(child::node()[3])='day' and replace(child::node()[4],'\s+',' ')=', ' and name(*[position()=last()])='year') or (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=', ' and name(*[position()=last()])='year')
 Message: [errelemcitperiodical148]
         The format of the element content must match <month>, space, <day>, comma, <year>, or <month>, comma, <year>.
-        Reference '' has.-->
+        Reference '' has .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

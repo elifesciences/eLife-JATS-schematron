@@ -181,6 +181,18 @@
                            name="given-names-tests-pattern"/>
       <svrl:fired-rule context="article-meta/contrib-group//name/given-names"
                        id="given-names-tests"/>
+      <svrl:failed-assert test="matches(.,'^\p')"
+                          id="given-names-test-6"
+                          role="warning"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]/given-names[1]">
+         <svrl:text>given-names doesn't begin with a capital letter - ' Derek'. Is this correct?</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="matches(.,'^\s')"
+                              id="given-names-test-8"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]/given-names[1]">
+         <svrl:text>given-names starts with a space, which cannot be correct - ' Derek'.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/given-names-tests/given-names-test-8/fail.xml"
                            id="suffix-tests-pattern"
                            name="suffix-tests-pattern"/>

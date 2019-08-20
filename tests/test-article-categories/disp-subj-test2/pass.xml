@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="disp-subj-test2.sch"?>
 <!--Context: article-meta/article-categories
 Test: assert    count(subj-group[@subj-group-type='display-channel']/subject) = 1
-Message: subjgroup[@subjgrouptype='displaychannel'] must contain only one subject. Currently there are.-->
+Message: subjgroup[@subjgrouptype='displaychannel'] must contain only one subject. Currently there are .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

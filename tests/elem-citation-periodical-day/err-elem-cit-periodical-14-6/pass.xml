@@ -4,7 +4,8 @@ Test: assert    matches(normalize-space(.),'([1-9])|([1-2][0-9])|(3[0-1])')
 Message: [errelemcitperiodical146]
         The content of <day>, if present, must be the day, in digits, with no zeroes.
         Reference '' does not meet this requirement as it contains
-        the value  <day>=''.-->
+        the value  <day>=''.
+      -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

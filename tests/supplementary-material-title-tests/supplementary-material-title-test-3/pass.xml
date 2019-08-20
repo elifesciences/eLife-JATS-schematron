@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-title-test-3.sch"?>
 <!--Context: supplementary-material/caption/title
 Test: report    matches(.,' vs\.$')
-Message: title forends with 'vs.', which indicates that the title sentence may be split across title and caption.-->
+Message: title for  ends with 'vs.', which indicates that the title sentence may be split across title and caption.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

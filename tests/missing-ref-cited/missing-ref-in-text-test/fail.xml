@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="missing-ref-in-text-test.sch"?>
 <!--Context: article[back/ref-list]
 Test: report    ($ref-list-regex !='') and matches($missing-ref-text,$missing-ref-regex)
-Message: There may be citations to missing references in the text  search -->
+Message: There may be citations to missing references in the text  search  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article/>
 </root>

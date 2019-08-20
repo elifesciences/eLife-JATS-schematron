@@ -274,3 +274,18 @@ declare function elife:sch2xspec($xspec-sch){
 </x:description>
   
 };
+
+(:~ 
+ : Update comment at top of test files with latest test info
+ :)
+declare function elife:new-test-case($file-path,$new-comment){
+  for $x in doc($file-path)
+  return
+  copy $copy := $x
+  modify(
+    for $comment in $copy//comment()
+    return replace node $comment with ('&#xa;',$new-comment,'&#xa;')
+  )
+  return $copy
+  
+};

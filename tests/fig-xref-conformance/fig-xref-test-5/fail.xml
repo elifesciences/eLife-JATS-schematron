@@ -2,6 +2,13 @@
 <!--Context: xref[@ref-type='fig']
 Test: report    ($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')
 Message:  Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+    <article>
+        <p>... See <xref ref-type="fig" rid="fig1">Figure 1</xref> from <xref ref-type="bibr" rid="bib1">Smith et al., 1992</xref>...</p>
+        <fig-group>
+            <fig id="fig1"><label>Figure 1.</label>...</fig>
+            <fig id="fig1s1"><label>Figure 1-figure supplement 1.</label>...</fig>
+        </fig-group>
+    </article>
 </root>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="auth-kwd-check.sch"?>
 <!--Context: kwd-group[@kwd-group-type='author-keywords']/kwd
 Test: report    (. != $lower) and not(contains($t,.))
-Message: Keyword  ''  does not appear in the article text with this capitalisation. Should it beinstead?-->
+Message: Keyword  ''  does not appear in the article text with this capitalisation. Should it be  instead?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
