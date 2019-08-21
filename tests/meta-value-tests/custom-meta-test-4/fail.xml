@@ -7,7 +7,7 @@ Message: The value of metavalue cannot be empty-->
     <article-meta>
       <custom-meta-group>
         <custom-meta>
-          <meta-value></meta-value>
+          <meta-value/>
         </custom-meta>
       </custom-meta-group>
     </article-meta>

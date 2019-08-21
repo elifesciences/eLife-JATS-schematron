@@ -741,6 +741,8 @@
       
       
       
+      
+      
       <report test="($pre-sentence = ', ') and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)" role="warning" id="ref-xref-test-18">citation is in parenthetic format, but the preceding text is ', ' . Should the preceding text be '; ' instead? <value-of select="concat($pre-sentence,.)"/>
       </report>
       

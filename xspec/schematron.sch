@@ -1247,15 +1247,17 @@
       
       <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="warning" id="pre-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="warning" id="pre-custom-meta-test-9">Impact statement contains a possesive phrase. This is not allowed</report>
       
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possesive phrase. This is not allowed</report>
       
       <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
       
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="pre-custom-meta-test-11">Impact statement contains 'our'. This is not allowed</report>
       
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="error" id="final-custom-meta-test-12">Impact statement contains 'our'. This is not allowed</report>
+      
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="error" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       
       <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>
       </report>
@@ -4207,6 +4209,10 @@
       
       <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-13">
         <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'have', which suggests it should be in the style - <value-of select="$cite2"/>
+      </report>
+      
+      <report test="((matches($post-text,'^[,]? found') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? found') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-23">
+        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'found', which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
       
       <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>

@@ -737,6 +737,8 @@
       
       
       
+      
+      
       <report test="matches($post-sentence,'^[\)][\)]+')" role="error" id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/>
       </report>
       

@@ -724,7 +724,9 @@
       
       
       
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains non-descriptive phrase. This is not allowed</report>
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possesive phrase. This is not allowed</report>
+      
+      
       
       
       

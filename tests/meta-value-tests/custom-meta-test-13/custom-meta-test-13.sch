@@ -625,7 +625,122 @@
 
   
 
+  <pattern id="article-metadata">         
+			 
   
+   
+   
+	 
+   
+    
+    
+    
+    
+    
+    
+	
+	
+	
+	
+	
+	
+	  
+	  
+    
+    
+    
+    
+    
+    
+	
+	
+		
+		
+
+	
+	
+	
+	
+	
+	
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+	
+	
+	
+	
+	
+	
+    
+    
+	
+	
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="error" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
+      
+      
+    </rule>
+    
+    
+    
+    
+ </pattern>
   
   
 
@@ -693,71 +808,7 @@
   
   
   
-  <pattern id="ref-xref-pattern">
-    
-    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
-      <let name="cite1" value="e:citation-format1($ref//year)"/>
-      <let name="cite2" value="e:citation-format2($ref//year)"/>
-      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
-      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
-      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
-      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
-      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-13">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'have', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    </rule>
-    
-  </pattern>
+  
   
   
   
@@ -778,7 +829,7 @@
   
 <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta/meta-value must be present.</assert>
     </rule>
   </pattern>
 </schema>

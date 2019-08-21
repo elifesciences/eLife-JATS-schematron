@@ -733,6 +733,8 @@
       
       
       
+      
+      
       <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>
       </report>
       

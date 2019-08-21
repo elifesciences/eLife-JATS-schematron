@@ -743,6 +743,8 @@
       
       
       
+      
+      
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       

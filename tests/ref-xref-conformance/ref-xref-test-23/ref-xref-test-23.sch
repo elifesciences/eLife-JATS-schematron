@@ -731,11 +731,11 @@
       
       
       
-      <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-13">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'have', which suggests it should be in the style - <value-of select="$cite2"/>
+      
+      
+      <report test="((matches($post-text,'^[,]? found') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? found') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-23">
+        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'found', which suggests it should be in the style - <value-of select="$cite2"/>
       </report>
-      
-      
       
       
       

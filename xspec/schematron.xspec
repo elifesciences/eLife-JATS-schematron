@@ -1835,6 +1835,16 @@
         <x:expect-report id="final-custom-meta-test-12" role="error"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="custom-meta-test-13-pass">
+        <x:context href="../tests/meta-value-tests/custom-meta-test-13/pass.xml"/>
+        <x:expect-not-report id="custom-meta-test-13" role="error"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-13-fail">
+        <x:context href="../tests/meta-value-tests/custom-meta-test-13/fail.xml"/>
+        <x:expect-report id="custom-meta-test-13" role="error"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="rep-study-custom-meta-test-pass">
         <x:context href="../tests/meta-value-tests/rep-study-custom-meta-test/pass.xml"/>
         <x:expect-not-report id="rep-study-custom-meta-test" role="error"/>
@@ -7551,6 +7561,16 @@
       <x:scenario label="ref-xref-test-13-fail">
         <x:context href="../tests/ref-xref-conformance/ref-xref-test-13/fail.xml"/>
         <x:expect-report id="ref-xref-test-13" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-23-pass">
+        <x:context href="../tests/ref-xref-conformance/ref-xref-test-23/pass.xml"/>
+        <x:expect-not-report id="ref-xref-test-23" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-23-fail">
+        <x:context href="../tests/ref-xref-conformance/ref-xref-test-23/fail.xml"/>
+        <x:expect-report id="ref-xref-test-23" role="warning"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ref-xref-test-14-pass">

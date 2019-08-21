@@ -747,6 +747,8 @@
       
       
       
+      
+      
       <report test="matches($pre-sentence,'[A-Za-z0-9][\(]$')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
       
       
