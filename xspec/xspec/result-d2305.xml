@@ -170,12 +170,6 @@
                            id="license-tests-pattern"
                            name="license-tests-pattern"/>
       <svrl:fired-rule context="front//permissions/license" id="license-tests"/>
-      <svrl:failed-assert test="ali:license_ref"
-                          id="license-test-1"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/permissions[1]/license[1]">
-         <svrl:text>license must contain ali:license_ref.</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/front-permissions-tests/permissions-test-4/fail.xml"
                            id="abstract-tests-pattern"
                            name="abstract-tests-pattern"/>

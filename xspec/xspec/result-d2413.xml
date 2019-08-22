@@ -148,12 +148,6 @@
                            id="front-permissions-tests-pattern"
                            name="front-permissions-tests-pattern"/>
       <svrl:fired-rule context="front//permissions" id="front-permissions-tests"/>
-      <svrl:failed-assert test="ali:free_to_read"
-                          id="permissions-test-4"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/permissions[1]">
-         <svrl:text>permissions must contain an ali:free_to_read element.</svrl:text>
-      </svrl:failed-assert>
       <svrl:successful-report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)"
                               id="permissions-test-6"
                               role="error"

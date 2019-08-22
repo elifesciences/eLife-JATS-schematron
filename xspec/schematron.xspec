@@ -1837,12 +1837,12 @@
       </x:scenario>
       <x:scenario label="custom-meta-test-13-pass">
         <x:context href="../tests/meta-value-tests/custom-meta-test-13/pass.xml"/>
-        <x:expect-not-report id="custom-meta-test-13" role="error"/>
+        <x:expect-not-report id="custom-meta-test-13" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="custom-meta-test-13-fail">
         <x:context href="../tests/meta-value-tests/custom-meta-test-13/fail.xml"/>
-        <x:expect-report id="custom-meta-test-13" role="error"/>
+        <x:expect-report id="custom-meta-test-13" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="rep-study-custom-meta-test-pass">

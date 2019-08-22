@@ -594,7 +594,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="error" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

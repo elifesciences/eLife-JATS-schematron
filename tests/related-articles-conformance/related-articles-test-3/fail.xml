@@ -6,7 +6,7 @@ Message: relatedarticle element must contain a @relatedarticletype.-->
   <article>
     <front>
       <article-meta>
-        <related-article />
+        <related-article/>
       </article-meta>
     </front>
   </article>

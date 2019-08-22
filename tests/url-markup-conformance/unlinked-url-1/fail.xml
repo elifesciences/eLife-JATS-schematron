@@ -3,5 +3,7 @@
 Test: report    matches(.,'https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&//=]*)|ftp://.|git://.|tel:.|mailto:.')
 Message: text contains a link which has not been marked up as a link  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p>https://elifesciences.org/</p>
+  </article>
 </root>

@@ -2,8 +2,7 @@
 <!--Context: ref-list/ref
 Test: assert    ancestor::article//xref[@rid = $id]
 Message: '' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>
       <sec>
@@ -66,7 +65,7 @@ Message: '' has no linked citations. Either the reference should be removed or a
                 <given-names>V</given-names>
               </name>
               <name>
-                <surname>Herce Casta&#x00F1;&#x00F3;n</surname>
+                <surname>Herce Castañón</surname>
                 <given-names>S</given-names>
               </name>
               <name>

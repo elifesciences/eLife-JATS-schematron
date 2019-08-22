@@ -1635,7 +1635,7 @@
         id="final-custom-meta-test-12">Impact statement contains 'our'. This is not allowed</report>
       
       <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))"
-        role="error"
+        role="warning"
         id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       
       <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))"
@@ -2601,7 +2601,7 @@
   <pattern
     id="body">
     
-    <rule context="article/body[ancestor::article/@article-type='research-article']" 
+    <rule context="article[@article-type='research-article']/body" 
       id="ra-body-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
@@ -2619,7 +2619,7 @@
       <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()
                     else $method-count != 1" 
         role="warning"
-        id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</report>
+        id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
       
       <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()
         else if (sec[@sec-type='results|discussion']) then ()

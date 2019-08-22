@@ -1264,7 +1264,7 @@
       
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="error" id="final-custom-meta-test-12">Impact statement contains 'our'. This is not allowed</report>
       
-      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="error" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       
       <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>
       </report>
@@ -1898,7 +1898,7 @@
   </pattern>
   
   <pattern id="ra-body-tests-pattern">
-    <rule context="article/body[ancestor::article/@article-type='research-article']" id="ra-body-tests">
+    <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
@@ -1908,7 +1908,7 @@
       <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">
         <value-of select="$type"/> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
       
-      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
       
       <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
     

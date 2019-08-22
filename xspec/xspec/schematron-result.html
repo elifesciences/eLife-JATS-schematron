@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>Test Report for Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.sch (passed: 2990 / pending: 0 / failed: 1306 / total: 4296)</title><style type="text/css">/****************************************************************************/
+      <title>Test Report for Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.sch (passed: 2992 / pending: 0 / failed: 1304 / total: 4296)</title><style type="text/css">/****************************************************************************/
 /*  File:       test-report.css                                             */
 /*  Author:     Jeni Tennison                                               */
 /*  Tags:                                                                   */
@@ -479,7 +479,7 @@ span.scenario-totals {float: right; text-align: right}
       <h1>Test Report</h1>
       <p>Schematron: <a href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.sch">Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.sch</a></p>
       <p>XSpec: <a href="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.xspec">Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/xspec/schematron.xspec</a></p>
-      <p>Tested: 22 August 2019 at 17:00</p>
+      <p>Tested: 22 August 2019 at 17:20</p>
       <h2>Contents</h2>
       <table class="xspec">
          <col width="75%" />
@@ -490,31 +490,31 @@ span.scenario-totals {float: right; text-align: right}
          <thead>
             <tr>
                <th></th>
-               <th class="totals">passed: 2990</th>
+               <th class="totals">passed: 2992</th>
                <th class="totals">pending: 0</th>
-               <th class="totals">failed: 1306</th>
+               <th class="totals">failed: 1304</th>
                <th class="totals">total: 4296</th>
             </tr>
          </thead>
          <tbody>
             <tr class="failed">
                <th><a href="#top-level-scenario-d0e4"></a></th>
-               <th class="totals">2990</th>
+               <th class="totals">2992</th>
                <th class="totals">0</th>
-               <th class="totals">1306</th>
+               <th class="totals">1304</th>
                <th class="totals">4296</th>
             </tr>
          </tbody>
       </table>
       <div id="top-level-scenario-d0e4">
-         <h2 class="successful"><span class="scenario-totals">passed: 2990 / pending: 0 / failed: 1306 / total: 4296</span></h2>
+         <h2 class="successful"><span class="scenario-totals">passed: 2992 / pending: 0 / failed: 1304 / total: 4296</span></h2>
          <table class="xspec" id="t-d0e4">
             <col width="75%" />
             <col width="25%" />
             <tbody>
                <tr class="successful">
                   <th></th>
-                  <th>passed: 2990 / pending: 0 / failed: 1306 / total: 4296</th>
+                  <th>passed: 2992 / pending: 0 / failed: 1304 / total: 4296</th>
                </tr>
                <tr class="successful">
                   <th>article-tests dtd-info-pass</th>
@@ -3564,13 +3564,13 @@ span.scenario-totals {float: right; text-align: right}
                   <td>not assert front-permissions-tests-xspec-assert error</td>
                   <td>Success</td>
                </tr>
-               <tr class="failed">
-                  <th><a href="#scenario-d0e6827">front-permissions-tests permissions-test-4-pass</a></th>
-                  <th>passed: 1 / pending: 0 / failed: 1 / total: 2</th>
+               <tr class="successful">
+                  <th>front-permissions-tests permissions-test-4-pass</th>
+                  <th>passed: 2 / pending: 0 / failed: 0 / total: 2</th>
                </tr>
-               <tr class="failed">
-                  <td><a href="#test-d0e6836">not assert permissions-test-4 error</a></td>
-                  <td>Failure</td>
+               <tr class="successful">
+                  <td>not assert permissions-test-4 error</td>
+                  <td>Success</td>
                </tr>
                <tr class="successful">
                   <td>not assert front-permissions-tests-xspec-assert error</td>
@@ -3708,13 +3708,13 @@ span.scenario-totals {float: right; text-align: right}
                   <td>not assert front-permissions-tests-xspec-assert error</td>
                   <td>Success</td>
                </tr>
-               <tr class="failed">
-                  <th><a href="#scenario-d0e7147">license-tests license-test-1-pass</a></th>
-                  <th>passed: 1 / pending: 0 / failed: 1 / total: 2</th>
+               <tr class="successful">
+                  <th>license-tests license-test-1-pass</th>
+                  <th>passed: 2 / pending: 0 / failed: 0 / total: 2</th>
                </tr>
-               <tr class="failed">
-                  <td><a href="#test-d0e7156">not assert license-test-1 error</a></td>
-                  <td>Failure</td>
+               <tr class="successful">
+                  <td>not assert license-test-1 error</td>
+                  <td>Success</td>
                </tr>
                <tr class="successful">
                   <td>not assert license-tests-xspec-assert error</td>
@@ -30176,50 +30176,6 @@ span.scenario-totals {float: right; text-align: right}
                            <p><a href="result-d1692.xml">result-d1692.xml</a></p>
                         </td>
                         <td><pre>boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'suffix-tests-xspec-assert'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])</pre></td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         <div id="scenario-d0e6827">
-            <h3> front-permissions-tests permissions-test-4-pass</h3>
-            <div id="test-d0e6836">
-               <h4>not assert permissions-test-4 error</h4>
-               <table class="xspecResult">
-                  <thead>
-                     <tr>
-                        <th>Result</th>
-                        <th>Expecting</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>
-                           <p><a href="result-d2296.xml">result-d2296.xml</a></p>
-                        </td>
-                        <td><pre>boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'permissions-test-4'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])</pre></td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         <div id="scenario-d0e7147">
-            <h3> license-tests license-test-1-pass</h3>
-            <div id="test-d0e7156">
-               <h4>not assert license-test-1 error</h4>
-               <table class="xspecResult">
-                  <thead>
-                     <tr>
-                        <th>Result</th>
-                        <th>Expecting</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>
-                           <p><a href="result-d2404.xml">result-d2404.xml</a></p>
-                        </td>
-                        <td><pre>boolean(svrl:schematron-output[svrl:fired-rule]) and empty(svrl:schematron-output/svrl:failed-assert[(@id, preceding-sibling::svrl:fired-rule[1]/@id, preceding-sibling::svrl:active-pattern[1]/@id)[1] = 'license-test-1'][(@role, preceding-sibling::svrl:fired-rule[1]/@role, preceding-sibling::svrl:active-pattern[1]/@role)[1] = 'error'])</pre></td>
                      </tr>
                   </tbody>
                </table>

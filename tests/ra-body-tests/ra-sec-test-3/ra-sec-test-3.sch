@@ -595,12 +595,12 @@
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
-      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body[ancestor::article/@article-type='research-article']" role="error" id="ra-body-tests-xspec-assert">article/body[ancestor::article/@article-type='research-article'] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
     </rule>
   </pattern>
 </schema>

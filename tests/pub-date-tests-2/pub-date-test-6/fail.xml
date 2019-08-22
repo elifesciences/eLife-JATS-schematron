@@ -7,7 +7,7 @@ Message: pubdate[@pubtype='collection'] year must be the same as pubdate[@public
     <pub-date pub-type="collection">
       <year>1000</year>
     </pub-date>
-    <pub-date publication-format='electronic' date-type='publication'>
+    <pub-date publication-format="electronic" date-type="publication">
       <year>1001</year>
     </pub-date>
   </article>

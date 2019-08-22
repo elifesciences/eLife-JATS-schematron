@@ -601,7 +601,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body[ancestor::article/@article-type='research-article']" role="error" id="ra-body-tests-xspec-assert">article/body[ancestor::article/@article-type='research-article'] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
     </rule>
   </pattern>
 </schema>
