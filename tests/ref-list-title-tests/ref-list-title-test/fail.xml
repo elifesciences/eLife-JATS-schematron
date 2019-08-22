@@ -3,5 +3,9 @@
 Test: assert    title = 'References'
 Message: reference list usually has a title that is 'References', but currently it is ''  is that correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <title>Bibliography</title>
+    </ref-list>
+  </article>
 </root>

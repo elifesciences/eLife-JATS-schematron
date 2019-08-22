@@ -122,6 +122,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-1/pre-pub-date-test-1/pass.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
+      <svrl:fired-rule context="day" id="day-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-1/pre-pub-date-test-1/pass.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
@@ -134,6 +135,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-1/pre-pub-date-test-1/pass.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
+      <svrl:fired-rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1"/>
+      <svrl:failed-assert test="matches(month,'^[0-9]2$')"
+                          id="pre-pub-date-test-2"
+                          role="warning"
+                          location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>month is not present in pub-date.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(month,'^[0-9]2$')"
+                          id="final-pub-date-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>pub-date must contain month in the format 00. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(year,'^[0-9]4$')"
+                          id="pub-date-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>pub-date must contain year in the format 0000. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-1/pre-pub-date-test-1/pass.xml"
                            id="pub-date-tests-2-pattern"
                            name="pub-date-tests-2-pattern"/>
@@ -1034,12 +1054,6 @@
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
-                          id="day-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::month"
                           id="month-tests-xspec-assert"
                           role="error"
@@ -1057,12 +1071,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>year[ancestor::element-citation] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
-                          id="pub-date-tests-1-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>pub-date[not(@pub-type='collection')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::pub-date[@pub-type='collection']"
                           id="pub-date-tests-2-xspec-assert"

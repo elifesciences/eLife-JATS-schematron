@@ -197,9 +197,11 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="p-tests-pattern"
                            name="p-tests-pattern"/>
+      <svrl:fired-rule context="p" id="p-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="p-child-tests-pattern"
                            name="p-child-tests-pattern"/>
+      <svrl:fired-rule context="p/*" id="p-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
@@ -755,9 +757,11 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="final-gene-primer-sequence-pattern"
                            name="final-gene-primer-sequence-pattern"/>
+      <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
@@ -791,6 +795,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -879,6 +887,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
+      <svrl:fired-rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pubmed-link/pubmed-presence/pass.xml"
                            id="ref-link-mandate-pattern"
                            name="ref-link-mandate-pattern"/>
@@ -1183,18 +1192,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>object-id[@pub-id-type='doi'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p"
-                          id="p-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p/*"
-                          id="p-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref"
                           id="xref-target-tests-xspec-assert"
@@ -2294,18 +2291,6 @@
                           location="/root[1]">
          <svrl:text>article[@article-type = 'retraction'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p"
-                          id="final-gene-primer-sequence-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
-                          id="rrid-org-code-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list//ref"
                           id="duplicate-ref-xspec-assert"
                           role="error"
@@ -2365,12 +2350,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2533,12 +2512,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>list[@list-type] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
-                          id="pubmed-link-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p//ext-link[not(ancestor::table-wrap)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list/ref"
                           id="ref-link-mandate-xspec-assert"

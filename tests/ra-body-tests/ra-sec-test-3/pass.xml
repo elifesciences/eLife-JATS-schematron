@@ -2,6 +2,19 @@
 <!--Context: article/body[ancestor::article/@article-type='research-article']
 Test: report    if ($type = ('Short Report','Scientific Correspondence')) then () else $method-count != 1
 Message: main body in  content doesn't have a child sec with @sectype whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article article-type="research-article">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+    </article-meta>
+    <body>
+      <sec sec-type="intro"/>
+      <sec sec-type="materials|methods"/>
+    </body>
+  </article>
 </root>

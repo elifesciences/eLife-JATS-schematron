@@ -137,6 +137,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-4/pass.xml"
                            id="pub-date-tests-2-pattern"
                            name="pub-date-tests-2-pattern"/>
+      <svrl:fired-rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2"/>
+      <svrl:failed-assert test="year = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year"
+                          id="pub-date-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-4/pass.xml"
                            id="front-permissions-tests-pattern"
                            name="front-permissions-tests-pattern"/>
@@ -1063,12 +1070,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>pub-date[not(@pub-type='collection')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::pub-date[@pub-type='collection']"
-                          id="pub-date-tests-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>pub-date[@pub-type='collection'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::front//permissions"
                           id="front-permissions-tests-xspec-assert"

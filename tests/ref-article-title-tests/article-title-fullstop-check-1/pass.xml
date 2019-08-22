@@ -3,5 +3,9 @@
 Test: report    (matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))
 Message: ref '' has an articletitle with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal">
+      <article-title>Learning from ancestors</article-title>
+    </element-citation>
+  </article>
 </root>

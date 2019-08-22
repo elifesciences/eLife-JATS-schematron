@@ -2,6 +2,90 @@
 <!--Context: ref-list/ref
 Test: assert    ancestor::article//xref[@rid = $id]
 Message: '' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <body>
+      <sec>
+        <p>Lorem ipsum dolor sit amet (<xref ref-type="bibr" rid="bib1">Behrens et al., 2007</xref>)</p>
+        <p>Lorem ipsum dolor sit amet (<xref ref-type="bibr" rid="bib2">Cheadle et al., 2014</xref>)</p>
+      </sec>
+    </body>
+    <back>
+      <ref-list>
+        <ref id="bib1">
+          <element-citation publication-type="journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Behrens</surname>
+                <given-names>TE</given-names>
+              </name>
+              <name>
+                <surname>Woolrich</surname>
+                <given-names>MW</given-names>
+              </name>
+              <name>
+                <surname>Walton</surname>
+                <given-names>ME</given-names>
+              </name>
+              <name>
+                <surname>Rushworth</surname>
+                <given-names>MF</given-names>
+              </name>
+            </person-group>
+            <year iso-8601-date="2007">2007</year>
+            <article-title>Learning the value of information in an uncertain world</article-title>
+            <source>Nature Neuroscience</source>
+            <volume>10</volume>
+            <fpage>1214</fpage>
+            <lpage>1221</lpage>
+            <pub-id pub-id-type="doi">10.1038/nn1954</pub-id>
+            <pub-id pub-id-type="pmid">17676057</pub-id>
+          </element-citation>
+        </ref>
+        <ref id="bib2">
+          <element-citation publication-type="journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Cheadle</surname>
+                <given-names>S</given-names>
+              </name>
+              <name>
+                <surname>Wyart</surname>
+                <given-names>V</given-names>
+              </name>
+              <name>
+                <surname>Tsetsos</surname>
+                <given-names>K</given-names>
+              </name>
+              <name>
+                <surname>Myers</surname>
+                <given-names>N</given-names>
+              </name>
+              <name>
+                <surname>de Gardelle</surname>
+                <given-names>V</given-names>
+              </name>
+              <name>
+                <surname>Herce Casta&#x00F1;&#x00F3;n</surname>
+                <given-names>S</given-names>
+              </name>
+              <name>
+                <surname>Summerfield</surname>
+                <given-names>C</given-names>
+              </name>
+            </person-group>
+            <year iso-8601-date="2014">2014</year>
+            <article-title>Adaptive gain control during human perceptual choice</article-title>
+            <source>Neuron</source>
+            <volume>81</volume>
+            <fpage>1429</fpage>
+            <lpage>1441</lpage>
+            <pub-id pub-id-type="doi">10.1016/j.neuron.2014.01.020</pub-id>
+            <pub-id pub-id-type="pmid">24656259</pub-id>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
 </root>

@@ -3,5 +3,9 @@
 Test: report    matches(.,'\.$') and not(matches(.,'\.\.$'))
 Message: ref '' has an articletitle which ends with a full stop, which cannot be correct  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="journal">
+      <article-title>Learning from ancestors.</article-title>
+    </element-citation>
+  </article>
 </root>

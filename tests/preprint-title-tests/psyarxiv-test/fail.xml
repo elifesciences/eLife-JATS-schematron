@@ -3,5 +3,18 @@
 Test: report    matches($lc,'psyarxiv') and not(. = 'PsyArXiv')
 Message: ref '' has a source , which is not the correct proprietary capitalisation  'PsyArXiv'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <back>
+      <ref-list>
+        ...
+        <ref>
+          <element-citation publication-type="preprint">
+            ...
+            <source>PsyarXiv</source>
+            ...
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
 </root>

@@ -3,5 +3,9 @@
 Test: report    */local-name() != 'year'
 Message: pubdate[@pubtype='collection'] can only contain a year element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <pub-date pub-type="collection">
+      <month>1000</month>
+    </pub-date>
+  </article>
 </root>

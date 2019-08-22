@@ -3,5 +3,18 @@
 Test: report    matches(.,'�')
 Message:  element contains the replacement character '�' which is unallowed  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <back>
+      <ref-list>
+        ...
+        <ref>
+          <element-citation publication-type="preprint">
+            ...
+            <source>PeerJ Preprints</source>
+            ...
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
 </root>

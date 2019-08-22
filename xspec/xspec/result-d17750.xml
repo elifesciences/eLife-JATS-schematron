@@ -494,6 +494,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation-general"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
@@ -515,12 +516,65 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="elem-citation-journal-pattern"
                            name="elem-citation-journal-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='journal']"
+                       id="elem-citation-journal"/>
+      <svrl:failed-assert test="count(person-group)=1"
+                          id="err-elem-cit-journal-2-1"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-journal-2-1]
+        Each  &lt;element-citation&gt; of type 'journal' must contain one and
+        only one &lt;person-group&gt; element.
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="person-group[@person-group-type='author']"
+                          id="err-elem-cit-journal-2-2"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-journal-2-2]
+        Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt; 
+        with the attribute person-group-type 'author'.
+        Reference '' has a  &lt;person-group&gt; type of 
+        ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(source)=1"
+                          id="err-elem-cit-journal-4-1"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-journal-4-1]
+        Each  &lt;element-citation&gt; of type 'journal' must contain one and
+        only one &lt;source&gt; element.
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)"
+                          id="err-elem-cit-journal-4-2-1"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-journal-4-2-1]
+        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
+        at least two characters.
+        Reference '' has too few characters.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(source)=1 and count(source/*)=0"
+                          id="err-elem-cit-journal-4-2-2"
+                          role="error"
+                          location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-journal-4-2-2]
+        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
+        elements.
+        Reference '' has disallowed child elements.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="elem-citation-journal-article-title-pattern"
                            name="elem-citation-journal-article-title-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='journal']/article-title"
+                       id="elem-citation-journal-article-title"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="elem-citation-journal-volume-pattern"
                            name="elem-citation-journal-volume-pattern"/>
@@ -785,6 +839,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="org-ref-article-book-title-pattern"
                            name="org-ref-article-book-title-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='journal']/article-title"
+                       id="org-ref-article-book-title"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="org-title-kwd-pattern"
                            name="org-title-kwd-pattern"/>
@@ -812,9 +868,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="ref-article-title-tests-pattern"
                            name="ref-article-title-tests-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='journal']/article-title"
+                       id="ref-article-title-tests"/>
+      <svrl:successful-report test="matches(.,'�')"
+                              id="a-title-replacement-character-presence"
+                              role="error"
+                              location="/root[1]/article[1]/element-citation[1]/article-title[1]">
+         <svrl:text>article-title element contains the replacement character '�' which is unallowed - Learning from � ancestors</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="journal-tests-pattern"
                            name="journal-tests-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='journal']"
+                       id="journal-tests"/>
+      <svrl:successful-report test="not(fpage) and not(elocation-id)"
+                              id="eloc-page-assert"
+                              role="warning"
+                              location="/root[1]/article[1]/element-citation[1]">
+         <svrl:text>ref '' is a journal, but it doesn't have a page range or e-location. Is this right?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"
                            id="preprint-title-tests-pattern"
                            name="preprint-title-tests-pattern"/>
@@ -1772,12 +1844,6 @@
                           location="/root[1]">
          <svrl:text>related-article must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-general-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation/person-group"
                           id="elem-citation-gen-name-3-1-xspec-assert"
                           role="error"
@@ -1813,24 +1879,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
-                          id="elem-citation-journal-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='journal'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/article-title"
-                          id="elem-citation-journal-article-title-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/volume"
                           id="elem-citation-journal-volume-xspec-assert"
@@ -2354,12 +2402,6 @@
                           location="/root[1]">
          <svrl:text>xref[@ref-type='disp-formula'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/article-title"
-                          id="org-ref-article-book-title-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article//article-meta/title-group/article-title or descendant:: article/body//sec/title or descendant:: article//article-meta//kwd"
                           id="org-title-kwd-xspec-assert"
                           role="error"
@@ -2407,18 +2449,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='journal']/source must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']/article-title"
-                          id="ref-article-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
-                          id="journal-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='journal'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/source"
                           id="preprint-title-tests-xspec-assert"

@@ -35,27 +35,23 @@
                            id="article-tests-pattern"
                            name="article-tests-pattern"/>
       <svrl:fired-rule context="article" id="article-tests"/>
-      <svrl:failed-assert test="@article-type = $allowed-article-types"
-                          id="test-article-type"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
          <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="count(body) = 1"
-                          id="test-article-body"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
+      <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
+                              id="test-article-back"
+                              role="error"
+                              location="/root[1]/article[1]">
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-1/fail.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
+      <svrl:fired-rule context="article[@article-type='research-article']"
+                       id="research-article"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-1/fail.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
@@ -317,6 +313,32 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-1/fail.xml"
                            id="ra-body-tests-pattern"
                            name="ra-body-tests-pattern"/>
+      <svrl:fired-rule context="article/body[ancestor::article/@article-type='research-article']"
+                       id="ra-body-tests"/>
+      <svrl:successful-report test="count(sec) = 0"
+                              id="ra-sec-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/body[1]">
+         <svrl:text>At least one sec should be present in body for research-article content.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else count(sec[@sec-type='intro']) != 1"
+                              id="ra-sec-test-2"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]">
+         <svrl:text> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else $method-count != 1"
+                              id="ra-sec-test-3"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]">
+         <svrl:text>main body in  content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
+                              id="ra-sec-test-4"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]">
+         <svrl:text>main body in  content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-1/fail.xml"
                            id="top-level-sec-tests-pattern"
                            name="top-level-sec-tests-pattern"/>
@@ -902,12 +924,6 @@
                            id="root-pattern"
                            name="root-pattern"/>
       <svrl:fired-rule context="root" id="root-rule"/>
-      <svrl:failed-assert test="descendant::article[@article-type='research-article']"
-                          id="research-article-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front"
                           id="test-front-xspec-assert"
                           role="error"
@@ -1417,12 +1433,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
-                          id="ra-body-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec"
                           id="top-level-sec-tests-xspec-assert"

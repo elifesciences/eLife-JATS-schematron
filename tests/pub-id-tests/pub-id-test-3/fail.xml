@@ -3,5 +3,10 @@
 Test: report    (@pub-id-type='pmid') and matches(.,'\D')
 Message: pubid is tagged as a pmid, but it contains a character(s) which is not a digit  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation>
+      ...
+      <pub-id pub-id-type="pmid">PMC00001</pub-id>
+    </element-citation>
+  </article>
 </root>

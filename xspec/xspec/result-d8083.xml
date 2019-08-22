@@ -509,6 +509,36 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref/err-elem-cit-high-1/fail.xml"
                            id="ref-pattern"
                            name="ref-pattern"/>
+      <svrl:fired-rule context="ref" id="ref"/>
+      <svrl:failed-assert test="count(*) = count(element-citation)"
+                          id="err-elem-cit-high-1"
+                          role="error"
+                          location="/root[1]/article[1]/ref[1]">
+         <svrl:text>[err-elem-cit-high-1]
+        The only element that is allowed as a child of &lt;ref&gt; is
+        &lt;element-citation&gt;. 
+        Reference '' has other elements.
+      </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@id"
+                          id="err-elem-cit-high-3-1"
+                          role="error"
+                          location="/root[1]/article[1]/ref[1]">
+         <svrl:text>[err-elem-cit-high-3-1]
+        Each &lt;ref&gt; element must have an @id attribute. 
+      </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(normalize-space(@id) ,'^bib\d+$')"
+                          id="err-elem-cit-high-3-2"
+                          role="error"
+                          location="/root[1]/article[1]/ref[1]">
+         <svrl:text>[err-elem-cit-high-3-2]
+        Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with 
+        a number. 
+        Reference '' has the value 
+        '', which is incorrect.
+      </svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref/err-elem-cit-high-1/fail.xml"
                            id="xref-pattern"
                            name="xref-pattern"/>
@@ -1801,12 +1831,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref/element-citation/year must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref"
-                          id="ref-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="xref-xspec-assert"

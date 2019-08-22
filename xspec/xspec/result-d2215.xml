@@ -125,6 +125,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-5/fail.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
+      <svrl:fired-rule context="month" id="month-tests"/>
+      <svrl:failed-assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')"
+                          id="month-conformity"
+                          role="error"
+                          location="/root[1]/article[1]/pub-date[1]/month[1]">
+         <svrl:text>month must contain 2 digits which are between '01' and '12' - '1000' doesn't meet this requirement.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-5/fail.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>
@@ -137,6 +144,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-5/fail.xml"
                            id="pub-date-tests-2-pattern"
                            name="pub-date-tests-2-pattern"/>
+      <svrl:fired-rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2"/>
+      <svrl:failed-assert test="matches(year,'^[0-9]4$')"
+                          id="pub-date-test-4"
+                          role="error"
+                          location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>date must contain year in the format 0000. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="*/local-name() != 'year'"
+                              id="pub-date-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>pub-date[@pub-type='collection'] can only contain a year element.</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="year = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year"
+                          id="pub-date-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/pub-date[1]">
+         <svrl:text>pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-5/fail.xml"
                            id="front-permissions-tests-pattern"
                            name="front-permissions-tests-pattern"/>
@@ -1040,12 +1066,6 @@
                           location="/root[1]">
          <svrl:text>day must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::month"
-                          id="month-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>month must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"
                           role="error"
@@ -1063,12 +1083,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>pub-date[not(@pub-type='collection')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::pub-date[@pub-type='collection']"
-                          id="pub-date-tests-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>pub-date[@pub-type='collection'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::front//permissions"
                           id="front-permissions-tests-xspec-assert"

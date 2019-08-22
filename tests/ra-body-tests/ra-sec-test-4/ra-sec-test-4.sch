@@ -591,7 +591,7 @@
     </xsl:element>
   </xsl:function>
   <pattern id="body">
-    <rule context="article/body[ancestor::article/@article-type='research-article']" id="ra-body-tests">
+    <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>

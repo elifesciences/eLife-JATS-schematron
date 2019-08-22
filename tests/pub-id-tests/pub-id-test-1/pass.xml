@@ -3,5 +3,10 @@
 Test: report    (@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))
 Message: @xlink:href must start with an http:// or ftp:// protocol.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation>
+      ...
+      <pub-id xlink:href="https://elifesciences.org/">elifesciences.org/</pub-id>
+    </element-citation>
+  </article>
 </root>

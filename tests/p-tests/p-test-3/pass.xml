@@ -3,5 +3,7 @@
 Test: assert    count($text-tokens) = 0
 Message: p element contains   The spacing is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p> Lorem ipsum dolor sit amet ± SEM</p>
+  </article>
 </root>
