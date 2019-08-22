@@ -1,34 +1,22 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:java="http://www.java.com/" xmlns:file="java.io.File" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" queryBinding="xslt2">
-
   <title>eLife Schematron</title>
-
-	<ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
-	<ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
-	<ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
+  <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
+  <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
+  <ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
   <ns uri="http://www.w3.org/2001/XInclude" prefix="xi"/>
   <ns uri="http://www.w3.org/1998/Math/MathML" prefix="mml"/>
   <ns uri="http://saxon.sf.net/" prefix="saxon"/>
   <ns uri="http://purl.org/dc/terms/" prefix="dc"/>
-	<ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+  <ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
   <ns uri="https://elifesciences.org/namespace" prefix="e"/>
-	
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
-
-  
   <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
-
-  
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
-  
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-  
-  
-  
-  
   <xsl:function name="e:titleCaseToken" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -49,7 +37,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:titleCase" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -82,7 +69,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:article-type2title" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -103,7 +89,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:sec-type2title" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -141,8 +126,7 @@
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:function>  
-  
+  </xsl:function>
   <xsl:function name="e:fig-id-type" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -169,12 +153,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(translate($string,'àáâãäåçčèéêěëħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaacceeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
-
   <xsl:function name="e:citation-format1">
     <xsl:param name="year"/>
     <xsl:choose>
@@ -207,7 +189,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-
   <xsl:function name="e:citation-format2">
     <xsl:param name="year"/>
     <xsl:choose>
@@ -240,7 +221,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -262,7 +242,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:isbn-sum" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -300,10 +279,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
-  
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
-  
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -579,7 +555,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
@@ -615,221 +590,29 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
- 
-  
-  
-  
- 
-
-  
-
-  
-
-  <pattern id="article-metadata">         
-			 
-  
-   
-   
-	 
-   
-    
-    
-    
-    
-    
-    
-	
-	
-	
-	
-	
-	
-	  
-	  
-    
-    
-    
-    
-    
-    
-	
-	<rule context="article-meta//contrib" id="contrib-tests">
-	  <let name="type" value="@contrib-type"/>
-	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
-	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
-	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)]"/>
-	  <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
-	  <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)]"/>
-	  <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
-	  <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)]"/>
-	  <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
-	  <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)]"/>
-	  <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
-	  <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)]"/>
-	  <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
-	  <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
-	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
-	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
-		
-		
-    	
-	  
-	  
-	  
-	     
-	  
-	     
-	  
-	     
-	  
-	  
-	  
-	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">
+  <pattern id="article-metadata">
+    <rule context="article-meta//contrib" id="contrib-tests">
+      <let name="type" value="@contrib-type"/>
+      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
+      <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)]"/>
+      <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
+      <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)]"/>
+      <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
+      <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)]"/>
+      <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
+      <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)]"/>
+      <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
+      <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)]"/>
+      <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
+      <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
+      <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
+      <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
+      <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">
         <value-of select="concat(descendant::surname,' ',descendant::given-names)"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
-		
-		</rule>
-		
-		
-
-	
-	
-	
-	
-	
-	
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
-	
-	
-	
-	
-	
-    
-    
-	
-	
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-    
- </pattern>
-  
-  
-
-   
-
- 	
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-<pattern id="root-pattern">
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
     </rule>

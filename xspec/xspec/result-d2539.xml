@@ -288,6 +288,9 @@
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/funding-group-tests/funding-group-test-2/fail.xml"
+                           id="url-markup-conformance-pattern"
+                           name="url-markup-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/funding-group-tests/funding-group-test-2/fail.xml"
                            id="fig-group-tests-pattern"
                            name="fig-group-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/funding-group-tests/funding-group-test-2/fail.xml"

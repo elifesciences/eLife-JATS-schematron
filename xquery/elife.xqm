@@ -65,7 +65,20 @@ return delete node $x,
     as last into $x 
     )
 
-return $copy2
+return copy $copy3 := $copy2
+  modify(
+    
+    for $x in $copy3//*:schema/text()
+    return delete node $x,
+    
+    for $x in $copy3//*:pattern/text()
+    return delete node $x,
+    
+    for $x in $copy3//*:rule/text()
+    return delete node $x
+  )
+  
+  return $copy3
   
 };
 

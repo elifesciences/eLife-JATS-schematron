@@ -221,13 +221,13 @@
                               id="pre-custom-meta-test-9"
                               role="warning"
                               location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]/meta-value[1]">
-         <svrl:text>Impact statement contains non-descriptive phrase. This is not allowed</svrl:text>
+         <svrl:text>Impact statement contains a possesive phrase. This is not allowed</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')"
                               id="final-custom-meta-test-9"
                               role="error"
                               location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]/meta-value[1]">
-         <svrl:text>Impact statement contains non-descriptive phrase. This is not allowed</svrl:text>
+         <svrl:text>Impact statement contains a possesive phrase. This is not allowed</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/final-custom-meta-test-9/fail.xml"
                            id="meta-value-child-tests-pattern"
@@ -256,6 +256,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/final-custom-meta-test-9/fail.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/final-custom-meta-test-9/fail.xml"
+                           id="url-markup-conformance-pattern"
+                           name="url-markup-conformance-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/meta-value-tests/final-custom-meta-test-9/fail.xml"
                            id="fig-group-tests-pattern"
                            name="fig-group-tests-pattern"/>

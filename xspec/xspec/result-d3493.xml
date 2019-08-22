@@ -214,6 +214,9 @@
          <svrl:text>'https://elifesciences.org.' - Link ends in a fullstop which is incorrect.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/url-fullstop-report/fail.xml"
+                           id="url-markup-conformance-pattern"
+                           name="url-markup-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/url-fullstop-report/fail.xml"
                            id="fig-group-tests-pattern"
                            name="fig-group-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/url-fullstop-report/fail.xml"

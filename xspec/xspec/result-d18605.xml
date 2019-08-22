@@ -31,1110 +31,918 @@
       <svrl:ns-prefix-in-attribute-values uri="https://elifesciences.org/namespace" prefix="e"/>
       <svrl:ns-prefix-in-attribute-values uri="java.io.File" prefix="file"/>
       <svrl:ns-prefix-in-attribute-values uri="http://www.java.com/" prefix="java"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="article-tests-pattern"
                            name="article-tests-pattern"/>
       <svrl:fired-rule context="article" id="article-tests"/>
-      <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
-                              id="test-article-back"
-                              role="error"
-                              location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:failed-assert test="@article-type = $allowed-article-types"
+                          id="test-article-type"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(front) = 1"
+                          id="test-article-front"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(body) = 1"
+                          id="test-article-body"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
-      <svrl:fired-rule context="article[@article-type='research-article']"
-                       id="research-article"/>
-      <svrl:successful-report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])"
-                              id="pre-test-r-article-d-letter"
-                              role="warning"
-                              location="/root[1]/article[1]">
-         <svrl:text>A decision letter should be present for research articles.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])"
-                              id="final-test-r-article-d-letter"
-                              role="error"
-                              location="/root[1]/article[1]">
-         <svrl:text>A decision letter must be present for research articles.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])"
-                              id="test-r-article-a-reply"
-                              role="warning"
-                              location="/root[1]/article[1]">
-         <svrl:text>Author response should usually be present for research articles, but this one does not have one. Is that correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
-      <svrl:fired-rule context="article/front" id="test-front"/>
-      <svrl:failed-assert test="count(journal-meta) = 1"
-                          id="test-front-jmeta"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-journal-meta-pattern"
                            name="test-journal-meta-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-article-metadata-pattern"
                            name="test-article-metadata-pattern"/>
-      <svrl:fired-rule context="article/front/article-meta" id="test-article-metadata"/>
-      <svrl:failed-assert test="matches($article-id,'^\d5$')"
-                          id="test-article-id"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
-                          id="test-article-doi-1"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
-                          id="test-article-doi-2"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="title-group[article-title]"
-                          id="test-title-group-presence"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>title-group containing article-title must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="pub-date[@publication-format='electronic'][@date-type='publication']"
-                          id="test-epub-date"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="pub-date[@pub-type='collection']"
-                          id="test-pub-collection-presence"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="volume"
-                          id="test-volume-presence"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be a child volume in article-meta.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="elocation-id"
-                          id="test-elocation-presence"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be a child elocation-id in article-meta.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)"
-                              id="test-self-uri-presence"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be a child self-uri in article-meta.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])"
-                              id="test-self-uri-att"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>self-uri must have an @content-type="pdf"</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])"
-                              id="test-self-uri-pdf-1"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is . It should start with elife-.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]5\.pdf$|^elife-[\d]5-v[0-9]1 2\.pdf$')])"
-                              id="test-self-uri-pdf-2"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>self-uri does not conform.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1"
-                              id="test-history-presence"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one history element in the article-meta. Currently there are 0</svrl:text>
-      </svrl:successful-report>
-      <svrl:failed-assert test="count(permissions) = 1"
-                          id="test-permissions-presence"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
-      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))"
-                              id="test-abstracts"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1"
-                              id="test-funding-group-presence"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
-                              id="test-custom-meta-group-presence"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1"
-                              id="test-auth-kwd-group-presence-1"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>One author keyword group must be present in article-meta.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication')) then (count(kwd-group[@kwd-group-type='research-organism']) = 0) else ()"
-                              id="test-ro-kwd-group-presence-2"
-                              role="warning"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Research Article does not contain a Research Organism keyword group. Is this correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-research-article-metadata-pattern"
                            name="test-research-article-metadata-pattern"/>
-      <svrl:fired-rule context="article[@article-type='research-article']/front/article-meta"
-                       id="test-research-article-metadata"/>
-      <svrl:failed-assert test="contrib-group"
-                          id="test-contrib-group-presence-1"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="contrib-group[@content-type='section']"
-                          id="test-contrib-group-presence-2"
-                          role="error"
-                          location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</svrl:text>
-      </svrl:failed-assert>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-article-categories-pattern"
                            name="test-article-categories-pattern"/>
-      <svrl:fired-rule context="article-meta/article-categories" id="test-article-categories"/>
-      <svrl:successful-report test="($article-type != 'editorial') and ($article-type != 'discussion') and count(subj-group[@subj-group-type='heading']) lt 1"
-                              id="head-subj-test2"
-                              role="error"
-                              location="/root[1]/article[1]/front[1]/article-meta[1]/article-categories[1]">
-         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="disp-channel-checks-pattern"
                            name="disp-channel-checks-pattern"/>
-      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject"
-                       id="disp-channel-checks"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="head-subj-checks-pattern"
                            name="head-subj-checks-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-title-group-pattern"
                            name="test-title-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="test-contrib-group-pattern"
                            name="test-contrib-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="name-tests-pattern"
                            name="name-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="surname-tests-pattern"
                            name="surname-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="given-names-tests-pattern"
                            name="given-names-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="suffix-tests-pattern"
                            name="suffix-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="name-child-tests-pattern"
                            name="name-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="contrib-tests-pattern"
                            name="contrib-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="author-children-tests-pattern"
                            name="author-children-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="orcid-tests-pattern"
                            name="orcid-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="email-tests-pattern"
                            name="email-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="history-tests-pattern"
                            name="history-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="date-tests-pattern"
                            name="date-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="year-element-citation-tests-pattern"
                            name="year-element-citation-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="pub-date-tests-2-pattern"
                            name="pub-date-tests-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="front-permissions-tests-pattern"
                            name="front-permissions-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="license-tests-pattern"
                            name="license-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="abstract-tests-pattern"
                            name="abstract-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="aff-tests-pattern"
                            name="aff-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="funding-group-tests-pattern"
                            name="funding-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="award-group-tests-pattern"
                            name="award-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="award-id-tests-pattern"
                            name="award-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="institution-wrap-tests-pattern"
                            name="institution-wrap-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="kwd-group-tests-pattern"
                            name="kwd-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ro-kwd-group-tests-pattern"
                            name="ro-kwd-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ro-kwd-tests-pattern"
                            name="ro-kwd-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="custom-meta-group-tests-pattern"
                            name="custom-meta-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="custom-meta-tests-pattern"
                            name="custom-meta-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="meta-value-tests-pattern"
                            name="meta-value-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="meta-value-child-tests-pattern"
                            name="meta-value-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elocation-id-tests-pattern"
                            name="elocation-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="volume-test-pattern"
                            name="volume-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="equal-author-tests-pattern"
                            name="equal-author-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="object-id-tests-pattern"
                            name="object-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="p-tests-pattern"
                            name="p-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="p-child-tests-pattern"
                            name="p-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
-      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
+                           id="url-markup-conformance-pattern"
+                           name="url-markup-conformance-pattern"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-group-tests-pattern"
                            name="fig-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-group-child-tests-pattern"
                            name="fig-group-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ar-fig-tests-pattern"
                            name="ar-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="graphic-tests-pattern"
                            name="graphic-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="disp-formula-tests-pattern"
                            name="disp-formula-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="inline-formula-tests-pattern"
                            name="inline-formula-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="formula-child-tests-pattern"
                            name="formula-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
-      <svrl:fired-rule context="table-wrap" id="table-wrap-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="body-table-label-tests-pattern"
                            name="body-table-label-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-table-label-tests-pattern"
                            name="app-table-label-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-tests-pattern"
                            name="table-tests-pattern"/>
-      <svrl:fired-rule context="table" id="table-tests"/>
-      <svrl:successful-report test="count(tbody) = 0"
-                              id="table-test-1"
-                              role="error"
-                              location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]/table[1]">
-         <svrl:text>table must have at least one tbody.</svrl:text>
-      </svrl:successful-report>
-      <svrl:failed-assert test="thead"
-                          id="table-test-2"
-                          role="warning"
-                          location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]/table[1]">
-         <svrl:text>table doesn't have a thead. Is this correct?</svrl:text>
-      </svrl:failed-assert>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="tbody-tests-pattern"
                            name="tbody-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="thead-tests-pattern"
                            name="thead-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="tr-tests-pattern"
                            name="tr-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="td-child-tests-pattern"
                            name="td-child-tests-pattern"/>
-      <svrl:fired-rule context="td/*" id="td-child-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="th-child-tests-pattern"
                            name="th-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fn-tests-pattern"
                            name="fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="list-item-tests-pattern"
                            name="list-item-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="general-video-pattern"
                            name="general-video-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="body-video-specific-pattern"
                            name="body-video-specific-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="body-table-pos-conformance-pattern"
                            name="body-table-pos-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-table-pos-conformance-pattern"
                            name="app-table-pos-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-specific-tests-pattern"
                            name="fig-specific-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-label-tests-pattern"
                            name="fig-label-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-sup-tests-pattern"
                            name="fig-sup-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="rep-fig-tests-pattern"
                            name="rep-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="box-fig-tests-pattern"
                            name="box-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-fig-tests-pattern"
                            name="app-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-fig-sup-tests-pattern"
                            name="app-fig-sup-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ra-body-tests-pattern"
                            name="ra-body-tests-pattern"/>
-      <svrl:fired-rule context="article/body[ancestor::article/@article-type='research-article']"
-                       id="ra-body-tests"/>
-      <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else count(sec[@sec-type='intro']) != 1"
-                              id="ra-sec-test-2"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]">
-         <svrl:text>Research Article doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
-                              id="ra-sec-test-4"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body in Research Article content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="top-level-sec-tests-pattern"
                            name="top-level-sec-tests-pattern"/>
-      <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
-      <svrl:failed-assert test="@id = concat('s', $pos)"
-                          id="top-sec-id"
-                          role="error"
-                          location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s1.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
-                              id="sec-conformity"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="lower-level-sec-tests-pattern"
                            name="lower-level-sec-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="article-title-tests-pattern"
                            name="article-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="sec-title-tests-pattern"
                            name="sec-title-tests-pattern"/>
-      <svrl:fired-rule context="sec[@sec-type]/title" id="sec-title-tests"/>
-      <svrl:successful-report test="if ($title = 'undefined') then () else . != $title"
-                              id="sec-type-title-test"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/sec[1]/title[1]">
-         <svrl:text>title of a sec with an @sec-type='methods' should usually be 'Methods'.</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-title-tests-pattern"
                            name="fig-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="supplementary-material-title-tests-pattern"
                            name="supplementary-material-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="video-title-tests-pattern"
                            name="video-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ack-title-tests-pattern"
                            name="ack-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ack-content-tests-pattern"
                            name="ack-content-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-list-title-tests-pattern"
                            name="ref-list-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-title-tests-pattern"
                            name="app-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="comp-int-title-tests-pattern"
                            name="comp-int-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="auth-cont-title-tests-pattern"
                            name="auth-cont-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ethics-title-tests-pattern"
                            name="ethics-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="dec-letter-title-tests-pattern"
                            name="dec-letter-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="reply-title-tests-pattern"
                            name="reply-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="author-contrib-ids-pattern"
                            name="author-contrib-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="award-group-ids-pattern"
                            name="award-group-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-ids-pattern"
                            name="fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-sup-ids-pattern"
                            name="fig-sup-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="box-fig-ids-pattern"
                            name="box-fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-fig-ids-pattern"
                            name="app-fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-fig-sup-ids-pattern"
                            name="app-fig-sup-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="rep-fig-ids-pattern"
                            name="rep-fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="rep-fig-sup-ids-pattern"
                            name="rep-fig-sup-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="related-articles-ids-pattern"
                            name="related-articles-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="aff-ids-pattern"
                            name="aff-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fn-ids-pattern"
                            name="fn-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="disp-formula-ids-pattern"
                            name="disp-formula-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="mml-math-ids-pattern"
                            name="mml-math-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-table-wrap-ids-pattern"
                            name="app-table-wrap-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="resp-table-wrap-ids-pattern"
                            name="resp-table-wrap-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-wrap-ids-pattern"
                            name="table-wrap-ids-pattern"/>
-      <svrl:fired-rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
-                       id="table-wrap-ids"/>
-      <svrl:failed-assert test="if (label = 'Key resources table') then @id='keyresource' else if (label) then matches(@id, '^table[0-9]1 3$') else matches(@id, '^inlinetable[0-9]1 3$')"
-                          id="table-wrap-id-test"
-                          role="error"
-                          location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]">
-         <svrl:text>table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="body-top-level-sec-ids-pattern"
                            name="body-top-level-sec-ids-pattern"/>
-      <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
-      <svrl:failed-assert test="@id = concat('s',$pos)"
-                          id="body-top-level-sec-id-test"
-                          role="error"
-                          location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s1.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="back-top-level-sec-ids-pattern"
                            name="back-top-level-sec-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="low-level-sec-ids-pattern"
                            name="low-level-sec-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="sec-tests-pattern"
                            name="sec-tests-pattern"/>
-      <svrl:fired-rule context="sec" id="sec-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="data-content-tests-pattern"
                            name="data-content-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ack-tests-pattern"
                            name="ack-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ack-child-tests-pattern"
                            name="ack-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-tests-pattern"
                            name="app-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="additional-info-tests-pattern"
                            name="additional-info-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="comp-int-fn-group-tests-pattern"
                            name="comp-int-fn-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="comp-int-fn-tests-pattern"
                            name="comp-int-fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="auth-cont-tests-pattern"
                            name="auth-cont-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="auth-cont-fn-tests-pattern"
                            name="auth-cont-fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ethics-tests-pattern"
                            name="ethics-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ethics-fn-tests-pattern"
                            name="ethics-fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="dec-letter-reply-tests-pattern"
                            name="dec-letter-reply-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="dec-letter-front-tests-pattern"
                            name="dec-letter-front-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="dec-letter-body-tests-pattern"
                            name="dec-letter-body-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="reply-front-tests-pattern"
                            name="reply-front-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="reply-body-tests-pattern"
                            name="reply-body-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="reply-disp-quote-tests-pattern"
                            name="reply-disp-quote-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="research-advance-test-pattern"
                            name="research-advance-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="insight-test-pattern"
                            name="insight-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="related-articles-conformance-pattern"
                            name="related-articles-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-gen-name-3-2-pattern"
                            name="elem-citation-gen-name-3-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-gen-name-4-pattern"
                            name="elem-citation-gen-name-4-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-year-pattern"
                            name="elem-citation-year-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-pattern"
                            name="ref-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="xref-pattern"
                            name="xref-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-pattern"
                            name="elem-citation-journal-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-article-title-pattern"
                            name="elem-citation-journal-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-volume-pattern"
                            name="elem-citation-journal-volume-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-fpage-pattern"
                            name="elem-citation-journal-fpage-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-elocation-id-pattern"
                            name="elem-citation-journal-elocation-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-comment-pattern"
                            name="elem-citation-journal-comment-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-pub-id-pmid-pattern"
                            name="elem-citation-journal-pub-id-pmid-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-journal-pub-id-pattern"
                            name="elem-citation-journal-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-pattern"
                            name="elem-citation-book-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-person-group-pattern"
                            name="elem-citation-book-person-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-chapter-title-pattern"
                            name="elem-citation-book-chapter-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-publisher-name-pattern"
                            name="elem-citation-book-publisher-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-edition-pattern"
                            name="elem-citation-book-edition-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-pub-id-pmid-pattern"
                            name="elem-citation-book-pub-id-pmid-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-book-pub-id-pattern"
                            name="elem-citation-book-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-data-pattern"
                            name="elem-citation-data-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-data-pub-id-doi-pattern"
                            name="elem-citation-data-pub-id-doi-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-data-pub-id-pattern"
                            name="elem-citation-data-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-data-ext-link-pattern"
                            name="elem-citation-data-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-patent-pattern"
                            name="elem-citation-patent-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-patent-ext-link-pattern"
                            name="elem-citation-patent-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-patent-article-title-pattern"
                            name="elem-citation-patent-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-patent-source-pattern"
                            name="elem-citation-patent-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-patent-patent-pattern"
                            name="elem-citation-patent-patent-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-software-pattern"
                            name="elem-citation-software-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-software-data-title-pattern"
                            name="elem-citation-software-data-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-software-ext-link-pattern"
                            name="elem-citation-software-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-preprint-pattern"
                            name="elem-citation-preprint-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-preprint-person-group-pattern"
                            name="elem-citation-preprint-person-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-preprint-pub-id-pattern"
                            name="elem-citation-preprint-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-preprint-ext-link-pattern"
                            name="elem-citation-preprint-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-preprint-article-title-pattern"
                            name="elem-citation-preprint-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-preprint-source-pattern"
                            name="elem-citation-preprint-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-web-pattern"
                            name="elem-citation-web-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-web-person-group-pattern"
                            name="elem-citation-web-person-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-web-ext-link-pattern"
                            name="elem-citation-web-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-web-article-title-pattern"
                            name="elem-citation-web-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-web-source-pattern"
                            name="elem-citation-web-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-web-date-in-citation-pattern"
                            name="elem-citation-web-date-in-citation-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-report-pattern"
                            name="elem-citation-report-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-report-preson-group-pattern"
                            name="elem-citation-report-preson-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-report-source-pattern"
                            name="elem-citation-report-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-report-publisher-name-pattern"
                            name="elem-citation-report-publisher-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-report-pub-id-pattern"
                            name="elem-citation-report-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-report-ext-link-pattern"
                            name="elem-citation-report-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-pattern"
                            name="elem-citation-confproc-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-preson-group-pattern"
                            name="elem-citation-confproc-preson-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-source-pattern"
                            name="elem-citation-confproc-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-article-title-pattern"
                            name="elem-citation-confproc-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-conf-name-pattern"
                            name="elem-citation-confproc-conf-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-conf-loc-pattern"
                            name="elem-citation-confproc-conf-loc-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-fpage-pattern"
                            name="elem-citation-confproc-fpage-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-pub-id-pattern"
                            name="elem-citation-confproc-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-confproc-ext-link-pattern"
                            name="elem-citation-confproc-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-pattern"
                            name="elem-citation-thesis-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-preson-group-pattern"
                            name="elem-citation-thesis-preson-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-article-title-pattern"
                            name="elem-citation-thesis-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-publisher-name-pattern"
                            name="elem-citation-thesis-publisher-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-publisher-loc-pattern"
                            name="elem-citation-thesis-publisher-loc-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-pub-id-pattern"
                            name="elem-citation-thesis-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-thesis-ext-link-pattern"
                            name="elem-citation-thesis-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-pattern"
                            name="elem-citation-periodical-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-year-pattern"
                            name="elem-citation-periodical-year-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-article-title-pattern"
                            name="elem-citation-periodical-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-volume-pattern"
                            name="elem-citation-periodical-volume-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-fpage-pattern"
                            name="elem-citation-periodical-fpage-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-string-date-pattern"
                            name="elem-citation-periodical-string-date-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-month-pattern"
                            name="elem-citation-periodical-month-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-periodical-day-pattern"
                            name="elem-citation-periodical-day-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="pub-id-tests-pattern"
                            name="pub-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-title-tests-pattern"
                            name="feature-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-abstract-tests-pattern"
                            name="feature-abstract-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-subj-tests-1-pattern"
                            name="feature-subj-tests-1-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-subj-tests-2-pattern"
                            name="feature-subj-tests-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-article-category-tests-pattern"
                            name="feature-article-category-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-author-tests-pattern"
                            name="feature-author-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="feature-bio-tests-pattern"
                            name="feature-bio-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="correction-tests-pattern"
                            name="correction-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="retraction-tests-pattern"
                            name="retraction-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="final-gene-primer-sequence-pattern"
                            name="final-gene-primer-sequence-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
-      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-xref-conformance-pattern"
                            name="ref-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="unlinked-ref-cite-pattern"
                            name="unlinked-ref-cite-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="vid-xref-conformance-pattern"
                            name="vid-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-xref-conformance-pattern"
                            name="fig-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-xref-conformance-pattern"
                            name="table-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="supp-file-xref-conformance-pattern"
                            name="supp-file-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="equation-xref-conformance-pattern"
                            name="equation-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="org-ref-article-book-title-pattern"
                            name="org-ref-article-book-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="org-title-kwd-pattern"
                            name="org-title-kwd-pattern"/>
-      <svrl:fired-rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd"
-                       id="org-title-kwd"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
-      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
-                       id="unallowed-symbol-tests"/>
-      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
-                       id="unallowed-symbol-tests"/>
-      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
-                       id="unallowed-symbol-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="country-tests-pattern"
                            name="country-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="city-tests-pattern"
                            name="city-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="institution-tests-pattern"
                            name="institution-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="department-tests-pattern"
                            name="department-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="journal-title-tests-pattern"
                            name="journal-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-article-title-tests-pattern"
                            name="ref-article-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="journal-tests-pattern"
                            name="journal-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="preprint-title-tests-pattern"
                            name="preprint-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="website-tests-pattern"
                            name="website-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="software-ref-tests-pattern"
                            name="software-ref-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="publisher-name-tests-pattern"
                            name="publisher-name-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-name-tests-pattern"
                            name="ref-name-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="isbn-conformity-pattern"
                            name="isbn-conformity-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="isbn-conformity-2-pattern"
                            name="isbn-conformity-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="data-availability-statement-pattern"
                            name="data-availability-statement-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ethics-info-pattern"
                            name="ethics-info-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="sec-title-conformity-pattern"
                            name="sec-title-conformity-pattern"/>
-      <svrl:fired-rule context="sec/title" id="sec-title-conformity"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="abstract-house-tests-pattern"
                            name="abstract-house-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="KRT-xref-tests-pattern"
                            name="KRT-xref-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="KRT-check-pattern"
                            name="KRT-check-pattern"/>
       <svrl:fired-rule context="article" id="KRT-check"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="KRT-td-checks-pattern"
                            name="KRT-td-checks-pattern"/>
-      <svrl:fired-rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="colour-table-pattern"
                            name="colour-table-pattern"/>
-      <svrl:fired-rule context="th|td" id="colour-table"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="colour-named-content-pattern"
                            name="colour-named-content-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="colour-styled-content-pattern"
                            name="colour-styled-content-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="p-punctuation-pattern"
                            name="p-punctuation-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="italic-house-style-pattern"
                            name="italic-house-style-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="list-house-style-pattern"
                            name="list-house-style-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-link-mandate-pattern"
                            name="ref-link-mandate-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="code-fork-pattern"
                            name="code-fork-pattern"/>
       <svrl:fired-rule context="article" id="code-fork"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="auth-kwd-style-pattern"
                            name="auth-kwd-style-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMID-link-test/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="root-pattern"
                            name="root-pattern"/>
       <svrl:fired-rule context="root" id="root-rule"/>
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']"
+                          id="research-article-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front"
+                          id="test-front-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front/journal-meta"
                           id="test-journal-meta-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article/front/journal-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/front/article-meta"
+                          id="test-article-metadata-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/front/article-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/front/article-meta"
+                          id="test-research-article-metadata-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article[@article-type='research-article']/front/article-meta must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-meta/article-categories"
+                          id="test-article-categories-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-meta/article-categories must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject"
+                          id="disp-channel-checks-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
                           id="MSA-checks-xspec-assert"
@@ -1394,6 +1202,12 @@
                           location="/root[1]">
          <svrl:text>xref must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
+                          id="ext-link-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig-group"
                           id="fig-group-tests-xspec-assert"
                           role="error"
@@ -1472,6 +1286,12 @@
                           location="/root[1]">
          <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table-wrap"
+                          id="table-wrap-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table-wrap must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body//table-wrap/label"
                           id="body-table-label-tests-xspec-assert"
                           role="error"
@@ -1483,6 +1303,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>app//table-wrap/label must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table"
+                          id="table-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table/tbody"
                           id="tbody-tests-xspec-assert"
@@ -1501,6 +1327,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>tr must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::td/*"
+                          id="td-child-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>td/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::th/*"
                           id="th-child-tests-xspec-assert"
@@ -1586,6 +1418,18 @@
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+                          id="ra-body-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::body/sec"
+                          id="top-level-sec-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>body/sec must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec//sec"
                           id="lower-level-sec-tests-xspec-assert"
                           role="error"
@@ -1597,6 +1441,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta//article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec[@sec-type]/title"
+                          id="sec-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec[@sec-type]/title must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig/caption/title"
                           id="fig-title-tests-xspec-assert"
@@ -1766,6 +1616,18 @@
                           location="/root[1]">
          <svrl:text>sub-article[@article-type='reply']//table-wrap must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
+                          id="table-wrap-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body/sec"
+                          id="body-top-level-sec-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body/sec must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/back/sec"
                           id="back-top-level-sec-ids-xspec-assert"
                           role="error"
@@ -1777,6 +1639,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec"
+                          id="sec-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back"
                           id="back-tests-xspec-assert"
@@ -2432,6 +2300,12 @@
                           location="/root[1]">
          <svrl:text>p must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
+                          id="rrid-org-code-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p|td|th must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list//ref"
                           id="duplicate-ref-xspec-assert"
                           role="error"
@@ -2485,6 +2359,18 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article//article-meta/title-group/article-title or descendant:: article/body//sec/title or descendant:: article//article-meta//kwd"
+                          id="org-title-kwd-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
+                          id="unallowed-symbol-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2588,6 +2474,12 @@
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::sec/title"
+                          id="sec-title-conformity-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>sec/title must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::abstract[not(@*)]"
                           id="abstract-house-tests-xspec-assert"
                           role="error"
@@ -2599,6 +2491,18 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::table-wrap[@id='keyresource']//td"
+                          id="KRT-td-checks-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>table-wrap[@id='keyresource']//td must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::th or descendant::td"
+                          id="colour-table-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>th|td must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::named-content"
                           id="colour-named-content-xspec-assert"
