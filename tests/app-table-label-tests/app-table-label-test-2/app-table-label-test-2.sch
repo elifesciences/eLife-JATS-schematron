@@ -673,6 +673,8 @@
     
     
     
+    
+    
     <rule context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title"/>
       

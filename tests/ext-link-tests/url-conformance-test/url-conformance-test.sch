@@ -649,7 +649,6 @@
       
       
       
-      
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
       
       
@@ -660,6 +659,8 @@
       
       
     </rule>
+    
+    
     
     
     

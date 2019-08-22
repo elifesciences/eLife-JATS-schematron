@@ -2023,16 +2023,6 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="ext-link-tests">
-      <x:scenario label="broken-uri-test-pass">
-        <x:context href="../tests/ext-link-tests/broken-uri-test/pass.xml"/>
-        <x:expect-not-assert id="broken-uri-test" role="error"/>
-        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="broken-uri-test-fail">
-        <x:context href="../tests/ext-link-tests/broken-uri-test/fail.xml"/>
-        <x:expect-assert id="broken-uri-test" role="error"/>
-        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="url-conformance-test-pass">
         <x:context href="../tests/ext-link-tests/url-conformance-test/pass.xml"/>
         <x:expect-not-assert id="url-conformance-test" role="warning"/>
@@ -2082,6 +2072,28 @@
         <x:context href="../tests/ext-link-tests/ext-link-child-test/fail.xml"/>
         <x:expect-report id="ext-link-child-test" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="url-markup-conformance">
+      <x:scenario label="unlinked-url-1-pass">
+        <x:context href="../tests/url-markup-conformance/unlinked-url-1/pass.xml"/>
+        <x:expect-not-report id="unlinked-url-1" role="error"/>
+        <x:expect-not-assert id="url-markup-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unlinked-url-1-fail">
+        <x:context href="../tests/url-markup-conformance/unlinked-url-1/fail.xml"/>
+        <x:expect-report id="unlinked-url-1" role="error"/>
+        <x:expect-not-assert id="url-markup-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unlinked-url-2-pass">
+        <x:context href="../tests/url-markup-conformance/unlinked-url-2/pass.xml"/>
+        <x:expect-not-report id="unlinked-url-2" role="warning"/>
+        <x:expect-not-assert id="url-markup-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unlinked-url-2-fail">
+        <x:context href="../tests/url-markup-conformance/unlinked-url-2/fail.xml"/>
+        <x:expect-report id="unlinked-url-2" role="warning"/>
+        <x:expect-not-assert id="url-markup-conformance-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fig-group-tests">

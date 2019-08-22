@@ -645,6 +645,8 @@
     
     
     
+    
+    
     <rule context="fig-group/*" id="fig-group-child-tests">
       
       <assert test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">

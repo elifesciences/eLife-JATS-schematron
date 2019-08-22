@@ -687,6 +687,8 @@
     
     
     
+    
+    
     <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
       
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>

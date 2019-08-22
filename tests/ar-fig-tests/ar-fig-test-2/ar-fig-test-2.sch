@@ -649,6 +649,8 @@
     
     
     
+    
+    
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       

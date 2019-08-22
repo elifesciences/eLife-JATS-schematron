@@ -675,6 +675,8 @@
     
     
     
+    
+    
     <rule context="table" id="table-tests">
       
       <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one tbody.</report>

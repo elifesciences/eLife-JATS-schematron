@@ -657,9 +657,10 @@
       
       
       
-      
       <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
+    
+    
     
     
     

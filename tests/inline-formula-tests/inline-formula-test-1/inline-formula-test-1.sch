@@ -663,6 +663,8 @@
     
     
     
+    
+    
     <rule context="inline-formula" id="inline-formula-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>

@@ -659,6 +659,8 @@
     
     
     
+    
+    
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
       <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">

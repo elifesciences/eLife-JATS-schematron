@@ -671,6 +671,8 @@
     
     
     
+    
+    
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
       <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$')" role="error" id="body-table-label-test-1">

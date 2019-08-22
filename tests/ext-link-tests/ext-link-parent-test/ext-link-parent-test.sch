@@ -655,11 +655,12 @@
       
       
       
-      
       <report test="$parent = $formatting-elems" role="warning" id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
       
       
     </rule>
+    
+    
     
     
     

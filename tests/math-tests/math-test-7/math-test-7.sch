@@ -665,6 +665,8 @@
     
     
     
+    
+    
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>

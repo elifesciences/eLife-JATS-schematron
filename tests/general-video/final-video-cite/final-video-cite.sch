@@ -691,6 +691,8 @@
     
     
     
+    
+    
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="id" value="@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>

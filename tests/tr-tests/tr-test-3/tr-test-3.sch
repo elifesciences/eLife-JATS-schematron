@@ -681,6 +681,8 @@
     
     
     
+    
+    
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       

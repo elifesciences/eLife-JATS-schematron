@@ -689,6 +689,8 @@
     
     
     
+    
+    
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
       

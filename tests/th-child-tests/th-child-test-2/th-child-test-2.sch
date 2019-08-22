@@ -685,6 +685,8 @@
     
     
     
+    
+    
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula')"/> 
       

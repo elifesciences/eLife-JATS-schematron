@@ -653,13 +653,14 @@
       
       
       
-      
       <report test="matches(@xlink:href,'scicrunch\.org.*resolver') and not(matches(@xlink:href,'[0-9]$'))" role="warning" id="rrid-number-check">ext-link links to scicrunch but, the link does not end with a number - '<value-of select="@xlink:href"/>' - this is almost certainly incorrect.</report>
       
       
       
       
     </rule>
+    
+    
     
     
     

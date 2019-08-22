@@ -651,6 +651,8 @@
     
     
     
+    
+    
     <rule context="graphic" id="graphic-tests">
       <let name="file" value="lower-case(@xlink:href)"/>
       

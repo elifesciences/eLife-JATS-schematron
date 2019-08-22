@@ -679,6 +679,8 @@
     
     
     
+    
+    
     <rule context="table/thead" id="thead-tests">
       
       <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one tr.</report>

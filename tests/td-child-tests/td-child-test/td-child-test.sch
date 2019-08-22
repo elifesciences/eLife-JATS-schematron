@@ -683,6 +683,8 @@
     
     
     
+    
+    
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/> 
       

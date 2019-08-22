@@ -1776,10 +1776,11 @@
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
       
-      <!-- Not entirely sure if this works -->
+      <!-- Not entirely sure if this works 
+           Removed for now as it seems not to work
       <assert test="@xlink:href castable as xs:anyURI" 
         role="error"
-        id="broken-uri-test">Broken URI in @xlink:href</assert>
+        id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
@@ -1801,6 +1802,19 @@
       <report test="$child = $formatting-elems"
         role="error" 
         id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+    </rule>
+    
+    <rule context="text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)]" 
+      id="url-markup-conformance">
+      
+      <report test="matches(.,'https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|ftp://.|git://.|tel:.|mailto:.')"
+        role="error"
+        id="unlinked-url-1">text contains a link which has not been marked up as a link - <value-of select="."/></report>
+      
+      <report test="matches(.,'\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')"
+        role="warning"
+        id="unlinked-url-2">text contains a possible link which has not been marked up as one - should it? - <value-of select="."/></report>
+      
     </rule>
     
     <rule context="fig-group" 

@@ -651,7 +651,6 @@
       
       
       
-      
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
       
       
@@ -660,6 +659,8 @@
       
       
     </rule>
+    
+    
     
     
     

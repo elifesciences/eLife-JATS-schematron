@@ -647,6 +647,8 @@
     
     
     
+    
+    
     <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       

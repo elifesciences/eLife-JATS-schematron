@@ -643,6 +643,8 @@
     
     
     
+    
+    
     <rule context="fig-group" id="fig-group-tests">
       
       <assert test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">fig-group must have one and only one main figure.</assert>

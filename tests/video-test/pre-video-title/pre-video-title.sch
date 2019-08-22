@@ -655,6 +655,8 @@
     
     
     
+    
+    
     <rule context="media[child::label]" id="video-test">
       
       <assert test="caption/title" role="warning" id="pre-video-title">
