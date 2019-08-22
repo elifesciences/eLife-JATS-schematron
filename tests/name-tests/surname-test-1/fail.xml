@@ -3,5 +3,26 @@
 Test: assert    count(surname) = 1
 Message: Each name must contain only one surname.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib>
+            <name>
+              <surname>Derek</surname>
+              <surname>Zoolander</surname>
+              <suffix>II</suffix>
+            </name>
+          </contrib>
+          <contrib>
+            <name>
+              <given-names>Derek</given-names>
+              <suffix>Zoolander</suffix>
+              <suffix>II</suffix>
+            </name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

@@ -187,6 +187,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/contrib-test-2/fail.xml"
                            id="name-child-tests-pattern"
                            name="name-child-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/*" id="name-child-tests"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/*" id="name-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/contrib-tests/contrib-test-2/fail.xml"
                            id="contrib-tests-pattern"
                            name="contrib-tests-pattern"/>
@@ -1076,12 +1078,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/suffix must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]"
-                          id="name-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']/*"
                           id="author-children-tests-xspec-assert"

@@ -1037,11 +1037,11 @@
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/suffix must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]"
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*"
                           id="name-child-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</svrl:text>
+         <svrl:text>article-meta/contrib-group//name/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib"
                           id="contrib-tests-xspec-assert"

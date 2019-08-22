@@ -591,14 +591,14 @@
     </xsl:element>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]" id="name-child-tests">
-      <report test="true()" role="error" id="disallowed-child-assert">
-        <value-of select="local-name()"/> is not allowed as a child of name.</report>
+    <rule context="article-meta/contrib-group//name/*" id="name-child-tests">
+      <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
+        <value-of select="local-name()"/> is not allowed as a child of name.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]" role="error" id="name-child-tests-xspec-assert">article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">article-meta/contrib-group//name/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

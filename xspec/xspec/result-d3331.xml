@@ -41,12 +41,6 @@
                           location="/root[1]/article[1]">
          <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="count(front) = 1"
-                          id="test-article-front"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
@@ -59,12 +53,56 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
+      <svrl:fired-rule context="article/front" id="test-front"/>
+      <svrl:failed-assert test="count(journal-meta) = 1"
+                          id="test-front-jmeta"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]">
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="test-journal-meta-pattern"
                            name="test-journal-meta-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="test-article-metadata-pattern"
                            name="test-article-metadata-pattern"/>
+      <svrl:fired-rule context="article/front/article-meta" id="test-article-metadata"/>
+      <svrl:failed-assert test="count(article-categories) = 1"
+                          id="test-article-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one article-categories element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="title-group[article-title]"
+                          id="test-title-group-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>title-group containing article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(permissions) = 1"
+                          id="test-permissions-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1"
+                              id="test-funding-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
+                              id="test-custom-meta-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1"
+                              id="test-auth-kwd-group-presence-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One author keyword group must be present in article-meta.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="test-research-article-metadata-pattern"
                            name="test-research-article-metadata-pattern"/>
@@ -116,27 +154,64 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="history-tests-pattern"
                            name="history-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/history" id="history-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="date-tests-pattern"
                            name="date-tests-pattern"/>
+      <svrl:fired-rule context="date" id="date-tests"/>
+      <svrl:fired-rule context="date" id="date-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
+      <svrl:fired-rule context="day" id="day-tests"/>
+      <svrl:fired-rule context="day" id="day-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
+      <svrl:fired-rule context="month" id="month-tests"/>
+      <svrl:fired-rule context="month" id="month-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>
+      <svrl:fired-rule context="year[ancestor::article-meta]" id="year-article-meta-tests"/>
+      <svrl:fired-rule context="year[ancestor::article-meta]" id="year-article-meta-tests"/>
+      <svrl:fired-rule context="year[ancestor::article-meta]" id="year-article-meta-tests"/>
+      <svrl:fired-rule context="year[ancestor::article-meta]" id="year-article-meta-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="year-element-citation-tests-pattern"
                            name="year-element-citation-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
+      <svrl:fired-rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1"/>
+      <svrl:failed-assert test="matches(day,'^[0-9]2$')"
+                          id="pre-pub-date-test-1"
+                          role="warning"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/pub-date[1]">
+         <svrl:text>day is not present in pub-date.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(day,'^[0-9]2$')"
+                          id="final-pub-date-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/pub-date[1]">
+         <svrl:text>pub-date must contain day in the format 00. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(month,'^[0-9]2$')"
+                          id="pre-pub-date-test-2"
+                          role="warning"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/pub-date[1]">
+         <svrl:text>month is not present in pub-date.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(month,'^[0-9]2$')"
+                          id="final-pub-date-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/pub-date[1]">
+         <svrl:text>pub-date must contain month in the format 00. Currently it is ''.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="pub-date-tests-2-pattern"
                            name="pub-date-tests-2-pattern"/>
+      <svrl:fired-rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="front-permissions-tests-pattern"
                            name="front-permissions-tests-pattern"/>
@@ -185,18 +260,48 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="elocation-id-tests-pattern"
                            name="elocation-id-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/elocation-id" id="elocation-id-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="volume-test-pattern"
                            name="volume-test-pattern"/>
+      <svrl:fired-rule context="article-meta/volume" id="volume-test"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="equal-author-tests-pattern"
                            name="equal-author-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="object-id-tests-pattern"
                            name="object-id-tests-pattern"/>
+      <svrl:fired-rule context="object-id[@pub-id-type='doi']" id="object-id-tests"/>
+      <svrl:failed-assert test="matches(.,'^10.7554/eLife\.[\d]5\.[0-9]3$')"
+                          id="object-id-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/abtsract[1]/object-id[1]">
+         <svrl:text>object-id must follow this convention - '10.7554/eLife.00000.000'.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="(. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])"
+                              id="object-id-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/abtsract[1]/object-id[1]">
+         <svrl:text>object-ids must always be distinct. 10.7554/eLife.46975.0001 is not distinct.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="object-id[@pub-id-type='doi']" id="object-id-tests"/>
+      <svrl:failed-assert test="matches(.,'^10.7554/eLife\.[\d]5\.[0-9]3$')"
+                          id="object-id-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]/abtsract[2]/object-id[1]">
+         <svrl:text>object-id must follow this convention - '10.7554/eLife.00000.000'.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="(. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])"
+                              id="object-id-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/abtsract[2]/object-id[1]">
+         <svrl:text>object-ids must always be distinct. 10.7554/eLife.46975.0001 is not distinct.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="p-tests-pattern"
                            name="p-tests-pattern"/>
+      <svrl:fired-rule context="p" id="p-tests"/>
+      <svrl:fired-rule context="p" id="p-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="p-child-tests-pattern"
                            name="p-child-tests-pattern"/>
@@ -755,9 +860,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="final-gene-primer-sequence-pattern"
                            name="final-gene-primer-sequence-pattern"/>
+      <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
+      <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
@@ -791,6 +900,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/object-id-tests/object-id-test-3/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -908,23 +1021,11 @@
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front"
-                          id="test-front-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front/journal-meta"
                           id="test-journal-meta-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article/front/journal-meta must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front/article-meta"
-                          id="test-article-metadata-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front/article-meta must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[@article-type='research-article']/front/article-meta"
                           id="test-research-article-metadata-xspec-assert"
@@ -992,11 +1093,11 @@
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/suffix must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]"
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*"
                           id="name-child-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</svrl:text>
+         <svrl:text>article-meta/contrib-group//name/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib"
                           id="contrib-tests-xspec-assert"
@@ -1022,53 +1123,11 @@
                           location="/root[1]">
          <svrl:text>article-meta//email must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/history"
-                          id="history-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/history must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::date"
-                          id="date-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>date must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
-                          id="day-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::month"
-                          id="month-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>month must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
-                          id="year-article-meta-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>year[ancestor::article-meta] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::element-citation]"
                           id="year-element-citation-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>year[ancestor::element-citation] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
-                          id="pub-date-tests-1-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>pub-date[not(@pub-type='collection')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::pub-date[@pub-type='collection']"
-                          id="pub-date-tests-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>pub-date[@pub-type='collection'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::front//permissions"
                           id="front-permissions-tests-xspec-assert"
@@ -1160,35 +1219,11 @@
                           location="/root[1]">
          <svrl:text>article-meta/custom-meta-group/custom-meta/meta-value/* must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/elocation-id"
-                          id="elocation-id-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/elocation-id must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/volume"
-                          id="volume-test-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/volume must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']"
                           id="equal-author-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::object-id[@pub-id-type='doi']"
-                          id="object-id-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>object-id[@pub-id-type='doi'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p"
-                          id="p-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::p/*"
                           id="p-child-tests-xspec-assert"
@@ -2294,18 +2329,6 @@
                           location="/root[1]">
          <svrl:text>article[@article-type = 'retraction'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p"
-                          id="final-gene-primer-sequence-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
-                          id="rrid-org-code-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list//ref"
                           id="duplicate-ref-xspec-assert"
                           role="error"
@@ -2365,12 +2388,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"

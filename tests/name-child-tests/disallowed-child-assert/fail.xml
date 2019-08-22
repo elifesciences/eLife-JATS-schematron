@@ -1,7 +1,23 @@
 <?oxygen SCHSchema="disallowed-child-assert.sch"?>
-<!--Context: article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]
-Test: report    true()
+<!--Context: article-meta/contrib-group//name/*
+Test: assert    local-name() = ('surname','given-names','suffix')
 Message:  is not allowed as a child of name.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib>
+            <name>
+              <prefix>Dr</prefix>
+              <given-names>Derek</given-names>
+              <surname>Zoolander</surname>
+              <comment>is a model</comment>
+              <email/>
+            </name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

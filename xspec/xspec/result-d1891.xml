@@ -110,6 +110,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/orcid-tests/orcid-test-2/fail.xml"
                            id="orcid-tests-pattern"
                            name="orcid-tests-pattern"/>
+      <svrl:fired-rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests"/>
+      <svrl:failed-assert test="matches(.,'^http[s]?://orcid.org/[\d]4-[\d]4-[\d]4-[\d]3[0-9X]$')"
+                          id="orcid-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/contrib-id[1]">
+         <svrl:text>contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests"/>
+      <svrl:failed-assert test="matches(.,'^http[s]?://orcid.org/[\d]4-[\d]4-[\d]4-[\d]3[0-9X]$')"
+                          id="orcid-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/contrib-id[2]">
+         <svrl:text>contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/orcid-tests/orcid-test-2/fail.xml"
                            id="email-tests-pattern"
                            name="email-tests-pattern"/>
@@ -992,11 +1006,11 @@
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/suffix must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]"
+      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*"
                           id="name-child-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')] must be present.</svrl:text>
+         <svrl:text>article-meta/contrib-group//name/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib"
                           id="contrib-tests-xspec-assert"
@@ -1009,12 +1023,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta//contrib[@contrib-type='author']/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::contrib-id[@contrib-id-type='orcid']"
-                          id="orcid-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>contrib-id[@contrib-id-type='orcid'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//email"
                           id="email-tests-xspec-assert"

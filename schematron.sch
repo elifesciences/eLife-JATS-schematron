@@ -1128,12 +1128,12 @@
       
     </rule>
     
-    <rule context="article-meta/contrib-group//name/*[(local-name() != 'surname') and (local-name() != 'given-names') and (local-name() != 'suffix')]" 
+    <rule context="article-meta/contrib-group//name/*" 
       id="name-child-tests">
       
-      <report test="true()"
+      <assert test="local-name() = ('surname','given-names','suffix')"
         role="error" 
-        id="disallowed-child-assert"><value-of select="local-name()"/> is not allowed as a child of name.</report>
+        id="disallowed-child-assert"><value-of select="local-name()"/> is not allowed as a child of name.</assert>
       
     </rule>
 	
@@ -1214,7 +1214,8 @@
       	role="error" 
       	id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
 		
-	  <assert test="matches(.,'http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]')"
+		<!-- Needs updating to only allow https when this is implemented -->
+	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')"
       	role="error" 
       	id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
 		
@@ -1948,7 +1949,7 @@
                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
-                    else if ($file='x-gzip') then not(matches(@xlink:href,'\.tsv\.gz$'))
+                    else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))
                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))
                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
@@ -5119,7 +5120,9 @@
       id="rrid-org-code">
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
       <let name="lc" value="lower-case(.)"/>
-      <let name="text-count" value="number(count(for $x in tokenize(.,'RRID:') return $x)) -1"/>
+      <let name="text-count" value="number(count(
+        for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX') 
+        return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>

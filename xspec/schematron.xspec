@@ -975,12 +975,12 @@
     <x:scenario label="name-child-tests">
       <x:scenario label="disallowed-child-assert-pass">
         <x:context href="../tests/name-child-tests/disallowed-child-assert/pass.xml"/>
-        <x:expect-not-report id="disallowed-child-assert" role="error"/>
+        <x:expect-not-assert id="disallowed-child-assert" role="error"/>
         <x:expect-not-assert id="name-child-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="disallowed-child-assert-fail">
         <x:context href="../tests/name-child-tests/disallowed-child-assert/fail.xml"/>
-        <x:expect-report id="disallowed-child-assert" role="error"/>
+        <x:expect-assert id="disallowed-child-assert" role="error"/>
         <x:expect-not-assert id="name-child-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
