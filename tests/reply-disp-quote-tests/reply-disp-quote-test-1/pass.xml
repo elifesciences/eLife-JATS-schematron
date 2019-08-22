@@ -3,5 +3,11 @@
 Test: assert    @content-type='editor-comment'
 Message: dispquote in author reply does not have @contenttype='editorcomment'. This is almost certainly incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="reply">
+      <body>
+        <disp-quote content-type="editor-comment"/>
+      </body>
+    </sub-article>
+  </article>
 </root>

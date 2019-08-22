@@ -221,6 +221,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="ar-fig-tests-pattern"
                            name="ar-fig-tests-pattern"/>
+      <svrl:fired-rule context="fig[ancestor::sub-article[@article-type='reply']]"
+                       id="ar-fig-tests"/>
+      <svrl:failed-assert test="graphic"
+                          id="pre-ar-fig-test-3"
+                          role="warning"
+                          location="/root[1]/article[1]/sub-article[1]/fig[1]">
+         <svrl:text>Author Response fig does not have graphic. Esnure author query is added asking for file.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="graphic"
+                          id="final-ar-fig-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]/fig[1]">
+         <svrl:text>Author Response fig must have a graphic.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="graphic-tests-pattern"
                            name="graphic-tests-pattern"/>
@@ -305,6 +319,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="rep-fig-tests-pattern"
                            name="rep-fig-tests-pattern"/>
+      <svrl:fired-rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="box-fig-tests-pattern"
                            name="box-fig-tests-pattern"/>
@@ -389,6 +404,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="rep-fig-ids-pattern"
                            name="rep-fig-ids-pattern"/>
+      <svrl:fired-rule context="sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]"
+                       id="rep-fig-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="rep-fig-sup-ids-pattern"
                            name="rep-fig-sup-ids-pattern"/>
@@ -467,6 +484,31 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="dec-letter-reply-tests-pattern"
                            name="dec-letter-reply-tests-pattern"/>
+      <svrl:fired-rule context="article/sub-article" id="dec-letter-reply-tests"/>
+      <svrl:failed-assert test="if ($pos = 1) then @article-type='decision-letter' else @article-type='reply'"
+                          id="dec-letter-reply-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>1st sub-article must be the decision letter. 2nd sub-article must be the author response.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@id = concat('SA',$pos)"
+                          id="dec-letter-reply-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article id must be in the format 'SA0', where '0' is it's position (1 or 2).</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(front-stub) = 1"
+                          id="dec-letter-reply-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article contain one and only one front-stub.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(body) = 1"
+                          id="dec-letter-reply-test-4"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article contain one and only one body.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="dec-letter-front-tests-pattern"
                            name="dec-letter-front-tests-pattern"/>
@@ -885,6 +927,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/rep-fig-tests/resp-fig-test-2/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
@@ -1226,12 +1269,6 @@
                           location="/root[1]">
          <svrl:text>fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]"
-                          id="ar-fig-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig[ancestor::sub-article[@article-type='reply']] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::graphic"
                           id="graphic-tests-xspec-assert"
                           role="error"
@@ -1393,12 +1430,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body//fig[@specific-use='child-fig'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//fig"
-                          id="rep-fig-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sub-article[@article-type='reply']//fig must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]/label"
                           id="box-fig-tests-xspec-assert"
@@ -1562,12 +1593,6 @@
                           location="/root[1]">
          <svrl:text>article/back//app//fig[@specific-use='child-fig'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]"
-                          id="rep-fig-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sub-article[@article-type='reply']//fig[@specific-use='child-fig']"
                           id="rep-fig-sup-ids-xspec-assert"
                           role="error"
@@ -1717,12 +1742,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/sub-article"
-                          id="dec-letter-reply-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/sub-article must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub"
                           id="dec-letter-front-tests-xspec-assert"
@@ -2545,12 +2564,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref-list/ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
-                          id="fig-permissions-check-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
                           id="xref-formatting-xspec-assert"

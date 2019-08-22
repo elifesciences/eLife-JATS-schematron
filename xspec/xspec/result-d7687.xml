@@ -467,6 +467,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/reply-body-tests/reply-body-test-2/fail.xml"
                            id="dec-letter-reply-tests-pattern"
                            name="dec-letter-reply-tests-pattern"/>
+      <svrl:fired-rule context="article/sub-article" id="dec-letter-reply-tests"/>
+      <svrl:failed-assert test="if ($pos = 1) then @article-type='decision-letter' else @article-type='reply'"
+                          id="dec-letter-reply-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>1st sub-article must be the decision letter. 2nd sub-article must be the author response.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@id = concat('SA',$pos)"
+                          id="dec-letter-reply-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article id must be in the format 'SA0', where '0' is it's position (1 or 2).</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(front-stub) = 1"
+                          id="dec-letter-reply-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/sub-article[1]">
+         <svrl:text>sub-article contain one and only one front-stub.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/reply-body-tests/reply-body-test-2/fail.xml"
                            id="dec-letter-front-tests-pattern"
                            name="dec-letter-front-tests-pattern"/>
@@ -479,9 +498,18 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/reply-body-tests/reply-body-test-2/fail.xml"
                            id="reply-body-tests-pattern"
                            name="reply-body-tests-pattern"/>
+      <svrl:fired-rule context="sub-article[@article-type='reply']/body" id="reply-body-tests"/>
+      <svrl:successful-report test="count(p) = 0"
+                              id="reply-body-test-2"
+                              role="error"
+                              location="/root[1]/article[1]/sub-article[1]/body[1]">
+         <svrl:text>author response doesn't contain a p. This has to be incorrect.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/reply-body-tests/reply-body-test-2/fail.xml"
                            id="reply-disp-quote-tests-pattern"
                            name="reply-disp-quote-tests-pattern"/>
+      <svrl:fired-rule context="sub-article[@article-type='reply']/body//disp-quote"
+                       id="reply-disp-quote-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/reply-body-tests/reply-body-test-2/fail.xml"
                            id="research-advance-test-pattern"
                            name="research-advance-test-pattern"/>
@@ -1718,12 +1746,6 @@
                           location="/root[1]">
          <svrl:text>fn-group[@content-type='ethics-information']/fn must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/sub-article"
-                          id="dec-letter-reply-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/sub-article must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sub-article[@article-type='decision-letter']/front-stub"
                           id="dec-letter-front-tests-xspec-assert"
                           role="error"
@@ -1741,18 +1763,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>sub-article[@article-type='reply']/front-stub must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']/body"
-                          id="reply-body-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sub-article[@article-type='reply']/body must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sub-article[@article-type='reply']/body//disp-quote"
-                          id="reply-disp-quote-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sub-article[@article-type='reply']/body//disp-quote must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta"
                           id="research-advance-test-xspec-assert"

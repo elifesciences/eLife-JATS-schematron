@@ -3,5 +3,9 @@
 Test: assert    matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$')
 Message: author response figure supplement must have @id in the format respfig0s0.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="reply">
+      <fig id="respfig1s1" specific-use="child-fig"/>
+    </sub-article>
+  </article>
 </root>

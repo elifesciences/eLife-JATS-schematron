@@ -3,5 +3,17 @@
 Test: assert    article-title = 'Author response'
 Message: titlegroup must contain articletitle which contains 'Author response'. Currently it is .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="reply">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <title-group>
+          <article-title>Author response</article-title>
+        </title-group>
+      </front-stub>
+      <body>
+        <disp-quote content-type="editor-comment"/>
+      </body>
+    </sub-article>
+  </article>
 </root>

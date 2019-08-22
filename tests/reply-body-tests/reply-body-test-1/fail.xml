@@ -3,5 +3,11 @@
 Test: report    count(disp-quote[@content-type='editor-comment']) = 0
 Message: author response doesn't contain a dispquote. This has to be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="reply">
+      <body>
+        
+      </body>
+    </sub-article>
+  </article>
 </root>

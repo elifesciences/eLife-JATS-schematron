@@ -3,5 +3,16 @@
 Test: assert    count(related-article[@related-article-type='article-reference']) gt 0
 Message: Research Advance must contain an articlereference link to the original article it is building upon.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Advance</subject>
+          </subj-group>
+        </article-categories>
+        
+      </article-meta>
+    </front>
+  </article>
 </root>

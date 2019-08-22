@@ -3,5 +3,11 @@
 Test: assert    matches(@id,'^ra\d$')
 Message: relatedarticle element must contain a @id, the value of which should be in the form ra0.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <related-article id="ra2" related-article-type="related-article" ext-link-type="doi" xlink:href="10.7554/eLife.00000"/>
+      </article-meta>
+    </front>
+  </article>
 </root>

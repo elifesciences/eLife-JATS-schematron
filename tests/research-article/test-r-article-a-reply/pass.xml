@@ -3,5 +3,18 @@
 Test: report    ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])
 Message: Author response should usually be present for research articles, but this one does not have one. Is that correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Advance</subject>
+          </subj-group>
+        </article-categories>
+        <related-article related-article-type="article-reference"/>
+      </article-meta>
+    </front>
+    <sub-article article-type="decision-letter"/>
+    <sub-article article-type="reply"/>
+  </article>
 </root>
