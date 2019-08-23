@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="xref-target-conformance.sch"?>
+<!--Context: xref
+Test: report    boolean($target) = false()
+Message: xref with @reftype='' points to an element with an @id='', but no such element exists.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="vid" rid="SA1"/>
+    
+    <media id="SA1"/>
+  </article>
+</root>

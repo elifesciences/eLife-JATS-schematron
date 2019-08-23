@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="xref-ref-type-conformance.sch"?>
+<!--Context: xref
+Test: assert    @ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')
+Message: @reftype='' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementarymaterial', 'other', 'table', 'tablefn', 'box', 'sec', 'app', 'decisionletter', 'dispformula'.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="aff" rid="id826768689"/>
+    <xref ref-type="fn" rid="id826768720"/>
+    <xref ref-type="fig" rid="id826768751"/>
+    <xref ref-type="vid" rid="id826768776"/>
+    <xref ref-type="bibr" rid="id826768804"/>
+    <xref ref-type="supplementary-material" rid="id826768829"/>
+    <xref ref-type="other" rid="id826768857"/>
+    <xref ref-type="table" rid="id826768888"/>
+    <xref ref-type="table-fn" rid="id826768919"/>
+    <xref ref-type="box" rid="id826768950"/>
+    <xref ref-type="sec" rid="id826768981"/>
+    <xref ref-type="app" rid="id826769012"/>
+    <xref ref-type="decision-letter" rid="id826769043"/>
+    <xref ref-type="disp-formula" rid="id826769074"/>
+  </article>
+</root>

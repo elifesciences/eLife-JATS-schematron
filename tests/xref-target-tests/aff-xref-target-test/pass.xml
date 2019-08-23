@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="aff-xref-target-test.sch"?>
+<!--Context: xref
+Test: report    (@ref-type='aff') and ($target/local-name() != 'aff')
+Message: xref with @reftype='' points to . This is not correct.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="aff" rid="aff1"/>
+    
+    <aff id="aff1"/>
+  </article>
+</root>

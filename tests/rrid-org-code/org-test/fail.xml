@@ -3,5 +3,9 @@
 Test: report    matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))])
 Message:  element contains an organism    but there is no italic element with that correct capitalisation or spacing. Is this correct?  element begins with .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p>test test <italic>Drosophila Melanogaster</italic> test test</p>
+    <p>test test <italic>drosophila melanogaster</italic> test test</p>
+    <p>test test Drosophila melanogaster test test</p>
+  </article>
 </root>

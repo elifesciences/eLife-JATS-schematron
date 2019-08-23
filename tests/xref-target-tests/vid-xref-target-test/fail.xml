@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="vid-xref-target-test.sch"?>
+<!--Context: xref
+Test: report    (@ref-type='vid') and (($target/local-name() != 'media') or not($target/@mimetype='video'))
+Message: xref with @reftype='' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@reftype is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="vid" rid="SA1"/>
+    <xref ref-type="vid" rid="SA2"/>
+    <xref ref-type="vid" rid="SA3"/>
+    
+    <media id="SA1"/>
+    <media mimetype="text" id="SA1"/>
+    <media mimetype="video" id="SA3"/>
+  </article>
+</root>

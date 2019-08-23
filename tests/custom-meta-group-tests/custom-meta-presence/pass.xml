@@ -3,5 +3,11 @@
 Test: assert    count(custom-meta[@specific-use='meta-only']) = 1
 Message: custommeta[@specificuse='metaonly'] must be present in custommetagroup.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta specific-use="meta-only"/>
+      </custom-meta-group>
+    </article-meta>
+  </article>
 </root>

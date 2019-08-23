@@ -3,5 +3,11 @@
 Test: report    descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']
 Message: Retractions should not contain any author keywords.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="retraction">
+    <front>
+      <article-meta>
+        <kwd-group kwd-group-type="author-keywords"/>
+      </article-meta>
+    </front>
+  </article>
 </root>

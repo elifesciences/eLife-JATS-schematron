@@ -31,814 +31,835 @@
       <svrl:ns-prefix-in-attribute-values uri="https://elifesciences.org/namespace" prefix="e"/>
       <svrl:ns-prefix-in-attribute-values uri="java.io.File" prefix="file"/>
       <svrl:ns-prefix-in-attribute-values uri="http://www.java.com/" prefix="java"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="article-tests-pattern"
                            name="article-tests-pattern"/>
       <svrl:fired-rule context="article" id="article-tests"/>
+      <svrl:failed-assert test="@article-type = $allowed-article-types"
+                          id="test-article-type"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
          <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
-      <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
-                              id="test-article-back"
-                              role="error"
-                              location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:failed-assert test="count(body) = 1"
+                          id="test-article-body"
+                          role="error"
+                          location="/root[1]/article[1]">
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-journal-meta-pattern"
                            name="test-journal-meta-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-article-metadata-pattern"
                            name="test-article-metadata-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-research-article-metadata-pattern"
                            name="test-research-article-metadata-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-article-categories-pattern"
                            name="test-article-categories-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="disp-channel-checks-pattern"
                            name="disp-channel-checks-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="head-subj-checks-pattern"
                            name="head-subj-checks-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-title-group-pattern"
                            name="test-title-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="test-contrib-group-pattern"
                            name="test-contrib-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="name-tests-pattern"
                            name="name-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="surname-tests-pattern"
                            name="surname-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="given-names-tests-pattern"
                            name="given-names-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="suffix-tests-pattern"
                            name="suffix-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="name-child-tests-pattern"
                            name="name-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="contrib-tests-pattern"
                            name="contrib-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="author-children-tests-pattern"
                            name="author-children-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="orcid-tests-pattern"
                            name="orcid-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="email-tests-pattern"
                            name="email-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="history-tests-pattern"
                            name="history-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="date-tests-pattern"
                            name="date-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="year-element-citation-tests-pattern"
                            name="year-element-citation-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="pub-date-tests-2-pattern"
                            name="pub-date-tests-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="front-permissions-tests-pattern"
                            name="front-permissions-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="license-tests-pattern"
                            name="license-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="abstract-tests-pattern"
                            name="abstract-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="aff-tests-pattern"
                            name="aff-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="funding-group-tests-pattern"
                            name="funding-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="award-group-tests-pattern"
                            name="award-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="award-id-tests-pattern"
                            name="award-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="institution-wrap-tests-pattern"
                            name="institution-wrap-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="kwd-group-tests-pattern"
                            name="kwd-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ro-kwd-group-tests-pattern"
                            name="ro-kwd-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ro-kwd-tests-pattern"
                            name="ro-kwd-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="custom-meta-group-tests-pattern"
                            name="custom-meta-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="custom-meta-tests-pattern"
                            name="custom-meta-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="meta-value-tests-pattern"
                            name="meta-value-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="meta-value-child-tests-pattern"
                            name="meta-value-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elocation-id-tests-pattern"
                            name="elocation-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="volume-test-pattern"
                            name="volume-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="equal-author-tests-pattern"
                            name="equal-author-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="object-id-tests-pattern"
                            name="object-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="p-tests-pattern"
                            name="p-tests-pattern"/>
       <svrl:fired-rule context="p" id="p-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="p" id="p-tests"/>
+      <svrl:fired-rule context="p" id="p-tests"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="p-child-tests-pattern"
                            name="p-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="p/*" id="p-child-tests"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:failed-assert test="@ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')"
+                          id="xref-ref-type-conformance"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]/p[1]/xref[1]">
+         <svrl:text>@ref-type='' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="url-markup-conformance-pattern"
                            name="url-markup-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-group-tests-pattern"
                            name="fig-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-group-child-tests-pattern"
                            name="fig-group-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
-      <svrl:fired-rule context="fig[not(ancestor::sub-article[@article-type='reply'])]"
-                       id="fig-tests"/>
-      <svrl:failed-assert test="@position"
-                          id="fig-test-2"
-                          role="error"
-                          location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>fig must have a @position.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="graphic"
-                          id="pre-fig-test-7"
-                          role="warning"
-                          location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>fig does not have graphic. Esnure author query is added asking for file.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="graphic"
-                          id="final-fig-test-7"
-                          role="error"
-                          location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>fig must have a graphic.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ar-fig-tests-pattern"
                            name="ar-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="graphic-tests-pattern"
                            name="graphic-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:failed-assert test="@mime-subtype"
+                          id="media-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]/media[1]">
+         <svrl:text>media must have @mime-subtype.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@xlink:href"
+                          id="media-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]/media[1]">
+         <svrl:text>media must have @xlink:href.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(matches(@xlink:href,'\.m$')) else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$')) else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$')) else if ($file='html') then not(matches(@xlink:href,'\.html$')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$')) else not(ends-with(@xlink:href,concat('.',$file)))"
+                              id="media-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/sec[1]/media[1]">
+         <svrl:text>media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</svrl:text>
+      </svrl:successful-report>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
+      <svrl:failed-assert test="caption/title"
+                          id="pre-video-title"
+                          role="warning"
+                          location="/root[1]/article[1]/sec[1]/media[1]">
+         <svrl:text>Video 1. does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="caption/title"
+                          id="final-video-title"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]/media[1]">
+         <svrl:text>Video 1. does not have a title, which is incorrect.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="disp-formula-tests-pattern"
                            name="disp-formula-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="inline-formula-tests-pattern"
                            name="inline-formula-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="math-tests-pattern"
                            name="math-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="formula-child-tests-pattern"
                            name="formula-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="body-table-label-tests-pattern"
                            name="body-table-label-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-table-label-tests-pattern"
                            name="app-table-label-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="table-tests-pattern"
                            name="table-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="tbody-tests-pattern"
                            name="tbody-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="thead-tests-pattern"
                            name="thead-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="tr-tests-pattern"
                            name="tr-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="td-child-tests-pattern"
                            name="td-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="th-child-tests-pattern"
                            name="th-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fn-tests-pattern"
                            name="fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="list-item-tests-pattern"
                            name="list-item-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="general-video-pattern"
                            name="general-video-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="media[@mimetype='video'][matches(@id,'^video[0-9]1 3$')]"
+                       id="general-video"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="body-video-specific-pattern"
                            name="body-video-specific-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="body-table-pos-conformance-pattern"
                            name="body-table-pos-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-table-pos-conformance-pattern"
                            name="app-table-pos-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-specific-tests-pattern"
                            name="fig-specific-tests-pattern"/>
-      <svrl:fired-rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
-                       id="fig-specific-tests"/>
-      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))"
-                              id="fig-specific-test-3"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>Figure 1 does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-label-tests-pattern"
                            name="fig-label-tests-pattern"/>
-      <svrl:fired-rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label"
-                       id="fig-label-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-sup-tests-pattern"
                            name="fig-sup-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="rep-fig-tests-pattern"
                            name="rep-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="box-fig-tests-pattern"
                            name="box-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-fig-tests-pattern"
                            name="app-fig-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-fig-sup-tests-pattern"
                            name="app-fig-sup-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ra-body-tests-pattern"
                            name="ra-body-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="top-level-sec-tests-pattern"
                            name="top-level-sec-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="lower-level-sec-tests-pattern"
                            name="lower-level-sec-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="article-title-tests-pattern"
                            name="article-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="sec-title-tests-pattern"
                            name="sec-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-title-tests-pattern"
                            name="fig-title-tests-pattern"/>
-      <svrl:fired-rule context="fig/caption/title" id="fig-title-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="supplementary-material-title-tests-pattern"
                            name="supplementary-material-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="video-title-tests-pattern"
                            name="video-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ack-title-tests-pattern"
                            name="ack-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ack-content-tests-pattern"
                            name="ack-content-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-list-title-tests-pattern"
                            name="ref-list-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-title-tests-pattern"
                            name="app-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="comp-int-title-tests-pattern"
                            name="comp-int-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="auth-cont-title-tests-pattern"
                            name="auth-cont-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ethics-title-tests-pattern"
                            name="ethics-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="dec-letter-title-tests-pattern"
                            name="dec-letter-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="reply-title-tests-pattern"
                            name="reply-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="author-contrib-ids-pattern"
                            name="author-contrib-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="award-group-ids-pattern"
                            name="award-group-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-ids-pattern"
                            name="fig-ids-pattern"/>
-      <svrl:fired-rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
-                       id="fig-ids"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-sup-ids-pattern"
                            name="fig-sup-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="box-fig-ids-pattern"
                            name="box-fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-fig-ids-pattern"
                            name="app-fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-fig-sup-ids-pattern"
                            name="app-fig-sup-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="rep-fig-ids-pattern"
                            name="rep-fig-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="rep-fig-sup-ids-pattern"
                            name="rep-fig-sup-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="related-articles-ids-pattern"
                            name="related-articles-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="aff-ids-pattern"
                            name="aff-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fn-ids-pattern"
                            name="fn-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="disp-formula-ids-pattern"
                            name="disp-formula-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="mml-math-ids-pattern"
                            name="mml-math-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-table-wrap-ids-pattern"
                            name="app-table-wrap-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="resp-table-wrap-ids-pattern"
                            name="resp-table-wrap-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="table-wrap-ids-pattern"
                            name="table-wrap-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="body-top-level-sec-ids-pattern"
                            name="body-top-level-sec-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="back-top-level-sec-ids-pattern"
                            name="back-top-level-sec-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="low-level-sec-ids-pattern"
                            name="low-level-sec-ids-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="sec-tests-pattern"
                            name="sec-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/sec[2]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$child-count gt 0"
+                          id="sec-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/sec[2]">
+         <svrl:text>sec appears to contain no content. This cannot be correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="data-content-tests-pattern"
                            name="data-content-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ack-tests-pattern"
                            name="ack-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ack-child-tests-pattern"
                            name="ack-child-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="app-tests-pattern"
                            name="app-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="additional-info-tests-pattern"
                            name="additional-info-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="comp-int-fn-group-tests-pattern"
                            name="comp-int-fn-group-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="comp-int-fn-tests-pattern"
                            name="comp-int-fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="auth-cont-tests-pattern"
                            name="auth-cont-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="auth-cont-fn-tests-pattern"
                            name="auth-cont-fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ethics-tests-pattern"
                            name="ethics-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ethics-fn-tests-pattern"
                            name="ethics-fn-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="dec-letter-reply-tests-pattern"
                            name="dec-letter-reply-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="dec-letter-front-tests-pattern"
                            name="dec-letter-front-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="dec-letter-body-tests-pattern"
                            name="dec-letter-body-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="reply-front-tests-pattern"
                            name="reply-front-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="reply-body-tests-pattern"
                            name="reply-body-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="reply-disp-quote-tests-pattern"
                            name="reply-disp-quote-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="research-advance-test-pattern"
                            name="research-advance-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="insight-test-pattern"
                            name="insight-test-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="related-articles-conformance-pattern"
                            name="related-articles-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-gen-name-3-2-pattern"
                            name="elem-citation-gen-name-3-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-gen-name-4-pattern"
                            name="elem-citation-gen-name-4-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-year-pattern"
                            name="elem-citation-year-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-pattern"
                            name="ref-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="xref-pattern"
                            name="xref-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-pattern"
                            name="elem-citation-journal-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-article-title-pattern"
                            name="elem-citation-journal-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-volume-pattern"
                            name="elem-citation-journal-volume-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-fpage-pattern"
                            name="elem-citation-journal-fpage-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-elocation-id-pattern"
                            name="elem-citation-journal-elocation-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-comment-pattern"
                            name="elem-citation-journal-comment-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-pub-id-pmid-pattern"
                            name="elem-citation-journal-pub-id-pmid-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-journal-pub-id-pattern"
                            name="elem-citation-journal-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-pattern"
                            name="elem-citation-book-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-person-group-pattern"
                            name="elem-citation-book-person-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-chapter-title-pattern"
                            name="elem-citation-book-chapter-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-publisher-name-pattern"
                            name="elem-citation-book-publisher-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-edition-pattern"
                            name="elem-citation-book-edition-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-pub-id-pmid-pattern"
                            name="elem-citation-book-pub-id-pmid-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-book-pub-id-pattern"
                            name="elem-citation-book-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-data-pattern"
                            name="elem-citation-data-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-data-pub-id-doi-pattern"
                            name="elem-citation-data-pub-id-doi-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-data-pub-id-pattern"
                            name="elem-citation-data-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-data-ext-link-pattern"
                            name="elem-citation-data-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-patent-pattern"
                            name="elem-citation-patent-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-patent-ext-link-pattern"
                            name="elem-citation-patent-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-patent-article-title-pattern"
                            name="elem-citation-patent-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-patent-source-pattern"
                            name="elem-citation-patent-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-patent-patent-pattern"
                            name="elem-citation-patent-patent-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-software-pattern"
                            name="elem-citation-software-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-software-data-title-pattern"
                            name="elem-citation-software-data-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-software-ext-link-pattern"
                            name="elem-citation-software-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-preprint-pattern"
                            name="elem-citation-preprint-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-preprint-person-group-pattern"
                            name="elem-citation-preprint-person-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-preprint-pub-id-pattern"
                            name="elem-citation-preprint-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-preprint-ext-link-pattern"
                            name="elem-citation-preprint-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-preprint-article-title-pattern"
                            name="elem-citation-preprint-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-preprint-source-pattern"
                            name="elem-citation-preprint-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-web-pattern"
                            name="elem-citation-web-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-web-person-group-pattern"
                            name="elem-citation-web-person-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-web-ext-link-pattern"
                            name="elem-citation-web-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-web-article-title-pattern"
                            name="elem-citation-web-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-web-source-pattern"
                            name="elem-citation-web-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-web-date-in-citation-pattern"
                            name="elem-citation-web-date-in-citation-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-report-pattern"
                            name="elem-citation-report-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-report-preson-group-pattern"
                            name="elem-citation-report-preson-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-report-source-pattern"
                            name="elem-citation-report-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-report-publisher-name-pattern"
                            name="elem-citation-report-publisher-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-report-pub-id-pattern"
                            name="elem-citation-report-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-report-ext-link-pattern"
                            name="elem-citation-report-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-pattern"
                            name="elem-citation-confproc-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-preson-group-pattern"
                            name="elem-citation-confproc-preson-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-source-pattern"
                            name="elem-citation-confproc-source-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-article-title-pattern"
                            name="elem-citation-confproc-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-conf-name-pattern"
                            name="elem-citation-confproc-conf-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-conf-loc-pattern"
                            name="elem-citation-confproc-conf-loc-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-fpage-pattern"
                            name="elem-citation-confproc-fpage-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-pub-id-pattern"
                            name="elem-citation-confproc-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-confproc-ext-link-pattern"
                            name="elem-citation-confproc-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-pattern"
                            name="elem-citation-thesis-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-preson-group-pattern"
                            name="elem-citation-thesis-preson-group-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-article-title-pattern"
                            name="elem-citation-thesis-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-publisher-name-pattern"
                            name="elem-citation-thesis-publisher-name-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-publisher-loc-pattern"
                            name="elem-citation-thesis-publisher-loc-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-pub-id-pattern"
                            name="elem-citation-thesis-pub-id-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-thesis-ext-link-pattern"
                            name="elem-citation-thesis-ext-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-pattern"
                            name="elem-citation-periodical-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-year-pattern"
                            name="elem-citation-periodical-year-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-article-title-pattern"
                            name="elem-citation-periodical-article-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-volume-pattern"
                            name="elem-citation-periodical-volume-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-fpage-pattern"
                            name="elem-citation-periodical-fpage-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-string-date-pattern"
                            name="elem-citation-periodical-string-date-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-month-pattern"
                            name="elem-citation-periodical-month-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="elem-citation-periodical-day-pattern"
                            name="elem-citation-periodical-day-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="pub-id-tests-pattern"
                            name="pub-id-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-title-tests-pattern"
                            name="feature-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-abstract-tests-pattern"
                            name="feature-abstract-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-subj-tests-1-pattern"
                            name="feature-subj-tests-1-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-subj-tests-2-pattern"
                            name="feature-subj-tests-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-article-category-tests-pattern"
                            name="feature-article-category-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-author-tests-pattern"
                            name="feature-author-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="feature-bio-tests-pattern"
                            name="feature-bio-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="correction-tests-pattern"
                            name="correction-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="retraction-tests-pattern"
                            name="retraction-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="final-gene-primer-sequence-pattern"
                            name="final-gene-primer-sequence-pattern"/>
       <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
+      <svrl:fired-rule context="p" id="final-gene-primer-sequence"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
       <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-xref-conformance-pattern"
                            name="ref-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="unlinked-ref-cite-pattern"
                            name="unlinked-ref-cite-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="vid-xref-conformance-pattern"
                            name="vid-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-xref-conformance-pattern"
                            name="fig-xref-conformance-pattern"/>
-      <svrl:fired-rule context="xref[@ref-type='fig']" id="fig-xref-conformance"/>
-      <svrl:failed-assert test="matches(.,'\p')"
-                          id="fig-xref-conformity-1"
-                          role="error"
-                          location="/root[1]/article[1]/body[1]/xref[1]">
-         <svrl:text> - figure citation does not contain any numbers which must be incorrect.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:successful-report test="($type = 'Figure') and not(contains($no,$target-no))"
-                              id="fig-xref-conformity-2"
-                              role="error"
-                              location="/root[1]/article[1]/body[1]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="($type = 'Figure') and ($no != $target-no)"
-                              id="fig-xref-conformity-3"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="table-xref-conformance-pattern"
                            name="table-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="supp-file-xref-conformance-pattern"
                            name="supp-file-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="equation-xref-conformance-pattern"
                            name="equation-xref-conformance-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="org-ref-article-book-title-pattern"
                            name="org-ref-article-book-title-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="org-title-kwd-pattern"
                            name="org-title-kwd-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
@@ -847,135 +868,118 @@
                        id="unallowed-symbol-tests"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="country-tests-pattern"
                            name="country-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="city-tests-pattern"
                            name="city-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="institution-tests-pattern"
                            name="institution-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="department-tests-pattern"
                            name="department-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="journal-title-tests-pattern"
                            name="journal-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-article-title-tests-pattern"
                            name="ref-article-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="journal-tests-pattern"
                            name="journal-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="preprint-title-tests-pattern"
                            name="preprint-title-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="website-tests-pattern"
                            name="website-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="software-ref-tests-pattern"
                            name="software-ref-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="publisher-name-tests-pattern"
                            name="publisher-name-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-name-tests-pattern"
                            name="ref-name-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="isbn-conformity-pattern"
                            name="isbn-conformity-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="isbn-conformity-2-pattern"
                            name="isbn-conformity-2-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="data-availability-statement-pattern"
                            name="data-availability-statement-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ethics-info-pattern"
                            name="ethics-info-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="sec-title-conformity-pattern"
                            name="sec-title-conformity-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="abstract-house-tests-pattern"
                            name="abstract-house-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="KRT-xref-tests-pattern"
                            name="KRT-xref-tests-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="KRT-check-pattern"
                            name="KRT-check-pattern"/>
       <svrl:fired-rule context="article" id="KRT-check"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="KRT-td-checks-pattern"
                            name="KRT-td-checks-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="colour-table-pattern"
                            name="colour-table-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="colour-named-content-pattern"
                            name="colour-named-content-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="colour-styled-content-pattern"
                            name="colour-styled-content-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="p-punctuation-pattern"
                            name="p-punctuation-pattern"/>
-      <svrl:fired-rule context="article/body//p[not(parent::list-item)]" id="p-punctuation"/>
-      <svrl:successful-report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p\s*?$'))"
-                              id="p-punctuation-test"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/fig[1]/caption[1]/p[1]">
-         <svrl:text>paragraph doesn't end with punctuation - Is this correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:successful-report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))"
-                              id="p-bracket-test"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/fig[1]/caption[1]/p[1]">
-         <svrl:text>paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="italic-house-style-pattern"
                            name="italic-house-style-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="list-house-style-pattern"
                            name="list-house-style-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-link-mandate-pattern"
                            name="ref-link-mandate-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
       <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
-      <svrl:successful-report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')"
-                              id="reproduce-test-1"
-                              role="warning"
-                              location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>The caption for Figure 1 contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
-      </svrl:successful-report>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
       <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="code-fork-pattern"
                            name="code-fork-pattern"/>
       <svrl:fired-rule context="article" id="code-fork"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="auth-kwd-style-pattern"
                            name="auth-kwd-style-pattern"/>
-      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/pass.xml"
+      <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/general-video/video-placement-2/pass.xml"
                            id="root-pattern"
                            name="root-pattern"/>
       <svrl:fired-rule context="root" id="root-rule"/>
@@ -1261,12 +1265,6 @@
                           location="/root[1]">
          <svrl:text>object-id[@pub-id-type='doi'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p/*"
-                          id="p-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p/* must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
                           id="ext-link-tests-xspec-assert"
                           role="error"
@@ -1285,6 +1283,12 @@
                           location="/root[1]">
          <svrl:text>fig-group/* must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
+                          id="fig-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]"
                           id="ar-fig-tests-xspec-assert"
                           role="error"
@@ -1296,18 +1300,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media[child::label]"
-                          id="video-test-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media[child::label] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material"
                           id="supplementary-material-tests-xspec-assert"
@@ -1411,12 +1403,6 @@
                           location="/root[1]">
          <svrl:text>list-item must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]1 3$')]"
-                          id="general-video-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//media[@mimetype='video']"
                           id="body-video-specific-xspec-assert"
                           role="error"
@@ -1434,6 +1420,18 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
+                          id="fig-specific-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label"
+                          id="fig-label-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//fig[@specific-use='child-fig']"
                           id="fig-sup-tests-xspec-assert"
@@ -1465,11 +1463,11 @@
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/body"
                           id="ra-body-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+         <svrl:text>article[@article-type='research-article']/body must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec"
                           id="top-level-sec-tests-xspec-assert"
@@ -1494,6 +1492,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>sec[@sec-type]/title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::fig/caption/title"
+                          id="fig-title-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>fig/caption/title must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material/caption/title"
                           id="supplementary-material-title-tests-xspec-assert"
@@ -1572,6 +1576,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>funding-group/award-group must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
+                          id="fig-ids-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]"
                           id="fig-sup-ids-xspec-assert"
@@ -1674,12 +1684,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sec"
-                          id="sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sec must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back"
                           id="back-tests-xspec-assert"
@@ -2353,6 +2357,12 @@
                           location="/root[1]">
          <svrl:text>xref[@ref-type='video'] must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::xref[@ref-type='fig']"
+                          id="fig-xref-conformance-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>xref[@ref-type='fig'] must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='table']"
                           id="table-xref-conformance-xspec-assert"
                           role="error"
@@ -2526,6 +2536,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>styled-content must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
+                          id="p-punctuation-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>article/body//p[not(parent::list-item)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::italic[not(ancestor::ref)]"
                           id="italic-house-style-xspec-assert"

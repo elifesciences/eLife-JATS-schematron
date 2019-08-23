@@ -3,5 +3,41 @@
 Test: report    if ($title = 'undefined') then () else . != $title
 Message: title of a sec with an @sectype='' should usually be ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <sec sec-type="intro">
+        <title>Introduction</title>
+      </sec>
+      <sec sec-type="results">
+        <title>Results</title>
+      </sec>
+      <sec sec-type="discussion">
+        <title>Discussion</title>
+      </sec>
+      <sec sec-type="results|discussion">
+        <title>Results and discussion</title>
+      </sec>
+      <sec sec-type="materials">
+        <title>Materials</title>
+      </sec>
+      <sec sec-type="methods">
+        <title>Methods</title>
+      </sec>
+      <sec sec-type="materials|methods">
+        <title>Materials and methods</title>
+      </sec>
+      <sec sec-type="model">
+        <title>Model</title>
+      </sec>
+      <sec sec-type="additional-infromation">
+        <title>Additional-information</title>
+      </sec>
+      <sec sec-type="supplementary-material">
+        <title>Additional files</title>
+      </sec>
+      <sec sec-type="data-availability">
+        <title>Data availability</title>
+      </sec>
+    </body>
+  </article>
 </root>

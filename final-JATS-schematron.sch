@@ -1345,7 +1345,37 @@
       <let name="rid" value="@rid"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       
-      <report test="if (@ref-type='aff') then $target/local-name() != 'aff'                     else if (@ref-type='fn') then $target/local-name() != 'fn'                     else ()" role="error" id="xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='aff') and ($target/local-name() != 'aff')" role="error" id="aff-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='fn') and ($target/local-name() != 'fn')" role="error" id="fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='fig') and ($target/local-name() != 'fig')" role="error" id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='vid') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" role="error" id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</report>
+      
+      <report test="(@ref-type='bibr') and ($target/local-name() != 'ref')" role="error" id="bibr-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='supplementary-material') and ($target/local-name() != 'supplementary-material')" role="error" id="supplementary-material-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='other') and ($target/local-name() != 'award-group')" role="error" id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" role="error" id="table-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" role="error" id="table-fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" role="error" id="box-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='sec') and ($target/local-name() != 'sec')" role="error" id="sec-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='app') and ($target/local-name() != 'app')" role="error" id="app-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='decision-letter') and ($target/local-name() != 'sub-article')" role="error" id="decision-letter-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
+      <assert test="@ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
+      
+      <report test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
     </rule>
   </pattern>
   <pattern id="ext-link-tests-pattern">
@@ -5131,10 +5161,10 @@
       <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
-      <report test="matches($link,'psyarxiv.com')" role="error" id="psyarxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PsyArXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'psyarxiv.org')" role="error" id="psyarxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PsyArXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'/arxiv.com')" role="error" id="arxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, arXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'/arxiv.org')" role="error" id="arxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, arXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
       <report test="matches($link,'biorxiv.org')" role="error" id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
@@ -5243,6 +5273,8 @@
       <report test="matches(.,'^[Aa]ppendix')" role="warning" id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
       
       <report test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
+      
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">Section title must not be empty.</report>
       
     </rule>
   </pattern>

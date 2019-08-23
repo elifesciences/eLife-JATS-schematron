@@ -3,5 +3,9 @@
 Test: report    matches(.,'^[Aa]bbreviation[s]?')
 Message: Section title contains the word abbreviation  ''. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sec>
+      <title>Abbreviation</title>
+    </sec>
+  </article>
 </root>

@@ -1465,11 +1465,11 @@
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/body"
                           id="ra-body-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+         <svrl:text>article[@article-type='research-article']/body must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec"
                           id="top-level-sec-tests-xspec-assert"

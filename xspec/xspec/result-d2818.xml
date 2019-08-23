@@ -35,18 +35,6 @@
                            id="article-tests-pattern"
                            name="article-tests-pattern"/>
       <svrl:fired-rule context="article" id="article-tests"/>
-      <svrl:failed-assert test="@article-type = $allowed-article-types"
-                          id="test-article-type"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="count(front) = 1"
-                          id="test-article-front"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
@@ -59,12 +47,98 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
+      <svrl:fired-rule context="article/front" id="test-front"/>
+      <svrl:failed-assert test="count(journal-meta) = 1"
+                          id="test-front-jmeta"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]">
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="test-journal-meta-pattern"
                            name="test-journal-meta-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="test-article-metadata-pattern"
                            name="test-article-metadata-pattern"/>
+      <svrl:fired-rule context="article/front/article-meta" id="test-article-metadata"/>
+      <svrl:failed-assert test="matches($article-id,'^\d5$')"
+                          id="test-article-id"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
+                          id="test-article-doi-1"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
+                          id="test-article-doi-2"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(article-categories) = 1"
+                          id="test-article-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one article-categories element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="title-group[article-title]"
+                          id="test-title-group-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>title-group containing article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="pub-date[@publication-format='electronic'][@date-type='publication']"
+                          id="test-epub-date"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="pub-date[@pub-type='collection']"
+                          id="test-pub-collection-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="volume"
+                          id="test-volume-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child volume in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="elocation-id"
+                          id="test-elocation-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child elocation-id in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(permissions) = 1"
+                          id="test-permissions-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1"
+                              id="test-funding-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
+                              id="test-custom-meta-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1"
+                              id="test-auth-kwd-group-presence-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One author keyword group must be present in article-meta.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="test-research-article-metadata-pattern"
                            name="test-research-article-metadata-pattern"/>
@@ -167,9 +241,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="ro-kwd-group-tests-pattern"
                            name="ro-kwd-group-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/kwd-group[@kwd-group-type='research-organism']"
+                       id="ro-kwd-group-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="ro-kwd-tests-pattern"
                            name="ro-kwd-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd"
+                       id="ro-kwd-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="custom-meta-group-tests-pattern"
                            name="custom-meta-group-tests-pattern"/>
@@ -752,6 +830,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="retraction-tests-pattern"
                            name="retraction-tests-pattern"/>
+      <svrl:fired-rule context="article[@article-type = 'retraction']" id="retraction-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="final-gene-primer-sequence-pattern"
                            name="final-gene-primer-sequence-pattern"/>
@@ -788,9 +867,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="org-title-kwd-pattern"
                            name="org-title-kwd-pattern"/>
+      <svrl:fired-rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd"
+                       id="org-title-kwd"/>
+      <svrl:successful-report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])"
+                              id="homosapiens-article-title-check"
+                              role="warning"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/kwd-group[1]/kwd[1]">
+         <svrl:text>kwd contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-tests/kwd-upper-case/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -908,23 +997,11 @@
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front"
-                          id="test-front-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front/journal-meta"
                           id="test-journal-meta-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article/front/journal-meta must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front/article-meta"
-                          id="test-article-metadata-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front/article-meta must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[@article-type='research-article']/front/article-meta"
                           id="test-research-article-metadata-xspec-assert"
@@ -1123,18 +1200,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']"
-                          id="ro-kwd-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/kwd-group[@kwd-group-type='research-organism'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']/kwd"
-                          id="ro-kwd-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta/custom-meta-group"
                           id="custom-meta-group-tests-xspec-assert"
@@ -1418,11 +1483,11 @@
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/body"
                           id="ra-body-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+         <svrl:text>article[@article-type='research-article']/body must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec"
                           id="top-level-sec-tests-xspec-assert"
@@ -2288,12 +2353,6 @@
                           location="/root[1]">
          <svrl:text>article[@article-type = 'correction'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article[@article-type = 'retraction']"
-                          id="retraction-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article[@article-type = 'retraction'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::p"
                           id="final-gene-primer-sequence-xspec-assert"
                           role="error"
@@ -2359,18 +2418,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='journal']/article-title must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article//article-meta/title-group/article-title or descendant:: article/body//sec/title or descendant:: article//article-meta//kwd"
-                          id="org-title-kwd-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"

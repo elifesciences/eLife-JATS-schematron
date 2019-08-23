@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="other-xref-target-test.sch"?>
+<!--Context: xref
+Test: report    (@ref-type='other') and ($target/local-name() != 'award-group')
+Message: xref with @reftype='' points to . This is not correct.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="other" rid="fund1"/>
+    
+    <fn-group id="fund1"/>
+  </article>
+</root>

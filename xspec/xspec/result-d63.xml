@@ -313,7 +313,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-body/pass.xml"
                            id="ra-body-tests-pattern"
                            name="ra-body-tests-pattern"/>
-      <svrl:fired-rule context="article/body[ancestor::article/@article-type='research-article']"
+      <svrl:fired-rule context="article[@article-type='research-article']/body"
                        id="ra-body-tests"/>
       <svrl:successful-report test="count(sec) = 0"
                               id="ra-sec-test-1"
@@ -331,7 +331,7 @@
                               id="ra-sec-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body in  content doesn't have a child sec with @sec-type whose value is either 'material|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
+         <svrl:text>main body in  content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
                               id="ra-sec-test-4"

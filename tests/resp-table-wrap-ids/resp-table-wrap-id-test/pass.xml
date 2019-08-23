@@ -3,5 +3,12 @@
 Test: assert    if (label) then matches(@id, '^resptable[0-9]{1,3}$') else matches(@id, '^respinlinetable[0-9]{1,3}$')
 Message: tablewrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sub-article article-type="reply">
+      <table-wrap id="respinlinetable1"/>
+      <table-wrap id="resptable1">
+        <label>Author response table 1.</label>
+      </table-wrap>
+    </sub-article>
+  </article>
 </root>

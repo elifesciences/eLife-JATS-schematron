@@ -3,5 +3,25 @@
 Test: report    matches(label,'^Figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])
 Message:  is figure level source data, but contains a link to a figure supplement  should it be figure supplement source data?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <fig-group>
+      <fig>
+        <label/>
+        <caption>
+          ...
+          <p>
+            <supplementary-material>
+              <label>Figure 1—source data 1.</label>
+              ...
+              <caption>
+                ...
+                <p><xref ref-type="fig" rid="fig1">Figure 1</xref></p>
+              </caption>
+            </supplementary-material>
+          </p>
+        </caption>
+        ...
+      </fig>
+    </fig-group>
+  </article>
 </root>

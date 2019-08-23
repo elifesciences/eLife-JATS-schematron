@@ -3,5 +3,11 @@
 Test: report    descendant::abstract
 Message: Retractions should not contain abstracts.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="retraction">
+    <front>
+      <article-meta>
+     
+      </article-meta>
+    </front>
+  </article>
 </root>

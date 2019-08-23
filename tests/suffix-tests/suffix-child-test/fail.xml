@@ -3,5 +3,20 @@
 Test: report    *
 Message: suffix cannot have any child elements  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib>
+          <name>
+            <suffix><italic>Jnr</italic></suffix>
+          </name>
+        </contrib>
+        <contrib>
+          <name>
+            <suffix><italic>Snr</italic></suffix>
+          </name>
+        </contrib>
+      </contrib-group>
+    </article-meta>
+  </article>
 </root>

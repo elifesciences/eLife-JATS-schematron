@@ -89,6 +89,36 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-child-test/pass.xml"
                            id="name-tests-pattern"
                            name="name-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
+      <svrl:failed-assert test="count(surname) = 1"
+                          id="surname-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]">
+         <svrl:text>Each name must contain only one surname.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="given-names"
+                          id="given-names-test-2"
+                          role="warning"
+                          location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]">
+         <svrl:text>This name - 
+            Jnr
+           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
+      <svrl:failed-assert test="count(surname) = 1"
+                          id="surname-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]/name[1]">
+         <svrl:text>Each name must contain only one surname.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="given-names"
+                          id="given-names-test-2"
+                          role="warning"
+                          location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]/name[1]">
+         <svrl:text>This name - 
+            Snr
+           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-child-test/pass.xml"
                            id="surname-tests-pattern"
                            name="surname-tests-pattern"/>
@@ -98,12 +128,50 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-child-test/pass.xml"
                            id="suffix-tests-pattern"
                            name="suffix-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/suffix" id="suffix-tests"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/suffix" id="suffix-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-child-test/pass.xml"
                            id="name-child-tests-pattern"
                            name="name-child-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/*" id="name-child-tests"/>
+      <svrl:fired-rule context="article-meta/contrib-group//name/*" id="name-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-child-test/pass.xml"
                            id="contrib-tests-pattern"
                            name="contrib-tests-pattern"/>
+      <svrl:fired-rule context="article-meta//contrib" id="contrib-tests"/>
+      <svrl:successful-report test="if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0"
+                              id="contrib-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
+         <svrl:text>author contrib should contain at least 1 xref[@ref-type='aff'].</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)"
+                              id="contrib-test-2"
+                              role="warning"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
+         <svrl:text>non-author contrib doesn't have an affiliation - 
+          
+            Jnr
+          
+         - is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="article-meta//contrib" id="contrib-tests"/>
+      <svrl:successful-report test="if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0"
+                              id="contrib-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]">
+         <svrl:text>author contrib should contain at least 1 xref[@ref-type='aff'].</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)"
+                              id="contrib-test-2"
+                              role="warning"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]">
+         <svrl:text>non-author contrib doesn't have an affiliation - 
+          
+            Snr
+          
+         - is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-child-test/pass.xml"
                            id="author-children-tests-pattern"
                            name="author-children-tests-pattern"/>
@@ -968,12 +1036,6 @@
                           location="/root[1]">
          <svrl:text>article/front/article-meta/contrib-group must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name"
-                          id="name-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta/contrib-group//name/surname"
                           id="surname-tests-xspec-assert"
                           role="error"
@@ -985,24 +1047,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/given-names must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/suffix"
-                          id="suffix-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/suffix must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/contrib-group//name/*"
-                          id="name-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/contrib-group//name/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//contrib"
-                          id="contrib-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//contrib must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']/*"
                           id="author-children-tests-xspec-assert"
@@ -1418,11 +1462,11 @@
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/body"
                           id="ra-body-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+         <svrl:text>article[@article-type='research-article']/body must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec"
                           id="top-level-sec-tests-xspec-assert"

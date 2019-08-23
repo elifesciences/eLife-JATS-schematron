@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="sec-title-content-mandate.sch"?>
+<!--Context: sec/title
+Test: report    not(*) and (normalize-space(.)='')
+Message: Section title must not be empty.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec>
+      <title>test</title>
+    </sec>
+  </article>
+</root>

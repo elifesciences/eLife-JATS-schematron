@@ -594,7 +594,7 @@
     <rule context="xref" id="xref-target-tests">
       <let name="rid" value="@rid"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
-      <report test="if (@ref-type='aff') then $target/local-name() != 'aff'                     else if (@ref-type='fn') then $target/local-name() != 'fn'                     else ()" role="error" id="xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='fig') and ($target/local-name() != 'fig')" role="error" id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -173,9 +173,30 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/custom-meta-group-tests/custom-meta-presence/pass.xml"
                            id="custom-meta-group-tests-pattern"
                            name="custom-meta-group-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/custom-meta-group" id="custom-meta-group-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/custom-meta-group-tests/custom-meta-presence/pass.xml"
                            id="custom-meta-tests-pattern"
                            name="custom-meta-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/custom-meta-group/custom-meta"
+                       id="custom-meta-tests"/>
+      <svrl:failed-assert test="count(meta-name) = 1"
+                          id="custom-meta-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]">
+         <svrl:text>One meta-name must be present in custom-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="meta-name = 'Author impact statement'"
+                          id="custom-meta-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]">
+         <svrl:text>The value of meta-name can only be 'Author impact statement'. Currently it is .</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(meta-value) = 1"
+                          id="custom-meta-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/custom-meta-group[1]/custom-meta[1]">
+         <svrl:text>One meta-value must be present in custom-meta.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/custom-meta-group-tests/custom-meta-presence/pass.xml"
                            id="meta-value-tests-pattern"
                            name="meta-value-tests-pattern"/>
@@ -1136,18 +1157,6 @@
                           location="/root[1]">
          <svrl:text>article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/custom-meta-group"
-                          id="custom-meta-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/custom-meta-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta"
-                          id="custom-meta-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/custom-meta-group/custom-meta must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value"
                           id="meta-value-tests-xspec-assert"
                           role="error"
@@ -1418,11 +1427,11 @@
                           location="/root[1]">
          <svrl:text>article//app//fig[@specific-use='child-fig']/label must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body[ancestor::article/@article-type='research-article']"
+      <svrl:failed-assert test="descendant::article[@article-type='research-article']/body"
                           id="ra-body-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>article/body[ancestor::article/@article-type='research-article'] must be present.</svrl:text>
+         <svrl:text>article[@article-type='research-article']/body must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec"
                           id="top-level-sec-tests-xspec-assert"

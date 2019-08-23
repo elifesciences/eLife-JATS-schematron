@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="bibr-xref-target-test.sch"?>
+<!--Context: xref
+Test: report    (@ref-type='bibr') and ($target/local-name() != 'ref')
+Message: xref with @reftype='' points to . This is not correct.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="bibr" rid="ref1"/>
+    
+    <aff id="ref1"/>
+  </article>
+</root>

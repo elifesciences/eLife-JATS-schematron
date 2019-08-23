@@ -3,5 +3,13 @@
 Test: assert    kwd
 Message: kwdgroup must contain at least one kwd-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="retraction">
+    <front>
+      <article-meta>
+        <kwd-group kwd-group-type="research-organism">
+          <title>Research organism</title>
+        </kwd-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

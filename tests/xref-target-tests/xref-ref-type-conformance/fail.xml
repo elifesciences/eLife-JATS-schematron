@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="xref-ref-type-conformance.sch"?>
+<!--Context: xref
+Test: assert    @ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')
+Message: @reftype='' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementarymaterial', 'other', 'table', 'tablefn', 'box', 'sec', 'app', 'decisionletter', 'dispformula'.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="reference" rid="id826768689"/>
+  </article>
+</root>

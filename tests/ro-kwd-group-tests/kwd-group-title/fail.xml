@@ -3,5 +3,13 @@
 Test: assert    title = 'Research organism'
 Message: kwdgroup title is , which is wrong. It should be 'Research organism'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="retraction">
+    <front>
+      <article-meta>
+        <kwd-group kwd-group-type="research-organism">
+          <title>Reserach organism</title>
+        </kwd-group>
+      </article-meta>
+    </front>
+  </article>
 </root>
