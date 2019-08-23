@@ -3,5 +3,147 @@
 Test: report    if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1
 Message: One author keyword group must be present in articlemeta.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">00000</article-id>
+        <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Computational and Systems Biology</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Neuroscience</subject>
+          </subj-group>
+        </article-categories>
+        <title-group>
+          <article-title>Statistical context dictates the relationship between feedback-related EEG
+            signals and learning</article-title>
+        </title-group>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes" id="author-0000">
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-0000-000X</contrib-id>
+            <email>zoolander.d@bluesteelmodelling.com</email>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="other" rid="fund1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-47476">
+            <name>
+              <surname>Hansel</surname>
+            </name>
+            <xref ref-type="aff" rid="aff1">1</xref>
+          </contrib>
+          <aff id="aff1">
+            <label>1</label>
+            <institution>The Derek Zoolander School for Kids Who Can't Read Good and Want to Do Other Stuff Good Too</institution>
+            <addr-line>
+              <named-content content-type="city">New York</named-content>
+            </addr-line>
+            <country>United States</country>
+          </aff>
+        </contrib-group>
+        <contrib-group content-type="section">
+          <contrib contrib-type="editor">
+            <name>
+              <surname>Mugatu</surname>
+            </name>
+            <role>Reviewing Editor</role>
+            <aff>
+              <institution>University of Oxford</institution>
+              <country>United Kingdom</country>
+            </aff>
+          </contrib>
+          <contrib contrib-type="senior_editor">
+            <name>
+              <surname>Mugatu</surname>
+            </name>
+            <role>Senior Editor</role>
+            <aff>
+              <institution>University of Oxford</institution>
+              <country>United Kingdom</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+        <pub-date date-type="publication" publication-format="electronic">
+          <year>2019</year>
+        </pub-date>
+        <pub-date pub-type="collection">
+          <year>2019</year>
+        </pub-date>
+        <volume>8</volume>
+        <elocation-id>e0000</elocation-id>
+        <history>
+          <date date-type="received" iso-8601-date="2019-03-19">
+            <day>19</day>
+            <month>03</month>
+            <year>2019</year>
+          </date>
+          <date date-type="accepted" iso-8601-date="2019-08-12">
+            <day>12</day>
+            <month>08</month>
+            <year>2019</year>
+          </date>
+        </history>
+        <permissions>
+          <copyright-statement>© 2019, Zoolander and Hansel</copyright-statement>
+          <copyright-year>2019</copyright-year>
+          <copyright-holder>Zoolander and Hansel</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative
+              Commons Attribution License</ext-link>, which permits unrestricted use and
+              redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+        <self-uri content-type="pdf" xlink:href="elife-00000.pdf"/>
+        <abstract>
+          <object-id pub-id-type="doi">10.7554/eLife.00000.001</object-id>
+          <p>...</p>
+        </abstract>
+        <kwd-group kwd-group-type="author-keywords">
+          <kwd>learning</kwd>
+          <kwd>modelling</kwd>
+          <kwd>blue steel</kwd>
+          <kwd>Bayesian inference</kwd>
+        </kwd-group>
+        <kwd-group kwd-group-type="research-organism">
+          <title>Research organism</title>
+          <kwd>Human</kwd>
+        </kwd-group>
+        <funding-group>
+          <award-group id="fund1">
+            <funding-source>
+              <institution-wrap>
+                <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000025</institution-id>
+                <institution>National Institute of Mental Health</institution>
+              </institution-wrap>
+            </funding-source>
+            <award-id>BS000000</award-id>
+            <principal-award-recipient>
+              <name>
+                <surname>Zoolander</surname>
+                <given-names>Derek</given-names>
+              </name>
+            </principal-award-recipient>
+          </award-group>
+          <funding-statement>The funders had no role in study design, data collection and
+            interpretation, or the decision to submit the work for publication.</funding-statement>
+        </funding-group>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>...</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

@@ -3,5 +3,16 @@
 Test: assert    contrib
 Message: contribgroup must contain at least one contrib.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          
+        </contrib-group>
+        <contrib-group content-type="section">
+          
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

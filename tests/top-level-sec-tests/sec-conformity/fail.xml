@@ -2,8 +2,7 @@
 <!--Context: body/sec
 Test: report    not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)
 Message: top level sec with title    is not a usual title for  content. Should this be captured as a sublevel of ?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>

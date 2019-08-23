@@ -6,7 +6,7 @@ Message: thead must have at least one tr.-->
   <article>
     <table>
       <thead>
-        <tr></tr>
+        <tr/>
       </thead>
     </table>
   </article>
