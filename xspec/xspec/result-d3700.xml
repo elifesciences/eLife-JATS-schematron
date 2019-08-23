@@ -225,12 +225,6 @@
          <svrl:text>xref with @ref-type='fig' points to an element with an @id='id826768751', but no such element exists.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
-      <svrl:successful-report test="(@ref-type='vid') and (($target/local-name() != 'media') or not($target/@mimetype='video'))"
-                              id="vid-xref-target-test"
-                              role="error"
-                              location="/root[1]/article[1]/xref[4]">
-         <svrl:text>xref with @ref-type='vid' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</svrl:text>
-      </svrl:successful-report>
       <svrl:successful-report test="boolean($target) = false()"
                               id="xref-target-conformance"
                               role="error"

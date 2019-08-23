@@ -3,5 +3,15 @@
 Test: report    matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')
 Message: There is no space between citation and the preceding text    Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p>See<xref ref-type="video" rid="video1">Video 1</xref>.</p>
+    
+    
+    <media mimetype="video" id="video1">
+      <label>Video 1.</label>
+      <caption>
+        <title>Title</title>
+      </caption>
+    </media>
+  </article>
 </root>

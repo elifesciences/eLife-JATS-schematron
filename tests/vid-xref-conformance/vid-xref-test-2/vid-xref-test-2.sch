@@ -593,7 +593,7 @@
   <pattern id="video-xref-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="target-no" value="substring-after(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'ideo ')"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>

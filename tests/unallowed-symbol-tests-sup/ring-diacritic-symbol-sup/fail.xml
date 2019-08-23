@@ -3,5 +3,7 @@
 Test: report    contains(.,'˚')
 Message: '' element contains the ring above symbol, '∘'. Should this be a (nonsuperscript) degree symbol  °  instead?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sup>˚</sup>
+  </article>
 </root>

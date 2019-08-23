@@ -1776,7 +1776,7 @@
         role="error" 
         id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='vid') and (($target/local-name() != 'media') or not($target/@mimetype='video'))"
+      <report test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))"
         role="error" 
         id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</report>
       
@@ -2009,7 +2009,7 @@
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))
                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))
-                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$'))
+                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
@@ -2326,11 +2326,11 @@
         role="error"
         id="tr-test-1">tr must contain at least one th or td.</report>
       
-      <report test="th and (tr/parent::tbody)"
+      <report test="th and (parent::tbody)"
         role="warning"
         id="tr-test-2">table row in body contains a th element (a header), which is unusual. Please check that this is correct.</report>
       
-      <report test="td and (tr/parent::thead)"
+      <report test="td and (parent::thead)"
         role="warning"
         id="tr-test-3">table row in body contains a td element (table data), which is unusual. Please check that this is correct.</report>
     </rule>
@@ -5390,7 +5390,8 @@
     <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year)"/>
-      <let name="cite2" value="e:citation-format2(year)"/>
+      <let name="cite1.5" value="e:citation-format2(year)"/>
+      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',year,'\)')"/>
       <let name="regex" value="concat($cite1,'|',$cite2)"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
         return 
@@ -5402,7 +5403,7 @@
       
       <report test="matches($article-text,$regex)"
         role="error" 
-        id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
+        id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
       
     </rule>
     
@@ -5435,7 +5436,7 @@
     
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="target-no" value="substring-after(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'ideo ')"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
@@ -5443,9 +5444,9 @@
         role="error" 
         id="vid-xref-conformity-1"><value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="contains(.,$target-no)"
+      <assert test="contains(.,$target-no)"
         role="error" 
-        id="vid-xref-conformity-2">video citation does not matches the video that it links to (taget video label number is <value-of select="$target-no"/>, but that number is not in the citation).</report>
+        id="vid-xref-conformity-2">video citation does not matches the video that it links to (target video label number is <value-of select="$target-no"/>, but that number is not in the citation).</assert>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')"
         role="warning"
@@ -5461,7 +5462,7 @@
       
       <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')"
         role="error"
-        id="vid-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+        id="vid-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')"
         role="warning"

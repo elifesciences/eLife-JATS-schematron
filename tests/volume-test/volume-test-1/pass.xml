@@ -3,5 +3,18 @@
 Test: assert    . = number($pub-date) - 2011
 Message: Journal volume is incorrect. It should be .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-meta>
+      <article-id pub-id-type="publisher-id">00000</article-id>
+      <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
+      <pub-date date-type="publication" publication-format="electronic">
+        <year>2019</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2019</year>
+      </pub-date>
+      <volume>8</volume>
+      <elocation-id>e00000</elocation-id>
+    </article-meta>
+  </article>
 </root>

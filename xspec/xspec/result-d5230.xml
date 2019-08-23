@@ -260,15 +260,30 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/thead-tests/thead-test-1/pass.xml"
                            id="table-tests-pattern"
                            name="table-tests-pattern"/>
+      <svrl:fired-rule context="table" id="table-tests"/>
+      <svrl:successful-report test="count(tbody) = 0"
+                              id="table-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/table[1]">
+         <svrl:text>table must have at least one tbody.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/thead-tests/thead-test-1/pass.xml"
                            id="tbody-tests-pattern"
                            name="tbody-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/thead-tests/thead-test-1/pass.xml"
                            id="thead-tests-pattern"
                            name="thead-tests-pattern"/>
+      <svrl:fired-rule context="table/thead" id="thead-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/thead-tests/thead-test-1/pass.xml"
                            id="tr-tests-pattern"
                            name="tr-tests-pattern"/>
+      <svrl:fired-rule context="tr" id="tr-tests"/>
+      <svrl:successful-report test="$count = 0"
+                              id="tr-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/table[1]/thead[1]/tr[1]">
+         <svrl:text>tr must contain at least one th or td.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/thead-tests/thead-test-1/pass.xml"
                            id="td-child-tests-pattern"
                            name="td-child-tests-pattern"/>
@@ -1208,12 +1223,6 @@
                           location="/root[1]">
          <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::*/text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)]"
-                          id="url-markup-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>*/text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig-group"
                           id="fig-group-tests-xspec-assert"
                           role="error"
@@ -1310,29 +1319,11 @@
                           location="/root[1]">
          <svrl:text>app//table-wrap/label must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table"
-                          id="table-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::table/tbody"
                           id="tbody-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>table/tbody must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table/thead"
-                          id="thead-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table/thead must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::tr"
-                          id="tr-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>tr must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::td/*"
                           id="td-child-tests-xspec-assert"

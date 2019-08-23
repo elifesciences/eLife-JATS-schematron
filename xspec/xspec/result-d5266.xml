@@ -269,6 +269,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="tr-tests-pattern"
                            name="tr-tests-pattern"/>
+      <svrl:fired-rule context="tr" id="tr-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="td-child-tests-pattern"
                            name="td-child-tests-pattern"/>
@@ -758,6 +759,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
@@ -791,6 +793,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -861,6 +865,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="colour-table-pattern"
                            name="colour-table-pattern"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/tr-tests/tr-test-2/pass.xml"
                            id="colour-named-content-pattern"
                            name="colour-named-content-pattern"/>
@@ -1208,12 +1213,6 @@
                           location="/root[1]">
          <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::*/text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)]"
-                          id="url-markup-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>*/text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig-group"
                           id="fig-group-tests-xspec-assert"
                           role="error"
@@ -1327,12 +1326,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>table/thead must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::tr"
-                          id="tr-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>tr must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::td/*"
                           id="td-child-tests-xspec-assert"
@@ -2306,12 +2299,6 @@
                           location="/root[1]">
          <svrl:text>p must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
-                          id="rrid-org-code-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list//ref"
                           id="duplicate-ref-xspec-assert"
                           role="error"
@@ -2371,12 +2358,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2503,12 +2484,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>table-wrap[@id='keyresource']//td must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::th or descendant::td"
-                          id="colour-table-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>th|td must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::named-content"
                           id="colour-named-content-xspec-assert"

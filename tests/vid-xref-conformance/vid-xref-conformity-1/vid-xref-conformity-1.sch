@@ -593,7 +593,7 @@
   <pattern id="video-xref-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="target-no" value="substring-after(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'ideo ')"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">

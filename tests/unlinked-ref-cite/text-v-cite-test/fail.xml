@@ -3,5 +3,44 @@
 Test: report    matches($article-text,$regex)
 Message: ref with id  has unlinked citations in the text  search  or .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <p>test text <xref ref-type="bibr" rid="bib1">Behrens et al., 2007</xref> test text. Behrens et al. (2007) test</p>
+    </body>
+    <back>
+      <ref-list>
+        <title>References</title>
+        <ref id="bib1">
+          <element-citation publication-type="journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Behrens</surname>
+                <given-names>TE</given-names>
+              </name>
+              <name>
+                <surname>Woolrich</surname>
+                <given-names>MW</given-names>
+              </name>
+              <name>
+                <surname>Walton</surname>
+                <given-names>ME</given-names>
+              </name>
+              <name>
+                <surname>Rushworth</surname>
+                <given-names>MF</given-names>
+              </name>
+            </person-group>
+            <year iso-8601-date="2007">2007</year>
+            <article-title>Learning the value of information in an uncertain world</article-title>
+            <source>Nature Neuroscience</source>
+            <volume>10</volume>
+            <fpage>1214</fpage>
+            <lpage>1221</lpage>
+            <pub-id pub-id-type="doi">10.1038/nn1954</pub-id>
+            <pub-id pub-id-type="pmid">17676057</pub-id>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
 </root>

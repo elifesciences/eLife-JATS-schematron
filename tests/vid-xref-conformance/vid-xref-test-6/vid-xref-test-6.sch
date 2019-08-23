@@ -593,7 +593,7 @@
   <pattern id="video-xref-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="target-no" value="substring-after(ancestor::article//media[@mimetype='video'][@id = $rid]/label,'ideo ')"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>

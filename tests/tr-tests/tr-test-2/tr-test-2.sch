@@ -593,7 +593,7 @@
   <pattern id="content-containers">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/>
-      <report test="th and (tr/parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header), which is unusual. Please check that this is correct.</report>
+      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header), which is unusual. Please check that this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

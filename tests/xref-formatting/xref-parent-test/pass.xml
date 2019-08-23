@@ -3,5 +3,7 @@
 Test: report    $parent = $formatting-elems
 Message: xref    has a formatting parent element    which is not correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p><xref ref-type="fig" rid="bib1"/></p>
+  </article>
 </root>

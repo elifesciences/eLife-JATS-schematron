@@ -7851,12 +7851,12 @@
       </x:scenario>
       <x:scenario label="vid-xref-conformity-2-pass">
         <x:context href="../tests/vid-xref-conformance/vid-xref-conformity-2/pass.xml"/>
-        <x:expect-not-report id="vid-xref-conformity-2" role="error"/>
+        <x:expect-not-assert id="vid-xref-conformity-2" role="error"/>
         <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="vid-xref-conformity-2-fail">
         <x:context href="../tests/vid-xref-conformance/vid-xref-conformity-2/fail.xml"/>
-        <x:expect-report id="vid-xref-conformity-2" role="error"/>
+        <x:expect-assert id="vid-xref-conformity-2" role="error"/>
         <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="vid-xref-test-2-pass">

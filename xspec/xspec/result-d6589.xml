@@ -227,9 +227,35 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="media-tests-pattern"
                            name="media-tests-pattern"/>
+      <svrl:fired-rule context="media" id="media-tests"/>
+      <svrl:failed-assert test="@mime-subtype"
+                          id="media-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have @mime-subtype.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="@xlink:href"
+                          id="media-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have @xlink:href.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(matches(@xlink:href,'\.m$')) else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$')) else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$')) else if ($file='html') then not(matches(@xlink:href,'\.html$')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$')) else not(ends-with(@xlink:href,concat('.',$file)))"
+                              id="media-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if (child::label) then not(matches(label,'^Video \d1 4\.$|^Figure \d1 4—video \d1 4\.$|^Table \d1 4—video \d1 4\.$|^Appendix \d1 4—video \d1 4\.$|^Animation \d1 4\.$|^Author response video \d1 4\.$')) else ()"
+                              id="media-test-7"
+                              role="error"
+                              location="/root[1]/article[1]/media[1]">
+         <svrl:text>video label does not conform to eLife's usual label format.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="video-test-pattern"
                            name="video-test-pattern"/>
+      <svrl:fired-rule context="media[child::label]" id="video-test"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
@@ -338,6 +364,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="video-title-tests-pattern"
                            name="video-title-tests-pattern"/>
+      <svrl:fired-rule context="media/caption/title" id="video-title-tests"/>
+      <svrl:successful-report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')"
+                              id="video-title-test-1"
+                              role="warning"
+                              location="/root[1]/article[1]/media[1]/caption[1]/title[1]">
+         <svrl:text>'Video 1/' appears to have a title which is the begining of a caption. Is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="matches(.,'\.$')"
+                          id="video-title-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/media[1]/caption[1]/title[1]">
+         <svrl:text>title for Video 1/ must end with a fullstop.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="ack-title-tests-pattern"
                            name="ack-title-tests-pattern"/>
@@ -791,6 +830,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -885,6 +926,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/video-title-tests/video-title-test-1/fail.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
@@ -1208,12 +1250,6 @@
                           location="/root[1]">
          <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::*/text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)]"
-                          id="url-markup-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>*/text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig-group"
                           id="fig-group-tests-xspec-assert"
                           role="error"
@@ -1243,18 +1279,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>graphic must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media"
-                          id="media-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media[child::label]"
-                          id="video-test-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media[child::label] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material"
                           id="supplementary-material-tests-xspec-assert"
@@ -1465,12 +1489,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>supplementary-material/caption/title must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::media/caption/title"
-                          id="video-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>media/caption/title must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ack"
                           id="ack-title-tests-xspec-assert"
@@ -2372,12 +2390,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2551,12 +2563,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref-list/ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
-                          id="fig-permissions-check-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
                           id="xref-formatting-xspec-assert"

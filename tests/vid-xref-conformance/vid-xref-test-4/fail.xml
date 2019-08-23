@@ -3,5 +3,16 @@
 Test: report    (ancestor::media[@mimetype='video']/@id = $rid)
 Message:   video citation is in the caption of the video that it links to. Is it correct or necessary?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    
+    
+    
+    <media mimetype="video" id="video1">
+      <label>Video 1.</label>
+      <caption>
+        <title>Title</title>
+        <p>See <xref ref-type="video" rid="video1">Video 1</xref> for ...</p>
+      </caption>
+    </media>
+  </article>
 </root>

@@ -2,6 +2,20 @@
 <!--Context: article/front/article-meta/title-group
 Test: report    ($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and matches(article-title,':')
 Message: Article title contains a colon. This almost never allowed.  -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+        </article-categories>
+        <title-group>
+          <article-title>A new twist on peer review</article-title>
+        </title-group>
+      </article-meta>
+    </front>
+  </article>
 </root>

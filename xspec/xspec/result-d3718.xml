@@ -204,12 +204,6 @@
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
-      <svrl:successful-report test="(@ref-type='vid') and (($target/local-name() != 'media') or not($target/@mimetype='video'))"
-                              id="vid-xref-target-test"
-                              role="error"
-                              location="/root[1]/article[1]/xref[1]">
-         <svrl:text>xref with @ref-type='vid' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</svrl:text>
-      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/xref-target-tests/xref-target-conformance/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
@@ -253,7 +247,7 @@
                           location="/root[1]/article[1]/media[1]">
          <svrl:text>media must have @xlink:href.</svrl:text>
       </svrl:failed-assert>
-      <svrl:successful-report test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(matches(@xlink:href,'\.m$')) else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$')) else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$')) else if ($file='html') then not(matches(@xlink:href,'\.html$')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$')) else not(ends-with(@xlink:href,concat('.',$file)))"
+      <svrl:successful-report test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(matches(@xlink:href,'\.m$')) else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$')) else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$')) else if ($file='html') then not(matches(@xlink:href,'\.html$')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$')) else not(ends-with(@xlink:href,concat('.',$file)))"
                               id="media-test-4"
                               role="error"
                               location="/root[1]/article[1]/media[1]">
