@@ -591,14 +591,14 @@
     </xsl:element>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link">
+    <rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" id="pubmed-link">
       <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pmc/articles/PMC[\d]*')" role="warning" id="pmc-presence">
         <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PMC article - <value-of select="."/> - should this be added a reference instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p//ext-link[not(ancestor::table-wrap)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap)] must be present.</assert>
+      <assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

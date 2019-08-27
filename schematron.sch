@@ -1820,9 +1820,9 @@
         role="error" 
         id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <assert test="@ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')"
+      <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')"
         role="error" 
-        id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
+        id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
       <report test="boolean($target) = false()"
         role="error" 
@@ -7022,7 +7022,7 @@
         id="list-type-house-style-test"><name/> element is a list-type='<value-of select="@list-type"/>'. According to house style, bullets, numbers or no indicators should be used. Usual values - ('bullet','simple','order').</assert>
     </rule>
     
-    <rule context="p//ext-link[not(ancestor::table-wrap)]" 
+    <rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" 
       id="pubmed-link">
       
       <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')"

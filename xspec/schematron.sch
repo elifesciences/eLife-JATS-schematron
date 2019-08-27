@@ -1373,7 +1373,7 @@
       
       <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <assert test="@ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
+      <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
       <report test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
     </rule>
@@ -5400,7 +5400,7 @@
     </rule>
   </pattern>
   <pattern id="pubmed-link-pattern">
-    <rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link">
+    <rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" id="pubmed-link">
       
       <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')" role="warning" id="pubmed-presence">
         <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PubMed article - <value-of select="."/> - should this be added a reference instead?</report>
@@ -5755,7 +5755,7 @@
       <assert test="descendant::article/body//p[not(parent::list-item)]" role="error" id="p-punctuation-xspec-assert">article/body//p[not(parent::list-item)] must be present.</assert>
       <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
       <assert test="descendant::list[@list-type]" role="error" id="list-house-style-xspec-assert">list[@list-type] must be present.</assert>
-      <assert test="descendant::p//ext-link[not(ancestor::table-wrap)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap)] must be present.</assert>
+      <assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ref-list/ref" role="error" id="ref-link-mandate-xspec-assert">ref-list/ref must be present.</assert>
       <assert test="descendant::fig or descendant::media[@mimetype='video']" role="error" id="fig-permissions-check-xspec-assert">fig|media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>

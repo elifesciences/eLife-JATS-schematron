@@ -3,5 +3,10 @@
 Test: report    (not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))
 Message:   Citation content does not match what it directs to.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p>test text <xref ref-type="table" rid="table2">Table 1</xref> test text.</p>
+    <table-wrap id="table2">
+      <label>Table 2.</label>
+    </table-wrap>
+  </article>
 </root>

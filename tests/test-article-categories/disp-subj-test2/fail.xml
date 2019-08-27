@@ -3,5 +3,21 @@
 Test: assert    count(subj-group[@subj-group-type='display-channel']/subject) = 1
 Message: subjgroup[@subjgrouptype='displaychannel'] must contain only one subject. Currently there are .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Computational and Systems Biology</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Neuroscience</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+  </article>
 </root>
