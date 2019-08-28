@@ -5075,6 +5075,9 @@
       <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'RNA' should be upper-case.</report>
       
+      <report test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" role="error" id="bmj">ref '<value-of select="ancestor::ref/@id"/>' contains
+        <value-of select="."/>. 'BMJ' should be upper-case.</report>
+      
       <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes|Genomes|Genetics') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the title is
         <value-of select="."/> - it should be either 'G3: Genes|Genomes|Genetics' or 'G3: Genes, Genomes, Genetics'.</report>
       

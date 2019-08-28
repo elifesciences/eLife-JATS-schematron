@@ -10395,6 +10395,16 @@
         <x:expect-report id="RNA" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="bmj-pass">
+        <x:context href="../tests/journal-title-tests/bmj/pass.xml"/>
+        <x:expect-not-report id="bmj" role="error"/>
+        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bmj-fail">
+        <x:context href="../tests/journal-title-tests/bmj/fail.xml"/>
+        <x:expect-report id="bmj" role="error"/>
+        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="G3-pass">
         <x:context href="../tests/journal-title-tests/G3/pass.xml"/>
         <x:expect-not-report id="G3" role="error"/>
