@@ -11409,12 +11409,12 @@
       </x:scenario>
       <x:scenario label="xref-child-test-pass">
         <x:context href="../tests/xref-formatting/xref-child-test/pass.xml"/>
-        <x:expect-not-report id="xref-child-test" role="error"/>
+        <x:expect-not-report id="xref-child-test" role="warning"/>
         <x:expect-not-assert id="xref-formatting-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xref-child-test-fail">
         <x:context href="../tests/xref-formatting/xref-child-test/fail.xml"/>
-        <x:expect-report id="xref-child-test" role="error"/>
+        <x:expect-report id="xref-child-test" role="warning"/>
         <x:expect-not-assert id="xref-formatting-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

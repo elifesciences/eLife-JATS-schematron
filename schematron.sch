@@ -7089,8 +7089,8 @@
         id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
       <report test="$child = $formatting-elems"
-        role="error" 
-        id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+        role="warning" 
+        id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>
     
     <rule context="xref[@ref-type='bibr']" 
