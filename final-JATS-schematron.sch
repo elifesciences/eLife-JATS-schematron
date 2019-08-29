@@ -1254,9 +1254,7 @@
       
       <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
       
-      
-      
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="error" id="final-custom-meta-test-12">Impact statement contains 'our'. This is not allowed</report>
+      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possesive langauge relating to the article or reserahc itself (which should be removed)?</report>
       
       <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       
@@ -5387,6 +5385,9 @@
       
       <report test="matches(.,'[Ii]n [Ss]itu')" role="warning" id="in-situ-italic-test">
         <name/> element contains 'in situ' - this should not be in italics (eLife house style).</report>
+      
+      <report test="matches(.,'[Ii]n [Pp]lanta')" role="warning" id="in-planta-italic-test">
+        <name/> element contains 'in planta' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="rete-mirabile-italic-test">
         <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style).</report>

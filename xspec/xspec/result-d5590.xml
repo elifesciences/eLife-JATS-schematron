@@ -2525,11 +2525,11 @@
                           location="/root[1]">
          <svrl:text>italic[not(ancestor::ref)] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
+      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]"
                           id="pubmed-link-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>p//ext-link[not(ancestor::table-wrap)] must be present.</svrl:text>
+         <svrl:text>p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list/ref"
                           id="ref-link-mandate-xspec-assert"

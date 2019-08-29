@@ -888,7 +888,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/url-markup-conformance/unlinked-url-2/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
-      <svrl:fired-rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link"/>
+      <svrl:fired-rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]"
+                       id="pubmed-link"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/url-markup-conformance/unlinked-url-2/pass.xml"
                            id="ref-link-mandate-pattern"
                            name="ref-link-mandate-pattern"/>

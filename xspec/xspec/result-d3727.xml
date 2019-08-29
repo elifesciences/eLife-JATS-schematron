@@ -204,6 +204,12 @@
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
+      <svrl:failed-assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')"
+                          id="xref-ref-type-conformance"
+                          role="error"
+                          location="/root[1]/article[1]/xref[1]">
+         <svrl:text>@ref-type='vid' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</svrl:text>
+      </svrl:failed-assert>
       <svrl:successful-report test="boolean($target) = false()"
                               id="xref-target-conformance"
                               role="error"
@@ -2551,11 +2557,11 @@
                           location="/root[1]">
          <svrl:text>list[@list-type] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
+      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]"
                           id="pubmed-link-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>p//ext-link[not(ancestor::table-wrap)] must be present.</svrl:text>
+         <svrl:text>p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list/ref"
                           id="ref-link-mandate-xspec-assert"

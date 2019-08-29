@@ -35,45 +35,170 @@
                            id="article-tests-pattern"
                            name="article-tests-pattern"/>
       <svrl:fired-rule context="article" id="article-tests"/>
-      <svrl:failed-assert test="@article-type = $allowed-article-types"
-                          id="test-article-type"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="count(front) = 1"
-                          id="test-article-front"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
          <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
+      <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
+                              id="test-article-back"
+                              role="error"
+                              location="/root[1]/article[1]">
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="research-article-pattern"
                            name="research-article-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="test-front-pattern"
                            name="test-front-pattern"/>
+      <svrl:fired-rule context="article/front" id="test-front"/>
+      <svrl:failed-assert test="count(journal-meta) = 1"
+                          id="test-front-jmeta"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]">
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="test-journal-meta-pattern"
                            name="test-journal-meta-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="test-article-metadata-pattern"
                            name="test-article-metadata-pattern"/>
+      <svrl:fired-rule context="article/front/article-meta" id="test-article-metadata"/>
+      <svrl:failed-assert test="matches($article-id,'^\d5$')"
+                          id="test-article-id"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
+                          id="test-article-doi-1"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
+                          id="test-article-doi-2"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="title-group[article-title]"
+                          id="test-title-group-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>title-group containing article-title must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="pub-date[@publication-format='electronic'][@date-type='publication']"
+                          id="test-epub-date"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="pub-date[@pub-type='collection']"
+                          id="test-pub-collection-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="volume"
+                          id="test-volume-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child volume in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="elocation-id"
+                          id="test-elocation-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child elocation-id in article-meta.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)"
+                              id="test-self-uri-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be a child self-uri in article-meta.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])"
+                              id="test-self-uri-att"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>self-uri must have an @content-type="pdf"</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])"
+                              id="test-self-uri-pdf-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is . It should start with elife-.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]5\.pdf$|^elife-[\d]5-v[0-9]1 2\.pdf$')])"
+                              id="test-self-uri-pdf-2"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>self-uri does not conform.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1"
+                              id="test-history-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one history element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="count(permissions) = 1"
+                          id="test-permissions-presence"
+                          role="error"
+                          location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))"
+                              id="test-abstracts"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
+                              id="test-custom-meta-group-presence"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = ('Correction','Retraction')) then () else count(kwd-group[@kwd-group-type='author-keywords']) != 1"
+                              id="test-auth-kwd-group-presence-1"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>One author keyword group must be present in article-meta.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication')) then (count(kwd-group[@kwd-group-type='research-organism']) = 0) else ()"
+                              id="test-ro-kwd-group-presence-2"
+                              role="warning"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]">
+         <svrl:text>Research Article does not contain a Research Organism keyword group. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="test-research-article-metadata-pattern"
                            name="test-research-article-metadata-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="test-article-categories-pattern"
                            name="test-article-categories-pattern"/>
+      <svrl:fired-rule context="article-meta/article-categories" id="test-article-categories"/>
+      <svrl:successful-report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1"
+                              id="head-subj-test3"
+                              role="warning"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/article-categories[1]">
+         <svrl:text>article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="disp-channel-checks-pattern"
                            name="disp-channel-checks-pattern"/>
+      <svrl:fired-rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject"
+                       id="disp-channel-checks"/>
+      <svrl:successful-report test="($article-type = 'editorial') and not(.='Editorial')"
+                              id="disp-subj-value-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/front[1]/article-meta[1]/article-categories[1]/subj-group[1]/subject[1]">
+         <svrl:text>Articles is an @article-type="editorial" but the display channel is Research Article. It should be 'Editorial' according to the article-type.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-categories/head-subj-test3/fail.xml"
                            id="MSA-checks-pattern"
                            name="MSA-checks-pattern"/>
@@ -908,41 +1033,17 @@
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front"
-                          id="test-front-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/front/journal-meta"
                           id="test-journal-meta-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article/front/journal-meta must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/front/article-meta"
-                          id="test-article-metadata-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/front/article-meta must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article[@article-type='research-article']/front/article-meta"
                           id="test-research-article-metadata-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article']/front/article-meta must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/article-categories"
-                          id="test-article-categories-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/article-categories must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject"
-                          id="disp-channel-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject"
                           id="MSA-checks-xspec-assert"
@@ -2534,11 +2635,11 @@
                           location="/root[1]">
          <svrl:text>list[@list-type] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap)]"
+      <svrl:failed-assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]"
                           id="pubmed-link-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>p//ext-link[not(ancestor::table-wrap)] must be present.</svrl:text>
+         <svrl:text>p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list/ref"
                           id="ref-link-mandate-xspec-assert"

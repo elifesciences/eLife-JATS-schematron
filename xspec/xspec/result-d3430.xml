@@ -220,11 +220,11 @@
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
-      <svrl:failed-assert test="@ref-type = ('aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')"
+      <svrl:failed-assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')"
                           id="xref-ref-type-conformance"
                           role="error"
                           location="/root[1]/article[1]/p[1]/xref[1]">
-         <svrl:text>@ref-type='' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'vid', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</svrl:text>
+         <svrl:text>@ref-type='' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="boolean($target) = false()"
                               id="xref-target-conformance"
@@ -979,7 +979,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/p-child-tests/allowed-p-test/pass.xml"
                            id="pubmed-link-pattern"
                            name="pubmed-link-pattern"/>
-      <svrl:fired-rule context="p//ext-link[not(ancestor::table-wrap)]" id="pubmed-link"/>
+      <svrl:fired-rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]"
+                       id="pubmed-link"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/p-child-tests/allowed-p-test/pass.xml"
                            id="ref-link-mandate-pattern"
                            name="ref-link-mandate-pattern"/>

@@ -1815,24 +1815,14 @@
         <x:expect-report id="custom-meta-test-10" role="error"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-custom-meta-test-11-pass">
-        <x:context href="../tests/meta-value-tests/pre-custom-meta-test-11/pass.xml"/>
-        <x:expect-not-report id="pre-custom-meta-test-11" role="warning"/>
+      <x:scenario label="custom-meta-test-11-pass">
+        <x:context href="../tests/meta-value-tests/custom-meta-test-11/pass.xml"/>
+        <x:expect-not-report id="custom-meta-test-11" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-custom-meta-test-11-fail">
-        <x:context href="../tests/meta-value-tests/pre-custom-meta-test-11/fail.xml"/>
-        <x:expect-report id="pre-custom-meta-test-11" role="warning"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-custom-meta-test-12-pass">
-        <x:context href="../tests/meta-value-tests/final-custom-meta-test-12/pass.xml"/>
-        <x:expect-not-report id="final-custom-meta-test-12" role="error"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-custom-meta-test-12-fail">
-        <x:context href="../tests/meta-value-tests/final-custom-meta-test-12/fail.xml"/>
-        <x:expect-report id="final-custom-meta-test-12" role="error"/>
+      <x:scenario label="custom-meta-test-11-fail">
+        <x:context href="../tests/meta-value-tests/custom-meta-test-11/fail.xml"/>
+        <x:expect-report id="custom-meta-test-11" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="custom-meta-test-13-pass">
@@ -11245,6 +11235,16 @@
       <x:scenario label="in-situ-italic-test-fail">
         <x:context href="../tests/italic-house-style/in-situ-italic-test/fail.xml"/>
         <x:expect-report id="in-situ-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="in-planta-italic-test-pass">
+        <x:context href="../tests/italic-house-style/in-planta-italic-test/pass.xml"/>
+        <x:expect-not-report id="in-planta-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="in-planta-italic-test-fail">
+        <x:context href="../tests/italic-house-style/in-planta-italic-test/fail.xml"/>
+        <x:expect-report id="in-planta-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="rete-mirabile-italic-test-pass">
