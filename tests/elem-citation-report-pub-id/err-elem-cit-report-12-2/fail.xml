@@ -6,5 +6,20 @@ Message: [errelemcitreport122]
         Reference '' has a pubid type of 
         ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="report">
+          <person-group person-group-type="author">
+            <collab>GlaxoSmithKline UK</collab>
+          </person-group>
+          <year iso-8601-date="2016">2016</year>
+          <source>Augmentin 250/62 SF Suspension</source>
+          <publisher-name>GlaxoSmithKline UK</publisher-name>
+          <publisher-loc>United Kingdom</publisher-loc>
+          <pub-id>https://www.medicines.org.uk/emc/medicine/19188</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>
