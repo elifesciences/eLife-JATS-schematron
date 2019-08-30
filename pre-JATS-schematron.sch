@@ -1254,7 +1254,7 @@
       
       <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
       
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possesive langauge relating to the article or reserahc itself (which should be removed)?</report>
+      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possesive langauge relating to the article or research itself (which should be removed)?</report>
       
       <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       

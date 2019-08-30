@@ -3,5 +3,14 @@
 Test: report    (parent::inline-formula) and (local-name()!='math')
 Message:  element is not allowed as a child of inlineformula.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <disp-formula>
+      <label/>
+      <mml:math/>
+    </disp-formula>
+    <inline-formula>
+      <label/>
+      <mml:math/>
+    </inline-formula>
+  </article>
 </root>

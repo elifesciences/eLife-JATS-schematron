@@ -1,7 +1,15 @@
 <?oxygen SCHSchema="custom-meta-test-11.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta/meta-value
 Test: report    matches(.,' [Oo]ur |^[Oo]ur ')
-Message: Impact statement contains 'our'. Is this possesive langauge relating to the article or reserahc itself (which should be removed)?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+Message: Impact statement contains 'our'. Is this possesive langauge relating to the article or research itself (which should be removed)?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-value>Our results show X equals Y.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
 </root>

@@ -3,5 +3,22 @@
 Test: report    (matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')
 Message: tablewrap with id  has no label which is not correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="research-article">
+    <xref ref-type="table" rid="table1"/>
+    <table-wrap id="table1" position="anchor">
+      
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Reagent type <break/>(species) or resource</th>
+            <th>Designation</th>
+            <th>Source or reference</th>
+            <th>Identifiers</th>
+            <th>Additional <break/>information</th>
+          </tr>
+        </thead>
+        <tbody>...</tbody>
+      </table>
+    </table-wrap>
+  </article>
 </root>

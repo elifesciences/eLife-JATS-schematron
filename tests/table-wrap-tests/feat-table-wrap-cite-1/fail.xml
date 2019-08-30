@@ -3,5 +3,8 @@
 Test: report    if (contains($id,'inline')) then () else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id])) else ()
 Message: There is no citation to  Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article article-type="article-commentary">
+    
+    <table-wrap id="table1"/>
+  </article>
 </root>

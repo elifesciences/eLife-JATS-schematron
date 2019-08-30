@@ -7,7 +7,7 @@ Message: @reftype='' is not allowed . The only allowed values are 'aff', 'fn', '
     <xref ref-type="aff" rid="id826768689"/>
     <xref ref-type="fn" rid="id826768720"/>
     <xref ref-type="fig" rid="id826768751"/>
-    <xref ref-type="vid" rid="id826768776"/>
+    <xref ref-type="video" rid="id826768776"/>
     <xref ref-type="bibr" rid="id826768804"/>
     <xref ref-type="supplementary-material" rid="id826768829"/>
     <xref ref-type="other" rid="id826768857"/>

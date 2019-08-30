@@ -915,9 +915,9 @@
       <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="xref-child-test"
-                              role="error"
+                              role="warning"
                               location="/root[1]/article[1]/p[1]/xref[1]">
-         <svrl:text>xref -  - has a formatting child element - bold - which is not correct.</svrl:text>
+         <svrl:text>xref -  - has a formatting child element - bold - which is likely not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/xref-formatting/xref-child-test/fail.xml"
                            id="ref-xref-formatting-pattern"

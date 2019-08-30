@@ -594,7 +594,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possesive langauge relating to the article or reserahc itself (which should be removed)?</report>
+      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possesive langauge relating to the article or research itself (which should be removed)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
