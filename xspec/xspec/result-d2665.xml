@@ -104,6 +104,27 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="contrib-tests-pattern"
                            name="contrib-tests-pattern"/>
+      <svrl:fired-rule context="article-meta//contrib" id="contrib-tests"/>
+      <svrl:successful-report test="if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0"
+                              id="contrib-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
+         <svrl:text>author contrib should contain at least 1 xref[@ref-type='aff'].</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)"
+                              id="contrib-test-2"
+                              role="warning"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
+         <svrl:text>non-author contrib doesn't have an affiliation - 
+          ...
+         - is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if (collab) then () else count(name) != 1"
+                              id="name-test"
+                              role="error"
+                              location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
+         <svrl:text>Contrib contains no collab but has more than one name. This is not correct.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="author-children-tests-pattern"
                            name="author-children-tests-pattern"/>
@@ -152,15 +173,38 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="funding-group-tests-pattern"
                            name="funding-group-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/funding-group" id="funding-group-tests"/>
+      <svrl:failed-assert test="count(funding-statement) = 1"
+                          id="funding-group-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]">
+         <svrl:text>One funding-statement should be present in funding-group.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="award-group-tests-pattern"
                            name="award-group-tests-pattern"/>
+      <svrl:fired-rule context="funding-group/award-group" id="award-group-tests"/>
+      <svrl:failed-assert test="ancestor::article//article-meta//contrib//xref/@rid = $id"
+                          id="award-group-test-7"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]">
+         <svrl:text>There is no xref from a contrib pointing to this award-group. This is incorrect.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="award-id-tests-pattern"
                            name="award-id-tests-pattern"/>
+      <svrl:fired-rule context="funding-group/award-group/award-id" id="award-id-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="institution-wrap-tests-pattern"
                            name="institution-wrap-tests-pattern"/>
+      <svrl:fired-rule context="article-meta//award-group//institution-wrap"
+                       id="institution-wrap-tests"/>
+      <svrl:failed-assert test="institution-id[@institution-id-type='FundRef']"
+                          id="institution-id-test"
+                          role="warning"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]/funding-source[1]/institution-wrap[1]">
+         <svrl:text>Whenever possible, institution-id[@institution-id-type="FundRef"] should be present in institution-wrap; warn staff if not</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="kwd-group-tests-pattern"
                            name="kwd-group-tests-pattern"/>
@@ -371,6 +415,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="award-group-ids-pattern"
                            name="award-group-ids-pattern"/>
+      <svrl:fired-rule context="funding-group/award-group" id="award-group-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="fig-ids-pattern"
                            name="fig-ids-pattern"/>
@@ -791,6 +836,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-7/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -998,12 +1045,6 @@
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group//name/* must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//contrib"
-                          id="contrib-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//contrib must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta//contrib[@contrib-type='author']/*"
                           id="author-children-tests-xspec-assert"
                           role="error"
@@ -1093,30 +1134,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group/aff must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/funding-group"
-                          id="funding-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/funding-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::funding-group/award-group"
-                          id="award-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>funding-group/award-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::funding-group/award-group/award-id"
-                          id="award-id-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>funding-group/award-group/award-id must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta//award-group//institution-wrap"
-                          id="institution-wrap-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta//award-group//institution-wrap must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]"
                           id="kwd-group-tests-xspec-assert"
@@ -1525,12 +1542,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::funding-group/award-group"
-                          id="award-group-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>funding-group/award-group must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
                           id="fig-ids-xspec-assert"
@@ -2365,12 +2376,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"

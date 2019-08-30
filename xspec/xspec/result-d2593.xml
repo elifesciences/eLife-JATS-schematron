@@ -152,9 +152,41 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-3/fail.xml"
                            id="funding-group-tests-pattern"
                            name="funding-group-tests-pattern"/>
+      <svrl:fired-rule context="article-meta/funding-group" id="funding-group-tests"/>
+      <svrl:failed-assert test="count(funding-statement) = 1"
+                          id="funding-group-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]">
+         <svrl:text>One funding-statement should be present in funding-group.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-3/fail.xml"
                            id="award-group-tests-pattern"
                            name="award-group-tests-pattern"/>
+      <svrl:fired-rule context="funding-group/award-group" id="award-group-tests"/>
+      <svrl:failed-assert test="principal-award-recipient"
+                          id="award-group-test-3"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]">
+         <svrl:text>award-group must contain a principal-award-recipient.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="funding-source/institution-wrap"
+                          id="award-group-test-5"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]">
+         <svrl:text>funding-source must contain an institution-wrap.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="count(funding-source/institution-wrap/institution) = 1"
+                          id="award-group-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]">
+         <svrl:text>One and only one institution must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="ancestor::article//article-meta//contrib//xref/@rid = $id"
+                          id="award-group-test-7"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]">
+         <svrl:text>There is no xref from a contrib pointing to this award-group. This is incorrect.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-3/fail.xml"
                            id="award-id-tests-pattern"
                            name="award-id-tests-pattern"/>
@@ -371,6 +403,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-3/fail.xml"
                            id="award-group-ids-pattern"
                            name="award-group-ids-pattern"/>
+      <svrl:fired-rule context="funding-group/award-group" id="award-group-ids"/>
+      <svrl:failed-assert test="matches(substring-after(@id,'fund'),'^[0-9]1 2$')"
+                          id="award-group-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/article-meta[1]/funding-group[1]/award-group[1]">
+         <svrl:text>award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/award-group-tests/award-group-test-3/fail.xml"
                            id="fig-ids-pattern"
                            name="fig-ids-pattern"/>
@@ -1094,18 +1133,6 @@
                           location="/root[1]">
          <svrl:text>article-meta/contrib-group/aff must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article-meta/funding-group"
-                          id="funding-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article-meta/funding-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::funding-group/award-group"
-                          id="award-group-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>funding-group/award-group must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::funding-group/award-group/award-id"
                           id="award-id-tests-xspec-assert"
                           role="error"
@@ -1525,12 +1552,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article-meta//contrib[@contrib-type='author'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::funding-group/award-group"
-                          id="award-group-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>funding-group/award-group must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
                           id="fig-ids-xspec-assert"

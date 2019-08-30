@@ -7,5 +7,9 @@ Message: [errxrefhigh21]
         text. Check all the references to citations for the same authors to determine which need to be changed.
       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <body>
+      <p><xref ref-type="bibr" rid="bib1">Smith et al., 1999b</xref>; <xref ref-type="bibr" rid="bib1">Smith et al., 1999a</xref></p>
+    </body>
+  </article>
 </root>

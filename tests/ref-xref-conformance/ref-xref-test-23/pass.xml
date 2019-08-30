@@ -2,6 +2,17 @@
 <!--Context: xref[@ref-type='bibr']
 Test: report    ((matches($post-text,'^[,]? found') and not(matches($pre-text,'[\(]+'))) or (matches($post-text,'^[\),]? found') and matches($pre-sentence,'^\($'))) and (. = $cite1)
 Message:   citation is in parenthetic style, but the following text begins with 'found', which suggests it should be in the style  -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article> ... <body>
+    <sec>
+      <p>test text <xref ref-type="bibr" rid="bib1">Arnold et al. (2006)</xref> found test text</p>
+    </sec>
+  </body>
+    <back>
+      <ref-list>
+        <ref id="bib1"><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Arnold</surname> <given-names>JS</given-names></name><name><surname>Werling</surname> <given-names>U</given-names></name><name><surname>Braunstein</surname> <given-names>EM</given-names></name><name><surname>Liao</surname> <given-names>J</given-names></name><name><surname>Nowotschin</surname> <given-names>S</given-names></name><name><surname>Edelmann</surname> <given-names>W</given-names></name><name><surname>Hebert</surname> <given-names>JM</given-names></name><name><surname>Morrow</surname> <given-names>BE</given-names></name></person-group><year iso-8601-date="2006">2006</year><article-title>Inactivation of Tbx1 in the pharyngeal endoderm results in 22q11ds malformations</article-title><source>Development</source><volume>133</volume><fpage>977</fpage><lpage>987</lpage><pub-id pub-id-type="doi">10.1242/dev.02264</pub-id><pub-id pub-id-type="pmid">16452092</pub-id></element-citation></ref>
+      </ref-list>
+    </back>
+  </article>
 </root>

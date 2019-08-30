@@ -3,5 +3,10 @@
 Test: report    (ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)
 Message:   Citation is in the caption of the Table that it links to. Is it correct or necessary?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p>test text <xref ref-type="table" rid="table2">Table 2</xref> test text.</p>
+    <table-wrap id="table2">
+      <label>Table 2.</label>
+    </table-wrap>
+  </article>
 </root>

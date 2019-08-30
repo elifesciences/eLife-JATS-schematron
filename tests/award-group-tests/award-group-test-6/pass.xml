@@ -3,5 +3,19 @@
 Test: assert    count(funding-source/institution-wrap/institution) = 1
 Message: One and only one institution must be present.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <article-meta>
+      <funding-group>
+        <award-group>
+          <funding-source>
+            <institution-wrap>
+              <institution/>
+            </institution-wrap>
+          </funding-source>
+          <principal-award-recipient/>
+          <award-id/>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </article>
 </root>
