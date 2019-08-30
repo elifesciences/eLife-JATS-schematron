@@ -853,12 +853,6 @@
                            id="ref-name-tests-pattern"
                            name="ref-name-tests-pattern"/>
       <svrl:fired-rule context="element-citation//name" id="ref-name-tests"/>
-      <svrl:successful-report test="matches(surname,'^[A-Z]*$')"
-                              id="all-caps-surname"
-                              role="warning"
-                              location="/root[1]/article[1]/element-citation[1]/name[1]">
-         <svrl:text>surname in ref '' is composed of only capitalised letters - . Should this be captured as a collab? If not, Should it be - ?</svrl:text>
-      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-name-tests/all-caps-surname/pass.xml"
                            id="isbn-conformity-pattern"
                            name="isbn-conformity-pattern"/>
