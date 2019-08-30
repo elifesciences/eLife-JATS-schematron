@@ -598,9 +598,4 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
-    <rule context="root" id="root-rule">
-      <assert test="descendant::styled-content" role="error" id="colour-styled-content-xspec-assert">styled-content must be present.</assert>
-    </rule>
-  </pattern>
 </schema>

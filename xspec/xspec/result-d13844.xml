@@ -203,6 +203,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
@@ -233,6 +234,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
+      <svrl:fired-rule context="supplementary-material" id="supplementary-material-tests"/>
+      <svrl:successful-report test="if (contains(label,'Transparent reporting form')) then () else not(caption)"
+                              id="supplementary-material-test-2"
+                              role="error"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material have a child caption.</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="media"
+                          id="supplementary-material-test-5"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a media.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="matches(label,'^Transparent reporting form$|^Supplementary file \d1 4\.$|^Source data \d1 4\.$|^Source code \d1 4\.$|^Reporting standard \d1 4\.$') and not(ancestor::sec[@sec-type='supplementary-material'])"
+                              id="supplementary-material-test-8"
+                              role="error"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>Supplementary file 1. has an article level label but it is not captured in the additional files section - This must be incorrect.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
@@ -779,6 +799,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="supp-file-xref-conformance-pattern"
                            name="supp-file-xref-conformance-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='supplementary-material']"
+                       id="supp-file-xref-conformance"/>
+      <svrl:failed-assert test="contains(.,$last-rid-no)"
+                          id="supp-file-xref-conformity-4"
+                          role="error"
+                          location="/root[1]/article[1]/xref[1]">
+         <svrl:text>Supplementary file 2 - It looks like the citation content does not match what it directs to.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="$last-text-no = $last-rid-no"
+                          id="supp-file-xref-conformity-5"
+                          role="warning"
+                          location="/root[1]/article[1]/xref[1]">
+         <svrl:text>Supplementary file 2 - It looks like the citation content does not match what it directs to. Check that it is correct.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="equation-xref-conformance-pattern"
                            name="equation-xref-conformance-pattern"/>
@@ -791,6 +825,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -888,6 +924,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
+      <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-5/fail.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
@@ -1196,12 +1233,6 @@
                           location="/root[1]">
          <svrl:text>p/* must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref"
-                          id="xref-target-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
                           id="ext-link-tests-xspec-assert"
                           role="error"
@@ -1249,12 +1280,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>media[child::label] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::supplementary-material"
-                          id="supplementary-material-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>supplementary-material must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]"
                           id="source-data-specific-tests-xspec-assert"
@@ -2342,12 +2367,6 @@
                           location="/root[1]">
          <svrl:text>xref[@ref-type='table'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='supplementary-material']"
-                          id="supp-file-xref-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='supplementary-material'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='disp-formula']"
                           id="equation-xref-conformance-xspec-assert"
                           role="error"
@@ -2365,12 +2384,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2510,12 +2523,6 @@
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"
                           role="error"
@@ -2551,12 +2558,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
-                          id="xref-formatting-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="ref-xref-formatting-xspec-assert"

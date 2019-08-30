@@ -2605,12 +2605,6 @@
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"
                           role="error"

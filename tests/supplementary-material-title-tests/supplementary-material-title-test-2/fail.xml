@@ -3,5 +3,11 @@
 Test: assert    matches(.,'\.$')
 Message: title for  must end with a fullstop.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <supplementary-material>
+      <caption>
+        <title>Title</title>
+      </caption>
+    </supplementary-material>
+  </article>
 </root>

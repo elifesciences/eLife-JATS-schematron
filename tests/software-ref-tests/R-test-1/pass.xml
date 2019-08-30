@@ -3,5 +3,18 @@
 Test: report    matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))
 Message: software ref '' has a datatitle    but it does not have one collab element containing 'R Development Core Team'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref id="bib33"><element-citation publication-type="software">
+      <person-group person-group-type="author">
+        <collab>R Development Core Team</collab>
+      </person-group>
+      <data-title>R: a language and environment for statistical computing</data-title>
+      <version designator="3.2.2">3.2.2</version>
+      <year iso-8601-date="2015">2015</year>
+      <publisher-loc>Vienna, Austria</publisher-loc>
+      <publisher-name>R Foundation for Statistical Computing</publisher-name>
+      <ext-link ext-link-type="uri" xlink:href="http://www.r-project.org/">http://www.r-project.org/</ext-link>
+    </element-citation>
+    </ref>
+  </article>
 </root>

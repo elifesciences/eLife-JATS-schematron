@@ -3,6 +3,13 @@
 Test: report    (matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')
 Message: ref '' contains
         . 'BMJ' should be uppercase.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <element-citation publication-type="journal">
+      <source>BMJ open</source>
+    </element-citation>
+    <element-citation publication-type="journal">
+      <source>BMJ</source>
+    </element-citation>
+  </article>
 </root>

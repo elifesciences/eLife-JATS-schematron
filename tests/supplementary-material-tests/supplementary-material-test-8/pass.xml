@@ -3,5 +3,15 @@
 Test: report    matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])
 Message:  has an article level label but it is not captured in the additional files section  This must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <sec sec-type="supplementary-material">
+      <supplementary-material>
+        <label>Supplementary file 1.</label>
+        <caption>
+          <title>Title.</title>
+        </caption>
+        <media/>
+      </supplementary-material>
+    </sec>
+  </article>
 </root>

@@ -131,6 +131,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="year-element-citation-tests-pattern"
                            name="year-element-citation-tests-pattern"/>
+      <svrl:fired-rule context="year[ancestor::element-citation]"
+                       id="year-element-citation-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
@@ -206,6 +208,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
+      <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="url-markup-conformance-pattern"
                            name="url-markup-conformance-pattern"/>
@@ -494,27 +497,34 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation-general"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
+      <svrl:fired-rule context="element-citation/person-group" id="elem-citation-gen-name-3-1"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-gen-name-3-2-pattern"
                            name="elem-citation-gen-name-3-2-pattern"/>
+      <svrl:fired-rule context="element-citation/person-group/collab"
+                       id="elem-citation-gen-name-3-2"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-gen-name-4-pattern"
                            name="elem-citation-gen-name-4-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-year-pattern"
                            name="elem-citation-year-pattern"/>
+      <svrl:fired-rule context="ref/element-citation/year" id="elem-citation-year"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="ref-pattern"
                            name="ref-pattern"/>
+      <svrl:fired-rule context="ref" id="ref"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="xref-pattern"
                            name="xref-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-journal-pattern"
                            name="elem-citation-journal-pattern"/>
@@ -590,12 +600,18 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-software-pattern"
                            name="elem-citation-software-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type = 'software']"
+                       id="elem-citation-software"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-software-data-title-pattern"
                            name="elem-citation-software-data-title-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type = 'software']/data-title"
+                       id="elem-citation-software-data-title"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-software-ext-link-pattern"
                            name="elem-citation-software-ext-link-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type = 'software']/ext-link"
+                       id="elem-citation-software-ext-link"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="elem-citation-preprint-pattern"
                            name="elem-citation-preprint-pattern"/>
@@ -791,6 +807,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -824,9 +842,18 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="software-ref-tests-pattern"
                            name="software-ref-tests-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='software']"
+                       id="software-ref-tests"/>
+      <svrl:successful-report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)"
+                              id="R-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/ref[1]/element-citation[1]">
+         <svrl:text>software ref 'bib33' has a data-title - R: a language and environment for statistical computing - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="publisher-name-tests-pattern"
                            name="publisher-name-tests-pattern"/>
+      <svrl:fired-rule context="element-citation/publisher-name" id="publisher-name-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-3/fail.xml"
                            id="ref-name-tests-pattern"
                            name="ref-name-tests-pattern"/>
@@ -1052,12 +1079,6 @@
                           location="/root[1]">
          <svrl:text>year[ancestor::article-meta] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::year[ancestor::element-citation]"
-                          id="year-element-citation-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>year[ancestor::element-citation] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
                           id="pub-date-tests-1-xspec-assert"
                           role="error"
@@ -1201,12 +1222,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
-                          id="ext-link-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ext-link[@ext-link-type='uri'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig-group"
                           id="fig-group-tests-xspec-assert"
@@ -1772,53 +1787,17 @@
                           location="/root[1]">
          <svrl:text>related-article must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-general-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/person-group"
-                          id="elem-citation-gen-name-3-1-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/person-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/person-group/collab"
-                          id="elem-citation-gen-name-3-2-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/person-group/collab must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation/person-group/name"
                           id="elem-citation-gen-name-4-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation/person-group/name must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref/element-citation/year"
-                          id="elem-citation-year-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref/element-citation/year must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref"
-                          id="ref-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="xref-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
                           id="elem-citation-journal-xspec-assert"
@@ -1963,24 +1942,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='patent']/patent must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']"
-                          id="elem-citation-software-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type = 'software'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']/data-title"
-                          id="elem-citation-software-data-title-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type = 'software']/data-title must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']/ext-link"
-                          id="elem-citation-software-ext-link-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type = 'software']/ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']"
                           id="elem-citation-preprint-xspec-assert"
@@ -2366,12 +2327,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2431,18 +2386,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='web'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='software']"
-                          id="software-ref-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='software'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/publisher-name"
-                          id="publisher-name-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/publisher-name must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation//name"
                           id="ref-name-tests-xspec-assert"
@@ -2509,12 +2452,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"

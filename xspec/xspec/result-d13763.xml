@@ -203,6 +203,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
+      <svrl:successful-report test="boolean($target) = false()"
+                              id="xref-target-conformance"
+                              role="error"
+                              location="/root[1]/article[1]/xref[1]">
+         <svrl:text>xref with @ref-type='supplementary-material' points to an element with an @id='data1', but no such element exists.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
@@ -779,6 +786,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="supp-file-xref-conformance-pattern"
                            name="supp-file-xref-conformance-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='supplementary-material']"
+                       id="supp-file-xref-conformance"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="equation-xref-conformance-pattern"
                            name="equation-xref-conformance-pattern"/>
@@ -791,6 +800,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -888,6 +899,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
+      <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supp-file-xref-conformance/supp-file-xref-conformity-1/pass.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
@@ -1195,12 +1207,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>p/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref"
-                          id="xref-target-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
                           id="ext-link-tests-xspec-assert"
@@ -2342,12 +2348,6 @@
                           location="/root[1]">
          <svrl:text>xref[@ref-type='table'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='supplementary-material']"
-                          id="supp-file-xref-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='supplementary-material'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='disp-formula']"
                           id="equation-xref-conformance-xspec-assert"
                           role="error"
@@ -2365,12 +2365,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2510,12 +2504,6 @@
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"
                           role="error"
@@ -2551,12 +2539,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
-                          id="xref-formatting-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="ref-xref-formatting-xspec-assert"

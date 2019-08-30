@@ -3,5 +3,10 @@
 Test: report    ancestor::supplementary-material/@id = $rid
 Message:   Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <xref ref-type="supplementary-material" rid="supp1">Supplementary file 1</xref>
+    <supplementary-material id="supp1">
+      <label>Supplementary file 1.</label>
+    </supplementary-material>
+  </article>
 </root>

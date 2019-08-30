@@ -3,5 +3,9 @@
 Test: report    matches(.,'�')
 Message: web citation contains the replacement character '�' which is unallowed  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <element-citation publication-type="web">
+      <ext-link>https://arxiv.org/abs/1908.08043</ext-link>
+    </element-citation>
+  </article>
 </root>

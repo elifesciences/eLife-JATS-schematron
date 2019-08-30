@@ -3,5 +3,10 @@
 Test: assert    contains(.,$last-rid-no)
 Message:   It looks like the citation content does not match what it directs to.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <xref ref-type="supplementary-material" rid="supp1">Supplementary file 2</xref>
+    <supplementary-material id="supp1">
+      <label>Supplementary file 1.</label>
+    </supplementary-material>
+  </article>
 </root>

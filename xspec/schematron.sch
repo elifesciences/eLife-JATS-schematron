@@ -5755,7 +5755,6 @@
       <assert test="descendant::table-wrap[@id='keyresource']//td" role="error" id="KRT-td-checks-xspec-assert">table-wrap[@id='keyresource']//td must be present.</assert>
       <assert test="descendant::th or descendant::td" role="error" id="colour-table-xspec-assert">th|td must be present.</assert>
       <assert test="descendant::named-content" role="error" id="colour-named-content-xspec-assert">named-content must be present.</assert>
-      <assert test="descendant::styled-content" role="error" id="colour-styled-content-xspec-assert">styled-content must be present.</assert>
       <assert test="descendant::article/body//p[not(parent::list-item)]" role="error" id="p-punctuation-xspec-assert">article/body//p[not(parent::list-item)] must be present.</assert>
       <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
       <assert test="descendant::list[@list-type]" role="error" id="list-house-style-xspec-assert">list[@list-type] must be present.</assert>

@@ -3,5 +3,11 @@
 Test: report    matches(.,'^\s')
 Message: title for  begins with a space, which is not allowed.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <supplementary-material>
+      <caption>
+        <title>Title.</title>
+      </caption>
+    </supplementary-material>
+  </article>
 </root>

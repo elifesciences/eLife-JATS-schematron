@@ -233,6 +233,37 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-tests/final-supplementary-material-test-3/fail.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
+      <svrl:fired-rule context="supplementary-material" id="supplementary-material-tests"/>
+      <svrl:failed-assert test="label"
+                          id="supplementary-material-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a label.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if (caption) then not(caption/title) else ()"
+                              id="pre-supplementary-material-test-3"
+                              role="warning"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text> does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if (caption) then not(caption/title) else ()"
+                              id="final-supplementary-material-test-3"
+                              role="warning"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text> doesn't have a title. Is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="media"
+                          id="supplementary-material-test-5"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a media.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(label,'^Transparent reporting form$|^Figure \d1 4—source data \d1 4\.$|^Figure \d1 4—figure supplement \d1 4—source data \d1 4\.$|^Table \d1 4—source data \d1 4\.$|^Video \d1 4—source data \d1 4\.$|^Figure \d1 4—source code \d1 4\.$|^Figure \d1 4—figure supplement \d1 4—source code \d1 4\.$|^Table \d1 4—source code \d1 4\.$|^Video \d1 4—source code \d1 4\.$|^Supplementary file \d1 4\.$|^Source data \d1 4\.$|^Source code \d1 4\.$|^Reporting standard \d1 4\.$')"
+                          id="supplementary-material-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material label does not conform to eLife's usual label format.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-tests/final-supplementary-material-test-3/fail.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
@@ -1249,12 +1280,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>media[child::label] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::supplementary-material"
-                          id="supplementary-material-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>supplementary-material must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]"
                           id="source-data-specific-tests-xspec-assert"
@@ -2509,12 +2534,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"

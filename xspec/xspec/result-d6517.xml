@@ -233,6 +233,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-title-tests/supplementary-material-title-test-2/fail.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
+      <svrl:fired-rule context="supplementary-material" id="supplementary-material-tests"/>
+      <svrl:failed-assert test="label"
+                          id="supplementary-material-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a label.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="media"
+                          id="supplementary-material-test-5"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a media.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="matches(label,'^Transparent reporting form$|^Figure \d1 4—source data \d1 4\.$|^Figure \d1 4—figure supplement \d1 4—source data \d1 4\.$|^Table \d1 4—source data \d1 4\.$|^Video \d1 4—source data \d1 4\.$|^Figure \d1 4—source code \d1 4\.$|^Figure \d1 4—figure supplement \d1 4—source code \d1 4\.$|^Table \d1 4—source code \d1 4\.$|^Video \d1 4—source code \d1 4\.$|^Supplementary file \d1 4\.$|^Source data \d1 4\.$|^Source code \d1 4\.$|^Reporting standard \d1 4\.$')"
+                          id="supplementary-material-test-6"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material label does not conform to eLife's usual label format.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-title-tests/supplementary-material-title-test-2/fail.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
@@ -335,6 +354,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-title-tests/supplementary-material-title-test-2/fail.xml"
                            id="supplementary-material-title-tests-pattern"
                            name="supplementary-material-title-tests-pattern"/>
+      <svrl:fired-rule context="supplementary-material/caption/title"
+                       id="supplementary-material-title-tests"/>
+      <svrl:failed-assert test="matches(.,'\.$')"
+                          id="supplementary-material-title-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]/caption[1]/title[1]">
+         <svrl:text>title for  must end with a fullstop.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-title-tests/supplementary-material-title-test-2/fail.xml"
                            id="video-title-tests-pattern"
                            name="video-title-tests-pattern"/>
@@ -791,6 +818,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-title-tests/supplementary-material-title-test-2/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-title-tests/supplementary-material-title-test-2/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -1250,12 +1279,6 @@
                           location="/root[1]">
          <svrl:text>media[child::label] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::supplementary-material"
-                          id="supplementary-material-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>supplementary-material must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]"
                           id="source-data-specific-tests-xspec-assert"
                           role="error"
@@ -1453,12 +1476,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>fig/caption/title must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::supplementary-material/caption/title"
-                          id="supplementary-material-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>supplementary-material/caption/title must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::media/caption/title"
                           id="video-title-tests-xspec-assert"
@@ -2366,12 +2383,6 @@
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
                           role="error"
@@ -2509,12 +2520,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"

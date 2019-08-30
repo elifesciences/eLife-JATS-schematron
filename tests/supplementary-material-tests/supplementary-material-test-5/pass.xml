@@ -3,5 +3,13 @@
 Test: assert    media
 Message: supplementarymaterial must have a media.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <supplementary-material>
+      <label>Supplementary file 1.</label>
+      <caption>
+        <title>Title.</title>
+      </caption>
+      <media/>
+    </supplementary-material>
+  </article>
 </root>

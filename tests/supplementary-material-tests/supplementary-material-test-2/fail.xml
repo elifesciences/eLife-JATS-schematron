@@ -3,5 +3,10 @@
 Test: report    if (contains(label,'Transparent reporting form')) then () else not(caption)
 Message: supplementarymaterial have a child caption.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <supplementary-material>
+      <label>Supplementary file 1.</label>
+      
+    </supplementary-material>
+  </article>
 </root>

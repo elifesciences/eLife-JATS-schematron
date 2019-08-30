@@ -233,6 +233,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-tests/supplementary-material-test-2/fail.xml"
                            id="supplementary-material-tests-pattern"
                            name="supplementary-material-tests-pattern"/>
+      <svrl:fired-rule context="supplementary-material" id="supplementary-material-tests"/>
+      <svrl:successful-report test="if (contains(label,'Transparent reporting form')) then () else not(caption)"
+                              id="supplementary-material-test-2"
+                              role="error"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material have a child caption.</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="media"
+                          id="supplementary-material-test-5"
+                          role="error"
+                          location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>supplementary-material must have a media.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="matches(label,'^Transparent reporting form$|^Supplementary file \d1 4\.$|^Source data \d1 4\.$|^Source code \d1 4\.$|^Reporting standard \d1 4\.$') and not(ancestor::sec[@sec-type='supplementary-material'])"
+                              id="supplementary-material-test-8"
+                              role="error"
+                              location="/root[1]/article[1]/supplementary-material[1]">
+         <svrl:text>Supplementary file 1. has an article level label but it is not captured in the additional files section - This must be incorrect.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/supplementary-material-tests/supplementary-material-test-2/fail.xml"
                            id="source-data-specific-tests-pattern"
                            name="source-data-specific-tests-pattern"/>
@@ -1249,12 +1268,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>media[child::label] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::supplementary-material"
-                          id="supplementary-material-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>supplementary-material must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]"
                           id="source-data-specific-tests-xspec-assert"
@@ -2509,12 +2522,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>named-content must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::styled-content"
-                          id="colour-styled-content-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>styled-content must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//p[not(parent::list-item)]"
                           id="p-punctuation-xspec-assert"

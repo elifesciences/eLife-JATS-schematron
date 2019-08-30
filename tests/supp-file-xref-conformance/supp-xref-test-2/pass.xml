@@ -3,5 +3,10 @@
 Test: report    matches($pre-text,'[A-Za-z0-9][\(]$')
 Message: citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?   ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <p>end of sentence (<xref ref-type="supplementary-material" rid="supp1">Supplementary file 1</xref>).</p>
+    <supplementary-material id="supp1">
+      <label>Supplementary file 1.</label>
+    </supplementary-material>
+  </article>
 </root>
