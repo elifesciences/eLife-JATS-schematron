@@ -122,15 +122,37 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
+      <svrl:fired-rule context="day" id="day-tests"/>
+      <svrl:failed-assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')"
+                          id="day-conformity"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/day[1]">
+         <svrl:text>day must contain 2 digits which are between '01' and '31' - '9' doesn't meet this requirement.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
+      <svrl:fired-rule context="month" id="month-tests"/>
+      <svrl:failed-assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')"
+                          id="month-conformity"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/month[1]">
+         <svrl:text>month must contain 2 digits which are between '01' and '12' - 'September' doesn't meet this requirement.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="year-element-citation-tests-pattern"
                            name="year-element-citation-tests-pattern"/>
+      <svrl:fired-rule context="year[ancestor::element-citation]"
+                       id="year-element-citation-tests"/>
+      <svrl:failed-assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')"
+                          id="year-element-citation-conformity"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/year[1]">
+         <svrl:text>year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - 'a1993' doesn't meet this requirement.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="pub-date-tests-1-pattern"
                            name="pub-date-tests-1-pattern"/>
@@ -347,6 +369,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="ref-list-title-tests-pattern"
                            name="ref-list-title-tests-pattern"/>
+      <svrl:fired-rule context="ref-list" id="ref-list-title-tests"/>
+      <svrl:failed-assert test="title = 'References'"
+                          id="ref-list-title-test"
+                          role="warning"
+                          location="/root[1]/article[1]/ref-list[1]">
+         <svrl:text>reference list usually has a title that is 'References', but currently it is '' - is that correct?</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="app-title-tests-pattern"
                            name="app-title-tests-pattern"/>
@@ -494,27 +523,33 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation-general"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
+      <svrl:fired-rule context="element-citation/person-group" id="elem-citation-gen-name-3-1"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-gen-name-3-2-pattern"
                            name="elem-citation-gen-name-3-2-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-gen-name-4-pattern"
                            name="elem-citation-gen-name-4-pattern"/>
+      <svrl:fired-rule context="element-citation/person-group/name"
+                       id="elem-citation-gen-name-4"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-year-pattern"
                            name="elem-citation-year-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="ref-pattern"
                            name="ref-pattern"/>
+      <svrl:fired-rule context="ref" id="ref"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="xref-pattern"
                            name="xref-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
+      <svrl:fired-rule context="element-citation" id="elem-citation"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-journal-pattern"
                            name="elem-citation-journal-pattern"/>
@@ -701,27 +736,73 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-pattern"
                            name="elem-citation-periodical-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']"
+                       id="elem-citation-periodical"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-year-pattern"
                            name="elem-citation-periodical-year-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']/string-date/year"
+                       id="elem-citation-periodical-year"/>
+      <svrl:failed-assert test="matches(normalize-space(.),'(^\d4[a-z]?)')"
+                          id="err-elem-cit-periodical-7-4-1"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/year[1]">
+         <svrl:text>[err-elem-cit-periodical-7-4-1]
+        The &lt;year&gt; element in a reference must contain 4 digits, possibly followed by one (but not more) lower-case letter.
+        Reference 'bib40' does not meet this requirement as it contains
+        the value 'a1993'.
+      </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="(1700 le number($YYYY)) and (number($YYYY) le $current-year)"
+                          id="err-elem-cit-periodical-7-4-2"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/year[1]">
+         <svrl:text>[err-elem-cit-periodical-7-4-2]
+        The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year (inclusive).
+        Reference 'bib40' does not meet this requirement as it contains
+        the value 'a1993'.
+      </svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY"
+                          id="err-elem-cit-periodical-7-5"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/year[1]">
+         <svrl:text>[err-elem-cit-periodical-7-5]
+        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
+        &lt;year&gt; element.
+        Reference 'bib40' does not meet this requirement as the element contains
+        the value 'a1993' and the attribute contains the value 
+        '1993-09-09'.
+      </svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-article-title-pattern"
                            name="elem-citation-periodical-article-title-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']/article-title"
+                       id="elem-citation-periodical-article-title"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-volume-pattern"
                            name="elem-citation-periodical-volume-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-fpage-pattern"
                            name="elem-citation-periodical-fpage-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']/fpage"
+                       id="elem-citation-periodical-fpage"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-string-date-pattern"
                            name="elem-citation-periodical-string-date-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']/string-date"
+                       id="elem-citation-periodical-string-date"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-month-pattern"
                            name="elem-citation-periodical-month-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']/string-date/month"
+                       id="elem-citation-periodical-month"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-day-pattern"
                            name="elem-citation-periodical-day-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='periodical']/string-date/day"
+                       id="elem-citation-periodical-day"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="pub-id-tests-pattern"
                            name="pub-id-tests-pattern"/>
@@ -761,12 +842,14 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
+      <svrl:fired-rule context="ref-list//ref" id="duplicate-ref"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="ref-xref-conformance-pattern"
                            name="ref-xref-conformance-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="unlinked-ref-cite-pattern"
                            name="unlinked-ref-cite-pattern"/>
+      <svrl:fired-rule context="ref-list/ref/element-citation" id="unlinked-ref-cite"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="vid-xref-conformance-pattern"
                            name="vid-xref-conformance-pattern"/>
@@ -830,6 +913,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="ref-name-tests-pattern"
                            name="ref-name-tests-pattern"/>
+      <svrl:fired-rule context="element-citation//name" id="ref-name-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="isbn-conformity-pattern"
                            name="isbn-conformity-pattern"/>
@@ -882,6 +966,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="ref-link-mandate-pattern"
                            name="ref-link-mandate-pattern"/>
+      <svrl:fired-rule context="ref-list/ref" id="ref-link-mandate"/>
+      <svrl:failed-assert test="ancestor::article//xref[@rid = $id]"
+                          id="pre-ref-link-presence"
+                          role="warning"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]">
+         <svrl:text>'bib40' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="ancestor::article//xref[@rid = $id]"
+                          id="final-ref-link-presence"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]">
+         <svrl:text>'bib40' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
@@ -1034,29 +1131,11 @@
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
-                          id="day-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::month"
-                          id="month-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>month must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>year[ancestor::article-meta] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::year[ancestor::element-citation]"
-                          id="year-element-citation-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>year[ancestor::element-citation] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::pub-date[not(@pub-type='collection')]"
                           id="pub-date-tests-1-xspec-assert"
@@ -1478,12 +1557,6 @@
                           location="/root[1]">
          <svrl:text>ack//p must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref-list"
-                          id="ref-list-title-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref-list must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::app/title"
                           id="app-title-tests-xspec-assert"
                           role="error"
@@ -1772,29 +1845,11 @@
                           location="/root[1]">
          <svrl:text>related-article must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-general-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/person-group"
-                          id="elem-citation-gen-name-3-1-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/person-group must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation/person-group/collab"
                           id="elem-citation-gen-name-3-2-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation/person-group/collab must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation/person-group/name"
-                          id="elem-citation-gen-name-4-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation/person-group/name must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref/element-citation/year"
                           id="elem-citation-year-xspec-assert"
@@ -1802,23 +1857,11 @@
                           location="/root[1]">
          <svrl:text>ref/element-citation/year must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref"
-                          id="ref-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="xref-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation"
-                          id="elem-citation-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='journal']"
                           id="elem-citation-journal-xspec-assert"
@@ -2186,53 +2229,11 @@
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='thesis']/ext-link must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']"
-                          id="elem-citation-periodical-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date/year"
-                          id="elem-citation-periodical-year-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical']/string-date/year must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/article-title"
-                          id="elem-citation-periodical-article-title-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical']/article-title must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/volume"
                           id="elem-citation-periodical-volume-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='periodical']/volume must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/fpage"
-                          id="elem-citation-periodical-fpage-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical']/fpage must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date"
-                          id="elem-citation-periodical-string-date-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical']/string-date must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date/month"
-                          id="elem-citation-periodical-month-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical']/string-date/month must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='periodical']/string-date/day"
-                          id="elem-citation-periodical-day-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='periodical']/string-date/day must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation/pub-id"
                           id="pub-id-tests-xspec-assert"
@@ -2306,23 +2307,11 @@
                           location="/root[1]">
          <svrl:text>p|td|th must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref-list//ref"
-                          id="duplicate-ref-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref-list//ref must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
                           id="ref-xref-conformance-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref-list/ref/element-citation"
-                          id="unlinked-ref-cite-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref-list/ref/element-citation must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='video']"
                           id="vid-xref-conformance-xspec-assert"
@@ -2444,12 +2433,6 @@
                           location="/root[1]">
          <svrl:text>element-citation/publisher-name must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation//name"
-                          id="ref-name-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation//name must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation/pub-id[@pub-id-type='isbn']"
                           id="isbn-conformity-xspec-assert"
                           role="error"
@@ -2533,12 +2516,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::ref-list/ref"
-                          id="ref-link-mandate-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>ref-list/ref must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
                           id="fig-permissions-check-xspec-assert"
