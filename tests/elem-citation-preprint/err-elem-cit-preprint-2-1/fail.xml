@@ -7,5 +7,18 @@ Message: [errelemcitpreprint21]
          <persongroup> 
         elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="preprint">
+          
+          <year iso-8601-date="2016">2016</year>
+          <article-title>A prospective randomized trial examining health care utilization in individuals using multiple 
+            smartphone-enabled biosensors</article-title>
+          <source>bioRxiv</source>
+          <pub-id pub-id-type="doi">10.1101/029983</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>

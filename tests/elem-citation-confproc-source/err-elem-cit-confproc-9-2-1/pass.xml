@@ -6,5 +6,37 @@ Message: [errelemcitconfproc921]
         at least two characters.
         Reference '' has too few characters.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib31">
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Palmer</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Kreutz-Delgado</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Makeig</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2007">2007</year>
+          <article-title>Probabilistic Formulation of Independent Vector Analysis Using Complex Gaussian Scale Mixtures</article-title>
+          <source>Independent component analysis and signal separation</source>
+          <conf-name> 8th International Conference, ICA 2009, Paraty, Brazil, March 15-18, 2009</conf-name>
+          <conf-loc>Brazil</conf-loc>
+          <fpage>90</fpage>
+          <lpage>97</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>
