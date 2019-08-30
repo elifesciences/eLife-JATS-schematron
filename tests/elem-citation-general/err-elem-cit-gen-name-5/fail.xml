@@ -5,5 +5,30 @@ Message: [errelemcitgenname5]
         The <etal> element in a reference is not allowed.
         Reference '' contains it.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <back>
+      <ref-list>
+        <title>References</title>
+        <ref id="bib1">
+          <element-citation publication-type="book">
+            <person-group person-group-type="author">
+              <name><surname>Coyne</surname><given-names>JA</given-names></name>
+              <etal/>
+            </person-group>
+            <person-group person-group-type="editor">
+              <name><surname>Otte</surname><given-names>D</given-names></name>
+              <name><surname>Endler</surname><given-names>JA</given-names></name>
+            </person-group>
+            <year iso-8601-date="1989">1989</year>
+            <chapter-title>Two rules of speciation</chapter-title>
+            <source>Speciation and its consequences</source>
+            <fpage>1</fpage>
+            <lpage>2</lpage>
+            <publisher-loc>Sunderland, MA</publisher-loc>
+            <publisher-name>Sinauer Associates</publisher-name>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
 </root>
