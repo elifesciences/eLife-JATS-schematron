@@ -6713,7 +6713,7 @@
     
     <rule context="element-citation[@publication-type='software']" 
       id="software-ref-tests">
-      <let name="lc" value="lower-case(data-title)"/>
+      <let name="lc" value="lower-case(data-title[1])"/>
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))"
         role="error" 

@@ -5,5 +5,21 @@ Message: [errelemcitsoftware152] The value of
         @xlink:href must start with either "http://" or "https://". The <extlink> element in
         Reference '' is '', which does not.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib12">
+        <element-citation publication-type="software">
+          <person-group person-group-type="author">
+            <name><surname>DeLano</surname><given-names>W</given-names></name>
+          </person-group>
+          <year iso-8601-date="2002">2002</year>
+          <source>PyMol</source>
+          <data-title>The PyMol Molecular Graphics System</data-title>
+          <version designator="1.7.4">Version 1.7.4</version>
+          <publisher-name>Schrödinger LLC</publisher-name>
+          <ext-link ext-link-type="uri" xlink:href='hpymol.org/'>https://www.pymol.org/</ext-link>  
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>

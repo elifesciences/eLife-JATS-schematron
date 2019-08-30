@@ -6,5 +6,18 @@ Message: [errelemcitdata32]
         Reference '' has 
          <persongroup> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib14">
+        <element-citation publication-type="data">
+          
+          <year iso-8601-date="2014">2014</year>
+          <data-title>Crystal structure of KRYPTONITE in complex with mCHH DNA and
+            SAH</data-title>
+          <source>RCSB Protein Data Bank</source>
+          <pub-id pub-id-type="doi" assigning-authority="RCSB Protein Data Bank">10.2210/pdb4qen/pdb</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>

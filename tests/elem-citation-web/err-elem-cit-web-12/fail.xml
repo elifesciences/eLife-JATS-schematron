@@ -6,5 +6,23 @@ Message: [errelemcitweb12]
         <persongroup>, <articletitle>, <source>, <year>, <extlink> and <dateincitation>.
         Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article/>
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="web">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walker</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="1994">1994</year>
+          <article-title>Solar System Live</article-title>
+          <ext-link ext-link-type="uri" xlink:href='https://www.fourmilab.ch/solar/'>https://www.fourmilab.ch/solar/</ext-link>
+          <date-in-citation iso-8601-date="1995-09-10">September 10, 1995</date-in-citation>
+          <chapter-title/>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
 </root>
