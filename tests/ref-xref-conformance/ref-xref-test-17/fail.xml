@@ -2,8 +2,7 @@
 <!--Context: xref[@ref-type='bibr']
 Test: report    (not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(ancestor::th) and not(matches($post-sentence,'^[\)]'))
 Message: citation is in parenthetic format    but the preceding text does not contain open parentheses. Should it be in the format  ?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
       <p>test text <xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref> test text</p>

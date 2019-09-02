@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ack-child-tests/ack-child-test-1/fail.xml"
                            id="research-article-pattern"
@@ -467,14 +467,14 @@
                           id="ack-child-test-1"
                           role="error"
                           location="/root[1]/article[1]/back[1]/ack[1]/sc[1]">
-         <svrl:text>Only p, sec or title can be children of ack. sc is not allowed.</svrl:text>
+         <svrl:text>Only p, sec or title can be children of ack.scis not allowed.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="back/ack/*" id="ack-child-tests"/>
       <svrl:failed-assert test="local-name() = ('p','sec','title')"
                           id="ack-child-test-1"
                           role="error"
                           location="/root[1]/article[1]/back[1]/ack[1]/named-content[1]">
-         <svrl:text>Only p, sec or title can be children of ack. named-content is not allowed.</svrl:text>
+         <svrl:text>Only p, sec or title can be children of ack.named-contentis not allowed.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ack-child-tests/ack-child-test-1/fail.xml"
                            id="app-tests-pattern"

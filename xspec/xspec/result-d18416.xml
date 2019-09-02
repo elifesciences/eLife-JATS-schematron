@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-4/fail.xml"
                            id="research-article-pattern"
@@ -844,6 +844,12 @@
                            name="software-ref-tests-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='software']"
                        id="software-ref-tests"/>
+      <svrl:successful-report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org/'))"
+                              id="R-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/ref[1]/element-citation[1]">
+         <svrl:text>software ref 'bib33' has a data-title -R: a language and environment for statistical computing- but does not have a 'http://www.r-project.org/' link.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-4/fail.xml"
                            id="publisher-name-tests-pattern"
                            name="publisher-name-tests-pattern"/>

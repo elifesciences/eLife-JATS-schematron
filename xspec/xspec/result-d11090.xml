@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-confproc-ext-link/err-elem-cit-confproc-14-1/fail.xml"
                            id="research-article-pattern"
@@ -677,16 +677,6 @@
                            name="elem-citation-confproc-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='confproc']"
                        id="elem-citation-confproc"/>
-      <svrl:failed-assert test="count(*) = count(person-group | article-title | year| source | conf-loc | conf-name | lpage | fpage | elocation-id | ext-link | pub-id)"
-                          id="err-elem-cit-confproc-17"
-                          role="error"
-                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
-         <svrl:text>[err-elem-cit-confproc-17]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="confproc" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;conf-loc&gt;, &lt;conf-name&gt;, 
-        &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;.
-        Reference 'bib31' has other elements.</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-confproc-ext-link/err-elem-cit-confproc-14-1/fail.xml"
                            id="elem-citation-confproc-preson-group-pattern"
                            name="elem-citation-confproc-preson-group-pattern"/>
@@ -723,6 +713,25 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-confproc-ext-link/err-elem-cit-confproc-14-1/fail.xml"
                            id="elem-citation-confproc-ext-link-pattern"
                            name="elem-citation-confproc-ext-link-pattern"/>
+      <svrl:fired-rule context="element-citation[@publication-type='confproc']/ext-link"
+                       id="elem-citation-confproc-ext-link"/>
+      <svrl:failed-assert test="@xlink:href"
+                          id="err-elem-cit-confproc-14-1"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/ext-link[1]">
+         <svrl:text>[err-elem-cit-confproc-14-1]
+        Each &lt;ext-link&gt; element must contain @xlink:href. The &lt;ext-link&gt; element in Reference 'bib31' 
+        does not.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="starts-with(@xlink:href, 'http://') or starts-with(@xlink:href, 'https://')"
+                          id="err-elem-cit-confproc-14-2"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/ext-link[1]">
+         <svrl:text>[err-elem-cit-confproc-14-2]
+        The value of @xlink:href must start with either "http://" or "https://". 
+        The &lt;ext-link&gt; element in Reference 'bib31' 
+        is '', which does not.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-confproc-ext-link/err-elem-cit-confproc-14-1/fail.xml"
                            id="elem-citation-thesis-pattern"
                            name="elem-citation-thesis-pattern"/>
@@ -839,6 +848,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-confproc-ext-link/err-elem-cit-confproc-14-1/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-confproc-ext-link/err-elem-cit-confproc-14-1/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -2113,12 +2124,6 @@
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='confproc']/pub-id must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::element-citation[@publication-type='confproc']/ext-link"
-                          id="elem-citation-confproc-ext-link-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>element-citation[@publication-type='confproc']/ext-link must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='thesis']"
                           id="elem-citation-thesis-xspec-assert"
                           role="error"
@@ -2328,12 +2333,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"

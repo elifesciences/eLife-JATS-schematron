@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="research-article-pattern"
@@ -258,13 +258,32 @@
                               id="pre-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>There is no citation to Key resources table Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation toTable 1.Ensure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app) then () else not(ancestor::article//xref[@rid = $id])"
                               id="final-table-wrap-cite-1"
                               role="error"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>There is no citation to Key resources table Ensure this is added.</svrl:text>
+         <svrl:text>There is no citation toTable 1.Ensure this is added.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')"
+                              id="kr-table-not-tagged"
+                              role="error"
+                              location="/root[1]/article[1]/table-wrap[1]">
+         <svrl:text>Table 1.has headings that are for the Key reources table, but it does not have an @id='keyresource'.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="table-wrap" id="table-wrap-tests"/>
+      <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])"
+                              id="pre-table-wrap-cite-1"
+                              role="warning"
+                              location="/root[1]/article[1]/table-wrap[2]">
+         <svrl:text>There is no citation toTable 2.Ensure to query the author asking for a citation.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app) then () else not(ancestor::article//xref[@rid = $id])"
+                              id="final-table-wrap-cite-1"
+                              role="error"
+                              location="/root[1]/article[1]/table-wrap[2]">
+         <svrl:text>There is no citation toTable 2.Ensure this is added.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="body-table-label-tests-pattern"
@@ -276,6 +295,7 @@
                            id="table-tests-pattern"
                            name="table-tests-pattern"/>
       <svrl:fired-rule context="table" id="table-tests"/>
+      <svrl:fired-rule context="table" id="table-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="tbody-tests-pattern"
                            name="tbody-tests-pattern"/>
@@ -286,13 +306,22 @@
                               location="/root[1]/article[1]/table-wrap[1]/table[1]/tbody[1]">
          <svrl:text>tbody must have at least one tr.</svrl:text>
       </svrl:successful-report>
+      <svrl:fired-rule context="table/tbody" id="tbody-tests"/>
+      <svrl:successful-report test="count(tr) = 0"
+                              id="tbody-test-1"
+                              role="error"
+                              location="/root[1]/article[1]/table-wrap[2]/table[1]/tbody[1]">
+         <svrl:text>tbody must have at least one tr.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="thead-tests-pattern"
                            name="thead-tests-pattern"/>
       <svrl:fired-rule context="table/thead" id="thead-tests"/>
+      <svrl:fired-rule context="table/thead" id="thead-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="tr-tests-pattern"
                            name="tr-tests-pattern"/>
+      <svrl:fired-rule context="tr" id="tr-tests"/>
       <svrl:fired-rule context="tr" id="tr-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="td-child-tests-pattern"
@@ -300,6 +329,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="th-child-tests-pattern"
                            name="th-child-tests-pattern"/>
+      <svrl:fired-rule context="th/*" id="th-child-tests"/>
       <svrl:fired-rule context="th/*" id="th-child-tests"/>
       <svrl:fired-rule context="th/*" id="th-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
@@ -445,12 +475,8 @@
                            name="table-wrap-ids-pattern"/>
       <svrl:fired-rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
                        id="table-wrap-ids"/>
-      <svrl:failed-assert test="if (label = 'Key resources table') then @id='keyresource' else if (label) then matches(@id, '^table[0-9]1 3$') else matches(@id, '^inlinetable[0-9]1 3$')"
-                          id="table-wrap-id-test"
-                          role="error"
-                          location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.</svrl:text>
-      </svrl:failed-assert>
+      <svrl:fired-rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
+                       id="table-wrap-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="body-top-level-sec-ids-pattern"
                            name="body-top-level-sec-ids-pattern"/>
@@ -798,6 +824,11 @@
       <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
@@ -831,6 +862,16 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
@@ -911,6 +952,11 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/kr-table-not-tagged/fail.xml"
                            id="colour-table-pattern"
                            name="colour-table-pattern"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
       <svrl:fired-rule context="th|td" id="colour-table"/>
       <svrl:fired-rule context="th|td" id="colour-table"/>
       <svrl:fired-rule context="th|td" id="colour-table"/>

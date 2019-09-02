@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-5/fail.xml"
                            id="research-article-pattern"
@@ -195,7 +195,19 @@
       <svrl:fired-rule context="p" id="p-tests"/>
       <svrl:fired-rule context="p" id="p-tests"/>
       <svrl:fired-rule context="p" id="p-tests"/>
+      <svrl:successful-report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article[@article-type='reply']) and not((count(*) = 1) and child::supplementary-material)"
+                              id="p-test-6"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/p[3]">
+         <svrl:text>p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</svrl:text>
+      </svrl:successful-report>
       <svrl:fired-rule context="p" id="p-tests"/>
+      <svrl:successful-report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article[@article-type='reply']) and not((count(*) = 1) and child::supplementary-material)"
+                              id="p-test-6"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/p[4]">
+         <svrl:text>p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</svrl:text>
+      </svrl:successful-report>
       <svrl:fired-rule context="p" id="p-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-5/fail.xml"
                            id="p-child-tests-pattern"
@@ -212,7 +224,7 @@
                               id="other-xref-target-test"
                               role="error"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[2]">
-         <svrl:text>xref with @ref-type='other' points to disp-formula. This is not correct.</svrl:text>
+         <svrl:text>xref with @ref-type='other' points todisp-formula. This is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-5/fail.xml"
@@ -369,7 +381,7 @@
                               id="fig-specific-test-5"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>Figure 1 is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</svrl:text>
+         <svrl:text>Figure 1is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
                        id="fig-specific-tests"/>
@@ -885,38 +897,38 @@
                           id="fig-xref-conformity-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text> - figure citation does not contain any numbers which must be incorrect.</svrl:text>
+         <svrl:text>- figure citation does not contain any numbers which must be incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="($type = 'Figure') and not(contains($no,$target-no))"
                               id="fig-xref-conformity-2"
                               role="error"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="($type = 'Figure') and ($no != $target-no)"
                               id="fig-xref-conformity-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="xref[@ref-type='fig']" id="fig-xref-conformance"/>
       <svrl:failed-assert test="matches(.,'\p')"
                           id="fig-xref-conformity-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/p[4]/xref[1]">
-         <svrl:text> - figure citation does not contain any numbers which must be incorrect.</svrl:text>
+         <svrl:text>- figure citation does not contain any numbers which must be incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="($type = 'Figure') and not(contains($no,$target-no))"
                               id="fig-xref-conformity-2"
                               role="error"
                               location="/root[1]/article[1]/body[1]/p[4]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="($type = 'Figure') and ($no != $target-no)"
                               id="fig-xref-conformity-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/p[4]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-5/fail.xml"
                            id="table-xref-conformance-pattern"
@@ -1123,14 +1135,14 @@
                               id="reproduce-test-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>The caption for Figure 1 contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
+         <svrl:text>The caption forFigure 1contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:successful-report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')"
                               id="reproduce-test-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[2]">
-         <svrl:text>The caption for Figure 2 contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
+         <svrl:text>The caption forFigure 2contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/fig-specific-test-5/fail.xml"
                            id="xref-formatting-pattern"

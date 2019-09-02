@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-3/fail.xml"
                            id="research-article-pattern"
@@ -317,19 +317,19 @@
                               id="fig-specific-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>Figure 1 does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
+         <svrl:text>Figure 1does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])"
                               id="pre-fig-specific-test-4"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>There is no citation to Figure 1 Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation toFigure 1Ensure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])"
                               id="final-fig-specific-test-4"
                               role="error"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>There is no citation to Figure 1 Ensure this is added.</svrl:text>
+         <svrl:text>There is no citation toFigure 1Ensure this is added.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-3/fail.xml"
                            id="fig-label-tests-pattern"
@@ -949,7 +949,7 @@
                               id="reproduce-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>The caption for Figure 1 contains the text 'adapted from ...', but has no permissions. Is this correct?</svrl:text>
+         <svrl:text>The caption forFigure 1contains the text 'adapted from ...', but has no permissions. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-permissions-check/reproduce-test-3/fail.xml"
                            id="xref-formatting-pattern"

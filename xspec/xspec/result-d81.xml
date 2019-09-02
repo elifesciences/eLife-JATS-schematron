@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-back/pass.xml"
                            id="research-article-pattern"
@@ -444,7 +444,7 @@
                               id="back-test-5"
                               role="error"
                               location="/root[1]/article[1]/back[1]">
-         <svrl:text>One and only one ref-list must be present in research-article content.</svrl:text>
+         <svrl:text>One and only one ref-list must be present inresearch-articlecontent.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))"
                               id="back-test-8"
@@ -456,7 +456,7 @@
                               id="back-test-9"
                               role="error"
                               location="/root[1]/article[1]/back[1]">
-         <svrl:text>One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in  content.</svrl:text>
+         <svrl:text>One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] incontent.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-tests/test-article-back/pass.xml"
                            id="data-content-tests-pattern"

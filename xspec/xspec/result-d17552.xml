@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/city-tests/final-US-states-test/fail.xml"
                            id="research-article-pattern"
@@ -58,13 +58,13 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-meta) = 1"
                           id="test-front-ameta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one article-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one article-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/city-tests/final-US-states-test/fail.xml"
                            id="test-journal-meta-pattern"
@@ -410,7 +410,7 @@
                           id="aff-id-test"
                           role="error"
                           location="/root[1]/article[1]/front[1]/aff[1]">
-         <svrl:text>aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be aff.</svrl:text>
+         <svrl:text>aff @id must be a concatenation of 'aff' and the child label value. In this instance it should beaff.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/city-tests/final-US-states-test/fail.xml"
                            id="fn-ids-pattern"
@@ -822,13 +822,13 @@
                               id="pre-US-states-test"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/aff[1]/named-content[1]">
-         <svrl:text>city contains a US state (or an abbreviation for it) - New Hampshire. Please raise with eLife production staff.</svrl:text>
+         <svrl:text>city contains a US state (or an abbreviation for it) -New Hampshire. Please raise with eLife production staff.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="matches($lc,$states-regex)"
                               id="final-US-states-test"
                               role="error"
                               location="/root[1]/article[1]/front[1]/aff[1]/named-content[1]">
-         <svrl:text>city contains a US state (or an abbreviation for it) - New Hampshire.</svrl:text>
+         <svrl:text>city contains a US state (or an abbreviation for it) -New Hampshire.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/city-tests/final-US-states-test/fail.xml"
                            id="institution-tests-pattern"

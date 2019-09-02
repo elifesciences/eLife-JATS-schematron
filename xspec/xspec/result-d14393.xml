@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/org-ref-article-book-title/pscynocephalus-ref-article-title-check/pass.xml"
                            id="research-article-pattern"
@@ -529,8 +529,7 @@
          <svrl:text>[err-elem-cit-journal-2-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;person-group&gt; element.
-        Reference '' has 
-        0 &lt;person-group&gt; elements.</svrl:text>
+        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="person-group[@person-group-type='author']"
                           id="err-elem-cit-journal-2-2"
@@ -549,8 +548,7 @@
          <svrl:text>[err-elem-cit-journal-4-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;source&gt; element.
-        Reference '' has 
-        0 &lt;source&gt; elements.</svrl:text>
+        Reference '' has0&lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)"
                           id="err-elem-cit-journal-4-2-1"

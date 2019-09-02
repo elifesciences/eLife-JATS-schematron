@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="research-article-pattern"
@@ -198,9 +198,11 @@
                            id="p-child-tests-pattern"
                            name="p-child-tests-pattern"/>
       <svrl:fired-rule context="p/*" id="p-child-tests"/>
+      <svrl:fired-rule context="p/*" id="p-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
       <svrl:fired-rule context="xref" id="xref-target-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="ext-link-tests-pattern"
@@ -217,6 +219,56 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-tests-pattern"
                            name="fig-tests-pattern"/>
+      <svrl:fired-rule context="fig[not(ancestor::sub-article[@article-type='reply'])]"
+                       id="fig-tests"/>
+      <svrl:failed-assert test="@position"
+                          id="fig-test-2"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>fig must have a @position.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="if ($article-type = ($features-article-types,'correction','retraction')) then () else not(label)"
+                              id="fig-test-3"
+                              role="error"
+                              location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>fig must have a label.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption)"
+                              id="fig-test-4"
+                              role="error"
+                              location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>fig must have a caption.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
+                              id="pre-fig-test-5"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>does not have a title. Please alert eLife staff.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
+                              id="final-fig-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>fig caption must have a title.</svrl:text>
+      </svrl:successful-report>
+      <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else (matches(@id,'^fig[0-9]1 3$') and not(caption/p))"
+                              id="fig-test-6"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>Figure does not have a legend, which is very unorthadox. Is this correct?</svrl:text>
+      </svrl:successful-report>
+      <svrl:failed-assert test="graphic"
+                          id="pre-fig-test-7"
+                          role="warning"
+                          location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>fig does not have graphic. Esnure author query is added asking for file.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="graphic"
+                          id="final-fig-test-7"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]/fig[1]">
+         <svrl:text>fig must have a graphic.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="ar-fig-tests-pattern"
                            name="ar-fig-tests-pattern"/>
@@ -295,6 +347,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-specific-tests-pattern"
                            name="fig-specific-tests-pattern"/>
+      <svrl:fired-rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
+                       id="fig-specific-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-label-tests-pattern"
                            name="fig-label-tests-pattern"/>
@@ -324,13 +378,26 @@
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s1.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top level sec with title -  - is not a usual title for  content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -- is not a usual title forcontent. Should this be captured as a sub-level of?</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
+      <svrl:failed-assert test="@id = concat('s', $pos)"
+                          id="top-sec-id"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]">
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes2.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
+                              id="sec-conformity"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[2]">
+         <svrl:text>top level sec with title -- is not a usual title forcontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="lower-level-sec-tests-pattern"
@@ -393,6 +460,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-ids-pattern"
                            name="fig-ids-pattern"/>
+      <svrl:fired-rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
+                       id="fig-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-sup-ids-pattern"
                            name="fig-sup-ids-pattern"/>
@@ -443,7 +512,14 @@
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s1.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes1.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat('s',$pos)"
+                          id="body-top-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]">
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes2.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="back-top-level-sec-ids-pattern"
@@ -459,6 +535,13 @@
                           id="sec-test-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[2]">
          <svrl:text>sec must have a title</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
@@ -858,6 +941,12 @@
                            id="ref-xref-conformance-pattern"
                            name="ref-xref-conformance-pattern"/>
       <svrl:fired-rule context="xref[@ref-type='bibr']" id="ref-xref-conformance"/>
+      <svrl:successful-report test="($pre-sentence = ', ') and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)"
+                              id="ref-xref-test-18"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[1]/p[1]/xref[2]">
+         <svrl:text>citation is in parenthetic format, but the preceding text is ', ' . Should the preceding text be '; ' instead?, Arnold et al., 2006</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="unlinked-ref-cite-pattern"
                            name="unlinked-ref-cite-pattern"/>
@@ -868,6 +957,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-xref-conformance-pattern"
                            name="fig-xref-conformance-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='fig']" id="fig-xref-conformance"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="table-xref-conformance-pattern"
                            name="table-xref-conformance-pattern"/>
@@ -888,6 +978,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
                        id="unallowed-symbol-tests"/>
       <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
@@ -1014,9 +1106,11 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="fig-permissions-check-pattern"
                            name="fig-permissions-check-pattern"/>
+      <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="xref-formatting-pattern"
                            name="xref-formatting-pattern"/>
+      <svrl:fired-rule context="xref[not(@ref-type='bibr')]" id="xref-formatting"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref-xref-conformance/ref-xref-test-18/fail.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
@@ -1326,12 +1420,6 @@
                           location="/root[1]">
          <svrl:text>fig-group/* must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]"
-                          id="fig-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]"
                           id="ar-fig-tests-xspec-assert"
                           role="error"
@@ -1482,12 +1570,6 @@
                           location="/root[1]">
          <svrl:text>article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
-                          id="fig-specific-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label"
                           id="fig-label-tests-xspec-assert"
                           role="error"
@@ -1625,12 +1707,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>funding-group/award-group must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]"
-                          id="fig-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]"
                           id="fig-sup-ids-xspec-assert"
@@ -2292,12 +2368,6 @@
                           location="/root[1]">
          <svrl:text>xref[@ref-type='video'] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='fig']"
-                          id="fig-xref-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='fig'] must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::xref[@ref-type='table']"
                           id="table-xref-conformance-xspec-assert"
                           role="error"
@@ -2453,18 +2523,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::fig or descendant::media[@mimetype='video']"
-                          id="fig-permissions-check-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>fig|media[@mimetype='video'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[not(@ref-type='bibr')]"
-                          id="xref-formatting-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd"
                           id="auth-kwd-style-xspec-assert"

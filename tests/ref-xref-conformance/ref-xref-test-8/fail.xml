@@ -2,8 +2,7 @@
 <!--Context: xref[@ref-type='bibr']
 Test: report    ($open gt $close) and (. = $cite2)
 Message:   citation is in nonparenthetic style, but the preceding text has open parentheses. Should it be in the style of ?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
       <p>test (text <xref ref-type="bibr" rid="bib1">Arnold et al. (2006)</xref> test text</p>

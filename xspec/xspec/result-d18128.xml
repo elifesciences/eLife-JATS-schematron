@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/preprint-title-tests/chemrxiv-test/fail.xml"
                            id="research-article-pattern"
@@ -542,8 +542,7 @@
                           role="error"
                           location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]">
          <svrl:text>[err-elem-cit-high-3-1]
-        Each &lt;ref&gt; element must have an @id attribute. 
-      </svrl:text>
+        Each &lt;ref&gt; element must have an @id attribute.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="matches(normalize-space(@id) ,'^bib\d+$')"
                           id="err-elem-cit-high-3-2"
@@ -553,8 +552,7 @@
         Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with 
         a number. 
         Reference '' has the value 
-        '', which is incorrect.
-      </svrl:text>
+        '', which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/preprint-title-tests/chemrxiv-test/fail.xml"
                            id="xref-pattern"
@@ -655,8 +653,7 @@
                           location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-preprint-2-1]
         There must be one and only one person-group. 
-        Reference '' has
-        0 &lt;person-group&gt; 
+        Reference '' has0&lt;person-group&gt; 
         elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
@@ -666,8 +663,7 @@
          <svrl:text>[err-elem-cit-preprint-8-1]
         Each  &lt;element-citation&gt; of type 'preprint' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has 
-        0 &lt;article-title&gt; elements.</svrl:text>
+        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(pub-id)=1 or count(ext-link)=1"
                           id="err-elem-cit-preprint-10-3"
@@ -675,8 +671,8 @@
                           location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-preprint-10-3]
         Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference.
-        Reference '' has 0 &lt;pub-id&gt; elements
-        and 0 &lt;ext-link&gt; elements.</svrl:text>
+        Reference '' has0&lt;pub-id&gt; elements
+        and0&lt;ext-link&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/preprint-title-tests/chemrxiv-test/fail.xml"
                            id="elem-citation-preprint-person-group-pattern"
@@ -907,7 +903,7 @@
                               id="chemrxiv-test"
                               role="error"
                               location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]/element-citation[1]/source[1]">
-         <svrl:text>ref '' has a source chemRxiv, which is not the correct proprietary capitalisation - 'ChemRxiv'.</svrl:text>
+         <svrl:text>ref '' has a sourcechemRxiv, which is not the correct proprietary capitalisation - 'ChemRxiv'.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/preprint-title-tests/chemrxiv-test/fail.xml"
                            id="website-tests-pattern"

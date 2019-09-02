@@ -39,7 +39,7 @@
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="research-article-pattern"
@@ -72,7 +72,7 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="test-journal-meta-pattern"
@@ -85,19 +85,19 @@
                           id="test-article-id"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
+         <svrl:text>article-id must consist only of 5 digits. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
                           id="test-article-doi-1"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
+         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
                           id="test-article-doi-2"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
+         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="title-group[article-title]"
                           id="test-title-group-presence"
@@ -145,7 +145,7 @@
                               id="test-self-uri-pdf-1"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is . It should start with elife-.</svrl:text>
+         <svrl:text>self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is. It should start with elife-.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]5\.pdf$|^elife-[\d]5-v[0-9]1 2\.pdf$')])"
                               id="test-self-uri-pdf-2"
@@ -157,13 +157,13 @@
                               id="test-history-presence"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one history element in the article-meta. Currently there are 0</svrl:text>
+         <svrl:text>There must be one and only one history element in the article-meta. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:failed-assert test="count(permissions) = 1"
                           id="test-permissions-presence"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))"
                               id="test-abstracts"
@@ -175,7 +175,7 @@
                               id="test-funding-group-presence"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
+         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are0.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
                               id="test-custom-meta-group-presence"
@@ -193,7 +193,7 @@
                               id="test-ro-kwd-group-presence-2"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Research Article does not contain a Research Organism keyword group. Is this correct?</svrl:text>
+         <svrl:text>Research Articledoes not contain a Research Organism keyword group. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="test-research-article-metadata-pattern"
@@ -220,7 +220,7 @@
                               id="head-subj-test2"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/article-categories[1]">
-         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</svrl:text>
+         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are0.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="disp-channel-checks-pattern"
@@ -490,13 +490,13 @@
                               id="ra-sec-test-2"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>Research Article doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
+         <svrl:text>Research Articledoesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
                               id="ra-sec-test-4"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body in Research Article content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
+         <svrl:text>main body inResearch Articlecontent doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="top-level-sec-tests-pattern"
@@ -506,13 +506,13 @@
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s1.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -- is not a usual title forResearch Articlecontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="lower-level-sec-tests-pattern"
@@ -633,7 +633,7 @@
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s1.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-td-checks/PMCID-link-test/fail.xml"
                            id="back-top-level-sec-ids-pattern"

@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/unlinked-ref-cite/text-v-cite-test/fail.xml"
                            id="research-article-pattern"
@@ -821,7 +821,7 @@
                               id="ref-xref-test-17"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text>citation is in parenthetic format - Behrens et al., 2007 - but the preceding text does not contain open parentheses. Should it be in the format - Behrens et al. (2007)?</svrl:text>
+         <svrl:text>citation is in parenthetic format -Behrens et al., 2007- but the preceding text does not contain open parentheses. Should it be in the format -Behrens et al. (2007)?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/unlinked-ref-cite/text-v-cite-test/fail.xml"
                            id="unlinked-ref-cite-pattern"
@@ -831,7 +831,7 @@
                               id="text-v-cite-test"
                               role="error"
                               location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]/element-citation[1]">
-         <svrl:text>ref with id bib1 has unlinked citations in the text - search Behrens et al., 2007 or Behrens et al. (2007).</svrl:text>
+         <svrl:text>ref with idbib1has unlinked citations in the text - searchBehrens et al., 2007orBehrens et al. (2007).</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/unlinked-ref-cite/text-v-cite-test/fail.xml"
                            id="vid-xref-conformance-pattern"

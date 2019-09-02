@@ -2,8 +2,7 @@
 <!--Context: xref[@ref-type='bibr']
 Test: report    (($open - $close) gt 1) and (. = $cite1)
 Message: sentence before citation has more open brackets than closed    Either one of the brackets is unnecessary or the citation should be in square brackets  .-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
       <p>test text (<xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>) test text</p>

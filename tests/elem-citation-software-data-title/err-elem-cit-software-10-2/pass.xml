@@ -17,7 +17,7 @@ Message: [errelemcitsoftware102] An <datatitle> element in a reference may conta
           <data-title>The PyMol Molecular Graphics System</data-title>
           <version designator="1.7.4">Version 1.7.4</version>
           <publisher-name>Schrödinger LLC</publisher-name>
-          <ext-link ext-link-type="uri" xlink:href='https://www.pymol.org/'>https://www.pymol.org/</ext-link>  
+          <ext-link ext-link-type="uri" xlink:href="https://www.pymol.org/">https://www.pymol.org/</ext-link>  
         </element-citation>
       </ref>
     </ref-list>

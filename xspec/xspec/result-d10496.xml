@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-web-date-in-citation/err-elem-cit-web-11-3/fail.xml"
                            id="research-article-pattern"
@@ -665,7 +665,7 @@
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/date-in-citation[1]">
          <svrl:text>[err-elem-cit-web-11-3]
         The format of the element content must match month, space, day, comma, year.
-        Reference 'bib1' has 10 10, 1995.</svrl:text>
+        Reference 'bib1' has10 10, 1995.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="if (string-length(@iso-8601-date) = 10) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=. else (string-length(@iso-8601-date) &lt; 10)"
                               id="err-elem-cit-web-11-4"
@@ -673,9 +673,7 @@
                               location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/date-in-citation[1]">
          <svrl:text>[err-elem-cit-web-11-4]
         The element content date must match the @iso-8601-date value.
-        Reference 'bib1' has element content of 
-        10 10, 1995 but an @iso-8601-date value of 
-        1995-09-10.</svrl:text>
+        Reference 'bib1' has element content of10 10, 1995but an @iso-8601-date value of1995-09-10.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-web-date-in-citation/err-elem-cit-web-11-3/fail.xml"
                            id="elem-citation-report-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/department-tests/dept-replacement-character-presence/fail.xml"
                            id="research-article-pattern"
@@ -403,7 +403,7 @@
                           id="aff-id-test"
                           role="error"
                           location="/root[1]/article[1]/aff[1]">
-         <svrl:text>aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be aff.</svrl:text>
+         <svrl:text>aff @id must be a concatenation of 'aff' and the child label value. In this instance it should beaff.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/department-tests/dept-replacement-character-presence/fail.xml"
                            id="fn-ids-pattern"
@@ -804,7 +804,7 @@
                               id="replacement-character-presence"
                               role="error"
                               location="/root[1]/article[1]/aff[1]/institution[1]">
-         <svrl:text>institution element contains the replacement character '�' which is not allowed.</svrl:text>
+         <svrl:text>institutionelement contains the replacement character '�' which is not allowed.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/department-tests/dept-replacement-character-presence/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
@@ -826,7 +826,7 @@
                               id="dept-replacement-character-presence"
                               role="error"
                               location="/root[1]/article[1]/aff[1]/institution[1]">
-         <svrl:text>institution element contains the replacement character '�' which is unallowed.</svrl:text>
+         <svrl:text>institutionelement contains the replacement character '�' which is unallowed.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/department-tests/dept-replacement-character-presence/fail.xml"
                            id="journal-title-tests-pattern"

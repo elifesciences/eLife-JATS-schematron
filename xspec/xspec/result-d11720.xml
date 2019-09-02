@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="research-article-pattern"
@@ -750,8 +750,7 @@
          <svrl:text>[err-elem-cit-periodical-7-4-1]
         The &lt;year&gt; element in a reference must contain 4 digits, possibly followed by one (but not more) lower-case letter.
         Reference 'bib40' does not meet this requirement as it contains
-        the value 'a1993'.
-      </svrl:text>
+        the value 'a1993'.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="(1700 le number($YYYY)) and (number($YYYY) le $current-year)"
                           id="err-elem-cit-periodical-7-4-2"
@@ -760,8 +759,7 @@
          <svrl:text>[err-elem-cit-periodical-7-4-2]
         The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year (inclusive).
         Reference 'bib40' does not meet this requirement as it contains
-        the value 'a1993'.
-      </svrl:text>
+        the value 'a1993'.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY"
                           id="err-elem-cit-periodical-7-5"
@@ -772,8 +770,7 @@
         &lt;year&gt; element.
         Reference 'bib40' does not meet this requirement as the element contains
         the value 'a1993' and the attribute contains the value 
-        '1993-09-09'.
-      </svrl:text>
+        '1993-09-09'.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/fail.xml"
                            id="elem-citation-periodical-article-title-pattern"

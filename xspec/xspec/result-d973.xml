@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-7/fail.xml"
                            id="research-article-pattern"
@@ -74,13 +74,13 @@
                           id="disp-subj-value-test-1"
                           role="error"
                           location="/root[1]/article[1]/article-categories[1]/subj-group[1]/subject[1]">
-         <svrl:text>Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is .</svrl:text>
+         <svrl:text>Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="($article-type = 'review-article') and not(.='Review Article')"
                               id="disp-subj-value-test-7"
                               role="error"
                               location="/root[1]/article[1]/article-categories[1]/subj-group[1]/subject[1]">
-         <svrl:text>Articles is an @article-type="review-article" but the display channel is Review article. It should be 'Review Article' according to the article-type.</svrl:text>
+         <svrl:text>Articles is an @article-type="review-article" but the display channel isReview article. It should be 'Review Article' according to the article-type.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/disp-channel-checks/disp-subj-value-test-7/fail.xml"
                            id="MSA-checks-pattern"

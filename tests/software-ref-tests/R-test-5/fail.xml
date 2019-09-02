@@ -8,7 +8,7 @@ Message: software ref '' has a source    but this is the datatitle.-->
       <person-group person-group-type="author">
         <collab>R Development Core Team</collab>
       </person-group>
-      <data-title>R: a language and environment for statistical computing</data-title>
+      <source>R: a language and environment for statistical computing</source>
       <version designator="3.2.2">3.2.2</version>
       <year iso-8601-date="2015">2015</year>
       <publisher-loc>Vienna, Austria</publisher-loc>

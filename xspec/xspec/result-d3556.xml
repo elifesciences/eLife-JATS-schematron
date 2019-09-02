@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/xref-target-tests/table-xref-target-test/pass.xml"
                            id="research-article-pattern"
@@ -811,26 +811,26 @@
                               id="table-xref-conformity-1"
                               role="warning"
                               location="/root[1]/article[1]/xref[1]">
-         <svrl:text> - citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
+         <svrl:text>- citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))"
                               id="table-xref-conformity-3"
                               role="error"
                               location="/root[1]/article[1]/xref[1]">
-         <svrl:text> - Citation content does not match what it directs to.</svrl:text>
+         <svrl:text>- Citation content does not match what it directs to.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="xref[@ref-type='table']" id="table-xref-conformance"/>
       <svrl:successful-report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app'))"
                               id="table-xref-conformity-1"
                               role="warning"
                               location="/root[1]/article[1]/xref[2]">
-         <svrl:text> - citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
+         <svrl:text>- citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))"
                               id="table-xref-conformity-3"
                               role="error"
                               location="/root[1]/article[1]/xref[2]">
-         <svrl:text> - Citation content does not match what it directs to.</svrl:text>
+         <svrl:text>- Citation content does not match what it directs to.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/xref-target-tests/table-xref-target-test/pass.xml"
                            id="supp-file-xref-conformance-pattern"

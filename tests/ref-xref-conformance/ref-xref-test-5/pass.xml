@@ -2,12 +2,10 @@
 <!--Context: xref[@ref-type='bibr']
 Test: assert    matches(normalize-space(.),'\p{L}')
 Message: citation doesn't contain letters, which must be incorrect   -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
-      <p>test text <xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>, <xref
-        ref-type="bibr" rid="bib1">Arnold et al. (2006)</xref> test text</p>
+      <p>test text <xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>, <xref ref-type="bibr" rid="bib1">Arnold et al. (2006)</xref> test text</p>
     </sec>
   </body>
     <back>

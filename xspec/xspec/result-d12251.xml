@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-bio-tests/feature-bio-test-2/pass.xml"
                            id="research-article-pattern"
@@ -104,19 +104,19 @@
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]/name[1]">
-         <svrl:text>This name - 
+         <svrl:text>This name -
             Hansen
-           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+          - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
       <svrl:failed-assert test="given-names"
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[3]/name[1]">
-         <svrl:text>This name - 
+         <svrl:text>This name -
             Mugatu
             Jr
-           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+          - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-bio-tests/feature-bio-test-2/pass.xml"
                            id="surname-tests-pattern"

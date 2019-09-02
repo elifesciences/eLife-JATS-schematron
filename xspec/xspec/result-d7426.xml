@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/back-tests/back-test-9/pass.xml"
                            id="research-article-pattern"
@@ -431,7 +431,7 @@
                           id="back-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/back[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be s1.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/back-tests/back-test-9/pass.xml"
                            id="low-level-sec-ids-pattern"
@@ -460,7 +460,7 @@
                               id="back-test-5"
                               role="error"
                               location="/root[1]/article[1]/back[1]">
-         <svrl:text>One and only one ref-list must be present in research-article content.</svrl:text>
+         <svrl:text>One and only one ref-list must be present inresearch-articlecontent.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ($features-article-types,'retraction','correction')) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))"
                               id="back-test-8"

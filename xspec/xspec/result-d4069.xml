@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-tests/final-fig-test-7/fail.xml"
                            id="research-article-pattern"
@@ -360,7 +360,7 @@
                           id="fig-title-test-2"
                           role="error"
                           location="/root[1]/article[1]/fig[1]/caption[1]/title[1]">
-         <svrl:text>title for  must end with a fullstop.</svrl:text>
+         <svrl:text>title formust end with a fullstop.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-tests/final-fig-test-7/fail.xml"
                            id="supplementary-material-title-tests-pattern"

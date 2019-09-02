@@ -592,8 +592,8 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
-      <let name="lc" value="lower-case(data-title)"/>
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(matches(ext-link/@xlink:href,'http[s]?://www.r-project.org/')) != 1)" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
+      <let name="lc" value="lower-case(data-title[1])"/>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org/'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

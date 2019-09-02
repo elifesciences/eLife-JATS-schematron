@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/journal-tests/journal-preprint-check/fail.xml"
                            id="research-article-pattern"
@@ -532,8 +532,7 @@
          <svrl:text>[err-elem-cit-journal-2-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;person-group&gt; element.
-        Reference 'bib1' has 
-        0 &lt;person-group&gt; elements.</svrl:text>
+        Reference 'bib1' has0&lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="person-group[@person-group-type='author']"
                           id="err-elem-cit-journal-2-2"
@@ -552,8 +551,7 @@
          <svrl:text>[err-elem-cit-journal-3-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;article-title&gt; element.
-        Reference 'bib1' has 
-        0 &lt;article-title&gt; elements.</svrl:text>
+        Reference 'bib1' has0&lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="element-citation[@publication-type='journal']"
                        id="elem-citation-journal"/>
@@ -564,8 +562,7 @@
          <svrl:text>[err-elem-cit-journal-2-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;person-group&gt; element.
-        Reference 'bib1' has 
-        0 &lt;person-group&gt; elements.</svrl:text>
+        Reference 'bib1' has0&lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="person-group[@person-group-type='author']"
                           id="err-elem-cit-journal-2-2"
@@ -584,8 +581,7 @@
          <svrl:text>[err-elem-cit-journal-3-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;article-title&gt; element.
-        Reference 'bib1' has 
-        0 &lt;article-title&gt; elements.</svrl:text>
+        Reference 'bib1' has0&lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/journal-tests/journal-preprint-check/fail.xml"
                            id="elem-citation-journal-article-title-pattern"
@@ -900,7 +896,7 @@
                               id="journal-preprint-check"
                               role="error"
                               location="/root[1]/article[1]/ref[1]/element-citation[1]">
-         <svrl:text>ref 'bib1' has a source bioRxiv, but it is captured as a journal not a preprint.</svrl:text>
+         <svrl:text>ref 'bib1' has a sourcebioRxiv, but it is captured as a journal not a preprint.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="element-citation[@publication-type='journal']"
                        id="journal-tests"/>
@@ -914,7 +910,7 @@
                               id="journal-preprint-check"
                               role="error"
                               location="/root[1]/article[1]/ref[1]/element-citation[2]">
-         <svrl:text>ref 'bib1' has a source ARXIV, but it is captured as a journal not a preprint.</svrl:text>
+         <svrl:text>ref 'bib1' has a sourceARXIV, but it is captured as a journal not a preprint.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/journal-tests/journal-preprint-check/fail.xml"
                            id="preprint-title-tests-pattern"

@@ -39,7 +39,7 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/auth-kwd-style/auth-kwd-check/fail.xml"
                            id="research-article-pattern"
@@ -52,7 +52,7 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/auth-kwd-style/auth-kwd-check/fail.xml"
                            id="test-journal-meta-pattern"
@@ -65,25 +65,25 @@
                           id="test-article-id"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
+         <svrl:text>article-id must consist only of 5 digits. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
                           id="test-article-doi-1"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
+         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
                           id="test-article-doi-2"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
+         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-categories) = 1"
                           id="test-article-presence"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one article-categories element in the article-meta. Currently there are 0</svrl:text>
+         <svrl:text>There must be one article-categories element in the article-meta. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="title-group[article-title]"
                           id="test-title-group-presence"
@@ -119,13 +119,13 @@
                           id="test-permissions-presence"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1"
                               id="test-funding-group-presence"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
+         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are0.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
                               id="test-custom-meta-group-presence"
@@ -397,13 +397,13 @@
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s1.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top level sec with title - Intro - is not a usual title for  content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -Intro- is not a usual title forcontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/auth-kwd-style/auth-kwd-check/fail.xml"
                            id="lower-level-sec-tests-pattern"
@@ -509,7 +509,7 @@
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s1.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/auth-kwd-style/auth-kwd-check/fail.xml"
                            id="back-top-level-sec-ids-pattern"
@@ -1034,7 +1034,7 @@
                               id="auth-kwd-check"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/kwd-group[1]/kwd[1]">
-         <svrl:text>Keyword - 'Inflammation' - does not appear in the article text with this capitalisation. Should it be inflammation instead?</svrl:text>
+         <svrl:text>Keyword - 'Inflammation' - does not appear in the article text with this capitalisation. Should it beinflammationinstead?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="kwd-group[@kwd-group-type='author-keywords']/kwd"
                        id="auth-kwd-style"/>
@@ -1042,7 +1042,7 @@
                               id="auth-kwd-check"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/kwd-group[1]/kwd[2]">
-         <svrl:text>Keyword - 'Macrophage' - does not appear in the article text with this capitalisation. Should it be macrophage instead?</svrl:text>
+         <svrl:text>Keyword - 'Macrophage' - does not appear in the article text with this capitalisation. Should it bemacrophageinstead?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="kwd-group[@kwd-group-type='author-keywords']/kwd"
                        id="auth-kwd-style"/>
@@ -1052,7 +1052,7 @@
                               id="auth-kwd-check"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/kwd-group[1]/kwd[4]">
-         <svrl:text>Keyword - 'Negative feedback' - does not appear in the article text with this capitalisation. Should it be negative feedback instead?</svrl:text>
+         <svrl:text>Keyword - 'Negative feedback' - does not appear in the article text with this capitalisation. Should it benegative feedbackinstead?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="kwd-group[@kwd-group-type='author-keywords']/kwd"
                        id="auth-kwd-style"/>
@@ -1060,7 +1060,7 @@
                               id="auth-kwd-check"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/kwd-group[1]/kwd[5]">
-         <svrl:text>Keyword - 'Signal integration' - does not appear in the article text with this capitalisation. Should it be signal integration instead?</svrl:text>
+         <svrl:text>Keyword - 'Signal integration' - does not appear in the article text with this capitalisation. Should it besignal integrationinstead?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/auth-kwd-style/auth-kwd-check/fail.xml"
                            id="root-pattern"

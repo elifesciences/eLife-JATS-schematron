@@ -39,19 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="count(body) = 1"
-                          id="test-article-body"
-                          role="error"
-                          location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="research-article-pattern"
@@ -203,6 +197,20 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="xref-target-tests-pattern"
                            name="xref-target-tests-pattern"/>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
+      <svrl:successful-report test="boolean($target) = false()"
+                              id="xref-target-conformance"
+                              role="error"
+                              location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]/table[1]/tbody[1]/tr[1]/td[3]/xref[1]">
+         <svrl:text>xref with @ref-type='bibr' points to an element with an @id='bib1', but no such element exists.</svrl:text>
+      </svrl:successful-report>
+      <svrl:fired-rule context="xref" id="xref-target-tests"/>
+      <svrl:successful-report test="boolean($target) = false()"
+                              id="xref-target-conformance"
+                              role="error"
+                              location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]/table[1]/tbody[1]/tr[1]/td[5]/xref[1]">
+         <svrl:text>xref with @ref-type='bibr' points to an element with an @id='bib1', but no such element exists.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ext-link-tests-pattern"
                            name="ext-link-tests-pattern"/>
@@ -251,30 +259,42 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-wrap-tests-pattern"
                            name="table-wrap-tests-pattern"/>
+      <svrl:fired-rule context="table-wrap" id="table-wrap-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="body-table-label-tests-pattern"
                            name="body-table-label-tests-pattern"/>
+      <svrl:fired-rule context="body//table-wrap/label" id="body-table-label-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="app-table-label-tests-pattern"
                            name="app-table-label-tests-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-tests-pattern"
                            name="table-tests-pattern"/>
+      <svrl:fired-rule context="table" id="table-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="tbody-tests-pattern"
                            name="tbody-tests-pattern"/>
+      <svrl:fired-rule context="table/tbody" id="tbody-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="thead-tests-pattern"
                            name="thead-tests-pattern"/>
+      <svrl:fired-rule context="table/thead" id="thead-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="tr-tests-pattern"
                            name="tr-tests-pattern"/>
+      <svrl:fired-rule context="tr" id="tr-tests"/>
+      <svrl:fired-rule context="tr" id="tr-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="td-child-tests-pattern"
                            name="td-child-tests-pattern"/>
+      <svrl:fired-rule context="td/*" id="td-child-tests"/>
+      <svrl:fired-rule context="td/*" id="td-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="th-child-tests-pattern"
                            name="th-child-tests-pattern"/>
+      <svrl:fired-rule context="th/*" id="th-child-tests"/>
+      <svrl:fired-rule context="th/*" id="th-child-tests"/>
+      <svrl:fired-rule context="th/*" id="th-child-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="fn-tests-pattern"
                            name="fn-tests-pattern"/>
@@ -320,6 +340,19 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="top-level-sec-tests-pattern"
                            name="top-level-sec-tests-pattern"/>
+      <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
+      <svrl:failed-assert test="@id = concat('s', $pos)"
+                          id="top-sec-id"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes1.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
+                              id="sec-conformity"
+                              role="warning"
+                              location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>top level sec with title -- is not a usual title forcontent. Should this be captured as a sub-level of?</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="lower-level-sec-tests-pattern"
                            name="lower-level-sec-tests-pattern"/>
@@ -416,9 +449,18 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="table-wrap-ids-pattern"
                            name="table-wrap-ids-pattern"/>
+      <svrl:fired-rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
+                       id="table-wrap-ids"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="body-top-level-sec-ids-pattern"
                            name="body-top-level-sec-ids-pattern"/>
+      <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
+      <svrl:failed-assert test="@id = concat('s',$pos)"
+                          id="body-top-level-sec-id-test"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes1.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="back-top-level-sec-ids-pattern"
                            name="back-top-level-sec-ids-pattern"/>
@@ -428,6 +470,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="sec-tests-pattern"
                            name="sec-tests-pattern"/>
+      <svrl:fired-rule context="sec" id="sec-tests"/>
+      <svrl:failed-assert test="title"
+                          id="sec-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]">
+         <svrl:text>sec must have a title</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="back-tests-pattern"
                            name="back-tests-pattern"/>
@@ -512,6 +561,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="xref-pattern"
                            name="xref-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='bibr']" id="xref"/>
+      <svrl:fired-rule context="xref[@ref-type='bibr']" id="xref"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="elem-citation-pattern"
                            name="elem-citation-pattern"/>
@@ -758,12 +809,36 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="rrid-org-code-pattern"
                            name="rrid-org-code-pattern"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
+      <svrl:fired-rule context="p|td|th" id="rrid-org-code"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="duplicate-ref-pattern"
                            name="duplicate-ref-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-xref-conformance-pattern"
                            name="ref-xref-conformance-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='bibr']" id="ref-xref-conformance"/>
+      <svrl:failed-assert test="replace(.,' ',' ') = ($cite1,$cite2)"
+                          id="ref-xref-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]/table[1]/tbody[1]/tr[1]/td[3]/xref[1]">
+         <svrl:text>Smith et al., 1999- citation does not conform to house style. It should be 'undetermined' or 'undetermined'. Preceding text = 'test text '.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:fired-rule context="xref[@ref-type='bibr']" id="ref-xref-conformance"/>
+      <svrl:failed-assert test="replace(.,' ',' ') = ($cite1,$cite2)"
+                          id="ref-xref-test-1"
+                          role="error"
+                          location="/root[1]/article[1]/body[1]/sec[1]/table-wrap[1]/table[1]/tbody[1]/tr[1]/td[5]/xref[1]">
+         <svrl:text>Smith et al., 1999- citation does not conform to house style. It should be 'undetermined' or 'undetermined'. Preceding text = 'test text '.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="unlinked-ref-cite-pattern"
                            name="unlinked-ref-cite-pattern"/>
@@ -791,6 +866,30 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
+      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
+                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -851,6 +950,10 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="KRT-xref-tests-pattern"
                            name="KRT-xref-tests-pattern"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']"
+                       id="KRT-xref-tests"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']"
+                       id="KRT-xref-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="KRT-check-pattern"
                            name="KRT-check-pattern"/>
@@ -858,9 +961,24 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="KRT-td-checks-pattern"
                            name="KRT-td-checks-pattern"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks"/>
+      <svrl:fired-rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="colour-table-pattern"
                            name="colour-table-pattern"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
+      <svrl:fired-rule context="th|td" id="colour-table"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="colour-named-content-pattern"
                            name="colour-named-content-pattern"/>
@@ -891,6 +1009,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="ref-xref-formatting-pattern"
                            name="ref-xref-formatting-pattern"/>
+      <svrl:fired-rule context="xref[@ref-type='bibr']" id="ref-xref-formatting"/>
+      <svrl:fired-rule context="xref[@ref-type='bibr']" id="ref-xref-formatting"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/KRT-xref-tests/xref-colum-test/pass.xml"
                            id="code-fork-pattern"
                            name="code-fork-pattern"/>
@@ -1196,12 +1316,6 @@
                           location="/root[1]">
          <svrl:text>p/* must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref"
-                          id="xref-target-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ext-link[@ext-link-type='uri']"
                           id="ext-link-tests-xspec-assert"
                           role="error"
@@ -1286,59 +1400,11 @@
                           location="/root[1]">
          <svrl:text>disp-formula/*|inline-formula/* must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table-wrap"
-                          id="table-wrap-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table-wrap must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::body//table-wrap/label"
-                          id="body-table-label-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>body//table-wrap/label must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::app//table-wrap/label"
                           id="app-table-label-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>app//table-wrap/label must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table"
-                          id="table-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table/tbody"
-                          id="tbody-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table/tbody must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table/thead"
-                          id="thead-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table/thead must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::tr"
-                          id="tr-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>tr must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::td/*"
-                          id="td-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>td/* must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::th/*"
-                          id="th-child-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>th/* must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::fn[@id][not(@fn-type='other')]"
                           id="fn-tests-xspec-assert"
@@ -1423,12 +1489,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article[@article-type='research-article']/body must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::body/sec"
-                          id="top-level-sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>body/sec must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::body/sec//sec"
                           id="lower-level-sec-tests-xspec-assert"
@@ -1616,18 +1676,6 @@
                           location="/root[1]">
          <svrl:text>sub-article[@article-type='reply']//table-wrap must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]"
-                          id="table-wrap-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::article/body/sec"
-                          id="body-top-level-sec-ids-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>article/body/sec must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article/back/sec"
                           id="back-top-level-sec-ids-xspec-assert"
                           role="error"
@@ -1639,12 +1687,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article/body/sec//sec|article/back/sec//sec must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::sec"
-                          id="sec-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>sec must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::back"
                           id="back-tests-xspec-assert"
@@ -1807,12 +1849,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
-                          id="xref-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation"
                           id="elem-citation-xspec-assert"
@@ -2300,23 +2336,11 @@
                           location="/root[1]">
          <svrl:text>p must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th"
-                          id="rrid-org-code-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list//ref"
                           id="duplicate-ref-xspec-assert"
                           role="error"
                           location="/root[1]">
          <svrl:text>ref-list//ref must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
-                          id="ref-xref-conformance-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::ref-list/ref/element-citation"
                           id="unlinked-ref-cite-xspec-assert"
@@ -2365,12 +2389,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
-                          id="unallowed-symbol-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"
@@ -2486,24 +2504,6 @@
                           location="/root[1]">
          <svrl:text>abstract[not(@*)] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']"
-                          id="KRT-xref-tests-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::table-wrap[@id='keyresource']//td"
-                          id="KRT-td-checks-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>table-wrap[@id='keyresource']//td must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::th or descendant::td"
-                          id="colour-table-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>th|td must be present.</svrl:text>
-      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::named-content"
                           id="colour-named-content-xspec-assert"
                           role="error"
@@ -2551,12 +2551,6 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>xref[not(@ref-type='bibr')] must be present.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::xref[@ref-type='bibr']"
-                          id="ref-xref-formatting-xspec-assert"
-                          role="error"
-                          location="/root[1]">
-         <svrl:text>xref[@ref-type='bibr'] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd"
                           id="auth-kwd-style-xspec-assert"

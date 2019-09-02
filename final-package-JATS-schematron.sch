@@ -1331,7 +1331,7 @@
       
       <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and (($article-type != 'correction') or ($article-type != 'retraction')) and not(ancestor::sub-article[@article-type='reply']) and ((count(*) != 1) and child::*/local-name() = 'supplementary-material')" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
+      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article[@article-type='reply']) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
       
       <report test="matches(.,'^\s?•') and not(ancestor::disp-quote[@content-type='editor-comment'])" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
@@ -1639,7 +1639,7 @@
       
       <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
       
-      <report test="($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
+      <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
         <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
       
     </rule>
@@ -5198,7 +5198,7 @@
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(matches(ext-link/@xlink:href,'http[s]?://www.r-project.org/')) != 1)" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org/'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
       
       <report test="matches(lower-case(source),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
       

@@ -13,7 +13,7 @@ Message: [errelemcitgenname32]
         <ref id="bib1">
           <element-citation publication-type="book">
             <person-group person-group-type="author">
-             <collab></collab>
+             <collab/>
             </person-group>
             <person-group person-group-type="editor">
               <name><surname>Otte</surname><given-names>D</given-names></name>

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-5/fail.xml"
                            id="research-article-pattern"
@@ -605,8 +605,6 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-5/fail.xml"
                            id="elem-citation-software-data-title-pattern"
                            name="elem-citation-software-data-title-pattern"/>
-      <svrl:fired-rule context="element-citation[@publication-type = 'software']/data-title"
-                       id="elem-citation-software-data-title"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-5/fail.xml"
                            id="elem-citation-software-ext-link-pattern"
                            name="elem-citation-software-ext-link-pattern"/>
@@ -844,6 +842,12 @@
                            name="software-ref-tests-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='software']"
                        id="software-ref-tests"/>
+      <svrl:successful-report test="matches(lower-case(source),'r: a language and environment for statistical computing')"
+                              id="R-test-5"
+                              role="error"
+                              location="/root[1]/article[1]/ref[1]/element-citation[1]">
+         <svrl:text>software ref 'bib33' has a source -R: a language and environment for statistical computing- but this is the data-title.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/software-ref-tests/R-test-5/fail.xml"
                            id="publisher-name-tests-pattern"
                            name="publisher-name-tests-pattern"/>
@@ -1936,6 +1940,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='patent']/patent must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type = 'software']/data-title"
+                          id="elem-citation-software-data-title-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type = 'software']/data-title must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']"
                           id="elem-citation-preprint-xspec-assert"

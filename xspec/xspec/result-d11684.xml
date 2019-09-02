@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-2/fail.xml"
                            id="research-article-pattern"
@@ -743,8 +743,7 @@
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/year[1]">
          <svrl:text>[err-elem-cit-periodical-7-2]
         The &lt;year&gt; element must have an @iso-8601-date attribute.
-        Reference 'bib40' does not.
-      </svrl:text>
+        Reference 'bib40' does not.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="matches(normalize-space(@iso-8601-date),'(^\d4-\d2-\d2)|(^\d4-\d2)')"
                           id="err-elem-cit-periodical-7-3"
@@ -753,8 +752,7 @@
          <svrl:text>[err-elem-cit-periodical-7-3]
         The @iso-8601-date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
         Reference 'bib40' does not meet this requirement as it contains
-        the value ''.
-      </svrl:text>
+        the value ''.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-2/fail.xml"
                            id="elem-citation-periodical-article-title-pattern"
@@ -787,8 +785,7 @@
         The content of &lt;month&gt; must match the content of the month section of @iso-8601-date on the 
         sibling year element.
         Reference 'bib40' does not meet this requirement as it contains
-        the value &lt;month&gt;='September' but &lt;year&gt;/@iso-8601-date=''.
-      </svrl:text>
+        the value &lt;month&gt;='September' but &lt;year&gt;/@iso-8601-date=''.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-2/fail.xml"
                            id="elem-citation-periodical-day-pattern"
@@ -803,8 +800,7 @@
         The content of &lt;day&gt;, if present, must match the content of the day section of @iso-8601-date on the 
         sibling year element.
         Reference 'bib40' does not meet this requirement as it contains
-        the value &lt;day&gt;='9' but &lt;year&gt;/@iso-8601-date=''.
-      </svrl:text>
+        the value &lt;day&gt;='9' but &lt;year&gt;/@iso-8601-date=''.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-2/fail.xml"
                            id="pub-id-tests-pattern"

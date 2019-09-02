@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/chemrxiv-web-test/fail.xml"
                            id="research-article-pattern"
@@ -627,8 +627,7 @@
                           location="/root[1]/article[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-web-2-1]
         There must be one and only one person-group. 
-        Reference '' has
-        0 &lt;person-group&gt; 
+        Reference '' has0&lt;person-group&gt; 
         elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
@@ -638,8 +637,7 @@
          <svrl:text>[err-elem-cit-web-8-1]
         Each  &lt;element-citation&gt; of type 'web' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has 
-        0 &lt;article-title&gt; elements.</svrl:text>
+        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(date-in-citation)=1"
                           id="err-elem-cit-web-11-1"
@@ -647,8 +645,7 @@
                           location="/root[1]/article[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-web-11-1]
         One and only one &lt;date-in-citation&gt; element is required.
-        Reference '' has 0 
-        &lt;date-in-citation&gt; elements.</svrl:text>
+        Reference '' has0&lt;date-in-citation&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/chemrxiv-web-test/fail.xml"
                            id="elem-citation-web-person-group-pattern"
@@ -889,7 +886,7 @@
                               id="chemrxiv-web-test"
                               role="error"
                               location="/root[1]/article[1]/element-citation[1]">
-         <svrl:text>web ref '' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref - https://chemrxiv.org/abs/1908.08043</svrl:text>
+         <svrl:text>web ref '' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref -https://chemrxiv.org/abs/1908.08043</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/website-tests/chemrxiv-web-test/fail.xml"
                            id="software-ref-tests-pattern"

@@ -1,17 +1,32 @@
 <?oxygen SCHSchema="kr-table-not-tagged.sch"?>
 <!--Context: table-wrap
-Test: report    ($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')
+Test: report    ($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')
 Message:  has headings that are for the Key reources table, but it does not have an @id='keyresource'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <table-wrap id="table1" position="anchor">
-      <label>Key resources table</label>
+      <label>Table 1.</label>
       <table frame="hsides" rules="groups">
         <thead>
           <tr>
             <th>Reagent type <break/>(species) or resource</th>
             <th>Designation</th>
             <th>Source or reference</th>
+            <th>Identifiers</th>
+            <th>Additional <break/>information</th>
+          </tr>
+        </thead>
+        <tbody>...</tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="table2" position="anchor">
+      <label>Table 2.</label>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Heading 1</th>
+            <th>Designation</th>
+            <th>Heading 3</th>
             <th>Identifiers</th>
             <th>Additional <break/>information</th>
           </tr>

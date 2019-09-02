@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
-      <let name="lc" value="lower-case(data-title)"/>
+      <let name="lc" value="lower-case(data-title[1])"/>
       <report test="matches(lower-case(source),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
     </rule>
   </pattern>

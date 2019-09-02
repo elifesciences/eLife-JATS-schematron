@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/pre-fig-specific-test-4/pass.xml"
                            id="research-article-pattern"
@@ -347,7 +347,7 @@
                               id="fig-specific-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[2]">
-         <svrl:text>Figure 2 does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
+         <svrl:text>Figure 2does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/pre-fig-specific-test-4/pass.xml"
                            id="fig-label-tests-pattern"
@@ -386,19 +386,19 @@
                               id="ra-sec-test-2"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
+         <svrl:text>doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else $method-count != 1"
                               id="ra-sec-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body in  content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
+         <svrl:text>main body incontent doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
                               id="ra-sec-test-4"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body in  content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
+         <svrl:text>main body incontent doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/pre-fig-specific-test-4/pass.xml"
                            id="top-level-sec-tests-pattern"
@@ -873,38 +873,38 @@
                           id="fig-xref-conformity-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text> - figure citation does not contain any numbers which must be incorrect.</svrl:text>
+         <svrl:text>- figure citation does not contain any numbers which must be incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="($type = 'Figure') and not(contains($no,$target-no))"
                               id="fig-xref-conformity-2"
                               role="error"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="($type = 'Figure') and ($no != $target-no)"
                               id="fig-xref-conformity-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[1]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="xref[@ref-type='fig']" id="fig-xref-conformance"/>
       <svrl:failed-assert test="matches(.,'\p')"
                           id="fig-xref-conformity-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/p[1]/xref[2]">
-         <svrl:text> - figure citation does not contain any numbers which must be incorrect.</svrl:text>
+         <svrl:text>- figure citation does not contain any numbers which must be incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="($type = 'Figure') and not(contains($no,$target-no))"
                               id="fig-xref-conformity-2"
                               role="error"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[2]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="($type = 'Figure') and ($no != $target-no)"
                               id="fig-xref-conformity-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/p[1]/xref[2]">
-         <svrl:text> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
+         <svrl:text>- figure citation does not appear to link to the same place as the content of the citation suggests it should.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/pre-fig-specific-test-4/pass.xml"
                            id="table-xref-conformance-pattern"
@@ -1064,14 +1064,14 @@
                               id="reproduce-test-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>The caption for Figure 1 contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
+         <svrl:text>The caption forFigure 1contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="fig|media[@mimetype='video']" id="fig-permissions-check"/>
       <svrl:successful-report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')"
                               id="reproduce-test-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[2]">
-         <svrl:text>The caption for Figure 2 contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
+         <svrl:text>The caption forFigure 2contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/pre-fig-specific-test-4/pass.xml"
                            id="xref-formatting-pattern"

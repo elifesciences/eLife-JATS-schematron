@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
-      <let name="lc" value="lower-case(data-title)"/>
+      <let name="lc" value="lower-case(data-title[1])"/>
       <report test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" role="error" id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
     </rule>
   </pattern>

@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/final-table-wrap-cite-1/fail.xml"
                            id="research-article-pattern"
@@ -264,19 +264,19 @@
                               id="table-wrap-test-4"
                               role="error"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>table-wrap with id table1 has no label which is not correct.</svrl:text>
+         <svrl:text>table-wrap with idtable1has no label which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else not(ancestor::article//xref[@rid = $id])"
                               id="pre-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>There is no citation to  Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation toEnsure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app) then () else not(ancestor::article//xref[@rid = $id])"
                               id="final-table-wrap-cite-1"
                               role="error"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>There is no citation to  Ensure this is added.</svrl:text>
+         <svrl:text>There is no citation toEnsure this is added.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/final-table-wrap-cite-1/fail.xml"
                            id="body-table-label-tests-pattern"

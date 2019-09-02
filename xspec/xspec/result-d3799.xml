@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-child-test/fail.xml"
                            id="research-article-pattern"
@@ -211,70 +211,70 @@
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[1]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - sup - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -sup- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[2]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - sub - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -sub- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[3]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - bold - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -bold- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[4]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - italic - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -italic- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[5]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - monospace - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -monospace- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[6]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - roman - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -roman- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[7]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - sans-serif - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -sans-serif- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[8]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - strike - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -strike- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[9]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - underline - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -underline- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$child = $formatting-elems"
                               id="ext-link-child-test"
                               role="error"
                               location="/root[1]/article[1]/ext-link[10]">
-         <svrl:text>xref - https://elifesciences.org/articles/46080 - has a formatting child element - ruby - which is not correct.</svrl:text>
+         <svrl:text>xref -https://elifesciences.org/articles/46080- has a formatting child element -ruby- which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-child-test/fail.xml"
                            id="url-markup-conformance-pattern"

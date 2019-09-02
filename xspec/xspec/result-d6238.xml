@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-4/pass.xml"
                            id="research-article-pattern"
@@ -90,7 +90,7 @@
                               id="head-subj-test2"
                               role="error"
                               location="/root[1]/article[1]/article-meta[1]/article-categories[1]">
-         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</svrl:text>
+         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are0.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-4/pass.xml"
                            id="disp-channel-checks-pattern"
@@ -350,52 +350,52 @@
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s1.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -- is not a usual title forResearch Articlecontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
       <svrl:failed-assert test="@id = concat('s', $pos)"
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[2]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s2.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes2.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[2]">
-         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -- is not a usual title forResearch Articlecontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
       <svrl:failed-assert test="@id = concat('s', $pos)"
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[3]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s3.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes3.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[3]">
-         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -- is not a usual title forResearch Articlecontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="body/sec" id="top-level-sec-tests"/>
       <svrl:failed-assert test="@id = concat('s', $pos)"
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[4]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s4.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes4.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[4]">
-         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
+         <svrl:text>top level sec with title -- is not a usual title forResearch Articlecontent. Should this be captured as a sub-level of?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-4/pass.xml"
                            id="lower-level-sec-tests-pattern"
@@ -501,28 +501,28 @@
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s1.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes1.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
       <svrl:failed-assert test="@id = concat('s',$pos)"
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[2]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s2.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes2.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
       <svrl:failed-assert test="@id = concat('s',$pos)"
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[3]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s3.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes3.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article/body/sec" id="body-top-level-sec-ids"/>
       <svrl:failed-assert test="@id = concat('s',$pos)"
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[4]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s4.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes4.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-4/pass.xml"
                            id="back-top-level-sec-ids-pattern"

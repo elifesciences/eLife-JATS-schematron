@@ -2,8 +2,7 @@
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches(.,'^et al|^ and|^[\(]\d|^,')
 Message:   citation doesn't start with an author's name which is incorrect.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
       <p>test text (test; <xref ref-type="bibr" rid="bib1">et al., 2006</xref>) test text</p>

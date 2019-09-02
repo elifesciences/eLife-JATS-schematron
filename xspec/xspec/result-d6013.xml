@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-sup-tests/fig-sup-test-2/fail.xml"
                            id="research-article-pattern"
@@ -241,7 +241,7 @@
                               id="pre-fig-test-5"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig-group[1]/fig[1]">
-         <svrl:text>Figure 1—figure supplement 1 does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Figure 1—figure supplement 1does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
                               id="final-fig-test-5"
@@ -279,7 +279,7 @@
                               id="pre-fig-test-5"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig-group[1]/fig[2]">
-         <svrl:text>Figure 1—Figure supplement 2. does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Figure 1—Figure supplement 2.does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
                               id="final-fig-test-5"
@@ -317,7 +317,7 @@
                               id="pre-fig-test-5"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig-group[1]/fig[3]">
-         <svrl:text>Figure 1-figure supplement 3. does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Figure 1-figure supplement 3.does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
                               id="final-fig-test-5"
@@ -355,7 +355,7 @@
                               id="pre-fig-test-5"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig-group[1]/fig[4]">
-         <svrl:text>Figure 1—figure supplement 4. does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Figure 1—figure supplement 4.does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = ('correction','retraction')) then () else not(caption/title)"
                               id="final-fig-test-5"

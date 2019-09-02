@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-abstract-tests/feature-abstract-test-1/fail.xml"
                            id="research-article-pattern"
@@ -58,13 +58,13 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-meta) = 1"
                           id="test-front-ameta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one article-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one article-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-abstract-tests/feature-abstract-test-1/fail.xml"
                            id="test-journal-meta-pattern"
@@ -158,7 +158,7 @@
                               id="abstract-test-1"
                               role="error"
                               location="/root[1]/article[1]/front[1]/abstract[1]">
-         <svrl:text>object-id[@pub-id-type='doi'] must be present in abstract in  content.</svrl:text>
+         <svrl:text>object-id[@pub-id-type='doi'] must be present in abstract incontent.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(count(p) + count(sec[descendant::p])) lt 1"
                               id="abstract-test-2"
@@ -763,7 +763,7 @@
                           id="feature-abstract-test-2"
                           role="error"
                           location="/root[1]/article[1]/front[1]/abstract[1]">
-         <svrl:text>abstract title must contain 'eLife digest'. Possible superfluous characters - </svrl:text>
+         <svrl:text>abstract title must contain 'eLife digest'. Possible superfluous characters -</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/feature-abstract-tests/feature-abstract-test-1/fail.xml"
                            id="feature-subj-tests-1-pattern"

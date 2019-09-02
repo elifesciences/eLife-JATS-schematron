@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/colour-styled-content/colour-styled-content-check/fail.xml"
                            id="research-article-pattern"
@@ -206,7 +206,7 @@
                           id="allowed-p-test"
                           role="error"
                           location="/root[1]/article[1]/p[1]/styled-content[1]">
-         <svrl:text>p element cannot contain styled-content. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</svrl:text>
+         <svrl:text>p element cannot containstyled-content. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/colour-styled-content/colour-styled-content-check/fail.xml"
                            id="xref-target-tests-pattern"
@@ -884,7 +884,7 @@
                               id="colour-styled-content-check"
                               role="warning"
                               location="/root[1]/article[1]/p[1]/styled-content[1]">
-         <svrl:text>'Coloured text' - p element contains a styled content element. Is this correct?  Preceding text - test 1 Coloured text</svrl:text>
+         <svrl:text>'Coloured text' -pelement contains a styled content element. Is this correct?  Preceding text -test 1 Coloured text</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/colour-styled-content/colour-styled-content-check/fail.xml"
                            id="p-punctuation-pattern"

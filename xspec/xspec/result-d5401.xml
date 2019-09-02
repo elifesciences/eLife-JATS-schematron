@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/order-test-1/fail.xml"
                            id="research-article-pattern"
@@ -286,14 +286,14 @@
                               id="order-test-1"
                               role="warning"
                               location="/root[1]/article[1]/list[1]/list-item[1]">
-         <svrl:text>list-item is part of an ordered list, but it begins with a number. Is this correct? 1. this</svrl:text>
+         <svrl:text>list-item is part of an ordered list, but it begins with a number. Is this correct?1. this</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="list-item" id="list-item-tests"/>
       <svrl:successful-report test="($type='order') and matches(.,'^\s?\d+')"
                               id="order-test-1"
                               role="warning"
                               location="/root[1]/article[1]/list[1]/list-item[2]">
-         <svrl:text>list-item is part of an ordered list, but it begins with a number. Is this correct? 2 that</svrl:text>
+         <svrl:text>list-item is part of an ordered list, but it begins with a number. Is this correct?2 that</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/order-test-1/fail.xml"
                            id="general-video-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-7-1/fail.xml"
                            id="research-article-pattern"
@@ -736,8 +736,7 @@
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-periodical-7-1]
         There must be one and only one &lt;year&gt; element in a &lt;string-date&gt; element.
-        Reference 'bib40' has 0
-        &lt;year&gt; elements in the &lt;string-date&gt; element.</svrl:text>
+        Reference 'bib40' has0&lt;year&gt; elements in the &lt;string-date&gt; element.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-7-1/fail.xml"
                            id="elem-citation-periodical-year-pattern"
@@ -767,9 +766,7 @@
          <svrl:text>[err-elem-cit-periodical-14-2]
         The &lt;string-date&gt; element must include one of each of &lt;month&gt; and &lt;year&gt; 
         elements.
-        Reference 'bib40' does not meet this requirement as it contains
-        1 &lt;month&gt; elements and 0 &lt;year&gt; elements.
-      </svrl:text>
+        Reference 'bib40' does not meet this requirement as it contains1&lt;month&gt; elements and0&lt;year&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="(name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=' ' and name(child::node()[3])='day' and replace(child::node()[4],'\s+',' ')=', ' and name(*[position()=last()])='year') or (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=', ' and name(*[position()=last()])='year')"
                           id="err-elem-cit-periodical-14-8"
@@ -777,7 +774,7 @@
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]">
          <svrl:text>[err-elem-cit-periodical-14-8]
         The format of the element content must match &lt;month&gt;, space, &lt;day&gt;, comma, &lt;year&gt;, or &lt;month&gt;, comma, &lt;year&gt;.
-        Reference 'bib40' has September 9, .</svrl:text>
+        Reference 'bib40' hasSeptember 9, .</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-7-1/fail.xml"
                            id="elem-citation-periodical-month-pattern"
@@ -792,8 +789,7 @@
         The content of &lt;month&gt; must match the content of the month section of @iso-8601-date on the 
         sibling year element.
         Reference 'bib40' does not meet this requirement as it contains
-        the value &lt;month&gt;='September' but &lt;year&gt;/@iso-8601-date=''.
-      </svrl:text>
+        the value &lt;month&gt;='September' but &lt;year&gt;/@iso-8601-date=''.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-7-1/fail.xml"
                            id="elem-citation-periodical-day-pattern"
@@ -808,8 +804,7 @@
         The content of &lt;day&gt;, if present, must match the content of the day section of @iso-8601-date on the 
         sibling year element.
         Reference 'bib40' does not meet this requirement as it contains
-        the value &lt;day&gt;='9' but &lt;year&gt;/@iso-8601-date=''.
-      </svrl:text>
+        the value &lt;day&gt;='9' but &lt;year&gt;/@iso-8601-date=''.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-7-1/fail.xml"
                            id="pub-id-tests-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref/err-elem-cit-high-3-1/fail.xml"
                            id="research-article-pattern"
@@ -566,8 +566,7 @@
                           role="error"
                           location="/root[1]/article[1]/back[1]/ref-list[1]/ref[2]">
          <svrl:text>[err-elem-cit-high-3-1]
-        Each &lt;ref&gt; element must have an @id attribute. 
-      </svrl:text>
+        Each &lt;ref&gt; element must have an @id attribute.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="matches(normalize-space(@id) ,'^bib\d+$')"
                           id="err-elem-cit-high-3-2"
@@ -577,8 +576,7 @@
         Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with 
         a number. 
         Reference '' has the value 
-        '', which is incorrect.
-      </svrl:text>
+        '', which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))"
                           id="err-elem-cit-high-3-3"
@@ -588,8 +586,7 @@
         The sequence of ids in the &lt;ref&gt; elements must increase monotonically
         (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
         Reference '' has the value 
-        '', which does not fit this pattern.
-      </svrl:text>
+        '', which does not fit this pattern.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref/err-elem-cit-high-3-1/fail.xml"
                            id="xref-pattern"

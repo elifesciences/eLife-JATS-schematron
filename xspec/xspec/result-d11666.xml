@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-14-1/fail.xml"
                            id="research-article-pattern"
@@ -722,8 +722,7 @@
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-periodical-7-1]
         There must be one and only one &lt;year&gt; element in a &lt;string-date&gt; element.
-        Reference 'bib40' has 0
-        &lt;year&gt; elements in the &lt;string-date&gt; element.</svrl:text>
+        Reference 'bib40' has0&lt;year&gt; elements in the &lt;string-date&gt; element.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(string-date)=1"
                           id="err-elem-cit-periodical-14-1"
@@ -731,8 +730,7 @@
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
          <svrl:text>[err-elem-cit-periodical-14-1]
         There must be one and only one &lt;string-date&gt; element within a &lt;element-citation&gt; of type 'periodical'.
-        Reference 'bib40' has 0
-        &lt;string-date&gt; elements.</svrl:text>
+        Reference 'bib40' has0&lt;string-date&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-14-1/fail.xml"
                            id="elem-citation-periodical-year-pattern"

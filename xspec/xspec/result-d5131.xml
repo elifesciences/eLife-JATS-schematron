@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/app-table-label-tests/app-table-label-test-1/fail.xml"
                            id="research-article-pattern"
@@ -262,13 +262,13 @@
                               id="pre-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/back[1]/app[1]/table-wrap[1]">
-         <svrl:text>There is no citation to Appendix 1—Table 1. Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation toAppendix 1—Table 1.Ensure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if (contains($id,'inline')) then () else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id])) else ()"
                               id="feat-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/back[1]/app[1]/table-wrap[1]">
-         <svrl:text>There is no citation to Appendix 1—Table 1. Is this correct?</svrl:text>
+         <svrl:text>There is no citation toAppendix 1—Table 1.Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/app-table-label-tests/app-table-label-test-1/fail.xml"
                            id="body-table-label-tests-pattern"
@@ -281,7 +281,7 @@
                           id="app-table-label-test-1"
                           role="error"
                           location="/root[1]/article[1]/back[1]/app[1]/table-wrap[1]/label[1]">
-         <svrl:text>Appendix 1—Table 1. - Table label does not conform to the usual format.</svrl:text>
+         <svrl:text>Appendix 1—Table 1.- Table label does not conform to the usual format.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/app-table-label-tests/app-table-label-test-1/fail.xml"
                            id="table-tests-pattern"
@@ -448,7 +448,7 @@
                           id="app-table-wrap-id-test-2"
                           role="error"
                           location="/root[1]/article[1]/back[1]/app[1]/table-wrap[1]">
-         <svrl:text>table-wrap @id must start with app.</svrl:text>
+         <svrl:text>table-wrap @id must start withapp.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/app-table-label-tests/app-table-label-test-1/fail.xml"
                            id="resp-table-wrap-ids-pattern"

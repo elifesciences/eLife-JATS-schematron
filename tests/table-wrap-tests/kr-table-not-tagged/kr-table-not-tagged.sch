@@ -595,7 +595,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="($id != 'keyresource') and matches(descendant::thead[1],'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
+      <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
         <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
     </rule>
   </pattern>

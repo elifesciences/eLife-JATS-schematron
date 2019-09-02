@@ -39,7 +39,7 @@
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="research-article-pattern"
@@ -52,7 +52,7 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="test-journal-meta-pattern"
@@ -65,7 +65,7 @@
                               id="test-auth-kwd-group-presence-2"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Correction articles must not have any author keywords</svrl:text>
+         <svrl:text>Correctionarticles must not have any author keywords</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="test-research-article-metadata-pattern"
@@ -113,27 +113,27 @@
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[1]/contrib[2]/name[1]">
-         <svrl:text>This name - 
+         <svrl:text>This name -
               Hansel
-             - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+            - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
       <svrl:failed-assert test="given-names"
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[2]/contrib[1]/name[1]">
-         <svrl:text>This name - 
+         <svrl:text>This name -
               Mugatu
-             - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+            - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
       <svrl:failed-assert test="given-names"
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/front[1]/article-meta[1]/contrib-group[2]/contrib[2]/name[1]">
-         <svrl:text>This name - 
+         <svrl:text>This name -
               Mugatu
-             - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+            - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="surname-tests-pattern"
@@ -336,7 +336,7 @@
                           id="test-elocation-conformance"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]/elocation-id[1]">
-         <svrl:text>elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case e00000.</svrl:text>
+         <svrl:text>elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this casee00000.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="volume-test-pattern"
@@ -1173,7 +1173,7 @@
                               id="auth-kwd-check"
                               role="warning"
                               location="/root[1]/article[1]/front[1]/article-meta[1]/kwd-group[1]/kwd[4]">
-         <svrl:text>Keyword - 'Bayesian inference' - does not appear in the article text with this capitalisation. Should it be bayesian inference instead?</svrl:text>
+         <svrl:text>Keyword - 'Bayesian inference' - does not appear in the article text with this capitalisation. Should it bebayesian inferenceinstead?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="root-pattern"
