@@ -591,13 +591,13 @@
     </xsl:element>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="day" id="day-tests">
+    <rule context="day[not(parent::string-date)]" id="day-tests">
       <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::day" role="error" id="day-tests-xspec-assert">day must be present.</assert>
+      <assert test="descendant::day[not(parent::string-date)]" role="error" id="day-tests-xspec-assert">day[not(parent::string-date)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -122,23 +122,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-2/fail.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
-      <svrl:fired-rule context="day" id="day-tests"/>
-      <svrl:failed-assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')"
-                          id="day-conformity"
-                          role="error"
-                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/day[1]">
-         <svrl:text>day must contain 2 digits which are between '01' and '31' - '9' doesn't meet this requirement.</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-2/fail.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
-      <svrl:fired-rule context="month" id="month-tests"/>
-      <svrl:failed-assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')"
-                          id="month-conformity"
-                          role="error"
-                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/string-date[1]/month[1]">
-         <svrl:text>month must contain 2 digits which are between '01' and '12' - 'September' doesn't meet this requirement.</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical-year/err-elem-cit-periodical-7-4-2/fail.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>
@@ -1102,6 +1088,18 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::day[not(parent::string-date)]"
+                          id="day-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>day[not(parent::string-date)] must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::month[not(parent::string-date)]"
+                          id="month-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>month[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"

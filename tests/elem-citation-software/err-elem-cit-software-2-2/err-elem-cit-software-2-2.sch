@@ -592,6 +592,7 @@
   </xsl:function>
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
+      <let name="person-count" value="count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='curator'])"/>
       <assert test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type
         'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to
         'author'or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a

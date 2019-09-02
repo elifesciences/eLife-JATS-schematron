@@ -1140,17 +1140,17 @@
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
+      <svrl:failed-assert test="descendant::day[not(parent::string-date)]"
                           id="day-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
+         <svrl:text>day[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::month"
+      <svrl:failed-assert test="descendant::month[not(parent::string-date)]"
                           id="month-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>month must be present.</svrl:text>
+         <svrl:text>month[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"

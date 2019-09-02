@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-5.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/month
-Test: assert    .=format-date(xs:date(../year/@iso-8601-date), '[MNn]')
+Test: report    if (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[MNn]') else .
 Message: [errelemcitperiodical145]
         The content of <month> must match the content of the month section of @iso8601date on the 
         sibling year element.

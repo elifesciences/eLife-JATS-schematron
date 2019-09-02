@@ -1265,7 +1265,7 @@
 	
 	</rule>
     
-    <rule context="day" 
+    <rule context="day[not(parent::string-date)]" 
       id="day-tests">
       
       <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')"
@@ -1274,7 +1274,7 @@
       
     </rule>
     
-    <rule context="month" 
+    <rule context="month[not(parent::string-date)]" 
       id="month-tests">
       
       <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')"
@@ -4120,8 +4120,9 @@
   
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
+      <let name="person-count" value="count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='curator'])"/>
       
-      <assert test="count(person-group) = 1 or (count(person-group/@person-group-type = 'author') +         count(person-group/@person-group-type = 'editor') = 2)" role="error" id="err-elem-cit-software-2-1">[err-elem-cit-software-2-1] Each
+      <assert test="$person-count = (1,2)" role="error" id="err-elem-cit-software-2-1">[err-elem-cit-software-2-1] Each
         &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
         author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
         &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/>
@@ -4924,12 +4925,13 @@
         the value  &lt;month&gt;='<value-of select="."/>'.
       </assert>
       
-      <assert test=".=format-date(xs:date(../year/@iso-8601-date), '[MNn]')" role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
+      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[MNn]')
+        else ." role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
         The content of &lt;month&gt; must match the content of the month section of @iso-8601-date on the 
         sibling year element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value &lt;month&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
-      </assert>
+      </report>
       
     </rule>
     
@@ -4941,12 +4943,13 @@
         the value  &lt;day&gt;='<value-of select="."/>'.
       </assert>
       
-      <assert test=".=format-date(xs:date(../year/@iso-8601-date), '[D]')" role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
+      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[D]')
+                    else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
         The content of &lt;day&gt;, if present, must match the content of the day section of @iso-8601-date on the 
         sibling year element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value &lt;day&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
-      </assert>
+      </report>
       
     </rule>
   </pattern>

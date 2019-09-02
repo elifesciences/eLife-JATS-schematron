@@ -609,6 +609,16 @@
                            name="elem-citation-software-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type = 'software']"
                        id="elem-citation-software"/>
+      <svrl:failed-assert test="$person-count = (1,2)"
+                          id="err-elem-cit-software-2-1"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-software-2-1] Each
+        &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
+        author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
+        &lt;person-group&gt; with attribute person-group-type = curator. Reference 'bib12' has 1
+        &lt;person-group&gt; elements.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="person-group[@person-group-type = ('author', 'curator')]"
                           id="err-elem-cit-software-2-2"
                           role="error"
@@ -1087,17 +1097,17 @@
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
+      <svrl:failed-assert test="descendant::day[not(parent::string-date)]"
                           id="day-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
+         <svrl:text>day[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::month"
+      <svrl:failed-assert test="descendant::month[not(parent::string-date)]"
                           id="month-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>month must be present.</svrl:text>
+         <svrl:text>month[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"

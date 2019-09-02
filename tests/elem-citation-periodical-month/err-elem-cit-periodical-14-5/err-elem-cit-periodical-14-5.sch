@@ -592,12 +592,12 @@
   </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date/month" id="elem-citation-periodical-month">
-      <assert test=".=format-date(xs:date(../year/@iso-8601-date), '[MNn]')" role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
+      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[MNn]')         else ." role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
         The content of &lt;month&gt; must match the content of the month section of @iso-8601-date on the 
         sibling year element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value &lt;month&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
-      </assert>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

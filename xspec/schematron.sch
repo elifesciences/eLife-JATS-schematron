@@ -1024,14 +1024,14 @@
 	</rule>
   </pattern>
   <pattern id="day-tests-pattern">
-    <rule context="day" id="day-tests">
+    <rule context="day[not(parent::string-date)]" id="day-tests">
       
       <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
   <pattern id="month-tests-pattern">
-    <rule context="month" id="month-tests">
+    <rule context="month[not(parent::string-date)]" id="month-tests">
       
       <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')" role="error" id="month-conformity">month must contain 2 digits which are between '01' and '12' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
@@ -3154,8 +3154,9 @@
   
   <pattern id="elem-citation-software-pattern">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
+      <let name="person-count" value="count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='curator'])"/>
       
-      <assert test="count(person-group) = 1 or (count(person-group/@person-group-type = 'author') +         count(person-group/@person-group-type = 'editor') = 2)" role="error" id="err-elem-cit-software-2-1">[err-elem-cit-software-2-1] Each
+      <assert test="$person-count = (1,2)" role="error" id="err-elem-cit-software-2-1">[err-elem-cit-software-2-1] Each
         &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
         author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
         &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/>
@@ -3989,12 +3990,12 @@
         the value  &lt;month&gt;='<value-of select="."/>'.
       </assert>
       
-      <assert test=".=format-date(xs:date(../year/@iso-8601-date), '[MNn]')" role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
+      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[MNn]')         else ." role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
         The content of &lt;month&gt; must match the content of the month section of @iso-8601-date on the 
         sibling year element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value &lt;month&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
-      </assert>
+      </report>
       
     </rule>
   </pattern>
@@ -4007,12 +4008,12 @@
         the value  &lt;day&gt;='<value-of select="."/>'.
       </assert>
       
-      <assert test=".=format-date(xs:date(../year/@iso-8601-date), '[D]')" role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
+      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[D]')                     else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
         The content of &lt;day&gt;, if present, must match the content of the day section of @iso-8601-date on the 
         sibling year element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value &lt;day&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
-      </assert>
+      </report>
       
     </rule>
   </pattern>
@@ -5509,8 +5510,8 @@
       <assert test="descendant::article-meta//email" role="error" id="email-tests-xspec-assert">article-meta//email must be present.</assert>
       <assert test="descendant::article-meta/history" role="error" id="history-tests-xspec-assert">article-meta/history must be present.</assert>
       <assert test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
-      <assert test="descendant::day" role="error" id="day-tests-xspec-assert">day must be present.</assert>
-      <assert test="descendant::month" role="error" id="month-tests-xspec-assert">month must be present.</assert>
+      <assert test="descendant::day[not(parent::string-date)]" role="error" id="day-tests-xspec-assert">day[not(parent::string-date)] must be present.</assert>
+      <assert test="descendant::month[not(parent::string-date)]" role="error" id="month-tests-xspec-assert">month[not(parent::string-date)] must be present.</assert>
       <assert test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
       <assert test="descendant::year[ancestor::element-citation]" role="error" id="year-element-citation-tests-xspec-assert">year[ancestor::element-citation] must be present.</assert>
       <assert test="descendant::pub-date[not(@pub-type='collection')]" role="error" id="pub-date-tests-1-xspec-assert">pub-date[not(@pub-type='collection')] must be present.</assert>

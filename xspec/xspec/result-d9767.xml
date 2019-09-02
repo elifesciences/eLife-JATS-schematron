@@ -509,12 +509,15 @@
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
       <svrl:fired-rule context="element-citation/person-group" id="elem-citation-gen-name-3-1"/>
+      <svrl:fired-rule context="element-citation/person-group" id="elem-citation-gen-name-3-1"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-software/err-elem-cit-software-2-1/pass.xml"
                            id="elem-citation-gen-name-3-2-pattern"
                            name="elem-citation-gen-name-3-2-pattern"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-software/err-elem-cit-software-2-1/pass.xml"
                            id="elem-citation-gen-name-4-pattern"
                            name="elem-citation-gen-name-4-pattern"/>
+      <svrl:fired-rule context="element-citation/person-group/name"
+                       id="elem-citation-gen-name-4"/>
       <svrl:fired-rule context="element-citation/person-group/name"
                        id="elem-citation-gen-name-4"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-software/err-elem-cit-software-2-1/pass.xml"
@@ -861,6 +864,7 @@
                            id="ref-name-tests-pattern"
                            name="ref-name-tests-pattern"/>
       <svrl:fired-rule context="element-citation//name" id="ref-name-tests"/>
+      <svrl:fired-rule context="element-citation//name" id="ref-name-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-software/err-elem-cit-software-2-1/pass.xml"
                            id="isbn-conformity-pattern"
                            name="isbn-conformity-pattern"/>
@@ -1078,17 +1082,17 @@
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
+      <svrl:failed-assert test="descendant::day[not(parent::string-date)]"
                           id="day-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
+         <svrl:text>day[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::month"
+      <svrl:failed-assert test="descendant::month[not(parent::string-date)]"
                           id="month-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>month must be present.</svrl:text>
+         <svrl:text>month[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"

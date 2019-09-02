@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-software-2-1.sch"?>
 <!--Context: element-citation[@publication-type = 'software']
-Test: assert    count(person-group) = 1 or (count(person-group/@person-group-type = 'author') + count(person-group/@person-group-type = 'editor') = 2)
+Test: assert    $person-count = (1,2)
 Message: [errelemcitsoftware21] Each
         <elementcitation> of type 'software' must contain one <persongroup> element (either
         author or curator) or one <persongroup> with attribute persongrouptype = author and one

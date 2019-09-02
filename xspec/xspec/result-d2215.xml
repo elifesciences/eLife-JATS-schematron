@@ -125,7 +125,7 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/pub-date-tests-2/pub-date-test-5/fail.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
-      <svrl:fired-rule context="month" id="month-tests"/>
+      <svrl:fired-rule context="month[not(parent::string-date)]" id="month-tests"/>
       <svrl:failed-assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')"
                           id="month-conformity"
                           role="error"
@@ -1060,11 +1060,11 @@
                           location="/root[1]">
          <svrl:text>date must be present.</svrl:text>
       </svrl:failed-assert>
-      <svrl:failed-assert test="descendant::day"
+      <svrl:failed-assert test="descendant::day[not(parent::string-date)]"
                           id="day-tests-xspec-assert"
                           role="error"
                           location="/root[1]">
-         <svrl:text>day must be present.</svrl:text>
+         <svrl:text>day[not(parent::string-date)] must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::year[ancestor::article-meta]"
                           id="year-article-meta-tests-xspec-assert"

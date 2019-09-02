@@ -202,13 +202,13 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="day-tests-pattern"
                            name="day-tests-pattern"/>
-      <svrl:fired-rule context="day" id="day-tests"/>
-      <svrl:fired-rule context="day" id="day-tests"/>
+      <svrl:fired-rule context="day[not(parent::string-date)]" id="day-tests"/>
+      <svrl:fired-rule context="day[not(parent::string-date)]" id="day-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="month-tests-pattern"
                            name="month-tests-pattern"/>
-      <svrl:fired-rule context="month" id="month-tests"/>
-      <svrl:fired-rule context="month" id="month-tests"/>
+      <svrl:fired-rule context="month[not(parent::string-date)]" id="month-tests"/>
+      <svrl:fired-rule context="month[not(parent::string-date)]" id="month-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/test-article-metadata/test-auth-kwd-group-presence-2/fail.xml"
                            id="year-article-meta-tests-pattern"
                            name="year-article-meta-tests-pattern"/>

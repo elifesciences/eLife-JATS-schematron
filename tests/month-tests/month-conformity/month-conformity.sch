@@ -591,13 +591,13 @@
     </xsl:element>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="month" id="month-tests">
+    <rule context="month[not(parent::string-date)]" id="month-tests">
       <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')" role="error" id="month-conformity">month must contain 2 digits which are between '01' and '12' - '<value-of select="."/>' doesn't meet this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::month" role="error" id="month-tests-xspec-assert">month must be present.</assert>
+      <assert test="descendant::month[not(parent::string-date)]" role="error" id="month-tests-xspec-assert">month[not(parent::string-date)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
