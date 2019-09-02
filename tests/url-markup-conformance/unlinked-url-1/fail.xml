@@ -4,6 +4,6 @@ Test: report    matches(.,'https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]
 Message: text contains a link which has not been marked up as a link  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <p>https://elifesciences.org/</p>
+    <p>test https://elifesciences.org/</p>
   </article>
 </root>
