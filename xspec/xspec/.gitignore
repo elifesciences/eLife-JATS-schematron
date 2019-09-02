@@ -1,0 +1,2 @@
+# ignore all xspec xml files
+/result-d[0-9]*.xml
