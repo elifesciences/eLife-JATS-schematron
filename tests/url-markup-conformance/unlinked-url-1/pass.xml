@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="unlinked-url-1.sch"?>
-<!--Context: text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)]
-Test: report    matches(.,'https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&//=]*)|ftp://.|git://.|tel:.|mailto:.')
-Message: text contains a link which has not been marked up as a link  -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <p><ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">https://elifesciences.org/</ext-link></p>
-  </article>
-</root>

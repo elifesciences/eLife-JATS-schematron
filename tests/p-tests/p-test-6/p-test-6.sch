@@ -594,7 +594,7 @@
     <rule context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
-      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article[@article-type='reply']) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less thank 100 characters long. Should this be captured as a list-item in a list?</report>
+      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article[@article-type='reply']) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less than 100 characters long. Should this be captured as a list-item in a list?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

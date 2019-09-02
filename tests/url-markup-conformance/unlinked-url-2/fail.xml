@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="unlinked-url-2.sch"?>
-<!--Context: text()[not(parent::ext-link) and not(parent::contrib-id[@contrib-id-type='orcid']) and not(parent::ali:license_ref) and not(parent::institution-id[@institution-id-type='FundRef']) and not(parent::email) and not(ancestor::element-citation)]
-Test: report    matches(.,'\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')
-Message: text contains a possible link which has not been marked up as one  should it?  -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <p>https://elifesciences.org/</p>
-  </article>
-</root>
