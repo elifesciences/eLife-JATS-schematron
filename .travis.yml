@@ -9,7 +9,6 @@ before_script:
 - chmod +x ${SAXON_CP}
 
 script:
-- cd $(git rev-parse --show-toplevel)
-- cd /xspec
+- cd ../tmp/xspec/test
 - echo "execute XSpec unit tests"
 - ./run-xspec-tests.sh
