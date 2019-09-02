@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-12-3.sch"?>
 <!--Context: element-citation[@publication-type='confproc']
-Test: report    (lpage and fpage) and (fpage ge lpage)
+Test: report    (lpage and fpage) and (fpage[1] ge lpage[1])
 Message: [errelemcitconfproc123]
         If both <lpage> and <fpage> are present, the value of <fpage> must be less than the value of <lpage>. 
         Reference '' has <lpage> , which is 

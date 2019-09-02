@@ -3554,7 +3554,7 @@
         &lt;fpage&gt; elements,  <value-of select="count(lpage)"/> &lt;lpage&gt; elements, and 
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt; elements.</report>
       
-      <report test="(lpage and fpage) and (fpage ge lpage)" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
+      <report test="(lpage and fpage) and (fpage[1] ge lpage[1])" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
         If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
@@ -3633,7 +3633,7 @@
   <pattern id="elem-citation-confproc-fpage-pattern">
     <rule context="element-citation[@publication-type='confproc']/fpage" id="elem-citation-confproc-fpage">
       
-      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]
+      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]
         If the content of &lt;fpage&gt; begins with a letter, then the content of &lt;lpage&gt; must begin with 
         the same letter. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt;='<value-of select="."/>'
@@ -3846,7 +3846,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/>
         &lt;fpage&gt; elements and <value-of select="count(lpage)"/> &lt;lpage&gt; elements.</report>
       
-      <report test="(lpage and fpage) and (fpage ge lpage)" role="error" id="err-elem-cit-periodical-11-3">[err-elem-cit-periodical-11-3]
+      <report test="(lpage and fpage) and (fpage[1] ge lpage[1])" role="error" id="err-elem-cit-periodical-11-3">[err-elem-cit-periodical-11-3]
         If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
@@ -3945,7 +3945,7 @@
   <pattern id="elem-citation-periodical-fpage-pattern">
     <rule context="element-citation[@publication-type='periodical']/fpage" id="elem-citation-periodical-fpage">
       
-      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-periodical-11-5">[err-elem-cit-periodical-11-4]
+      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-periodical-11-5">[err-elem-cit-periodical-11-4]
         If the content of &lt;fpage&gt; begins with a letter, then the content of  &lt;lpage&gt; must begin with 
         the same letter. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt;='<value-of select="."/>'

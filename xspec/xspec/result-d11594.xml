@@ -732,7 +732,7 @@
                            name="elem-citation-periodical-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='periodical']"
                        id="elem-citation-periodical"/>
-      <svrl:successful-report test="(lpage and fpage) and (fpage ge lpage)"
+      <svrl:successful-report test="(lpage and fpage) and (fpage[1] ge lpage[1])"
                               id="err-elem-cit-periodical-11-3"
                               role="error"
                               location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">

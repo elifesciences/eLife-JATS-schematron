@@ -750,7 +750,7 @@
                            name="elem-citation-periodical-fpage-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='periodical']/fpage"
                        id="elem-citation-periodical-fpage"/>
-      <svrl:failed-assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))"
+      <svrl:failed-assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))"
                           id="err-elem-cit-periodical-11-5"
                           role="error"
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/fpage[1]">

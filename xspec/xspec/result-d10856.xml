@@ -677,7 +677,7 @@
                            name="elem-citation-confproc-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='confproc']"
                        id="elem-citation-confproc"/>
-      <svrl:successful-report test="(lpage and fpage) and (fpage ge lpage)"
+      <svrl:successful-report test="(lpage and fpage) and (fpage[1] ge lpage[1])"
                               id="err-elem-cit-confproc-12-3"
                               role="error"
                               location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">

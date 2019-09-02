@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']" id="elem-citation-periodical">
-      <report test="(lpage and fpage) and (fpage ge lpage)" role="error" id="err-elem-cit-periodical-11-3">[err-elem-cit-periodical-11-3]
+      <report test="(lpage and fpage) and (fpage[1] ge lpage[1])" role="error" id="err-elem-cit-periodical-11-3">[err-elem-cit-periodical-11-3]
         If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>

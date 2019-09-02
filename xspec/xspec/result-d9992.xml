@@ -635,6 +635,15 @@
                            name="elem-citation-preprint-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='preprint']"
                        id="elem-citation-preprint"/>
+      <svrl:failed-assert test="count(pub-id)=1 or count(ext-link)=1"
+                          id="err-elem-cit-preprint-10-3"
+                          role="error"
+                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-preprint-10-3]
+        Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference.
+        Reference 'bib1' has 0 &lt;pub-id&gt; elements
+        and 0 &lt;ext-link&gt; elements.</svrl:text>
+      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="elem-citation-preprint-person-group-pattern"
                            name="elem-citation-preprint-person-group-pattern"/>
@@ -643,30 +652,9 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="elem-citation-preprint-pub-id-pattern"
                            name="elem-citation-preprint-pub-id-pattern"/>
-      <svrl:fired-rule context="element-citation[@publication-type='preprint']/pub-id"
-                       id="elem-citation-preprint-pub-id"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="elem-citation-preprint-ext-link-pattern"
                            name="elem-citation-preprint-ext-link-pattern"/>
-      <svrl:fired-rule context="element-citation[@publication-type='preprint']/ext-link"
-                       id="elem-citation-preprint-ext-link"/>
-      <svrl:failed-assert test="@xlink:href"
-                          id="err-elem-cit-preprint-11-1"
-                          role="error"
-                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/ext-link[1]">
-         <svrl:text>[err-elem-cit-preprint-11-1]
-        Each &lt;ext-link&gt; element must contain @xlink:href.
-        The &lt;ext-link&gt; element in Reference 'bib1' does not.</svrl:text>
-      </svrl:failed-assert>
-      <svrl:failed-assert test="starts-with(@xlink:href, 'http://') or starts-with(@xlink:href, 'https://')"
-                          id="err-elem-cit-preprint-11-2"
-                          role="error"
-                          location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/ext-link[1]">
-         <svrl:text>[err-elem-cit-preprint-11-2]
-        The value of @xlink:href must start with either "http://" or "https://". 
-        The &lt;ext-link&gt; element in Reference 'bib1' 
-        is '', which does not.</svrl:text>
-      </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="elem-citation-preprint-article-title-pattern"
                            name="elem-citation-preprint-article-title-pattern"/>
@@ -788,7 +776,6 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="pub-id-tests-pattern"
                            name="pub-id-tests-pattern"/>
-      <svrl:fired-rule context="element-citation/pub-id" id="pub-id-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="feature-title-tests-pattern"
                            name="feature-title-tests-pattern"/>
@@ -857,8 +844,6 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="unallowed-symbol-tests-pattern"
                            name="unallowed-symbol-tests-pattern"/>
-      <svrl:fired-rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link"
-                       id="unallowed-symbol-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"
                            id="unallowed-symbol-tests-sup-pattern"
                            name="unallowed-symbol-tests-sup-pattern"/>
@@ -2027,6 +2012,18 @@
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type = 'software']/ext-link must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/pub-id"
+                          id="elem-citation-preprint-pub-id-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation[@publication-type='preprint']/ext-link"
+                          id="elem-citation-preprint-ext-link-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation[@publication-type='preprint']/ext-link must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::element-citation[@publication-type='web']"
                           id="elem-citation-web-xspec-assert"
                           role="error"
@@ -2243,6 +2240,12 @@
                           location="/root[1]">
          <svrl:text>element-citation[@publication-type='periodical']/string-date/day must be present.</svrl:text>
       </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::element-citation/pub-id"
+                          id="pub-id-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>element-citation/pub-id must be present.</svrl:text>
+      </svrl:failed-assert>
       <svrl:failed-assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title"
                           id="feature-title-tests-xspec-assert"
                           role="error"
@@ -2356,6 +2359,12 @@
                           role="error"
                           location="/root[1]">
          <svrl:text>article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</svrl:text>
+      </svrl:failed-assert>
+      <svrl:failed-assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link"
+                          id="unallowed-symbol-tests-xspec-assert"
+                          role="error"
+                          location="/root[1]">
+         <svrl:text>p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="descendant::sup"
                           id="unallowed-symbol-tests-sup-xspec-assert"

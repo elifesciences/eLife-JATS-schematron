@@ -677,7 +677,7 @@
                            name="elem-citation-confproc-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='confproc']"
                        id="elem-citation-confproc"/>
-      <svrl:successful-report test="(lpage and fpage) and (fpage ge lpage)"
+      <svrl:successful-report test="(lpage and fpage) and (fpage[1] ge lpage[1])"
                               id="err-elem-cit-confproc-12-3"
                               role="error"
                               location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
@@ -716,7 +716,7 @@
                            name="elem-citation-confproc-fpage-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='confproc']/fpage"
                        id="elem-citation-confproc-fpage"/>
-      <svrl:failed-assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))"
+      <svrl:failed-assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))"
                           id="err-elem-cit-confproc-12-5"
                           role="error"
                           location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]/fpage[1]">

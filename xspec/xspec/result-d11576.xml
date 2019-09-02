@@ -732,6 +732,15 @@
                            name="elem-citation-periodical-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='periodical']"
                        id="elem-citation-periodical"/>
+      <svrl:successful-report test="count(fpage) gt 1 or count(lpage) gt 1"
+                              id="err-elem-cit-periodical-11-2"
+                              role="error"
+                              location="/root[1]/article[1]/ref-list[1]/ref[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-periodical-11-2]
+        The citation may contain no more than one &lt;fpage&gt; or &lt;lpage&gt; elements.
+        Reference 'bib40' has 1
+        &lt;fpage&gt; elements and 2 &lt;lpage&gt; elements.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-periodical/err-elem-cit-periodical-11-2/fail.xml"
                            id="elem-citation-periodical-year-pattern"
                            name="elem-citation-periodical-year-pattern"/>

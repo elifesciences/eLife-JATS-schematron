@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-11-5.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/fpage
-Test: assert    matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage),1,1) = substring(normalize-space(.),1,1))
+Test: assert    matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))
 Message: [errelemcitperiodical114]
         If the content of <fpage> begins with a letter, then the content of  <lpage> must begin with 
         the same letter. 
