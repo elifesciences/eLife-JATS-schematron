@@ -4,7 +4,7 @@ before_script:
 # install Saxon
 - mkdir -p /tmp/saxon 
 - export SAXON_CP=/tmp/saxon/saxon9he.jar
-- cd /tmp/xspec/saxon/
+- cd /tmp/saxon/
 - curl -o ${SAXON_CP} http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar
 - chmod +x ${SAXON_CP}
 
