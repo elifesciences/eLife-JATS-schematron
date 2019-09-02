@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/table-wrap-test-1/fail.xml"
                            id="research-article-pattern"
@@ -793,13 +793,13 @@
                               id="table-xref-conformity-1"
                               role="warning"
                               location="/root[1]/article[1]/xref[1]">
-         <svrl:text>- citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
+         <svrl:text> - citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))"
                               id="table-xref-conformity-3"
                               role="error"
                               location="/root[1]/article[1]/xref[1]">
-         <svrl:text>- Citation content does not match what it directs to.</svrl:text>
+         <svrl:text> - Citation content does not match what it directs to.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/table-wrap-test-1/fail.xml"
                            id="supp-file-xref-conformance-pattern"

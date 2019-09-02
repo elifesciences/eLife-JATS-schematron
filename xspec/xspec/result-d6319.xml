@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-title-tests/article-type-title-test-1/fail.xml"
                            id="research-article-pattern"

@@ -2703,9 +2703,11 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/>
         &lt;volume&gt; elements.</assert>
       
-      <assert test="(count(fpage) eq 1) or (count(elocation-id) eq 1) or (count(comment/text()='In press') eq 1)" role="warning" id="warning-elem-cit-journal-6-1">[warning-elem-cit-journal-6-1]
+      <!-- This doesn't work and the check is covered by eloc-page-assert (with a more human readable error message)
+        
+        <assert test="(count(fpage) eq 1) or (count(elocation-id) eq 1) or (count(comment/text()='In press') eq 1)" role="warning" id="warning-elem-cit-journal-6-1">[warning-elem-cit-journal-6-1]
         One of &lt;fpage&gt;, &lt;elocation-id&gt;, or &lt;comment&gt;In press&lt;/comment&gt; should be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has missing page or elocation information.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has missing page or elocation information.</assert>-->
       
       <report test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">[err-elem-cit-journal-6-5-1]
         &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
@@ -4288,9 +4290,9 @@
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
-      <let name="cite1" value="e:citation-format1(year)"/>
-      <let name="cite1.5" value="e:citation-format2(year)"/>
-      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',year,'\)')"/>
+      <let name="cite1" value="e:citation-format1(year[1])"/>
+      <let name="cite1.5" value="e:citation-format2(year[1])"/>
+      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',year[1],'\)')"/>
       <let name="regex" value="concat($cite1,'|',$cite2)"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
@@ -5131,7 +5133,7 @@
   <pattern id="journal-tests-pattern">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
       
-      <report test="not(fpage) and not(elocation-id)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
+      <report test="not(fpage) and not(elocation-id) and not(comment)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
       <report test="matches(normalize-space(lower-case(source)),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source"/>, but it is captured as a journal not a preprint.</report>
     </rule>

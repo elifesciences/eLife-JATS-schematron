@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/fail.xml"
                            id="research-article-pattern"
@@ -277,78 +277,78 @@
                           id="pre-video-title"
                           role="warning"
                           location="/root[1]/article[1]/media[1]">
-         <svrl:text>Video 1does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Video 1 does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="caption/title"
                           id="final-video-title"
                           role="error"
                           location="/root[1]/article[1]/media[1]">
-         <svrl:text>Video 1does not have a title, which is incorrect.</svrl:text>
+         <svrl:text>Video 1 does not have a title, which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="media[child::label]" id="video-test"/>
       <svrl:failed-assert test="caption/title"
                           id="pre-video-title"
                           role="warning"
                           location="/root[1]/article[1]/media[2]">
-         <svrl:text>Figure 1—Video 1.does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Figure 1—Video 1. does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="caption/title"
                           id="final-video-title"
                           role="error"
                           location="/root[1]/article[1]/media[2]">
-         <svrl:text>Figure 1—Video 1.does not have a title, which is incorrect.</svrl:text>
+         <svrl:text>Figure 1—Video 1. does not have a title, which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="media[child::label]" id="video-test"/>
       <svrl:failed-assert test="caption/title"
                           id="pre-video-title"
                           role="warning"
                           location="/root[1]/article[1]/media[3]">
-         <svrl:text>Tables 1 and 2—video 1.does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Tables 1 and 2—video 1. does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="caption/title"
                           id="final-video-title"
                           role="error"
                           location="/root[1]/article[1]/media[3]">
-         <svrl:text>Tables 1 and 2—video 1.does not have a title, which is incorrect.</svrl:text>
+         <svrl:text>Tables 1 and 2—video 1. does not have a title, which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="media[child::label]" id="video-test"/>
       <svrl:failed-assert test="caption/title"
                           id="pre-video-title"
                           role="warning"
                           location="/root[1]/article[1]/media[4]">
-         <svrl:text>Gif 1.does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Gif 1. does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="caption/title"
                           id="final-video-title"
                           role="error"
                           location="/root[1]/article[1]/media[4]">
-         <svrl:text>Gif 1.does not have a title, which is incorrect.</svrl:text>
+         <svrl:text>Gif 1. does not have a title, which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="media[child::label]" id="video-test"/>
       <svrl:failed-assert test="caption/title"
                           id="pre-video-title"
                           role="warning"
                           location="/root[1]/article[1]/app[1]/media[1]">
-         <svrl:text>Appendix—video 1.does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Appendix—video 1. does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="caption/title"
                           id="final-video-title"
                           role="error"
                           location="/root[1]/article[1]/app[1]/media[1]">
-         <svrl:text>Appendix—video 1.does not have a title, which is incorrect.</svrl:text>
+         <svrl:text>Appendix—video 1. does not have a title, which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="media[child::label]" id="video-test"/>
       <svrl:failed-assert test="caption/title"
                           id="pre-video-title"
                           role="warning"
                           location="/root[1]/article[1]/sub-article[1]/media[1]">
-         <svrl:text>Author response movie 1.does not have a title. Please alert eLife staff.</svrl:text>
+         <svrl:text>Author response movie 1. does not have a title. Please alert eLife staff.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="caption/title"
                           id="final-video-title"
                           role="error"
                           location="/root[1]/article[1]/sub-article[1]/media[1]">
-         <svrl:text>Author response movie 1.does not have a title, which is incorrect.</svrl:text>
+         <svrl:text>Author response movie 1. does not have a title, which is incorrect.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/media-tests/media-test-7/fail.xml"
                            id="supplementary-material-tests-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/alpha-upper-test-1/pass.xml"
                            id="research-article-pattern"
@@ -286,14 +286,14 @@
                               id="list-item-test-1"
                               role="warning"
                               location="/root[1]/article[1]/list[1]/list-item[1]">
-         <svrl:text>list-item begins with lowercase letter, is this correct? -this</svrl:text>
+         <svrl:text>list-item begins with lowercase letter, is this correct? - this</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="list-item" id="list-item-tests"/>
       <svrl:successful-report test="matches(.,'^\s?\p')"
                               id="list-item-test-1"
                               role="warning"
                               location="/root[1]/article[1]/list[1]/list-item[2]">
-         <svrl:text>list-item begins with lowercase letter, is this correct? -that</svrl:text>
+         <svrl:text>list-item begins with lowercase letter, is this correct? - that</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/alpha-upper-test-1/pass.xml"
                            id="general-video-pattern"
@@ -895,7 +895,7 @@
                           id="list-type-house-style-test"
                           role="warning"
                           location="/root[1]/article[1]/list[1]">
-         <svrl:text>listelement is a list-type='alpha-upper'. According to house style, bullets, numbers or no indicators should be used. Usual values - ('bullet','simple','order').</svrl:text>
+         <svrl:text>list element is a list-type='alpha-upper'. According to house style, bullets, numbers or no indicators should be used. Usual values - ('bullet','simple','order').</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/list-item-tests/alpha-upper-test-1/pass.xml"
                            id="pubmed-link-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="research-article-pattern"
@@ -549,7 +549,8 @@
          <svrl:text>[err-elem-cit-journal-2-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;person-group&gt; element.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="person-group[@person-group-type='author']"
                           id="err-elem-cit-journal-2-2"
@@ -568,7 +569,8 @@
          <svrl:text>[err-elem-cit-journal-3-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1"
                           id="err-elem-cit-journal-4-1"
@@ -577,7 +579,8 @@
          <svrl:text>[err-elem-cit-journal-4-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;source&gt; element.
-        Reference '' has0&lt;source&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)"
                           id="err-elem-cit-journal-4-2-1"
@@ -630,7 +633,8 @@
          <svrl:text>[err-elem-cit-book-2-3]
         In a book reference, there should be a single person-group element (either author or editor) or
         one person-group with @person-group-type="author" and one person-group with @person-group-type=editor.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1"
                           id="err-elem-cit-book-10-1"
@@ -639,7 +643,8 @@
          <svrl:text>[err-elem-book-book-10-1]
         Each  &lt;element-citation&gt; of type 'book' must contain one and
         only one &lt;source&gt; element.
-        Reference '' has0&lt;source&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)"
                           id="err-elem-cit-book-10-2-1"
@@ -665,7 +670,8 @@
                           location="/root[1]/article[1]/element-citation[2]">
          <svrl:text>[err-elem-cit-book-13-1]
         One and only one &lt;publisher-name&gt; is required in a book reference.
-        Reference '' has0&lt;publisher-name&gt; elements.</svrl:text>
+        Reference '' has 0
+        &lt;publisher-name&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-book-person-group-pattern"
@@ -696,7 +702,8 @@
                           location="/root[1]/article[1]/element-citation[3]">
          <svrl:text>[err-elem-cit-data-3-2]
         Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(data-title)=1"
                           id="err-elem-cit-data-10"
@@ -704,7 +711,8 @@
                           location="/root[1]/article[1]/element-citation[3]">
          <svrl:text>[err-elem-cit-data-10]
         Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;data-title&gt; element.
-        Reference '' has0&lt;data-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;data-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1"
                           id="err-elem-cit-data-11-2"
@@ -712,7 +720,8 @@
                           location="/root[1]/article[1]/element-citation[3]">
          <svrl:text>[err-elem-cit-data-11-2]
         Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;source&gt; element.
-        Reference '' has0&lt;source&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)"
                           id="err-elem-cit-data-11-3-1"
@@ -738,8 +747,8 @@
                           location="/root[1]/article[1]/element-citation[3]">
          <svrl:text>[err-elem-cit-data-13-1]
         There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id.
-        Reference '' has0&lt;pub-id elements
-        and0&lt;ext-link&gt; elements.</svrl:text>
+        Reference '' has 0 &lt;pub-id elements
+        and 0  &lt;ext-link&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(pub-id) ge 1 or count(ext-link) ge 1"
                           id="err-elem-cit-data-17-1"
@@ -747,8 +756,8 @@
                           location="/root[1]/article[1]/element-citation[3]">
          <svrl:text>[err-elem-cit-data-17-1]
         The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;.
-        Reference '' has0&lt;pub-id&gt; elements
-        and0&lt;ext-link&gt; elements.</svrl:text>
+        Reference '' has 0 &lt;pub-id&gt; elements
+        and 0  &lt;ext-link&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-data-pub-id-doi-pattern"
@@ -770,7 +779,8 @@
                           location="/root[1]/article[1]/element-citation[4]">
          <svrl:text>[err-elem-cit-patent-2-1]
         There must be one person-group with @person-group-type="inventor". 
-        Reference '' has0&lt;person-group&gt; 
+        Reference '' has
+        0 &lt;person-group&gt; 
         elements of type 'inventor'.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
@@ -780,7 +790,8 @@
          <svrl:text>[err-elem-cit-patent-8-1]
         Each  &lt;element-citation&gt; of type 'patent' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="patent"
                           id="err-elem-cit-patent-10-1-1"
@@ -841,7 +852,8 @@
                           location="/root[1]/article[1]/element-citation[6]">
          <svrl:text>[err-elem-cit-preprint-2-1]
         There must be one and only one person-group. 
-        Reference '' has0&lt;person-group&gt; 
+        Reference '' has
+        0 &lt;person-group&gt; 
         elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
@@ -851,7 +863,8 @@
          <svrl:text>[err-elem-cit-preprint-8-1]
         Each  &lt;element-citation&gt; of type 'preprint' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source) = 1"
                           id="err-elem-cit-preprint-9-1"
@@ -859,7 +872,8 @@
                           location="/root[1]/article[1]/element-citation[6]">
          <svrl:text>[err-elem-cit-preprint-9-1]
         Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element.
-        Reference '' has0&lt;source&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(pub-id)=1 or count(ext-link)=1"
                           id="err-elem-cit-preprint-10-3"
@@ -867,8 +881,8 @@
                           location="/root[1]/article[1]/element-citation[6]">
          <svrl:text>[err-elem-cit-preprint-10-3]
         Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference.
-        Reference '' has0&lt;pub-id&gt; elements
-        and0&lt;ext-link&gt; elements.</svrl:text>
+        Reference '' has 0 &lt;pub-id&gt; elements
+        and 0 &lt;ext-link&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-preprint-person-group-pattern"
@@ -896,7 +910,8 @@
                           location="/root[1]/article[1]/element-citation[7]">
          <svrl:text>[err-elem-cit-web-2-1]
         There must be one and only one person-group. 
-        Reference '' has0&lt;person-group&gt; 
+        Reference '' has
+        0 &lt;person-group&gt; 
         elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
@@ -906,7 +921,8 @@
          <svrl:text>[err-elem-cit-web-8-1]
         Each  &lt;element-citation&gt; of type 'web' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(ext-link)=1"
                           id="err-elem-cit-web-10-1"
@@ -914,7 +930,8 @@
                           location="/root[1]/article[1]/element-citation[7]">
          <svrl:text>[err-elem-cit-web-10-1]
         One and only one &lt;ext-link&gt; element is required.
-        Reference '' has0&lt;ext-link&gt; elements.</svrl:text>
+        Reference '' has 0 
+        &lt;ext-link&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(date-in-citation)=1"
                           id="err-elem-cit-web-11-1"
@@ -922,7 +939,8 @@
                           location="/root[1]/article[1]/element-citation[7]">
          <svrl:text>[err-elem-cit-web-11-1]
         One and only one &lt;date-in-citation&gt; element is required.
-        Reference '' has0&lt;date-in-citation&gt; elements.</svrl:text>
+        Reference '' has 0 
+        &lt;date-in-citation&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-web-person-group-pattern"
@@ -950,7 +968,8 @@
                           location="/root[1]/article[1]/element-citation[9]">
          <svrl:text>[err-elem-cit-report-2-1]
         One and only one person-group element is allowed.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1"
                           id="err-elem-cit-report-9-1"
@@ -959,7 +978,8 @@
          <svrl:text>[err-elem-report-report-9-1]
         Each  &lt;element-citation&gt; of type 'report' must contain one and
         only one &lt;source&gt; element.
-        Reference '' has0&lt;source&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(publisher-name)=1"
                           id="err-elem-cit-report-11-1"
@@ -967,7 +987,8 @@
                           location="/root[1]/article[1]/element-citation[9]">
          <svrl:text>[err-elem-cit-report-11-1]
         &lt;publisher-name&gt; is required.
-        Reference '' has0&lt;publisher-name&gt; elements.</svrl:text>
+        Reference '' has 0
+        &lt;publisher-name&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-report-preson-group-pattern"
@@ -995,7 +1016,8 @@
                           location="/root[1]/article[1]/element-citation[10]">
          <svrl:text>[err-elem-cit-confproc-2-1]
         One and only one person-group element is allowed.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
                           id="err-elem-cit-confproc-8-1"
@@ -1004,7 +1026,8 @@
          <svrl:text>[err-elem-cit-confproc-8-1]
         Each  &lt;element-citation&gt; of type 'confproc' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(conf-name)=1"
                           id="err-elem-cit-confproc-10-1"
@@ -1012,7 +1035,8 @@
                           location="/root[1]/article[1]/element-citation[10]">
          <svrl:text>[err-elem-cit-confproc-10-1]
         &lt;conf-name&gt; is required.
-        Reference '' has0&lt;conf-name&gt; elements.</svrl:text>
+        Reference '' has 0
+        &lt;conf-name&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-confproc-preson-group-pattern"
@@ -1049,7 +1073,8 @@
                           location="/root[1]/article[1]/element-citation[11]">
          <svrl:text>[err-elem-cit-thesis-2-1]
         One and only one person-group element is allowed.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
                           id="err-elem-cit-thesis-8-1"
@@ -1058,7 +1083,8 @@
          <svrl:text>[err-elem-cit-thesis-8-1]
         Each  &lt;element-citation&gt; of type 'thesis' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(publisher-name)=1"
                           id="err-elem-cit-thesis-9-1"
@@ -1066,7 +1092,8 @@
                           location="/root[1]/article[1]/element-citation[11]">
          <svrl:text>[err-elem-cit-thesis-9-1]
         &lt;publisher-name&gt; is required.
-        Reference '' has0&lt;publisher-name&gt; elements.</svrl:text>
+        Reference '' has 0
+        &lt;publisher-name&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-thesis-preson-group-pattern"
@@ -1098,7 +1125,8 @@
          <svrl:text>[err-elem-cit-periodical-2-1]
         Each  &lt;element-citation&gt; of type 'periodical' must contain one and
         only one &lt;person-group&gt; element.
-        Reference '' has0&lt;person-group&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;person-group&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="person-group[@person-group-type='author']"
                           id="err-elem-cit-periodical-2-2"
@@ -1116,7 +1144,8 @@
                           location="/root[1]/article[1]/element-citation[8]">
          <svrl:text>[err-elem-cit-periodical-7-1]
         There must be one and only one &lt;year&gt; element in a &lt;string-date&gt; element.
-        Reference '' has0&lt;year&gt; elements in the &lt;string-date&gt; element.</svrl:text>
+        Reference '' has 0
+        &lt;year&gt; elements in the &lt;string-date&gt; element.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-title)=1"
                           id="err-elem-cit-periodical-8-1"
@@ -1125,7 +1154,8 @@
          <svrl:text>[err-elem-cit-periodical-8-1]
         Each  &lt;element-citation&gt; of type 'periodical' must contain one and
         only one &lt;article-title&gt; element.
-        Reference '' has0&lt;article-title&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;article-title&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1"
                           id="err-elem-cit-periodical-9-1"
@@ -1134,7 +1164,8 @@
          <svrl:text>[err-elem-cit-periodical-9-1]
         Each  &lt;element-citation&gt; of type 'periodical' must contain one and
         only one &lt;source&gt; element.
-        Reference '' has0&lt;source&gt; elements.</svrl:text>
+        Reference '' has 
+        0 &lt;source&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)"
                           id="err-elem-cit-periodical-9-2-1"
@@ -1161,7 +1192,8 @@
                           location="/root[1]/article[1]/element-citation[8]">
          <svrl:text>[err-elem-cit-periodical-14-1]
         There must be one and only one &lt;string-date&gt; element within a &lt;element-citation&gt; of type 'periodical'.
-        Reference '' has0&lt;string-date&gt; elements.</svrl:text>
+        Reference '' has 0
+        &lt;string-date&gt; elements.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation/err-elem-cit-high-6-2/pass.xml"
                            id="elem-citation-periodical-year-pattern"
@@ -1279,7 +1311,7 @@
                            name="journal-tests-pattern"/>
       <svrl:fired-rule context="element-citation[@publication-type='journal']"
                        id="journal-tests"/>
-      <svrl:successful-report test="not(fpage) and not(elocation-id)"
+      <svrl:successful-report test="not(fpage) and not(elocation-id) and not(comment)"
                               id="eloc-page-assert"
                               role="warning"
                               location="/root[1]/article[1]/element-citation[1]">

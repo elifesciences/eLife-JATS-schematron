@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/fail.xml"
                            id="research-article-pattern"
@@ -317,13 +317,13 @@
                               id="fig-specific-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>Figure 1does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
+         <svrl:text>Figure 1 does not appear directly after a paragraph citing it. Is that correct?</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else ()"
                               id="feat-fig-specific-test-4"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>There is no citation toFigure 1.Is this correct?</svrl:text>
+         <svrl:text>There is no citation to Figure 1. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/fail.xml"
                            id="fig-label-tests-pattern"
@@ -943,7 +943,7 @@
                               id="reproduce-test-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/fig[1]">
-         <svrl:text>The caption forFigure 1contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
+         <svrl:text>The caption for Figure 1 contains the text 'reproduced from', but has no permissions. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/fig-specific-tests/feat-fig-specific-test-4/fail.xml"
                            id="xref-formatting-pattern"

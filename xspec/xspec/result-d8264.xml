@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-year/err-elem-cit-gen-date-1-5/fail.xml"
                            id="research-article-pattern"
@@ -564,7 +564,8 @@
         &lt;year&gt; element.
         Reference 'bib1' does not meet this requirement as the element contains
         the value '2006' and the attribute contains the value 
-        '1998'.</svrl:text>
+        '1998'.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="ref/element-citation/year" id="elem-citation-year"/>
       <svrl:failed-assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY"
@@ -576,7 +577,8 @@
         &lt;year&gt; element.
         Reference 'bib2' does not meet this requirement as the element contains
         the value '1998a' and the attribute contains the value 
-        '2006'.</svrl:text>
+        '2006'.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,'b')) and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1] )))"
                           id="err-elem-cit-gen-date-1-6"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/email-tests/email-test/fail.xml"
                            id="research-article-pattern"
@@ -118,21 +118,21 @@
                           id="email-test"
                           role="error"
                           location="/root[1]/article[1]/article-meta[1]/email[1]">
-         <svrl:text>email element must contain a valid email address. Currently it ishttps://elifesciences.org/.</svrl:text>
+         <svrl:text>email element must contain a valid email address. Currently it is https://elifesciences.org/.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article-meta//email" id="email-tests"/>
       <svrl:failed-assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]2 4$')"
                           id="email-test"
                           role="error"
                           location="/root[1]/article[1]/article-meta[1]/email[2]">
-         <svrl:text>email element must contain a valid email address. Currently it istest test.</svrl:text>
+         <svrl:text>email element must contain a valid email address. Currently it is test test.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article-meta//email" id="email-tests"/>
       <svrl:failed-assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]2 4$')"
                           id="email-test"
                           role="error"
                           location="/root[1]/article[1]/article-meta[1]/email[3]">
-         <svrl:text>email element must contain a valid email address. Currently it istest@gmail.com test.</svrl:text>
+         <svrl:text>email element must contain a valid email address. Currently it is test@gmail.com test.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/email-tests/email-test/fail.xml"
                            id="history-tests-pattern"

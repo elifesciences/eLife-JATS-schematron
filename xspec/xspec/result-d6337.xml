@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-title-tests/article-type-title-test-2/fail.xml"
                            id="research-article-pattern"
@@ -333,7 +333,7 @@
                               id="article-type-title-test-2"
                               role="error"
                               location="/root[1]/article[1]/article-meta[1]/title-group[1]/article-title[1]">
-         <svrl:text>title of a 'Scientific Correspondence' must start with 'Comment on' or 'Response to comment on', but this starts with something else -Article title.</svrl:text>
+         <svrl:text>title of a 'Scientific Correspondence' must start with 'Comment on' or 'Response to comment on', but this starts with something else - Article title.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/article-title-tests/article-type-title-test-2/fail.xml"
                            id="sec-title-tests-pattern"

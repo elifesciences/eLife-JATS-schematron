@@ -39,13 +39,13 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-3/fail.xml"
                            id="research-article-pattern"
@@ -90,7 +90,7 @@
                               id="head-subj-test2"
                               role="error"
                               location="/root[1]/article[1]/article-meta[1]/article-categories[1]">
-         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are0.</svrl:text>
+         <svrl:text>article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-3/fail.xml"
                            id="disp-channel-checks-pattern"
@@ -346,13 +346,13 @@
                               id="ra-sec-test-3"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body inResearch Articlecontent doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
+         <svrl:text>main body in Research Article content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($type = ('Short Report','Scientific Correspondence')) then () else if (sec[@sec-type='results|discussion']) then () else $res-disc-count != 2"
                               id="ra-sec-test-4"
                               role="warning"
                               location="/root[1]/article[1]/body[1]">
-         <svrl:text>main body inResearch Articlecontent doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
+         <svrl:text>main body in Research Article content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-3/fail.xml"
                            id="top-level-sec-tests-pattern"
@@ -362,13 +362,13 @@
                           id="top-sec-id"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should bes1.</svrl:text>
+         <svrl:text>top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be s1.</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)"
                               id="sec-conformity"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>top level sec with title -- is not a usual title forResearch Articlecontent. Should this be captured as a sub-level of?</svrl:text>
+         <svrl:text>top level sec with title -  - is not a usual title for Research Article content. Should this be captured as a sub-level of ?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-3/fail.xml"
                            id="lower-level-sec-tests-pattern"
@@ -474,7 +474,7 @@
                           id="body-top-level-sec-id-test"
                           role="error"
                           location="/root[1]/article[1]/body[1]/sec[1]">
-         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must bes1.</svrl:text>
+         <svrl:text>This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be s1.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ra-body-tests/ra-sec-test-3/fail.xml"
                            id="back-top-level-sec-ids-pattern"

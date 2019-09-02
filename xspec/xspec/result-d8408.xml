@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref/err-elem-cit-high-3-3/fail.xml"
                            id="research-article-pattern"
@@ -570,7 +570,8 @@
         by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of
         two authors, the sequence should be arranged by both authors' surnames, then date. For
         three or more authors, the sequence should be the first author's surname, then date.
-        Reference 'bib1' appears to be in a different order.</svrl:text>
+        Reference 'bib1' appears to be in a different order.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))"
                           id="err-elem-cit-high-3-3"
@@ -580,7 +581,8 @@
         The sequence of ids in the &lt;ref&gt; elements must increase monotonically
         (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
         Reference 'bib1' has the value 
-        'bib1', which does not fit this pattern.</svrl:text>
+        'bib1', which does not fit this pattern.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ref/err-elem-cit-high-3-3/fail.xml"
                            id="xref-pattern"

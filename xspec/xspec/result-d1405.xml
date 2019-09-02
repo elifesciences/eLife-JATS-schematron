@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/surname-tests/surname-test-4/fail.xml"
                            id="research-article-pattern"
@@ -94,9 +94,9 @@
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]">
-         <svrl:text>This name -
+         <svrl:text>This name - 
             Zoolander$
-          - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/surname-tests/surname-test-4/fail.xml"
                            id="surname-tests-pattern"
@@ -106,7 +106,7 @@
                           id="surname-test-4"
                           role="warning"
                           location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]/surname[1]">
-         <svrl:text>surname should usually only contain letters, spaces, or hyphens.Zoolander$contains other characters.</svrl:text>
+         <svrl:text>surname should usually only contain letters, spaces, or hyphens. Zoolander$ contains other characters.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/surname-tests/surname-test-4/fail.xml"
                            id="given-names-tests-pattern"
@@ -132,11 +132,11 @@
                               id="contrib-test-2"
                               role="warning"
                               location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
-         <svrl:text>non-author contrib doesn't have an affiliation -
+         <svrl:text>non-author contrib doesn't have an affiliation - 
           
             Zoolander$
           
-        - is this correct?</svrl:text>
+         - is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/surname-tests/surname-test-4/fail.xml"
                            id="author-children-tests-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-assert/pass.xml"
                            id="research-article-pattern"
@@ -100,9 +100,9 @@
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]/name[1]">
-         <svrl:text>This name -
+         <svrl:text>This name - 
             Jnr
-          - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="article-meta/contrib-group//name" id="name-tests"/>
       <svrl:failed-assert test="count(surname) = 1"
@@ -115,9 +115,9 @@
                           id="given-names-test-2"
                           role="warning"
                           location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]/name[1]">
-         <svrl:text>This name -
+         <svrl:text>This name - 
             Snr
-          - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
+           - does not contain a given-name. Please check with eLife staff that this is correct.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-assert/pass.xml"
                            id="surname-tests-pattern"
@@ -149,11 +149,11 @@
                               id="contrib-test-2"
                               role="warning"
                               location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[1]">
-         <svrl:text>non-author contrib doesn't have an affiliation -
+         <svrl:text>non-author contrib doesn't have an affiliation - 
           
             Jnr
           
-        - is this correct?</svrl:text>
+         - is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="article-meta//contrib" id="contrib-tests"/>
       <svrl:successful-report test="if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0"
@@ -166,11 +166,11 @@
                               id="contrib-test-2"
                               role="warning"
                               location="/root[1]/article[1]/article-meta[1]/contrib-group[1]/contrib[2]">
-         <svrl:text>non-author contrib doesn't have an affiliation -
+         <svrl:text>non-author contrib doesn't have an affiliation - 
           
             Snr
           
-        - is this correct?</svrl:text>
+         - is this correct?</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/suffix-tests/suffix-assert/pass.xml"
                            id="author-children-tests-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-year/err-elem-cit-gen-date-1-4/fail.xml"
                            id="research-article-pattern"
@@ -563,7 +563,8 @@
         The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 
         1700 and the current year + 5 years (inclusive).
         Reference 'bib1' does not meet this requirement as the attribute contains the value 
-        '1665'.</svrl:text>
+        '1665'.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY"
                           id="err-elem-cit-gen-date-1-5"
@@ -574,7 +575,8 @@
         &lt;year&gt; element.
         Reference 'bib1' does not meet this requirement as the element contains
         the value '2006' and the attribute contains the value 
-        '1665'.</svrl:text>
+        '1665'.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="ref/element-citation/year" id="elem-citation-year"/>
       <svrl:failed-assert test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))"
@@ -585,7 +587,8 @@
         The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 
         1700 and the current year + 5 years (inclusive).
         Reference 'bib2' does not meet this requirement as the attribute contains the value 
-        '2999'.</svrl:text>
+        '2999'.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY"
                           id="err-elem-cit-gen-date-1-5"
@@ -596,7 +599,8 @@
         &lt;year&gt; element.
         Reference 'bib2' does not meet this requirement as the element contains
         the value '1998' and the attribute contains the value 
-        '2999'.</svrl:text>
+        '2999'.
+      </svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-year/err-elem-cit-gen-date-1-4/fail.xml"
                            id="ref-pattern"

@@ -39,13 +39,13 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/body-table-label-tests/body-table-label-test-1/fail.xml"
                            id="research-article-pattern"
@@ -256,13 +256,13 @@
                               id="pre-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/table-wrap[1]">
-         <svrl:text>There is no citation toTabel 1.Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation to Tabel 1. Ensure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app) then () else not(ancestor::article//xref[@rid = $id])"
                               id="final-table-wrap-cite-1"
                               role="error"
                               location="/root[1]/article[1]/body[1]/table-wrap[1]">
-         <svrl:text>There is no citation toTabel 1.Ensure this is added.</svrl:text>
+         <svrl:text>There is no citation to Tabel 1. Ensure this is added.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="table-wrap" id="table-wrap-tests"/>
       <svrl:failed-assert test="table"
@@ -275,13 +275,13 @@
                               id="pre-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/table-wrap[2]">
-         <svrl:text>There is no citation toTable2.Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation to Table2. Ensure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app) then () else not(ancestor::article//xref[@rid = $id])"
                               id="final-table-wrap-cite-1"
                               role="error"
                               location="/root[1]/article[1]/body[1]/table-wrap[2]">
-         <svrl:text>There is no citation toTable2.Ensure this is added.</svrl:text>
+         <svrl:text>There is no citation to Table2. Ensure this is added.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="table-wrap" id="table-wrap-tests"/>
       <svrl:failed-assert test="table"
@@ -294,13 +294,13 @@
                               id="pre-table-wrap-cite-1"
                               role="warning"
                               location="/root[1]/article[1]/body[1]/table-wrap[3]">
-         <svrl:text>There is no citation toResources.Ensure to query the author asking for a citation.</svrl:text>
+         <svrl:text>There is no citation to Resources. Ensure to query the author asking for a citation.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app) then () else not(ancestor::article//xref[@rid = $id])"
                               id="final-table-wrap-cite-1"
                               role="error"
                               location="/root[1]/article[1]/body[1]/table-wrap[3]">
-         <svrl:text>There is no citation toResources.Ensure this is added.</svrl:text>
+         <svrl:text>There is no citation to Resources. Ensure this is added.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/body-table-label-tests/body-table-label-test-1/fail.xml"
                            id="body-table-label-tests-pattern"
@@ -310,21 +310,21 @@
                           id="body-table-label-test-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/table-wrap[1]/label[1]">
-         <svrl:text>Tabel 1.- Table label does not conform to the usual format.</svrl:text>
+         <svrl:text>Tabel 1. - Table label does not conform to the usual format.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="body//table-wrap/label" id="body-table-label-tests"/>
       <svrl:failed-assert test="matches(.,'^Table \d1 4\.$|^Key resources table$')"
                           id="body-table-label-test-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/table-wrap[2]/label[1]">
-         <svrl:text>Table2.- Table label does not conform to the usual format.</svrl:text>
+         <svrl:text>Table2. - Table label does not conform to the usual format.</svrl:text>
       </svrl:failed-assert>
       <svrl:fired-rule context="body//table-wrap/label" id="body-table-label-tests"/>
       <svrl:failed-assert test="matches(.,'^Table \d1 4\.$|^Key resources table$')"
                           id="body-table-label-test-1"
                           role="error"
                           location="/root[1]/article[1]/body[1]/table-wrap[3]/label[1]">
-         <svrl:text>Resources.- Table label does not conform to the usual format.</svrl:text>
+         <svrl:text>Resources. - Table label does not conform to the usual format.</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/body-table-label-tests/body-table-label-test-1/fail.xml"
                            id="app-table-label-tests-pattern"

@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-general/err-elem-cit-gen-date-1-9/fail.xml"
                            id="research-article-pattern"
@@ -131,6 +131,8 @@
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-general/err-elem-cit-gen-date-1-9/fail.xml"
                            id="year-element-citation-tests-pattern"
                            name="year-element-citation-tests-pattern"/>
+      <svrl:fired-rule context="year[ancestor::element-citation]"
+                       id="year-element-citation-tests"/>
       <svrl:fired-rule context="year[ancestor::element-citation]"
                        id="year-element-citation-tests"/>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-general/err-elem-cit-gen-date-1-9/fail.xml"
@@ -517,6 +519,16 @@
                            id="elem-citation-general-pattern"
                            name="elem-citation-general-pattern"/>
       <svrl:fired-rule context="element-citation" id="elem-citation-general"/>
+      <svrl:successful-report test="count(year)&gt;1"
+                              id="err-elem-cit-gen-date-1-9"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]/element-citation[1]">
+         <svrl:text>[err-elem-cit-gen-date-1-9]
+        There may be at most one &lt;year&gt; element.
+        Reference 'bib1' has 2
+        &lt;year&gt; elements.
+      </svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-general/err-elem-cit-gen-date-1-9/fail.xml"
                            id="elem-citation-gen-name-3-1-pattern"
                            name="elem-citation-gen-name-3-1-pattern"/>
@@ -540,6 +552,17 @@
                            id="elem-citation-year-pattern"
                            name="elem-citation-year-pattern"/>
       <svrl:fired-rule context="ref/element-citation/year" id="elem-citation-year"/>
+      <svrl:fired-rule context="ref/element-citation/year" id="elem-citation-year"/>
+      <svrl:successful-report test="some $x in (preceding::year[ancestor::ref-list]) satisfies e:citation-format1($x) = $citation"
+                              id="err-elem-cit-gen-date-1-8"
+                              role="error"
+                              location="/root[1]/article[1]/back[1]/ref-list[1]/ref[1]/element-citation[1]/year[2]">
+         <svrl:text>[err-elem-cit-gen-date-1-8]
+        Letter suffixes must be unique for the combination of year and author information. 
+        Reference 'bib1' does not fulfill this requirement as it 
+        contains the &lt;year&gt; '1989' for the author information
+        'Coyne', which occurs in at least one other reference.</svrl:text>
+      </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/elem-citation-general/err-elem-cit-gen-date-1-9/fail.xml"
                            id="ref-pattern"
                            name="ref-pattern"/>

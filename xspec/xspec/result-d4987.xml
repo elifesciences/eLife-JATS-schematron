@@ -39,19 +39,19 @@
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
                               id="test-article-back"
                               role="error"
                               location="/root[1]/article[1]">
-         <svrl:text>Article must have one child back. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child back. Currently there are 0</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/table-wrap-test-3/fail.xml"
                            id="research-article-pattern"
@@ -265,13 +265,13 @@
                               id="table-wrap-test-3"
                               role="error"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>table-wrap has an inline idinlinetable1but it has a label -Table 1., which is not correct.</svrl:text>
+         <svrl:text>table-wrap has an inline id inlinetable1 but it has a label - Table 1., which is not correct.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')"
                               id="kr-table-not-tagged"
                               role="error"
                               location="/root[1]/article[1]/table-wrap[1]">
-         <svrl:text>Table 1.has headings that are for the Key reources table, but it does not have an @id='keyresource'.</svrl:text>
+         <svrl:text>Table 1. has headings that are for the Key reources table, but it does not have an @id='keyresource'.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/table-wrap-test-3/fail.xml"
                            id="body-table-label-tests-pattern"
@@ -828,13 +828,13 @@
                               id="table-xref-conformity-1"
                               role="warning"
                               location="/root[1]/article[1]/xref[1]">
-         <svrl:text>- citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
+         <svrl:text> - citation points to table, but does not include the string 'Table', which is very unusual.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))"
                               id="table-xref-conformity-3"
                               role="error"
                               location="/root[1]/article[1]/xref[1]">
-         <svrl:text>- Citation content does not match what it directs to.</svrl:text>
+         <svrl:text> - Citation content does not match what it directs to.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/table-wrap-tests/table-wrap-test-3/fail.xml"
                            id="supp-file-xref-conformance-pattern"

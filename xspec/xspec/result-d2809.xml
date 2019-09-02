@@ -39,7 +39,7 @@
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-group-tests/ro-kwd-presence-test/fail.xml"
                            id="research-article-pattern"
@@ -52,7 +52,7 @@
                           id="test-front-jmeta"
                           role="error"
                           location="/root[1]/article[1]/front[1]">
-         <svrl:text>There must be one journal-meta that is a child of front. Currently there are0</svrl:text>
+         <svrl:text>There must be one journal-meta that is a child of front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ro-kwd-group-tests/ro-kwd-presence-test/fail.xml"
                            id="test-journal-meta-pattern"
@@ -65,25 +65,25 @@
                           id="test-article-id"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>article-id must consist only of 5 digits. Currently it is</svrl:text>
+         <svrl:text>article-id must consist only of 5 digits. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')"
                           id="test-article-doi-1"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is</svrl:text>
+         <svrl:text>Article level DOI must start with '10.7554/eLife.'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id"
                           id="test-article-doi-2"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is</svrl:text>
+         <svrl:text>Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(article-categories) = 1"
                           id="test-article-presence"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one article-categories element in the article-meta. Currently there are0</svrl:text>
+         <svrl:text>There must be one article-categories element in the article-meta. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="title-group[article-title]"
                           id="test-title-group-presence"
@@ -119,13 +119,13 @@
                           id="test-permissions-presence"
                           role="error"
                           location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are0</svrl:text>
+         <svrl:text>There must be one and only one permissions element in the article-meta. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:successful-report test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then () else count(funding-group) != 1"
                               id="test-funding-group-presence"
                               role="error"
                               location="/root[1]/article[1]/front[1]/article-meta[1]">
-         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are0.</svrl:text>
+         <svrl:text>There must be one and only one funding-group element in the article-meta. Currently there are 0.</svrl:text>
       </svrl:successful-report>
       <svrl:successful-report test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1"
                               id="test-custom-meta-group-presence"

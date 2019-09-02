@@ -39,19 +39,19 @@
                           id="test-article-type"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is</svrl:text>
+         <svrl:text>article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is </svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(front) = 1"
                           id="test-article-front"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child front. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child front. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:failed-assert test="count(body) = 1"
                           id="test-article-body"
                           role="error"
                           location="/root[1]/article[1]">
-         <svrl:text>Article must have one child body. Currently there are0</svrl:text>
+         <svrl:text>Article must have one child body. Currently there are 0</svrl:text>
       </svrl:failed-assert>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="research-article-pattern"
@@ -211,119 +211,119 @@
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/bold[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -bold- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - bold - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/fixed-case[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -fixed-case- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - fixed-case - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/italic[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -italic- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - italic - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/monospace[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -monospace- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - monospace - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/overline[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -overline- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - overline - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/overline-start[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -overline-start- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - overline-start - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/overline-end[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -overline-end- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - overline-end - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/roman[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -roman- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - roman - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/sans-serif[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -sans-serif- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sans-serif - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/sc[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -sc- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sc - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/strike[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -strike- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - strike - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/underline[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -underline- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - underline - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/underline-start[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -underline-start- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - underline-start - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/underline-end[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -underline-end- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - underline-end - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/ruby[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -ruby- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - ruby - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/sub[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -sub- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sub - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:fired-rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests"/>
       <svrl:successful-report test="$parent = $formatting-elems"
                               id="ext-link-parent-test"
                               role="warning"
                               location="/root[1]/article[1]/sup[1]/ext-link[1]">
-         <svrl:text>ext-link -https://elifesciences.org/articles/46080- has a formatting parent element -sup- which almost certainly unnecessary.</svrl:text>
+         <svrl:text>ext-link - https://elifesciences.org/articles/46080 - has a formatting parent element - sup - which almost certainly unnecessary.</svrl:text>
       </svrl:successful-report>
       <svrl:active-pattern document="file:/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/tests/ext-link-tests/ext-link-parent-test/fail.xml"
                            id="url-markup-conformance-pattern"
