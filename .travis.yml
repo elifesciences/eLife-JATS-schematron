@@ -1,14 +1,11 @@
 before_script:
 # install XSpec
-- git clone -b master https://github.com/xspec/xspec.git /tmp/xspec
+- git clone -b master https://github.com/xspec/xspec.git ~/tmp/xspec
 # install Saxon
-- mkdir -p /tmp/saxon 
-- export SAXON_CP=/tmp/saxon/saxon9he.jar
-- cd /tmp/saxon/
-- curl -o ${SAXON_CP} http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar
-- chmod +x ${SAXON_CP}
+- mkdir -p ~/tmp/saxon 
+- wget -O ~/tmp/saxon/saxon9he.jar http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar
+- chmod +x ~/tmp/saxon/saxon9he.jar
 
 script:
-- cd ../tmp/xspec/test
 - echo "execute XSpec unit tests"
-- ./run-xspec-tests.sh
+- ./run-test.sh
