@@ -8,4 +8,4 @@ before_script:
 
 script:
 - export SAXON_HOME=~/tmp/saxon
-- run-xspec-tests.sh
+- elifesciences/eLife-JATS-schematron/run-xspec-tests.sh

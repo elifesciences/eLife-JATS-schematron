@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export SAXON_HOME=~/tmp/saxon
-for xspectest in xspec/*.xspec;
+for xspectest in elifesciences/eLife-JATS-schematron/xspec/*.xspec;
 do ~tmp/xspec/bin/xspec.sh -s $xspectest &> result.log
     if grep -q ".*failed:\s[1-9]" result.log || grep -q -E "\*+\sError\s(running|compiling)\sthe\stest\ssuite" result.log;
         then
