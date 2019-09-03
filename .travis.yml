@@ -7,4 +7,4 @@ before_script:
 - chmod +x ~/tmp/saxon/saxon9he.jar
 
 script:
-- sh /home/travis/build/elifesciences/eLife-JATS-schematron/run-xspec-test.sh
+- /home/travis/build/elifesciences/eLife-JATS-schematron/run-xspec-test.sh
