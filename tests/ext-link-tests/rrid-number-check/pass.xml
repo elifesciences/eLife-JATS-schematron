@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="rrid-number-check.sch"?>
-<!--Context: ext-link[@ext-link-type='uri']
-Test: report    matches(@xlink:href,'scicrunch\.org.*resolver') and not(matches(@xlink:href,'[0-9]$'))
-Message: extlink links to scicrunch but, the link does not end with a number  ''  this is almost certainly incorrect.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <ext-link ext-link-type="uri" xlink:href="https://scicrunch.org/resolver/4000">4000</ext-link>
-  </article>
-</root>

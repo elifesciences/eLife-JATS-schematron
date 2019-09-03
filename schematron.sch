@@ -1844,10 +1844,6 @@
         role="error"
         id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
       
-      <report test="matches(@xlink:href,'scicrunch\.org.*resolver') and not(matches(@xlink:href,'[0-9]$'))" 
-        role="warning"
-        id="rrid-number-check">ext-link links to scicrunch but, the link does not end with a number - '<value-of select="@xlink:href"/>' - this is almost certainly incorrect.</report>
-      
       <report test="$parent = $formatting-elems"
         role="warning" 
         id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
