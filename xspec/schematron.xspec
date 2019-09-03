@@ -2183,16 +2183,6 @@
         <x:expect-report id="url-fullstop-report" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="rrid-number-check-pass">
-        <x:context href="../tests/ext-link-tests/rrid-number-check/pass.xml"/>
-        <x:expect-not-report id="rrid-number-check" role="warning"/>
-        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="rrid-number-check-fail">
-        <x:context href="../tests/ext-link-tests/rrid-number-check/fail.xml"/>
-        <x:expect-report id="rrid-number-check" role="warning"/>
-        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="ext-link-parent-test-pass">
         <x:context href="../tests/ext-link-tests/ext-link-parent-test/pass.xml"/>
         <x:expect-not-report id="ext-link-parent-test" role="warning"/>
