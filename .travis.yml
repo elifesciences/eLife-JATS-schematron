@@ -7,4 +7,6 @@ before_script:
 - chmod +x ~/tmp/saxon/saxon9he.jar
 
 script:
-- /home/travis/build/elifesciences/eLife-JATS-schematron/run-xspec-test.sh
+- cd elifesciences/eLife-JATS-schematron
+- echo "execute XSpec unit tests"
+- ./run-test.sh
