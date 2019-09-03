@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export SAXON_HOME=~/tmp/saxon
+export SAXON_HOME=/home/travis/tmp/saxon
 for xspectest in xspec/*.xspec;
-do ~tmp/xspec/bin/xspec.sh -s $xspectest &> result.log
+do /home/travis/tmp/xspec/bin/xspec.sh -s $xspectest &> result.log
     if grep -q ".*failed:\s[1-9]" result.log || grep -q -E "\*+\sError\s(running|compiling)\sthe\stest\ssuite" result.log;
         then
             echo "FAILED: $xspectest";
