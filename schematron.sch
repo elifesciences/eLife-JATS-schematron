@@ -1736,7 +1736,7 @@
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article[@article-type='reply']) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">p element is less than 100 characters long, and is preceded by another p element less than 100 characters long. Should this be captured as a list-item in a list?</report>
+      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
       <report test="matches(.,'^\s?•') and not(ancestor::disp-quote[@content-type='editor-comment'])"
         role="warning"
