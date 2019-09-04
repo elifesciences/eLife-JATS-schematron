@@ -593,7 +593,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
-      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="warning" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="info" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
