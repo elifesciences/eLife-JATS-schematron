@@ -3504,6 +3504,27 @@
       
     </rule>
     
+    <rule context="ref/element-citation/source" 
+      id="elem-citation-source">
+      
+      <assert test="string-length(normalize-space(.)) ge 2" 
+        role="error" 
+        id="elem-cit-source">A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>
+      
+    </rule>
+    
+    <rule context="ref/element-citation/ext-link" 
+      id="elem-citation-ext-link">
+      
+      <assert test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')" 
+        role="error" 
+        id="ext-link-attribute-content-match">&lt;ext-link&gt; must contain content and have an @xlink:href, the value of which must be the same as the content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
+      
+      <assert test="matches(@xlink:href,'^https?://|^ftp://')" 
+        role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://",  or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
+      
+    </rule>
+    
   </pattern>
   
   <pattern id="element-citation-high-tests">
@@ -3655,10 +3676,11 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-journal-4-2-1">[err-elem-cit-journal-4-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(source)=1 and count(source/*)=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
@@ -3791,10 +3813,11 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-book-10-2-1">[err-elem-cit-book-10-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-book-10-2-2">[err-elem-cit-book-10-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child 
@@ -3927,10 +3950,11 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-data-11-3-1">[err-elem-cit-data-11-3-1]
         A &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-data-11-3-2">[err-elem-cit-data-11-3-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child 
@@ -3977,8 +4001,9 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='data']/ext-link" id="elem-citation-data-ext-link"> 
-      
+    
       <assert test="@xlink:href" role="error" id="err-elem-cit-data-17-2">[err-elem-cit-data-17-2]
         Each &lt;ext-link&gt; element must contain @xlink:href. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         does not.</assert>
@@ -3987,13 +4012,13 @@
         The value of @xlink:href must start with either "http://" or "https://". 
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         is '<value-of select="@xlink:href"/>', which does not.</assert>  
-      
+        
       <assert test="normalize-space(@xlink:href)=normalize-space(.)" role="error" id="err-elem-cit-data-17-4">[err-elem-cit-data-17-4]
         The value of @xlink:href must be the same as the element content of &lt;ext-link&gt;.
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
   </pattern>
   
   <pattern id="element-citation-patent-tests">
@@ -4041,8 +4066,9 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='patent']/ext-link" id="elem-citation-patent-ext-link"> 
-      
+    
       <assert test="@xlink:href" role="error" id="err-elem-cit-patent-11-2">[err-elem-cit-patent-11-2]
         Each &lt;ext-link&gt; element must contain @xlink:href. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         does not.</assert>
@@ -4051,13 +4077,13 @@
         The value of @xlink:href must start with either "http://" or "https://". 
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         is '<value-of select="@xlink:href"/>', which does not.</assert>  
-      
+        
       <assert test="normalize-space(@xlink:href)=normalize-space(.)" role="error" id="err-elem-cit-patent-11-4">[err-elem-cit-patent-11-4]
         The value of @xlink:href must be the same as the element content of &lt;ext-link&gt;.
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
     
     <rule context="element-citation[@publication-type='patent']/article-title" id="elem-citation-patent-article-title"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">[err-elem-cit-patent-8-2-1]
@@ -4073,10 +4099,12 @@
     </rule>
     
     <rule context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
+      
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-9-2-1">[err-elem-cit-patent-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-9-2-2">[err-elem-cit-patent-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child 
@@ -4136,8 +4164,9 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type = 'software']/ext-link" id="elem-citation-software-ext-link">
-      
+    
       <assert test="@xlink:href" role="error" id="err-elem-cit-software-15-1">[err-elem-cit-software-15-1] Each &lt;ext-link&gt; element must contain @xlink:href. The
         &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' does
         not.</assert>
@@ -4145,12 +4174,12 @@
       <assert test="starts-with(@xlink:href, 'http://') or starts-with(@xlink:href, 'https://')" role="error" id="err-elem-cit-software-15-2">[err-elem-cit-software-15-2] The value of
         @xlink:href must start with either "http://" or "https://". The &lt;ext-link&gt; element in
         Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
-      
+        
       <assert test="normalize-space(@xlink:href) = normalize-space(.)" role="error" id="err-elem-cit-software-15-3">[err-elem-cit-software-15-3] The value of @xlink:href must be
         the same as the element content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference
         '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
   </pattern>
   
   <pattern id="element-citation-preprint-tests">
@@ -4206,6 +4235,7 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='preprint']/ext-link" id="elem-citation-preprint-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-preprint-11-1">[err-elem-cit-preprint-11-1]
@@ -4222,7 +4252,7 @@
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
     
     <rule context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">[err-elem-cit-preprint-8-2-1]
@@ -4237,10 +4267,11 @@
     </rule>
     
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-9-2-1">[err-elem-cit-preprint-9-2-1]
         A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-9-2-2">[err-elem-cit-preprint-9-2-2]
         A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
@@ -4295,8 +4326,9 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='web']/ext-link" id="elem-citation-web-ext-link"> 
-      
+
       <assert test="@xlink:href" role="error" id="err-elem-cit-web-10-2">[err-elem-cit-web-10-2]
         Each &lt;ext-link&gt; element must contain @xlink:href. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         does not.</assert>
@@ -4305,13 +4337,13 @@
         The value of @xlink:href must start with either "http://" or "https://". 
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         is '<value-of select="@xlink:href"/>', which does not.</assert>  
-      
+
       <assert test="normalize-space(@xlink:href)=normalize-space(.)" role="error" id="err-elem-cit-web-10-4">[err-elem-cit-web-10-4]
         The value of @xlink:href must be the same as the element content of &lt;ext-link&gt;.
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
     
     <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title"> 
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">[err-elem-cit-web-8-2-1]
@@ -4327,10 +4359,11 @@
     </rule>
     
     <rule context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-9-2-1">[err-elem-cit-web-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-9-2-2">[err-elem-cit-web-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
@@ -4408,10 +4441,12 @@
     </rule>
     
     <rule context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
+      
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="(./string-length() + sum(*/string-length()) ge 2)" role="error" id="err-elem-cit-report-9-2-1">[err-elem-cit-report-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-report-9-2-2">[err-elem-cit-report-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' may only contain the child 
@@ -4438,6 +4473,7 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='report']/ext-link" id="elem-citation-report-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-report-14-1">[err-elem-cit-report-14-1]
@@ -4448,13 +4484,13 @@
         The value of @xlink:href must start with either "http://" or "https://". 
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         is '<value-of select="@xlink:href"/>', which does not.</assert>  
-      
+        
       <assert test="normalize-space(@xlink:href)=normalize-space(.)" role="error" id="err-elem-cit-report-14-3">[err-elem-cit-report-14-3]
         The value of @xlink:href must be the same as the element content of &lt;ext-link&gt;.
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
     
   </pattern>
   
@@ -4525,10 +4561,11 @@
     </rule>
     
     <rule context="element-citation[@publication-type='confproc']/source" id="elem-citation-confproc-source">
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="(./string-length() + sum(*/string-length()) ge 2)" role="error" id="err-elem-cit-confproc-9-2-1">[err-elem-cit-confproc-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-confproc-9-2-2">[err-elem-cit-confproc-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' may only contain the child 
@@ -4584,6 +4621,7 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='confproc']/ext-link" id="elem-citation-confproc-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-confproc-14-1">[err-elem-cit-confproc-14-1]
@@ -4600,7 +4638,7 @@
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
     
   </pattern>
   
@@ -4613,12 +4651,12 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(collab)=0" role="error" id="err-elem-cit-thesis-3">[err-elem-cit-thesis-3]
+      <assert test="count(descendant::collab)=0" role="error" id="err-elem-cit-thesis-3">[err-elem-cit-thesis-3]
         No &lt;collab&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(collab)"/> &lt;collab&gt; elements.</assert>
       
-      <assert test="count(etal)=0" role="error" id="err-elem-cit-thesis-6">[err-elem-cit-thesis-6]
+      <assert test="count(descendant::etal)=0" role="error" id="err-elem-cit-thesis-6">[err-elem-cit-thesis-6]
         No &lt;etal&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(etal)"/> &lt;etal&gt; elements.</assert>
@@ -4696,6 +4734,7 @@
       
     </rule>
     
+    <!-- Genercised in  elem-citation-ext-link
     <rule context="element-citation[@publication-type='thesis']/ext-link" id="elem-citation-thesis-ext-link"> 
       
       <assert test="@xlink:href" role="error" id="err-elem-cit-thesis-12-1">[err-elem-cit-thesis-12-1]
@@ -4712,7 +4751,7 @@
         The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
         has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-    </rule>
+    </rule>-->
     
   </pattern>
   
@@ -4749,10 +4788,11 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
+      <!-- Genericised across all publication types in elem-cit-source
       <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-periodical-9-2-1">[err-elem-cit-periodical-9-2-1]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'periodical' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-periodical-9-2-2">[err-elem-cit-periodical-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'periodical' may only contain the child 

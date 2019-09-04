@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-thesis-6.sch"?>
 <!--Context: element-citation[@publication-type='thesis']
-Test: assert    count(etal)=0
+Test: assert    count(descendant::etal)=0
 Message: [errelemcitthesis6]
         No <etal> elements are allowed in thesis citations.
         Reference '' has 
