@@ -4947,7 +4947,7 @@
         role="error"
         id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</report>
       
-      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()/:A-Za-z0-9&lt;&gt;]+$'))"
+      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()/:A-Za-z0-9&lt;&gt;\[\]]+$'))"
         role="error"
         id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/></report>
       
