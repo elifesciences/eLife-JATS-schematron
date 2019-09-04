@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="surname-test-4.sch"?>
 <!--Context: article-meta/contrib-group//name/surname
-Test: assert    matches(.,'^[\p{L}\p{M}\s-]*$')
+Test: assert    matches(.,"^[\p{L}\p{M}\s'-]*$")
 Message: surname should usually only contain letters, spaces, or hyphens.  contains other characters.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
@@ -9,6 +9,12 @@ Message: surname should usually only contain letters, spaces, or hyphens.  conta
         <contrib>
           <name>
             <surname>Zoolander</surname>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <given-names>O'Derek</given-names>
+            <surname>O'Zoolander</surname>
           </name>
         </contrib>
       </contrib-group>
