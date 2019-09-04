@@ -593,7 +593,7 @@
   <pattern id="org-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="org-ref-article-book-title">
       <let name="lc" value="lower-case(.)"/>
-      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" role="warning" id="daffinis-ref-article-title-check">
+      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" role="info" id="daffinis-ref-article-title-check">
         <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>

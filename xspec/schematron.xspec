@@ -7887,872 +7887,872 @@
     <x:scenario label="org-ref-article-book-title">
       <x:scenario label="bssubtilis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/bssubtilis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="bssubtilis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="bssubtilis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="bssubtilis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/bssubtilis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="bssubtilis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="bssubtilis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="bacillusssubtilis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/bacillusssubtilis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="bacillusssubtilis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="bacillusssubtilis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="bacillusssubtilis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/bacillusssubtilis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="bacillusssubtilis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="bacillusssubtilis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dsmelanogaster-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/dsmelanogaster-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="dsmelanogaster-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="dsmelanogaster-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dsmelanogaster-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/dsmelanogaster-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="dsmelanogaster-ref-article-title-check" role="warning"/>
+        <x:expect-report id="dsmelanogaster-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilasmelanogaster-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drosophilasmelanogaster-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drosophilasmelanogaster-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drosophilasmelanogaster-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilasmelanogaster-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drosophilasmelanogaster-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drosophilasmelanogaster-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drosophilasmelanogaster-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escoli-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/escoli-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="escoli-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="escoli-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escoli-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/escoli-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="escoli-ref-article-title-check" role="warning"/>
+        <x:expect-report id="escoli-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escherichiascoli-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/escherichiascoli-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="escherichiascoli-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="escherichiascoli-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escherichiascoli-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/escherichiascoli-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="escherichiascoli-ref-article-title-check" role="warning"/>
+        <x:expect-report id="escherichiascoli-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sspombe-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/sspombe-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="sspombe-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="sspombe-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sspombe-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/sspombe-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="sspombe-ref-article-title-check" role="warning"/>
+        <x:expect-report id="sspombe-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="schizosaccharomycesspombe-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/schizosaccharomycesspombe-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="schizosaccharomycesspombe-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="schizosaccharomycesspombe-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="schizosaccharomycesspombe-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/schizosaccharomycesspombe-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="schizosaccharomycesspombe-ref-article-title-check" role="warning"/>
+        <x:expect-report id="schizosaccharomycesspombe-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sscerevisiae-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/sscerevisiae-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="sscerevisiae-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="sscerevisiae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sscerevisiae-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/sscerevisiae-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="sscerevisiae-ref-article-title-check" role="warning"/>
+        <x:expect-report id="sscerevisiae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="saccharomycesscerevisiae-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/saccharomycesscerevisiae-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="saccharomycesscerevisiae-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="saccharomycesscerevisiae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="saccharomycesscerevisiae-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/saccharomycesscerevisiae-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="saccharomycesscerevisiae-ref-article-title-check" role="warning"/>
+        <x:expect-report id="saccharomycesscerevisiae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="cselegans-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/cselegans-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="cselegans-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="cselegans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="cselegans-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/cselegans-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="cselegans-ref-article-title-check" role="warning"/>
+        <x:expect-report id="cselegans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="caenorhabditisselegans-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/caenorhabditisselegans-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="caenorhabditisselegans-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="caenorhabditisselegans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="caenorhabditisselegans-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/caenorhabditisselegans-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="caenorhabditisselegans-ref-article-title-check" role="warning"/>
+        <x:expect-report id="caenorhabditisselegans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="asthaliana-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/asthaliana-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="asthaliana-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="asthaliana-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="asthaliana-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/asthaliana-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="asthaliana-ref-article-title-check" role="warning"/>
+        <x:expect-report id="asthaliana-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="arabidopsissthaliana-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/arabidopsissthaliana-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="arabidopsissthaliana-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="arabidopsissthaliana-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="arabidopsissthaliana-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/arabidopsissthaliana-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="arabidopsissthaliana-ref-article-title-check" role="warning"/>
+        <x:expect-report id="arabidopsissthaliana-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="msthermophila-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/msthermophila-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="msthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="msthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="msthermophila-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/msthermophila-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="msthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-report id="msthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="myceliophthorasthermophila-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/myceliophthorasthermophila-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="myceliophthorasthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="myceliophthorasthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="myceliophthorasthermophila-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/myceliophthorasthermophila-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="myceliophthorasthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-report id="myceliophthorasthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dictyostelium-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/dictyostelium-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="dictyostelium-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="dictyostelium-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dictyostelium-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/dictyostelium-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="dictyostelium-ref-article-title-check" role="warning"/>
+        <x:expect-report id="dictyostelium-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="psfalciparum-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/psfalciparum-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="psfalciparum-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="psfalciparum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="psfalciparum-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/psfalciparum-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="psfalciparum-ref-article-title-check" role="warning"/>
+        <x:expect-report id="psfalciparum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="plasmodiumsfalciparum-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/plasmodiumsfalciparum-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="plasmodiumsfalciparum-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="plasmodiumsfalciparum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="plasmodiumsfalciparum-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/plasmodiumsfalciparum-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="plasmodiumsfalciparum-ref-article-title-check" role="warning"/>
+        <x:expect-report id="plasmodiumsfalciparum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssenterica-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/ssenterica-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="ssenterica-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="ssenterica-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssenterica-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/ssenterica-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="ssenterica-ref-article-title-check" role="warning"/>
+        <x:expect-report id="ssenterica-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="salmonellasenterica-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/salmonellasenterica-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="salmonellasenterica-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="salmonellasenterica-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="salmonellasenterica-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/salmonellasenterica-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="salmonellasenterica-ref-article-title-check" role="warning"/>
+        <x:expect-report id="salmonellasenterica-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sspyogenes-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/sspyogenes-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="sspyogenes-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="sspyogenes-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sspyogenes-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/sspyogenes-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="sspyogenes-ref-article-title-check" role="warning"/>
+        <x:expect-report id="sspyogenes-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="streptococcusspyogenes-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/streptococcusspyogenes-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="streptococcusspyogenes-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="streptococcusspyogenes-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="streptococcusspyogenes-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/streptococcusspyogenes-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="streptococcusspyogenes-ref-article-title-check" role="warning"/>
+        <x:expect-report id="streptococcusspyogenes-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="psdumerilii-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/psdumerilii-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="psdumerilii-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="psdumerilii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="psdumerilii-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/psdumerilii-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="psdumerilii-ref-article-title-check" role="warning"/>
+        <x:expect-report id="psdumerilii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="platynereissdumerilii-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/platynereissdumerilii-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="platynereissdumerilii-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="platynereissdumerilii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="platynereissdumerilii-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/platynereissdumerilii-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="platynereissdumerilii-ref-article-title-check" role="warning"/>
+        <x:expect-report id="platynereissdumerilii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pscynocephalus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/pscynocephalus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="pscynocephalus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="pscynocephalus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pscynocephalus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/pscynocephalus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="pscynocephalus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="pscynocephalus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="papioscynocephalus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/papioscynocephalus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="papioscynocephalus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="papioscynocephalus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="papioscynocephalus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/papioscynocephalus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="papioscynocephalus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="papioscynocephalus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="osfasciatus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/osfasciatus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="osfasciatus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="osfasciatus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="osfasciatus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/osfasciatus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="osfasciatus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="osfasciatus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="oncopeltussfasciatus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/oncopeltussfasciatus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="oncopeltussfasciatus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="oncopeltussfasciatus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="oncopeltussfasciatus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/oncopeltussfasciatus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="oncopeltussfasciatus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="oncopeltussfasciatus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nscrassa-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/nscrassa-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="nscrassa-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="nscrassa-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nscrassa-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/nscrassa-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="nscrassa-ref-article-title-check" role="warning"/>
+        <x:expect-report id="nscrassa-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="neurosporascrassa-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/neurosporascrassa-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="neurosporascrassa-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="neurosporascrassa-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="neurosporascrassa-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/neurosporascrassa-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="neurosporascrassa-ref-article-title-check" role="warning"/>
+        <x:expect-report id="neurosporascrassa-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="csintestinalis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/csintestinalis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="csintestinalis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="csintestinalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="csintestinalis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/csintestinalis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="csintestinalis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="csintestinalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="cionasintestinalis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/cionasintestinalis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="cionasintestinalis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="cionasintestinalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="cionasintestinalis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/cionasintestinalis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="cionasintestinalis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="cionasintestinalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escuniculi-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/escuniculi-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="escuniculi-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="escuniculi-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escuniculi-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/escuniculi-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="escuniculi-ref-article-title-check" role="warning"/>
+        <x:expect-report id="escuniculi-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="encephalitozoonscuniculi-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/encephalitozoonscuniculi-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="encephalitozoonscuniculi-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="encephalitozoonscuniculi-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="encephalitozoonscuniculi-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/encephalitozoonscuniculi-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="encephalitozoonscuniculi-ref-article-title-check" role="warning"/>
+        <x:expect-report id="encephalitozoonscuniculi-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="hssalinarum-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/hssalinarum-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="hssalinarum-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="hssalinarum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="hssalinarum-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/hssalinarum-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="hssalinarum-ref-article-title-check" role="warning"/>
+        <x:expect-report id="hssalinarum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="halobacteriumssalinarum-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/halobacteriumssalinarum-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="halobacteriumssalinarum-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="halobacteriumssalinarum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="halobacteriumssalinarum-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/halobacteriumssalinarum-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="halobacteriumssalinarum-ref-article-title-check" role="warning"/>
+        <x:expect-report id="halobacteriumssalinarum-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sssolfataricus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/sssolfataricus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="sssolfataricus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="sssolfataricus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sssolfataricus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/sssolfataricus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="sssolfataricus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="sssolfataricus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sulfolobusssolfataricus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/sulfolobusssolfataricus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="sulfolobusssolfataricus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="sulfolobusssolfataricus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sulfolobusssolfataricus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/sulfolobusssolfataricus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="sulfolobusssolfataricus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="sulfolobusssolfataricus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssmediterranea-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/ssmediterranea-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="ssmediterranea-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="ssmediterranea-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssmediterranea-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/ssmediterranea-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="ssmediterranea-ref-article-title-check" role="warning"/>
+        <x:expect-report id="ssmediterranea-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="schmidteasmediterranea-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/schmidteasmediterranea-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="schmidteasmediterranea-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="schmidteasmediterranea-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="schmidteasmediterranea-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/schmidteasmediterranea-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="schmidteasmediterranea-ref-article-title-check" role="warning"/>
+        <x:expect-report id="schmidteasmediterranea-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssrosetta-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/ssrosetta-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="ssrosetta-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="ssrosetta-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssrosetta-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/ssrosetta-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="ssrosetta-ref-article-title-check" role="warning"/>
+        <x:expect-report id="ssrosetta-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="salpingoecasrosetta-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/salpingoecasrosetta-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="salpingoecasrosetta-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="salpingoecasrosetta-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="salpingoecasrosetta-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/salpingoecasrosetta-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="salpingoecasrosetta-ref-article-title-check" role="warning"/>
+        <x:expect-report id="salpingoecasrosetta-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nsvectensis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/nsvectensis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="nsvectensis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="nsvectensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nsvectensis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/nsvectensis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="nsvectensis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="nsvectensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nematostellasvectensis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/nematostellasvectensis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="nematostellasvectensis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="nematostellasvectensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nematostellasvectensis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/nematostellasvectensis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="nematostellasvectensis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="nematostellasvectensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssaureus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/ssaureus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="ssaureus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="ssaureus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ssaureus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/ssaureus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="ssaureus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="ssaureus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="staphylococcussaureus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/staphylococcussaureus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="staphylococcussaureus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="staphylococcussaureus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="staphylococcussaureus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/staphylococcussaureus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="staphylococcussaureus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="staphylococcussaureus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="vscholerae-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/vscholerae-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="vscholerae-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="vscholerae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="vscholerae-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/vscholerae-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="vscholerae-ref-article-title-check" role="warning"/>
+        <x:expect-report id="vscholerae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="vibrioscholerae-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/vibrioscholerae-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="vibrioscholerae-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="vibrioscholerae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="vibrioscholerae-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/vibrioscholerae-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="vibrioscholerae-ref-article-title-check" role="warning"/>
+        <x:expect-report id="vibrioscholerae-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="tsthermophila-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/tsthermophila-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="tsthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="tsthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="tsthermophila-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/tsthermophila-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="tsthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-report id="tsthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="tetrahymenasthermophila-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/tetrahymenasthermophila-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="tetrahymenasthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="tetrahymenasthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="tetrahymenasthermophila-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/tetrahymenasthermophila-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="tetrahymenasthermophila-ref-article-title-check" role="warning"/>
+        <x:expect-report id="tetrahymenasthermophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="csreinhardtii-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/csreinhardtii-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="csreinhardtii-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="csreinhardtii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="csreinhardtii-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/csreinhardtii-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="csreinhardtii-ref-article-title-check" role="warning"/>
+        <x:expect-report id="csreinhardtii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="chlamydomonassreinhardtii-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/chlamydomonassreinhardtii-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="chlamydomonassreinhardtii-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="chlamydomonassreinhardtii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="chlamydomonassreinhardtii-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/chlamydomonassreinhardtii-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="chlamydomonassreinhardtii-ref-article-title-check" role="warning"/>
+        <x:expect-report id="chlamydomonassreinhardtii-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nsattenuata-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/nsattenuata-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="nsattenuata-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="nsattenuata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nsattenuata-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/nsattenuata-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="nsattenuata-ref-article-title-check" role="warning"/>
+        <x:expect-report id="nsattenuata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nicotianasattenuata-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/nicotianasattenuata-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="nicotianasattenuata-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="nicotianasattenuata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="nicotianasattenuata-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/nicotianasattenuata-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="nicotianasattenuata-ref-article-title-check" role="warning"/>
+        <x:expect-report id="nicotianasattenuata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escarotovora-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/escarotovora-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="escarotovora-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="escarotovora-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="escarotovora-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/escarotovora-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="escarotovora-ref-article-title-check" role="warning"/>
+        <x:expect-report id="escarotovora-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="erwiniascarotovora-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/erwiniascarotovora-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="erwiniascarotovora-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="erwiniascarotovora-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="erwiniascarotovora-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/erwiniascarotovora-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="erwiniascarotovora-ref-article-title-check" role="warning"/>
+        <x:expect-report id="erwiniascarotovora-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="esfaecalis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/esfaecalis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="esfaecalis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="esfaecalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="esfaecalis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/esfaecalis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="esfaecalis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="esfaecalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="hsapiens-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/hsapiens-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="hsapiens-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="hsapiens-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="hsapiens-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/hsapiens-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="hsapiens-ref-article-title-check" role="warning"/>
+        <x:expect-report id="hsapiens-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="homosapiens-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/homosapiens-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="homosapiens-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="homosapiens-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="homosapiens-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/homosapiens-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="homosapiens-ref-article-title-check" role="warning"/>
+        <x:expect-report id="homosapiens-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ctrachomatis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/ctrachomatis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="ctrachomatis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="ctrachomatis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ctrachomatis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/ctrachomatis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="ctrachomatis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="ctrachomatis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="chlamydiatrachomatis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/chlamydiatrachomatis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="chlamydiatrachomatis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="chlamydiatrachomatis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="chlamydiatrachomatis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/chlamydiatrachomatis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="chlamydiatrachomatis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="chlamydiatrachomatis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="enterococcussfaecalis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/enterococcussfaecalis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="enterococcussfaecalis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="enterococcussfaecalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="enterococcussfaecalis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/enterococcussfaecalis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="enterococcussfaecalis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="enterococcussfaecalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xlaevis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/xlaevis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="xlaevis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="xlaevis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xlaevis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/xlaevis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="xlaevis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="xlaevis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xenopuslaevis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/xenopuslaevis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="xenopuslaevis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="xenopuslaevis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xenopuslaevis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/xenopuslaevis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="xenopuslaevis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="xenopuslaevis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xtropicalis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/xtropicalis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="xtropicalis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="xtropicalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xtropicalis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/xtropicalis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="xtropicalis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="xtropicalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xenopustropicalis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/xenopustropicalis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="xenopustropicalis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="xenopustropicalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xenopustropicalis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/xenopustropicalis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="xenopustropicalis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="xenopustropicalis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="mmusculus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/mmusculus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="mmusculus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="mmusculus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="mmusculus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/mmusculus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="mmusculus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="mmusculus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="musmusculus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/musmusculus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="musmusculus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="musmusculus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="musmusculus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/musmusculus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="musmusculus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="musmusculus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dimmigrans-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/dimmigrans-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="dimmigrans-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="dimmigrans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dimmigrans-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/dimmigrans-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="dimmigrans-ref-article-title-check" role="warning"/>
+        <x:expect-report id="dimmigrans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilaimmigrans-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drosophilaimmigrans-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drosophilaimmigrans-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drosophilaimmigrans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilaimmigrans-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drosophilaimmigrans-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drosophilaimmigrans-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drosophilaimmigrans-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dsubobscura-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/dsubobscura-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="dsubobscura-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="dsubobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dsubobscura-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/dsubobscura-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="dsubobscura-ref-article-title-check" role="warning"/>
+        <x:expect-report id="dsubobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilasubobscura-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drosophilasubobscura-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drosophilasubobscura-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drosophilasubobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilasubobscura-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drosophilasubobscura-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drosophilasubobscura-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drosophilasubobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="daffinis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/daffinis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="daffinis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="daffinis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="daffinis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/daffinis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="daffinis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="daffinis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilaaffinis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drosophilaaffinis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drosophilaaffinis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drosophilaaffinis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilaaffinis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drosophilaaffinis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drosophilaaffinis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drosophilaaffinis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dobscura-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/dobscura-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="dobscura-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="dobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dobscura-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/dobscura-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="dobscura-ref-article-title-check" role="warning"/>
+        <x:expect-report id="dobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilaobscura-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drosophilaobscura-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drosophilaobscura-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drosophilaobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophilaobscura-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drosophilaobscura-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drosophilaobscura-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drosophilaobscura-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ftularensis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/ftularensis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="ftularensis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="ftularensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ftularensis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/ftularensis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="ftularensis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="ftularensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="francisellatularensis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/francisellatularensis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="francisellatularensis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="francisellatularensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="francisellatularensis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/francisellatularensis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="francisellatularensis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="francisellatularensis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pplantaginis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/pplantaginis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="pplantaginis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="pplantaginis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pplantaginis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/pplantaginis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="pplantaginis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="pplantaginis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="podosphaeraplantaginis-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/podosphaeraplantaginis-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="podosphaeraplantaginis-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="podosphaeraplantaginis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="podosphaeraplantaginis-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/podosphaeraplantaginis-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="podosphaeraplantaginis-ref-article-title-check" role="warning"/>
+        <x:expect-report id="podosphaeraplantaginis-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="planceolata-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/planceolata-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="planceolata-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="planceolata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="planceolata-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/planceolata-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="planceolata-ref-article-title-check" role="warning"/>
+        <x:expect-report id="planceolata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="plantagolanceolata-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/plantagolanceolata-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="plantagolanceolata-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="plantagolanceolata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="plantagolanceolata-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/plantagolanceolata-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="plantagolanceolata-ref-article-title-check" role="warning"/>
+        <x:expect-report id="plantagolanceolata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drerio-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drerio-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drerio-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drerio-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drerio-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drerio-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drerio-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drerio-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="daniorerio-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/daniorerio-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="daniorerio-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="daniorerio-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="daniorerio-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/daniorerio-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="daniorerio-ref-article-title-check" role="warning"/>
+        <x:expect-report id="daniorerio-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophila-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/drosophila-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="drosophila-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="drosophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophila-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/drosophila-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="drosophila-ref-article-title-check" role="warning"/>
+        <x:expect-report id="drosophila-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xenopus-ref-article-title-check-pass">
         <x:context href="../tests/org-ref-article-book-title/xenopus-ref-article-title-check/pass.xml"/>
-        <x:expect-not-report id="xenopus-ref-article-title-check" role="warning"/>
+        <x:expect-not-report id="xenopus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="xenopus-ref-article-title-check-fail">
         <x:context href="../tests/org-ref-article-book-title/xenopus-ref-article-title-check/fail.xml"/>
-        <x:expect-report id="xenopus-ref-article-title-check" role="warning"/>
+        <x:expect-report id="xenopus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -10105,12 +10105,12 @@
     <x:scenario label="ref-article-title-tests">
       <x:scenario label="article-title-fullstop-check-1-pass">
         <x:context href="../tests/ref-article-title-tests/article-title-fullstop-check-1/pass.xml"/>
-        <x:expect-not-report id="article-title-fullstop-check-1" role="warning"/>
+        <x:expect-not-report id="article-title-fullstop-check-1" role="info"/>
         <x:expect-not-assert id="ref-article-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="article-title-fullstop-check-1-fail">
         <x:context href="../tests/ref-article-title-tests/article-title-fullstop-check-1/fail.xml"/>
-        <x:expect-report id="article-title-fullstop-check-1" role="warning"/>
+        <x:expect-report id="article-title-fullstop-check-1" role="info"/>
         <x:expect-not-assert id="ref-article-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="article-title-fullstop-check-2-pass">
