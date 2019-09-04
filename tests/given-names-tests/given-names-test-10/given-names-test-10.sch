@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group//name/given-names" id="given-names-tests">
-      <report test="matches(.,'[A-Za-z] [Dd]e$')" role="warning" id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      <report test="matches(.,'[A-Za-z] [Dd]e[rn]?$')" role="warning" id="given-names-test-10">given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

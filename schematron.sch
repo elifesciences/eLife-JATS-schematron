@@ -34,7 +34,6 @@
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
-  
   <!--=== Custom functions ===-->
   
   <xsl:function name="e:titleCaseToken" as="xs:string">
@@ -1097,9 +1096,9 @@
 	    role="error" 
 	    id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'[A-Za-z] [Dd]e$')"
+	  <report test="matches(.,'[A-Za-z] [Dd]e[rn]?$')"
 	    role="warning" 
-	    id="given-names-test-10">given-names ends with ' de' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+	    id="given-names-test-10">given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
 	  <report test="matches(.,'[A-Za-z] [Vv]an$')"
 	    role="warning" 
@@ -1112,6 +1111,10 @@
       <report test="matches(.,'[A-Za-z] [Ee]l$')"
         role="warning" 
 	    id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      
+      <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')"
+        role="warning" 
+        id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
 	</rule>
     
@@ -5206,7 +5209,7 @@
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
-      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$'))]|text()) return $x,'')"/>
+      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ') 
         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x
         else (),'; ')"/>

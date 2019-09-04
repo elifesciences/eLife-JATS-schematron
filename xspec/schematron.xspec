@@ -949,6 +949,16 @@
         <x:expect-report id="given-names-test-13" role="warning"/>
         <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="given-names-test-14-pass">
+        <x:context href="../tests/given-names-tests/given-names-test-14/pass.xml"/>
+        <x:expect-not-report id="given-names-test-14" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="given-names-test-14-fail">
+        <x:context href="../tests/given-names-tests/given-names-test-14/fail.xml"/>
+        <x:expect-report id="given-names-test-14" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="suffix-tests">
       <x:scenario label="suffix-assert-pass">
