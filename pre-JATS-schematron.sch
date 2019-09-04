@@ -876,9 +876,9 @@
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">surname must not be empty.</report>
 		
-    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
+    <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+	   <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
 	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</assert>
 	  
@@ -895,7 +895,7 @@
 		
     	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-	  <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
 	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  

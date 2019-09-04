@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
-      <assert test="matches(.,'^[\p{L}\p{M}\s-]*$')" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="warning" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
