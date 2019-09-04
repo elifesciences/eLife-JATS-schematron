@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis">
-      <assert test="count(etal)=0" role="error" id="err-elem-cit-thesis-6">[err-elem-cit-thesis-6]
+      <assert test="count(descendant::etal)=0" role="error" id="err-elem-cit-thesis-6">[err-elem-cit-thesis-6]
         No &lt;etal&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(etal)"/> &lt;etal&gt; elements.</assert>

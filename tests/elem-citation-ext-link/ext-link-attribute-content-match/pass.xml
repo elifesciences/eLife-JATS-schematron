@@ -1,0 +1,117 @@
+<?oxygen SCHSchema="ext-link-attribute-content-match.sch"?>
+<!--Context: ref/element-citation/ext-link
+Test: assert    (normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')
+Message: <extlink> must contain content and have an @xlink:href, the value of which must be the same as the content of <extlink>. The <extlink> element in Reference '' has @xlink:href='' and content ''.-->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Palmer</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Kreutz-Delgado</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Makeig</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2007">2007</year>
+          <article-title>Probabilistic Formulation of Independent Vector Analysis Using Complex Gaussian Scale Mixtures</article-title>
+          <source>Independent component analysis and signal separation</source>
+          <conf-name> 8th International Conference, ICA 2009, Paraty, Brazil, March 15-18, 2009</conf-name>
+          <conf-loc>Brazil</conf-loc>
+          <fpage>90</fpage>
+          <lpage>97</lpage>
+          <ext-link xlink:href="https://link.springer.com/book/10.1007/978-3-540-74494-8">https://link.springer.com/book/10.1007/978-3-540-74494-8</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="patent">
+          <person-group person-group-type="inventor">
+            <name>
+              <surname>Patterson</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Lonergan</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Flynn</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Qingpeng</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Pallai</surname>
+              <given-names>PV</given-names>
+            </name>
+          </person-group>
+          <person-group person-group-type="assignee">
+            <collab>Mankind Corp</collab>
+          </person-group>
+          <year iso-8601-date="2011">2011</year>
+          <article-title>IRE-1alpha inhibitors</article-title>
+          <source>United States patent</source>
+          <patent country="United States">US20100941530</patent>
+          <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/patents/PAT/US2011065162">http://europepmc.org/patents/PAT/US2011065162</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="report">
+          <person-group person-group-type="author">
+            <collab>GlaxoSmithKline UK</collab>
+          </person-group>
+          <year iso-8601-date="2016">2016</year>
+          <source>Augmentin 250/62 SF Suspension</source>
+          <publisher-name>GlaxoSmithKline UK</publisher-name>
+          <publisher-loc>United Kingdom</publisher-loc>
+          <ext-link ext-link-type="uri" xlink:href="https://www.medicines.org.uk/emc/medicine/19188">https://www.medicines.org.uk/emc/medicine/19188</ext-link>
+        </element-citation>
+      </ref>      
+      <ref id="bib5">
+        <element-citation publication-type="software">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DeLano</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2002">2002</year>
+          <source>PyMol</source>
+          <data-title>The PyMol Molecular Graphics System</data-title>
+          <version designator="1.7.4">Version 1.7.4</version>
+          <publisher-name>Schrödinger LLC</publisher-name>
+          <ext-link ext-link-type="uri" xlink:href="https://www.pymol.org/">https://www.pymol.org/</ext-link>  
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="thesis">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bates</surname>
+              <given-names>Victoria Louise</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2012">2012</year>
+          <article-title>PhD thesis: ‘Not an Exact Science’: Medical Approaches to Age and Sexual Offences in England, 1850-1914</article-title>
+          <publisher-name>University of Exeter</publisher-name>
+          <publisher-loc>Exeter, United Kingdom</publisher-loc>
+          <ext-link ext-link-type="uri" xlink:href="https://ore.exeter.ac.uk/repository/handle/10036/4181#JprXt3mbeIqSFbao.99">https://ore.exeter.ac.uk/repository/handle/10036/4181#JprXt3mbeIqSFbao.99</ext-link>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>
