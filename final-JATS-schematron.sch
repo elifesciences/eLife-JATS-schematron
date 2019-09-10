@@ -26,7 +26,6 @@
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
-  
   <!--=== Custom functions ===-->
   
   <xsl:function name="e:titleCaseToken" as="xs:string">
@@ -1630,7 +1629,7 @@
   <pattern id="body-table-label-tests-pattern">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
-      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$')" role="error" id="body-table-label-test-1">
+      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
       
     </rule>
