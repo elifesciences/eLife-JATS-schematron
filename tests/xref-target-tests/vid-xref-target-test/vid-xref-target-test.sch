@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="xref" id="xref-target-tests">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       <report test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" role="error" id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</report>
     </rule>

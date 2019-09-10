@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="xref" id="xref-target-tests">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
     </rule>
