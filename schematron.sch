@@ -6877,6 +6877,9 @@
     
     <rule context="sec/title" 
       id="sec-title-conformity">
+      <let name="free-text" value="replace(
+        normalize-space(string-join(for $x in self::*/text() return $x,''))
+        ,'&#x00A0;','')"/>
       
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')"
         role="warning" 
@@ -6893,6 +6896,22 @@
       <report test="not(*) and (normalize-space(.)='')"
         role="error" 
         id="sec-title-content-mandate">Section title must not be empty.</report>
+      
+      <report test="matches(.,'\.[\s]*$')"
+        role="warning" 
+        id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/></report>
+      
+      <report test="(count(*) = 1) and child::bold and ($free-text='')"
+        role="error" 
+        id="sec-title-bold">All section title content is captured in bold. This is incorrect - <value-of select="."/></report>
+      
+      <report test="(count(*) = 1) and child::underline and ($free-text='')"
+        role="error" 
+        id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/></report>
+      
+      <report test="(count(*) = 1) and child::italic and ($free-text='')"
+        role="warning" 
+        id="sec-title-italic">All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/></report>
       
     </rule>
     

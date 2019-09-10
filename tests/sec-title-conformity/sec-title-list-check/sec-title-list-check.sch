@@ -592,6 +592,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec/title" id="sec-title-conformity">
+      <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>

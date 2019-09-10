@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="sec-title-italic.sch"?>
+<!--Context: sec/title
+Test: report    (count(*) = 1) and child::italic and ($free-text='')
+Message: All section title content is captured in italics. This is very likely to be incorrect  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec id="s4-7-2">
+      <title>Identification of voxels with spatial scale sensitive activity </title>
+      <p>To identify voxels with differences ...</p>
+    </sec>
+  </article>
+</root>

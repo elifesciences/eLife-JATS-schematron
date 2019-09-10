@@ -10655,6 +10655,46 @@
         <x:expect-report id="sec-title-content-mandate" role="error"/>
         <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-title-full-stop-pass">
+        <x:context href="../tests/sec-title-conformity/sec-title-full-stop/pass.xml"/>
+        <x:expect-not-report id="sec-title-full-stop" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-full-stop-fail">
+        <x:context href="../tests/sec-title-conformity/sec-title-full-stop/fail.xml"/>
+        <x:expect-report id="sec-title-full-stop" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-bold-pass">
+        <x:context href="../tests/sec-title-conformity/sec-title-bold/pass.xml"/>
+        <x:expect-not-report id="sec-title-bold" role="error"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-bold-fail">
+        <x:context href="../tests/sec-title-conformity/sec-title-bold/fail.xml"/>
+        <x:expect-report id="sec-title-bold" role="error"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-underline-pass">
+        <x:context href="../tests/sec-title-conformity/sec-title-underline/pass.xml"/>
+        <x:expect-not-report id="sec-title-underline" role="error"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-underline-fail">
+        <x:context href="../tests/sec-title-conformity/sec-title-underline/fail.xml"/>
+        <x:expect-report id="sec-title-underline" role="error"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-italic-pass">
+        <x:context href="../tests/sec-title-conformity/sec-title-italic/pass.xml"/>
+        <x:expect-not-report id="sec-title-italic" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-italic-fail">
+        <x:context href="../tests/sec-title-conformity/sec-title-italic/fail.xml"/>
+        <x:expect-report id="sec-title-italic" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-house-tests">
       <x:scenario label="xref-bibr-presence-pass">
