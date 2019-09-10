@@ -593,7 +593,8 @@
   <pattern id="house-style">
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">Section title must not be empty.</report>
+      <report test="(count(*) = 1) and child::italic and ($free-text='')" role="warning" id="sec-title-italic">All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

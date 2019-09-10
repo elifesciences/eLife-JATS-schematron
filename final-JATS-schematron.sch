@@ -5142,6 +5142,7 @@
   </pattern>
   <pattern id="sec-title-conformity-pattern">
     <rule context="sec/title" id="sec-title-conformity">
+      <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
@@ -5150,6 +5151,18 @@
       <report test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
       <report test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">Section title must not be empty.</report>
+      
+      <report test="matches(.,'\.[\s]*$')" role="warning" id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/>
+      </report>
+      
+      <report test="(count(*) = 1) and child::bold and ($free-text='')" role="error" id="sec-title-bold">All section title content is captured in bold. This is incorrect - <value-of select="."/>
+      </report>
+      
+      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
+      </report>
+      
+      <report test="(count(*) = 1) and child::italic and ($free-text='')" role="warning" id="sec-title-italic">All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/>
+      </report>
       
     </rule>
   </pattern>
