@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="xref" id="xref-target-tests">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       <report test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
     </rule>

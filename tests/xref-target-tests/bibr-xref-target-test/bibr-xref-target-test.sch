@@ -592,7 +592,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="xref" id="xref-target-tests">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       <report test="(@ref-type='bibr') and ($target/local-name() != 'ref')" role="error" id="bibr-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
