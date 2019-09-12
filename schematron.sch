@@ -1741,7 +1741,7 @@
       
       <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
-      <report test="matches(.,'^\s?•') and not(ancestor::disp-quote[@content-type='editor-comment'])"
+      <report test="matches(.,'^\s?•') and not(ancestor::sub-article)"
         role="warning"
         id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/></report>
     </rule>
@@ -2441,12 +2441,12 @@
   
   <pattern id="video-tests">
     
-    <rule context="article/body//media[@mimetype='video']" 
+    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" 
       id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
-      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.','')"/>
+      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
       <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label,$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label,$fig-label)])"/>
       
       <report test="not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))" 
@@ -2471,7 +2471,7 @@
   
   <pattern id="table-pos-tests">
     
-    <rule context="article/body//table-wrap[matches(@id,'^table[\d]+$')]" 
+    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')]" 
       id="body-table-pos-conformance">
       <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
@@ -2526,7 +2526,8 @@
         role="error"
         id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
-      <report test="if ($count = 0) then ()
+      <report test="if ($article-type = ('correction','retraction')) then () 
+                    else if ($count = 0) then ()
                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
                     else $no != string($pos)" 
         role="error"
@@ -2572,6 +2573,7 @@
     
     <rule context="article/body//fig[@specific-use='child-fig']" 
       id="fig-sup-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
       <let name="no" value="substring-after(@id,'s')"/>
@@ -2589,9 +2591,10 @@
         role="error"
         id="fig-sup-test-3"><value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
       
-      <assert test="$no = string($pos)" 
+      <report test="if ($article-type = ('correction','retraction')) then () 
+                    else $no != string($pos)"
         role="error"
-        id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</assert>
+        id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
     </rule>
     

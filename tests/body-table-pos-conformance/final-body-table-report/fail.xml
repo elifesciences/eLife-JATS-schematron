@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-body-table-report.sch"?>
-<!--Context: article/body//table-wrap[matches(@id,'^table[\d]+$')]
+<!--Context: article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')]
 Test: assert    ($no = string($pos))
 Message:  does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

@@ -591,11 +591,11 @@
     </xsl:element>
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="article/body//media[@mimetype='video']" id="body-video-specific">
+    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
-      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.','')"/>
+      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
       <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label,$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label,$fig-label)])"/>
       <report test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
@@ -603,7 +603,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
