@@ -591,14 +591,14 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
+    <rule context="graphic" id="graphic-tests">
+      <let name="file" value="lower-case(@xlink:href)"/>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">graphic must have an @xlink:href which contains a file reference.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert test="descendant::graphic" role="error" id="graphic-tests-xspec-assert">graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>

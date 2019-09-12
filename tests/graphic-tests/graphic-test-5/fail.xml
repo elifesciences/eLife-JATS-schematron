@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="graphic-test-5.sch"?>
+<!--Context: graphic
+Test: assert    matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')
+Message: graphic must have an @xlink:href which contains a file reference.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <graphic xlink:href="f1fs001" mimetype="image" mime-subtype="x-tiff"/>
+  </article>
+</root>
