@@ -1966,6 +1966,10 @@
       <assert test="@mimetype=('image','application')"
         role="error"
         id="graphic-test-4">graphic must have a @mimetype='image'.</assert>
+      
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
+        role="error"
+        id="graphic-test-5">graphic must have an @xlink:href which contains a file reference.</assert>
     </rule>
     
     <rule context="media" 
@@ -1980,9 +1984,9 @@
         role="error"
         id="media-test-2">media must have @mime-subtype.</assert>
       
-      <assert test="@xlink:href" 
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
         role="error"
-        id="media-test-3">media must have @xlink:href.</assert>
+        id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
       <report test="if ($file='octet-stream') then ()
                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))

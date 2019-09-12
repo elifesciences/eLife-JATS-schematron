@@ -1466,6 +1466,8 @@
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
       <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">graphic must have a @mimetype='image'.</assert>
+      
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">graphic must have an @xlink:href which contains a file reference.</assert>
     </rule>
   </pattern>
   <pattern id="media-tests-pattern">
@@ -1476,7 +1478,7 @@
       
       <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
       
-      <assert test="@xlink:href" role="error" id="media-test-3">media must have @xlink:href.</assert>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
       <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
