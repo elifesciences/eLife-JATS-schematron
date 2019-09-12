@@ -591,14 +591,14 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
-      <assert test="@mimetype=('video','application','text','image', 'audio')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</assert>
+    <rule context="graphic" id="graphic-tests">
+      <let name="file" value="lower-case(@xlink:href)"/>
+      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">graphic must have a @mimetype='image'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert test="descendant::graphic" role="error" id="graphic-tests-xspec-assert">graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>
