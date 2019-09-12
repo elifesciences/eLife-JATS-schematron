@@ -1,16 +1,16 @@
 <?oxygen SCHSchema="fig-video-label-test.sch"?>
-<!--Context: article/body//media[@mimetype='video']
+<!--Context: article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']
 Test: assert    starts-with(label,$fig-label)
 Message:  does not begin with its parent figure label    which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article article-type="research-article">
     <body>
       <fig-group>
         <fig id="fig1">
           <label>Figure 1.</label>
           <graphic/>
           <media mimetype="video" id="video2">
-            <label>Figure 1-video 1.</label>
+            <label>Figure 1—video 1.</label>
             <caption>
               <title>...</title>
               <p>...</p>

@@ -3507,12 +3507,12 @@
       </x:scenario>
       <x:scenario label="fig-sup-test-4-pass">
         <x:context href="../tests/fig-sup-tests/fig-sup-test-4/pass.xml"/>
-        <x:expect-not-assert id="fig-sup-test-4" role="error"/>
+        <x:expect-not-report id="fig-sup-test-4" role="error"/>
         <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-sup-test-4-fail">
         <x:context href="../tests/fig-sup-tests/fig-sup-test-4/fail.xml"/>
-        <x:expect-assert id="fig-sup-test-4" role="error"/>
+        <x:expect-report id="fig-sup-test-4" role="error"/>
         <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

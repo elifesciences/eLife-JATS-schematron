@@ -592,6 +592,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
       <let name="no" value="substring-after(@id,'s')"/>

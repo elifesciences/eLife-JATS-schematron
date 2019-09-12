@@ -600,7 +600,7 @@
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label,'\.','')"/>
-      <report test="if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
+      <report test="if ($article-type = ('correction','retraction')) then ()                      else if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
         <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
     </rule>
   </pattern>

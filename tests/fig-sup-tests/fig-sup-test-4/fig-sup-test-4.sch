@@ -592,12 +592,13 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
       <let name="no" value="substring-after(@id,'s')"/>
       <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')]/@id,'fig')"/>
-      <assert test="$no = string($pos)" role="error" id="fig-sup-test-4">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</assert>
+      <report test="if ($article-type = ('correction','retraction')) then ()                      else $no != string($pos)" role="error" id="fig-sup-test-4">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

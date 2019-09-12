@@ -591,7 +591,7 @@
     </xsl:element>
   </xsl:function>
   <pattern id="table-pos-tests">
-    <rule context="article/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
+    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
       <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
       <let name="no" value="substring-after(@id,'table')"/>
@@ -601,7 +601,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//table-wrap[matches(@id,'^table[\d]+$')]" role="error" id="body-table-pos-conformance-xspec-assert">article/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</assert>
+      <assert test="descendant::article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')]" role="error" id="body-table-pos-conformance-xspec-assert">article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
