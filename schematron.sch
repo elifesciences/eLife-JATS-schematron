@@ -1972,9 +1972,9 @@
       id="media-tests">
       <let name="file" value="@mime-subtype"/>
       
-      <assert test="@mimetype" 
+      <assert test="@mimetype=('video','application','text','image', 'audio')" 
         role="error"
-        id="media-test-1">media must have @mimetype.</assert>
+        id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</assert>
       
       <assert test="@mime-subtype" 
         role="error"

@@ -593,7 +593,7 @@
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
-      <assert test="@mimetype" role="error" id="media-test-1">media must have @mimetype.</assert>
+      <assert test="@mimetype=('video','application','text','image', 'audio')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
