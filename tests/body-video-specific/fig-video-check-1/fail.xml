@@ -3,7 +3,7 @@
 Test: report    (not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])
 Message:  contains a link to , but it is not a captured as a child of that fig. Should it be captured as  instead?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article article-type="research-article">
     <body>
       <media mimetype="video" id="video1">
         <label>Video 1.</label>

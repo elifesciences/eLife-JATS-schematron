@@ -3,7 +3,7 @@
 Test: assert    starts-with(label,$fig-label)
 Message:  does not begin with its parent figure label    which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article article-type="research-article">
     <body>
       <fig-group>
         <fig id="fig1">
