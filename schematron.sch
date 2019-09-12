@@ -1961,6 +1961,11 @@
       <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))"
         role="error"
         id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
+      
+      <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
+      <assert test="@mimetype=('image','application')"
+        role="error"
+        id="graphic-test-4">graphic must have a @mimetype='image'.</assert>
     </rule>
     
     <rule context="media" 

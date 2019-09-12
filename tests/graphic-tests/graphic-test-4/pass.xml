@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="graphic-test-4.sch"?>
+<!--Context: graphic
+Test: assert    @mimetype=('image','application')
+Message: graphic must have a @mimetype='image'.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <graphic mime-subtype="postscript" mimetype="application" xlink:href="elife-00000-fig7-v2.eps"/>
+    </fig>
+    <fig>
+      <graphic mime-subtype="jpeg" mimetype="image" xlink:href="elife-00000-fig7-v2.jpg"/>
+    </fig>
+  </article>
+</root>
