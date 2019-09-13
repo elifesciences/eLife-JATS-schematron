@@ -591,17 +591,14 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="count" value="count(ancestor::body//fig)"/>
-      <let name="pos" value="$count - count(following::fig)"/>
-      <let name="no" value="substring-after(@id,'fig')"/>
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">Author Response fig must have a label.</report>
+    <rule context="disp-formula" id="disp-formula-tests">
+      <assert test="parent::p" role="error" id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>
+      </assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type='reply']] must be present.</assert>
+      <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -590,18 +590,18 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="count" value="count(ancestor::body//fig)"/>
-      <let name="pos" value="$count - count(following::fig)"/>
-      <let name="no" value="substring-after(@id,'fig')"/>
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">Author Response fig must have a label.</report>
+  <pattern id="video-tests">
+    <rule context="sub-article/body//media[@mimetype='video']" id="ar-video-specific">
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      <assert test="$no = string($pos)" role="warning" id="pre-ar-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type='reply']] must be present.</assert>
+      <assert test="descendant::sub-article/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article/body//media[@mimetype='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

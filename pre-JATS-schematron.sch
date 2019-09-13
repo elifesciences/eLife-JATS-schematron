@@ -1446,10 +1446,18 @@
   <pattern id="ar-fig-tests-pattern">
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="count" value="count(ancestor::body//fig)"/>
+      <let name="pos" value="$count - count(following::fig)"/>
+      <let name="no" value="substring-after(@id,'fig')"/>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">Author Response fig must have a label.</report>
       
       <assert test="graphic" role="warning" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Esnure author query is added asking for file.</assert>
+      
+      
+      
+      <assert test="$no = string($pos)" role="warning" id="pre-ar-fig-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
       
       
     </rule>
@@ -1543,6 +1551,9 @@
     <rule context="disp-formula" id="disp-formula-tests">
       
       <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      
+      <assert test="parent::p" role="error" id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>
+      </assert>
     </rule>
   </pattern>
   <pattern id="inline-formula-tests-pattern">
@@ -1789,6 +1800,18 @@
       
       <report test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">
         <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ar-video-specific-pattern">
+    <rule context="sub-article/body//media[@mimetype='video']" id="ar-video-specific">
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" role="warning" id="pre-ar-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      
       
     </rule>
   </pattern>
