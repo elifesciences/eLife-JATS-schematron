@@ -4585,12 +4585,12 @@
     <x:scenario label="ethics-tests">
       <x:scenario label="ethics-test-1-pass">
         <x:context href="../tests/ethics-tests/ethics-test-1/pass.xml"/>
-        <x:expect-not-assert id="ethics-test-1" role="error"/>
+        <x:expect-not-report id="ethics-test-1" role="error"/>
         <x:expect-not-assert id="ethics-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ethics-test-1-fail">
         <x:context href="../tests/ethics-tests/ethics-test-1/fail.xml"/>
-        <x:expect-assert id="ethics-test-1" role="error"/>
+        <x:expect-report id="ethics-test-1" role="error"/>
         <x:expect-not-assert id="ethics-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ethics-test-2-pass">
