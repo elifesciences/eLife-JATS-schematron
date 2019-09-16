@@ -3300,9 +3300,10 @@
     <rule context="fn-group[@content-type='ethics-information']"
       id='ethics-tests'>
       
-      <assert test="parent::sec[@sec-type='additional-information']"
+      <!-- Exclusion included for Feature 5 -->
+      <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])"
         role="error"
-        id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</assert>
+        id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
  
       <report test="count(fn) gt 3"
         role="error"
