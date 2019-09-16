@@ -2381,6 +2381,26 @@
         <x:expect-assert id="final-ar-fig-test-3" role="error"/>
         <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pre-ar-fig-position-test-pass">
+        <x:context href="../tests/ar-fig-tests/pre-ar-fig-position-test/pass.xml"/>
+        <x:expect-not-assert id="pre-ar-fig-position-test" role="warning"/>
+        <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-ar-fig-position-test-fail">
+        <x:context href="../tests/ar-fig-tests/pre-ar-fig-position-test/fail.xml"/>
+        <x:expect-assert id="pre-ar-fig-position-test" role="warning"/>
+        <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ar-fig-position-test-pass">
+        <x:context href="../tests/ar-fig-tests/final-ar-fig-position-test/pass.xml"/>
+        <x:expect-not-assert id="final-ar-fig-position-test" role="error"/>
+        <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ar-fig-position-test-fail">
+        <x:context href="../tests/ar-fig-tests/final-ar-fig-position-test/fail.xml"/>
+        <x:expect-assert id="final-ar-fig-position-test" role="error"/>
+        <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="graphic-tests">
       <x:scenario label="graphic-test-1-pass">
@@ -2651,6 +2671,16 @@
       <x:scenario label="disp-formula-test-2-fail">
         <x:context href="../tests/disp-formula-tests/disp-formula-test-2/fail.xml"/>
         <x:expect-assert id="disp-formula-test-2" role="error"/>
+        <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-test-3-pass">
+        <x:context href="../tests/disp-formula-tests/disp-formula-test-3/pass.xml"/>
+        <x:expect-not-assert id="disp-formula-test-3" role="error"/>
+        <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-test-3-fail">
+        <x:context href="../tests/disp-formula-tests/disp-formula-test-3/fail.xml"/>
+        <x:expect-assert id="disp-formula-test-3" role="error"/>
         <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -3344,6 +3374,28 @@
         <x:context href="../tests/body-video-specific/fig-video-check-1/fail.xml"/>
         <x:expect-report id="fig-video-check-1" role="warning"/>
         <x:expect-not-assert id="body-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ar-video-specific">
+      <x:scenario label="pre-ar-video-position-test-pass">
+        <x:context href="../tests/ar-video-specific/pre-ar-video-position-test/pass.xml"/>
+        <x:expect-not-assert id="pre-ar-video-position-test" role="warning"/>
+        <x:expect-not-assert id="ar-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-ar-video-position-test-fail">
+        <x:context href="../tests/ar-video-specific/pre-ar-video-position-test/fail.xml"/>
+        <x:expect-assert id="pre-ar-video-position-test" role="warning"/>
+        <x:expect-not-assert id="ar-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ar-video-position-test-pass">
+        <x:context href="../tests/ar-video-specific/final-ar-video-position-test/pass.xml"/>
+        <x:expect-not-assert id="final-ar-video-position-test" role="error"/>
+        <x:expect-not-assert id="ar-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ar-video-position-test-fail">
+        <x:context href="../tests/ar-video-specific/final-ar-video-position-test/fail.xml"/>
+        <x:expect-assert id="final-ar-video-position-test" role="error"/>
+        <x:expect-not-assert id="ar-video-specific-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="body-table-pos-conformance">

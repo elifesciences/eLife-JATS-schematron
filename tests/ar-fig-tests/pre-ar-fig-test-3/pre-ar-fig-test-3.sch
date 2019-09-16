@@ -593,6 +593,9 @@
   <pattern id="content-containers">
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="count" value="count(ancestor::body//fig)"/>
+      <let name="pos" value="$count - count(following::fig)"/>
+      <let name="no" value="substring-after(@id,'fig')"/>
       <assert test="graphic" role="warning" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Esnure author query is added asking for file.</assert>
     </rule>
   </pattern>

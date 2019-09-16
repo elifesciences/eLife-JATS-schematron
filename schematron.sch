@@ -1931,6 +1931,9 @@
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" 
       id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="count" value="count(ancestor::body//fig)"/>
+      <let name="pos" value="$count - count(following::fig)"/>
+      <let name="no" value="substring-after(@id,'fig')"/>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(label)" 
@@ -1944,6 +1947,14 @@
       <assert test="graphic"
         role="error"
         id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
+      
+      <assert test="$no = string($pos)" 
+        role="warning"
+        id="pre-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="$no = string($pos)" 
+        role="error"
+        id="final-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
     <rule context="graphic" 
@@ -2100,6 +2111,10 @@
       <assert test="mml:math"
         role="error"
         id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      
+      <assert test="parent::p"
+        role="error"
+        id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/></assert>
     </rule>
     
     <rule context="inline-formula" 
@@ -2469,6 +2484,21 @@
         role="warning"
         id="fig-video-check-1"><value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'&#x2014;video x')"/> instead?</report>
       
+    </rule>
+    
+    <rule context="sub-article/body//media[@mimetype='video']" 
+      id="ar-video-specific">
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" 
+        role="warning"
+        id="pre-ar-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="$no = string($pos)" 
+        role="error"
+        id="final-ar-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
   </pattern>
@@ -7220,7 +7250,7 @@
         )"/>
       
       <assert test="java:file-exists(@xlink:href, $base)"
-        role="error" 
+        role="error"
         id="graphic-media-presence"><name/> element points to file <value-of select="@xlink:href"/> - but there is no file with that name in the same folder as the XML file. It should be placed here - <value-of select="$base-path"/></assert>
       
     </rule>
