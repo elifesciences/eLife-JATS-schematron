@@ -2,8 +2,7 @@
 <!--Context: sub-article/body//media[@mimetype='video']
 Test: assert    $no = string($pos)
 Message:  does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position .-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="reply" id="SA2">
       <body>
@@ -24,15 +23,13 @@ Message:  does not appear in sequence which is likely incorrect. Relative to the
           </caption>
           <graphic mime-subtype="tiff" mimetype="image" xlink:href="elife-48932-resp-fig2-v2.tif"/>
         </fig>
-        <media id="respvideo1" mime-subtype="mp4" mimetype="video"
-          xlink:href="elife-48932-resp-video1.mp4">
+        <media id="respvideo1" mime-subtype="mp4" mimetype="video" xlink:href="elife-48932-resp-video1.mp4">
           <label>Author response video 1.</label>
           <caption>
             <title>Group average fMRI results from two separate experiments.</title>
           </caption>
         </media>
-        <media id="respvideo2" mime-subtype="mp4" mimetype="video"
-          xlink:href="elife-48932-resp-video2.mp4">
+        <media id="respvideo2" mime-subtype="mp4" mimetype="video" xlink:href="elife-48932-resp-video2.mp4">
           <label>Author response video 2.</label>
           <caption>
             <title>In vivo probabilistic tractography of the subcortical auditory system in one

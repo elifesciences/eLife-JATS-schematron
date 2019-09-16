@@ -4183,7 +4183,7 @@
   </pattern>
   
   <pattern id="unlinked-ref-cite-pattern">
-    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
+    <rule context="ref-list/ref/element-citation[not(@publication-type='periodical')]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year[1])"/>
       <let name="cite1.5" value="e:citation-format2(year[1])"/>
@@ -5164,7 +5164,7 @@
   <pattern id="ethics-info-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
-      <assert test="matches(.,'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
+      <assert test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
       
       <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       

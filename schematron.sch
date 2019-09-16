@@ -5462,7 +5462,8 @@
   
   <pattern id="unlinked-ref-cite-pattern">
     
-    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
+    <!-- Need to account for periodicals somehow (only 1 instance in the archive, so not urgent) -->
+    <rule context="ref-list/ref/element-citation[not(@publication-type='periodical')]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(year[1])"/>
       <let name="cite1.5" value="e:citation-format2(year[1])"/>
@@ -6907,7 +6908,7 @@
     <rule context="fn-group[@content-type='ethics-information']/fn" 
       id="ethics-info">
       
-      <assert test="matches(.,'\.$|\?$')"
+      <assert test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')"
         role="error" 
         id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
       
