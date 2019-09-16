@@ -3,5 +3,17 @@
 Test: assert    parent::p
 Message: dispformula must be a child of p.  is a child of -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <front/>
+    <body>
+      <sec>
+        <p/>
+        <p/>
+        <p>
+          <disp-formula/>
+        </p>
+      </sec>
+    </body>
+    <back/>
+  </article>
 </root>
