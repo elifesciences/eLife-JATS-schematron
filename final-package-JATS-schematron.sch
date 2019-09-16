@@ -4189,11 +4189,11 @@
   </pattern>
   
   <pattern id="unlinked-ref-cite-pattern">
-    <rule context="ref-list/ref/element-citation[not(@publication-type='periodical')]" id="unlinked-ref-cite">
+    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
-      <let name="cite1" value="e:citation-format1(year[1])"/>
-      <let name="cite1.5" value="e:citation-format2(year[1])"/>
-      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',year[1],'\)')"/>
+      <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
+      <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
+      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
       <let name="regex" value="concat($cite1,'|',$cite2)"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
