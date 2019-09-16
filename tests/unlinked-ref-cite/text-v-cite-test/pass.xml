@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="text-v-cite-test.sch"?>
-<!--Context: ref-list/ref/element-citation
+<!--Context: ref-list/ref/element-citation[not(@publication-type='periodical')]
 Test: report    matches($article-text,$regex)
 Message: ref with id  has unlinked citations in the text  search  or .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
