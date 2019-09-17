@@ -1,0 +1,37 @@
+<?oxygen SCHSchema="clintrial-related-object-6.sch"?>
+<!--Context: abstract[not(@abstract-type)]/sec/related-object
+Test: assert    @document-id
+Message:  must have an @documentid.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <abstract>
+          <sec id="abs1">
+            <title>Background:</title>
+            <p>Background text.</p>
+          </sec>
+          <sec id="abs2">
+            <title>Methods:</title>
+            <p>Methods text.</p>
+          </sec>
+          <sec id="abs3">
+            <title>Results:</title>
+            <p>Results text.</p>
+          </sec>
+          <sec id="abs4">
+            <title>Conclusions:</title>
+            <p>Conclusions text.</p>
+            <p>Funded by X, Y and Z.</p>
+          </sec>
+          <sec id="abs6">
+            <title>Clinical trial number:</title>
+            <related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object>
+          </sec>
+        </abstract>
+      </article-meta>
+    </front>
+    <body/>
+    <back/>
+  </article>
+</root>

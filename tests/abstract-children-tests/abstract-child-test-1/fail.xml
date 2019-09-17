@@ -1,0 +1,39 @@
+<?oxygen SCHSchema="abstract-child-test-1.sch"?>
+<!--Context: front//abstract/*
+Test: assert    local-name() = $allowed-elems
+Message:  is not allowed as a child of abstract.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <abstract>
+          <object-id pub-id-type="doi">10.7554/eLife.12572.001</object-id>
+          <sec id="abs1">
+            <title>Background:</title>
+            <p>Background text.</p>
+          </sec>
+          <sec id="abs2">
+            <title>Methods:</title>
+            <p>Methods text.</p>
+          </sec>
+          <sec id="abs3">
+            <title>Results:</title>
+            <p>Results text.</p>
+          </sec>
+          <sec id="abs4">
+            <title>Conclusions:</title>
+            <p>Conclusions text.</p>
+          </sec>
+          <sec id="abs5">
+            <p> Funded by X, Y and Z.</p>
+          </sec>
+          <sec id="abs6">
+            <title>Clinical trial number:</title>
+            <related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id="NCT02968459" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object>
+          </sec>
+          <fig/>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>

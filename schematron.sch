@@ -1410,6 +1410,7 @@
 	
 	</rule>
 	
+	<!-- Test needs to be added for clinical trials, which mandates the correct number of secs. This number needs confirming -->
 	<rule context="front//abstract" 
 		id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
@@ -1427,6 +1428,91 @@
   	role="error" 
   	id="abstract-test-4">abstracts cannot contain display formulas.</report>
 		
+    </rule>
+    
+    <rule context="front//abstract/*" 
+      id="abstract-children-tests">
+      <let name="allowed-elems" value="('p','sec','title','object-id')"/>
+      
+      <assert test="local-name() = $allowed-elems"
+        role="error" 
+        id="abstract-child-test-1"><name/> is not allowed as a child of abstract.</assert>
+    </rule>
+    
+    <rule context="abstract[not(@abstract-type)]/sec" 
+      id="abstract-sec-titles">
+      <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
+      
+      <report test="($pos = 1) and (title != 'Background:')"
+        role="error" 
+        id="clintrial-conformance-1">First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
+      
+      <report test="($pos = 2) and (title != 'Methods:')"
+        role="error" 
+        id="clintrial-conformance-2">Second section title is '<value-of select="title"/>' - but the only allowed value is 'Methods:'.</report>
+      
+      <report test="($pos = 3) and (title != 'Results:')"
+        role="error" 
+        id="clintrial-conformance-3">Third section title is '<value-of select="title"/>' - but the only allowed value is 'Results:'.</report>
+      
+      <report test="($pos = 4) and (title != 'Conclusions:')"
+        role="error" 
+        id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
+      
+      <report test="($pos = 5) and (title != 'Clinical trial number:')"
+        role="error" 
+        id="clintrial-conformance-5">Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
+      
+      <!-- Possible extra test needed here for another section -->
+      
+      <report test="child::sec"
+        role="error" 
+        id="clintrial-conformance-7">Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
+      
+      <assert test="matches(@id,'^abs[1-9]$')"
+        role="error"
+        id="clintrial-conformance-8"><name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
+    </rule>
+    
+    <rule context="abstract[not(@abstract-type)]/sec/related-object" 
+      id="clintrial-related-object">
+      
+      <assert test="ancestor::sec[title = 'Clinical trial number:']"
+        role="error"
+        id="clintrial-related-object-1"><name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
+      
+      <assert test="@source-type='clinical-trials-registry'"
+        role="error"
+        id="clintrial-related-object-2"><name/> must have an @source-type='clinical-trials-registry'.</assert>
+      
+      <assert test="@source-id"
+        role="error"
+        id="clintrial-related-object-3"><name/> must have an @source-id.</assert>
+      
+      <assert test="@source-id-type='registry-name'"
+        role="error"
+        id="clintrial-related-object-4"><name/> must have an @source-id-type='registry-name'.</assert>
+      
+      <assert test="@document-id-type='clinical-trial-number'"
+        role="error"
+        id="clintrial-related-object-5"><name/> must have an @document-id-type='clinical-trial-number'.</assert>
+      
+      <assert test="@document-id"
+        role="error"
+        id="clintrial-related-object-6"><name/> must have an @document-id.</assert>
+      
+      <assert test="@xlink:href"
+        role="error"
+        id="clintrial-related-object-7"><name/> must have an @xlink:href.</assert>
+      
+      <assert test="contains(.,@document-id/string())"
+        role="warning"
+        id="clintrial-related-object-8"><name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      
+      <assert test="matches(@id,'^RO[1-9]')"
+        role="error"
+        id="clintrial-related-object-9"><name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
+      
     </rule>
 	
     <rule context="article-meta/contrib-group/aff" 
@@ -1659,6 +1745,14 @@
       <assert test=". = concat('e' , $article-id)"
         role="error" 
         id="test-elocation-conformance">elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
+    </rule>
+    
+    <rule context="related-object" 
+      id="related-object-tests">
+      
+      <assert test="ancestor::abstract[not(@abstract-type)]"
+        role="error" 
+        id="related-object-ancetsor"><name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
     </rule>
  </pattern>
   
@@ -3137,7 +3231,7 @@
     
     <rule context="sec" 
       id="sec-tests">
-      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material)"/>
+      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
       
     <assert test="title"
       role="error"
