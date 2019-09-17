@@ -1454,6 +1454,182 @@
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="abstract-children-tests">
+      <x:scenario label="abstract-child-test-1-pass">
+        <x:context href="../tests/abstract-children-tests/abstract-child-test-1/pass.xml"/>
+        <x:expect-not-assert id="abstract-child-test-1" role="error"/>
+        <x:expect-not-assert id="abstract-children-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-child-test-1-fail">
+        <x:context href="../tests/abstract-children-tests/abstract-child-test-1/fail.xml"/>
+        <x:expect-assert id="abstract-child-test-1" role="error"/>
+        <x:expect-not-assert id="abstract-children-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="abstract-sec-titles">
+      <x:scenario label="clintrial-conformance-1-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-1/pass.xml"/>
+        <x:expect-not-report id="clintrial-conformance-1" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-1-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-1/fail.xml"/>
+        <x:expect-report id="clintrial-conformance-1" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-2-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-2/pass.xml"/>
+        <x:expect-not-report id="clintrial-conformance-2" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-2-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-2/fail.xml"/>
+        <x:expect-report id="clintrial-conformance-2" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-3-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-3/pass.xml"/>
+        <x:expect-not-report id="clintrial-conformance-3" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-3-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-3/fail.xml"/>
+        <x:expect-report id="clintrial-conformance-3" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-4-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-4/pass.xml"/>
+        <x:expect-not-report id="clintrial-conformance-4" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-4-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-4/fail.xml"/>
+        <x:expect-report id="clintrial-conformance-4" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-5-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-5/pass.xml"/>
+        <x:expect-not-report id="clintrial-conformance-5" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-5-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-5/fail.xml"/>
+        <x:expect-report id="clintrial-conformance-5" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-7-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-7/pass.xml"/>
+        <x:expect-not-report id="clintrial-conformance-7" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-7-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-7/fail.xml"/>
+        <x:expect-report id="clintrial-conformance-7" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-8-pass">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-8/pass.xml"/>
+        <x:expect-not-assert id="clintrial-conformance-8" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-conformance-8-fail">
+        <x:context href="../tests/abstract-sec-titles/clintrial-conformance-8/fail.xml"/>
+        <x:expect-assert id="clintrial-conformance-8" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="clintrial-related-object">
+      <x:scenario label="clintrial-related-object-1-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-1/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-1" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-1-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-1/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-1" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-2-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-2/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-2" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-2-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-2/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-2" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-3-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-3/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-3" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-3-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-3/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-3" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-4-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-4/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-4" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-4-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-4/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-4" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-5-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-5/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-5" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-5-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-5/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-5" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-6-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-6/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-6" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-6-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-6/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-6" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-7-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-7/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-7" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-7-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-7/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-7" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-8-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-8/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-8" role="warning"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-8-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-8/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-8" role="warning"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-9-pass">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-9/pass.xml"/>
+        <x:expect-not-assert id="clintrial-related-object-9" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-9-fail">
+        <x:context href="../tests/clintrial-related-object/clintrial-related-object-9/fail.xml"/>
+        <x:expect-assert id="clintrial-related-object-9" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="aff-tests">
       <x:scenario label="aff-test-1-pass">
         <x:context href="../tests/aff-tests/aff-test-1/pass.xml"/>
@@ -1878,6 +2054,18 @@
         <x:context href="../tests/elocation-id-tests/test-elocation-conformance/fail.xml"/>
         <x:expect-assert id="test-elocation-conformance" role="error"/>
         <x:expect-not-assert id="elocation-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="related-object-tests">
+      <x:scenario label="related-object-ancetsor-pass">
+        <x:context href="../tests/related-object-tests/related-object-ancetsor/pass.xml"/>
+        <x:expect-not-assert id="related-object-ancetsor" role="error"/>
+        <x:expect-not-assert id="related-object-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-object-ancetsor-fail">
+        <x:context href="../tests/related-object-tests/related-object-ancetsor/fail.xml"/>
+        <x:expect-assert id="related-object-ancetsor" role="error"/>
+        <x:expect-not-assert id="related-object-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="volume-test">

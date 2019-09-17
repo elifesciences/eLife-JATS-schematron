@@ -590,15 +590,15 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="sec-specific">
-    <rule context="sec" id="sec-tests">
-      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
-      <assert test="title" role="error" id="sec-test-1">sec must have a title</assert>
+  <pattern id="article-metadata">
+    <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
+      <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
+      <report test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
+      <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

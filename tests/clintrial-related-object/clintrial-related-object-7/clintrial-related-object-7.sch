@@ -590,15 +590,15 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="sec-specific">
-    <rule context="sec" id="sec-tests">
-      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
-      <assert test="title" role="error" id="sec-test-1">sec must have a title</assert>
+  <pattern id="article-metadata">
+    <rule context="abstract[not(@abstract-type)]/sec/related-object" id="clintrial-related-object">
+      <assert test="@xlink:href" role="error" id="clintrial-related-object-7">
+        <name/> must have an @xlink:href.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
+      <assert test="descendant::abstract[not(@abstract-type)]/sec/related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type)]/sec/related-object must be present.</assert>
     </rule>
   </pattern>
 </schema>
