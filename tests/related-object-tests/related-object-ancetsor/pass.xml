@@ -3,5 +3,17 @@
 Test: assert    ancestor::abstract[not(@abstract-type)]
 Message:  is not allowed outside of the main abstract (abstract[not(@abstracttype)]).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <front>
+      <article-meta>
+        <abstract>
+          ...
+          <sec>
+            ...
+            <related-object/>...
+          </sec>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
 </root>
