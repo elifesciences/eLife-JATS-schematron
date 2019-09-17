@@ -1427,6 +1427,10 @@
 	<report test="descendant::disp-formula"
   	role="error" 
   	id="abstract-test-4">abstracts cannot contain display formulas.</report>
+	  
+	  <report test="child::sec and count(sec) != 6"
+	    role="error" 
+	    id="abstract-test-5">If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts.</report>
 		
     </rule>
     
@@ -1459,11 +1463,13 @@
         role="error" 
         id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
       
-      <report test="($pos = 5) and (title != 'Clinical trial number:')"
+      <report test="($pos = 6) and (title != 'Clinical trial number:')"
         role="error" 
-        id="clintrial-conformance-5">Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
+        id="clintrial-conformance-5">Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
       
-      <!-- Possible extra test needed here for another section -->
+      <report test="($pos = 5) and (title != 'Funding:')"
+        role="error" 
+        id="clintrial-conformance-6">Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
       
       <report test="child::sec"
         role="error" 

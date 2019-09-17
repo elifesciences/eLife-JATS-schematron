@@ -593,7 +593,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
-      <report test="($pos = 6) and (title != 'Clinical trial number:')" role="error" id="clintrial-conformance-5">Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
+      <report test="($pos = 5) and (title != 'Funding:')" role="error" id="clintrial-conformance-6">Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
