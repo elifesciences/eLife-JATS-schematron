@@ -1,0 +1,31 @@
+<?oxygen SCHSchema="inline-formula-test-4.sch"?>
+<!--Context: inline-formula
+Test: assert    parent::p or parent::td or parent::th
+Message:  must be a child of p, td or th. The formula containing  is a child of -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front/>
+    <body>
+      <sec>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit <inline-formula/>.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit <inline-formula/>.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit <inline-formula/>.</p>
+        <table-wrap>
+          <table>
+            <thead>
+              <th>Aliquam tempor <inline-formula/></th>
+              <th/>
+              <th/>
+            </thead>
+            <tbody>
+              <td>Aenean sed dolor interdum <inline-formula/></td>
+              <td/>
+              <td/>
+            </tbody>
+          </table>
+        </table-wrap>
+      </sec>
+    </body>
+    <back/>
+  </article>
+</root>
