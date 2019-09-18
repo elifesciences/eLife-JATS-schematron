@@ -1065,6 +1065,26 @@
         <x:expect-report id="COI-test" role="warning"/>
         <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="deceased-test-1-pass">
+        <x:context href="../tests/contrib-tests/deceased-test-1/pass.xml"/>
+        <x:expect-not-report id="deceased-test-1" role="error"/>
+        <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="deceased-test-1-fail">
+        <x:context href="../tests/contrib-tests/deceased-test-1/fail.xml"/>
+        <x:expect-report id="deceased-test-1" role="error"/>
+        <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="deceased-test-2-pass">
+        <x:context href="../tests/contrib-tests/deceased-test-2/pass.xml"/>
+        <x:expect-not-report id="deceased-test-2" role="error"/>
+        <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="deceased-test-2-fail">
+        <x:context href="../tests/contrib-tests/deceased-test-2/fail.xml"/>
+        <x:expect-report id="deceased-test-2" role="error"/>
+        <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="author-children-tests">
       <x:scenario label="author-children-test-pass">

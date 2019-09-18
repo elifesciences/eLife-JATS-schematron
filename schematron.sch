@@ -1158,6 +1158,8 @@
 	  <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
 	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
 	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
+	  <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
+	  <let name="fn" value="ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
     	<report test="if ($subj-type = ('Retraction','Correction')) then ()
@@ -1192,6 +1194,14 @@
 	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))"
 	       role="warning" 
 	       id="COI-test"><value-of select="concat(descendant::surname,' ',descendant::given-names)"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
+	  
+	  <report test="matches($fn,'[Dd]eceased') and not(@deceased='yes')"
+	    role="error" 
+	    id="deceased-test-1"><value-of select="concat(descendant::surname,' ',descendant::given-names)"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
+	  
+	  <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))"
+	    role="error" 
+	    id="deceased-test-2"><value-of select="concat(descendant::surname,' ',descendant::given-names)"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
 		
 		</rule>
 		
