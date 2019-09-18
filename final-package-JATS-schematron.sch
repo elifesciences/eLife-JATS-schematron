@@ -2495,7 +2495,7 @@
     <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
-      <assert test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</assert>
+      <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
   
