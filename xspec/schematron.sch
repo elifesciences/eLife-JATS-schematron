@@ -2492,6 +2492,13 @@
       <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
+  <pattern id="reply-missing-disp-quote-tests-pattern">
+    <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+      <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
+      
+      <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
+    </rule>
+  </pattern>
   
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
@@ -5621,6 +5628,7 @@
       <assert test="descendant::sub-article[@article-type='reply']/front-stub" role="error" id="reply-front-tests-xspec-assert">sub-article[@article-type='reply']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type='reply']/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type='reply']/body must be present.</assert>
       <assert test="descendant::sub-article[@article-type='reply']/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//disp-quote must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)] must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" role="error" id="insight-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</assert>
       <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>

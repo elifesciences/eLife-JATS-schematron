@@ -4966,6 +4966,18 @@
         <x:expect-not-assert id="reply-disp-quote-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="reply-missing-disp-quote-tests">
+      <x:scenario label="reply-missing-disp-quote-test-1-pass">
+        <x:context href="../tests/reply-missing-disp-quote-tests/reply-missing-disp-quote-test-1/pass.xml"/>
+        <x:expect-not-report id="reply-missing-disp-quote-test-1" role="warning"/>
+        <x:expect-not-assert id="reply-missing-disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="reply-missing-disp-quote-test-1-fail">
+        <x:context href="../tests/reply-missing-disp-quote-tests/reply-missing-disp-quote-test-1/fail.xml"/>
+        <x:expect-report id="reply-missing-disp-quote-test-1" role="warning"/>
+        <x:expect-not-assert id="reply-missing-disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="research-advance-test">
       <x:scenario label="related-articles-test-1-pass">
         <x:context href="../tests/research-advance-test/related-articles-test-1/pass.xml"/>
