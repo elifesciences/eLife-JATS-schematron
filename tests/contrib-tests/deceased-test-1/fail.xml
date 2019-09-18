@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="deceased-test-1.sch"?>
+<!--Context: article-meta//contrib
+Test: report    matches($fn,'[Dd]eceased') and not(@deceased='yes')
+Message:  has a linked footnote '', but not @deceased="yes" which is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" id="author-10109">
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
+            ...
+            <xref ref-type="fn" rid="fn1">†</xref>
+          </contrib>
+        </contrib-group>
+        <author-notes>
+          <fn fn-type="other" id="fn1">
+            <label>†</label>
+            <p>Deceased</p>
+          </fn>
+        </author-notes>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -610,7 +610,8 @@
       <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p"/>
-      <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has more than one name. This is not correct.</report>
+      <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
+        <value-of select="concat(descendant::surname,' ',descendant::given-names)"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
