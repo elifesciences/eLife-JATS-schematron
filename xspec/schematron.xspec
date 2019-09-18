@@ -2923,6 +2923,16 @@
         <x:expect-report id="inline-formula-test-3" role="warning"/>
         <x:expect-not-assert id="inline-formula-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="inline-formula-test-4-pass">
+        <x:context href="../tests/inline-formula-tests/inline-formula-test-4/pass.xml"/>
+        <x:expect-not-assert id="inline-formula-test-4" role="error"/>
+        <x:expect-not-assert id="inline-formula-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-test-4-fail">
+        <x:context href="../tests/inline-formula-tests/inline-formula-test-4/fail.xml"/>
+        <x:expect-assert id="inline-formula-test-4" role="error"/>
+        <x:expect-not-assert id="inline-formula-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="math-tests">
       <x:scenario label="math-test-1-pass">

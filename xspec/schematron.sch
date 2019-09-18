@@ -1640,6 +1640,10 @@
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}]$') and not(matches(.,'^\s+'))" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
       <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]') and not(matches(.,'\s+$'))" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      
+      <assert test="parent::p or parent::td or parent::th" role="error" id="inline-formula-test-4">
+        <name/> must be a child of p, td or th. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
+      </assert>
     </rule>
   </pattern>
   <pattern id="math-tests-pattern">
