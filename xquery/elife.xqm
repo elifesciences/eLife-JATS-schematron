@@ -361,7 +361,7 @@ declare function elife:copy-edit-schema-let($assert-or-report){
 return delete node $x,
 
         for $x in $copy1//*:let[@name="list"]
-        let $new-v := "document('../../../../../src/copy-edit/us-uk-list.xml')"
+        let $new-v := "document('../../../../../src/us-uk-list.xml')"
         return 
         replace value of node $x/@value with $new-v,
 

@@ -7,7 +7,7 @@
   <ns uri="https://elifesciences.org/namespace" prefix="e"/>
   <pattern>
     <rule context="article" id="copyedit-test">
-      <let name="list" value="document('../../../../../src/copy-edit/us-uk-list.xml')"/>
+      <let name="list" value="document('../../../../../src/us-uk-list.xml')"/>
       <let name="corr-authors" value="distinct-values(                 for $x in self::*//article-meta//contrib[@corresp='yes']                 return                 $x/xref[@ref-type='aff']/@rid                 )"/>
       <let name="countries" value="string-join(distinct-values(                 for $x in self::*//article-meta//aff[@id/string() = $corr-authors]                 return                 $x/country/string()                 ),'; ')"/>
       <let name="text" value="string-join(for $x in                      self::*/(front/article-meta//(article-title|abstract//p|custom-meta/meta-value)|                               body//(p|title|th|td)|                               back//(ack//p|app//p|title|th|td)                               )                     return $x,' ')"/>
