@@ -5,8 +5,8 @@ declare namespace sch = "http://purl.oclc.org/dsdl/schematron";
 declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
-declare variable $elife:base := doc('../schematron.sch');
-
+declare variable $elife:base := doc('../src/schematron.sch');
+declare variable $elife:copy-edit-base := doc('../src/copy-edit.sch');
 
 (:~ Generate schemalet files for unti testing purposes
  :)
@@ -24,7 +24,7 @@ declare function elife:schema-let($assert-or-report){
 return delete node $x,
 
         for $x in $copy1//*:let[@name="countries" or @name="publisher-locations"]
-        let $new-v := concat("'../../../",substring-after($x/@value,"'"))
+        let $new-v := concat("'../../../../../src/",substring-after($x/@value,"'"))
         return 
         replace value of node $x/@value with $new-v,
 
@@ -262,7 +262,7 @@ declare function elife:sch2xspec($xspec-sch){
     <x:scenario label="{$id}">
       {for $y in $x//(sch:assert|sch:report)
        let $id-2 := $y/@id
-       let $folder := concat('../tests/',$id,'/',$id-2,'/') 
+       let $folder := concat('../tests/gen/',$id,'/',$id-2,'/') 
        let $e-pass := element {concat('x:expect-not-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-fail := element {concat('x:expect-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-present := element {'x:expect-not-assert'} {attribute {'id'} {concat($x/@id,'-xspec-assert')}, attribute {'role'} {'error'}}
@@ -302,5 +302,120 @@ declare function elife:new-test-case($file-path,$new-comment){
     return replace node $comment with ('&#xa;',$new-comment,'&#xa;')
   )
   return $copy
+  
+};
+
+
+(:~ 
+ : Generate Xspec file from copyedit schematron file
+ :)
+declare function elife:copy-edit2xspec($xspec-sch){
+  <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="copy-edit.sch">
+  <x:scenario >{
+    for $x in $xspec-sch//sch:rule
+    let $id := elife:get-id($x)  
+    return
+    <x:scenario label="{$id}">
+      {for $y in $x//(sch:assert|sch:report)
+       let $id-2 := $y/@id
+       let $folder := concat('../tests/copy-edit/',$id,'/',$id-2,'/') 
+       let $e-pass := element {concat('x:expect-not-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
+       let $e-fail := element {concat('x:expect-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
+       let $e-present := element {'x:expect-not-assert'} {attribute {'id'} {concat($x/@id,'-xspec-assert')}, attribute {'role'} {'error'}}
+       return (
+       <x:scenario label="{concat($id-2,'-pass')}">
+         <x:context href="{concat($folder,'pass.xml')}"/>
+         {
+           $e-pass,
+           $e-present
+         }
+       </x:scenario>,
+       <x:scenario label="{concat($id-2,'-fail')}">
+         <x:context href="{concat($folder,'fail.xml')}"/>
+         {
+           $e-fail,
+           $e-present
+         }
+       </x:scenario>
+         )
+      }
+    </x:scenario>
+  
+  }</x:scenario>
+</x:description>};
+
+
+(:~ Generate schemalet files for unit testing purposes from the copy-edit-schematron
+ :)
+declare function elife:copy-edit-schema-let($assert-or-report){
+  let $id := $assert-or-report/@id
+  return
+    copy $copy1 := $elife:copy-edit-base
+    modify(
+      for $x in $copy1//*:rule
+      return 
+        if ($x//(*:assert|*:report)/@id = $id) then ()
+        else delete node $x,
+        
+        for $x in $copy1//xsl:function[@name="java:file-exists"]
+return delete node $x,
+
+        for $x in $copy1//*:let[@name="list"]
+        let $new-v := "document('../../../../../src/us-uk-list.xml')"
+        return 
+        replace value of node $x/@value with $new-v,
+
+        for $x in $copy1//comment()
+        return delete node $x
+    )
+
+  return
+
+  copy $copy2 := $copy1
+  modify(
+    for $x in $copy2//*:pattern[not(*:rule)]
+    return delete node $x,
+    
+    for $x in $copy2//*:pattern[*:rule]/*:rule/*
+    return 
+     if ($x/@id = $id) then ()
+     else if ($x/local-name() = 'let') then ()
+     else delete node $x,
+     
+    for $x in $copy2//*:schema
+    let $rule := $x//*[@id = $id]/parent::*:rule
+    let $test := $rule/@context/string()
+    let $q := 
+            if (matches($test,'\|')) then <assert test="{string-join(
+                              for $x in tokenize($test,'\|')
+                              return concat('descendant::',$x)
+                              ,
+                              ' or ')}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert>
+            else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
+    
+    return 
+    insert node 
+        <pattern id="root-pattern">
+        <rule context="root" id="root-rule">
+        {$q}
+        </rule>
+        </pattern>
+    as last into $x 
+    )
+
+return copy $copy3 := $copy2
+  modify(
+    
+    for $x in $copy3//*:schema/text()
+    return delete node $x,
+    
+    for $x in $copy3//*:pattern/text()
+    return delete node $x,
+    
+    for $x in $copy3//*:rule/text()
+    return delete node $x
+  )
+  
+  return $copy3
   
 };
