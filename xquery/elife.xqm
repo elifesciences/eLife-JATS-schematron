@@ -5,8 +5,8 @@ declare namespace sch = "http://purl.oclc.org/dsdl/schematron";
 declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
-declare variable $elife:base := doc('../schematron.sch');
-declare variable $elife:copy-edit-base := doc('../copy-edit/copy-edit.sch');
+declare variable $elife:base := doc('../src/schematron.sch');
+declare variable $elife:copy-edit-base := doc('../src/copy-edit.sch');
 
 (:~ Generate schemalet files for unti testing purposes
  :)
@@ -24,7 +24,7 @@ declare function elife:schema-let($assert-or-report){
 return delete node $x,
 
         for $x in $copy1//*:let[@name="countries" or @name="publisher-locations"]
-        let $new-v := concat("'../../../../",substring-after($x/@value,"'"))
+        let $new-v := concat("'../../../../../src/",substring-after($x/@value,"'"))
         return 
         replace value of node $x/@value with $new-v,
 
@@ -361,7 +361,7 @@ declare function elife:copy-edit-schema-let($assert-or-report){
 return delete node $x,
 
         for $x in $copy1//*:let[@name="list"]
-        let $new-v := "document('../../../../copy-edit/us-uk-list.xml')"
+        let $new-v := "document('../../../../../src/copy-edit/us-uk-list.xml')"
         return 
         replace value of node $x/@value with $new-v,
 

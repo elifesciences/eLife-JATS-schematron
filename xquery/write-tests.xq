@@ -5,16 +5,17 @@ import module namespace elife = 'elife' at 'elife.xqm';
 
 declare option db:chop 'false';
 
-let $base := doc('../schematron.sch')
+let $base := doc('../src/schematron.sch')
 let $base-uri := substring-before(base-uri($base),'/schematron.sch')
+let $root := substring-before($base-uri,'/src')
 
-let $copy-edit-base := doc('../copy-edit/copy-edit.sch')
+let $copy-edit-base := doc(concat($base-uri,'/copy-edit.sch'))
 
 return
 (
   for $test in $base//(*:assert|*:report)
   let $rule-id := $test/parent::*:rule/@id
-  let $path := concat($base-uri,'/tests/gen/',$rule-id,'/',$test/@id,'/')
+  let $path := concat($root,'/test/tests/gen/',$rule-id,'/',$test/@id,'/')
   let $pass := concat($path,'pass.xml')
   let $fail := concat($path,'fail.xml')
   let $schema-let := elife:schema-let($test)
@@ -51,7 +52,7 @@ Message: ',replace($test/data(),'-',''))}
 
 for $test2 in $copy-edit-base//(*:assert|*:report)
   let $rule-id := $test2/parent::*:rule/@id
-  let $path := concat($base-uri,'/tests/copy-edit/',$rule-id,'/',$test2/@id,'/')
+  let $path := concat($root,'/test/tests/copy-edit/',$rule-id,'/',$test2/@id,'/')
   let $pass := concat($path,'pass.xml')
   let $fail := concat($path,'fail.xml')
   let $schema-let := elife:copy-edit-schema-let($test2)
