@@ -1,0 +1,56 @@
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="copy-edit.sch">
+  <x:scenario>
+    <x:scenario label="copyedit-test">
+      <x:scenario label="uk-confirm-pass">
+        <x:context href="../tests/copy-edit/copyedit-test/uk-confirm/pass.xml"/>
+        <x:expect-not-report id="uk-confirm" role="info"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="uk-confirm-fail">
+        <x:context href="../tests/copy-edit/copyedit-test/uk-confirm/fail.xml"/>
+        <x:expect-report id="uk-confirm" role="info"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="us-confirm-pass">
+        <x:context href="../tests/copy-edit/copyedit-test/us-confirm/pass.xml"/>
+        <x:expect-not-report id="us-confirm" role="info"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="us-confirm-fail">
+        <x:context href="../tests/copy-edit/copyedit-test/us-confirm/fail.xml"/>
+        <x:expect-report id="us-confirm" role="info"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="uk-us-equal-pass">
+        <x:context href="../tests/copy-edit/copyedit-test/uk-us-equal/pass.xml"/>
+        <x:expect-not-report id="uk-us-equal" role="warning"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="uk-us-equal-fail">
+        <x:context href="../tests/copy-edit/copyedit-test/uk-us-equal/fail.xml"/>
+        <x:expect-report id="uk-us-equal" role="warning"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="us-conformity-pass">
+        <x:context href="../tests/copy-edit/copyedit-test/us-conformity/pass.xml"/>
+        <x:expect-not-report id="us-conformity" role="warning"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="us-conformity-fail">
+        <x:context href="../tests/copy-edit/copyedit-test/us-conformity/fail.xml"/>
+        <x:expect-report id="us-conformity" role="warning"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="uk-conformity-pass">
+        <x:context href="../tests/copy-edit/copyedit-test/uk-conformity/pass.xml"/>
+        <x:expect-not-report id="uk-conformity" role="warning"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="uk-conformity-fail">
+        <x:context href="../tests/copy-edit/copyedit-test/uk-conformity/fail.xml"/>
+        <x:expect-report id="uk-conformity" role="warning"/>
+        <x:expect-not-assert id="copyedit-test-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+</x:description>
