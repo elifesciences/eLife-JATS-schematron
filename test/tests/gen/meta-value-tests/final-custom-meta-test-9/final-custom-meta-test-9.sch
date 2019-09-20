@@ -591,7 +591,7 @@
     </xsl:element>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" id="meta-value-tests">
+    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possesive phrase. This is not allowed</report>
@@ -599,7 +599,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta/meta-value must be present.</assert>
+      <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value must be present.</assert>
     </rule>
   </pattern>
 </schema>

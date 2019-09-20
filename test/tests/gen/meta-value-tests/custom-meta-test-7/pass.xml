@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="custom-meta-test-7.sch"?>
-<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    matches(.,'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')
 Message: Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
@@ -7,6 +7,7 @@ Message: Impact statement appears to be made up of more than one sentence. Pleas
     <article-meta>
       <custom-meta-group>
         <custom-meta>
+          <meta-name>Author impact statement</meta-name>
           <meta-value>test content</meta-value>
         </custom-meta>
       </custom-meta-group>

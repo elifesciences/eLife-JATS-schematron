@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="custom-meta-test-10.sch"?>
-<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    matches(.,'^[\d]+$')
 Message: Impact statement is comprised entirely of letters, which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
@@ -12,6 +12,7 @@ Message: Impact statement is comprised entirely of letters, which must be incorr
       </article-categories>
       <custom-meta-group>
         <custom-meta>
+          <meta-name>Author impact statement</meta-name>
           <meta-value>111111222223456789</meta-value>
         </custom-meta>
       </custom-meta-group>
