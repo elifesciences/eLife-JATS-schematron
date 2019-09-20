@@ -5743,6 +5743,17 @@
         role="warning"
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
+      <report test="($type = 'Figure') and matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" 
+        role="error" 
+        id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report test="($type = 'Figure') and matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" 
+        role="error" 
+        id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report test="($type = ('Figure','Figure supplement')) and matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+        role="error" 
+        id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   
@@ -7185,7 +7196,7 @@
       
       <report test="matches(.,'et al[\.]?')"
         role="warning" 
-        id="et-al-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
+        id="et-al-italic-test"><name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Vv]itro')"
         role="warning" 
