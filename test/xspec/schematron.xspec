@@ -7897,6 +7897,16 @@
         <x:expect-report id="vid-xref-test-7" role="warning"/>
         <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="vid-xref-test-8-pass">
+        <x:context href="../tests/gen/vid-xref-conformance/vid-xref-test-8/pass.xml"/>
+        <x:expect-not-report id="vid-xref-test-8" role="error"/>
+        <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="vid-xref-test-8-fail">
+        <x:context href="../tests/gen/vid-xref-conformance/vid-xref-test-8/fail.xml"/>
+        <x:expect-report id="vid-xref-test-8" role="error"/>
+        <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-xref-conformance">
       <x:scenario label="fig-xref-conformity-1-pass">
@@ -8139,6 +8149,16 @@
       <x:scenario label="table-xref-test-3-fail">
         <x:context href="../tests/gen/table-xref-conformance/table-xref-test-3/fail.xml"/>
         <x:expect-report id="table-xref-test-3" role="warning"/>
+        <x:expect-not-assert id="table-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-xref-test-4-pass">
+        <x:context href="../tests/gen/table-xref-conformance/table-xref-test-4/pass.xml"/>
+        <x:expect-not-report id="table-xref-test-4" role="error"/>
+        <x:expect-not-assert id="table-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-xref-test-4-fail">
+        <x:context href="../tests/gen/table-xref-conformance/table-xref-test-4/fail.xml"/>
+        <x:expect-report id="table-xref-test-4" role="error"/>
         <x:expect-not-assert id="table-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

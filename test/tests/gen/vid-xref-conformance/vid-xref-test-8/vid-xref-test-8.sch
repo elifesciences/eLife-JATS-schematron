@@ -590,20 +590,18 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="figure-xref-pattern">
-    <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
+  <pattern id="video-xref-pattern">
+    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="type" value="e:fig-id-type($rid)"/>
-      <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
-      <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="error" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='fig']" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

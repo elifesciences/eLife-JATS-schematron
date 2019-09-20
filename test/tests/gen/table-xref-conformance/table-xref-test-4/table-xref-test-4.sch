@@ -590,20 +590,19 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="figure-xref-pattern">
-    <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
+  <pattern id="table-xref-pattern">
+    <rule context="xref[@ref-type='table']" id="table-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="type" value="e:fig-id-type($rid)"/>
-      <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
-      <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="error" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="table-xref-test-4">Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='fig']" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
