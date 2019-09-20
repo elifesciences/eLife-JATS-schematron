@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="fig-xref-test-10.sch"?>
+<!--Context: xref[@ref-type='fig']
+Test: report    matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')
+Message: Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement  '.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <p>See <xref ref-type="fig" rid="fig1s1">Figure 1—figure supplement 1</xref> Lorem Ipso.</p>
+        <fig-group>
+          <fig id="fig1">
+            <label>Figure 1.</label>
+          </fig>
+          <fig id="fig1s1">
+            <label>Figure 1—figure supplement 1.</label>
+          </fig>
+        </fig-group>
+      </sec>
+    </body>
+  </article>
+</root>

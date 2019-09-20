@@ -590,15 +590,18 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">
-      <report test="matches(.,'et al[\.]?')" role="warning" id="et-al-italic-test">
-        <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
+  <pattern id="video-xref-pattern">
+    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

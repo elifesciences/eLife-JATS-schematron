@@ -5675,6 +5675,10 @@
         role="warning"
         id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+        role="error" 
+        id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
+      
     </rule>
   </pattern>
   <pattern id="figure-xref-pattern">
@@ -5743,6 +5747,17 @@
         role="warning"
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" 
+        role="error" 
+        id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" 
+        role="error" 
+        id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+        role="error" 
+        id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   
@@ -5781,6 +5796,10 @@
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')"
         role="warning"
         id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+        role="error" 
+        id="table-xref-test-4">Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
     </rule>
     
@@ -5828,6 +5847,10 @@
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')"
         role="warning"
         id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" 
+        role="error" 
+        id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
     </rule>
   </pattern>
@@ -7185,7 +7208,7 @@
       
       <report test="matches(.,'et al[\.]?')"
         role="warning" 
-        id="et-al-italic-test"><name/> element contains '<value-of select="."/>' - this should not be in italics (eLife house style).</report>
+        id="et-al-italic-test"><name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
       
       <report test="matches(.,'[Ii]n [Vv]itro')"
         role="warning" 

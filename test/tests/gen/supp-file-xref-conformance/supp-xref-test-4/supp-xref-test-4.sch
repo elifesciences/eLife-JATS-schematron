@@ -590,15 +590,21 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">
-      <report test="matches(.,'et al[\.]?')" role="warning" id="et-al-italic-test">
-        <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
+  <pattern id="supp-xref-pattern">
+    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" role="error" id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
