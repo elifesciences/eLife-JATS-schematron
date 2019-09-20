@@ -1,0 +1,50 @@
+<?oxygen SCHSchema="supp-xref-test-4.sch"?>
+<!--Context: xref[@ref-type='supplementary-material']
+Test: report    matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')
+Message: Incomplete citation.  citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code  '.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <p>See <xref ref-type="supplementary-material" rid="video1sd1">Video 1—source data 1</xref> Lorem Ipso.</p>
+        <p>See <xref ref-type="supplementary-material" rid="table1sc1">Table 1—source code 1</xref> Lorem Ipso.</p>
+        <p>See <xref ref-type="supplementary-material" rid="fig1sc1">Figure 1—source code 1</xref> Lorem Ipso.</p>
+        <media mimetype="video" id="video1">
+          <label>Video 1.</label>
+          <caption>
+            <supplementary-material id="video1sd1">
+              <label>Video 1—source data 1.</label>
+            </supplementary-material>
+            <supplementary-material id="video1sd1">
+              <label>Video 1—source code 1.</label>
+            </supplementary-material>
+          </caption>
+        </media>
+        <fig-group>
+          <fig id="fig1">
+            <caption>
+              <supplementary-material id="fig1sd1">
+                <label>Figure 1—source data 1.</label>
+              </supplementary-material>
+              <supplementary-material id="fig1sd1">
+                <label>Figure 1—source code 1.</label>
+              </supplementary-material>
+            </caption>
+          </fig>
+        </fig-group>
+        <table-wrap>
+          <table id="table1">
+            <caption>
+              <supplementary-material id="table1sd1">
+                <label>Table 1—source data 1.</label>
+              </supplementary-material>
+              <supplementary-material id="table1sd1">
+                <label>Table 1—source code 1.</label>
+              </supplementary-material>
+            </caption>
+          </table>
+        </table-wrap>
+      </sec>
+    </body>
+  </article>
+</root>
