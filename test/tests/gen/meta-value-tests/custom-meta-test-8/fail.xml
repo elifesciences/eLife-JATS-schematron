@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="custom-meta-test-8.sch"?>
-<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    not($subj = 'Replication Study') and matches(.,'[:;]')
 Message: Impact statement contains a colon or semicolon, which is likely incorrect. It needs to be a proper sentence.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
@@ -12,6 +12,7 @@ Message: Impact statement contains a colon or semicolon, which is likely incorre
       </article-categories>
       <custom-meta-group>
         <custom-meta>
+          <meta-name>Author impact statement</meta-name>
           <meta-value>test content: test content</meta-value>
         </custom-meta>
       </custom-meta-group>

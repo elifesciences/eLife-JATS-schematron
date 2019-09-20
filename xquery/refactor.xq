@@ -50,5 +50,11 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
     file:write(($root||'/test/xspec/copy-edit.sch'),$sch2),
     file:write(($root||'/test/xspec/copy-edit.xspec'),$copy-edit-xspec)
   )
-
+,
+  
+  for $file in file:list($outputDir)[matches(.,'\.xml')]
+  let $xml := doc(($outputDir||'/'||$file))
+  return (
+    file:write(($root||'/test/xspec/'||$file),$xml)
+  )
 )

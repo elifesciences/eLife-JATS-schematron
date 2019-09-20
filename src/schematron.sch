@@ -1664,6 +1664,8 @@
         role="error"
         id="custom-meta-presence">custom-meta[@specific-use='meta-only'] must be present in custom-meta-group.</assert>
       
+      <!-- Need to add test for no more than 1 custom-meta? Likely to be used in future for declaring feature templates -->
+      
     </rule>
     
     <rule context="article-meta/custom-meta-group/custom-meta" 
@@ -1683,7 +1685,7 @@
       
     </rule>
       
-    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" 
+    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" 
       id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
@@ -2119,7 +2121,7 @@
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))
                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))
-                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$'))
+                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="error"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      

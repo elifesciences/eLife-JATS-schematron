@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-custom-meta-test-5.sch"?>
-<!--Context: article-meta/custom-meta-group/custom-meta/meta-value
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    ($count gt 30) and ($subj = $research-subj)
 Message: Impact statement contains more than 30 words. This is not allowed.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
@@ -12,6 +12,7 @@ Message: Impact statement contains more than 30 words. This is not allowed.-->
       </article-categories>
       <custom-meta-group>
         <custom-meta>
+          <meta-name>Author impact statement</meta-name>
           <meta-value>word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31</meta-value>
         </custom-meta>
       </custom-meta-group>

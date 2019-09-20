@@ -12,6 +12,7 @@ Message: Impact statement contains 'our'. This is not allowed-->
       </article-categories>
       <custom-meta-group>
         <custom-meta>
+          <meta-name>Author impact statement</meta-name>
           <meta-value>Our test content</meta-value>
         </custom-meta>
       </custom-meta-group>
