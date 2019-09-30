@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="equ-xref-conformity-3.sch"?>
+<!--Context: xref[@ref-type='disp-formula']
+Test: report    (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')
+Message:   Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p><xref ref-type="disp-formula" rid="equation1">Equation 1</xref> from <xref ref-type="bibr" rid="bib1">Smith et al., 1992</xref></p>
+      <sec>
+        <p>... 
+          <disp-formula id="equation1"/>
+          ...
+        </p>
+      </sec>
+    </body>
+    <back>
+      <ref-list>
+        <ref id="bib1"> ... </ref>
+      </ref-list>
+    </back>
+  </article>
+</root>

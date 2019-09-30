@@ -594,8 +594,8 @@
     <rule context="inline-formula" id="inline-formula-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert test="parent::p or parent::td or parent::th" role="error" id="inline-formula-test-4">
-        <name/> must be a child of p, td or th. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
+      <assert test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">
+        <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>
   </pattern>

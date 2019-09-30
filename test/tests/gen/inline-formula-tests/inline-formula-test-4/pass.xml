@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="inline-formula-test-4.sch"?>
 <!--Context: inline-formula
-Test: assert    parent::p or parent::td or parent::th
-Message:  must be a child of p, td or th. The formula containing  is a child of -->
+Test: assert    parent::p or parent::td or parent::th or parent::title
+Message:  must be a child of p, td,  th or title. The formula containing  is a child of -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front/>

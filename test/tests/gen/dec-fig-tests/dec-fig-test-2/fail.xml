@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="dec-fig-test-2.sch"?>
+<!--Context: sub-article[@article-type='decision-letter']//fig
+Test: assert    matches(label,'^Decision letter image [0-9]{1,3}\.$')
+Message: fig label in author response must be in the format 'Decision letter image 1.'.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="decision-letter" id="SA1">
+      <body>
+        <fig id="desfig1" position="float">
+          <label>Author response image 1.</label>
+          <caption>
+            <title>Single figure: The header of an eLife article example on the HTML page.</title>
+          </caption>
+          <graphic mimetype="image" mime-subtype="tiff"/>
+        </fig>
+      </body>
+    </sub-article>
+  </article>
+</root>
