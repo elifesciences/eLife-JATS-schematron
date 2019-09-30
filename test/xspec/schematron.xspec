@@ -3838,6 +3838,28 @@
         <x:expect-not-assert id="rep-fig-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="dec-fig-tests">
+      <x:scenario label="dec-fig-test-1-pass">
+        <x:context href="../tests/gen/dec-fig-tests/dec-fig-test-1/pass.xml"/>
+        <x:expect-not-assert id="dec-fig-test-1" role="error"/>
+        <x:expect-not-assert id="dec-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-fig-test-1-fail">
+        <x:context href="../tests/gen/dec-fig-tests/dec-fig-test-1/fail.xml"/>
+        <x:expect-assert id="dec-fig-test-1" role="error"/>
+        <x:expect-not-assert id="dec-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-fig-test-2-pass">
+        <x:context href="../tests/gen/dec-fig-tests/dec-fig-test-2/pass.xml"/>
+        <x:expect-not-assert id="dec-fig-test-2" role="error"/>
+        <x:expect-not-assert id="dec-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-fig-test-2-fail">
+        <x:context href="../tests/gen/dec-fig-tests/dec-fig-test-2/fail.xml"/>
+        <x:expect-assert id="dec-fig-test-2" role="error"/>
+        <x:expect-not-assert id="dec-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="box-fig-tests">
       <x:scenario label="box-fig-test-1-pass">
         <x:context href="../tests/gen/box-fig-tests/box-fig-test-1/pass.xml"/>
@@ -8275,6 +8297,16 @@
         <x:expect-assert id="equ-xref-conformity-2" role="error"/>
         <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="equ-xref-conformity-3-pass">
+        <x:context href="../tests/gen/equation-xref-conformance/equ-xref-conformity-3/pass.xml"/>
+        <x:expect-not-report id="equ-xref-conformity-3" role="error"/>
+        <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equ-xref-conformity-3-fail">
+        <x:context href="../tests/gen/equation-xref-conformance/equ-xref-conformity-3/fail.xml"/>
+        <x:expect-report id="equ-xref-conformity-3" role="error"/>
+        <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="org-ref-article-book-title">
       <x:scenario label="bssubtilis-ref-article-title-check-pass">
@@ -10141,6 +10173,26 @@
         <x:expect-report id="junk-character-presence" role="error"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="inverterted-question-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/inverterted-question-presence/pass.xml"/>
+        <x:expect-not-report id="inverterted-question-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inverterted-question-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/inverterted-question-presence/fail.xml"/>
+        <x:expect-report id="inverterted-question-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="empty-parentheses-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/empty-parentheses-presence/pass.xml"/>
+        <x:expect-not-report id="empty-parentheses-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="empty-parentheses-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/empty-parentheses-presence/fail.xml"/>
+        <x:expect-report id="empty-parentheses-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="unallowed-symbol-tests-sup">
       <x:scenario label="copyright-symbol-sup-pass">
@@ -11373,6 +11425,16 @@
       <x:scenario label="sensu-italic-test-fail">
         <x:context href="../tests/gen/italic-house-style/sensu-italic-test/fail.xml"/>
         <x:expect-report id="sensu-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ad-libitum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/ad-libitum-italic-test/pass.xml"/>
+        <x:expect-not-report id="ad-libitum-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ad-libitum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/ad-libitum-italic-test/fail.xml"/>
+        <x:expect-report id="ad-libitum-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

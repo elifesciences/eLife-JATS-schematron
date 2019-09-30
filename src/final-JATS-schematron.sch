@@ -779,7 +779,7 @@
     <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
       
-      <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>.</assert>
+      <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="."/>.</assert>
       
       <report test="($article-type = 'research-article') and not(.=$research-disp-channels)" role="error" id="disp-subj-value-test-2">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
       
@@ -1471,7 +1471,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
       
@@ -1647,8 +1647,8 @@
       
       <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]') and not(matches(.,'\s+$'))" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert test="parent::p or parent::td or parent::th" role="error" id="inline-formula-test-4">
-        <name/> must be a child of p, td or th. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
+      <assert test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">
+        <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>
   </pattern>
@@ -1998,6 +1998,15 @@
       
     </rule>
   </pattern>
+  <pattern id="dec-fig-tests-pattern">
+    <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
+      
+      <assert test="label" role="error" id="dec-fig-test-1">fig must have a label.</assert>
+      
+      <assert test="matches(label,'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="box-fig-tests-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests"> 
       
@@ -2007,7 +2016,7 @@
   <pattern id="app-fig-tests-pattern">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
       
       <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
@@ -4144,7 +4153,7 @@
       <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')          return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
-      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
+      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
       
@@ -4455,12 +4464,16 @@
       <let name="rid" value="@rid"/>
       <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       
       <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">
         <value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
       <assert test="contains(.,$label)" role="error" id="equ-xref-conformity-2">
         <value-of select="$label"/> - equation link content does not match what it directs to. Check that it is correct.</assert>
+      
+      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="equ-xref-conformity-3">
+        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
     </rule>
   </pattern>
   
@@ -4974,6 +4987,12 @@
       
       <report test="matches(.,'')" role="error" id="junk-character-presence">
         <name/> element contains a junk character '' which should be replaced.</report>
+      
+      <report test="matches(.,'¿')" role="warning" id="inverterted-question-presence">
+        <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
+      
+      <report test="not(local-name() = ('monospace','code')) and matches(.,'\(\)')" role="warning" id="empty-parentheses-presence">
+        <name/> element contains empty parentheses '()'. Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -5419,6 +5438,9 @@
       
       <report test="matches(.,'[Ss]ensu')" role="warning" id="sensu-italic-test">
         <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>
+      
+      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="ad-libitum-italic-test">
+        <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
   <pattern id="list-house-style-pattern">

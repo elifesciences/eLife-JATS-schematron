@@ -595,6 +595,7 @@
       <let name="rid" value="@rid"/>
       <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
       <assert test="contains(.,$label)" role="error" id="equ-xref-conformity-2">
         <value-of select="$label"/> - equation link content does not match what it directs to. Check that it is correct.</assert>
     </rule>
