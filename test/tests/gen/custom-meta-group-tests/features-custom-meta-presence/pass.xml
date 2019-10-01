@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="features-custom-meta-presence.sch"?>
+<!--Context: article-meta/custom-meta-group
+Test: report    ($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2
+Message: 2 custommeta[@specificuse='metaonly'] must be present in custommetagroup for .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="article-commentary">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Insight</subject>
+          </subj-group>
+        </article-categories>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>...</meta-value>
+          </custom-meta>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Template</meta-name>
+            <meta-value>1</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -594,7 +594,7 @@
     <rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject" id="disp-channel-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
-      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
+      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

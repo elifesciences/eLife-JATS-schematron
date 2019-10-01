@@ -1889,12 +1889,22 @@
     <x:scenario label="custom-meta-group-tests">
       <x:scenario label="custom-meta-presence-pass">
         <x:context href="../tests/gen/custom-meta-group-tests/custom-meta-presence/pass.xml"/>
-        <x:expect-not-assert id="custom-meta-presence" role="error"/>
+        <x:expect-not-report id="custom-meta-presence" role="error"/>
         <x:expect-not-assert id="custom-meta-group-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="custom-meta-presence-fail">
         <x:context href="../tests/gen/custom-meta-group-tests/custom-meta-presence/fail.xml"/>
-        <x:expect-assert id="custom-meta-presence" role="error"/>
+        <x:expect-report id="custom-meta-presence" role="error"/>
+        <x:expect-not-assert id="custom-meta-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="features-custom-meta-presence-pass">
+        <x:context href="../tests/gen/custom-meta-group-tests/features-custom-meta-presence/pass.xml"/>
+        <x:expect-not-report id="features-custom-meta-presence" role="error"/>
+        <x:expect-not-assert id="custom-meta-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="features-custom-meta-presence-fail">
+        <x:context href="../tests/gen/custom-meta-group-tests/features-custom-meta-presence/fail.xml"/>
+        <x:expect-report id="features-custom-meta-presence" role="error"/>
         <x:expect-not-assert id="custom-meta-group-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -1911,12 +1921,12 @@
       </x:scenario>
       <x:scenario label="custom-meta-test-2-pass">
         <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-2/pass.xml"/>
-        <x:expect-not-assert id="custom-meta-test-2" role="error"/>
+        <x:expect-not-report id="custom-meta-test-2" role="error"/>
         <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="custom-meta-test-2-fail">
         <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-2/fail.xml"/>
-        <x:expect-assert id="custom-meta-test-2" role="error"/>
+        <x:expect-report id="custom-meta-test-2" role="error"/>
         <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="custom-meta-test-3-pass">
@@ -1927,6 +1937,26 @@
       <x:scenario label="custom-meta-test-3-fail">
         <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-3/fail.xml"/>
         <x:expect-assert id="custom-meta-test-3" role="error"/>
+        <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-14-pass">
+        <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-14/pass.xml"/>
+        <x:expect-not-report id="custom-meta-test-14" role="error"/>
+        <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-14-fail">
+        <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-14/fail.xml"/>
+        <x:expect-report id="custom-meta-test-14" role="error"/>
+        <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-15-pass">
+        <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-15/pass.xml"/>
+        <x:expect-not-report id="custom-meta-test-15" role="error"/>
+        <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-15-fail">
+        <x:context href="../tests/gen/custom-meta-tests/custom-meta-test-15/fail.xml"/>
+        <x:expect-report id="custom-meta-test-15" role="error"/>
         <x:expect-not-assert id="custom-meta-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -2082,6 +2112,68 @@
         <x:context href="../tests/gen/meta-value-child-tests/custom-meta-child-test-1/fail.xml"/>
         <x:expect-assert id="custom-meta-child-test-1" role="error"/>
         <x:expect-not-assert id="meta-value-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="featmeta-value-tests">
+      <x:scenario label="feat-custom-meta-test-1-pass">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-1/pass.xml"/>
+        <x:expect-not-report id="feat-custom-meta-test-1" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-1-fail">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-1/fail.xml"/>
+        <x:expect-report id="feat-custom-meta-test-1" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-2-pass">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-2/pass.xml"/>
+        <x:expect-not-assert id="feat-custom-meta-test-2" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-2-fail">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-2/fail.xml"/>
+        <x:expect-assert id="feat-custom-meta-test-2" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-info-pass">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-info/pass.xml"/>
+        <x:expect-not-report id="feat-custom-meta-test-info" role="info"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-info-fail">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-info/fail.xml"/>
+        <x:expect-report id="feat-custom-meta-test-info" role="info"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-3-pass">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-3/pass.xml"/>
+        <x:expect-not-report id="feat-custom-meta-test-3" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-3-fail">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-3/fail.xml"/>
+        <x:expect-report id="feat-custom-meta-test-3" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-4-pass">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-4/pass.xml"/>
+        <x:expect-not-report id="feat-custom-meta-test-4" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-4-fail">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-4/fail.xml"/>
+        <x:expect-report id="feat-custom-meta-test-4" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-5-pass">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-5/pass.xml"/>
+        <x:expect-not-report id="feat-custom-meta-test-5" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feat-custom-meta-test-5-fail">
+        <x:context href="../tests/gen/featmeta-value-tests/feat-custom-meta-test-5/fail.xml"/>
+        <x:expect-report id="feat-custom-meta-test-5" role="error"/>
+        <x:expect-not-assert id="featmeta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elocation-id-tests">
@@ -7284,6 +7376,48 @@
         <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="feature-template-tests">
+      <x:scenario label="feature-template-test-1-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-1/pass.xml"/>
+        <x:expect-not-report id="feature-template-test-1" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-1-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-1/fail.xml"/>
+        <x:expect-report id="feature-template-test-1" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-2-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-2/pass.xml"/>
+        <x:expect-not-report id="feature-template-test-2" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-2-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-2/fail.xml"/>
+        <x:expect-report id="feature-template-test-2" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-3-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-3/pass.xml"/>
+        <x:expect-not-report id="feature-template-test-3" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-3-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-3/fail.xml"/>
+        <x:expect-report id="feature-template-test-3" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-4-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-4/pass.xml"/>
+        <x:expect-not-report id="feature-template-test-4" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-template-test-4-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-template-test-4/fail.xml"/>
+        <x:expect-report id="feature-template-test-4" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="correction-tests">
       <x:scenario label="corr-aff-presence-pass">
         <x:context href="../tests/gen/correction-tests/corr-aff-presence/pass.xml"/>
@@ -10725,12 +10859,12 @@
     <x:scenario label="website-tests">
       <x:scenario label="github-web-test-pass">
         <x:context href="../tests/gen/website-tests/github-web-test/pass.xml"/>
-        <x:expect-not-report id="github-web-test" role="error"/>
+        <x:expect-not-report id="github-web-test" role="warning"/>
         <x:expect-not-assert id="website-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="github-web-test-fail">
         <x:context href="../tests/gen/website-tests/github-web-test/fail.xml"/>
-        <x:expect-report id="github-web-test" role="error"/>
+        <x:expect-report id="github-web-test" role="warning"/>
         <x:expect-not-assert id="website-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="webreplacement-character-presence-pass">
@@ -10765,12 +10899,12 @@
       </x:scenario>
       <x:scenario label="biorxiv-web-test-pass">
         <x:context href="../tests/gen/website-tests/biorxiv-web-test/pass.xml"/>
-        <x:expect-not-report id="biorxiv-web-test" role="error"/>
+        <x:expect-not-report id="biorxiv-web-test" role="warning"/>
         <x:expect-not-assert id="website-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="biorxiv-web-test-fail">
         <x:context href="../tests/gen/website-tests/biorxiv-web-test/fail.xml"/>
-        <x:expect-report id="biorxiv-web-test" role="error"/>
+        <x:expect-report id="biorxiv-web-test" role="warning"/>
         <x:expect-not-assert id="website-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="chemrxiv-web-test-pass">

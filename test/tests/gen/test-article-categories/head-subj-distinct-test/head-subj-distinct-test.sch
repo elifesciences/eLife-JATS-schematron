@@ -593,6 +593,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/article-categories" id="test-article-categories">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
       <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
     </rule>
   </pattern>

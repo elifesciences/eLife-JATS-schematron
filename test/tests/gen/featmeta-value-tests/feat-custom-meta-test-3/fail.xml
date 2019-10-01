@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="feat-custom-meta-test-3.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value
+Test: report    ($type='Insight') and (. != '1')
+Message:  must be a template 1. Currently it is a template .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="article-commentary">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Insight</subject>
+          </subj-group>
+        </article-categories>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>...</meta-value>
+          </custom-meta>
+          <custom-meta>
+            <meta-name>Template</meta-name>
+            <meta-value>5</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

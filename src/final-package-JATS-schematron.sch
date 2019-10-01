@@ -766,14 +766,15 @@
   <pattern id="test-article-categories-pattern">
     <rule context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
+   <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
 	   
      <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
 	   
      <assert test="count(subj-group[@subj-group-type='display-channel']/subject) = 1" role="error" id="disp-subj-test2">subj-group[@subj-group-type='display-channel'] must contain only one subject. Currently there are <value-of select="count(subj-group[@subj-group-type='display-channel']/subject)"/>.</assert>
-		
+    
      <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
 	   
-     <report test="($article-type != 'editorial') and ($article-type != 'discussion') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     <report test="($article-type = ('correction','research-article','retraction','review-article')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
      
      <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" role="warning" id="head-subj-test3">article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
 	   
@@ -787,19 +788,19 @@
       
       <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="."/>.</assert>
       
-      <report test="($article-type = 'research-article') and not(.=$research-disp-channels)" role="error" id="disp-subj-value-test-2">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
+      <report test="($article-type = 'research-article') and not(.=($research-disp-channels,'Feature Article'))" role="error" id="disp-subj-value-test-2">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
       
-      <report test="($article-type = 'article-commentary') and not(.='Insight')" role="error" id="disp-subj-value-test-3">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
+      <report test="($article-type = 'article-commentary') and not(.='Insight')" role="error" id="disp-subj-value-test-3">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
       
-      <report test="($article-type = 'editorial') and not(.='Editorial')" role="error" id="disp-subj-value-test-4">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
+      <report test="($article-type = 'editorial') and not(.='Editorial')" role="error" id="disp-subj-value-test-4">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
       
-      <report test="($article-type = 'correction') and not(.='Correction')" role="error" id="disp-subj-value-test-5">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
+      <report test="($article-type = 'correction') and not(.='Correction')" role="error" id="disp-subj-value-test-5">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
       
-      <report test="($article-type = 'discussion') and not(.='Feature Article')" role="error" id="disp-subj-value-test-6">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
+      <report test="($article-type = 'discussion') and not(.='Feature Article')" role="error" id="disp-subj-value-test-6">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
       
-      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
+      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
       
-      <report test="($article-type = 'retraction') and not(.='Retraction')" role="error" id="disp-subj-value-test-8">Articles is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
+      <report test="($article-type = 'retraction') and not(.='Retraction')" role="error" id="disp-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
   </rule>
   </pattern>
   <pattern id="MSA-checks-pattern">
@@ -989,11 +990,12 @@
   <pattern id="author-children-tests-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
+		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
 			<let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref')"/>
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
 		
 		  <!-- Exception included for group authors - subject to change. The capture here may use xrefs instead of affs - if it does then the else if param can simply be removed. -->
-		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]                   else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]                   else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">
+		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]                   else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]                   else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]                   else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">
         <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
 		
 		</rule>
@@ -1291,21 +1293,28 @@
   </pattern>
   <pattern id="custom-meta-group-tests-pattern">
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
+      <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
       
-      <assert test="count(custom-meta[@specific-use='meta-only']) = 1" role="error" id="custom-meta-presence">custom-meta[@specific-use='meta-only'] must be present in custom-meta-group.</assert>
+      <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" role="error" id="custom-meta-presence">1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
-      <!-- Need to add test for no more than 1 custom-meta? Likely to be used in future for declaring feature templates -->
+      <report test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
     </rule>
   </pattern>
   <pattern id="custom-meta-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
+      <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
       <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
       
-      <assert test="meta-name = 'Author impact statement'" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</assert>
+      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
       
       <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
+      
+      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
+      
+      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>.</report>
       
     </rule>
   </pattern>
@@ -1349,6 +1358,28 @@
       
       <assert test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
         <name/> is not allowed in impact statement.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="featmeta-value-tests-pattern">
+    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      
+      <report test="child::*" role="error" id="feat-custom-meta-test-1">
+        <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
+      
+      <assert test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
+      
+      <report test=". = ('1','2','3','4','5')" role="info" id="feat-custom-meta-test-info">Template <value-of select="."/>.</report>
+      
+      <report test="($type='Insight') and (. != '1')" role="error" id="feat-custom-meta-test-3">
+        <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
+      
+      <report test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">
+        <value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
+      
+      <report test="($type='Feature Article') and not(.=('3','4','5'))" role="error" id="feat-custom-meta-test-5">
+        <value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -4098,6 +4129,25 @@
      <report test="matches(p,'[\p{P}]$')" role="error" id="feature-bio-test-3">bio cannot end in punctuation - '<value-of select="substring(p,string-length(p),1)"/>'.</report>
    </rule>
   </pattern>
+  <pattern id="feature-template-tests-pattern">
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
+     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
+     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+     
+     <report test="($template = ('1','2')) and child::sub-article" role="error" id="feature-template-test-1">
+        <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
+     
+     <report test="($template = '5') and not(@article-type='research-article')" role="error" id="feature-template-test-2">
+        <value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
+     
+     <report test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" role="warning" id="feature-template-test-3">
+        <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
+     
+     <report test="($template = '5') and not(child::sub-article[@article-type='reply'])" role="warning" id="feature-template-test-4">
+        <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
+     
+   </rule>
+  </pattern>
   
   <pattern id="correction-tests-pattern">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
@@ -5189,7 +5239,7 @@
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link)"/>
       
-      <report test="contains($link,'github')" role="error" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should be captured as a software ref.</report>
+      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost be captured as a software ref (unless it's a blog post by GitHub).</report>
       
       <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
@@ -5200,7 +5250,7 @@
       <report test="matches($link,'/arxiv.org')" role="error" id="arxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, arXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'biorxiv.org')" role="error" id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'biorxiv.org')" role="warning" id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should almost certainly be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
       <report test="matches($link,'chemrxiv.org')" role="error" id="chemrxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>

@@ -593,6 +593,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/article-categories" id="test-article-categories">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
       <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
     </rule>
   </pattern>
