@@ -592,7 +592,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
-      <assert test="count(custom-meta[@specific-use='meta-only']) = 1" role="error" id="custom-meta-presence">custom-meta[@specific-use='meta-only'] must be present in custom-meta-group.</assert>
+      <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" role="error" id="custom-meta-presence">1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

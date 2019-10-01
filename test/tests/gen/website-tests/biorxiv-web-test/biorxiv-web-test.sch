@@ -593,7 +593,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link)"/>
-      <report test="matches($link,'biorxiv.org')" role="error" id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'biorxiv.org')" role="warning" id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should almost certainly be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
     </rule>
   </pattern>

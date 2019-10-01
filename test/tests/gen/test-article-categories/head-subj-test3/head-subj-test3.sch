@@ -593,6 +593,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/article-categories" id="test-article-categories">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
       <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" role="warning" id="head-subj-test3">article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
     </rule>
   </pattern>

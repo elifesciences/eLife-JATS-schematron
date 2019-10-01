@@ -592,7 +592,9 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
-      <assert test="meta-name = 'Author impact statement'" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</assert>
+      <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
+      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
