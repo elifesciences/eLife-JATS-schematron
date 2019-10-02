@@ -532,11 +532,29 @@
       <xsl:when test="matches($s,'podosphaera\s?plantaginis')">
         <xsl:value-of select="'Podosphaera plantaginis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?plantaginis')">
+      <xsl:when test="matches($s,'p\.\s?lanceolata')">
         <xsl:value-of select="'P. lanceolata'"/>
       </xsl:when>
       <xsl:when test="matches($s,'plantago\s?lanceolata')">
         <xsl:value-of select="'Plantago lanceolata'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?edulis')">
+        <xsl:value-of select="'M. edulis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?edulis')">
+        <xsl:value-of select="'Mytilus edulis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?chilensis')">
+        <xsl:value-of select="'M. chilensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?chilensis')">
+        <xsl:value-of select="'Mytilus chilensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?trossulus')">
+        <xsl:value-of select="'M. trossulus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?trossulus')">
+        <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
@@ -593,7 +611,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org/'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org' link.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

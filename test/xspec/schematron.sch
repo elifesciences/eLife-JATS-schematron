@@ -555,11 +555,29 @@
       <xsl:when test="matches($s,'podosphaera\s?plantaginis')">
         <xsl:value-of select="'Podosphaera plantaginis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?plantaginis')">
+      <xsl:when test="matches($s,'p\.\s?lanceolata')">
         <xsl:value-of select="'P. lanceolata'"/>
       </xsl:when>
       <xsl:when test="matches($s,'plantago\s?lanceolata')">
         <xsl:value-of select="'Plantago lanceolata'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?edulis')">
+        <xsl:value-of select="'M. edulis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?edulis')">
+        <xsl:value-of select="'Mytilus edulis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?chilensis')">
+        <xsl:value-of select="'M. chilensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?chilensis')">
+        <xsl:value-of select="'Mytilus chilensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?trossulus')">
+        <xsl:value-of select="'M. trossulus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?trossulus')">
+        <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
@@ -1438,7 +1456,7 @@
       
       <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body) and (string-length(.) le 100) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
+      <report test="(ancestor::body) and (string-length(.) le 100) and not(parent::*[local-name() = ('fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
       <report test="matches(.,'^\s?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
@@ -4382,6 +4400,8 @@
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
+      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" role="error" id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<value-of select="concat($pre-text,.)"/>'.</report>
+      
     </rule>
   </pattern>
   <pattern id="fig-xref-conformance-pattern">
@@ -4712,6 +4732,24 @@
       <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="info" id="plantagolanceolata-ref-article-title-check">
         <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-ref-article-title-check">
+        <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-ref-article-title-check">
+        <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-ref-article-title-check">
+        <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-ref-article-title-check">
+        <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-ref-article-title-check">
+        <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-ref-article-title-check">
+        <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="info" id="drerio-ref-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -4977,6 +5015,24 @@
       <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">
         <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-article-title-check">
+        <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-article-title-check">
+        <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-article-title-check">
+        <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-article-title-check">
+        <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-article-title-check">
+        <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-article-title-check">
+        <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -5036,8 +5092,8 @@
       <report test="matches(.,'¿')" role="warning" id="inverterted-question-presence">
         <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
-      <report test="not(local-name() = ('monospace','code')) and matches(.,'\(\)')" role="warning" id="empty-parentheses-presence">
-        <name/> element contains empty parentheses '()'. Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
+      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" role="warning" id="empty-parentheses-presence">
+        <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -5262,7 +5318,7 @@
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org/'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org/' link.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.r-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but does not have a 'http://www.r-project.org' link.</report>
       
       <report test="matches(lower-case(source),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
       

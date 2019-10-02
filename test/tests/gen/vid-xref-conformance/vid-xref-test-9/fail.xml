@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="vid-xref-test-9.sch"?>
+<!--Context: xref[@ref-type='video']
+Test: report    matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')
+Message: Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code  ''.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>test test see Figure 1-<xref ref-type="video" rid="video1">video 1</xref> test test.</p>
+      <media mimetype="video" id="video1">
+        <label>Video 1.</label>
+        <caption>...</caption>
+      </media>
+      <fig-group>
+        <fig id="fig1">
+          <label>Figure 1.</label>
+          <graphic/>
+        </fig>
+        <media mimetype="video" id="fig1video1">
+          <label>Figure 1-video 1</label>
+          <caption>...</caption>
+        </media>
+      </fig-group>
+    </body>
+  </article>
+</root>

@@ -8063,6 +8063,16 @@
         <x:expect-report id="vid-xref-test-8" role="error"/>
         <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="vid-xref-test-9-pass">
+        <x:context href="../tests/gen/vid-xref-conformance/vid-xref-test-9/pass.xml"/>
+        <x:expect-not-report id="vid-xref-test-9" role="error"/>
+        <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="vid-xref-test-9-fail">
+        <x:context href="../tests/gen/vid-xref-conformance/vid-xref-test-9/fail.xml"/>
+        <x:expect-report id="vid-xref-test-9" role="error"/>
+        <x:expect-not-assert id="vid-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-xref-conformance">
       <x:scenario label="fig-xref-conformity-1-pass">
@@ -9273,6 +9283,66 @@
         <x:expect-report id="plantagolanceolata-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="mtrossulus-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mtrossulus-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mtrossulus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtrossulus-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mtrossulus-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mtrossulus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilustrossulus-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mytilustrossulus-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mytilustrossulus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilustrossulus-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mytilustrossulus-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mytilustrossulus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medulis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/medulis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="medulis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medulis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/medulis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="medulis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilusedulis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mytilusedulis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mytilusedulis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilusedulis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mytilusedulis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mytilusedulis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mchilensis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mchilensis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mchilensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mchilensis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mchilensis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mchilensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytiluschilensis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mytiluschilensis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mytiluschilensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytiluschilensis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mytiluschilensis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mytiluschilensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="drerio-ref-article-title-check-pass">
         <x:context href="../tests/gen/org-ref-article-book-title/drerio-ref-article-title-check/pass.xml"/>
         <x:expect-not-report id="drerio-ref-article-title-check" role="info"/>
@@ -10143,6 +10213,66 @@
       <x:scenario label="plantagolanceolata-article-title-check-fail">
         <x:context href="../tests/gen/org-title-kwd/plantagolanceolata-article-title-check/fail.xml"/>
         <x:expect-report id="plantagolanceolata-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtrossulus-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mtrossulus-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mtrossulus-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtrossulus-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mtrossulus-article-title-check/fail.xml"/>
+        <x:expect-report id="mtrossulus-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilustrossulus-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mytilustrossulus-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mytilustrossulus-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilustrossulus-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mytilustrossulus-article-title-check/fail.xml"/>
+        <x:expect-report id="mytilustrossulus-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medulis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/medulis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="medulis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medulis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/medulis-article-title-check/fail.xml"/>
+        <x:expect-report id="medulis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilusedulis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mytilusedulis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mytilusedulis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytilusedulis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mytilusedulis-article-title-check/fail.xml"/>
+        <x:expect-report id="mytilusedulis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mchilensis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mchilensis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mchilensis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mchilensis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mchilensis-article-title-check/fail.xml"/>
+        <x:expect-report id="mchilensis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytiluschilensis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mytiluschilensis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mytiluschilensis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mytiluschilensis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mytiluschilensis-article-title-check/fail.xml"/>
+        <x:expect-report id="mytiluschilensis-article-title-check" role="info"/>
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drerio-article-title-check-pass">
