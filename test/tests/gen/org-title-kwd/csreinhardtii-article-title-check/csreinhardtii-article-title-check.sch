@@ -532,11 +532,29 @@
       <xsl:when test="matches($s,'podosphaera\s?plantaginis')">
         <xsl:value-of select="'Podosphaera plantaginis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?plantaginis')">
+      <xsl:when test="matches($s,'p\.\s?lanceolata')">
         <xsl:value-of select="'P. lanceolata'"/>
       </xsl:when>
       <xsl:when test="matches($s,'plantago\s?lanceolata')">
         <xsl:value-of select="'Plantago lanceolata'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?edulis')">
+        <xsl:value-of select="'M. edulis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?edulis')">
+        <xsl:value-of select="'Mytilus edulis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?chilensis')">
+        <xsl:value-of select="'M. chilensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?chilensis')">
+        <xsl:value-of select="'Mytilus chilensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'m\.\s?trossulus')">
+        <xsl:value-of select="'M. trossulus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'mytilus\s?trossulus')">
+        <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
