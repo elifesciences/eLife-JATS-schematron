@@ -610,9 +610,9 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
-      <let name="id-prefix-1" value="ancestor::app/@id"/>
+      <let name="id-prefix-1" value="substring-after(ancestor::app/@id,'appendix-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
-      <assert test="starts-with(@id,$id-prefix-1)" role="error" id="app-video-sup-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="$id-prefix-1"/>.</assert>
+      <assert test="starts-with(@id,concat('app',$id-prefix-1))" role="error" id="app-video-sup-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix-1)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
