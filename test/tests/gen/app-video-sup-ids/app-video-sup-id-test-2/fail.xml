@@ -5,7 +5,7 @@ Message: video supplement must have an @id which begins with the id of its ances
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>
-      <app id="app1">
+      <app id="appendix-1">
         <fig-group>
           <fig id="app1fig1"/>
           <fig id="app1fig1s0" specific-use="child-fig"/>
