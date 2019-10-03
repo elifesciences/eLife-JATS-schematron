@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="app-video-sup-id-test-2.sch"?>
 <!--Context: article/back//app//media[(@mimetype='video') and (parent::fig-group)]
-Test: assert    starts-with(@id,$id-prefix-1)
+Test: assert    starts-with(@id,concat('app',$id-prefix-1))
 Message: video supplement must have an @id which begins with the id of its ancestor appendix.  does not start with .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

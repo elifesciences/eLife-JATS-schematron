@@ -2326,21 +2326,21 @@
   </pattern>
   <pattern id="app-video-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
-      <let name="id-prefix" value="ancestor::app/@id"/>
+      <let name="id-prefix" value="substring-after(ancestor::app/@id,'appendix-')"/>
       
       <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="starts-with(@id,$id-prefix)" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
+      <assert test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="app-video-sup-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
-      <let name="id-prefix-1" value="ancestor::app/@id"/>
+      <let name="id-prefix-1" value="substring-after(ancestor::app/@id,'appendix-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
       <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="starts-with(@id,$id-prefix-1)" role="error" id="app-video-sup-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="$id-prefix-1"/>.</assert>
+      <assert test="starts-with(@id,concat('app',$id-prefix-1))" role="error" id="app-video-sup-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix-1)"/>.</assert>
       
       <assert test="starts-with(@id,$id-prefix-2)" role="error" id="app-video-sup-id-test-3">video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
     </rule>
