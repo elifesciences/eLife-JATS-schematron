@@ -2315,6 +2315,51 @@
       
     </rule>
   </pattern>
+  <pattern id="video-ids-pattern">
+    <rule context="article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
+      
+      <assert test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
+    </rule>
+  </pattern>
+  <pattern id="video-sup-ids-pattern">
+    <rule context="article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" id="video-sup-ids">
+      <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
+      
+      <assert test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      
+      <assert test="starts-with(@id,$id-prefix)" role="error" id="video-sup-id-test-2">video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="app-video-ids-pattern">
+    <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
+      <let name="id-prefix" value="ancestor::app/@id"/>
+      
+      <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
+      
+      <assert test="starts-with(@id,$id-prefix)" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="app-video-sup-ids-pattern">
+    <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
+      <let name="id-prefix-1" value="ancestor::app/@id"/>
+      <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
+      
+      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      
+      <assert test="starts-with(@id,$id-prefix-1)" role="error" id="app-video-sup-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="$id-prefix-1"/>.</assert>
+      
+      <assert test="starts-with(@id,$id-prefix-2)" role="error" id="app-video-sup-id-test-3">video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="box-vid-ids-pattern">
+    <rule context="article/body//boxed-text//media[(@mimetype='video')]" id="box-vid-ids">
+      <let name="box-id" value="ancestor::boxed-text/@id"/> 
+      
+      <assert test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      
+      <assert test="starts-with(@id,$box-id)" role="error" id="box-vid-id-2">video id does not start with its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
+    </rule>
+  </pattern>
   <pattern id="related-articles-ids-pattern">
     <rule context="related-article" id="related-articles-ids">
       
@@ -5753,6 +5798,11 @@
       <assert test="descendant::article/back//app//fig[@specific-use='child-fig']" role="error" id="app-fig-sup-ids-xspec-assert">article/back//app//fig[@specific-use='child-fig'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" role="error" id="rep-fig-ids-xspec-assert">sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='reply']//fig[@specific-use='child-fig']" role="error" id="rep-fig-sup-ids-xspec-assert">sub-article[@article-type='reply']//fig[@specific-use='child-fig'] must be present.</assert>
+      <assert test="descendant::article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" role="error" id="video-ids-xspec-assert">article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)] must be present.</assert>
+      <assert test="descendant::article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" role="error" id="app-video-ids-xspec-assert">article/back//app//media[(@mimetype='video') and not(parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/back//app//media[(@mimetype='video') and (parent::fig-group)]" role="error" id="app-video-sup-ids-xspec-assert">article/back//app//media[(@mimetype='video') and (parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/body//boxed-text//media[(@mimetype='video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[(@mimetype='video')] must be present.</assert>
       <assert test="descendant::related-article" role="error" id="related-articles-ids-xspec-assert">related-article must be present.</assert>
       <assert test="descendant::aff[not(parent::contrib)]" role="error" id="aff-ids-xspec-assert">aff[not(parent::contrib)] must be present.</assert>
       <assert test="descendant::fn" role="error" id="fn-ids-xspec-assert">fn must be present.</assert>

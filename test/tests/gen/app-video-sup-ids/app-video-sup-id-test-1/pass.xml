@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="app-video-sup-id-test-1.sch"?>
+<!--Context: article/back//app//media[(@mimetype='video') and (parent::fig-group)]
+Test: assert    matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')
+Message: video supplement must have an @id in the format app0fig0video0.   does not conform to this.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app id="app1">
+        <fig-group>
+          <fig id="app1fig1"/>
+          <fig id="app1fig1s0" specific-use="child-fig"/>
+          <media mimetype="video" id="app1fig1video1"/>
+        </fig-group>
+      </app>
+    </back>
+  </article>
+</root>

@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="box-vid-id-2.sch"?>
+<!--Context: article/body//boxed-text//media[(@mimetype='video')]
+Test: assert    starts-with(@id,$box-id)
+Message: video id does not start with its ancestor boxedtext id. Please ensure the first part of the id contains ''.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <boxed-text id="box1">
+        <media mimetype="video" id="box1video1"/>
+      </boxed-text>
+    </body>
+  </article>
+</root>
