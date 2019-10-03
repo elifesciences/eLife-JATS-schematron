@@ -4530,6 +4530,116 @@
         <x:expect-not-assert id="rep-fig-sup-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="video-ids">
+      <x:scenario label="video-id-test-pass">
+        <x:context href="../tests/gen/video-ids/video-id-test/pass.xml"/>
+        <x:expect-not-assert id="video-id-test" role="error"/>
+        <x:expect-not-assert id="video-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-id-test-fail">
+        <x:context href="../tests/gen/video-ids/video-id-test/fail.xml"/>
+        <x:expect-assert id="video-id-test" role="error"/>
+        <x:expect-not-assert id="video-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="video-sup-ids">
+      <x:scenario label="video-sup-id-test-1-pass">
+        <x:context href="../tests/gen/video-sup-ids/video-sup-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="video-sup-id-test-1" role="error"/>
+        <x:expect-not-assert id="video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-sup-id-test-1-fail">
+        <x:context href="../tests/gen/video-sup-ids/video-sup-id-test-1/fail.xml"/>
+        <x:expect-assert id="video-sup-id-test-1" role="error"/>
+        <x:expect-not-assert id="video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-sup-id-test-2-pass">
+        <x:context href="../tests/gen/video-sup-ids/video-sup-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="video-sup-id-test-2" role="error"/>
+        <x:expect-not-assert id="video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-sup-id-test-2-fail">
+        <x:context href="../tests/gen/video-sup-ids/video-sup-id-test-2/fail.xml"/>
+        <x:expect-assert id="video-sup-id-test-2" role="error"/>
+        <x:expect-not-assert id="video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="app-video-ids">
+      <x:scenario label="app-video-id-test-1-pass">
+        <x:context href="../tests/gen/app-video-ids/app-video-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="app-video-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-video-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-id-test-1-fail">
+        <x:context href="../tests/gen/app-video-ids/app-video-id-test-1/fail.xml"/>
+        <x:expect-assert id="app-video-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-video-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-id-test-2-pass">
+        <x:context href="../tests/gen/app-video-ids/app-video-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="app-video-id-test-2" role="error"/>
+        <x:expect-not-assert id="app-video-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-id-test-2-fail">
+        <x:context href="../tests/gen/app-video-ids/app-video-id-test-2/fail.xml"/>
+        <x:expect-assert id="app-video-id-test-2" role="error"/>
+        <x:expect-not-assert id="app-video-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="app-video-sup-ids">
+      <x:scenario label="app-video-sup-id-test-1-pass">
+        <x:context href="../tests/gen/app-video-sup-ids/app-video-sup-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="app-video-sup-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-sup-id-test-1-fail">
+        <x:context href="../tests/gen/app-video-sup-ids/app-video-sup-id-test-1/fail.xml"/>
+        <x:expect-assert id="app-video-sup-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-sup-id-test-2-pass">
+        <x:context href="../tests/gen/app-video-sup-ids/app-video-sup-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="app-video-sup-id-test-2" role="error"/>
+        <x:expect-not-assert id="app-video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-sup-id-test-2-fail">
+        <x:context href="../tests/gen/app-video-sup-ids/app-video-sup-id-test-2/fail.xml"/>
+        <x:expect-assert id="app-video-sup-id-test-2" role="error"/>
+        <x:expect-not-assert id="app-video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-sup-id-test-3-pass">
+        <x:context href="../tests/gen/app-video-sup-ids/app-video-sup-id-test-3/pass.xml"/>
+        <x:expect-not-assert id="app-video-sup-id-test-3" role="error"/>
+        <x:expect-not-assert id="app-video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-video-sup-id-test-3-fail">
+        <x:context href="../tests/gen/app-video-sup-ids/app-video-sup-id-test-3/fail.xml"/>
+        <x:expect-assert id="app-video-sup-id-test-3" role="error"/>
+        <x:expect-not-assert id="app-video-sup-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="box-vid-ids">
+      <x:scenario label="box-vid-id-1-pass">
+        <x:context href="../tests/gen/box-vid-ids/box-vid-id-1/pass.xml"/>
+        <x:expect-not-assert id="box-vid-id-1" role="error"/>
+        <x:expect-not-assert id="box-vid-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="box-vid-id-1-fail">
+        <x:context href="../tests/gen/box-vid-ids/box-vid-id-1/fail.xml"/>
+        <x:expect-assert id="box-vid-id-1" role="error"/>
+        <x:expect-not-assert id="box-vid-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="box-vid-id-2-pass">
+        <x:context href="../tests/gen/box-vid-ids/box-vid-id-2/pass.xml"/>
+        <x:expect-not-assert id="box-vid-id-2" role="error"/>
+        <x:expect-not-assert id="box-vid-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="box-vid-id-2-fail">
+        <x:context href="../tests/gen/box-vid-ids/box-vid-id-2/fail.xml"/>
+        <x:expect-assert id="box-vid-id-2" role="error"/>
+        <x:expect-not-assert id="box-vid-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="related-articles-ids">
       <x:scenario label="related-articles-test-7-pass">
         <x:context href="../tests/gen/related-articles-ids/related-articles-test-7/pass.xml"/>

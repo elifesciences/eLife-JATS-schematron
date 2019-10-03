@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="app-video-id-test-1.sch"?>
+<!--Context: article/back//app//media[(@mimetype='video') and not(parent::fig-group)]
+Test: assert    matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')
+Message: video in appendix must have an @id in the format app0video0.  does not conform to this.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app id="app1">
+        <media mimetype="video" id="video1"/>
+      </app>
+    </back>
+  </article>
+</root>

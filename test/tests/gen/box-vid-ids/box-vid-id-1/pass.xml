@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="box-vid-id-1.sch"?>
+<!--Context: article/body//boxed-text//media[(@mimetype='video')]
+Test: assert    matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')
+Message: video must have @id in the format box0video0.   does not conform to this.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <boxed-text id="box1">
+        <media mimetype="video" id="box1video1"/>
+      </boxed-text>
+    </body>
+  </article>
+</root>
