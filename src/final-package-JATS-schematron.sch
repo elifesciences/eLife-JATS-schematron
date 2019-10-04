@@ -2331,7 +2331,7 @@
   </pattern>
   <pattern id="app-video-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
-      <let name="id-prefix" value="substring-after(ancestor::app/@id,'appendix-')"/>
+      <let name="id-prefix" value="substring-after(ancestor::app/@id,'-')"/>
       
       <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
       
@@ -2340,7 +2340,7 @@
   </pattern>
   <pattern id="app-video-sup-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
-      <let name="id-prefix-1" value="substring-after(ancestor::app/@id,'appendix-')"/>
+      <let name="id-prefix-1" value="substring-after(ancestor::app/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
       <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -4398,6 +4398,8 @@
       <report test="matches($pre-sentence,'[A-Za-z0-9][\(]$')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
       
       <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+      
+      <report test="(.=$cite1) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and (($open - $close) lt 1) and not(matches($post-sentence,'^\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
       
     </rule>
   </pattern>

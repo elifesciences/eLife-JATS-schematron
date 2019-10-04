@@ -5749,6 +5749,10 @@
         role="warning"
         id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
+      <report test="(.=$cite1) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and (($open - $close) lt 1) and not(matches($post-sentence,'^\)'))"
+        role="warning"
+        id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
+      
     </rule>
     
   </pattern>

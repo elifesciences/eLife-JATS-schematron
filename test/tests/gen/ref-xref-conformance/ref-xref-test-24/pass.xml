@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="ref-xref-test-24.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    (.=$cite1) and matches($post-sentence,'^\]') and matches($pre-sentence,'^\[') and (($open - $close) lt 1) and not(matches($post-sentence,'^\)'))
+Message: citation is surrounded by square brackets, do the square brackets need removing?  ''  it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <p>Previous work has suggested that active Ras can inhibit differentiation (when overexpressed in the epidermis [<xref ref-type="bibr" rid="bib3">Dajee et al., 2002</xref>]). However, this has not been examined either in the adult</p>
+      </sec>
+    </body>
+    <back>
+      <ref-list>
+        <ref id="bib3">
+          <element-citation publication-type="journal">
+            <person-group person-group-type="author">
+              <name><surname>Dajee</surname> <given-names>M</given-names></name>
+              <name><surname>Tarutani</surname> <given-names>M</given-names></name>
+              <name><surname>Deng</surname> <given-names>H</given-names></name>
+              <name><surname>Cai</surname> <given-names>T</given-names></name>
+              <name><surname>Khavari</surname> <given-names>PA</given-names></name>
+            </person-group>
+            <year iso-8601-date="2002">2002</year>
+            <article-title>Epidermal ras blockade demonstrates spatially localized ras promotion of proliferation and inhibition of differentiation</article-title>
+            <source>Oncogene</source>
+            <volume>21</volume>
+            <fpage>1527</fpage>
+            <lpage>1538</lpage>
+            <pub-id pub-id-type="doi">10.1038/sj.onc.1205287</pub-id>
+            <pub-id pub-id-type="pmid">11896581</pub-id>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
+</root>
