@@ -608,16 +608,25 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="id-conformance">
-    <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
-      <let name="id-prefix-1" value="substring-after(ancestor::app/@id,'-')"/>
-      <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+  <pattern id="ref-xref-pattern">
+    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
+      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
+      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
+      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
+      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
+      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
+      <report test="(.=$cite1) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and (($open - $close) lt 1) and not(matches($post-sentence,'^\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/back//app//media[(@mimetype='video') and (parent::fig-group)]" role="error" id="app-video-sup-ids-xspec-assert">article/back//app//media[(@mimetype='video') and (parent::fig-group)] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
