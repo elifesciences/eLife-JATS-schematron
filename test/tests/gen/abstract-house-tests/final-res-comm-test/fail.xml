@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="final-res-comm-test.sch"?>
+<!--Context: abstract[not(@*)]
+Test: report    ($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))
+Message: '' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article article-type="research-communication">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Communication</subject>
+          </subj-group>
+        </article-categories>
+        <abstract>
+          <p/>
+          <p/>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>
