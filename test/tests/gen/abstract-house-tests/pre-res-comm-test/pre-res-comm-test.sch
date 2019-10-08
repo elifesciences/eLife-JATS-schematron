@@ -608,15 +608,15 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="article">
-    <rule context="article" id="article-tests">
-      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" role="error" id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/>
-      </report>
+  <pattern id="house-style">
+    <rule context="abstract[not(@*)]" id="abstract-house-tests">
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="warning" id="pre-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
+      <assert test="descendant::abstract[not(@*)]" role="error" id="abstract-house-tests-xspec-assert">abstract[not(@*)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

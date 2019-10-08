@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="res-comm-test.sch"?>
+<?oxygen SCHSchema="final-res-comm-test.sch"?>
 <!--Context: abstract[not(@*)]
 Test: report    ($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))
 Message: '' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.-->
@@ -13,7 +13,7 @@ Message: '' has only one paragraph in its abstract or the second paragraph does 
         </article-categories>
         <abstract>
           <p/>
-          <p/>
+          <p>Editorial note:</p>
         </abstract>
       </article-meta>
     </front>

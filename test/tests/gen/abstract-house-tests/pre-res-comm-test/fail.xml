@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="res-comm-test.sch"?>
+<?oxygen SCHSchema="pre-res-comm-test.sch"?>
 <!--Context: abstract[not(@*)]
 Test: report    ($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))
-Message: '' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.-->
+Message: '' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-communication">
     <front>
@@ -13,7 +13,7 @@ Message: '' has only one paragraph in its abstract or the second paragraph does 
         </article-categories>
         <abstract>
           <p/>
-          <p>Editorial note:</p>
+          <p/>
         </abstract>
       </article-meta>
     </front>

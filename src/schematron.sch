@@ -682,7 +682,7 @@
         role="error" 
         id="test-article-body">Article must have one child body. Currently there are <value-of select="count(body)"/></assert>
 		
-      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article')) and count(back) != 1"
+      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1"
         role="error" 
         id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/></report>
 		
@@ -7351,8 +7351,12 @@
         id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       
       <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))"
+        role="warning" 
+        id="pre-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
+      
+      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))"
         role="error" 
-        id="res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
+        id="final-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
      
       <report test="(count(p) > 1) and ($subj = 'Research Article')"
         role="warning" 
