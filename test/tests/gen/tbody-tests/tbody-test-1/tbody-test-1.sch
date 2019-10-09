@@ -610,7 +610,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table/tbody" id="tbody-tests">
-      <report test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one tr.</report>
+      <report test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one row (tr).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

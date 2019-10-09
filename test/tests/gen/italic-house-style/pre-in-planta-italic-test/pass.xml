@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="in-planta-italic-test.sch"?>
+<!--Context: italic[not(ancestor::ref)]
+Test: report    matches(.,'[Ii]n [Pp]lanta')
+Message:  element contains 'in planta'  this should not be in italics (eLife house style).-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <italic/>
+  </article>
+</root>

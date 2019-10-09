@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="tr-test-1.sch"?>
 <!--Context: tr
 Test: report    $count = 0
-Message: tr must contain at least one th or td.-->
+Message: row (tr) must contain at least one heading cell (th) or data cell (td).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <tr/>

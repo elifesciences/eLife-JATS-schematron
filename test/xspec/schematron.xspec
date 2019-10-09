@@ -11671,164 +11671,324 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="italic-house-style">
-      <x:scenario label="et-al-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/et-al-italic-test/pass.xml"/>
-        <x:expect-not-report id="et-al-italic-test" role="warning"/>
+      <x:scenario label="pre-et-al-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-et-al-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-et-al-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="et-al-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/et-al-italic-test/fail.xml"/>
-        <x:expect-report id="et-al-italic-test" role="warning"/>
+      <x:scenario label="pre-et-al-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-et-al-italic-test/fail.xml"/>
+        <x:expect-report id="pre-et-al-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-vitro-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/in-vitro-italic-test/pass.xml"/>
-        <x:expect-not-report id="in-vitro-italic-test" role="warning"/>
+      <x:scenario label="final-et-al-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-et-al-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-et-al-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-vitro-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/in-vitro-italic-test/fail.xml"/>
-        <x:expect-report id="in-vitro-italic-test" role="warning"/>
+      <x:scenario label="final-et-al-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-et-al-italic-test/fail.xml"/>
+        <x:expect-report id="final-et-al-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-vivo-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/in-vivo-italic-test/pass.xml"/>
-        <x:expect-not-report id="in-vivo-italic-test" role="warning"/>
+      <x:scenario label="pre-in-vitro-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-vitro-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-vitro-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-vivo-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/in-vivo-italic-test/fail.xml"/>
-        <x:expect-report id="in-vivo-italic-test" role="warning"/>
+      <x:scenario label="pre-in-vitro-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-vitro-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-vitro-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ex-vivo-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/ex-vivo-italic-test/pass.xml"/>
-        <x:expect-not-report id="ex-vivo-italic-test" role="warning"/>
+      <x:scenario label="final-in-vitro-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-vitro-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-vitro-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ex-vivo-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/ex-vivo-italic-test/fail.xml"/>
-        <x:expect-report id="ex-vivo-italic-test" role="warning"/>
+      <x:scenario label="final-in-vitro-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-vitro-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-vitro-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="a-priori-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/a-priori-italic-test/pass.xml"/>
-        <x:expect-not-report id="a-priori-italic-test" role="warning"/>
+      <x:scenario label="pre-in-vivo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-vivo-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-vivo-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="a-priori-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/a-priori-italic-test/fail.xml"/>
-        <x:expect-report id="a-priori-italic-test" role="warning"/>
+      <x:scenario label="pre-in-vivo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-vivo-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-vivo-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="a-posteriori-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/a-posteriori-italic-test/pass.xml"/>
-        <x:expect-not-report id="a-posteriori-italic-test" role="warning"/>
+      <x:scenario label="final-in-vivo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-vivo-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-vivo-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="a-posteriori-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/a-posteriori-italic-test/fail.xml"/>
-        <x:expect-report id="a-posteriori-italic-test" role="warning"/>
+      <x:scenario label="final-in-vivo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-vivo-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-vivo-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="de-novo-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/de-novo-italic-test/pass.xml"/>
-        <x:expect-not-report id="de-novo-italic-test" role="warning"/>
+      <x:scenario label="pre-ex-vivo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-ex-vivo-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-ex-vivo-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="de-novo-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/de-novo-italic-test/fail.xml"/>
-        <x:expect-report id="de-novo-italic-test" role="warning"/>
+      <x:scenario label="pre-ex-vivo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-ex-vivo-italic-test/fail.xml"/>
+        <x:expect-report id="pre-ex-vivo-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-utero-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/in-utero-italic-test/pass.xml"/>
-        <x:expect-not-report id="in-utero-italic-test" role="warning"/>
+      <x:scenario label="final-ex-vivo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-ex-vivo-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-ex-vivo-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-utero-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/in-utero-italic-test/fail.xml"/>
-        <x:expect-report id="in-utero-italic-test" role="warning"/>
+      <x:scenario label="final-ex-vivo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-ex-vivo-italic-test/fail.xml"/>
+        <x:expect-report id="final-ex-vivo-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-natura-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/in-natura-italic-test/pass.xml"/>
-        <x:expect-not-report id="in-natura-italic-test" role="warning"/>
+      <x:scenario label="pre-a-priori-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-a-priori-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-a-priori-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-natura-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/in-natura-italic-test/fail.xml"/>
-        <x:expect-report id="in-natura-italic-test" role="warning"/>
+      <x:scenario label="pre-a-priori-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-a-priori-italic-test/fail.xml"/>
+        <x:expect-report id="pre-a-priori-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-situ-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/in-situ-italic-test/pass.xml"/>
-        <x:expect-not-report id="in-situ-italic-test" role="warning"/>
+      <x:scenario label="final-a-priori-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-a-priori-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-a-priori-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-situ-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/in-situ-italic-test/fail.xml"/>
-        <x:expect-report id="in-situ-italic-test" role="warning"/>
+      <x:scenario label="final-a-priori-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-a-priori-italic-test/fail.xml"/>
+        <x:expect-report id="final-a-priori-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-planta-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/in-planta-italic-test/pass.xml"/>
-        <x:expect-not-report id="in-planta-italic-test" role="warning"/>
+      <x:scenario label="pre-a-posteriori-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-a-posteriori-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-a-posteriori-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="in-planta-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/in-planta-italic-test/fail.xml"/>
-        <x:expect-report id="in-planta-italic-test" role="warning"/>
+      <x:scenario label="pre-a-posteriori-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-a-posteriori-italic-test/fail.xml"/>
+        <x:expect-report id="pre-a-posteriori-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="rete-mirabile-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/rete-mirabile-italic-test/pass.xml"/>
-        <x:expect-not-report id="rete-mirabile-italic-test" role="warning"/>
+      <x:scenario label="final-a-posteriori-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-a-posteriori-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-a-posteriori-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="rete-mirabile-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/rete-mirabile-italic-test/fail.xml"/>
-        <x:expect-report id="rete-mirabile-italic-test" role="warning"/>
+      <x:scenario label="final-a-posteriori-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-a-posteriori-italic-test/fail.xml"/>
+        <x:expect-report id="final-a-posteriori-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="nomen-novum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/nomen-novum-italic-test/pass.xml"/>
-        <x:expect-not-report id="nomen-novum-italic-test" role="warning"/>
+      <x:scenario label="pre-de-novo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-de-novo-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-de-novo-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="nomen-novum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/nomen-novum-italic-test/fail.xml"/>
-        <x:expect-report id="nomen-novum-italic-test" role="warning"/>
+      <x:scenario label="pre-de-novo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-de-novo-italic-test/fail.xml"/>
+        <x:expect-report id="pre-de-novo-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="sativum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/sativum-italic-test/pass.xml"/>
-        <x:expect-not-report id="sativum-italic-test" role="warning"/>
+      <x:scenario label="final-de-novo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-de-novo-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-de-novo-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="sativum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/sativum-italic-test/fail.xml"/>
-        <x:expect-report id="sativum-italic-test" role="warning"/>
+      <x:scenario label="final-de-novo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-de-novo-italic-test/fail.xml"/>
+        <x:expect-report id="final-de-novo-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="sensu-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/sensu-italic-test/pass.xml"/>
-        <x:expect-not-report id="sensu-italic-test" role="warning"/>
+      <x:scenario label="pre-in-utero-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-utero-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-utero-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="sensu-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/sensu-italic-test/fail.xml"/>
-        <x:expect-report id="sensu-italic-test" role="warning"/>
+      <x:scenario label="pre-in-utero-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-utero-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-utero-italic-test" role="error"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ad-libitum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/ad-libitum-italic-test/pass.xml"/>
-        <x:expect-not-report id="ad-libitum-italic-test" role="warning"/>
+      <x:scenario label="final-in-utero-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-utero-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-utero-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ad-libitum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/ad-libitum-italic-test/fail.xml"/>
-        <x:expect-report id="ad-libitum-italic-test" role="warning"/>
+      <x:scenario label="final-in-utero-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-utero-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-utero-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-natura-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-natura-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-natura-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-natura-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-natura-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-natura-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-natura-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-natura-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-natura-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-natura-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-natura-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-natura-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-situ-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-situ-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-situ-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-situ-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-situ-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-situ-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-situ-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-situ-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-situ-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-situ-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-situ-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-situ-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-planta-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-planta-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-planta-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-planta-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-planta-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-planta-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-planta-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-planta-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-planta-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-planta-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-planta-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-planta-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-rete-mirabile-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-rete-mirabile-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-rete-mirabile-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-rete-mirabile-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-rete-mirabile-italic-test/fail.xml"/>
+        <x:expect-report id="pre-rete-mirabile-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-rete-mirabile-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-rete-mirabile-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-rete-mirabile-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-rete-mirabile-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-rete-mirabile-italic-test/fail.xml"/>
+        <x:expect-report id="final-rete-mirabile-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-nomen-novum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-nomen-novum-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-nomen-novum-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-nomen-novum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-nomen-novum-italic-test/fail.xml"/>
+        <x:expect-report id="pre-nomen-novum-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-nomen-novum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-nomen-novum-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-nomen-novum-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-nomen-novum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-nomen-novum-italic-test/fail.xml"/>
+        <x:expect-report id="final-nomen-novum-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-sativum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-sativum-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-sativum-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-sativum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-sativum-italic-test/fail.xml"/>
+        <x:expect-report id="pre-sativum-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-sativum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-sativum-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-sativum-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-sativum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-sativum-italic-test/fail.xml"/>
+        <x:expect-report id="final-sativum-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-sensu-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-sensu-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-sensu-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-sensu-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-sensu-italic-test/fail.xml"/>
+        <x:expect-report id="pre-sensu-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-sensu-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-sensu-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-sensu-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-sensu-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-sensu-italic-test/fail.xml"/>
+        <x:expect-report id="final-sensu-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-ad-libitum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-ad-libitum-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-ad-libitum-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-ad-libitum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-ad-libitum-italic-test/fail.xml"/>
+        <x:expect-report id="pre-ad-libitum-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ad-libitum-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-ad-libitum-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-ad-libitum-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ad-libitum-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-ad-libitum-italic-test/fail.xml"/>
+        <x:expect-report id="final-ad-libitum-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

@@ -611,7 +611,7 @@
   <pattern id="content-containers">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/>
-      <report test="$count = 0" role="error" id="tr-test-1">tr must contain at least one th or td.</report>
+      <report test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
