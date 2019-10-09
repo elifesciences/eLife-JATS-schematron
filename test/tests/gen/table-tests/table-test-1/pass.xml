@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-test-1.sch"?>
 <!--Context: table
 Test: report    count(tbody) = 0
-Message: table must have at least one tbody.-->
+Message: table must have at least one body (tbody).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <xref ref-type="table" rid="table1"/>

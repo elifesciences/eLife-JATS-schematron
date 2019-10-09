@@ -610,7 +610,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table" id="table-tests">
-      <assert test="thead" role="warning" id="table-test-2">table doesn't have a thead. Is this correct?</assert>
+      <assert test="thead" role="warning" id="table-test-2">table doesn't have a header (thead). Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

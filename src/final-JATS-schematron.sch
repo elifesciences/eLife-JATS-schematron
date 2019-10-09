@@ -1799,28 +1799,28 @@
   <pattern id="table-tests-pattern">
     <rule context="table" id="table-tests">
       
-      <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one tbody.</report>
+      <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one body (tbody).</report>
       
-      <assert test="thead" role="warning" id="table-test-2">table doesn't have a thead. Is this correct?</assert>
+      <assert test="thead" role="warning" id="table-test-2">table doesn't have a header (thead). Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="tbody-tests-pattern">
     <rule context="table/tbody" id="tbody-tests">
       
-      <report test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one tr.</report>
+      <report test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one row (tr).</report>
     </rule>
   </pattern>
   <pattern id="thead-tests-pattern">
     <rule context="table/thead" id="thead-tests">
       
-      <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one tr.</report>
+      <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr).</report>
     </rule>
   </pattern>
   <pattern id="tr-tests-pattern">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       
-      <report test="$count = 0" role="error" id="tr-test-1">tr must contain at least one th or td.</report>
+      <report test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td).</report>
       
       <report test="th and (parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header), which is unusual. Please check that this is correct.</report>
       
@@ -5547,54 +5547,86 @@
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
-    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">
+    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">  
       
-      <report test="matches(.,'et al[\.]?')" role="warning" id="et-al-italic-test">
-        <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Ii]n [Vv]itro')" role="warning" id="in-vitro-italic-test">
-        <name/> element contains 'in vitro' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">
+        <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="in-vivo-italic-test">
-        <name/> element contains 'in vivo' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="ex-vivo-italic-test">
-        <name/> element contains 'ex vivo' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'[Ii]n [Vv]itro')" role="warning" id="final-in-vitro-italic-test">
+        <name/> element contains 'in vitro' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="a-priori-italic-test">
-        <name/> element contains 'a priori' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="a-posteriori-italic-test">
-        <name/> element contains 'a posteriori' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="final-in-vivo-italic-test">
+        <name/> element contains 'in vivo' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Dd]e [Nn]ovo')" role="warning" id="de-novo-italic-test">
-        <name/> element contains 'de novo' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Ii]n [Uu]tero')" role="warning" id="in-utero-italic-test">
-        <name/> element contains 'in utero' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="final-ex-vivo-italic-test">
+        <name/> element contains 'ex vivo' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Ii]n [Nn]atura')" role="warning" id="in-natura-italic-test">
-        <name/> element contains 'in natura' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Ii]n [Ss]itu')" role="warning" id="in-situ-italic-test">
-        <name/> element contains 'in situ' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="final-a-priori-italic-test">
+        <name/> element contains 'a priori' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Ii]n [Pp]lanta')" role="warning" id="in-planta-italic-test">
-        <name/> element contains 'in planta' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="rete-mirabile-italic-test">
-        <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="final-a-posteriori-italic-test">
+        <name/> element contains 'a posteriori' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Nn]omen [Nn]ovum')" role="warning" id="nomen-novum-italic-test">
-        <name/> element contains 'nomen novum' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Ss]ativum')" role="warning" id="sativum-italic-test">
-        <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>
+
+      <report test="matches(.,'[Dd]e [Nn]ovo')" role="warning" id="final-de-novo-italic-test">
+        <name/> element contains 'de novo' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Ss]ensu')" role="warning" id="sensu-italic-test">
-        <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>
       
-      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="ad-libitum-italic-test">
+
+      <report test="matches(.,'[Ii]n [Uu]tero')" role="warning" id="final-in-utero-italic-test">
+        <name/> element contains 'in utero' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Ii]n [Nn]atura')" role="warning" id="final-in-natura-italic-test">
+        <name/> element contains 'in natura' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Ii]n [Ss]itu')" role="warning" id="final-in-situ-italic-test">
+        <name/> element contains 'in situ' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Ii]n [Pp]lanta')" role="warning" id="final-in-planta-italic-test">
+        <name/> element contains 'in planta' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="final-rete-mirabile-italic-test">
+        <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Nn]omen [Nn]ovum')" role="warning" id="final-nomen-novum-italic-test">
+        <name/> element contains 'nomen novum' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Ss]ativum')" role="warning" id="final-sativum-italic-test">
+        <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Ss]ensu')" role="warning" id="final-sensu-italic-test">
+        <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>  
+      
+      
+
+      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="final-ad-libitum-italic-test">
         <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
