@@ -1096,7 +1096,7 @@
       	id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
       <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)"
-      	role="warning" 
+      	role="error" 
       	id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
 	  <assert test="matches(.,'^\p{Lu}')"

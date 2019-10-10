@@ -861,12 +861,12 @@
       </x:scenario>
       <x:scenario label="given-names-test-5-pass">
         <x:context href="../tests/gen/given-names-tests/given-names-test-5/pass.xml"/>
-        <x:expect-not-assert id="given-names-test-5" role="warning"/>
+        <x:expect-not-assert id="given-names-test-5" role="error"/>
         <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="given-names-test-5-fail">
         <x:context href="../tests/gen/given-names-tests/given-names-test-5/fail.xml"/>
-        <x:expect-assert id="given-names-test-5" role="warning"/>
+        <x:expect-assert id="given-names-test-5" role="error"/>
         <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="given-names-test-6-pass">
