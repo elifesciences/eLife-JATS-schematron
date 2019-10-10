@@ -860,7 +860,7 @@
 	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and matches(article-title,':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
+	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	  
 	  <report test="matches(article-title,' [Bb]ased ') and not(matches(article-title,' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
@@ -2628,6 +2628,20 @@
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
       
       <assert test="count(related-article) gt 0" role="error" id="related-articles-test-2">Insight must contain an article-reference link to the original article it is discussing.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="correction-test-pattern">
+    <rule context="article[@article-type='correction']//article-meta" id="correction-test">
+      
+      <assert test="count(related-article[@related-article-type='corrected-article']) gt 0" role="error" id="related-articles-test-8">Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="retraction-test-pattern">
+    <rule context="article[@article-type='retraction']//article-meta" id="retraction-test">
+      
+      <assert test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
       
     </rule>
   </pattern>
@@ -5536,9 +5550,9 @@
     <rule context="article/body//p[not(parent::list-item)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
-      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
@@ -5888,6 +5902,8 @@
       <assert test="descendant::sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)] must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" role="error" id="insight-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</assert>
+      <assert test="descendant::article[@article-type='correction']//article-meta" role="error" id="correction-test-xspec-assert">article[@article-type='correction']//article-meta must be present.</assert>
+      <assert test="descendant::article[@article-type='retraction']//article-meta" role="error" id="retraction-test-xspec-assert">article[@article-type='retraction']//article-meta must be present.</assert>
       <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
       <assert test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
       <assert test="descendant::element-citation/person-group" role="error" id="elem-citation-gen-name-3-1-xspec-assert">element-citation/person-group must be present.</assert>
