@@ -5256,6 +5256,30 @@
         <x:expect-not-assert id="insight-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="correction-test">
+      <x:scenario label="related-articles-test-8-pass">
+        <x:context href="../tests/gen/correction-test/related-articles-test-8/pass.xml"/>
+        <x:expect-not-assert id="related-articles-test-8" role="error"/>
+        <x:expect-not-assert id="correction-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-articles-test-8-fail">
+        <x:context href="../tests/gen/correction-test/related-articles-test-8/fail.xml"/>
+        <x:expect-assert id="related-articles-test-8" role="error"/>
+        <x:expect-not-assert id="correction-test-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="retraction-test">
+      <x:scenario label="related-articles-test-9-pass">
+        <x:context href="../tests/gen/retraction-test/related-articles-test-9/pass.xml"/>
+        <x:expect-not-assert id="related-articles-test-9" role="error"/>
+        <x:expect-not-assert id="retraction-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-articles-test-9-fail">
+        <x:context href="../tests/gen/retraction-test/related-articles-test-9/fail.xml"/>
+        <x:expect-assert id="related-articles-test-9" role="error"/>
+        <x:expect-not-assert id="retraction-test-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="related-articles-conformance">
       <x:scenario label="related-articles-test-3-pass">
         <x:context href="../tests/gen/related-articles-conformance/related-articles-test-3/pass.xml"/>
