@@ -610,7 +610,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group//name/given-names" id="given-names-tests">
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="warning" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
