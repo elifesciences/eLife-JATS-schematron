@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="fig-xref-test-13.sch"?>
+<!--Context: xref[@ref-type='fig']
+Test: report    matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')
+Message: Figure citation is followed by text which suggests it could be an incomplete citation  '. Is this OK?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    ...
+    <body>
+      <p>(<xref ref-type="fig" rid="fig5">Figures 5a, d and e</xref> for subjects 1, 2, and 3; <xref ref-type="fig" rid="fig5">Figure 5</xref> Supplement for subjects 4 and 5; <xref ref-type="table" rid="table2">Table 2</xref> for statistical results).</p>
+      <fig-group>
+        <fig id="fig5"/>
+        <fig id="fig5s1"/>
+      </fig-group>
+      <table-wrap id="table2"/>
+    </body>
+  </article>
+</root>

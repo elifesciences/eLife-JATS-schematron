@@ -8433,6 +8433,16 @@
         <x:expect-report id="fig-xref-test-12" role="error"/>
         <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-xref-test-13-pass">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-13/pass.xml"/>
+        <x:expect-not-report id="fig-xref-test-13" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-13-fail">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-13/fail.xml"/>
+        <x:expect-report id="fig-xref-test-13" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="table-xref-conformance">
       <x:scenario label="table-xref-conformity-1-pass">
