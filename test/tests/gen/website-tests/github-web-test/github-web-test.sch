@@ -611,7 +611,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link)"/>
-      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost be captured as a software ref (unless it's a blog post by GitHub).</report>
+      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

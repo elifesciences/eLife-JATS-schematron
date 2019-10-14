@@ -860,7 +860,7 @@
 	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and matches(article-title,':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
+	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	  
 	  <report test="matches(article-title,' [Bb]ased ') and not(matches(article-title,' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
@@ -1346,7 +1346,7 @@
       
       <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       
-      <report test="matches(.,'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
       <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
@@ -4152,7 +4152,7 @@
       
       <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</report>
       
-      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
+      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
       
       <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
@@ -5218,7 +5218,7 @@
       <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">
         <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
       
-      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>.</assert>
+      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
       <!-- Commented out until this is implemented
       <report test="($text = document($countries)/countries/country) and not(@country = $valid-country/@country)" 
         role="warning" 
@@ -5321,7 +5321,7 @@
       <report test="matches(.,'\.$') and matches(.,'\.\.$')" role="warning" id="article-title-fullstop-check-3">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction' or 'Retraction'. Is this a reference to the notice or the original article?</report>
+      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or 'Erratum'. Is this a reference to the notice or the original article?</report>
       
       <report test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal title (source) erroneously included in the title? - '<value-of select="."/>'</report>
       
@@ -5370,7 +5370,7 @@
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link)"/>
       
-      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost be captured as a software ref (unless it's a blog post by GitHub).</report>
+      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
       
       <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>

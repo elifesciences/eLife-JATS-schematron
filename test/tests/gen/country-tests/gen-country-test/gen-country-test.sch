@@ -614,7 +614,7 @@
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff//named-content[@content-type='city']"/>
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
-      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>.</assert>
+      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
