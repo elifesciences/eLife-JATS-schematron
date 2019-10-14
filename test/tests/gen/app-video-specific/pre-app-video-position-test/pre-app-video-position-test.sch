@@ -608,15 +608,19 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
-      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">
-        <value-of select="label"/> is figure level source data, but contains a link to a figure supplement - should it be figure supplement source data?</report>
+  <pattern id="video-tests">
+    <rule context="app//media[@mimetype='video']" id="app-video-specific">
+      <let name="app-id" value="ancestor::app/@id"/>
+      <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      <assert test="$no = string($pos)" role="warning" id="pre-app-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" role="error" id="source-data-specific-tests-xspec-assert">supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</assert>
+      <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

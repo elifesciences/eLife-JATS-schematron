@@ -608,15 +608,15 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
-      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">
-        <value-of select="label"/> is figure level source data, but contains a link to a figure supplement - should it be figure supplement source data?</report>
+  <pattern id="id-conformance">
+    <rule context="app" id="app-ids">
+      <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
+      <assert test="matches(@id,'^app[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'app0'. <value-of select="@id"/> is not in this format.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" role="error" id="source-data-specific-tests-xspec-assert">supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</assert>
+      <assert test="descendant::app" role="error" id="app-ids-xspec-assert">app must be present.</assert>
     </rule>
   </pattern>
 </schema>

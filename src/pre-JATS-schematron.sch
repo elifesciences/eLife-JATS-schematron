@@ -1620,7 +1620,7 @@
       
       <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="error" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
-      <report test="matches(label,'^Animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
+      <report test="matches(label,'^Animation [0-9]{1,3}|^Appendix \d{1,4}—animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
       
       <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
@@ -1661,7 +1661,7 @@
       
       <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>		
       
-      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
+      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
       
       <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
@@ -1672,7 +1672,7 @@
   <pattern id="source-data-specific-tests-pattern">
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
-      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">
+      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">
         <value-of select="label"/> is figure level source data, but contains a link to a figure supplement - should it be figure supplement source data?</report>
       
     </rule>
@@ -1934,6 +1934,19 @@
       
       <report test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">
         <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="app-video-specific-pattern">
+    <rule context="app//media[@mimetype='video']" id="app-video-specific">
+      <let name="app-id" value="ancestor::app/@id"/>
+      <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" role="warning" id="pre-app-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      
       
     </rule>
   </pattern>
@@ -2427,6 +2440,15 @@
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
       
       <assert test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="app-ids-pattern">
+    <rule context="app" id="app-ids">
+      <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
+      
+      <assert test="matches(@id,'^app[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'app0'. <value-of select="@id"/> is not in this format.</assert>
+      
+      <assert test="substring-after(@id,'app') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   
@@ -4408,7 +4430,7 @@
       
       <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
-      <report test="(.=$cite1) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and (($open - $close) lt 1) and not(matches($post-sentence,'^\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
+      <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
       
     </rule>
   </pattern>
