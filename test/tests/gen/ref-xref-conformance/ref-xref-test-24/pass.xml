@@ -1,34 +1,24 @@
 <?oxygen SCHSchema="ref-xref-test-24.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: report    (.=$cite1) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and (($open - $close) lt 1) and not(matches($post-sentence,'^\)'))
+Test: report    (.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\)'))
 Message: citation is surrounded by square brackets, do the square brackets need removing?  ''  it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>
       <sec>
-        <p>Previous work has suggested that active Ras can inhibit differentiation (when overexpressed in the epidermis [<xref ref-type="bibr" rid="bib3">Dajee et al., 2002</xref>]). However, this has not been examined either in the adult</p>
+        <p>described previously, (AF15561 E2 K200R [<xref ref-type="bibr" rid="bib1">Hawman et al., 2017</xref>]; T48-DC5692 E1/6K [RR73] [<xref ref-type="bibr" rid="bib2">Jupille et al., 2011</xref>], T48-DC5692 E2/E3 [RR100] [<xref ref-type="bibr" rid="bib3">Jupille et al., 2011</xref>], and T48 E2 R251K [<xref ref-type="bibr" rid="bib4">Jupille et al., 2013</xref>])</p>
       </sec>
     </body>
     <back>
       <ref-list>
+        <ref id="bib1">
+          <element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hawman</surname> <given-names>DW</given-names></name><name><surname>Carpentier</surname> <given-names>KS</given-names></name><name><surname>Fox</surname> <given-names>JM</given-names></name><name><surname>May</surname> <given-names>NA</given-names></name><name><surname>Sanders</surname> <given-names>W</given-names></name><name><surname>Montgomery</surname> <given-names>SA</given-names></name><name><surname>Moorman</surname> <given-names>NJ</given-names></name><name><surname>Diamond</surname> <given-names>MS</given-names></name><name><surname>Morrison</surname> <given-names>TE</given-names></name></person-group><year iso-8601-date="2017">2017</year><article-title>Mutations in the E2 glycoprotein and the 3′ Untranslated Region Enhance Chikungunya Virus Virulence in Mice</article-title><source>Journal of Virology</source><volume>91</volume><elocation-id>32</elocation-id><pub-id pub-id-type="doi">10.1128/JVI.00816-17</pub-id></element-citation>
+        </ref>
+        <ref id="bib2">
+          <element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Jupille</surname> <given-names>HJ</given-names></name><name><surname>Oko</surname> <given-names>L</given-names></name><name><surname>Stoermer</surname> <given-names>KA</given-names></name><name><surname>Heise</surname> <given-names>MT</given-names></name><name><surname>Mahalingam</surname> <given-names>S</given-names></name><name><surname>Gunn</surname> <given-names>BM</given-names></name><name><surname>Morrison</surname> <given-names>TE</given-names></name></person-group><year iso-8601-date="2011">2011</year><article-title>Mutations in nsP1 and PE2 are critical determinants of ross river virus-induced musculoskeletal inflammatory disease in a mouse model</article-title><source>Virology</source><volume>410</volume><fpage>216</fpage><lpage>227</lpage><pub-id pub-id-type="doi">10.1016/j.virol.2010.11.012</pub-id></element-citation>
+        </ref>
         <ref id="bib3">
-          <element-citation publication-type="journal">
-            <person-group person-group-type="author">
-              <name><surname>Dajee</surname> <given-names>M</given-names></name>
-              <name><surname>Tarutani</surname> <given-names>M</given-names></name>
-              <name><surname>Deng</surname> <given-names>H</given-names></name>
-              <name><surname>Cai</surname> <given-names>T</given-names></name>
-              <name><surname>Khavari</surname> <given-names>PA</given-names></name>
-            </person-group>
-            <year iso-8601-date="2002">2002</year>
-            <article-title>Epidermal ras blockade demonstrates spatially localized ras promotion of proliferation and inhibition of differentiation</article-title>
-            <source>Oncogene</source>
-            <volume>21</volume>
-            <fpage>1527</fpage>
-            <lpage>1538</lpage>
-            <pub-id pub-id-type="doi">10.1038/sj.onc.1205287</pub-id>
-            <pub-id pub-id-type="pmid">11896581</pub-id>
-          </element-citation>
+          <element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Jupille</surname> <given-names>HJ</given-names></name><name><surname>Medina-Rivera</surname> <given-names>M</given-names></name><name><surname>Hawman</surname> <given-names>DW</given-names></name><name><surname>Oko</surname> <given-names>L</given-names></name><name><surname>Morrison</surname> <given-names>TE</given-names></name></person-group><year iso-8601-date="2013">2013</year><article-title>A tyrosine-to-histidine switch at position 18 of the ross river virus E2 glycoprotein is a determinant of virus fitness in disparate hosts</article-title><source>Journal of Virology</source><volume>87</volume><fpage>5970</fpage><lpage>5984</lpage><pub-id pub-id-type="doi">10.1128/JVI.03326-12</pub-id><pub-id pub-id-type="pmid">23514884</pub-id></element-citation>
         </ref>
       </ref-list>
     </back>

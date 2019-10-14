@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="final-app-video-position-test.sch"?>
+<!--Context: app//media[@mimetype='video']
+Test: assert    $no = string($pos)
+Message:  does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app id="app1">
+        <media mimetype="video" id="app1video2"/>
+        <media mimetype="video" id="app1video1"/>
+      </app>
+      <app id="app2">
+        <media mimetype="video" id="app2video1"/>
+      </app>
+    </back>
+  </article>
+</root>

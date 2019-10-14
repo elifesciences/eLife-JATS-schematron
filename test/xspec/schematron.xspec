@@ -3706,6 +3706,28 @@
         <x:expect-not-assert id="body-video-specific-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="app-video-specific">
+      <x:scenario label="pre-app-video-position-test-pass">
+        <x:context href="../tests/gen/app-video-specific/pre-app-video-position-test/pass.xml"/>
+        <x:expect-not-assert id="pre-app-video-position-test" role="warning"/>
+        <x:expect-not-assert id="app-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-app-video-position-test-fail">
+        <x:context href="../tests/gen/app-video-specific/pre-app-video-position-test/fail.xml"/>
+        <x:expect-assert id="pre-app-video-position-test" role="warning"/>
+        <x:expect-not-assert id="app-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-app-video-position-test-pass">
+        <x:context href="../tests/gen/app-video-specific/final-app-video-position-test/pass.xml"/>
+        <x:expect-not-assert id="final-app-video-position-test" role="error"/>
+        <x:expect-not-assert id="app-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-app-video-position-test-fail">
+        <x:context href="../tests/gen/app-video-specific/final-app-video-position-test/fail.xml"/>
+        <x:expect-assert id="final-app-video-position-test" role="error"/>
+        <x:expect-not-assert id="app-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ar-video-specific">
       <x:scenario label="pre-ar-video-position-test-pass">
         <x:context href="../tests/gen/ar-video-specific/pre-ar-video-position-test/pass.xml"/>
@@ -4780,6 +4802,28 @@
         <x:context href="../tests/gen/low-level-sec-ids/low-level-sec-id-test/fail.xml"/>
         <x:expect-assert id="low-level-sec-id-test" role="error"/>
         <x:expect-not-assert id="low-level-sec-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="app-ids">
+      <x:scenario label="app-id-test-1-pass">
+        <x:context href="../tests/gen/app-ids/app-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="app-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-id-test-1-fail">
+        <x:context href="../tests/gen/app-ids/app-id-test-1/fail.xml"/>
+        <x:expect-assert id="app-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-id-test-2-pass">
+        <x:context href="../tests/gen/app-ids/app-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="app-id-test-2" role="error"/>
+        <x:expect-not-assert id="app-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-id-test-2-fail">
+        <x:context href="../tests/gen/app-ids/app-id-test-2/fail.xml"/>
+        <x:expect-assert id="app-id-test-2" role="error"/>
+        <x:expect-not-assert id="app-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="sec-tests">
