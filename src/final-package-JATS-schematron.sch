@@ -1533,6 +1533,10 @@
       <report test="$parent = $formatting-elems" role="warning" id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
       
       <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      
+      <report test="$child != $formatting-elems" role="error" id="ext-link-child-test-2">xref - <value-of select="."/> - has a non-formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      
+      <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">xref - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="fig-group-tests-pattern">
