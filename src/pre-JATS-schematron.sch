@@ -1903,7 +1903,7 @@
       <let name="cap-xref1" value="ancestor::article/descendant::xref[(@rid = $id) and (ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       
-      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-video-cite">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation.</assert>
+      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-video-cite">There is no citation to <value-of select="label"/> Ensure to query the author asking for a citation, or check that there is a citation in the style 'Videos 1-3'.</assert>
       
       
       
@@ -2450,9 +2450,9 @@
     <rule context="app" id="app-ids">
       <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
       
-      <assert test="matches(@id,'^app[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'app0'. <value-of select="@id"/> is not in this format.</assert>
+      <assert test="matches(@id,'^appendix-[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'appendix-0'. <value-of select="@id"/> is not in this format.</assert>
       
-      <assert test="substring-after(@id,'app') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
+      <assert test="substring-after(@id,'appendix-') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   
