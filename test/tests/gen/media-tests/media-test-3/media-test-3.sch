@@ -611,6 +611,7 @@
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
+      <let name="link" value="@xlink:href"/>
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
     </rule>
   </pattern>

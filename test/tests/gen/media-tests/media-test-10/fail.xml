@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="media-test-10.sch"?>
+<!--Context: media
+Test: report    preceding::media/@xlink:href = $link
+Message: Media file for  () is the same as the one used for .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <media mimetype="video" xlink:href="video1.avi">
+        <label>Video 1.</label>
+      </media>
+      <media mimetype="video" xlink:href="video1.avi">
+        <label>Video 2.</label>
+      </media>
+      <media mimetype="video" xlink:href="video3.avi">
+        <label>Video 3.</label>
+      </media>
+    </body>
+    <back>
+      <supplementary-material>
+        <label>Supplementary file 1.</label>
+        <media mimetype="application" xlink:href="video3.avi">
+        </media>
+      </supplementary-material>
+      <supplementary-material>
+        <label>Supplementary file 2.</label>
+        <media mimetype="application" xlink:href="video4.avi">
+        </media>
+      </supplementary-material>
+      <supplementary-material>
+        <label>Supplementary file 3.</label>
+        <media mimetype="application" xlink:href="video4.avi">
+        </media>
+      </supplementary-material>
+    </back>
+  </article>
+</root>

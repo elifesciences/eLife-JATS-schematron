@@ -610,7 +610,6 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <let name="author-count" value="count(parent::article-meta//contrib[@contrib-type='author'])"/>
       <assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
     </rule>
   </pattern>

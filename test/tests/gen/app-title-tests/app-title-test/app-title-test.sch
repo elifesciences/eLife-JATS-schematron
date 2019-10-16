@@ -610,7 +610,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="app/title" id="app-title-tests">
-      <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="warning" id="app-title-test">app title should usually be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
+      <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="error" id="app-title-test">app title must be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

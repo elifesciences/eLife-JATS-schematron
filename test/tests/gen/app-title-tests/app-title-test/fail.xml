@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-title-test.sch"?>
 <!--Context: app/title
 Test: assert    matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')
-Message: app title should usually be in the format 'Appendix 1'. Currently it is ''.-->
+Message: app title must be in the format 'Appendix 1'. Currently it is ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>
