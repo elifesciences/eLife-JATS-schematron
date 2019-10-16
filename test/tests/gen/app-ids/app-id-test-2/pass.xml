@@ -1,15 +1,15 @@
 <?oxygen SCHSchema="app-id-test-2.sch"?>
 <!--Context: app
-Test: assert    substring-after(@id,'app') = $pos
+Test: assert    substring-after(@id,'appendix-') = $pos
 Message: app id is , but relative to other appendices it is in position .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>
       <app-group>
-        <app id="app1"/>
-        <app id="app2"/>
+        <app id="appendix-1"/>
+        <app id="appendix-2"/>
       </app-group>
-      <app id="app3"/>
+      <app id="appendix-3"/>
     </back>
   </article>
 </root>

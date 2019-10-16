@@ -3645,12 +3645,12 @@
       </x:scenario>
       <x:scenario label="final-video-cite-pass">
         <x:context href="../tests/gen/general-video/final-video-cite/pass.xml"/>
-        <x:expect-not-assert id="final-video-cite" role="error"/>
+        <x:expect-not-assert id="final-video-cite" role="warning"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-video-cite-fail">
         <x:context href="../tests/gen/general-video/final-video-cite/fail.xml"/>
-        <x:expect-assert id="final-video-cite" role="error"/>
+        <x:expect-assert id="final-video-cite" role="warning"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="video-placement-1-pass">

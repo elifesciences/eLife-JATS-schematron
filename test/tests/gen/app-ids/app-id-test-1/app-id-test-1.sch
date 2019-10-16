@@ -611,7 +611,7 @@
   <pattern id="id-conformance">
     <rule context="app" id="app-ids">
       <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
-      <assert test="matches(@id,'^app[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'app0'. <value-of select="@id"/> is not in this format.</assert>
+      <assert test="matches(@id,'^appendix-[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'appendix-0'. <value-of select="@id"/> is not in this format.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

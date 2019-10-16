@@ -614,7 +614,7 @@
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="cap-xref1" value="ancestor::article/descendant::xref[(@rid = $id) and (ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-video-cite">There is no citation to <value-of select="label"/> Ensure this is added.</assert>
+      <assert test="ancestor::article//xref[@rid = $id]" role="warning" id="final-video-cite">There is no citation to <value-of select="label"/> Ensure this is added, or check that there is a citation in the style 'Videos 1-3'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

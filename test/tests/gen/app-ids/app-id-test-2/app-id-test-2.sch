@@ -611,7 +611,7 @@
   <pattern id="id-conformance">
     <rule context="app" id="app-ids">
       <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
-      <assert test="substring-after(@id,'app') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
+      <assert test="substring-after(@id,'appendix-') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
