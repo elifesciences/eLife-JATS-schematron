@@ -609,14 +609,16 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="graphic" id="graphic-tests">
-      <let name="file" value="lower-case(@xlink:href)"/>
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">graphic must have an @xlink:href which contains a file reference.</assert>
+    <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="link" value="@xlink:href"/>
+      <let name="file" value="lower-case($link)"/>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
+        <name/> must have an @xlink:href which contains a file reference.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::graphic" role="error" id="graphic-tests-xspec-assert">graphic must be present.</assert>
+      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-tests-xspec-assert">graphic|inline-graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>

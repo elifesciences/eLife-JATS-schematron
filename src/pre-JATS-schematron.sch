@@ -1597,19 +1597,27 @@
     </rule>
   </pattern>
   <pattern id="graphic-tests-pattern">
-    <rule context="graphic" id="graphic-tests">
-      <let name="file" value="lower-case(@xlink:href)"/>
+    <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="link" value="@xlink:href"/>
+      <let name="file" value="lower-case($link)"/>
       
-      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">graphic has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">
+        <name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">graphic has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">
+        <name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">graphic has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">
+        <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
-      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">graphic must have a @mimetype='image'.</assert>
+      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">
+        <name/> must have a @mimetype='image'.</assert>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">graphic must have an @xlink:href which contains a file reference.</assert>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
+        <name/> must have an @xlink:href which contains a file reference.</assert>
+      
+      <report test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
     </rule>
   </pattern>
   <pattern id="media-tests-pattern">

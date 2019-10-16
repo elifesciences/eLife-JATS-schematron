@@ -609,14 +609,16 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="graphic" id="graphic-tests">
-      <let name="file" value="lower-case(@xlink:href)"/>
-      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">graphic has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
+    <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="link" value="@xlink:href"/>
+      <let name="file" value="lower-case($link)"/>
+      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">
+        <name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::graphic" role="error" id="graphic-tests-xspec-assert">graphic must be present.</assert>
+      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-tests-xspec-assert">graphic|inline-graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>
