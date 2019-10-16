@@ -612,8 +612,7 @@
     <rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">
-        <name/> must have a @mimetype='image'.</assert>
+      <report test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
