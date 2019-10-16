@@ -6,9 +6,9 @@ Message: app id must be in the format 'appendix0'.  is not in this format.-->
   <article>
     <back>
       <app-group>
-        <app id="app1"/>
-        <app id="app2"/>
-        <app id="app3"/>
+        <app id="appendix-1"/>
+        <app id="appendix-2"/>
+        <app id="appendix-3"/>
       </app-group>
     </back>
   </article>

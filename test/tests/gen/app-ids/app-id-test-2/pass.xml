@@ -6,10 +6,10 @@ Message: app id is , but relative to other appendices it is in position .-->
   <article>
     <back>
       <app-group>
-        <app id="app1"/>
-        <app id="app2"/>
+        <app id="appendix-1"/>
+        <app id="appendix-2"/>
       </app-group>
-      <app id="app3"/>
+      <app id="appendix-3"/>
     </back>
   </article>
 </root>
