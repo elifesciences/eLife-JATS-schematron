@@ -610,8 +610,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <let name="author-count" value="count(parent::article-meta//contrib[@contrib-type='author'])"/>
-      <report test="if (count(award-group) = 0) then                     if ($author-count = 1) then funding-statement != 'The author declares that there was no funding for this work.'                     else if ($author-count gt 1) then funding-statement != 'The authors declare that there was no funding for this work.'                    else ()                  else ()" role="warning" id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'The author[s] declare[s] that there was no funding for this work.'</report>
+      <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'The author[s] declare[s] that there was no funding for this work.'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

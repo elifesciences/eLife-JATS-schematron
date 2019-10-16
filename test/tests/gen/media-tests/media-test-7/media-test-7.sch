@@ -611,6 +611,7 @@
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
+      <let name="link" value="@xlink:href"/>
       <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
     </rule>
   </pattern>

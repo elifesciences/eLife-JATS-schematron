@@ -610,7 +610,6 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <let name="author-count" value="count(parent::article-meta//contrib[@contrib-type='author'])"/>
       <report test="count(award-group) = 0" role="warning" id="funding-group-test-2">funding-group contains no award-groups. Is this correct? Please check with eLife staff.</report>
     </rule>
   </pattern>

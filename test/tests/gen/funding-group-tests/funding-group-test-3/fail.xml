@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="funding-group-test-3.sch"?>
 <!--Context: article-meta/funding-group
-Test: report    if (count(award-group) = 0) then if ($author-count = 1) then funding-statement != 'The author declares that there was no funding for this work.' else if ($author-count gt 1) then funding-statement != 'The authors declare that there was no funding for this work.' else () else ()
+Test: report    (count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')
 Message: Is fundingstatement this correct? Please check with eLife staff. Usually it should be 'The author[s] declare[s] that there was no funding for this work.'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
@@ -11,7 +11,7 @@ Message: Is fundingstatement this correct? Please check with eLife staff. Usuall
           <contrib contrib-type="author"/>
         </contrib-group>
         <funding-group>
-          <funding-statement>The author declares that there was no funding for this work.</funding-statement>
+          <funding-statement>The authors declare that there was no funding for this work.</funding-statement>
         </funding-group>
       </article-meta>
     </front>

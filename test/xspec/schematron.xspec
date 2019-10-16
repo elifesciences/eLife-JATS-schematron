@@ -2895,6 +2895,16 @@
         <x:expect-report id="media-test-9" role="error"/>
         <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="media-test-10-pass">
+        <x:context href="../tests/gen/media-tests/media-test-10/pass.xml"/>
+        <x:expect-not-report id="media-test-10" role="error"/>
+        <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-10-fail">
+        <x:context href="../tests/gen/media-tests/media-test-10/fail.xml"/>
+        <x:expect-report id="media-test-10" role="error"/>
+        <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="video-test">
       <x:scenario label="pre-video-title-pass">
@@ -4365,12 +4375,12 @@
     <x:scenario label="app-title-tests">
       <x:scenario label="app-title-test-pass">
         <x:context href="../tests/gen/app-title-tests/app-title-test/pass.xml"/>
-        <x:expect-not-assert id="app-title-test" role="warning"/>
+        <x:expect-not-assert id="app-title-test" role="error"/>
         <x:expect-not-assert id="app-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="app-title-test-fail">
         <x:context href="../tests/gen/app-title-tests/app-title-test/fail.xml"/>
-        <x:expect-assert id="app-title-test" role="warning"/>
+        <x:expect-assert id="app-title-test" role="error"/>
         <x:expect-not-assert id="app-title-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

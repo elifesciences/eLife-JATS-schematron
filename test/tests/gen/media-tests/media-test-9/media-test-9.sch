@@ -611,6 +611,7 @@
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
+      <let name="link" value="@xlink:href"/>
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
     </rule>
   </pattern>

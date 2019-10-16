@@ -1562,7 +1562,6 @@
     
 	<rule context="article-meta/funding-group" 
 		id="funding-group-tests">
-	  <let name="author-count" value="count(parent::article-meta//contrib[@contrib-type='author'])"/>
 		
 		<assert test="count(funding-statement) = 1"
 	  	role="error" 
@@ -1572,11 +1571,7 @@
 	  	role="warning" 
 	  	id="funding-group-test-2">funding-group contains no award-groups. Is this correct? Please check with eLife staff.</report>
 		
-	  <report test="if (count(award-group) = 0) then
-	                   if ($author-count = 1) then funding-statement != 'The author declares that there was no funding for this work.'
-	                   else if ($author-count gt 1) then funding-statement != 'The authors declare that there was no funding for this work.'
-		                 else ()
-		               else ()"
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')"
 	  	role="warning" 
 	  	id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'The author[s] declare[s] that there was no funding for this work.'</report>
 		
@@ -2175,6 +2170,7 @@
     <rule context="media" 
       id="media-tests">
       <let name="file" value="@mime-subtype"/>
+      <let name="link" value="@xlink:href"/>
       
       <assert test="@mimetype=('video','application','text','image', 'audio')" 
         role="error"
@@ -2225,6 +2221,11 @@
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')"
         role="error"
         id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
+      
+      <report test="preceding::media/@xlink:href = $link" 
+        role="error"
+        id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')
+          else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
     </rule>
     
     <rule context="media[child::label]" 
@@ -3100,8 +3101,8 @@
       id="app-title-tests">
       
       <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')"
-        role="warning"
-        id="app-title-test">app title should usually be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
+        role="error"
+        id="app-title-test">app title must be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
       
     </rule>
     
