@@ -23,10 +23,10 @@
       <xsl:when test="contains($s,'-')">
         <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('and','or','the','an','of')">
+      <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna')">
+      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -556,6 +556,12 @@
       <xsl:when test="matches($s,'mytilus\s?trossulus')">
         <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'u\.\s?maydis')">
+        <xsl:value-of select="'U. maydis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'ustilago\s?maydis')">
+        <xsl:value-of select="'Ustilago maydis'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -612,7 +618,7 @@
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
+      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

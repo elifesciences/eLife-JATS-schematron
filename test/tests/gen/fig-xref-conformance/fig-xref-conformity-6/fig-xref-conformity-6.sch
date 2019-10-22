@@ -23,10 +23,10 @@
       <xsl:when test="contains($s,'-')">
         <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('and','or','the','an','of')">
+      <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna')">
+      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -556,6 +556,12 @@
       <xsl:when test="matches($s,'mytilus\s?trossulus')">
         <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'u\.\s?maydis')">
+        <xsl:value-of select="'U. maydis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'ustilago\s?maydis')">
+        <xsl:value-of select="'Ustilago maydis'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -616,7 +622,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
+      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
