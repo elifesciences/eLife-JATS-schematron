@@ -3011,9 +3011,9 @@
         role="warning"
         id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" 
+      <assert test="matches(.,'\.$|\?$')" 
         role="error"
-        id="fig-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+        id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
       <report test="matches(.,' vs\.$')" 
         role="warning"
@@ -3038,7 +3038,7 @@
       
       <assert test="matches(.,'\.$')" 
         role="error"
-        id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+        id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
       <report test="matches(.,' vs\.$')" 
         role="warning"
@@ -3057,9 +3057,9 @@
         role="warning"
         id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" 
+      <assert test="matches(.,'\.$|\?$')" 
         role="error"
-        id="video-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+        id="video-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
       <report test="matches(.,' vs\.$')" 
         role="warning"

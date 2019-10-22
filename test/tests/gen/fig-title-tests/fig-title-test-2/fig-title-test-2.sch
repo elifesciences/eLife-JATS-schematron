@@ -617,7 +617,7 @@
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label"/>
-      <assert test="matches(.,'\.$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
