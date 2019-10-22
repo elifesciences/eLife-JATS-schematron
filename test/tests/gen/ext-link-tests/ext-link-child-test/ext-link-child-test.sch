@@ -23,10 +23,10 @@
       <xsl:when test="contains($s,'-')">
         <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('and','or','the','an','of')">
+      <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna')">
+      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -556,6 +556,12 @@
       <xsl:when test="matches($s,'mytilus\s?trossulus')">
         <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'u\.\s?maydis')">
+        <xsl:value-of select="'U. maydis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'ustilago\s?maydis')">
+        <xsl:value-of select="'Ustilago maydis'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -613,7 +619,7 @@
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
-      <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-xref-conformity-6.sch"?>
 <!--Context: xref[@ref-type='fig']
-Test: report    ($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))
+Test: report    ($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))
 Message: figure citation contains the text  but links to a figure supplement with the id  which cannot be correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>

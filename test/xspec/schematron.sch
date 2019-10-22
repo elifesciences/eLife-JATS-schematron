@@ -34,10 +34,10 @@
       <xsl:when test="contains($s,'-')">
         <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('and','or','the','an','of')">
+      <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna')">
+      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -578,6 +578,12 @@
       </xsl:when>
       <xsl:when test="matches($s,'mytilus\s?trossulus')">
         <xsl:value-of select="'Mytilus trossulus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'u\.\s?maydis')">
+        <xsl:value-of select="'U. maydis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'ustilago\s?maydis')">
+        <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
@@ -1525,11 +1531,11 @@
       
       <report test="$parent = $formatting-elems" role="warning" id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
       
-      <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      <report test="$child = $formatting-elems" role="error" id="ext-link-child-test">ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
       
-      <report test="$child != $formatting-elems" role="error" id="ext-link-child-test-2">xref - <value-of select="."/> - has a non-formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      <report test="$child != $formatting-elems" role="error" id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$child"/> - which is not correct.</report>
       
-      <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">xref - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
+      <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="fig-group-tests-pattern">
@@ -1637,7 +1643,7 @@
       
       <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
-      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
+      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
       
       <report test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
       
@@ -2181,7 +2187,7 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
       <report test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
@@ -2197,7 +2203,7 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
       <report test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
@@ -2210,7 +2216,7 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
       <report test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
@@ -4525,7 +4531,7 @@
       
       <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" role="warning" id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no,2)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
+      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -4850,6 +4856,12 @@
       <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-ref-article-title-check">
         <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-ref-article-title-check">
+        <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-ref-article-title-check">
+        <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="info" id="drerio-ref-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -5132,6 +5144,12 @@
       
       <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-article-title-check">
         <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-article-title-check">
+        <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-article-title-check">
+        <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -5591,7 +5609,7 @@
       
       <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|”\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">

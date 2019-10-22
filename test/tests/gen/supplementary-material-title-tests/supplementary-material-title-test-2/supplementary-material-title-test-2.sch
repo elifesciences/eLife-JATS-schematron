@@ -23,10 +23,10 @@
       <xsl:when test="contains($s,'-')">
         <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('and','or','the','an','of')">
+      <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna')">
+      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -556,6 +556,12 @@
       <xsl:when test="matches($s,'mytilus\s?trossulus')">
         <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'u\.\s?maydis')">
+        <xsl:value-of select="'U. maydis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'ustilago\s?maydis')">
+        <xsl:value-of select="'Ustilago maydis'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -611,7 +617,7 @@
   <pattern id="title-conformance">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label"/>
-      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a fullstop.</assert>
+      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
