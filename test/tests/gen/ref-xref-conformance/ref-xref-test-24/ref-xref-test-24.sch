@@ -562,6 +562,12 @@
       <xsl:when test="matches($s,'ustilago\s?maydis')">
         <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?knowlesi')">
+        <xsl:value-of select="'P. knowlesi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
+        <xsl:value-of select="'Plasmodium knowlesi'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -627,7 +633,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
+      <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\]\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

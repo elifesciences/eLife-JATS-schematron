@@ -562,6 +562,12 @@
       <xsl:when test="matches($s,'ustilago\s?maydis')">
         <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?knowlesi')">
+        <xsl:value-of select="'P. knowlesi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
+        <xsl:value-of select="'Plasmodium knowlesi'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -617,7 +623,7 @@
   <pattern id="house-style">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
       <let name="label" value="replace(label,'\.','')"/>
-      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
