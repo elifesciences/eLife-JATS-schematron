@@ -562,6 +562,12 @@
       <xsl:when test="matches($s,'ustilago\s?maydis')">
         <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?knowlesi')">
+        <xsl:value-of select="'P. knowlesi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
+        <xsl:value-of select="'Plasmodium knowlesi'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -618,7 +624,7 @@
     <rule context="element-citation[@publication-type='periodical']/string-date/year" id="elem-citation-periodical-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
-      <assert test="(1700 le number($YYYY)) and (number($YYYY) le $current-year)" role="error" id="err-elem-cit-periodical-7-4-2">[err-elem-cit-periodical-7-4-2]
+      <assert test="(1700 le number($YYYY)) and (number($YYYY) le $current-year)" role="warning" id="err-elem-cit-periodical-7-4-2">[err-elem-cit-periodical-7-4-2]
         The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year (inclusive).
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value '<value-of select="."/>'.

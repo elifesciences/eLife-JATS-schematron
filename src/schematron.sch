@@ -604,6 +604,12 @@
       <xsl:when test="matches($s,'ustilago\s?maydis')">
         <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?knowlesi')">
+        <xsl:value-of select="'P. knowlesi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
+        <xsl:value-of select="'Plasmodium knowlesi'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -3842,7 +3848,7 @@
         the value '<value-of select="."/>'.
       </assert>
       
-      <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="error" id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
+      <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
         The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive).
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value '<value-of select="."/>'.
@@ -3853,7 +3859,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not.
       </assert>
       
-      <assert test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" role="error" id="err-elem-cit-gen-date-1-4">[err-elem-cit-gen-date-1-4]
+      <assert test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-4">[err-elem-cit-gen-date-1-4]
         The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 
         1700 and the current year + 5 years (inclusive).
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the attribute contains the value 
@@ -5242,7 +5248,7 @@
         the value '<value-of select="."/>'.
       </assert>
       
-      <assert test="(1700 le number($YYYY)) and (number($YYYY) le $current-year)" role="error" id="err-elem-cit-periodical-7-4-2">[err-elem-cit-periodical-7-4-2]
+      <assert test="(1700 le number($YYYY)) and (number($YYYY) le $current-year)" role="warning" id="err-elem-cit-periodical-7-4-2">[err-elem-cit-periodical-7-4-2]
         The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year (inclusive).
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
         the value '<value-of select="."/>'.
@@ -5816,7 +5822,7 @@
         role="warning"
         id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
-      <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\)'))"
+      <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\]\)'))"
         role="warning"
         id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
       
@@ -6493,6 +6499,14 @@
         role="info" 
         id="ustilagomaydis-ref-article-title-check"><name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])"
+        role="info" 
+        id="pknowlesi-ref-article-title-check"><name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])"
+        role="info" 
+        id="plasmodiumknowlesi-ref-article-title-check"><name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="info" 
         id="drerio-ref-article-title-check"><name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -6878,6 +6892,14 @@
       <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])"
         role="info" 
         id="ustilagomaydis-article-title-check"><name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])"
+        role="info" 
+        id="pknowlesi-article-title-check"><name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])"
+        role="info" 
+        id="plasmodiumknowlesi-article-title-check"><name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="warning" 
@@ -7706,7 +7728,7 @@
         role="warning" 
         id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from')"
+      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from|[Aa]dapted with')"
         role="warning" 
         id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       

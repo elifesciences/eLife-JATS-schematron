@@ -562,6 +562,12 @@
       <xsl:when test="matches($s,'ustilago\s?maydis')">
         <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?knowlesi')">
+        <xsl:value-of select="'P. knowlesi'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
+        <xsl:value-of select="'Plasmodium knowlesi'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
