@@ -620,14 +620,64 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-xrefs">
+    <xsl:param name="article"/>
+    <xsl:param name="object-id"/>
+    <xsl:param name="object-type"/>
+    <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
+    <xsl:element name="matches">
+      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+        <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
+        <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
+        <xsl:choose>
+          <xsl:when test="./@rid = $object-id">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '—') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—'))">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—')) and ($text-no gt $object-no)">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:otherwise/>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
+      <let name="label" value="replace(label,'\.$','')"/>
       <let name="id" value="@id"/>
+      <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
+      <let name="sec1" value="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
+      <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
-      <let name="cap-xref1" value="ancestor::article/descendant::xref[(@rid = $id) and (ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">
-        <value-of select="replace(label,'\.$','')"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
+        <value-of select="$label"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
