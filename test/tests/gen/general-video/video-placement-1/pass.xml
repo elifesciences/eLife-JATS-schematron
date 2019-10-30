@@ -6,7 +6,7 @@ Message:  does not appear in the same section as where it is first cited (sec wi
   <article>
     <sec id="sec1">
       <title>Section 1</title>
-      <xref ref-type="video" rid="video1">Videos 1&#x2014;2</xref>
+      <xref ref-type="video" rid="video1">Videos 1—2</xref>
       <media id="video1" mimetype="video">
         <label>Video 1.</label>
       </media>
@@ -19,7 +19,7 @@ Message:  does not appear in the same section as where it is first cited (sec wi
     </sec>
     <sec id="sec3">
       <title>Section 3</title>
-      <xref ref-type="video" rid="video3">Videos 3</xref>&#x2014;<xref ref-type="video" rid="video5">5</xref>
+      <xref ref-type="video" rid="video3">Videos 3</xref>—<xref ref-type="video" rid="video5">5</xref>
       <media id="video3" mimetype="video">
         <label>Video 3.</label>
       </media>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="table-xref-conformity-1.sch"?>
 <!--Context: xref[@ref-type='table']
-Test: report    not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app'))
+Test: report    not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))
 Message:   citation points to table, but does not include the string 'Table', which is very unusual.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

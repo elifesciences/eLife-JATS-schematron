@@ -651,7 +651,7 @@
     <xsl:param name="object-type"/>
     <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
     <xsl:element name="matches">
-      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+      <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
         <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
         <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
         <xsl:choose>
@@ -4623,7 +4623,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app'))" role="warning" id="table-xref-conformity-1">
+      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">
         <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
       
       <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
@@ -5675,7 +5675,7 @@
       
       <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|”\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|\.:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
@@ -5776,6 +5776,13 @@
 
       <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="final-ad-libitum-italic-test">
         <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
+      
+      <report test="matches(.,'[Ii]n [Oo]vo')" role="error" id="pre-in-ovo-italic-test">
+        <name/> element contains 'In Ovo' - this should not be in italics (eLife house style).</report>
+      
+      <report test="matches(.,'[Ii]n [Oo]vo')" role="warning" id="final-in-ovo-italic-test">
+        <name/> element contains 'In Ovo' - this should not be in italics (eLife house style).</report>
+      
     </rule>
   </pattern>
   <pattern id="list-house-style-pattern">
