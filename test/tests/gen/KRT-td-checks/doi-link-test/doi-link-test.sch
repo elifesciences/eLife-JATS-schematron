@@ -620,6 +620,53 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-xrefs">
+    <xsl:param name="article"/>
+    <xsl:param name="object-id"/>
+    <xsl:param name="object-type"/>
+    <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
+    <xsl:element name="matches">
+      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+        <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
+        <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
+        <xsl:choose>
+          <xsl:when test="./@rid = $object-id">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '—') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—'))">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—')) and ($text-no gt $object-no)">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:otherwise/>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <pattern id="house-style">
     <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>

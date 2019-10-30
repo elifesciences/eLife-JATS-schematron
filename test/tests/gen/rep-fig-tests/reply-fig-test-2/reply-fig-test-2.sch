@@ -620,6 +620,53 @@
       </xsl:if>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-xrefs">
+    <xsl:param name="article"/>
+    <xsl:param name="object-id"/>
+    <xsl:param name="object-type"/>
+    <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
+    <xsl:element name="matches">
+      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+        <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
+        <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
+        <xsl:choose>
+          <xsl:when test="./@rid = $object-id">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '—') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—'))">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—')) and ($text-no gt $object-no)">
+            <xsl:element name="match">
+              <xsl:attribute name="sec-id">
+                <xsl:value-of select="./ancestor::sec[1]/@id"/>
+              </xsl:attribute>
+              <xsl:value-of select="self::*"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:otherwise/>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       <assert test="matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
