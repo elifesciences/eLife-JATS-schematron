@@ -670,8 +670,9 @@
   <pattern id="content-containers">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
-      <let name="parent" value="parent::*/local-name()"/>
-      <let name="child" value="child::*/local-name()"/>
+      <let name="parent" value="parent::*[1]/local-name()"/>
+      <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
+      <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
     </rule>
   </pattern>
