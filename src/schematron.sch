@@ -2066,8 +2066,8 @@
         else ()
         ,', ')"/>
       <let name="non-form-children" value="string-join(
-        for $x in child::* return if ($x/local-name()!=$formatting-elems) then $x/local-name()
-        else ()
+        for $x in child::* return if ($x/local-name()=$formatting-elems) then ()
+        else ($x/local-name())
         ,', ')"/>
       
       <!-- Not entirely sure if this works 
@@ -2093,9 +2093,9 @@
         role="error" 
         id="ext-link-child-test">ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$form-children"/> - which is not correct.</report>
       
-      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($non-form-children!=''))"
+      <assert test="$non-form-children=''"
         role="error" 
-        id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</report>
+        id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
       <report test="contains(.,'copy archived')"
         role="error" 

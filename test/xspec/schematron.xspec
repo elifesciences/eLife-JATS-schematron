@@ -2535,12 +2535,12 @@
       </x:scenario>
       <x:scenario label="ext-link-child-test-2-pass">
         <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-2/pass.xml"/>
-        <x:expect-not-report id="ext-link-child-test-2" role="error"/>
+        <x:expect-not-assert id="ext-link-child-test-2" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ext-link-child-test-2-fail">
         <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-2/fail.xml"/>
-        <x:expect-report id="ext-link-child-test-2" role="error"/>
+        <x:expect-assert id="ext-link-child-test-2" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ext-link-child-test-3-pass">
