@@ -626,7 +626,7 @@
     <xsl:param name="object-type"/>
     <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
     <xsl:element name="matches">
-      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+      <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
         <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
         <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
         <xsl:choose>

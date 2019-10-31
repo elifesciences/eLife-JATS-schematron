@@ -12179,6 +12179,26 @@
         <x:expect-report id="final-ad-libitum-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pre-in-ovo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/pre-in-ovo-italic-test/pass.xml"/>
+        <x:expect-not-report id="pre-in-ovo-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-in-ovo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/pre-in-ovo-italic-test/fail.xml"/>
+        <x:expect-report id="pre-in-ovo-italic-test" role="error"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-ovo-italic-test-pass">
+        <x:context href="../tests/gen/italic-house-style/final-in-ovo-italic-test/pass.xml"/>
+        <x:expect-not-report id="final-in-ovo-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-in-ovo-italic-test-fail">
+        <x:context href="../tests/gen/italic-house-style/final-in-ovo-italic-test/fail.xml"/>
+        <x:expect-report id="final-in-ovo-italic-test" role="warning"/>
+        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="list-house-style">
       <x:scenario label="list-type-house-style-test-pass">

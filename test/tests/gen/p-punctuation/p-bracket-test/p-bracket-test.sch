@@ -626,7 +626,7 @@
     <xsl:param name="object-type"/>
     <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
     <xsl:element name="matches">
-      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+      <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
         <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
         <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
         <xsl:choose>
@@ -670,7 +670,7 @@
   <pattern id="house-style">
     <rule context="article/body//p[not(parent::list-item)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|”\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|\.:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

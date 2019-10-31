@@ -626,7 +626,7 @@
     <xsl:param name="object-type"/>
     <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
     <xsl:element name="matches">
-      <xsl:for-each select="$article//xref[@ref-type=$object-type]">
+      <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
         <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
         <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
         <xsl:choose>
@@ -674,7 +674,7 @@
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app'))" role="warning" id="table-xref-conformity-1">
+      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">
         <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
     </rule>
   </pattern>
