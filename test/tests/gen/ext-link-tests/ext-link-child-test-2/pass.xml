@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ext-link-child-test-2.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: report    $child != $formatting-elems
+Test: report    (matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($non-form-children!=''))
 Message: extlink    has a nonformatting child element    which is not correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
