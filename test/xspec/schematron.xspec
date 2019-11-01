@@ -3694,6 +3694,18 @@
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="code-tests">
+      <x:scenario label="code-child-test-pass">
+        <x:context href="../tests/gen/code-tests/code-child-test/pass.xml"/>
+        <x:expect-not-report id="code-child-test" role="error"/>
+        <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="code-child-test-fail">
+        <x:context href="../tests/gen/code-tests/code-child-test/fail.xml"/>
+        <x:expect-report id="code-child-test" role="error"/>
+        <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="body-video-position-test-1-pass">
         <x:context href="../tests/gen/body-video-specific/body-video-position-test-1/pass.xml"/>
