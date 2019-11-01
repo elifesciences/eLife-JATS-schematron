@@ -1992,6 +1992,14 @@
       
     </rule>
   </pattern>
+  <pattern id="code-tests-pattern">
+    <rule context="code" id="code-tests">
+      
+      <report test="child::*" role="error" id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
+        <value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="body-video-specific-pattern">
     <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
@@ -5957,6 +5965,7 @@
       <assert test="descendant::fn[@id][not(@fn-type='other')]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other')] must be present.</assert>
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
       <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
+      <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
       <assert test="descendant::article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::sub-article/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article/body//media[@mimetype='video'] must be present.</assert>

@@ -1988,6 +1988,14 @@
       
     </rule>
   </pattern>
+  <pattern id="code-tests-pattern">
+    <rule context="code" id="code-tests">
+      
+      <report test="child::*" role="error" id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
+        <value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="body-video-specific-pattern">
     <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
