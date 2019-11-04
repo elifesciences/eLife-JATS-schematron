@@ -224,17 +224,17 @@
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
-      <xsl:when test="$name/given-names and $name/surname and $name/suffix">
-        <xsl:value-of select="concat($name/given-names,' ',$name/surname,' ',$name/suffix)"/>
+      <xsl:when test="$name/given-names[1] and $name/surname[1] and $name/suffix[1]">
+        <xsl:value-of select="concat($name/given-names[1],' ',$name/surname[1],' ',$name/suffix[1])"/>
       </xsl:when>
-      <xsl:when test="not($name/given-names) and $name/surname and $name/suffix">
-        <xsl:value-of select="concat($name/surname,' ',$name/suffix)"/>
+      <xsl:when test="not($name/given-names[1]) and $name/surname[1] and $name/suffix[1]">
+        <xsl:value-of select="concat($name/surname[1],' ',$name/suffix[1])"/>
       </xsl:when>
-      <xsl:when test="$name/given-names and $name/surname and not($name/suffix)">
-        <xsl:value-of select="concat($name/given-names,' ',$name/surname)"/>
+      <xsl:when test="$name/given-names[1] and $name/surname[1] and not($name/suffix[1])">
+        <xsl:value-of select="concat($name/given-names[1],' ',$name/surname[1])"/>
       </xsl:when>
-      <xsl:when test="not($name/given-names) and $name/surname and not($name/suffix)">
-        <xsl:value-of select="$name/surname"/>
+      <xsl:when test="not($name/given-names[1]) and $name/surname[1] and not($name/suffix[1])">
+        <xsl:value-of select="$name/surname[1]"/>
       </xsl:when>
       <xsl:otherwise>
         

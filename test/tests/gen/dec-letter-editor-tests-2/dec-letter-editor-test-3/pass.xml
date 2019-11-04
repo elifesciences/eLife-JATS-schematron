@@ -1,0 +1,77 @@
+<?oxygen SCHSchema="dec-letter-editor-test-3.sch"?>
+<!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']
+Test: assert    $role='Reviewing Editor'
+Message: Editor in decision letter frontstub must have the role 'Reviewing Editor'.  has ''.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group content-type="section">
+          <contrib contrib-type="senior_editor">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>Melissa</given-names>
+            </name>
+            <role>Senior Editor</role>
+            <aff>
+              <institution>eLife</institution>
+              <country country="GB">United Kingdom</country>
+            </aff>
+          </contrib>
+          <contrib contrib-type="editor" id="author-10">
+            <name>
+              <surname>Collings</surname>
+              <given-names>Andy</given-names>
+            </name>
+            <role>Reviewing Editor</role>
+            <aff>
+              <institution>eLife Sciences</institution>
+              <country country="GB">United Kingdom</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+    <sub-article article-type="decision-letter" id="SA1">
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="editor">
+            <name>
+              <surname>Collings</surname>
+              <given-names>Andy</given-names>
+            </name>
+            <role>Reviewing Editor</role>
+            <aff>
+              <institution>eLife Sciences</institution>
+              <country country="GB">United Kingdom</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+        <contrib-group>
+          <contrib contrib-type="reviewer">
+            <name>
+              <surname>Darian-Smith</surname>
+              <given-names>Corinna</given-names>
+            </name>
+            <role>Reviewer</role>
+            <aff>
+              <institution>Stanford University</institution>
+              <country country="US">United States</country>
+            </aff>
+          </contrib>
+          <contrib contrib-type="reviewer">
+            <name>
+              <surname>Smith</surname>
+              <given-names>Alison M</given-names>
+            </name>
+            <role>Reviewer</role>
+            <aff>
+              <institution>John Innes Centre</institution>
+              <country country="GB">United Kingdom</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>
