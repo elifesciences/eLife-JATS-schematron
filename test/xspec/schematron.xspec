@@ -744,6 +744,50 @@
         <x:expect-not-assert id="test-contrib-group-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="test-editor-contrib-group">
+      <x:scenario label="editor-conformance-1-pass">
+        <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-1/pass.xml"/>
+        <x:expect-not-assert id="editor-conformance-1" role="error"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-1-fail">
+        <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-1/fail.xml"/>
+        <x:expect-assert id="editor-conformance-1" role="error"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-2-pass">
+        <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-2/pass.xml"/>
+        <x:expect-not-assert id="editor-conformance-2" role="error"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-2-fail">
+        <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-2/fail.xml"/>
+        <x:expect-assert id="editor-conformance-2" role="error"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="test-editors-contrib">
+      <x:scenario label="editor-conformance-3-pass">
+        <x:context href="../tests/gen/test-editors-contrib/editor-conformance-3/pass.xml"/>
+        <x:expect-not-report id="editor-conformance-3" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-3-fail">
+        <x:context href="../tests/gen/test-editors-contrib/editor-conformance-3/fail.xml"/>
+        <x:expect-report id="editor-conformance-3" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-4-pass">
+        <x:context href="../tests/gen/test-editors-contrib/editor-conformance-4/pass.xml"/>
+        <x:expect-not-report id="editor-conformance-4" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-4-fail">
+        <x:context href="../tests/gen/test-editors-contrib/editor-conformance-4/fail.xml"/>
+        <x:expect-report id="editor-conformance-4" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="name-tests">
       <x:scenario label="surname-test-1-pass">
         <x:context href="../tests/gen/name-tests/surname-test-1/pass.xml"/>
@@ -5246,6 +5290,134 @@
         <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-2/fail.xml"/>
         <x:expect-assert id="dec-letter-front-test-2" role="error"/>
         <x:expect-not-assert id="dec-letter-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-front-test-3-pass">
+        <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-3/pass.xml"/>
+        <x:expect-not-report id="dec-letter-front-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-front-test-3-fail">
+        <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-3/fail.xml"/>
+        <x:expect-report id="dec-letter-front-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-front-test-4-pass">
+        <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-4/pass.xml"/>
+        <x:expect-not-report id="dec-letter-front-test-4" role="warning"/>
+        <x:expect-not-assert id="dec-letter-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-front-test-4-fail">
+        <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-4/fail.xml"/>
+        <x:expect-report id="dec-letter-front-test-4" role="warning"/>
+        <x:expect-not-assert id="dec-letter-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="dec-letter-editor-tests">
+      <x:scenario label="dec-letter-editor-test-1-pass">
+        <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-1/pass.xml"/>
+        <x:expect-not-assert id="dec-letter-editor-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-1-fail">
+        <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-1/fail.xml"/>
+        <x:expect-assert id="dec-letter-editor-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-2-pass">
+        <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-2/pass.xml"/>
+        <x:expect-not-report id="dec-letter-editor-test-2" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-2-fail">
+        <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-2/fail.xml"/>
+        <x:expect-report id="dec-letter-editor-test-2" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="dec-letter-editor-tests-2">
+      <x:scenario label="dec-letter-editor-test-3-pass">
+        <x:context href="../tests/gen/dec-letter-editor-tests-2/dec-letter-editor-test-3/pass.xml"/>
+        <x:expect-not-assert id="dec-letter-editor-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-3-fail">
+        <x:context href="../tests/gen/dec-letter-editor-tests-2/dec-letter-editor-test-3/fail.xml"/>
+        <x:expect-assert id="dec-letter-editor-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-5-pass">
+        <x:context href="../tests/gen/dec-letter-editor-tests-2/dec-letter-editor-test-5/pass.xml"/>
+        <x:expect-not-report id="dec-letter-editor-test-5" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-5-fail">
+        <x:context href="../tests/gen/dec-letter-editor-tests-2/dec-letter-editor-test-5/fail.xml"/>
+        <x:expect-report id="dec-letter-editor-test-5" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="dec-letter-reviewer-tests">
+      <x:scenario label="dec-letter-reviewer-test-1-pass">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-1/pass.xml"/>
+        <x:expect-not-assert id="dec-letter-reviewer-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-1-fail">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-1/fail.xml"/>
+        <x:expect-assert id="dec-letter-reviewer-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-2-pass">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-2/pass.xml"/>
+        <x:expect-not-report id="dec-letter-reviewer-test-2" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-2-fail">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-2/fail.xml"/>
+        <x:expect-report id="dec-letter-reviewer-test-2" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-6-pass">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-6/pass.xml"/>
+        <x:expect-not-report id="dec-letter-reviewer-test-6" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-6-fail">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-6/fail.xml"/>
+        <x:expect-report id="dec-letter-reviewer-test-6" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="dec-letter-reviewer-tests-2">
+      <x:scenario label="dec-letter-reviewer-test-3-pass">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests-2/dec-letter-reviewer-test-3/pass.xml"/>
+        <x:expect-not-assert id="dec-letter-reviewer-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-3-fail">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests-2/dec-letter-reviewer-test-3/fail.xml"/>
+        <x:expect-assert id="dec-letter-reviewer-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-4-pass">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests-2/dec-letter-reviewer-test-4/pass.xml"/>
+        <x:expect-not-report id="dec-letter-reviewer-test-4" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-4-fail">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests-2/dec-letter-reviewer-test-4/fail.xml"/>
+        <x:expect-report id="dec-letter-reviewer-test-4" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-5-pass">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests-2/dec-letter-reviewer-test-5/pass.xml"/>
+        <x:expect-not-report id="dec-letter-reviewer-test-5" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reviewer-test-5-fail">
+        <x:context href="../tests/gen/dec-letter-reviewer-tests-2/dec-letter-reviewer-test-5/fail.xml"/>
+        <x:expect-report id="dec-letter-reviewer-test-5" role="error"/>
+        <x:expect-not-assert id="dec-letter-reviewer-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="dec-letter-body-tests">

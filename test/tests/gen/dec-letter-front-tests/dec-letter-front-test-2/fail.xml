@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-front-test-2.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub
-Test: assert    count(contrib-group) gt 0
-Message: subarticle frontstub must contain at least 1 contribgroup element.-->
+Test: assert    $count gt 0
+Message: decision letter frontstub must contain at least 1 contribgroup element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="decision-letter">
