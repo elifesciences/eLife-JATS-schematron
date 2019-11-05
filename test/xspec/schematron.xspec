@@ -3053,6 +3053,16 @@
         <x:expect-report id="supplementary-material-test-8" role="error"/>
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="source-code-test-1-pass">
+        <x:context href="../tests/gen/supplementary-material-tests/source-code-test-1/pass.xml"/>
+        <x:expect-not-report id="source-code-test-1" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="source-code-test-1-fail">
+        <x:context href="../tests/gen/supplementary-material-tests/source-code-test-1/fail.xml"/>
+        <x:expect-report id="source-code-test-1" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="source-data-specific-tests">
       <x:scenario label="fig-data-test-1-pass">
