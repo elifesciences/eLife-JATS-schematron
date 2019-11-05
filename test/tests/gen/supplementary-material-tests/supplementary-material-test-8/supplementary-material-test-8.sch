@@ -669,6 +669,9 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="supplementary-material" id="supplementary-material-tests">
+      <let name="link" value="media/@xlink:href"/>
+      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
+      <let name="code-files" value="('m','py','lib','mat','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       <report test="matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
         <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
     </rule>

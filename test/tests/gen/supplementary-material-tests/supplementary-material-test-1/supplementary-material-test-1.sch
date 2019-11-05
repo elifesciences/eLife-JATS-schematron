@@ -669,6 +669,9 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="supplementary-material" id="supplementary-material-tests">
+      <let name="link" value="media/@xlink:href"/>
+      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
+      <let name="code-files" value="('m','py','lib','mat','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
     </rule>
   </pattern>
