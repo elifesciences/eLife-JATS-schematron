@@ -9805,6 +9805,26 @@
         <x:expect-report id="plasmodiumknowlesi-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="paeruginosa-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/paeruginosa-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="paeruginosa-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="paeruginosa-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/paeruginosa-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="paeruginosa-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pseudomonasaeruginosa-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/pseudomonasaeruginosa-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="pseudomonasaeruginosa-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pseudomonasaeruginosa-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/pseudomonasaeruginosa-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="pseudomonasaeruginosa-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="drerio-ref-article-title-check-pass">
         <x:context href="../tests/gen/org-ref-article-book-title/drerio-ref-article-title-check/pass.xml"/>
         <x:expect-not-report id="drerio-ref-article-title-check" role="info"/>
@@ -10777,6 +10797,26 @@
         <x:expect-report id="plasmodiumknowlesi-article-title-check" role="info"/>
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="paeruginosa-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/paeruginosa-article-title-check/pass.xml"/>
+        <x:expect-not-report id="paeruginosa-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="paeruginosa-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/paeruginosa-article-title-check/fail.xml"/>
+        <x:expect-report id="paeruginosa-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pseudomonasaeruginosa-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/pseudomonasaeruginosa-article-title-check/pass.xml"/>
+        <x:expect-not-report id="pseudomonasaeruginosa-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pseudomonasaeruginosa-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/pseudomonasaeruginosa-article-title-check/fail.xml"/>
+        <x:expect-report id="pseudomonasaeruginosa-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="drerio-article-title-check-pass">
         <x:context href="../tests/gen/org-title-kwd/drerio-article-title-check/pass.xml"/>
         <x:expect-not-report id="drerio-article-title-check" role="warning"/>
@@ -11713,6 +11753,16 @@
       <x:scenario label="surname-number-check-fail">
         <x:context href="../tests/gen/ref-name-tests/surname-number-check/fail.xml"/>
         <x:expect-report id="surname-number-check" role="warning"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="surname-ellipsis-check-pass">
+        <x:context href="../tests/gen/ref-name-tests/surname-ellipsis-check/pass.xml"/>
+        <x:expect-not-report id="surname-ellipsis-check" role="error"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="surname-ellipsis-check-fail">
+        <x:context href="../tests/gen/ref-name-tests/surname-ellipsis-check/fail.xml"/>
+        <x:expect-report id="surname-ellipsis-check" role="error"/>
         <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
