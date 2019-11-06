@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="surname-ellipsis-check.sch"?>
+<!--Context: element-citation//name
+Test: report    matches(surname,'^\s*?…|^\s*?\.\s?\.\s?\.')
+Message: surname in ref '' begins with an ellipsis which is wrong  . Are there preceding author missing from the list?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib12"><element-citation publication-type="preprint"><person-group person-group-type="author"><name><surname>Devos</surname> <given-names>L</given-names></name><name><surname>Klee</surname> <given-names>F</given-names></name><name><surname>Edouard</surname> <given-names>J</given-names></name><name><surname>Simon</surname> <given-names>V</given-names></name><name><surname>Legendre</surname> <given-names>L</given-names></name><name><surname>Khallouki</surname> <given-names>NE</given-names></name><name><surname>R&#x00E9;taux</surname> <given-names>S</given-names></name></person-group><year iso-8601-date="2019">2019</year><article-title>Morphogenetic and patterning defects explain the coloboma phenotype of the eye in the mexican cavefish</article-title><source>BioRxiv</source><pub-id pub-id-type="doi">10.1101/698035</pub-id></element-citation></ref>
+  </article>
+</root>

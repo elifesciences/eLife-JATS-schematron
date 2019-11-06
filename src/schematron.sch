@@ -610,6 +610,12 @@
       <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
         <xsl:value-of select="'Plasmodium knowlesi'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'p\.\s?aeruginosa')">
+        <xsl:value-of select="'P. aeruginosa'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'pseudomonas\s?aeruginosa')">
+        <xsl:value-of select="'Pseudomonas aeruginosa'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -6673,6 +6679,14 @@
         role="info" 
         id="plasmodiumknowlesi-ref-article-title-check"><name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])"
+        role="info" 
+        id="paeruginosa-ref-article-title-check"><name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])"
+        role="info" 
+        id="pseudomonasaeruginosa-ref-article-title-check"><name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="info" 
         id="drerio-ref-article-title-check"><name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -7066,6 +7080,14 @@
       <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])"
         role="info" 
         id="plasmodiumknowlesi-article-title-check"><name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])"
+        role="info" 
+        id="paeruginosa-article-title-check"><name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])"
+        role="info" 
+        id="pseudomonasaeruginosa-article-title-check"><name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="warning" 
@@ -7517,6 +7539,10 @@
       <report test="matches(.,'[0-9]')"
         role="warning"
         id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
+      
+      <report test="matches(surname,'^\s*?…|^\s*?\.\s?\.\s?\.')"
+        role="error"
+        id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding author missing from the list?</report>
     </rule>
     
     <rule context="element-citation/pub-id[@pub-id-type='isbn']" 
