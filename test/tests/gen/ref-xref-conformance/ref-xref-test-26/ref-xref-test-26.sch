@@ -673,17 +673,27 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="supplementary-material" id="supplementary-material-tests">
-      <let name="link" value="media/@xlink:href"/>
-      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
-      <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>
+  <pattern id="ref-xref-pattern">
+    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
+      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
+      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
+      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
+      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
+      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
+      <report test="((matches($post-text,'^[,]? demonstrate') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? demonstrate') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-26">
+        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'demonstrate', which suggests it should be in the style - <value-of select="$cite2"/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

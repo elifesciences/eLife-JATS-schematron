@@ -8271,6 +8271,26 @@
         <x:expect-report id="ref-xref-test-23" role="warning"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-xref-test-25-pass">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-25/pass.xml"/>
+        <x:expect-not-report id="ref-xref-test-25" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-25-fail">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-25/fail.xml"/>
+        <x:expect-report id="ref-xref-test-25" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-26-pass">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-26/pass.xml"/>
+        <x:expect-not-report id="ref-xref-test-26" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-26-fail">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-26/fail.xml"/>
+        <x:expect-report id="ref-xref-test-26" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="ref-xref-test-14-pass">
         <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-14/pass.xml"/>
         <x:expect-not-report id="ref-xref-test-14" role="warning"/>
@@ -11764,6 +11784,18 @@
         <x:context href="../tests/gen/ref-name-tests/surname-ellipsis-check/fail.xml"/>
         <x:expect-report id="surname-ellipsis-check" role="error"/>
         <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="page-conformity">
+      <x:scenario label="online-journal-w-page-pass">
+        <x:context href="../tests/gen/page-conformity/online-journal-w-page/pass.xml"/>
+        <x:expect-not-report id="online-journal-w-page" role="error"/>
+        <x:expect-not-assert id="page-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="online-journal-w-page-fail">
+        <x:context href="../tests/gen/page-conformity/online-journal-w-page/fail.xml"/>
+        <x:expect-report id="online-journal-w-page" role="error"/>
+        <x:expect-not-assert id="page-conformity-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="isbn-conformity">

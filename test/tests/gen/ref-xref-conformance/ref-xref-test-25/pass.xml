@@ -1,11 +1,11 @@
-<?oxygen SCHSchema="ref-xref-test-11.sch"?>
+<?oxygen SCHSchema="ref-xref-test-25.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: report    ( (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$| follows [\(]{1}$| following [\(]{1}$') and (($open - $close) = 1)) or (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$| follows [\(]{1}$| following [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]')) or (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $| follows $| following $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]'))) or (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $| follows $| following $') and (($open - $close) lt 0)) ) and (. = $cite1)
-Message:   citation is in parenthetic style, but the preceding text ends with '' which suggests it should be in the style  -->
+Test: report    ((matches($post-text,'^[,]? used') and not(matches($pre-text,'[\(]+'))) or (matches($post-text,'^[\),]? used') and matches($pre-sentence,'^\($'))) and (. = $cite1)
+Message:   citation is in parenthetic style, but the following text begins with 'used', which suggests it should be in the style  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
-      <p>test text in (<xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>) test text</p>
+      <p>test text (<xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>) test text</p>
     </sec>
   </body>
     <back>
