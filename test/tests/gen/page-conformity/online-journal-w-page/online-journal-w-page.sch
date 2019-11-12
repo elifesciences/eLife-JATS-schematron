@@ -673,17 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="supplementary-material" id="supplementary-material-tests">
-      <let name="link" value="media/@xlink:href"/>
-      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
-      <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>
+  <pattern id="house-style">
+    <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
+      <let name="cite" value="e:citation-format1(year)"/>
+      <report test="matches(lower-case(source),'plos')" role="error" id="online-journal-w-page">
+        <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='journal') and (fpage or lpage)]" role="error" id="page-conformity-xspec-assert">element-citation[(@publication-type='journal') and (fpage or lpage)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -2346,7 +2346,7 @@
       id="supplementary-material-tests">
       <let name="link" value="media/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
-      <let name="code-files" value="('m','py','lib','mat','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
+      <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       
       <assert test="label" 
         role="error"
@@ -5928,13 +5928,13 @@
         id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
       
       <report test="(
-        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$') and (($open - $close) = 1))
+        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$| follows [\(]{1}$| following [\(]{1}$') and (($open - $close) = 1))
           or
-        (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))
+          (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$| follows [\(]{1}$| following [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))
           or 
-        (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))
+          (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $| follows $| following $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))
           or
-        (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $') and (($open - $close) lt 0))
+          (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $| follows $| following $') and (($open - $close) lt 0))
          )
         and (. = $cite1)"
         role="warning"
@@ -5957,6 +5957,18 @@
         and (. = $cite1)"
         role="warning"
         id="ref-xref-test-23"><value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'found', which suggests it should be in the style - <value-of select="$cite2"/></report>
+      
+      <report test="((matches($post-text,'^[,]? used') and not(matches($pre-text,'[\(]+')))
+        or (matches($post-text,'^[\),]? used') and matches($pre-sentence,'^\($')))
+        and (. = $cite1)"
+        role="warning"
+        id="ref-xref-test-25"><value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'used', which suggests it should be in the style - <value-of select="$cite2"/></report>
+      
+      <report test="((matches($post-text,'^[,]? demonstrate') and not(matches($pre-text,'[\(]+')))
+        or (matches($post-text,'^[\),]? demonstrate') and matches($pre-sentence,'^\($')))
+        and (. = $cite1)"
+        role="warning"
+        id="ref-xref-test-26"><value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'demonstrate', which suggests it should be in the style - <value-of select="$cite2"/></report>
       
       <report test="matches($pre-sentence,$cite3)"
         role="warning"
@@ -6197,7 +6209,7 @@
       
       <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')"
         role="warning" 
-        id="table-xref-conformity-2"><value-of select="."/> - citation points to and Appendix table, but does not include the string 'table', which is very unusual.</report>
+        id="table-xref-conformity-2"><value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
       
       <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))"
         role="error" 
@@ -7545,6 +7557,16 @@
         id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding author missing from the list?</report>
     </rule>
     
+    <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" 
+      id="page-conformity">
+      <let name="cite" value="e:citation-format1(year)"/>
+      
+      <report test="matches(lower-case(source),'plos')"
+        role="error" 
+        id="online-journal-w-page"><value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
+      
+    </rule>
+    
     <rule context="element-citation/pub-id[@pub-id-type='isbn']" 
       id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
@@ -7997,7 +8019,7 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
       
-      <report test="(. != $lower) and not(contains($t,.))"
+      <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))"
         role="warning" 
         id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
     </rule>

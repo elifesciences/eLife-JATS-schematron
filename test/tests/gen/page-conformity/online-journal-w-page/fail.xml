@@ -1,0 +1,33 @@
+<?oxygen SCHSchema="online-journal-w-page.sch"?>
+<!--Context: element-citation[(@publication-type='journal') and (fpage or lpage)]
+Test: report    matches(lower-case(source),'plos')
+Message:  is a  article, but has a page number, which is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib1"><element-citation publication-type="journal">
+      <person-group person-group-type="author">
+        <name><surname>Chen</surname> <given-names>ZW</given-names></name>
+        <name><surname>Bracamontes</surname> <given-names>JR</given-names></name>
+        <name><surname>Budelier</surname> <given-names>MM</given-names></name>
+        <name><surname>Germann</surname> <given-names>AL</given-names></name>
+        <name><surname>Shin</surname> <given-names>DJ</given-names></name>
+        <name><surname>Kathiresan</surname> <given-names>K</given-names></name>
+        <name><surname>Qian</surname> <given-names>MX</given-names></name>
+        <name><surname>Manion</surname> <given-names>B</given-names></name>
+        <name><surname>Cheng</surname> <given-names>WWL</given-names></name>
+        <name><surname>Reichert</surname> <given-names>DE</given-names></name>
+        <name><surname>Akk</surname> <given-names>G</given-names></name>
+        <name><surname>Covey</surname> <given-names>DF</given-names></name>
+        <name><surname>Evers</surname> <given-names>AS</given-names></name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <article-title>Multiple functional neurosteroid binding sites on GABAA receptors</article-title>
+      <source>PloS One</source>
+      <volume>17</volume>
+      <fpage>e3000157</fpage>
+      <pub-id pub-id-type="doi">10.1371/journal.pbio.3000157</pub-id>
+      <pub-id pub-id-type="pmid">30845142</pub-id>
+    </element-citation>
+    </ref>
+  </article>
+</root>
