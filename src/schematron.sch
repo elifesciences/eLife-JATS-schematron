@@ -1539,11 +1539,6 @@
 	<rule context="front//abstract" 
 		id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
-		
-	<!-- Exception for Features article-types -->	
-	<report test="if ($article-type = $features-article-types) then () else count(object-id[@pub-id-type='doi']) != 1"
-  	role="error" 
-  	id="abstract-test-1">object-id[@pub-id-type='doi'] must be present in abstract in <value-of select="$article-type"/> content.</report>
 	
 	<report test="(count(p) + count(sec[descendant::p])) lt 1"
   	role="error" 
@@ -1561,7 +1556,7 @@
     
     <rule context="front//abstract/*" 
       id="abstract-children-tests">
-      <let name="allowed-elems" value="('p','sec','title','object-id')"/>
+      <let name="allowed-elems" value="('p','sec','title')"/>
       
       <assert test="local-name() = $allowed-elems"
         role="error" 
@@ -1956,29 +1951,7 @@
 		
 		</rule>
   
-</pattern> 
-
- <pattern
-    id="object-id">
-	
-	<rule context="object-id[@pub-id-type='doi']" 
-		id="object-id-tests">
-	<let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
-	
-	  <assert test="starts-with(.,concat('10.7554/eLife.' , $article-id))"
-  	role="error" 
-  	id="object-id-test-1">object-id must start with the elife doi prefix, '10.7554/eLife.' and the article id <value-of select="$article-id"/>.</assert>
-	
-	  <assert test="matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')"
-  	role="error" 
-  	id="object-id-test-2">object-id must follow this convention - '10.7554/eLife.00000.000'.</assert>
-	  
-	  <report test="(. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])"
-	    role="error" 
-	    id="object-id-test-3">object-ids must always be distinct. <value-of select="."/> is not distinct.</report>
-
-    </rule>
- </pattern>	
+</pattern> 	
   
   <pattern
     id="content-containers">
