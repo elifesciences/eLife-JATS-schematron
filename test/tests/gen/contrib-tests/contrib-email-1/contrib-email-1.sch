@@ -692,7 +692,8 @@
       <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
       <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
-      <let name="fn" value="ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p"/>
+      <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
+      <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
       <report test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">Corresponding authors must have an email.</report>
     </rule>
   </pattern>

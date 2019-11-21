@@ -1067,12 +1067,13 @@
 	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
 	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
 	  <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
-	  <let name="fn" value="ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p"/>
+	  <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
+	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
     	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
 	  
-	  <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="."/> - is this correct?</report>
+	  <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
 	  
@@ -1083,13 +1084,13 @@
 	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)" role="error" id="contrib-email-2">Non-corresponding authors must not have an email.</report>
 	  
 	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">
-        <value-of select="concat(descendant::surname,' ',descendant::given-names)"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
+        <value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
 	  
 	  <report test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
-        <value-of select="concat(descendant::surname,' ',descendant::given-names)"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
+        <value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
 	  
 	  <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
-        <value-of select="concat(descendant::surname,' ',descendant::given-names)"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
+        <value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
 		
 		</rule>
   </pattern>
@@ -1240,9 +1241,6 @@
   <pattern id="abstract-tests-pattern">
     <rule context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
-		
-	<!-- Exception for Features article-types -->	
-	<report test="if ($article-type = $features-article-types) then () else count(object-id[@pub-id-type='doi']) != 1" role="error" id="abstract-test-1">object-id[@pub-id-type='doi'] must be present in abstract in <value-of select="$article-type"/> content.</report>
 	
 	<report test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
 	
@@ -1254,7 +1252,7 @@
   </pattern>
   <pattern id="abstract-children-tests-pattern">
     <rule context="front//abstract/*" id="abstract-children-tests">
-      <let name="allowed-elems" value="('p','sec','title','object-id')"/>
+      <let name="allowed-elems" value="('p','sec','title')"/>
       
       <assert test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">
         <name/> is not allowed as a child of abstract.</assert>
@@ -1519,20 +1517,7 @@
     <report test="xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')" role="error" id="equal-author-test-2">author contains an xref[@ref-type='fn'] with a 'equal-contrib0' type @rid, but the contrib has no @equal-contrib='yes'.</report>
 		
 		</rule>
-  </pattern> 
-
- <pattern id="object-id-tests-pattern">
-    <rule context="object-id[@pub-id-type='doi']" id="object-id-tests">
-	<let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
-	
-	  <assert test="starts-with(.,concat('10.7554/eLife.' , $article-id))" role="error" id="object-id-test-1">object-id must start with the elife doi prefix, '10.7554/eLife.' and the article id <value-of select="$article-id"/>.</assert>
-	
-	  <assert test="matches(.,'^10.7554/eLife\.[\d]{5}\.[0-9]{3}$')" role="error" id="object-id-test-2">object-id must follow this convention - '10.7554/eLife.00000.000'.</assert>
-	  
-	  <report test="(. = preceding::object-id[@pub-id-type='doi']) or (. = following::object-id[@pub-id-type='doi'])" role="error" id="object-id-test-3">object-ids must always be distinct. <value-of select="."/> is not distinct.</report>
-
-    </rule>
-  </pattern>	
+  </pattern> 	
   
   <pattern id="p-tests-pattern">
     <rule context="p" id="p-tests">
@@ -5983,6 +5968,17 @@
       <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
       
       <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
+    </rule>
+  </pattern>
+  
+  <pattern id="element-whitelist-pattern">
+    <rule context="article//*[not(ancestor::mml:math)]" id="element-whitelist">
+      <let name="allowed-elements" value="('abstract', 'ack', 'addr-line', 'aff', 'ali:free_to_read', 'ali:license_ref', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mixed-citation', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'sc', 'sec', 'self-uri', 'source', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'uri', 'version', 'volume', 'xref', 'year')"/>
+      
+      <assert test="name()=$allowed-elements" role="error" id="element-conformity">
+        <value-of select="name()"/> element is not allowed.</assert>
+      
+      
     </rule>
   </pattern>
   

@@ -7,7 +7,6 @@ Message:  is not allowed as a child of abstract.-->
     <front>
       <article-meta>
         <abstract>
-          <object-id pub-id-type="doi">10.7554/eLife.12572.001</object-id>
           <sec id="abs1">
             <title>Background:</title>
             <p>Background text.</p>
