@@ -2697,9 +2697,9 @@
         role="warning"
         id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/></report>
       
-      <report test="matches(.,'^\s?\p{Ll}')"
+      <report test="matches(.,'^\s?\p{Ll}[\s\)\.]')"
         role="warning"
-        id="list-item-test-1">list-item begins with lowercase letter, is this correct? - <value-of select="."/></report>
+        id="list-item-test-1">list-item begins with a single lowercase letter, is this correct? - <value-of select="."/></report>
     </rule>
     
     <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]"
@@ -3725,9 +3725,9 @@
         role="error"
         id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
       
-      <assert test="@id = concat('SA',$pos)"
+      <assert test="@id = concat('sa',$pos)"
         role="error"
-        id="dec-letter-reply-test-2">sub-article id must be in the format 'SA0', where '0' is it's position (1 or 2).</assert>
+        id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is it's position (1 or 2).</assert>
       
       <assert test="count(front-stub) = 1"
         role="error"
@@ -5760,7 +5760,7 @@
       <let name="text-count" value="number(count(
         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX') 
         return $x)) -1"/>
-      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center','')"/>
+      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' |&#x00A0;') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
@@ -7732,7 +7732,7 @@
         role="warning" 
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|\.:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))"
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))"
         role="warning" 
         id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
