@@ -676,7 +676,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="matches(.,'^\s?\p{Ll}')" role="warning" id="list-item-test-1">list-item begins with lowercase letter, is this correct? - <value-of select="."/>
+      <report test="matches(.,'^\s?\p{Ll}[\s\)\.]')" role="warning" id="list-item-test-1">list-item begins with a single lowercase letter, is this correct? - <value-of select="."/>
       </report>
     </rule>
   </pattern>

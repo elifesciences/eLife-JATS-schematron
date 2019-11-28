@@ -1,15 +1,15 @@
 <?oxygen SCHSchema="dec-letter-reply-test-2.sch"?>
 <!--Context: article/sub-article
-Test: assert    @id = concat('SA',$pos)
-Message: subarticle id must be in the format 'SA0', where '0' is it's position (1 or 2).-->
+Test: assert    @id = concat('sa',$pos)
+Message: subarticle id must be in the format 'sa0', where '0' is it's position (1 or 2).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <sub-article article-type="decision-letter" id="SA1">
+    <sub-article article-type="decision-letter" id="sa1">
       <front-stub>
         <contrib-group/>
       </front-stub>
     </sub-article>
-    <sub-article article-type="reply" id="SA2">
+    <sub-article article-type="reply" id="sa2">
       <front-stub>
         <contrib-group/>
       </front-stub>
