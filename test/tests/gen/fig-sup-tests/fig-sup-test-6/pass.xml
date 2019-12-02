@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="fig-sup-test-6.sch"?>
+<!--Context: article/body//fig[@specific-use='child-fig']
+Test: report    ($label-conform = true()) and ($no != $label-no)
+Message:  label ends with , but the id () ends with , so one must be incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <fig-group>
+        <fig id="fig6" position="float">
+          <label>Figure 6.</label>
+          ...
+        </fig>
+        <fig id="fig6s7" position="float" specific-use="child-fig">
+          <label>Figure 6—figure supplement 7.</label>
+          ...
+        </fig>
+      </fig-group>
+    </body>
+  </article>
+</root>
