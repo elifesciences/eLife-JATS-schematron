@@ -3983,6 +3983,26 @@
         <x:expect-report id="fig-sup-test-4" role="error"/>
         <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-sup-test-5-pass">
+        <x:context href="../tests/gen/fig-sup-tests/fig-sup-test-5/pass.xml"/>
+        <x:expect-not-report id="fig-sup-test-5" role="error"/>
+        <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-sup-test-5-fail">
+        <x:context href="../tests/gen/fig-sup-tests/fig-sup-test-5/fail.xml"/>
+        <x:expect-report id="fig-sup-test-5" role="error"/>
+        <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-sup-test-6-pass">
+        <x:context href="../tests/gen/fig-sup-tests/fig-sup-test-6/pass.xml"/>
+        <x:expect-not-report id="fig-sup-test-6" role="error"/>
+        <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-sup-test-6-fail">
+        <x:context href="../tests/gen/fig-sup-tests/fig-sup-test-6/fail.xml"/>
+        <x:expect-report id="fig-sup-test-6" role="error"/>
+        <x:expect-not-assert id="fig-sup-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="rep-fig-tests">
       <x:scenario label="resp-fig-test-2-pass">
@@ -5549,16 +5569,6 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-general">
-      <x:scenario label="err-elem-cit-gen-name-2-pass">
-        <x:context href="../tests/gen/elem-citation-general/err-elem-cit-gen-name-2/pass.xml"/>
-        <x:expect-not-report id="err-elem-cit-gen-name-2" role="error"/>
-        <x:expect-not-assert id="elem-citation-general-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-gen-name-2-fail">
-        <x:context href="../tests/gen/elem-citation-general/err-elem-cit-gen-name-2/fail.xml"/>
-        <x:expect-report id="err-elem-cit-gen-name-2" role="error"/>
-        <x:expect-not-assert id="elem-citation-general-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="err-elem-cit-gen-name-5-pass">
         <x:context href="../tests/gen/elem-citation-general/err-elem-cit-gen-name-5/pass.xml"/>
         <x:expect-not-report id="err-elem-cit-gen-name-5" role="error"/>
@@ -5577,6 +5587,16 @@
       <x:scenario label="err-elem-cit-gen-date-1-9-fail">
         <x:context href="../tests/gen/elem-citation-general/err-elem-cit-gen-date-1-9/fail.xml"/>
         <x:expect-report id="err-elem-cit-gen-date-1-9" role="error"/>
+        <x:expect-not-assert id="elem-citation-general-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fpage-lpage-test-1-pass">
+        <x:context href="../tests/gen/elem-citation-general/fpage-lpage-test-1/pass.xml"/>
+        <x:expect-not-report id="fpage-lpage-test-1" role="warning"/>
+        <x:expect-not-assert id="elem-citation-general-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fpage-lpage-test-1-fail">
+        <x:context href="../tests/gen/elem-citation-general/fpage-lpage-test-1/fail.xml"/>
+        <x:expect-report id="fpage-lpage-test-1" role="warning"/>
         <x:expect-not-assert id="elem-citation-general-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -11741,6 +11761,36 @@
       <x:scenario label="surname-ellipsis-check-fail">
         <x:context href="../tests/gen/ref-name-tests/surname-ellipsis-check/fail.xml"/>
         <x:expect-report id="surname-ellipsis-check" role="error"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="surname-count-pass">
+        <x:context href="../tests/gen/ref-name-tests/surname-count/pass.xml"/>
+        <x:expect-not-assert id="surname-count" role="error"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="surname-count-fail">
+        <x:context href="../tests/gen/ref-name-tests/surname-count/fail.xml"/>
+        <x:expect-assert id="surname-count" role="error"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="given-names-count-pass">
+        <x:context href="../tests/gen/ref-name-tests/given-names-count/pass.xml"/>
+        <x:expect-not-report id="given-names-count" role="error"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="given-names-count-fail">
+        <x:context href="../tests/gen/ref-name-tests/given-names-count/fail.xml"/>
+        <x:expect-report id="given-names-count" role="error"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="given-names-count-2-pass">
+        <x:context href="../tests/gen/ref-name-tests/given-names-count-2/pass.xml"/>
+        <x:expect-not-report id="given-names-count-2" role="warning"/>
+        <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="given-names-count-2-fail">
+        <x:context href="../tests/gen/ref-name-tests/given-names-count-2/fail.xml"/>
+        <x:expect-report id="given-names-count-2" role="warning"/>
         <x:expect-not-assert id="ref-name-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
