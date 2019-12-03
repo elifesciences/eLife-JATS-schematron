@@ -17,7 +17,7 @@ Message: [errelemcitperiodical143]
               <given-names>J</given-names>
             </name>
           </person-group>
-          <string-date><month>September</month> <day>9</day> <day>9</day>, <year iso-8601-date="1993-09-09">1993</year></string-date>
+          <string-date iso-8601-date="1993-09-09"><month>September</month> <day>9</day> <day>9</day>, <year>1993</year></string-date>
           <article-title>Obesity affects economic, social status</article-title>
           <source>The Washington Post</source>
           <fpage>A1</fpage>

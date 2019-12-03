@@ -676,7 +676,7 @@
   <pattern id="house-style">
     <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
       <let name="cite" value="e:citation-format1(year)"/>
-      <report test="matches(lower-case(source),'plos')" role="error" id="online-journal-w-page">
+      <report test="matches(lower-case(source),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">
         <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
     </rule>
   </pattern>

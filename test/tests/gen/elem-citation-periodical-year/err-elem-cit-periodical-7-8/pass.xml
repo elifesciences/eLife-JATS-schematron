@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-8.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/year
-Test: report    . = preceding::year and ancestor::element-citation/person-group[1]/name[1]/surname = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname
+Test: report    . = preceding::year and ancestor::element-citation/person-group[1]/name[1]/surname[1] = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname[1]
 Message: [errelemcitperiodical78]
         Letter suffixes must be unique for the combination of year and first author surname. 
         Reference '' does not fulfill this requirement as it 

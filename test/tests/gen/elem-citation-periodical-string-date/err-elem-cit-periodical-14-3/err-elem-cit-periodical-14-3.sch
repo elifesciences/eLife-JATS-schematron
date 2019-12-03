@@ -675,6 +675,7 @@
   </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
+      <let name="YYYY" value="substring(normalize-space(year[1]), 1, 4)"/>
       <assert test="count(day) le 1" role="error" id="err-elem-cit-periodical-14-3">[err-elem-cit-periodical-14-3]
         The &lt;string-date&gt; element may include one &lt;day&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains

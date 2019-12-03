@@ -7397,16 +7397,6 @@
         <x:expect-assert id="err-elem-cit-periodical-7-2" role="error"/>
         <x:expect-not-assert id="elem-citation-periodical-year-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-periodical-7-3-pass">
-        <x:context href="../tests/gen/elem-citation-periodical-year/err-elem-cit-periodical-7-3/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-periodical-7-3" role="error"/>
-        <x:expect-not-assert id="elem-citation-periodical-year-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-periodical-7-3-fail">
-        <x:context href="../tests/gen/elem-citation-periodical-year/err-elem-cit-periodical-7-3/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-periodical-7-3" role="error"/>
-        <x:expect-not-assert id="elem-citation-periodical-year-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="err-elem-cit-periodical-7-4-1-pass">
         <x:context href="../tests/gen/elem-citation-periodical-year/err-elem-cit-periodical-7-4-1/pass.xml"/>
         <x:expect-not-assert id="err-elem-cit-periodical-7-4-1" role="error"/>
@@ -7425,16 +7415,6 @@
       <x:scenario label="err-elem-cit-periodical-7-4-2-fail">
         <x:context href="../tests/gen/elem-citation-periodical-year/err-elem-cit-periodical-7-4-2/fail.xml"/>
         <x:expect-assert id="err-elem-cit-periodical-7-4-2" role="warning"/>
-        <x:expect-not-assert id="elem-citation-periodical-year-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-periodical-7-5-pass">
-        <x:context href="../tests/gen/elem-citation-periodical-year/err-elem-cit-periodical-7-5/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-periodical-7-5" role="error"/>
-        <x:expect-not-assert id="elem-citation-periodical-year-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-periodical-7-5-fail">
-        <x:context href="../tests/gen/elem-citation-periodical-year/err-elem-cit-periodical-7-5/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-periodical-7-5" role="error"/>
         <x:expect-not-assert id="elem-citation-periodical-year-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-periodical-7-6-pass">
@@ -7533,6 +7513,26 @@
       <x:scenario label="err-elem-cit-periodical-14-8-fail">
         <x:context href="../tests/gen/elem-citation-periodical-string-date/err-elem-cit-periodical-14-8/fail.xml"/>
         <x:expect-assert id="err-elem-cit-periodical-14-8" role="error"/>
+        <x:expect-not-assert id="elem-citation-periodical-string-date-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-periodical-7-3-pass">
+        <x:context href="../tests/gen/elem-citation-periodical-string-date/err-elem-cit-periodical-7-3/pass.xml"/>
+        <x:expect-not-assert id="err-elem-cit-periodical-7-3" role="error"/>
+        <x:expect-not-assert id="elem-citation-periodical-string-date-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-periodical-7-3-fail">
+        <x:context href="../tests/gen/elem-citation-periodical-string-date/err-elem-cit-periodical-7-3/fail.xml"/>
+        <x:expect-assert id="err-elem-cit-periodical-7-3" role="error"/>
+        <x:expect-not-assert id="elem-citation-periodical-string-date-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-periodical-7-5-pass">
+        <x:context href="../tests/gen/elem-citation-periodical-string-date/err-elem-cit-periodical-7-5/pass.xml"/>
+        <x:expect-not-report id="err-elem-cit-periodical-7-5" role="error"/>
+        <x:expect-not-assert id="elem-citation-periodical-string-date-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-periodical-7-5-fail">
+        <x:context href="../tests/gen/elem-citation-periodical-string-date/err-elem-cit-periodical-7-5/fail.xml"/>
+        <x:expect-report id="err-elem-cit-periodical-7-5" role="error"/>
         <x:expect-not-assert id="elem-citation-periodical-string-date-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

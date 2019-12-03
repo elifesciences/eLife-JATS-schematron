@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="online-journal-w-page.sch"?>
 <!--Context: element-citation[(@publication-type='journal') and (fpage or lpage)]
-Test: report    matches(lower-case(source),'plos')
+Test: report    matches(lower-case(source),'plos|^elife$|^mbio$')
 Message:  is a  article, but has a page number, which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

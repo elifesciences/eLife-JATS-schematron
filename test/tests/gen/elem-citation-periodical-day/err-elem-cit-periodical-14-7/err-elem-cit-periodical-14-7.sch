@@ -675,11 +675,11 @@
   </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date/day" id="elem-citation-periodical-day">
-      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[D]')                     else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
+      <report test="if  (matches(normalize-space(../@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../@iso-8601-date), '[D]')                     else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
         The content of &lt;day&gt;, if present, must match the content of the day section of @iso-8601-date on the 
-        sibling year element.
+        parent string-date element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value &lt;day&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
+        the value &lt;day&gt;='<value-of select="."/>' but &lt;string-date&gt;/@iso-8601-date='<value-of select="../@iso-8601-date"/>'.
       </report>
     </rule>
   </pattern>

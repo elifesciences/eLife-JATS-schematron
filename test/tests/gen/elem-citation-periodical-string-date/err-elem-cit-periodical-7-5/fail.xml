@@ -1,11 +1,12 @@
-<?oxygen SCHSchema="err-elem-cit-periodical-14-2.sch"?>
+<?oxygen SCHSchema="err-elem-cit-periodical-7-5.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date
-Test: assert    count(month)=1 and count(year)=1
-Message: [errelemcitperiodical142]
-        The <stringdate> element must include one of each of <month> and <year> 
-        elements.
-        Reference '' does not meet this requirement as it contains
-         <month> elements and  <year> elements.
+Test: report    not(@iso-8601-date) or (substring(normalize-space(@iso-8601-date),1,4) != $YYYY)
+Message: [errelemcitperiodical75]
+        The numeric value of the first 4 digits of the @iso8601date attribute must match the first 4 digits on the 
+        <year> element.
+        Reference '' does not meet this requirement as the element contains
+        the value '' and the attribute contains the value 
+        ''.
       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
@@ -18,7 +19,7 @@ Message: [errelemcitperiodical142]
               <given-names>J</given-names>
             </name>
           </person-group>
-          <string-date iso-8601-date="1993-09-09"> <day>9</day>, <year>1993</year></string-date>
+          <string-date iso-8601-date="1993-09-09"><month>September</month> <day>9</day>, <year>1994</year></string-date>
           <article-title>Obesity affects economic, social status</article-title>
           <source>The Washington Post</source>
           <fpage>A1</fpage>
