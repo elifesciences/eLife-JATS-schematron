@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-5.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/month
-Test: report    if (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[MNn]') else .
+Test: report    if (matches(normalize-space(../@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../@iso-8601-date), '[MNn]') else .
 Message: [errelemcitperiodical145]
         The content of <month> must match the content of the month section of @iso8601date on the 
-        sibling year element.
+        sibling parent stringdate element.
         Reference '' does not meet this requirement as it contains
-        the value <month>='' but <year>/@iso8601date=''.
+        the value <month>='' but <stringdate>/@iso8601date=''.
       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
@@ -18,7 +18,7 @@ Message: [errelemcitperiodical145]
               <given-names>J</given-names>
             </name>
           </person-group>
-          <string-date><month>September</month> <day>9</day>, <year iso-8601-date="1993-07-09">1993</year></string-date>
+          <string-date iso-8601-date="1993-07-09"><month>September</month> <day>9</day>, <year>1993</year></string-date>
           <article-title>Obesity affects economic, social status</article-title>
           <source>The Washington Post</source>
           <fpage>A1</fpage>

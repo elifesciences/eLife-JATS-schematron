@@ -1974,7 +1974,7 @@
         role="error" 
         id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
-      <report test="(ancestor::body) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')"
+      <report test="(ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')"
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
@@ -5393,12 +5393,6 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not.
       </assert>
       
-      <assert test="matches(normalize-space(@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')" role="error" id="err-elem-cit-periodical-7-3">[err-elem-cit-periodical-7-3]
-        The @iso-8601-date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value '<value-of select="@iso-8601-date"/>'.
-      </assert>
-      
       <assert test="matches(normalize-space(.),'(^\d{4}[a-z]?)')" role="error" id="err-elem-cit-periodical-7-4-1">[err-elem-cit-periodical-7-4-1]
         The &lt;year&gt; element in a reference must contain 4 digits, possibly followed by one (but not more) lower-case letter.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
@@ -5411,29 +5405,21 @@
         the value '<value-of select="."/>'.
       </assert>
       
-      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="err-elem-cit-periodical-7-5">[err-elem-cit-periodical-7-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
-        &lt;year&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
-        the value '<value-of select="."/>' and the attribute contains the value 
-        '<value-of select="./@iso-8601-date"/>'.
-      </assert>
-      
-      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and        (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,'b'))        and ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname)       )" role="error" id="err-elem-cit-periodical-7-6">[err-elem-cit-periodical-7-6]
+      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and        (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,'b'))        and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])       )" role="error" id="err-elem-cit-periodical-7-6">[err-elem-cit-periodical-7-6]
         If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
         the same first author surname with a letter "b" after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
       
-      <assert test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or       (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',       'abcdefghijklmnopqrstuvwxy')))        and ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname)       " role="error" id="err-elem-cit-periodical-7-7">[err-elem-cit-periodical-7-7]
+      <assert test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or       (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',       'abcdefghijklmnopqrstuvwxy')))        and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])       " role="error" id="err-elem-cit-periodical-7-7">[err-elem-cit-periodical-7-7]
         If the &lt;year&gt; element contains any letter other than 'a' after the digits, there must be another 
         reference with the same first author surname with the preceding letter after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
       
-      <report test=". = preceding::year and        ancestor::element-citation/person-group[1]/name[1]/surname = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname" role="error" id="err-elem-cit-periodical-7-8">[err-elem-cit-periodical-7-8]
+      <report test=". = preceding::year and        ancestor::element-citation/person-group[1]/name[1]/surname[1] = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname[1]" role="error" id="err-elem-cit-periodical-7-8">[err-elem-cit-periodical-7-8]
         Letter suffixes must be unique for the combination of year and first author surname. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as it 
         contains the &lt;year&gt; '<value-of select="."/>' more than once for the same first author surname
-        '<value-of select="ancestor::element-citation/person-group[1]/name[1]/surname"/>'.</report>
+        '<value-of select="ancestor::element-citation/person-group[1]/name[1]/surname[1]"/>'.</report>
       
     </rule>
     
@@ -5465,6 +5451,7 @@
     </rule>
     
     <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
+      <let name="YYYY" value="substring(normalize-space(year[1]), 1, 4)"/>
       
       <assert test="count(month)=1 and count(year)=1" role="error" id="err-elem-cit-periodical-14-2">[err-elem-cit-periodical-14-2]
         The &lt;string-date&gt; element must include one of each of &lt;month&gt; and &lt;year&gt; 
@@ -5483,6 +5470,20 @@
         The format of the element content must match &lt;month&gt;, space, &lt;day&gt;, comma, &lt;year&gt;, or &lt;month&gt;, comma, &lt;year&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>    
       
+      <assert test="matches(normalize-space(@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')" role="error" id="err-elem-cit-periodical-7-3">[err-elem-cit-periodical-7-3]
+        The @iso-8601-date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
+        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
+        the value '<value-of select="@iso-8601-date"/>'.
+      </assert>
+      
+      <report test="not(@iso-8601-date) or (substring(normalize-space(@iso-8601-date),1,4) != $YYYY)" role="error" id="err-elem-cit-periodical-7-5">[err-elem-cit-periodical-7-5]
+        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
+        &lt;year&gt; element.
+        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
+        the value '<value-of select="."/>' and the attribute contains the value 
+        '<value-of select="./@iso-8601-date"/>'.
+      </report>
+      
     </rule>
     
     <rule context="element-citation[@publication-type='periodical']/string-date/month" id="elem-citation-periodical-month">
@@ -5493,12 +5494,12 @@
         the value  &lt;month&gt;='<value-of select="."/>'.
       </assert>
       
-      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[MNn]')
+      <report test="if  (matches(normalize-space(../@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../@iso-8601-date), '[MNn]')
         else ." role="error" id="err-elem-cit-periodical-14-5">[err-elem-cit-periodical-14-5]
         The content of &lt;month&gt; must match the content of the month section of @iso-8601-date on the 
-        sibling year element.
+        parent string-date element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value &lt;month&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
+        the value &lt;month&gt;='<value-of select="."/>' but &lt;string-date&gt;/@iso-8601-date='<value-of select="../@iso-8601-date"/>'.
       </report>
       
     </rule>
@@ -5511,12 +5512,12 @@
         the value  &lt;day&gt;='<value-of select="."/>'.
       </assert>
       
-      <report test="if  (matches(normalize-space(../year/@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../year/@iso-8601-date), '[D]')
+      <report test="if  (matches(normalize-space(../@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../@iso-8601-date), '[D]')
                     else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]
         The content of &lt;day&gt;, if present, must match the content of the day section of @iso-8601-date on the 
-        sibling year element.
+        parent string-date element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value &lt;day&gt;='<value-of select="."/>' but &lt;year&gt;/@iso-8601-date='<value-of select="../year/@iso-8601-date"/>'.
+        the value &lt;day&gt;='<value-of select="."/>' but &lt;string-date&gt;/@iso-8601-date='<value-of select="../@iso-8601-date"/>'.
       </report>
       
     </rule>
@@ -7559,7 +7560,7 @@
       id="page-conformity">
       <let name="cite" value="e:citation-format1(year)"/>
       
-      <report test="matches(lower-case(source),'plos')"
+      <report test="matches(lower-case(source),'plos|^elife$|^mbio$')"
         role="error" 
         id="online-journal-w-page"><value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
       

@@ -674,18 +674,18 @@
     </xsl:element>
   </xsl:function>
   <pattern id="element-citation-periodical-tests">
-    <rule context="element-citation[@publication-type='periodical']/string-date/year" id="elem-citation-periodical-year">
-      <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
-      <let name="current-year" value="year-from-date(current-date())"/>
-      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and        (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,'b'))        and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])       )" role="error" id="err-elem-cit-periodical-7-6">[err-elem-cit-periodical-7-6]
-        If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
-        the same first author surname with a letter "b" after the year. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
+    <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
+      <let name="YYYY" value="substring(normalize-space(year[1]), 1, 4)"/>
+      <assert test="matches(normalize-space(@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')" role="error" id="err-elem-cit-periodical-7-3">[err-elem-cit-periodical-7-3]
+        The @iso-8601-date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
+        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
+        the value '<value-of select="@iso-8601-date"/>'.
+      </assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='periodical']/string-date/year" role="error" id="elem-citation-periodical-year-xspec-assert">element-citation[@publication-type='periodical']/string-date/year must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='periodical']/string-date" role="error" id="elem-citation-periodical-string-date-xspec-assert">element-citation[@publication-type='periodical']/string-date must be present.</assert>
     </rule>
   </pattern>
 </schema>

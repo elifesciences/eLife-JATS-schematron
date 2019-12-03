@@ -675,6 +675,7 @@
   </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
+      <let name="YYYY" value="substring(normalize-space(year[1]), 1, 4)"/>
       <assert test="count(month)=1 and count(year)=1" role="error" id="err-elem-cit-periodical-14-2">[err-elem-cit-periodical-14-2]
         The &lt;string-date&gt; element must include one of each of &lt;month&gt; and &lt;year&gt; 
         elements.
