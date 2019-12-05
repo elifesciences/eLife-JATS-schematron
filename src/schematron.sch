@@ -2738,6 +2738,20 @@
         id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/><value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>><value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>>'. Strip any child elements.</report>
       
     </rule>
+    
+    <rule context="label"
+      id="generic-label-tests">
+      <let name="label" value="replace(.,'\.$','')"/>
+      
+      <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']"
+        role="error"
+        id="label-fig-group-conformance-1"><value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      
+      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')"
+        role="error"
+        id="label-fig-group-conformance-2"><value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      
+    </rule>
   </pattern>
   
   <pattern id="video-tests">
@@ -3778,11 +3792,11 @@
       id='dec-letter-editor-tests'>
       
       <assert test="count(contrib[@contrib-type='editor']) = 1"
-        role="error"
+        role="warning"
         id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
       
       <report test="contrib[not(@contrib-type) or @contrib-type!='editor']"
-        role="error"
+        role="warning"
         id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
     </rule>
     

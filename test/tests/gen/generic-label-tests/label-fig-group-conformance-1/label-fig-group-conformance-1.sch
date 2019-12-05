@@ -673,14 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
-  <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
-      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
+  <pattern id="content-containers">
+    <rule context="label" id="generic-label-tests">
+      <let name="label" value="replace(.,'\.$','')"/>
+      <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']" role="error" id="label-fig-group-conformance-1">
+        <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
+      <assert test="descendant::label" role="error" id="generic-label-tests-xspec-assert">label must be present.</assert>
     </rule>
   </pattern>
 </schema>
