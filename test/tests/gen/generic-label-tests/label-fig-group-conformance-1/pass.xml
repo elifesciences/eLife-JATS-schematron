@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="label-fig-group-conformance-1.sch"?>
+<!--Context: label
+Test: report    not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']
+Message:  is not placed in a <figgroup> element, which is incorrect. Either the label needs updating, or it needs moving into the <figgroup>.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig-group>
+      ...
+      <fig id="fig1s1" specific-use="child-fig">
+        <label>Figure 1—figure supplement 1.</label>
+        ...
+      </fig>
+    </fig-group>
+  </article>
+</root>

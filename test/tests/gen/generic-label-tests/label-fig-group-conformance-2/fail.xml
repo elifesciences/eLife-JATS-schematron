@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="label-fig-group-conformance-2.sch"?>
+<!--Context: label
+Test: report    not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')
+Message:  contains the string 'Figure' but it's not placed in a <figgroup> element, which is incorrect. Either the label needs updating, or it needs moving into the <figgroup>.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <media id="app8fig1video1" xlink:href="elife-0000-app8-fig1-video1.mp4" mimetype="video" mime-subtype="mp4">
+      <label>Appendix 8—figure 1—video 1.</label>
+      ...
+    </media>
+  </article>
+</root>

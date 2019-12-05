@@ -3718,6 +3718,28 @@
         <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="generic-label-tests">
+      <x:scenario label="label-fig-group-conformance-1-pass">
+        <x:context href="../tests/gen/generic-label-tests/label-fig-group-conformance-1/pass.xml"/>
+        <x:expect-not-report id="label-fig-group-conformance-1" role="error"/>
+        <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="label-fig-group-conformance-1-fail">
+        <x:context href="../tests/gen/generic-label-tests/label-fig-group-conformance-1/fail.xml"/>
+        <x:expect-report id="label-fig-group-conformance-1" role="error"/>
+        <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="label-fig-group-conformance-2-pass">
+        <x:context href="../tests/gen/generic-label-tests/label-fig-group-conformance-2/pass.xml"/>
+        <x:expect-not-report id="label-fig-group-conformance-2" role="error"/>
+        <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="label-fig-group-conformance-2-fail">
+        <x:context href="../tests/gen/generic-label-tests/label-fig-group-conformance-2/fail.xml"/>
+        <x:expect-report id="label-fig-group-conformance-2" role="error"/>
+        <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="body-video-position-test-1-pass">
         <x:context href="../tests/gen/body-video-specific/body-video-position-test-1/pass.xml"/>
@@ -5303,22 +5325,22 @@
     <x:scenario label="dec-letter-editor-tests">
       <x:scenario label="dec-letter-editor-test-1-pass">
         <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-1/pass.xml"/>
-        <x:expect-not-assert id="dec-letter-editor-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-test-1" role="warning"/>
         <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-editor-test-1-fail">
         <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-1/fail.xml"/>
-        <x:expect-assert id="dec-letter-editor-test-1" role="error"/>
+        <x:expect-assert id="dec-letter-editor-test-1" role="warning"/>
         <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-editor-test-2-pass">
         <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-2/pass.xml"/>
-        <x:expect-not-report id="dec-letter-editor-test-2" role="error"/>
+        <x:expect-not-report id="dec-letter-editor-test-2" role="warning"/>
         <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-editor-test-2-fail">
         <x:context href="../tests/gen/dec-letter-editor-tests/dec-letter-editor-test-2/fail.xml"/>
-        <x:expect-report id="dec-letter-editor-test-2" role="error"/>
+        <x:expect-report id="dec-letter-editor-test-2" role="warning"/>
         <x:expect-not-assert id="dec-letter-editor-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
