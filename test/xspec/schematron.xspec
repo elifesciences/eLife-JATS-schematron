@@ -2839,12 +2839,12 @@
       </x:scenario>
       <x:scenario label="media-test-4-pass">
         <x:context href="../tests/gen/media-tests/media-test-4/pass.xml"/>
-        <x:expect-not-report id="media-test-4" role="error"/>
+        <x:expect-not-report id="media-test-4" role="warning"/>
         <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="media-test-4-fail">
         <x:context href="../tests/gen/media-tests/media-test-4/fail.xml"/>
-        <x:expect-report id="media-test-4" role="error"/>
+        <x:expect-report id="media-test-4" role="warning"/>
         <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="media-test-5-pass">
