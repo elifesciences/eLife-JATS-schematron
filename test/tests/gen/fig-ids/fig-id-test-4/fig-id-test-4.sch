@@ -675,7 +675,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
-      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^S[0-9]{1,3}$'))" role="error" id="fig-id-test-4">Schemes must have an @id in the format S0.</report>
+      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^scheme[0-9]{1,3}$'))" role="warning" id="fig-id-test-4">Schemes must have an @id in the format scheme0.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

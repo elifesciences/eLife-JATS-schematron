@@ -4547,22 +4547,22 @@
       </x:scenario>
       <x:scenario label="fig-id-test-3-pass">
         <x:context href="../tests/gen/fig-ids/fig-id-test-3/pass.xml"/>
-        <x:expect-not-report id="fig-id-test-3" role="error"/>
+        <x:expect-not-report id="fig-id-test-3" role="warning"/>
         <x:expect-not-assert id="fig-ids-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-id-test-3-fail">
         <x:context href="../tests/gen/fig-ids/fig-id-test-3/fail.xml"/>
-        <x:expect-report id="fig-id-test-3" role="error"/>
+        <x:expect-report id="fig-id-test-3" role="warning"/>
         <x:expect-not-assert id="fig-ids-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-id-test-4-pass">
         <x:context href="../tests/gen/fig-ids/fig-id-test-4/pass.xml"/>
-        <x:expect-not-report id="fig-id-test-4" role="error"/>
+        <x:expect-not-report id="fig-id-test-4" role="warning"/>
         <x:expect-not-assert id="fig-ids-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-id-test-4-fail">
         <x:context href="../tests/gen/fig-ids/fig-id-test-4/fail.xml"/>
-        <x:expect-report id="fig-id-test-4" role="error"/>
+        <x:expect-report id="fig-id-test-4" role="warning"/>
         <x:expect-not-assert id="fig-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -4843,12 +4843,12 @@
     <x:scenario label="resp-table-wrap-ids">
       <x:scenario label="resp-table-wrap-id-test-pass">
         <x:context href="../tests/gen/resp-table-wrap-ids/resp-table-wrap-id-test/pass.xml"/>
-        <x:expect-not-assert id="resp-table-wrap-id-test" role="error"/>
+        <x:expect-not-assert id="resp-table-wrap-id-test" role="warning"/>
         <x:expect-not-assert id="resp-table-wrap-ids-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="resp-table-wrap-id-test-fail">
         <x:context href="../tests/gen/resp-table-wrap-ids/resp-table-wrap-id-test/fail.xml"/>
-        <x:expect-assert id="resp-table-wrap-id-test" role="error"/>
+        <x:expect-assert id="resp-table-wrap-id-test" role="warning"/>
         <x:expect-not-assert id="resp-table-wrap-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
