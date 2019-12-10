@@ -5,7 +5,7 @@ Message: Chemical structures must have an @id in the format chem0.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>
-      <fig id="C0">
+      <fig id="chem0">
         <label>Chemical structure 1</label>
       </fig>
     </body>
