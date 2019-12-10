@@ -2271,7 +2271,7 @@
                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))
                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
-        role="error"
+        role="warning"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label,'^Animation [0-9]{1,3}|^Appendix \d{1,4}—animation [0-9]{1,3}') and not(@mime-subtype='gif')" 
