@@ -675,7 +675,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="sub-article[@article-type='reply']//table-wrap" id="resp-table-wrap-ids">
-      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$')" role="error" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.</assert>
+      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
