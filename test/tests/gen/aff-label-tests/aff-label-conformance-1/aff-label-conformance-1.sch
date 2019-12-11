@@ -674,16 +674,14 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
-      <let name="label" value="replace(.,'\.$','')"/>
+    <rule context="aff/label" id="aff-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
-      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">
-        <value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
+      <assert test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

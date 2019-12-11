@@ -2020,14 +2020,36 @@
     </rule>
   </pattern>
   <pattern id="generic-label-tests-pattern">
-    <rule context="label" id="generic-label-tests">
+    <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
       <let name="label" value="replace(.,'\.$','')"/>
+      <let name="label-2" value="replace(.,'\p{P}','')"/>
       
       <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']" role="error" id="label-fig-group-conformance-1">
         <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
       
       <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">
         <value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      
+      <report test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="distinct-label-conformance">Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="equation-label-tests-pattern">
+    <rule context="disp-formula/label" id="equation-label-tests">
+      <let name="label-2" value="replace(.,'\p{P}','')"/>
+      <let name="app-id" value="ancestor::app/@id"/>
+      
+      <report test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
+      
+      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="aff-label-tests-pattern">
+    <rule context="aff/label" id="aff-label-tests">
+      <let name="label-2" value="replace(.,'\p{P}','')"/>
+      
+      <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
       
     </rule>
   </pattern>
@@ -6104,7 +6126,9 @@
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
       <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
       <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
-      <assert test="descendant::label" role="error" id="generic-label-tests-xspec-assert">label must be present.</assert>
+      <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
+      <assert test="descendant::disp-formula/label" role="error" id="equation-label-tests-xspec-assert">disp-formula/label must be present.</assert>
+      <assert test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>
       <assert test="descendant::article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::sub-article/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article/body//media[@mimetype='video'] must be present.</assert>
