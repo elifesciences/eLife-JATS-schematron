@@ -3739,6 +3739,50 @@
         <x:expect-report id="label-fig-group-conformance-2" role="error"/>
         <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="distinct-label-conformance-pass">
+        <x:context href="../tests/gen/generic-label-tests/distinct-label-conformance/pass.xml"/>
+        <x:expect-not-report id="distinct-label-conformance" role="error"/>
+        <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="distinct-label-conformance-fail">
+        <x:context href="../tests/gen/generic-label-tests/distinct-label-conformance/fail.xml"/>
+        <x:expect-report id="distinct-label-conformance" role="error"/>
+        <x:expect-not-assert id="generic-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="equation-label-tests">
+      <x:scenario label="equation-label-conformance-1-pass">
+        <x:context href="../tests/gen/equation-label-tests/equation-label-conformance-1/pass.xml"/>
+        <x:expect-not-report id="equation-label-conformance-1" role="error"/>
+        <x:expect-not-assert id="equation-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equation-label-conformance-1-fail">
+        <x:context href="../tests/gen/equation-label-tests/equation-label-conformance-1/fail.xml"/>
+        <x:expect-report id="equation-label-conformance-1" role="error"/>
+        <x:expect-not-assert id="equation-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equation-label-conformance-2-pass">
+        <x:context href="../tests/gen/equation-label-tests/equation-label-conformance-2/pass.xml"/>
+        <x:expect-not-report id="equation-label-conformance-2" role="error"/>
+        <x:expect-not-assert id="equation-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equation-label-conformance-2-fail">
+        <x:context href="../tests/gen/equation-label-tests/equation-label-conformance-2/fail.xml"/>
+        <x:expect-report id="equation-label-conformance-2" role="error"/>
+        <x:expect-not-assert id="equation-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="aff-label-tests">
+      <x:scenario label="aff-label-conformance-1-pass">
+        <x:context href="../tests/gen/aff-label-tests/aff-label-conformance-1/pass.xml"/>
+        <x:expect-not-report id="aff-label-conformance-1" role="error"/>
+        <x:expect-not-assert id="aff-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-label-conformance-1-fail">
+        <x:context href="../tests/gen/aff-label-tests/aff-label-conformance-1/fail.xml"/>
+        <x:expect-report id="aff-label-conformance-1" role="error"/>
+        <x:expect-not-assert id="aff-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="body-video-position-test-1-pass">

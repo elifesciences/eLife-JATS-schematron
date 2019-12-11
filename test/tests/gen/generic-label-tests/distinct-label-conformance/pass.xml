@@ -1,0 +1,44 @@
+<?oxygen SCHSchema="distinct-label-conformance.sch"?>
+<!--Context: fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label
+Test: report    some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)
+Message: Duplicated labels   is present more than once in the text.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig id="fig1" position="float">
+      <label>Figure 1.</label>
+      ...
+    </fig>
+    <fig id="fig2" position="float">
+      <label>Figure 2.</label>
+      ...
+    </fig>
+    <fig id="fig2s1" position="float">
+      <label>Figure 2—figure supplement 1.</label>
+      ...
+    </fig>
+    <fig id="fig2s2" position="float">
+      <label>Figure 2-figure supplement 2</label>
+      ...
+    </fig>
+    <media id="fig2video1" mime-subtype="mp4" mimetype="video" xlink:href="elife-43128-video1.mp4">
+      <label>Figure 2-video 1.</label>
+    </media>
+    <media id="fig2video2" mime-subtype="mp4" mimetype="video" xlink:href="elife-43128-video1.mp4">
+      <label>Figure 2-video 2.</label>
+    </media>
+    <table-wrap id="table1" position="float">
+      <label>Table 1.</label>
+      ...
+      <supplementary-material id="table2" position="float">
+        <label>Table 1-source data 2.</label>
+        ...
+      </supplementary-material>
+    </table-wrap>
+    <disp-formula>
+      <label>(1)</label>
+    </disp-formula>
+    <disp-formula>
+      <label>(1)</label>
+    </disp-formula>
+  </article>
+</root>

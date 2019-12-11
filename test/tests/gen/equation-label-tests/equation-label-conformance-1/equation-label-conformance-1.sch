@@ -674,16 +674,15 @@
     </xsl:element>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
-      <let name="label" value="replace(.,'\.$','')"/>
+    <rule context="disp-formula/label" id="equation-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
-      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">
-        <value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      <let name="app-id" value="ancestor::app/@id"/>
+      <report test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
+      <assert test="descendant::disp-formula/label" role="error" id="equation-label-tests-xspec-assert">disp-formula/label must be present.</assert>
     </rule>
   </pattern>
 </schema>
