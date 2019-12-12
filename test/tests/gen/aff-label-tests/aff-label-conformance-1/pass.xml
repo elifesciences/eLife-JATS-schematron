@@ -2,8 +2,7 @@
 <!--Context: aff/label
 Test: report    some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)
 Message: Duplicated affiliation labels   is present more than once.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <article-meta>

@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="fig-permissions-test-2.sch"?>
+<!--Context: fig/permissions
+Test: report    copyright-year and (not(copyright-statement) or not(copyright-holder))
+Message: permissions for  has a copyrightyear, but not a copyrightstatement or copyrightholder which is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <label>Figure 1.</label>
+      <permissions>
+        <copyright-statement>© 1983 John Wiley and Sons. All Rights Reserved</copyright-statement>
+        <copyright-year>1983</copyright-year>
+        <copyright-holder>John Wiley and Sons </copyright-holder>
+        <license>
+          <license-p>
+            <xref ref-type="fig" rid="fig1">Figure 1</xref> reproduced from <xref ref-type="bibr" rid="bib5">Chao and Cox, 1983</xref> with permission.</license-p>
+        </license>
+      </permissions>
+    </fig>
+  </article>
+</root>
