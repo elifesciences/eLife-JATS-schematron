@@ -673,11 +673,22 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="back">
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for '<value-of select="$article-type"/>'.</report>
+      <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availiability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -698,6 +698,17 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
  
   <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
   
@@ -1421,13 +1432,7 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
-      <report test="($count gt 30)" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
-      
-      <report test="($count gt 30) and ($subj = $features-subj)" role="warning" id="final-feature-custom-meta-test-5">Impact statement contains more than 30 words. Is this OK?</report>
-      
-      <report test="($count gt 30) and ($subj = $research-subj)" role="error" id="final-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
-      
-      <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement should end with a full stop or question mark - please alert eLife staff.</assert>
+      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
       
       <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       
@@ -1865,7 +1870,7 @@
       
       <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
-      <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (ancestor::app) then ()         else not(ancestor::article//xref[@rid = $id])" role="error" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
+      <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])" role="error" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
       
@@ -2270,7 +2275,7 @@
       <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$fig-label"/> have neither.</assert>
       
       <report test="copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))" role="warning" id="fig-permissions-test-12">
-        <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s don't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
+        <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
       
     </rule>
   </pattern>
@@ -2649,12 +2654,15 @@
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
       
       <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
       
       <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
       
-      <report test="if (($article-type != 'research-article') or ($subj-type = 'Scientific Correspondence') ) then ()         else count(sec[@sec-type='data-availability']) != 1" role="error" id="back-test-3">One and only one sec[@sec-type="data-availability"] must be present as a child of back for '<value-of select="$article-type"/>'.</report>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availiability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
+      
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)" role="warning" id="back-test-10">One and only one Data availiability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for '<value-of select="$article-type"/>'. Is this a new version which was published first without one? If not, then it certainly needs adding.</report>
       
       <report test="count(ack) gt 1" role="error" id="back-test-4">One and only one ack may be present in back.</report>
       
@@ -2706,7 +2714,9 @@
       <!-- Exception for article with no authors -->
       <report test="if ($author-count = 0) then ()                     else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
       
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="additional-info-test-3">This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
+      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="final-additional-info-test-3">Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
+      
+      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))         else ()" role="warning" id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
       
     </rule>
   </pattern>
@@ -3543,8 +3553,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert test="count(source) le 1" role="error" id="err-elem-cit-patent-9-1">[err-elem-cit-patent-9-1]
-        Each  &lt;element-citation&gt; of type 'patent' may contain zero or one &lt;source&gt; elements.
+      <assert test="count(source)=1" role="error" id="err-elem-cit-patent-9-1">[err-elem-cit-patent-9-1]
+        Each  &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
@@ -3926,8 +3936,8 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert test="count(source) le 1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
-        Each  &lt;element-citation&gt; of type 'confproc' may contain one &lt;source&gt; element.
+      <assert test="count(source)=1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
+        Each  &lt;element-citation&gt; of type 'confproc' must contain one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
@@ -4749,7 +4759,7 @@
       
       <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report test="not(ancestor::supplementary-material) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">
+      <report test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">
         <value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
@@ -5570,6 +5580,8 @@
       
       <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
+      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data type reference.</report>
+      
       <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
@@ -5861,9 +5873,9 @@
     <rule context="article/body//p[not(parent::list-item)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (count(preceding::p[ancestor::body]) = 0)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">

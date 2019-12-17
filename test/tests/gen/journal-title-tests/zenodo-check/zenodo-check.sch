@@ -673,16 +673,26 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
-  <pattern id="back">
-    <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="additional-info-test-3">This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
+  <pattern id="house-style">
+    <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
+      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
+      <let name="uc" value="upper-case(.)"/>
+      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data type reference.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']/source" role="error" id="journal-title-tests-xspec-assert">element-citation[@publication-type='journal']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

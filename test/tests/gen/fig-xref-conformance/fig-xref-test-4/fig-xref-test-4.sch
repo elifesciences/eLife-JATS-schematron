@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="figure-xref-pattern">
     <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -681,7 +691,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="not(ancestor::supplementary-material) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">
+      <report test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">
         <value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>
