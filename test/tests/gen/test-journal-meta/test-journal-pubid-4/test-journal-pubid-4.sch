@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="journal-meta">
     <rule context="article/front/journal-meta" id="test-journal-meta">
       <assert test="issn[@publication-format='electronic'][@pub-type='epub']" role="error" id="test-journal-pubid-4">The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'.</assert>

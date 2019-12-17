@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests">
       <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>

@@ -673,10 +673,20 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc">
-      <assert test="count(source) le 1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
-        Each  &lt;element-citation&gt; of type 'confproc' may contain one &lt;source&gt; element.
+      <assert test="count(source)=1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
+        Each  &lt;element-citation&gt; of type 'confproc' must contain one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
     </rule>

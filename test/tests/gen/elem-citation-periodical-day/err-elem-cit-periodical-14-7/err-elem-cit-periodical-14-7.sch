@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date/day" id="elem-citation-periodical-day">
       <report test="if  (matches(normalize-space(../@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../@iso-8601-date), '[D]')                     else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]

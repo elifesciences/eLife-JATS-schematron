@@ -673,16 +673,27 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
-      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
-      <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="($count gt 30)" role="warning" id="pre-custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
+  <pattern id="back">
+    <rule context="back" id="back-tests">
+      <let name="article-type" value="parent::article/@article-type"/>
+      <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)" role="warning" id="back-test-10">One and only one Data availiability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for '<value-of select="$article-type"/>'. Is this a new version which was published first without one? If not, then it certainly needs adding.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value must be present.</assert>
+      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>
   </pattern>
 </schema>

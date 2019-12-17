@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publicaiton') or (@date-type='pub')]"/>
+    <xsl:choose>
+      <xsl:when test="$pub-date=false()"/>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>

@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>

@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
       <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string.</report>

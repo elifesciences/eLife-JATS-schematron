@@ -2005,44 +2005,14 @@
         <x:expect-report id="custom-meta-test-4" role="error"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-custom-meta-test-5-pass">
-        <x:context href="../tests/gen/meta-value-tests/pre-custom-meta-test-5/pass.xml"/>
-        <x:expect-not-report id="pre-custom-meta-test-5" role="warning"/>
+      <x:scenario label="custom-meta-test-5-pass">
+        <x:context href="../tests/gen/meta-value-tests/custom-meta-test-5/pass.xml"/>
+        <x:expect-not-report id="custom-meta-test-5" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-custom-meta-test-5-fail">
-        <x:context href="../tests/gen/meta-value-tests/pre-custom-meta-test-5/fail.xml"/>
-        <x:expect-report id="pre-custom-meta-test-5" role="warning"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-feature-custom-meta-test-5-pass">
-        <x:context href="../tests/gen/meta-value-tests/final-feature-custom-meta-test-5/pass.xml"/>
-        <x:expect-not-report id="final-feature-custom-meta-test-5" role="warning"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-feature-custom-meta-test-5-fail">
-        <x:context href="../tests/gen/meta-value-tests/final-feature-custom-meta-test-5/fail.xml"/>
-        <x:expect-report id="final-feature-custom-meta-test-5" role="warning"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-custom-meta-test-5-pass">
-        <x:context href="../tests/gen/meta-value-tests/final-custom-meta-test-5/pass.xml"/>
-        <x:expect-not-report id="final-custom-meta-test-5" role="error"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-custom-meta-test-5-fail">
-        <x:context href="../tests/gen/meta-value-tests/final-custom-meta-test-5/fail.xml"/>
-        <x:expect-report id="final-custom-meta-test-5" role="error"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pre-custom-meta-test-6-pass">
-        <x:context href="../tests/gen/meta-value-tests/pre-custom-meta-test-6/pass.xml"/>
-        <x:expect-not-assert id="pre-custom-meta-test-6" role="warning"/>
-        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pre-custom-meta-test-6-fail">
-        <x:context href="../tests/gen/meta-value-tests/pre-custom-meta-test-6/fail.xml"/>
-        <x:expect-assert id="pre-custom-meta-test-6" role="warning"/>
+      <x:scenario label="custom-meta-test-5-fail">
+        <x:context href="../tests/gen/meta-value-tests/custom-meta-test-5/fail.xml"/>
+        <x:expect-report id="custom-meta-test-5" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-custom-meta-test-6-pass">
@@ -5141,6 +5111,16 @@
         <x:expect-report id="back-test-3" role="error"/>
         <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="back-test-10-pass">
+        <x:context href="../tests/gen/back-tests/back-test-10/pass.xml"/>
+        <x:expect-not-report id="back-test-10" role="warning"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-test-10-fail">
+        <x:context href="../tests/gen/back-tests/back-test-10/fail.xml"/>
+        <x:expect-report id="back-test-10" role="warning"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="back-test-4-pass">
         <x:context href="../tests/gen/back-tests/back-test-4/pass.xml"/>
         <x:expect-not-report id="back-test-4" role="error"/>
@@ -5281,14 +5261,24 @@
         <x:expect-report id="additional-info-test-2" role="error"/>
         <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="additional-info-test-3-pass">
-        <x:context href="../tests/gen/additional-info-tests/additional-info-test-3/pass.xml"/>
-        <x:expect-not-report id="additional-info-test-3" role="error"/>
+      <x:scenario label="final-additional-info-test-3-pass">
+        <x:context href="../tests/gen/additional-info-tests/final-additional-info-test-3/pass.xml"/>
+        <x:expect-not-report id="final-additional-info-test-3" role="error"/>
         <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="additional-info-test-3-fail">
-        <x:context href="../tests/gen/additional-info-tests/additional-info-test-3/fail.xml"/>
-        <x:expect-report id="additional-info-test-3" role="error"/>
+      <x:scenario label="final-additional-info-test-3-fail">
+        <x:context href="../tests/gen/additional-info-tests/final-additional-info-test-3/fail.xml"/>
+        <x:expect-report id="final-additional-info-test-3" role="error"/>
+        <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-additional-info-test-3-pass">
+        <x:context href="../tests/gen/additional-info-tests/pre-additional-info-test-3/pass.xml"/>
+        <x:expect-not-report id="pre-additional-info-test-3" role="warning"/>
+        <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-additional-info-test-3-fail">
+        <x:context href="../tests/gen/additional-info-tests/pre-additional-info-test-3/fail.xml"/>
+        <x:expect-report id="pre-additional-info-test-3" role="warning"/>
         <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -11515,6 +11505,16 @@
       <x:scenario label="Research-gate-check-fail">
         <x:context href="../tests/gen/journal-title-tests/Research-gate-check/fail.xml"/>
         <x:expect-report id="Research-gate-check" role="warning"/>
+        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="zenodo-check-pass">
+        <x:context href="../tests/gen/journal-title-tests/zenodo-check/pass.xml"/>
+        <x:expect-not-report id="zenodo-check" role="error"/>
+        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="zenodo-check-fail">
+        <x:context href="../tests/gen/journal-title-tests/zenodo-check/fail.xml"/>
+        <x:expect-report id="zenodo-check" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="journal-replacement-character-presence-pass">

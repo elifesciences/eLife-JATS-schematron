@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests">
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>

@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="fig-group" id="fig-group-tests">
       <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement, figure-level course data or code file, or a figure-level video, which must be incorrect.</report>

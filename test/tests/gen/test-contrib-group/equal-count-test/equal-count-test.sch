@@ -673,6 +673,16 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
       <report test="count(contrib[@equal-contrib='yes']) = 1" role="error" id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'.This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/>

@@ -673,11 +673,21 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-iso-pub-date">
+    <xsl:param name="element"/>
+    <xsl:choose>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
+        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="fig/permissions" id="fig-permissions">
       <let name="fig-label" value="if (parent::fig/label[1]) then replace(parent::fig/label[1],'\.$','') else 'figure'"/>
       <report test="copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))" role="warning" id="fig-permissions-test-12">
-        <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s don't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
+        <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
