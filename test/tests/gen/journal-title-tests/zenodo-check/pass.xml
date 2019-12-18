@@ -2,8 +2,7 @@
 <!--Context: element-citation[@publication-type='journal']/source
 Test: report    $uc = 'ZENODO'
 Message: Journal ref '' has a source title '' which must be incorrect. It should be a data type reference.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib89">
       <element-citation publication-type="journal">
@@ -42,8 +41,8 @@ Message: Journal ref '' has a source title '' which must be incorrect. It should
           </name>
         </person-group>
         <year iso-8601-date="2020">2020</year>
-        <article-title>Data set for &#x201C;Pathway-, layer- and cell-type-specific thalamic input
-          to mouse barrel cortex&#x201D;</article-title>
+        <article-title>Data set for “Pathway-, layer- and cell-type-specific thalamic input
+          to mouse barrel cortex”</article-title>
         <source>vbejriqpbveirp</source>
         <pub-id pub-id-type="doi">10.5281/zenodo.3560697</pub-id>
       </element-citation>

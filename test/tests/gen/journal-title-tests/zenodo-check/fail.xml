@@ -41,8 +41,8 @@ Message: Journal ref '' has a source title '' which must be incorrect. It should
           </name>
         </person-group>
         <year iso-8601-date="2020">2020</year>
-        <article-title>Data set for &#x201C;Pathway-, layer- and cell-type-specific thalamic input
-          to mouse barrel cortex&#x201D;</article-title>
+        <article-title>Data set for “Pathway-, layer- and cell-type-specific thalamic input
+          to mouse barrel cortex”</article-title>
         <source>Zenodo</source>
         <pub-id pub-id-type="doi">10.5281/zenodo.3560697</pub-id>
       </element-citation>
