@@ -685,8 +685,8 @@
   </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc">
-      <assert test="count(source)=1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
-        Each  &lt;element-citation&gt; of type 'confproc' must contain one &lt;source&gt; element.
+      <assert test="count(source) le 1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
+        Each  &lt;element-citation&gt; of type 'confproc' must not contain more than one &lt;source&gt; element(s).
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
     </rule>
