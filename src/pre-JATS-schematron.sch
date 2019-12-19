@@ -1707,7 +1707,7 @@
       
       <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
       <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
@@ -1736,13 +1736,14 @@
   </pattern>
   <pattern id="supplementary-material-tests-pattern">
     <rule context="supplementary-material" id="supplementary-material-tests">
-      <let name="link" value="media/@xlink:href"/>
+      <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       
       <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
       
-      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="error" id="supplementary-material-test-2">supplementary-material have a child caption.</report>
+      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="error" id="supplementary-material-test-2">
+        <value-of select="label"/> is missing a title/caption - (supplementary-material have a child caption.)</report>
       
       <report test="if (caption) then not(caption/title)                     else ()" role="warning" id="pre-supplementary-material-test-3">
         <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
@@ -1755,14 +1756,18 @@
         role="warning"
         id="supplementary-material-test-4">supplementary-material caption does not have a p. Is this correct?</report>-->
       
-      <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>		
+      <assert test="media" role="error" id="supplementary-material-test-5">
+        <value-of select="label"/> - supplementary-material must have a media.</assert>		
       
-      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
+      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
       <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
       <report test="matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
         <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
+      
+      <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">
+        <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
       
       <report test="($file = $code-files) and not(matches(label,'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
         <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>

@@ -688,8 +688,8 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report test="if (caption) then not(caption/title)         else ()" role="warning" id="final-supplementary-material-test-3">
-        <value-of select="label"/> doesn't have a title. Is this correct?</report>
+      <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">
+        <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

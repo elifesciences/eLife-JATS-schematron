@@ -2254,7 +2254,7 @@
         role="error"
         id="media-test-2">media must have @mime-subtype.</assert>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" 
         role="error"
         id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
@@ -2317,7 +2317,7 @@
     
     <rule context="supplementary-material" 
       id="supplementary-material-tests">
-      <let name="link" value="media/@xlink:href"/>
+      <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       
@@ -2328,7 +2328,7 @@
       <report test="if (contains(label,'Transparent reporting form')) then () 
                     else not(caption)" 
         role="error"
-        id="supplementary-material-test-2">supplementary-material have a child caption.</report>
+        id="supplementary-material-test-2"><value-of select="label"/> is missing a title/caption - (supplementary-material have a child caption.)</report>
       
       <report test="if (caption) then not(caption/title)
                     else ()" 
@@ -2348,11 +2348,11 @@
       
       <assert test="media"
         role="error"
-        id="supplementary-material-test-5">supplementary-material must have a media.</assert>		
+        id="supplementary-material-test-5"><value-of select="label"/> - supplementary-material must have a media.</assert>		
       
       <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')"
         role="error"
-        id="supplementary-material-test-6">supplementary-material label does not conform to eLife's usual label format.</assert>
+        id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
       <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" 
         role="error"
@@ -2361,6 +2361,10 @@
       <report test="matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])"
         role="error"
         id="supplementary-material-test-8"><value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
+      
+      <report test="count(media) gt 1"
+        role="error"
+        id="supplementary-material-test-9"><value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
       
       <report test="($file = $code-files) and not(matches(label,'[Ss]ource code \d{1,4}\.$'))"
         role="warning"

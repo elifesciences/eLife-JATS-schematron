@@ -685,10 +685,11 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="supplementary-material" id="supplementary-material-tests">
-      <let name="link" value="media/@xlink:href"/>
+      <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <assert test="media" role="error" id="supplementary-material-test-5">supplementary-material must have a media.</assert>
+      <assert test="media" role="error" id="supplementary-material-test-5">
+        <value-of select="label"/> - supplementary-material must have a media.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
