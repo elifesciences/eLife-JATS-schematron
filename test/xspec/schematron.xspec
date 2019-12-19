@@ -2525,6 +2525,16 @@
         <x:expect-report id="ext-link-child-test-3" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ext-link-child-test-4-pass">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-4/pass.xml"/>
+        <x:expect-not-report id="ext-link-child-test-4" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-child-test-4-fail">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-4/fail.xml"/>
+        <x:expect-report id="ext-link-child-test-4" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-group-tests">
       <x:scenario label="fig-group-test-1-pass">
@@ -11433,6 +11443,16 @@
       <x:scenario label="dept-replacement-character-presence-fail">
         <x:context href="../tests/gen/department-tests/dept-replacement-character-presence/fail.xml"/>
         <x:expect-report id="dept-replacement-character-presence" role="error"/>
+        <x:expect-not-assert id="department-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dept-test-1-pass">
+        <x:context href="../tests/gen/department-tests/dept-test-1/pass.xml"/>
+        <x:expect-not-report id="dept-test-1" role="warning"/>
+        <x:expect-not-assert id="department-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dept-test-1-fail">
+        <x:context href="../tests/gen/department-tests/dept-test-1/fail.xml"/>
+        <x:expect-report id="dept-test-1" role="warning"/>
         <x:expect-not-assert id="department-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
