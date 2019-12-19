@@ -2981,6 +2981,16 @@
         <x:expect-report id="supplementary-material-test-8" role="error"/>
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="supplementary-material-test-9-pass">
+        <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-9/pass.xml"/>
+        <x:expect-not-report id="supplementary-material-test-9" role="error"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementary-material-test-9-fail">
+        <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-9/fail.xml"/>
+        <x:expect-report id="supplementary-material-test-9" role="error"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="source-code-test-1-pass">
         <x:context href="../tests/gen/supplementary-material-tests/source-code-test-1/pass.xml"/>
         <x:expect-not-report id="source-code-test-1" role="warning"/>
