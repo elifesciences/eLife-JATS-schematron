@@ -1609,6 +1609,8 @@
       <assert test="$non-form-children=''" role="error" id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
       <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
+      
+      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary.</report>
     </rule>
   </pattern>
   <pattern id="fig-group-tests-pattern">
@@ -5555,6 +5557,9 @@
       
       <report test="matches(.,'�')" role="error" id="dept-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
+      
+      <report test="matches(.,'^[a-z]')" role="warning" id="dept-test-1">
+        <value-of select="ancestor::aff/@id"/> contains a department which begins with a lowercase letter - <value-of select="."/>. Is this correct?</report>
       
     </rule>
   </pattern>
