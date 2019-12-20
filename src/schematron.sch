@@ -3104,6 +3104,20 @@
         id="fig-permissions-test-12"><value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
       
     </rule>
+    
+    <rule context="fig/caption/p" 
+      id="fig-caption-tests">
+      <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
+      <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
+      <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return 
+        if (string-length($x) lt 3) then () 
+        else if (matches($x,'^\s{1,3}?[a-z]')) then $x 
+        else ()"/>
+      
+      <assert test="count($text-tokens) = 0"
+        role="warning"
+        id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
+    </rule>
   </pattern>
   
   <pattern

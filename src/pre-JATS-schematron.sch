@@ -2279,6 +2279,15 @@
       
     </rule>
   </pattern>
+  <pattern id="fig-caption-tests-pattern">
+    <rule context="fig/caption/p" id="fig-caption-tests">
+      <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
+      <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
+      <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return          if (string-length($x) lt 3) then ()          else if (matches($x,'^\s{1,3}?[a-z]')) then $x          else ()"/>
+      
+      <assert test="count($text-tokens) = 0" role="warning" id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
+    </rule>
+  </pattern>
   
   <pattern id="ra-body-tests-pattern">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">

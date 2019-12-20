@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="fig-caption-test-1.sch"?>
+<!--Context: fig/caption/p
+Test: assert    count($text-tokens) = 0
+Message: Caption for  contains what looks like a lower case letter at the start of a sentence  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>
+        <p>(a) Confocal images of taxol stabilised MTs, formed in the absence or presence of purified Augmin and γ-TuRC, and co-incubated. Incubation of Augmin-488MTs (green) with γ-TuRC-RhodMTs (red) leads to MT branches. (b) Higher magnification of the MT-Augmin-γ-TuRC-MT junctions (arrows).</p>
+      </caption>
+    </fig>
+    <fig>
+      <caption>
+        <p>(a) C. D. onfocal images of taxol stabilised MTs, formed in the absence or presence of purified Augmin and γ-TuRC, and co-incubated. Incubation of Augmin-488MTs (green) with γ-TuRC-RhodMTs (red) leads to MT branches. (b) Higher magnification of the MT-Augmin-γ-TuRC-MT junctions (arrows).</p>
+      </caption>
+    </fig>
+  </article>
+</root>

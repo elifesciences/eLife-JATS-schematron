@@ -2286,6 +2286,15 @@
       
     </rule>
   </pattern>
+  <pattern id="fig-caption-tests-pattern">
+    <rule context="fig/caption/p" id="fig-caption-tests">
+      <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
+      <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
+      <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return          if (string-length($x) lt 3) then ()          else if (matches($x,'^\s{1,3}?[a-z]')) then $x          else ()"/>
+      
+      <assert test="count($text-tokens) = 0" role="warning" id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
+    </rule>
+  </pattern>
   
   <pattern id="ra-body-tests-pattern">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
@@ -6196,6 +6205,7 @@
       <assert test="descendant::article//app//fig[not(@specific-use='child-fig')]/label" role="error" id="app-fig-tests-xspec-assert">article//app//fig[not(@specific-use='child-fig')]/label must be present.</assert>
       <assert test="descendant::article//app//fig[@specific-use='child-fig']/label" role="error" id="app-fig-sup-tests-xspec-assert">article//app//fig[@specific-use='child-fig']/label must be present.</assert>
       <assert test="descendant::fig/permissions" role="error" id="fig-permissions-xspec-assert">fig/permissions must be present.</assert>
+      <assert test="descendant::fig/caption/p" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
       <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
       <assert test="descendant::body/sec//sec" role="error" id="lower-level-sec-tests-xspec-assert">body/sec//sec must be present.</assert>
