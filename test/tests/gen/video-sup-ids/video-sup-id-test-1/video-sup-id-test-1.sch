@@ -155,7 +155,7 @@
   </xsl:function>
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(translate($string,'àáâãäåçčèéêěëęħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaacceeeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(translate($string,'àáâãäåăçčèéêěëęħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaaacceeeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
   <xsl:function name="e:citation-format1">
     <xsl:param name="year"/>
