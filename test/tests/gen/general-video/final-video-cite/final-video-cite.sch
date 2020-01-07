@@ -692,7 +692,7 @@
       <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <assert test="$xrefs//*:match" role="error" id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
+      <assert test="$xrefs//*:match" role="warning" id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
