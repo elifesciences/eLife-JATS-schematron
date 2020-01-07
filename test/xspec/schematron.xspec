@@ -1841,6 +1841,16 @@
         <x:expect-report id="award-id-test-3" role="error"/>
         <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="award-id-test-4-pass">
+        <x:context href="../tests/gen/award-id-tests/award-id-test-4/pass.xml"/>
+        <x:expect-not-report id="award-id-test-4" role="warning"/>
+        <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-id-test-4-fail">
+        <x:context href="../tests/gen/award-id-tests/award-id-test-4/fail.xml"/>
+        <x:expect-report id="award-id-test-4" role="warning"/>
+        <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="institution-wrap-tests">
       <x:scenario label="institution-id-test-pass">
@@ -4641,6 +4651,16 @@
       <x:scenario label="ethics-title-test-fail">
         <x:context href="../tests/gen/ethics-title-tests/ethics-title-test/fail.xml"/>
         <x:expect-assert id="ethics-title-test" role="error"/>
+        <x:expect-not-assert id="ethics-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ethics-broken-unicode-test-pass">
+        <x:context href="../tests/gen/ethics-title-tests/ethics-broken-unicode-test/pass.xml"/>
+        <x:expect-not-report id="ethics-broken-unicode-test" role="warning"/>
+        <x:expect-not-assert id="ethics-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ethics-broken-unicode-test-fail">
+        <x:context href="../tests/gen/ethics-title-tests/ethics-broken-unicode-test/fail.xml"/>
+        <x:expect-report id="ethics-broken-unicode-test" role="warning"/>
         <x:expect-not-assert id="ethics-title-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -7965,6 +7985,26 @@
         <x:expect-report id="feature-bio-test-3" role="error"/>
         <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="feature-bio-test-4-pass">
+        <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-4/pass.xml"/>
+        <x:expect-not-assert id="feature-bio-test-4" role="error"/>
+        <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-bio-test-4-fail">
+        <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-4/fail.xml"/>
+        <x:expect-assert id="feature-bio-test-4" role="error"/>
+        <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-bio-test-5-pass">
+        <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-5/pass.xml"/>
+        <x:expect-not-report id="feature-bio-test-5" role="error"/>
+        <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-bio-test-5-fail">
+        <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-5/fail.xml"/>
+        <x:expect-report id="feature-bio-test-5" role="error"/>
+        <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="feature-template-tests">
       <x:scenario label="feature-template-test-1-pass">
@@ -11207,6 +11247,16 @@
         <x:expect-report id="empty-parentheses-presence" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="broken-unicode-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/broken-unicode-presence/pass.xml"/>
+        <x:expect-not-report id="broken-unicode-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="broken-unicode-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/broken-unicode-presence/fail.xml"/>
+        <x:expect-report id="broken-unicode-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="unallowed-symbol-tests-sup">
       <x:scenario label="copyright-symbol-sup-pass">
@@ -12907,6 +12957,16 @@
       <x:scenario label="auth-kwd-check-fail">
         <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check/fail.xml"/>
         <x:expect-report id="auth-kwd-check" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-2-pass">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-2/pass.xml"/>
+        <x:expect-not-report id="auth-kwd-check-2" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-2-fail">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-2/fail.xml"/>
+        <x:expect-report id="auth-kwd-check-2" role="warning"/>
         <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

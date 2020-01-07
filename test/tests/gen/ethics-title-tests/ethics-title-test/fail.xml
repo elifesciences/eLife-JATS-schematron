@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ethics-title-test.sch"?>
 <!--Context: fn-group[@content-type='ethics-information']
 Test: assert    title = 'Ethics'
-Message: fngroup[@contenttype='ethicsinformation'] must have a title that contains 'Author contributions'. Currently it is ''.-->
+Message: fngroup[@contenttype='ethicsinformation'] must have a title that contains 'Ethics'. Currently it is ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="additional-information">

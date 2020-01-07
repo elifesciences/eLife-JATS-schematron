@@ -689,7 +689,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '&#x2014;') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '&#x2013;') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -697,7 +697,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2014;'))">
+          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2013;'))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -1724,6 +1724,10 @@
       <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')"
         role="error"
         id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      
+      <report test="matches(.,'&amp;#x\d')"
+        role="warning"
+        id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
       
     </rule>
     
@@ -3225,7 +3229,7 @@
         role="warning"
         id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$|\?$')" 
+      <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" 
         role="error"
         id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
@@ -3347,7 +3351,11 @@
       
       <assert test="title = 'Ethics'"
         role="error"
-        id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
+        id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
+      
+      <report test="matches(.,'&amp;#x\d')"
+        role="warning"
+        id="ethics-broken-unicode-test">Ethics statement likely contains a borken unicode - <value-of select="."/>.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" 
@@ -5758,7 +5766,7 @@
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)]/normalize-space(.)
        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)]/normalize-space(.)"/>
      
-     <assert test="p/bold = $name"
+     <assert test="p[1]/bold = $name"
        role="error"
        id="feature-bio-test-1">bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
      
@@ -5768,9 +5776,17 @@
        role="warning"
        id="feature-bio-test-2">bio does not contain top level insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
      
-     <report test="matches(p,'[\p{P}]$')"
+     <report test="matches(p[1],'\.$')"
        role="error"
-       id="feature-bio-test-3">bio cannot end in punctuation - '<value-of select="substring(p,string-length(p),1)"/>'.</report>
+       id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
+     
+     <assert test="(count(p) = 1)"
+       role="error"
+       id="feature-bio-test-4">One and only 1 &lt;p> is allowed as a child of bio. <value-of select="."/></assert>
+     
+     <report test="*[local-name()!='p']"
+       role="error"
+       id="feature-bio-test-5"><value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio>. - <value-of select="."/></report>
    </rule>
    
    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]"
@@ -7298,6 +7314,10 @@
       <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')"
         role="warning"
         id="empty-parentheses-presence"><name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
+      
+      <report test="matches(.,'&amp;#x\d')"
+        role="warning"
+        id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
     
     <rule context="sup"
@@ -8164,6 +8184,10 @@
       <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))"
         role="warning" 
         id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
+      
+      <report test="matches(.,'&amp;#x\d')"
+        role="warning"
+        id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   

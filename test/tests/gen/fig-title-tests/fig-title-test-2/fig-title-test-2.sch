@@ -644,7 +644,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '—') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -652,7 +652,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—'))">
+          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'–'))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -686,7 +686,7 @@
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label"/>
-      <assert test="matches(.,'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
