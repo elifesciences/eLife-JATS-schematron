@@ -2923,12 +2923,12 @@
       </x:scenario>
       <x:scenario label="supplementary-material-test-2-pass">
         <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-2/pass.xml"/>
-        <x:expect-not-report id="supplementary-material-test-2" role="error"/>
+        <x:expect-not-report id="supplementary-material-test-2" role="warning"/>
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="supplementary-material-test-2-fail">
         <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-2/fail.xml"/>
-        <x:expect-report id="supplementary-material-test-2" role="error"/>
+        <x:expect-report id="supplementary-material-test-2" role="warning"/>
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-supplementary-material-test-3-pass">
@@ -9063,12 +9063,12 @@
       </x:scenario>
       <x:scenario label="equ-xref-conformity-2-pass">
         <x:context href="../tests/gen/equation-xref-conformance/equ-xref-conformity-2/pass.xml"/>
-        <x:expect-not-assert id="equ-xref-conformity-2" role="error"/>
+        <x:expect-not-assert id="equ-xref-conformity-2" role="warning"/>
         <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="equ-xref-conformity-2-fail">
         <x:context href="../tests/gen/equation-xref-conformance/equ-xref-conformity-2/fail.xml"/>
-        <x:expect-assert id="equ-xref-conformity-2" role="error"/>
+        <x:expect-assert id="equ-xref-conformity-2" role="warning"/>
         <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="equ-xref-conformity-3-pass">
@@ -11671,6 +11671,16 @@
       <x:scenario label="journal-preprint-check-fail">
         <x:context href="../tests/gen/journal-tests/journal-preprint-check/fail.xml"/>
         <x:expect-report id="journal-preprint-check" role="error"/>
+        <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elife-ref-check-pass">
+        <x:context href="../tests/gen/journal-tests/elife-ref-check/pass.xml"/>
+        <x:expect-not-report id="elife-ref-check" role="error"/>
+        <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elife-ref-check-fail">
+        <x:context href="../tests/gen/journal-tests/elife-ref-check/fail.xml"/>
+        <x:expect-report id="elife-ref-check" role="error"/>
         <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

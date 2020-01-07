@@ -670,6 +670,7 @@
     </xsl:element>
   </xsl:function>
   
+  <!-- Need to account for double digit numbers, i.e. vid9 is currently gt than vid 15 -->
   <xsl:function name="e:get-xrefs">
     <xsl:param name="article"/>
     <xsl:param name="object-id"/>
@@ -2331,8 +2332,8 @@
       
       <report test="if (contains(label,'Transparent reporting form')) then () 
                     else not(caption)" 
-        role="error"
-        id="supplementary-material-test-2"><value-of select="label"/> is missing a title/caption - (supplementary-material have a child caption.)</report>
+        role="warning"
+        id="supplementary-material-test-2"><value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material have a child caption.)</report>
       
       <report test="if (caption) then not(caption/title)
                     else ()" 
@@ -3030,9 +3031,9 @@
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" 
       id="app-fig-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" 
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" 
         role="error"
-        id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+        id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>
       
       <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" 
         role="error"
@@ -5896,7 +5897,7 @@
     
     <rule context="p|td|th"
       id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*resolver')])"/>
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(count(
         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX') 
@@ -6417,8 +6418,8 @@
         id="equ-xref-conformity-1"><value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
       <assert test="contains(.,$label)" 
-        role="error" 
-        id="equ-xref-conformity-2"><value-of select="$label"/> - equation link content does not match what it directs to. Check that it is correct.</assert>
+        role="warning" 
+        id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
       
       <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')"
         role="error"
@@ -7527,9 +7528,14 @@
         role="warning" 
         id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
-      <report test="matches(normalize-space(lower-case(source)),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')"
+      <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')"
         role="error" 
         id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source"/>, but it is captured as a journal not a preprint.</report>
+      
+      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'],'^10.7554/eLife.\d{5}$'))"
+        role="error" 
+        id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+      
     </rule>
     
     <rule context="element-citation[@publication-type='preprint']/source" 
@@ -7894,7 +7900,7 @@
         role="warning" 
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))"
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else not(matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))"
         role="warning" 
         id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or excalamation mark - Is this correct?</report>
     </rule>

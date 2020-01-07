@@ -683,22 +683,14 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="rrid-org-pattern">
-    <rule context="p|td|th" id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
-      <let name="lc" value="lower-case(.)"/>
-      <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')          return $x)) -1"/>
-      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
-      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
-      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
-      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
-      <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
-      <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
+  <pattern id="house-style">
+    <rule context="element-citation[@publication-type='journal']" id="journal-tests">
+      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'],'^10.7554/eLife.\d{5}$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

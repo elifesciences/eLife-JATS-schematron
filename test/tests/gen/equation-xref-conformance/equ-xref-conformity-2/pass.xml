@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="equ-xref-conformity-2.sch"?>
 <!--Context: xref[@ref-type='disp-formula']
 Test: assert    contains(.,$label)
-Message:   equation link content does not match what it directs to. Check that it is correct.-->
+Message: equation link content does not match what it directs to (content = ; label = ). Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <xref ref-type="disp-formula" rid="equ1">Equation 1</xref>

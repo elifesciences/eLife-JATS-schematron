@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="elife-ref-check.sch"?>
+<!--Context: element-citation[@publication-type='journal']
+Test: report    (lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'],'^10.7554/eLife.\d{5}$'))
+Message: ref '' is an  article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib1">
+      <element-citation publication-type="journal">
+        <person-group person-group-type="author">
+          <name><surname>Pinkevych</surname> <given-names>M</given-names></name>
+          <name><surname>Fennessey</surname> <given-names>CM</given-names></name>
+          <name><surname>Cromer</surname> <given-names>D</given-names></name>
+          <name><surname>Reid</surname> <given-names>C</given-names></name>
+          <name><surname>Trubey</surname> <given-names>CM</given-names></name>
+          <name><surname>Lifson</surname> <given-names>JD</given-names></name>
+          <name><surname>Keele</surname> <given-names>BF</given-names></name>
+          <name><surname>Davenport</surname> <given-names>MP</given-names></name>
+        </person-group>
+        <year iso-8601-date="2019">2019</year>
+        <article-title>Predictors of SIV recrudescence following antiretroviral treatment interruption</article-title>
+        <source>eLife</source>
+        <volume>8</volume>
+        <elocation-id>e49022</elocation-id>
+      </element-citation></ref>
+  </article>
+</root>
