@@ -3335,12 +3335,12 @@
       </x:scenario>
       <x:scenario label="final-table-wrap-cite-1-pass">
         <x:context href="../tests/gen/table-wrap-tests/final-table-wrap-cite-1/pass.xml"/>
-        <x:expect-not-report id="final-table-wrap-cite-1" role="error"/>
+        <x:expect-not-report id="final-table-wrap-cite-1" role="warning"/>
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-table-wrap-cite-1-fail">
         <x:context href="../tests/gen/table-wrap-tests/final-table-wrap-cite-1/fail.xml"/>
-        <x:expect-report id="final-table-wrap-cite-1" role="error"/>
+        <x:expect-report id="final-table-wrap-cite-1" role="warning"/>
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feat-table-wrap-cite-1-pass">
@@ -3667,12 +3667,12 @@
       </x:scenario>
       <x:scenario label="final-video-cite-pass">
         <x:context href="../tests/gen/general-video/final-video-cite/pass.xml"/>
-        <x:expect-not-assert id="final-video-cite" role="error"/>
+        <x:expect-not-assert id="final-video-cite" role="warning"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-video-cite-fail">
         <x:context href="../tests/gen/general-video/final-video-cite/fail.xml"/>
-        <x:expect-assert id="final-video-cite" role="error"/>
+        <x:expect-assert id="final-video-cite" role="warning"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="video-placement-1-pass">
@@ -3947,12 +3947,12 @@
       </x:scenario>
       <x:scenario label="final-fig-specific-test-4-pass">
         <x:context href="../tests/gen/fig-specific-tests/final-fig-specific-test-4/pass.xml"/>
-        <x:expect-not-report id="final-fig-specific-test-4" role="error"/>
+        <x:expect-not-report id="final-fig-specific-test-4" role="warning"/>
         <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-fig-specific-test-4-fail">
         <x:context href="../tests/gen/fig-specific-tests/final-fig-specific-test-4/fail.xml"/>
-        <x:expect-report id="final-fig-specific-test-4" role="error"/>
+        <x:expect-report id="final-fig-specific-test-4" role="warning"/>
         <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feat-fig-specific-test-4-pass">

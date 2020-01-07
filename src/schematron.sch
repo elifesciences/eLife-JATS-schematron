@@ -2539,7 +2539,7 @@
         else if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else if (ancestor::app or ancestor::sub-article) then ()
         else not(ancestor::article//xref[@rid = $id])" 
-        role="error"
+        role="warning"
         id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report test="if (contains($id,'inline')) then () 
@@ -2725,7 +2725,7 @@
         id="pre-video-cite">There is no citation to <value-of select="$label"/>. Ensure to query the author asking for a citation.</assert>
       
       <assert test="$xrefs//*:match" 
-        role="error"
+        role="warning"
         id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
       
       <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" 
@@ -2930,7 +2930,7 @@
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
-        role="error"
+        role="warning"
         id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
