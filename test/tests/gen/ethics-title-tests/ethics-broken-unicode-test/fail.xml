@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="ethics-broken-unicode-test.sch"?>
+<!--Context: fn-group[@content-type='ethics-information']
+Test: report    matches(.,'&#x\d')
+Message: Ethics statement likely contains a borken unicode  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <sec sec-type="additional-information">
+      <fn-group content-type="ethics-information">
+        <title>Ethics</title>
+        <fn fn-type="other">Supplementary figure&amp;#x03B3;</fn>
+      </fn-group>
+    </sec>
+  </article>
+</root>
