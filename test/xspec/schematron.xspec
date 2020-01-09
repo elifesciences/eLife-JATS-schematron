@@ -613,12 +613,12 @@
       </x:scenario>
       <x:scenario label="article-title-test-2-pass">
         <x:context href="../tests/gen/test-title-group/article-title-test-2/pass.xml"/>
-        <x:expect-not-report id="article-title-test-2" role="error"/>
+        <x:expect-not-report id="article-title-test-2" role="warning"/>
         <x:expect-not-assert id="test-title-group-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="article-title-test-2-fail">
         <x:context href="../tests/gen/test-title-group/article-title-test-2/fail.xml"/>
-        <x:expect-report id="article-title-test-2" role="error"/>
+        <x:expect-report id="article-title-test-2" role="warning"/>
         <x:expect-not-assert id="test-title-group-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="article-title-test-3-pass">
@@ -3257,6 +3257,16 @@
       <x:scenario label="math-test-16-fail">
         <x:context href="../tests/gen/math-tests/math-test-16/fail.xml"/>
         <x:expect-report id="math-test-16" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-17-pass">
+        <x:context href="../tests/gen/math-tests/math-test-17/pass.xml"/>
+        <x:expect-not-report id="math-test-17" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-17-fail">
+        <x:context href="../tests/gen/math-tests/math-test-17/fail.xml"/>
+        <x:expect-report id="math-test-17" role="warning"/>
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

@@ -690,7 +690,7 @@
       <let name="title" value="replace(article-title,'\p{P}','')"/>
       <let name="body" value="ancestor::front/following-sibling::body"/>
       <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
-      <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop.</report>
+      <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

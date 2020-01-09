@@ -683,19 +683,16 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article/front/article-meta/title-group" id="test-title-group">
-      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <let name="lc" value="normalize-space(lower-case(article-title))"/>
-      <let name="title" value="replace(article-title,'\p{P}','')"/>
-      <let name="body" value="ancestor::front/following-sibling::body"/>
-      <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
-      <report test="article-title[text() != ''] = upper-case(article-title)" role="error" id="article-title-test-3">Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
+  <pattern id="content-containers">
+    <rule context="mml:math" id="math-tests">
+      <let name="data" value="replace(normalize-space(.),'\s','')"/>
+      <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
+      <report test="child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-17">mml:math only contains number(s) and square root symbol(s) '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead? Such as <value-of select="concat('√',.)"/>?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
+      <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
     </rule>
   </pattern>
 </schema>
