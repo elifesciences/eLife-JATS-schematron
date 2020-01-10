@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="data-sbgdb-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')
+Message: Data reference with the title '' has a doi starting with '10.15785/SBGRID' but the database name is not 'SBGrid Data Bank'  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset10" publication-type="data" specific-use="references">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Bane</surname>
+          <given-names>LB</given-names>
+        </name>
+        <name>
+          <surname>Weihofen</surname>
+          <given-names>WA</given-names>
+        </name>
+        <name>
+          <surname>Gaudet</surname>
+          <given-names>R</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2011">2011</year>
+      <data-title>X-Ray Diffraction data from Deinococcus radiodurans MntH in complex with Fab, source of 5KTE structure</data-title>
+      <source>SBGrid Data Banks</source>
+      <pub-id assigning-authority="other" pub-id-type="doi">10.15785/SBGRID/334</pub-id>
+    </element-citation>
+  </article>
+</root>

@@ -686,7 +686,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" role="error" id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title"/> - but it does not have one collab element containing 'R Development Core Team'.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" role="error" id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but it does not have one collab element containing 'R Development Core Team'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

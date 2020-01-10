@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-eth-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')
+Message: Data reference with the title '' has a doi starting with '10.3929' but the database name is not 'ETH Library research collection'  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+      <year iso-8601-date="2018">2018</year>
+      <data-title>MEP neurofeedback</data-title>
+      <source>ETH Library research collection</source>
+      <pub-id assigning-authority="other" pub-id-type="doi">10.3929/ethz-b-000300799</pub-id>
+    </element-citation>
+  </article>
+</root>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-edatashare-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')
+Message: Data reference with the title '' has a doi starting with '10.7488' but the database name is not 'Edinburgh DataShare'  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+      <year iso-8601-date="2018">2018</year>
+      <data-title>Genomic underpinnings of lifespan allow prediction and reveal basis in modern risks</data-title>
+      <source>Edinburgh DataShare vfeq</source>
+      <pub-id assigning-authority="Edinburgh University" pub-id-type="doi">10.7488/ds/2463</pub-id>
+    </element-citation>
+  </article>
+</root>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-morphdbase-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and not(source[1]='Morph D Base')
+Message: Data reference with the title '' has a 'www.morphdbase.de' type link, but the database name is not 'Morph D Base'  . Is that correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset5" publication-type="data" specific-use="isSupplementedBy">
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Data from: Neuroanatomy of a hydrothermal vent shrimp provides insights into the evolution of crustacean integrative brain centers</data-title>
+      <source>Morph D vreqBase</source>
+      <pub-id assigning-authority="other" pub-id-type="accession" xlink:href="https://www.morphdbase.de/?J_Machon_20190502-M-7.1">J_Machon_20190502-M-7.1</pub-id>
+    </element-citation>
+  </article>
+</root>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-proteomexchange-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')
+Message: Data reference with the title '' has a 'http://proteomecentral.proteomexchange.org/' type link, but the database name is not 'ProteomeXchange'  . Is that correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Genome-wide CRISPR screening reveals genetic modifiers of mutant EGFR dependence in NSCLC</data-title>
+      <source>Pride</source>
+      <pub-id assigning-authority="other" pub-id-type="accession" xlink:href="http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD014198">PXD014198</pub-id>
+    </element-citation>
+  </article>
+</root>

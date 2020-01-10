@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="data-osf-test-4.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')
+Message: Data reference with the title '' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework'  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="references">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Hutchinson</surname>
+          <given-names>JR</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2016">2016</year>
+      <data-title>Hatchling Palaeosuchus palpebrosus RVC-JRH-PP1 whole body</data-title>
+      <source>Open Science Framework</source>
+      <pub-id assigning-authority="Open Science Framework" pub-id-type="doi">10.17605/OSF.IO/X38NH</pub-id>
+    </element-citation>
+  </article>
+</root>

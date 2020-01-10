@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="data-emdb-test-3.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]
+Message: Data reference with the title '' has a EMDB 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked as an accession type link.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset8" publication-type="data" specific-use="isSupplementedBy">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Tao</surname>
+          <given-names>X</given-names>
+        </name>
+        <name>
+          <surname>MacKinnon</surname>
+          <given-names>R</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Single particle cryo-EM structure of Ca2+-free (closed) hsSlo1</data-title>
+      <source>Electron Microscopy Data Bank</source>
+      <pub-id assigning-authority="EMDB" pub-id-type="accession" xlink:href="https://www.ebi.ac.uk/pdbe/entry/emdb/EMD-21036">EMD-21036</pub-id>
+    </element-citation>
+  </article>
+</root>

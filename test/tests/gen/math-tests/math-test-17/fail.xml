@@ -4,7 +4,7 @@ Test: report    child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d
 Message: mml:math only contains number(s) and square root symbol(s) '', which is likely unnecessary. Should this be captured as normal text instead? Such as ?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+    <root>
       <article>
         <mml:math>
           <mml:msqrt><mml:mn>2</mml:mn></mml:msqrt>
