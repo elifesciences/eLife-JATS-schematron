@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="data-wwpdb-test-3.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)])
+Message: Data reference with the title '' has a Worldwide Protein Data Bank type doi  , but the assigning authority is not 'PDB', which must be incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset2" publication-type="data" specific-use="isSupplementedBy">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Qingfeng</surname>
+          <given-names>Chen</given-names>
+        </name>
+        <name>
+          <surname>Xiao-chen</surname>
+          <given-names>Bai</given-names>
+        </name>
+        <name>
+          <surname>Youxing</surname>
+          <given-names>Jiang</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Atomic coordinates of OTOP3 from xenopus tropicalis</data-title>
+      <source>Worldwide Protein Data Bank</source>
+      <pub-id assigning-authority="RCSB" pub-id-type="doi">10.2210/pdb6O84/pdb</pub-id>
+    </element-citation>
+  </article>
+</root>

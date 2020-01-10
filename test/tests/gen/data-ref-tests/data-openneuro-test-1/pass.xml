@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-openneuro-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (source[1]!='OpenNeuro')
+Message: Data reference with the title '' has a doi starting with '10.18112/openneuro' but the database name is not 'OpenNeuro'  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Alpha/beta power decreases track the fidelity of stimulus-specific information</data-title>
+      <source>OpenNeuro</source>
+      <pub-id assigning-authority="other" pub-id-type="doi">10.18112/openneuro.ds002000.v1.0.0</pub-id>
+    </element-citation>
+  </article>
+</root>

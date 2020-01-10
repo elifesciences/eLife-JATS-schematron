@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-popset-test.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/popset') and not(source[1]='NCBI PopSet')
+Message: Data reference with the title '' has a 'https://www.ncbi.nlm.nih.gov/popset' type link, but the database name is not 'NCBI PopSet'  . Is that correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="references">
+      <year iso-8601-date="2017">2017</year>
+      <data-title>Pinguinus impennis mitochondrion, complete genome</data-title>
+      <source>NCBI PopSet</source>
+      <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/popset/?term=1208276182">1208276182</pub-id>
+    </element-citation>
+  </article>
+</root>

@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="data-pbd-test-1.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    starts-with(pub-id[1]/@xlink:href,'http://www.rcsb.org/pdb') and not(source[1]='RCSB Protein Data Bank')
+Message: Data reference with the title '' has a 'http://www.rcsb.org/pdb' type link, but the database name is not 'RCSB Protein Data Bank'  . Is that correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset2" publication-type="data" specific-use="isSupplementedBy">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Lü</surname>
+          <given-names>W</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2018">2018</year>
+      <data-title>Cryo-EM density map and coordinate of TRPC3</data-title>
+      <source>RCSB Protein Data Bank</source>
+      <pub-id assigning-authority="RCSB" pub-id-type="accession" xlink:href="http://www.rcsb.org/pdb/search/structidSearch.do?structureId=6CUD">6CUD</pub-id>
+    </element-citation>
+  </article>
+</root>

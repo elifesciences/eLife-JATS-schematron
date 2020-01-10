@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-synapse-test-2.sch"?>
+<!--Context: element-citation[@publication-type='data']
+Test: report    pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')
+Message: Data reference with the title '' has the database name , but no doi starting with '10.7303/syn', which is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Source Data: Optical dopamine monitoring with dLight1 reveals mesolimbic phenotypes in a mouse model of neurofibromatosis type 1</data-title>
+      <source>Synapse</source>
+      <pub-id assigning-authority="other" pub-id-type="doi">10.7303/syn18904024</pub-id>
+    </element-citation>
+  </article>
+</root>
