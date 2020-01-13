@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="final-err-elem-cit-web-11-1.sch"?>
+<!--Context: element-citation[@publication-type='web']
+Test: report    count(date-in-citation) lt 1
+Message: 
+        Web Reference '' has no accessed date (<dateincitation> element) which is required.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="web">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walker</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="1994">1994</year>
+          <article-title>Solar System Live</article-title>
+          <ext-link ext-link-type="uri" xlink:href="https://www.fourmilab.ch/solar/">https://www.fourmilab.ch/solar/</ext-link>
+          
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>

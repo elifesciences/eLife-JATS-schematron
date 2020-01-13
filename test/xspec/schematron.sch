@@ -1646,7 +1646,11 @@
       
       <report test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
-      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="error" id="fig-test-4">fig must have a caption.</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="warning" id="pre-fig-test-4">
+        <value-of select="label"/> has no title or caption (caption element). Esnure this is queried with the author.</report>
+      
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="error" id="final-fig-test-4">
+        <value-of select="label"/> has no title or caption (caption element).</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="warning" id="pre-fig-test-5">
         <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
@@ -1750,7 +1754,7 @@
       <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
       
       <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="warning" id="supplementary-material-test-2">
-        <value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material have a child caption.)</report>
+        <value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</report>
       
       <report test="if (caption) then not(caption/title)                     else ()" role="warning" id="pre-supplementary-material-test-3">
         <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
@@ -1764,8 +1768,11 @@
         role="warning"
         id="supplementary-material-test-4">supplementary-material caption does not have a p. Is this correct?</report>-->
       
-      <assert test="media" role="error" id="supplementary-material-test-5">
-        <value-of select="label"/> - supplementary-material must have a media.</assert>		
+      <assert test="media" role="warning" id="pre-supplementary-material-test-5">
+        <value-of select="label"/> is missing a file (supplementary-material missing a media element) - please ensure that this is queried with the author.</assert>		
+      
+      <assert test="media" role="error" id="final-supplementary-material-test-5">
+        <value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
       
       <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
@@ -1888,6 +1895,9 @@
       
       <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
         <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
+      
+      <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
+        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a ke resources table. Is this correct?</report>
       
     </rule>
   </pattern>
@@ -2166,7 +2176,10 @@
       
       <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
-      <report test="if ($article-type = ('correction','retraction')) then ()                      else if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="error" id="fig-specific-test-2">
+      <report test="if ($article-type = ('correction','retraction')) then ()                      else if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="warning" id="pre-fig-specific-test-2">
+        <value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
+      
+      <report test="if ($article-type = ('correction','retraction')) then ()          else if ($count = 0) then ()         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="error" id="final-fig-specific-test-2">
         <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" role="warning" id="fig-specific-test-3">
@@ -3789,10 +3802,13 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(ext-link)"/> 
         &lt;ext-link&gt; elements.</assert>
       
-      <assert test="count(date-in-citation)=1" role="error" id="err-elem-cit-web-11-1">[err-elem-cit-web-11-1]
-        One and only one &lt;date-in-citation&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> 
-        &lt;date-in-citation&gt; elements.</assert>
+      <report test="count(date-in-citation) lt 1" role="warning" id="pre-err-elem-cit-web-11-1">
+        Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element), which is required. Please ensure this is queried with the author.</report>
+      
+      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">
+        Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
+      
+      <report test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
       
       <assert test="count(*) = count(person-group|article-title|source|year|ext-link|date-in-citation)" role="error" id="err-elem-cit-web-12">[err-elem-cit-web-12]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="web" are:
@@ -4749,7 +4765,7 @@
       <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
         <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
-      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to (target video label number is <value-of select="$target-no"/>, but that number is not in the citation).</assert>
+      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</assert>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -5733,7 +5749,7 @@
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a 'http://www.[Rr]-project.org' link.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a 'http://www.r-project.org' type link.</report>
       
       <report test="matches(lower-case(source),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
       

@@ -683,17 +683,23 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="element-citation-web-tests">
-    <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
-      <assert test="count(date-in-citation)=1" role="error" id="err-elem-cit-web-11-1">[err-elem-cit-web-11-1]
-        One and only one &lt;date-in-citation&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> 
-        &lt;date-in-citation&gt; elements.</assert>
+  <pattern id="further-fig-tests">
+    <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="id" value="@id"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="no" value="substring-after($id,'fig')"/>
+      <let name="pre-sib" value="preceding-sibling::*[1]"/>
+      <let name="fol-sib" value="following-sibling::*[1]"/>
+      <let name="lab" value="replace(label,'\.','')"/>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else if ($count = 0) then ()         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="error" id="final-fig-specific-test-2">
+        <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
+      <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

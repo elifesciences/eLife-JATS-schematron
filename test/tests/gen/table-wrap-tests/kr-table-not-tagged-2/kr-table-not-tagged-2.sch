@@ -683,15 +683,18 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
-      <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a 'http://www.r-project.org' type link.</report>
+  <pattern id="content-containers">
+    <rule context="table-wrap" id="table-wrap-tests">
+      <let name="id" value="@id"/>
+      <let name="lab" value="label"/>
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
+        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a ke resources table. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
+      <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
     </rule>
   </pattern>
 </schema>
