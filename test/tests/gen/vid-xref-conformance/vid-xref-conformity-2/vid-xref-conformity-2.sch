@@ -689,7 +689,7 @@
       <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to (target video label number is <value-of select="$target-no"/>, but that number is not in the citation).</assert>
+      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

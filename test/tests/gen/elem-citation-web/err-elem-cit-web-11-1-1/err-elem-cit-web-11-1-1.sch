@@ -683,18 +683,14 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="supplementary-material" id="supplementary-material-tests">
-      <let name="link" value="media[1]/@xlink:href"/>
-      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
-      <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <assert test="media" role="error" id="supplementary-material-test-5">
-        <value-of select="label"/> - supplementary-material must have a media.</assert>
+  <pattern id="element-citation-web-tests">
+    <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
+      <report test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

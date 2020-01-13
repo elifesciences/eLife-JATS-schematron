@@ -683,15 +683,23 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
-      <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a 'http://www.r-project.org' type link.</report>
+  <pattern id="further-fig-tests">
+    <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="id" value="@id"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="no" value="substring-after($id,'fig')"/>
+      <let name="pre-sib" value="preceding-sibling::*[1]"/>
+      <let name="fol-sib" value="following-sibling::*[1]"/>
+      <let name="lab" value="replace(label,'\.','')"/>
+      <report test="if ($article-type = ('correction','retraction')) then ()                      else if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="warning" id="pre-fig-specific-test-2">
+        <value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
+      <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

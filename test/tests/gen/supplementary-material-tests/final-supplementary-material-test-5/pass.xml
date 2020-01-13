@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="supplementary-material-test-2.sch"?>
+<?oxygen SCHSchema="final-supplementary-material-test-5.sch"?>
 <!--Context: supplementary-material
-Test: report    if (contains(label,'Transparent reporting form')) then () else not(caption)
-Message:  is missing a title/caption  is this correct?  (supplementarymaterial should have a child caption.)-->
+Test: assert    media
+Message:  is missing a file (supplementarymaterial must have a media).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <supplementary-material>
@@ -9,6 +9,7 @@ Message:  is missing a title/caption  is this correct?  (supplementarymaterial s
       <caption>
         <title>Title.</title>
       </caption>
+      <media/>
     </supplementary-material>
   </article>
 </root>
