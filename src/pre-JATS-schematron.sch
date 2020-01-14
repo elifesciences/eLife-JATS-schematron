@@ -5775,6 +5775,8 @@
       
       <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/biosample') and not(source[1]='NCBI BioSample')" role="warning" id="data-biosample-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - <value-of select="source[1]"/>. Is that correct?</report>
       
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/protein') and not(source[1]='NCBI Protein')" role="warning" id="data-protein-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/protein' type link, but the database name is not 'NCBI Protein' - <value-of select="source[1]"/>. Is that correct?</report>
+      
       <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/assembly') and not(source[1]='NCBI Assembly')" role="warning" id="data-assembly-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/assembly' type link, but the database name is not 'NCBI Assembly' - <value-of select="source[1]"/>. Is that correct?</report>
       
       <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-1">Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked as an accession number, which is likely incorrect.</report>
@@ -5793,7 +5795,7 @@
       
       <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')" role="warning" id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PBD' or not(@assigning-authority)]" role="warning" id="data-rcsbpbd-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but is not marked with PBD as its assigning authority, which must be incorrect</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]" role="warning" id="data-rcsbpbd-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but is not marked with PDB as its assigning authority, which must be incorrect</report>
       
       <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link.</report>
       

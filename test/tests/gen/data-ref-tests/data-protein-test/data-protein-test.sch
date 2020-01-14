@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]" role="warning" id="data-rcsbpbd-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but is not marked with PDB as its assigning authority, which must be incorrect</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/protein') and not(source[1]='NCBI Protein')" role="warning" id="data-protein-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/protein' type link, but the database name is not 'NCBI Protein' - <value-of select="source[1]"/>. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
