@@ -690,9 +690,7 @@
       <let name="citation" value="e:citation-format1(self::*)"/>
       <report test="some $x in (preceding::year[ancestor::ref-list])       satisfies  e:citation-format1($x) = $citation" role="error" id="err-elem-cit-gen-date-1-8">[err-elem-cit-gen-date-1-8]
         Letter suffixes must be unique for the combination of year and author information. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as it 
-        contains the &lt;year&gt; '<value-of select="."/>' for the author information
-        '<value-of select="e:stripDiacritics(ancestor::element-citation/person-group[1]/name[1]/surname)"/>', which occurs in at least one other reference.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as its citation is '<value-of select="$citation"/>', which is the same as at least one other reference.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

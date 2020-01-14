@@ -1721,11 +1721,12 @@
       
       <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
-      <report test="matches(label,'^Animation [0-9]{1,3}|^Appendix \d{1,4}—animation [0-9]{1,3}') and not(@mime-subtype='gif')" role="error" id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
+      <report test="matches(label,'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
+        <value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
       
       <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
-      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">video label does not conform to eLife's usual label format.</report>
+      <report test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
       
       <report test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
       
@@ -3052,9 +3053,7 @@
       
       <report test="some $x in (preceding::year[ancestor::ref-list])       satisfies  e:citation-format1($x) = $citation" role="error" id="err-elem-cit-gen-date-1-8">[err-elem-cit-gen-date-1-8]
         Letter suffixes must be unique for the combination of year and author information. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as it 
-        contains the &lt;year&gt; '<value-of select="."/>' for the author information
-        '<value-of select="e:stripDiacritics(ancestor::element-citation/person-group[1]/name[1]/surname)"/>', which occurs in at least one other reference.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as its citation is '<value-of select="$citation"/>', which is the same as at least one other reference.</report>
       
     </rule>
   </pattern>
@@ -4741,19 +4740,7 @@
     </rule>
   </pattern>
   
-  <pattern id="unlinked-ref-cite-pattern">
-    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
-      <let name="id" value="parent::ref/@id"/>
-      <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
-      <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
-      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
-      <let name="regex" value="concat($cite1,'|',$cite2)"/>
-      <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
-      
-      <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
-      
-    </rule>
-  </pattern>
+  
   
   <pattern id="vid-xref-conformance-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
@@ -6582,7 +6569,6 @@
       <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
       <assert test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
-      <assert test="descendant::ref-list/ref/element-citation" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation must be present.</assert>
       <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='fig']" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
