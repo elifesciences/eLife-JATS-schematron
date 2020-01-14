@@ -2287,18 +2287,18 @@
         role="warning"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
-      <report test="matches(label,'^Animation [0-9]{1,3}|^Appendix \d{1,4}—animation [0-9]{1,3}') and not(@mime-subtype='gif')" 
+      <report test="matches(label,'[Aa]nimation') and not(@mime-subtype='gif')" 
         role="error"
-        id="media-test-5">media whose label is in the format 'Animation 0' must have a @mime-subtype='gif'.</report>    
+        id="media-test-5"><value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
       
       <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" 
         role="warning"
         id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
-      <report test="if (child::label) then not(matches(label,'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))
+      <report test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))
         else ()"
         role="error"
-        id="media-test-7">video label does not conform to eLife's usual label format.</report>
+        id="media-test-7">media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
       
       <report test="if (ancestor::sec[@sec-type='supplementary-material']) then ()
         else if (@mimetype='video') then (not(label))
@@ -4205,9 +4205,7 @@
       
       <report test="some $x in (preceding::year[ancestor::ref-list])       satisfies  e:citation-format1($x) = $citation" role="error" id="err-elem-cit-gen-date-1-8">[err-elem-cit-gen-date-1-8]
         Letter suffixes must be unique for the combination of year and author information. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as it 
-        contains the &lt;year&gt; '<value-of select="."/>' for the author information
-        '<value-of select="e:stripDiacritics(ancestor::element-citation/person-group[1]/name[1]/surname)"/>', which occurs in at least one other reference.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as its citation is '<value-of select="$citation"/>', which is the same as at least one other reference.</report>
       
     </rule>
     
@@ -6196,46 +6194,20 @@
   
   <pattern id="unlinked-ref-cite-pattern">
     
-    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
-      <let name="id" value="parent::ref/@id"/>
-      <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
-      <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
-      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
-      <let name="regex" value="concat($cite1,'|',$cite2)"/>
-      <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
-        return 
-        if ($x/ancestor::sec[@sec-type='data-availability']) then ()
-        else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
-        else if ($x/ancestor::ref-list) then ()
-        else if ($x/local-name() = 'xref') then ()
-        else $x/text(),'')"/>
-      
-      <report test="matches($article-text,$regex)"
-        role="error" 
-        id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
-      
-    </rule>
-    
-    <rule context="article[back/ref-list]"
+    <rule context="p[ancestor::app or ancestor::body[parent::article]]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]"
       id="missing-ref-cited">
-      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*
-        return 
-        if ($x/ancestor::sec[@sec-type='data-availability']) then ()
-        else if ($x/ancestor::sec[@sec-type='additional-information']) then ()
-        else if ($x/ancestor::ref-list) then ()
-        else if ($x/local-name() = 'xref') then ()
-        else $x/text(),'')"/>
-      <let name="ref-list-regex" value="string-join(for $x in self::*//ref-list/ref/element-citation/year
-        return concat(e:citation-format1($x),'|',e:citation-format2($x))
-        ,'|')"/>
-      <let name="missing-ref-text" value="replace($article-text,$ref-list-regex,'')"/>
+      <let name="text" value="string-join(for $x in self::*/(*|text())
+        return if ($x/local-name()='xref') then ()
+        else string($x),'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
       
-      <report test="($ref-list-regex !='') and matches($missing-ref-text,$missing-ref-regex)"
+      <report test="matches($text,$missing-ref-regex)"
         role="warning" 
-        id="missing-ref-in-text-test">There may be citations to missing references in the text - search - <value-of select="string-join(for $x in tokenize($missing-ref-text,'\. ')
-          return 
-          if (matches($x,$missing-ref-regex)) then $x else (),' -- -- ')"/></report>
+        id="missing-ref-in-text-test"><name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(
+          tokenize(substring-before($text,' et al'),' ')[last()],
+          ' et al ',
+          tokenize(substring-after($text,' et al'),' ')[2]
+          )"/></report>
       
     </rule>
     
