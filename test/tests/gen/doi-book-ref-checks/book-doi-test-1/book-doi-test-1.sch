@@ -683,14 +683,19 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="title-conformance">
-    <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
+  <pattern id="doi-ref-checks">
+    <rule context="element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" id="doi-book-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
+      <let name="publisher" value="lower-case(publisher-name[1])"/>
+      <let name="publishers" value="'../../../../../src/publishers.xml'"/>
+      <report test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" role="warning" id="book-doi-test-1">
+        <value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -3379,7 +3379,7 @@
       
       <report test="matches(.,'&amp;#x\d')"
         role="warning"
-        id="ethics-broken-unicode-test">Ethics statement likely contains a borken unicode - <value-of select="."/>.</report>
+        id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" 
@@ -8570,6 +8570,36 @@
   </pattern>
   
   <pattern
+    id="doi-ref-checks">
+    
+    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]"
+      id="doi-journal-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
+      <let name="journal" value="lower-case(source[1])"/>
+      <let name="journals" value="'journals.xml'"/>
+      
+      <assert test="some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))"
+        role="warning" 
+        id="journal-doi-test-1"><value-of select="$cite"/> is a journal ref without a doi. Should it have one?</assert>
+      
+    </rule>
+
+    <rule context="element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]"
+      id="doi-book-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
+      <let name="publisher" value="lower-case(publisher-name[1])"/>
+      <let name="publishers" value="'publishers.xml'"/>
+      
+      <report test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)"
+        role="warning" 
+        id="book-doi-test-1"><value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
+      
+    </rule>
+  </pattern>
+  
+  <pattern
     id="element-whitelist-pattern">
     
     <rule context="article//*[not(ancestor::mml:math)]"
@@ -8579,7 +8609,6 @@
       <assert test="name()=$allowed-elements"
         role="error" 
         id="element-conformity"><value-of select="name()"/> element is not allowed.</assert>
-      
       
     </rule>
   </pattern>
