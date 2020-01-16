@@ -843,12 +843,12 @@
       </x:scenario>
       <x:scenario label="surname-test-4-pass">
         <x:context href="../tests/gen/surname-tests/surname-test-4/pass.xml"/>
-        <x:expect-not-assert id="surname-test-4" role="warning"/>
+        <x:expect-not-assert id="surname-test-4" role="error"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="surname-test-4-fail">
         <x:context href="../tests/gen/surname-tests/surname-test-4/fail.xml"/>
-        <x:expect-assert id="surname-test-4" role="warning"/>
+        <x:expect-assert id="surname-test-4" role="error"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="surname-test-5-pass">
@@ -11823,6 +11823,26 @@
       <x:scenario label="elife-ref-check-fail">
         <x:context href="../tests/gen/journal-tests/elife-ref-check/fail.xml"/>
         <x:expect-report id="elife-ref-check" role="error"/>
+        <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-conference-ref-check-1-pass">
+        <x:context href="../tests/gen/journal-tests/journal-conference-ref-check-1/pass.xml"/>
+        <x:expect-not-report id="journal-conference-ref-check-1" role="warning"/>
+        <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-conference-ref-check-1-fail">
+        <x:context href="../tests/gen/journal-tests/journal-conference-ref-check-1/fail.xml"/>
+        <x:expect-report id="journal-conference-ref-check-1" role="warning"/>
+        <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-conference-ref-check-2-pass">
+        <x:context href="../tests/gen/journal-tests/journal-conference-ref-check-2/pass.xml"/>
+        <x:expect-not-report id="journal-conference-ref-check-2" role="warning"/>
+        <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-conference-ref-check-2-fail">
+        <x:context href="../tests/gen/journal-tests/journal-conference-ref-check-2/fail.xml"/>
+        <x:expect-report id="journal-conference-ref-check-2" role="warning"/>
         <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
