@@ -1,0 +1,41 @@
+<?oxygen SCHSchema="journal-conference-ref-check-1.sch"?>
+<!--Context: element-citation[@publication-type='journal']
+Test: report    matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')
+Message: Journal ref '' has the journal title . Should it be a conference type reference instead?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <ref id="bib1">
+      <element-citation publication-type="journal">
+        <person-group person-group-type="author">
+          <name>
+            <surname>Andrés</surname>
+            <given-names>JA</given-names>
+          </name>
+          <name>
+            <surname>Maroja</surname>
+            <given-names>LS</given-names>
+          </name>
+          <name>
+            <surname>Bogdanowicz</surname>
+            <given-names>SM</given-names>
+          </name>
+          <name>
+            <surname>Swanson</surname>
+            <given-names>WJ</given-names>
+          </name>
+          <name>
+            <surname>Harrison</surname>
+            <given-names>RG</given-names>
+          </name>
+        </person-group>
+        <year iso-8601-date="2006">2006</year>
+        <article-title>Molecular evolution of seminal proteins in field crickets</article-title>
+        <source>7th Molecular Biology and Evolution conference</source>
+        <volume>23</volume>
+        <fpage>1574</fpage>
+        <lpage>1584</lpage>
+        <pub-id pub-id-type="doi">10.1093/molbev/msl020</pub-id>
+      </element-citation>
+    </ref>
+  </article>
+</root>

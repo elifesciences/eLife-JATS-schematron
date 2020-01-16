@@ -1172,8 +1172,8 @@
       	role="error" 
       	id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	   <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)"
-      	role="warning" 
+	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)"
+      	role="error" 
       	id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
 	  <assert test="matches(.,'^\p{Lu}')"
@@ -1201,7 +1201,7 @@
       	role="error" 
       	id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)"
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)"
       	role="error" 
       	id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
@@ -7584,11 +7584,19 @@
       
       <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')"
         role="error" 
-        id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source"/>, but it is captured as a journal not a preprint.</report>
+        id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
       <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'],'^10.7554/eLife.\d{5}$'))"
         role="error" 
-        id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+        id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+      
+      <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')"
+        role="warning" 
+        id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal title <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
+      
+      <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')"
+        role="warning" 
+        id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal title containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal title?</report>
       
     </rule>
     

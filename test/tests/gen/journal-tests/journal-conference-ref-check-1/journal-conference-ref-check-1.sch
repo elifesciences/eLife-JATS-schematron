@@ -683,14 +683,14 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="error" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+  <pattern id="house-style">
+    <rule context="element-citation[@publication-type='journal']" id="journal-tests">
+      <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal title <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">article-meta/contrib-group//name/surname must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
