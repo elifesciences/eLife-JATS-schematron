@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="journal-doi-test-1.sch"?>
+<!--Context: element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]
+Test: assert    some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))
+Message:  is a journal ref without a doi. Should it have one?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib1"><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Aghamohammadzadeh</surname> <given-names>S</given-names></name><name><surname>Ayscough</surname> <given-names>KR</given-names></name></person-group><year iso-8601-date="2009">2009</year><article-title>Differential requirements for actin during yeast and mammalian endocytosis</article-title><source>Nature Cell Biology</source><volume>11</volume><fpage>1039</fpage><lpage>1042</lpage><pub-id pub-id-type="pmid">19597484</pub-id></element-citation></ref>
+  </article>
+</root>

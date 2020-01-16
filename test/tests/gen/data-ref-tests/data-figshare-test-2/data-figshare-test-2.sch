@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" role="warning" id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" role="warning" id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

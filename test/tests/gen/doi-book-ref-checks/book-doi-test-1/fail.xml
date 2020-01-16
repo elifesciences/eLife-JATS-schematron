@@ -1,0 +1,48 @@
+<?oxygen SCHSchema="book-doi-test-1.sch"?>
+<!--Context: element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]
+Test: report    some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)
+Message:  is a book ref without a doi, but its publisher () is known to register dois with some books/chapters. Should it have one?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Hogarth</surname>
+          <given-names>KM</given-names>
+        </name>
+        <name>
+          <surname>Jaroszz</surname>
+          <given-names>J</given-names>
+        </name>
+        <name>
+          <surname>Butler</surname>
+          <given-names>P</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2012">2012</year>
+      <chapter-title>The skull and brain</chapter-title>
+      <person-group person-group-type="editor">
+        <name>
+          <surname>Butler</surname>
+          <given-names>P</given-names>
+        </name>
+        <name>
+          <surname>Mitchell</surname>
+          <given-names>A</given-names>
+        </name>
+        <name>
+          <surname>Healy</surname>
+          <given-names>JC</given-names>
+        </name>
+      </person-group>
+      <source>Applied Radiological Anatomy</source>
+      <volume>1</volume>
+      <edition>2nd Edition</edition>
+      <publisher-loc>Cambridge, United Kingdom</publisher-loc>
+      <publisher-name>Cambridge University Press</publisher-name>
+      <fpage>1</fpage>
+      <lpage>32</lpage>
+      <pub-id pub-id-type="isbn">9780511977930</pub-id>
+    </element-citation>
+  </article>
+</root>

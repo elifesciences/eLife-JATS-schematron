@@ -1,0 +1,46 @@
+<?oxygen SCHSchema="journal-doi-test-1.sch"?>
+<!--Context: element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]
+Test: assert    some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))
+Message:  is a journal ref without a doi. Should it have one?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib1"><element-citation publication-type="journal">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Herr</surname>
+          <given-names>DR</given-names>
+        </name>
+        <name>
+          <surname>Fyrst</surname>
+          <given-names>H</given-names>
+        </name>
+        <name>
+          <surname>Phan</surname>
+          <given-names>V</given-names>
+        </name>
+        <name>
+          <surname>Heinecke</surname>
+          <given-names>K</given-names>
+        </name>
+        <name>
+          <surname>Georges</surname>
+          <given-names>R</given-names>
+        </name>
+        <name>
+          <surname>Harris</surname>
+          <given-names>GL</given-names>
+        </name>
+        <name>
+          <surname>Saba</surname>
+          <given-names>JD</given-names>
+        </name>
+      </person-group>
+      <year>2001</year>
+      <article-title>Sply regulation of sphingolipid signaling molecules is essential for Drosophila development</article-title>
+      <source>Development</source>
+      <volume>130</volume>
+      <fpage>2443</fpage>
+      <lpage>2453</lpage>
+    </element-citation></ref>
+  </article>
+</root>

@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" role="warning" id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" role="warning" id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

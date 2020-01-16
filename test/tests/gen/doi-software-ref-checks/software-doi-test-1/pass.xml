@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="software-doi-test-1.sch"?>
+<!--Context: element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]
+Test: report    $host='zenodo'
+Message:  is a software ref without a doi, but its host () is known to register dois starting with '10.5281/zenodo'. Should it have one?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="software">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Kather</surname> <given-names>JN</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2018">2018</year>
+      <data-title>Immune topography: QuPath and Matlab scripts for histological image analysis</data-title>
+      <source>GitHub</source>
+      <version designator="0.1">v0.1</version>
+    </element-citation>
+  </article>
+</root>
