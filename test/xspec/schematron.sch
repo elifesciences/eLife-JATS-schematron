@@ -5790,7 +5790,7 @@
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') and (source[1]!='Dryad Digital Repository')" role="warning" id="data-dryad-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5061/dryad' but the database name is not 'Dryad Digital Repository' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad')) and (source[1]='Dryad Digital Repository')" role="warning" id="data-dryad-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad')) and (source[1]='Dryad Digital Repository')" role="warning" id="data-dryad-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') and (pub-id[1][@assigning-authority!='Dryad' or not(@assigning-authority)])" role="warning" id="data-dryad-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Dryad, which must be incorrect.</report>
       
@@ -5820,7 +5820,7 @@
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (source[1]!='Zenodo')" role="warning" id="data-zenodo-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5281/zenodo' but the database name is not 'Zenodo' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo')) and (source[1]='Zenodo')" role="warning" id="data-zenodo-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5281/zenodo', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo')) and (source[1]='Zenodo')" role="warning" id="data-zenodo-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5281/zenodo', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])" role="warning" id="data-zenodo-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Zenodo type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Zenodo, which must be incorrect.</report>
       
@@ -5836,7 +5836,7 @@
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (source[1]!='figshare')" role="warning" id="data-figshare-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6084/m9.figshare' but the database name is not 'figshare' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" role="warning" id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" role="warning" id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])" role="warning" id="data-figshare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a figshare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not figshare, which must be incorrect.</report>
       
@@ -5848,13 +5848,13 @@
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (source[1]!='OpenNeuro')" role="warning" id="data-openneuro-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.18112/openneuro' but the database name is not 'OpenNeuro' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro')) and not(contains(pub-id[1]/@xlink:href,'openneuro.org/datasets')) and (source[1]='OpenNeuro')" role="warning" id="data-openneuro-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.18112/openneuro' or 'openneuro.org/datasets' type link, which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro')) and not(contains(pub-id[1]/@xlink:href,'openneuro.org/datasets')) and (source[1]='OpenNeuro')" role="warning" id="data-openneuro-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.18112/openneuro' or 'openneuro.org/datasets' type link, which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-openneuro-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a OpenNeuro type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')" role="warning" id="data-synapse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7303/syn' but the database name is not 'Synapse' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" role="warning" id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" role="warning" id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-synapse-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Synapse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
@@ -5872,31 +5872,31 @@
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (source[1]!='Mendeley Data')" role="warning" id="data-mendeley-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17632' but the database name is not 'Mendeley Data' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17632')) and (source[1]='Mendeley Data')" role="warning" id="data-mendeley-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17632', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17632')) and (source[1]='Mendeley Data')" role="warning" id="data-mendeley-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17632', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-mendeley-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Mendeley Data type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')" role="warning" id="data-edatashare-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7488' but the database name is not 'Edinburgh DataShare' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" role="warning" id="data-edatashare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" role="warning" id="data-edatashare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])" role="warning" id="data-edatashare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Edinburgh DataShare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'Edinburgh University', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')" role="warning" id="data-eth-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.3929' but the database name is not 'ETH Library research collection' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.3929')) and (source[1]='ETH Library research collection')" role="warning" id="data-eth-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.3929', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.3929')) and (source[1]='ETH Library research collection')" role="warning" id="data-eth-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.3929', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-eth-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a ETH Library research collection type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6080' but the database name is not 'Collaborative Research in Computational Neuroscience' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6080')) and (source[1]='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6080', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6080')) and (source[1]='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6080', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-crcns-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a CRCNS type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (source[1]!='MorphoSource')" role="warning" id="data-morphosource-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17602' but the database name is not 'MorphoSource' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17602')) and (source[1]='MorphoSource')" role="warning" id="data-morphosource-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17602', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17602')) and (source[1]='MorphoSource')" role="warning" id="data-morphosource-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17602', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-morphosource-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a MorphoSource type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
@@ -5908,19 +5908,19 @@
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB'  or not(@assigning-authority)])" role="warning" id="data-wwpdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Worldwide Protein Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'PDB', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.15785/SBGRID' but the database name is not 'SBGrid Data Bank' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID')) and (source[1]='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID')) and (source[1]='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-sbgdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a SBGrid Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (source[1]!='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7910' but the database name is not 'Harvard Dataverse' - <value-of select="source[1]"/>.</report>
       
-      <report test="pub-id and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7910')) and (source[1]='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7910', which is likely incorrect.</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7910')) and (source[1]='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7910', which is likely incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-harvard-dataverse-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Harvard Dataverse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
@@ -6333,6 +6333,19 @@
       
     </rule>
   </pattern>
+  <pattern id="doi-software-ref-checks-pattern">
+    <rule context="element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-software-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="host" value="lower-case(source[1])"/>
+      
+      <report test="$host='zenodo'" role="warning" id="software-doi-test-1">
+        <value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.5281/zenodo'. Should it have one?</report>
+      
+      <report test="$host='figshare'" role="warning" id="software-doi-test-2">
+        <value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.6084/m9.figshare'. Should it have one?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="element-whitelist-pattern">
     <rule context="article//*[not(ancestor::mml:math)]" id="element-whitelist">
@@ -6655,6 +6668,7 @@
       <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
       <assert test="descendant::article//*[not(ancestor::mml:math)]" role="error" id="element-whitelist-xspec-assert">article//*[not(ancestor::mml:math)] must be present.</assert>
     </rule>
   </pattern>

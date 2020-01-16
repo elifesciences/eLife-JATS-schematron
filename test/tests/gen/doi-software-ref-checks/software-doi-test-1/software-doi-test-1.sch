@@ -683,14 +683,17 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect.</report>
+  <pattern id="doi-ref-checks">
+    <rule context="element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-software-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="host" value="lower-case(source[1])"/>
+      <report test="$host='zenodo'" role="warning" id="software-doi-test-1">
+        <value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.5281/zenodo'. Should it have one?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
     </rule>
   </pattern>
 </schema>

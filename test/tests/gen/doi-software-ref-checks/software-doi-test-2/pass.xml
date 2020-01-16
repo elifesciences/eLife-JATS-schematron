@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="software-doi-test-2.sch"?>
+<!--Context: element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]
+Test: report    $host='figshare'
+Message:  is a software ref without a doi, but its host () is known to register dois starting with '10.6084/m9.figshare'. Should it have one?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="software">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Jamali</surname> <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Carriot</surname> <given-names>J</given-names>
+        </name>
+        <name>
+          <surname>Chacron</surname> <given-names>MJ</given-names>
+        </name>
+        <name>
+          <surname>Cullen</surname> <given-names>KE</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <data-title>Figure source data for coding strategies in the otolith system differ for translational head motion vs. static orientation relative to gravity</data-title>
+      <source>vejqr[bvjreiqw</source>
+      
+    </element-citation>
+  </article>
+</root>

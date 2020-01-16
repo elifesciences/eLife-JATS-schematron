@@ -13946,6 +13946,28 @@
         <x:expect-not-assert id="doi-book-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="doi-software-ref-checks">
+      <x:scenario label="software-doi-test-1-pass">
+        <x:context href="../tests/gen/doi-software-ref-checks/software-doi-test-1/pass.xml"/>
+        <x:expect-not-report id="software-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="doi-software-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="software-doi-test-1-fail">
+        <x:context href="../tests/gen/doi-software-ref-checks/software-doi-test-1/fail.xml"/>
+        <x:expect-report id="software-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="doi-software-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="software-doi-test-2-pass">
+        <x:context href="../tests/gen/doi-software-ref-checks/software-doi-test-2/pass.xml"/>
+        <x:expect-not-report id="software-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="doi-software-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="software-doi-test-2-fail">
+        <x:context href="../tests/gen/doi-software-ref-checks/software-doi-test-2/fail.xml"/>
+        <x:expect-report id="software-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="doi-software-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="element-whitelist">
       <x:scenario label="element-conformity-pass">
         <x:context href="../tests/gen/element-whitelist/element-conformity/pass.xml"/>
