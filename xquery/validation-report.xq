@@ -4,17 +4,21 @@
 
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 
-let $path := '/Users/fredatherden/desktop/elife51810-2.xml'
+let $path := '/Users/fredatherden/desktop/elife51998.xml'
 let $schema := doc('../src/pre-JATS-schematron.sch')
 let $src := substring-before($schema/base-uri(),'pre-JATS-schematron')
 let $xml := doc($path)
 let $filename := tokenize($path,'/')[last()]
 let $folder := substring-before($path,$filename)
 let $report-path := ($folder||substring-before($filename,'.xml')||'-report.xml')
-
+let $external-variables := distinct-values(
+                            for $x in $schema//*[@test[contains(.,'document(')]]
+                            let $variable := substring-before(substring-after($x/@test,'document($'),')')
+                            return $variable
+                          )
 let $schema2 := copy $copy := $schema
                 modify(
-                  for $x in $copy//*:let[@name=("journals","countries","publisher-locations")]
+                  for $x in $copy//*:let[@name=$external-variables]
                   return replace value of node $x/@value with concat("'",$src,replace($x/@value/string(),"'",''),"'")
                 )
                 return $copy
