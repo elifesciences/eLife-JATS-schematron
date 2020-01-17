@@ -683,18 +683,14 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="missing-ref-cited-pattern">
-    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
-      <let name="text" value="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
-      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
-      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">
-        <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(           tokenize(substring-before($text,' et al'),' ')[last()],           ' et al ',           tokenize(substring-after($text,' et al'),' ')[2]           )"/>
-      </report>
+  <pattern id="id-conformance">
+    <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
+      <report test="matches(label,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap)] or descendant::td[ancestor::app or ancestor::body[parent::article]] or descendant::th[ancestor::app or ancestor::body[parent::article]]" role="error" id="missing-ref-cited-xspec-assert">p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]] must be present.</assert>
+      <assert test="descendant::article/back//app//fig[not(@specific-use='child-fig')]" role="error" id="app-fig-ids-xspec-assert">article/back//app//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

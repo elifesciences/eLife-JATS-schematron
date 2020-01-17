@@ -4839,14 +4839,34 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="app-fig-ids">
-      <x:scenario label="app-fig-id-test-pass">
-        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test/pass.xml"/>
-        <x:expect-not-assert id="app-fig-id-test" role="error"/>
+      <x:scenario label="app-fig-id-test-1-pass">
+        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test-1/pass.xml"/>
+        <x:expect-not-report id="app-fig-id-test-1" role="error"/>
         <x:expect-not-assert id="app-fig-ids-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="app-fig-id-test-fail">
-        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test/fail.xml"/>
-        <x:expect-assert id="app-fig-id-test" role="error"/>
+      <x:scenario label="app-fig-id-test-1-fail">
+        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test-1/fail.xml"/>
+        <x:expect-report id="app-fig-id-test-1" role="error"/>
+        <x:expect-not-assert id="app-fig-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-fig-id-test-2-pass">
+        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test-2/pass.xml"/>
+        <x:expect-not-report id="app-fig-id-test-2" role="warning"/>
+        <x:expect-not-assert id="app-fig-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-fig-id-test-2-fail">
+        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test-2/fail.xml"/>
+        <x:expect-report id="app-fig-id-test-2" role="warning"/>
+        <x:expect-not-assert id="app-fig-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-fig-id-test-3-pass">
+        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test-3/pass.xml"/>
+        <x:expect-not-report id="app-fig-id-test-3" role="warning"/>
+        <x:expect-not-assert id="app-fig-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-fig-id-test-3-fail">
+        <x:context href="../tests/gen/app-fig-ids/app-fig-id-test-3/fail.xml"/>
+        <x:expect-report id="app-fig-id-test-3" role="warning"/>
         <x:expect-not-assert id="app-fig-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

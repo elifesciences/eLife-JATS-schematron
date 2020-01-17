@@ -3464,9 +3464,17 @@
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" 
       id="app-fig-ids">
       
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')" 
+      <report test="matches(label,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" 
         role="error"
-        id="app-fig-id-test">figures in appendices must have an @id in the format app0fig0.</assert>
+        id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0.</report>
+      
+      <report test="matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" 
+        role="warning"
+        id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0.</report>
+      
+      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" 
+        role="warning"
+        id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0.</report>
     </rule>
     
     <rule context="article/back//app//fig[@specific-use='child-fig']" 
@@ -6208,7 +6216,7 @@
   
   <pattern id="missing-ref-cited-pattern">
     
-    <rule context="p[ancestor::app or ancestor::body[parent::article]]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]"
+    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]"
       id="missing-ref-cited">
       <let name="text" value="string-join(for $x in self::*/(*|text())
         return if ($x/local-name()='xref') then ()

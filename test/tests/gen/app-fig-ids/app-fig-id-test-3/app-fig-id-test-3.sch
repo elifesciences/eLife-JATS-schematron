@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="app-fig-id-test">figures in appendices must have an @id in the format app0fig0.</assert>
+      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
