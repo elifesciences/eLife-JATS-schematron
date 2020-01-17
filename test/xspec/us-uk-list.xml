@@ -1,1605 +1,1605 @@
 <!-- Note that this is invoked with regex, so special characters have to be escaped -->
 <list>
-  <item us="accessorize" uk="accessorise"/>
-  <item us="accessorized" uk="accessorised"/>
-  <item us="accessorizes" uk="accessorises"/>
-  <item us="accessorizing" uk="accessorising"/>
-  <item us="acclimatization" uk="acclimatisation"/>
-  <item us="acclimatize" uk="acclimatise"/>
-  <item us="acclimatized" uk="acclimatised"/>
-  <item us="acclimatizes" uk="acclimatises"/>
-  <item us="acclimatizing" uk="acclimatising"/>
-  <item us="accouterments" uk="accoutrements"/>
-  <item us="aerogram" uk="aerogramme"/>
-  <item us="aerograms" uk="aerogrammes"/>
-  <item us="aggrandizement" uk="aggrandisement"/>
-  <item us="aging" uk="ageing"/>
-  <item us="agonize" uk="agonise"/>
-  <item us="agonized" uk="agonised"/>
-  <item us="agonizes" uk="agonises"/>
-  <item us="agonizing" uk="agonising"/>
-  <item us="agonizingly" uk="agonisingly"/>
-  <item us="almanac" uk="almanack"/>
-  <item us="almanacs" uk="almanacks"/>
-  <item us="aluminum" uk="aluminium"/>
-  <item us="amortizable" uk="amortisable"/>
-  <item us="amortization" uk="amortisation"/>
-  <item us="amortizations" uk="amortisations"/>
-  <item us="amortize" uk="amortise"/>
-  <item us="amortized" uk="amortised"/>
-  <item us="amortizes" uk="amortises"/>
-  <item us="amortizing" uk="amortising"/>
-  <item us="amphitheater" uk="amphitheatre"/>
-  <item us="amphitheaters" uk="amphitheatres"/>
-  <item us="analog" uk="analogue"/>
-  <item us="analogs" uk="analogues"/>
-  <item us="analyze" uk="analyse"/>
-  <item us="analyzed" uk="analysed"/>
-  <!-- Excluded as it's also plural of analysis
+<item us="accessorize" uk="accessorise"/>
+<item us="accessorized" uk="accessorised"/>
+<item us="accessorizes" uk="accessorises"/>
+<item us="accessorizing" uk="accessorising"/>
+<item us="acclimatization" uk="acclimatisation"/>
+<item us="acclimatize" uk="acclimatise"/>
+<item us="acclimatized" uk="acclimatised"/>
+<item us="acclimatizes" uk="acclimatises"/>
+<item us="acclimatizing" uk="acclimatising"/>
+<item us="accouterments" uk="accoutrements"/>
+<item us="aerogram" uk="aerogramme"/>
+<item us="aerograms" uk="aerogrammes"/>
+<item us="aggrandizement" uk="aggrandisement"/>
+<item us="aging" uk="ageing"/>
+<item us="agonize" uk="agonise"/>
+<item us="agonized" uk="agonised"/>
+<item us="agonizes" uk="agonises"/>
+<item us="agonizing" uk="agonising"/>
+<item us="agonizingly" uk="agonisingly"/>
+<item us="almanac" uk="almanack"/>
+<item us="almanacs" uk="almanacks"/>
+<item us="aluminum" uk="aluminium"/>
+<item us="amortizable" uk="amortisable"/>
+<item us="amortization" uk="amortisation"/>
+<item us="amortizations" uk="amortisations"/>
+<item us="amortize" uk="amortise"/>
+<item us="amortized" uk="amortised"/>
+<item us="amortizes" uk="amortises"/>
+<item us="amortizing" uk="amortising"/>
+<item us="amphitheater" uk="amphitheatre"/>
+<item us="amphitheaters" uk="amphitheatres"/>
+<item us="analog" uk="analogue"/>
+<item us="analogs" uk="analogues"/>
+<item us="analyze" uk="analyse"/>
+<item us="analyzed" uk="analysed"/>
+<!-- Excluded as it's also plural of analysis
 <item us="analyzes" uk="analyses"/> -->
-  <item us="analyzing" uk="analysing"/>
-  <item us="anemia" uk="anaemia"/>
-  <item us="anemic" uk="anaemic"/>
-  <item us="anesthesia" uk="anaesthesia"/>
-  <item us="anesthetic" uk="anaesthetic"/>
-  <item us="anesthetics" uk="anaesthetics"/>
-  <item us="anesthetist" uk="anaesthetist"/>
-  <item us="anesthetists" uk="anaesthetists"/>
-  <item us="anesthetize" uk="anaesthetise"/>
-  <item us="anesthetized" uk="anaesthetised"/>
-  <item us="anesthetizes" uk="anaesthetises"/>
-  <item us="anesthetizing" uk="anaesthetising"/>
-  <item us="anglicize" uk="anglicise"/>
-  <item us="anglicized" uk="anglicised"/>
-  <item us="anglicizes" uk="anglicises"/>
-  <item us="anglicizing" uk="anglicising"/>
-  <item us="annualized" uk="annualised"/>
-  <item us="antagonize" uk="antagonise"/>
-  <item us="antagonized" uk="antagonised"/>
-  <item us="antagonizes" uk="antagonises"/>
-  <item us="antagonizing" uk="antagonising"/>
-  <item us="apologize" uk="apologise"/>
-  <item us="apologized" uk="apologised"/>
-  <item us="apologizes" uk="apologises"/>
-  <item us="apologizing" uk="apologising"/>
-  <item us="appall" uk="appal"/>
-  <item us="appalls" uk="appals"/>
-  <item us="appetizer" uk="appetiser"/>
-  <item us="appetizers" uk="appetisers"/>
-  <item us="appetizing" uk="appetising"/>
-  <item us="appetizingly" uk="appetisingly"/>
-  <item us="arbor" uk="arbour"/>
-  <item us="arbors" uk="arbours"/>
-  <item us="ardor" uk="ardour"/>
-  <item us="armor" uk="armour"/>
-  <item us="armored" uk="armoured"/>
-  <item us="armorer" uk="armourer"/>
-  <item us="armorers" uk="armourers"/>
-  <item us="armories" uk="armouries"/>
-  <item us="armory" uk="armoury"/>
-  <item us="artifact" uk="artefact"/>
-  <item us="artifacts" uk="artefacts"/>
-  <item us="authorize" uk="authorise"/>
-  <item us="authorized" uk="authorised"/>
-  <item us="authorizes" uk="authorises"/>
-  <item us="authorizing" uk="authorising"/>
-  <item us="backpedaled" uk="backpedalled"/>
-  <item us="backpedaling" uk="backpedalling"/>
-  <item us="balk" uk="baulk"/>
-  <item us="balked" uk="baulked"/>
-  <item us="balking" uk="baulking"/>
-  <item us="balks" uk="baulks"/>
-  <item us="banister" uk="bannister"/>
-  <item us="banisters" uk="bannisters"/>
-  <item us="baptize" uk="baptise"/>
-  <item us="baptized" uk="baptised"/>
-  <item us="baptizes" uk="baptises"/>
-  <item us="baptizing" uk="baptising"/>
-  <item us="bastardize" uk="bastardise"/>
-  <item us="bastardized" uk="bastardised"/>
-  <item us="bastardizes" uk="bastardises"/>
-  <item us="bastardizing" uk="bastardising"/>
-  <item us="battleax" uk="battleaxe"/>
-  <item us="bedeviled" uk="bedevilled"/>
-  <item us="bedeviling" uk="bedevilling"/>
-  <item us="behavior" uk="behaviour"/>
-  <item us="behavioral" uk="behavioural"/>
-  <item us="behaviorism" uk="behaviourism"/>
-  <item us="behaviorist" uk="behaviourist"/>
-  <item us="behaviorists" uk="behaviourists"/>
-  <item us="behaviors" uk="behaviours"/>
-  <item us="behoove" uk="behove"/>
-  <item us="behooved" uk="behoved"/>
-  <item us="behooves" uk="behoves"/>
-  <item us="bejeweled" uk="bejewelled"/>
-  <item us="belabor" uk="belabour"/>
-  <item us="belabored" uk="belaboured"/>
-  <item us="belaboring" uk="belabouring"/>
-  <item us="belabors" uk="belabours"/>
-  <item us="beveled" uk="bevelled"/>
-  <item us="binging" uk="bingeing"/>
-  <item us="bowdlerize" uk="bowdlerise"/>
-  <item us="bowdlerized" uk="bowdlerised"/>
-  <item us="bowdlerizes" uk="bowdlerises"/>
-  <item us="bowdlerizing" uk="bowdlerising"/>
-  <item us="breathalyze" uk="breathalyse"/>
-  <item us="breathalyzed" uk="breathalysed"/>
-  <item us="breathalyzer" uk="breathalyser"/>
-  <item us="breathalyzers" uk="breathalysers"/>
-  <item us="breathalyzes" uk="breathalyses"/>
-  <item us="breathalyzing" uk="breathalysing"/>
-  <item us="brutalize" uk="brutalise"/>
-  <item us="brutalized" uk="brutalised"/>
-  <item us="brutalizes" uk="brutalises"/>
-  <item us="brutalizing" uk="brutalising"/>
-  <item us="busses" uk="buses"/>
-  <item us="bussing" uk="busing"/>
-  <item us="caliber" uk="calibre"/>
-  <item us="calibers" uk="calibres"/>
-  <item us="caliper" uk="calliper"/>
-  <item us="calipers" uk="callipers"/>
-  <item us="calisthenics" uk="callisthenics"/>
-  <item us="canalize" uk="canalise"/>
-  <item us="canalized" uk="canalised"/>
-  <item us="canalizes" uk="canalises"/>
-  <item us="canalizing" uk="canalising"/>
-  <item us="cancelation" uk="cancellation"/>
-  <item us="cancelations" uk="cancellations"/>
-  <item us="canceled" uk="cancelled"/>
-  <item us="canceling" uk="cancelling"/>
-  <item us="candor" uk="candour"/>
-  <item us="cannibalize" uk="cannibalise"/>
-  <item us="cannibalized" uk="cannibalised"/>
-  <item us="cannibalizes" uk="cannibalises"/>
-  <item us="cannibalizing" uk="cannibalising"/>
-  <item us="canonize" uk="canonise"/>
-  <item us="canonized" uk="canonised"/>
-  <item us="canonizes" uk="canonises"/>
-  <item us="canonizing" uk="canonising"/>
-  <item us="capitalize" uk="capitalise"/>
-  <item us="capitalized" uk="capitalised"/>
-  <item us="capitalizes" uk="capitalises"/>
-  <item us="capitalizing" uk="capitalising"/>
-  <item us="caramelize" uk="caramelise"/>
-  <item us="caramelized" uk="caramelised"/>
-  <item us="caramelizes" uk="caramelises"/>
-  <item us="caramelizing" uk="caramelising"/>
-  <item us="carbonize" uk="carbonise"/>
-  <item us="carbonized" uk="carbonised"/>
-  <item us="carbonizes" uk="carbonises"/>
-  <item us="carbonizing" uk="carbonising"/>
-  <item us="caroled" uk="carolled"/>
-  <item us="caroling" uk="carolling"/>
-  <item us="catalog" uk="catalogue"/>
-  <item us="cataloged" uk="catalogued"/>
-  <item us="cataloging" uk="cataloguing"/>
-  <item us="catalogs" uk="catalogues"/>
-  <item us="catalyze" uk="catalyse"/>
-  <item us="catalyzed" uk="catalysed"/>
-  <item us="catalyzes" uk="catalyses"/>
-  <item us="catalyzing" uk="catalysing"/>
-  <item us="categorize" uk="categorise"/>
-  <item us="categorized" uk="categorised"/>
-  <item us="categorizes" uk="categorises"/>
-  <item us="categorizing" uk="categorising"/>
-  <item us="cauterize" uk="cauterise"/>
-  <item us="cauterized" uk="cauterised"/>
-  <item us="cauterizes" uk="cauterises"/>
-  <item us="cauterizing" uk="cauterising"/>
-  <item us="caviled" uk="cavilled"/>
-  <item us="caviling" uk="cavilling"/>
-  <item us="center" uk="centre"/>
-  <item us="centered" uk="centred"/>
-  <item us="centerfold" uk="centrefold"/>
-  <item us="centerfolds" uk="centrefolds"/>
-  <item us="centerpiece" uk="centrepiece"/>
-  <item us="centerpieces" uk="centrepieces"/>
-  <item us="centers" uk="centres"/>
-  <item us="centiliter" uk="centilitre"/>
-  <item us="centiliters" uk="centilitres"/>
-  <item us="centimeter" uk="centimetre"/>
-  <item us="centimeters" uk="centimetres"/>
-  <item us="centralize" uk="centralise"/>
-  <item us="centralized" uk="centralised"/>
-  <item us="centralizes" uk="centralises"/>
-  <item us="centralizing" uk="centralising"/>
-  <item us="cesarean" uk="caesarean"/>
-  <item us="cesareans" uk="caesareans"/>
-  <item us="channeled" uk="channelled"/>
-  <item us="channeling" uk="channelling"/>
-  <item us="characterize" uk="characterise"/>
-  <item us="characterized" uk="characterised"/>
-  <item us="characterizes" uk="characterises"/>
-  <item us="characterizing" uk="characterising"/>
-  <item us="checkbook" uk="chequebook"/>
-  <item us="checkbooks" uk="chequebooks"/>
-  <item us="checkered" uk="chequered"/>
-  <item us="chiseled" uk="chiselled"/>
-  <item us="chiseling" uk="chiselling"/>
-  <item us="circularize" uk="circularise"/>
-  <item us="circularized" uk="circularised"/>
-  <item us="circularizes" uk="circularises"/>
-  <item us="circularizing" uk="circularising"/>
-  <item us="civilize" uk="civilise"/>
-  <item us="civilized" uk="civilised"/>
-  <item us="civilizes" uk="civilises"/>
-  <item us="civilizing" uk="civilising"/>
-  <item us="clamor" uk="clamour"/>
-  <item us="clamored" uk="clamoured"/>
-  <item us="clamoring" uk="clamouring"/>
-  <item us="clamors" uk="clamours"/>
-  <item us="clangor" uk="clangour"/>
-  <item us="clarinetist" uk="clarinettist"/>
-  <item us="clarinetists" uk="clarinettists"/>
-  <item us="collectivize" uk="collectivise"/>
-  <item us="collectivized" uk="collectivised"/>
-  <item us="collectivizes" uk="collectivises"/>
-  <item us="collectivizing" uk="collectivising"/>
-  <item us="colonization" uk="colonisation"/>
-  <item us="colonize" uk="colonise"/>
-  <item us="colonized" uk="colonised"/>
-  <item us="colonizer" uk="coloniser"/>
-  <item us="colonizers" uk="colonisers"/>
-  <item us="colonizes" uk="colonises"/>
-  <item us="colonizing" uk="colonising"/>
-  <item us="color" uk="colour"/>
-  <item us="colorant" uk="colourant"/>
-  <item us="colorants" uk="colourants"/>
-  <item us="colored" uk="coloured"/>
-  <item us="coloreds" uk="coloureds"/>
-  <item us="colorful" uk="colourful"/>
-  <item us="colorfully" uk="colourfully"/>
-  <item us="coloring" uk="colouring"/>
-  <item us="colorize" uk="colourize"/>
-  <item us="colorized" uk="colourized"/>
-  <item us="colorizes" uk="colourizes"/>
-  <item us="colorizing" uk="colourizing"/>
-  <item us="colorless" uk="colourless"/>
-  <item us="colors" uk="colours"/>
-  <item us="commercialize" uk="commercialise"/>
-  <item us="commercialized" uk="commercialised"/>
-  <item us="commercializes" uk="commercialises"/>
-  <item us="commercializing" uk="commercialising"/>
-  <item us="compartmentalize" uk="compartmentalise"/>
-  <item us="compartmentalized" uk="compartmentalised"/>
-  <item us="compartmentalizes" uk="compartmentalises"/>
-  <item us="compartmentalizing" uk="compartmentalising"/>
-  <item us="computerize" uk="computerise"/>
-  <item us="computerized" uk="computerised"/>
-  <item us="computerizes" uk="computerises"/>
-  <item us="computerizing" uk="computerising"/>
-  <item us="conceptualize" uk="conceptualise"/>
-  <item us="conceptualized" uk="conceptualised"/>
-  <item us="conceptualizes" uk="conceptualises"/>
-  <item us="conceptualizing" uk="conceptualising"/>
-  <item us="contextualize" uk="contextualise"/>
-  <item us="contextualized" uk="contextualised"/>
-  <item us="contextualizes" uk="contextualises"/>
-  <item us="contextualizing" uk="contextualising"/>
-  <item us="councilor" uk="councillor"/>
-  <item us="councilors" uk="councillors"/>
-  <item us="counseled" uk="counselled"/>
-  <item us="counseling" uk="counselling"/>
-  <item us="counselor" uk="counsellor"/>
-  <item us="counselors" uk="counsellors"/>
-  <item us="cozier" uk="cosier"/>
-  <item us="cozies" uk="cosies"/>
-  <item us="coziest" uk="cosiest"/>
-  <item us="cozily" uk="cosily"/>
-  <item us="coziness" uk="cosiness"/>
-  <item us="cozy" uk="cosy"/>
-  <item us="crenelated" uk="crenellated"/>
-  <item us="criminalize" uk="criminalise"/>
-  <item us="criminalized" uk="criminalised"/>
-  <item us="criminalizes" uk="criminalises"/>
-  <item us="criminalizing" uk="criminalising"/>
-  <item us="criticize" uk="criticise"/>
-  <item us="criticized" uk="criticised"/>
-  <item us="criticizes" uk="criticises"/>
-  <item us="criticizing" uk="criticising"/>
-  <item us="crueler" uk="crueller"/>
-  <item us="cruelest" uk="cruellest"/>
-  <item us="crystallization" uk="crystallisation"/>
-  <item us="crystallize" uk="crystallise"/>
-  <item us="crystallized" uk="crystallised"/>
-  <item us="crystallizes" uk="crystallises"/>
-  <item us="crystallizing" uk="crystallising"/>
-  <item us="cudgeled" uk="cudgelled"/>
-  <item us="cudgeling" uk="cudgelling"/>
-  <item us="customize" uk="customise"/>
-  <item us="customized" uk="customised"/>
-  <item us="customizes" uk="customises"/>
-  <item us="customizing" uk="customising"/>
-  <item us="decentralization" uk="decentralisation"/>
-  <item us="decentralize" uk="decentralise"/>
-  <item us="decentralized" uk="decentralised"/>
-  <item us="decentralizes" uk="decentralises"/>
-  <item us="decentralizing" uk="decentralising"/>
-  <item us="decriminalization" uk="decriminalisation"/>
-  <item us="decriminalize" uk="decriminalise"/>
-  <item us="decriminalized" uk="decriminalised"/>
-  <item us="decriminalizes" uk="decriminalises"/>
-  <item us="decriminalizing" uk="decriminalising"/>
-  <item us="dehumanization" uk="dehumanisation"/>
-  <item us="dehumanize" uk="dehumanise"/>
-  <item us="dehumanized" uk="dehumanised"/>
-  <item us="dehumanizes" uk="dehumanises"/>
-  <item us="dehumanizing" uk="dehumanising"/>
-  <item us="demeanor" uk="demeanour"/>
-  <item us="demilitarization" uk="demilitarisation"/>
-  <item us="demilitarize" uk="demilitarise"/>
-  <item us="demilitarized" uk="demilitarised"/>
-  <item us="demilitarizes" uk="demilitarises"/>
-  <item us="demilitarizing" uk="demilitarising"/>
-  <item us="demobilization" uk="demobilisation"/>
-  <item us="demobilize" uk="demobilise"/>
-  <item us="demobilized" uk="demobilised"/>
-  <item us="demobilizes" uk="demobilises"/>
-  <item us="demobilizing" uk="demobilising"/>
-  <item us="democratization" uk="democratisation"/>
-  <item us="democratize" uk="democratise"/>
-  <item us="democratized" uk="democratised"/>
-  <item us="democratizes" uk="democratises"/>
-  <item us="democratizing" uk="democratising"/>
-  <item us="demonize" uk="demonise"/>
-  <item us="demonized" uk="demonised"/>
-  <item us="demonizes" uk="demonises"/>
-  <item us="demonizing" uk="demonising"/>
-  <item us="demoralization" uk="demoralisation"/>
-  <item us="demoralize" uk="demoralise"/>
-  <item us="demoralized" uk="demoralised"/>
-  <item us="demoralizes" uk="demoralises"/>
-  <item us="demoralizing" uk="demoralising"/>
-  <item us="denationalization" uk="denationalisation"/>
-  <item us="denationalize" uk="denationalise"/>
-  <item us="denationalized" uk="denationalised"/>
-  <item us="denationalizes" uk="denationalises"/>
-  <item us="denationalizing" uk="denationalising"/>
-  <item us="deodorize" uk="deodorise"/>
-  <item us="deodorized" uk="deodorised"/>
-  <item us="deodorizes" uk="deodorises"/>
-  <item us="deodorizing" uk="deodorising"/>
-  <item us="depersonalize" uk="depersonalise"/>
-  <item us="depersonalized" uk="depersonalised"/>
-  <item us="depersonalizes" uk="depersonalises"/>
-  <item us="depersonalizing" uk="depersonalising"/>
-  <item us="deputize" uk="deputise"/>
-  <item us="deputized" uk="deputised"/>
-  <item us="deputizes" uk="deputises"/>
-  <item us="deputizing" uk="deputising"/>
-  <item us="desensitization" uk="desensitisation"/>
-  <item us="desensitize" uk="desensitise"/>
-  <item us="desensitized" uk="desensitised"/>
-  <item us="desensitizes" uk="desensitises"/>
-  <item us="desensitizing" uk="desensitising"/>
-  <item us="destabilization" uk="destabilisation"/>
-  <item us="destabilize" uk="destabilise"/>
-  <item us="destabilized" uk="destabilised"/>
-  <item us="destabilizes" uk="destabilises"/>
-  <item us="destabilizing" uk="destabilising"/>
-  <item us="dialed" uk="dialled"/>
-  <item us="dialing" uk="dialling"/>
-  <item us="dialog" uk="dialogue"/>
-  <item us="dialogs" uk="dialogues"/>
-  <item us="diarrhea" uk="diarrhoea"/>
-  <item us="digitize" uk="digitise"/>
-  <item us="digitized" uk="digitised"/>
-  <item us="digitizes" uk="digitises"/>
-  <item us="digitizing" uk="digitising"/>
-  <item us="discolor" uk="discolour"/>
-  <item us="discolored" uk="discoloured"/>
-  <item us="discoloring" uk="discolouring"/>
-  <item us="discolors" uk="discolours"/>
-  <item us="disemboweled" uk="disembowelled"/>
-  <item us="disemboweling" uk="disembowelling"/>
-  <item us="disfavor" uk="disfavour"/>
-  <item us="disheveled" uk="dishevelled"/>
-  <item us="dishonor" uk="dishonour"/>
-  <item us="dishonorable" uk="dishonourable"/>
-  <item us="dishonorably" uk="dishonourably"/>
-  <item us="dishonored" uk="dishonoured"/>
-  <item us="dishonoring" uk="dishonouring"/>
-  <item us="dishonors" uk="dishonours"/>
-  <item us="disorganization" uk="disorganisation"/>
-  <item us="disorganized" uk="disorganised"/>
-  <item us="distil" uk="distill"/>
-  <item us="distils" uk="distills"/>
-  <item us="draftboard" uk="draughtboard"/>
-  <item us="draftboards" uk="draughtboards"/>
-  <item us="draftier" uk="draughtier"/>
-  <item us="draftiest" uk="draughtiest"/>
-  <item us="draftsman" uk="draughtsman"/>
-  <item us="draftsmanship" uk="draughtsmanship"/>
-  <item us="draftsmen" uk="draughtsmen"/>
-  <item us="draftswoman" uk="draughtswoman"/>
-  <item us="draftswomen" uk="draughtswomen"/>
-  <item us="drafty" uk="draughty"/>
-  <item us="dramatization" uk="dramatisation"/>
-  <item us="dramatizations" uk="dramatisations"/>
-  <item us="dramatize" uk="dramatise"/>
-  <item us="dramatized" uk="dramatised"/>
-  <item us="dramatizes" uk="dramatises"/>
-  <item us="dramatizing" uk="dramatising"/>
-  <item us="driveled" uk="drivelled"/>
-  <item us="driveling" uk="drivelling"/>
-  <item us="dueled" uk="duelled"/>
-  <item us="dueling" uk="duelling"/>
-  <item us="economize" uk="economise"/>
-  <item us="economized" uk="economised"/>
-  <item us="economizes" uk="economises"/>
-  <item us="economizing" uk="economising"/>
-  <item us="edema" uk="oedema"/>
-  <item us="edemas" uk="oedemas"/>
-  <item us="editorialize" uk="editorialise"/>
-  <item us="editorialized" uk="editorialised"/>
-  <item us="editorializes" uk="editorialises"/>
-  <item us="editorializing" uk="editorialising"/>
-  <item us="empathize" uk="empathise"/>
-  <item us="empathized" uk="empathised"/>
-  <item us="empathizes" uk="empathises"/>
-  <item us="empathizing" uk="empathising"/>
-  <item us="emphasize" uk="emphasise"/>
-  <item us="emphasized" uk="emphasised"/>
-  <item us="emphasizes" uk="emphasises"/>
-  <item us="emphasizing" uk="emphasising"/>
-  <item us="enameled" uk="enamelled"/>
-  <item us="enameling" uk="enamelling"/>
-  <item us="enamored" uk="enamoured"/>
-  <item us="endeavor" uk="endeavour"/>
-  <item us="endeavored" uk="endeavoured"/>
-  <item us="endeavoring" uk="endeavouring"/>
-  <item us="endeavors" uk="endeavours"/>
-  <item us="energize" uk="energise"/>
-  <item us="energized" uk="energised"/>
-  <item us="energizes" uk="energises"/>
-  <item us="energizing" uk="energising"/>
-  <item us="enroll" uk="enrol"/>
-  <item us="enrolls" uk="enrols"/>
-  <item us="enthrall" uk="enthral"/>
-  <item us="enthralls" uk="enthrals"/>
-  <item us="epaulet" uk="epaulette"/>
-  <item us="epaulets" uk="epaulettes"/>
-  <item us="epicenter" uk="epicentre"/>
-  <item us="epicenters" uk="epicentres"/>
-  <item us="epilog" uk="epilogue"/>
-  <item us="epilogs" uk="epilogues"/>
-  <item us="epitomize" uk="epitomise"/>
-  <item us="epitomized" uk="epitomised"/>
-  <item us="epitomizes" uk="epitomises"/>
-  <item us="epitomizing" uk="epitomising"/>
-  <item us="equalization" uk="equalisation"/>
-  <item us="equalize" uk="equalise"/>
-  <item us="equalized" uk="equalised"/>
-  <item us="equalizer" uk="equaliser"/>
-  <item us="equalizers" uk="equalisers"/>
-  <item us="equalizes" uk="equalises"/>
-  <item us="equalizing" uk="equalising"/>
-  <item us="esophagus" uk="oesophagus"/>
-  <item us="esophaguses" uk="oesophaguses"/>
-  <item us="esthete" uk="aesthete"/>
-  <item us="esthetes" uk="aesthetes"/>
-  <item us="esthetic" uk="aesthetic"/>
-  <item us="esthetically" uk="aesthetically"/>
-  <item us="esthetics" uk="aesthetics"/>
-  <item us="estrogen" uk="oestrogen"/>
-  <item us="etiology" uk="aetiology"/>
-  <item us="eulogize" uk="eulogise"/>
-  <item us="eulogized" uk="eulogised"/>
-  <item us="eulogizes" uk="eulogises"/>
-  <item us="eulogizing" uk="eulogising"/>
-  <item us="evangelize" uk="evangelise"/>
-  <item us="evangelized" uk="evangelised"/>
-  <item us="evangelizes" uk="evangelises"/>
-  <item us="evangelizing" uk="evangelising"/>
-  <item us="exorcize" uk="exorcise"/>
-  <item us="exorcized" uk="exorcised"/>
-  <item us="exorcizes" uk="exorcises"/>
-  <item us="exorcizing" uk="exorcising"/>
-  <item us="extemporization" uk="extemporisation"/>
-  <item us="extemporize" uk="extemporise"/>
-  <item us="extemporized" uk="extemporised"/>
-  <item us="extemporizes" uk="extemporises"/>
-  <item us="extemporizing" uk="extemporising"/>
-  <item us="externalization" uk="externalisation"/>
-  <item us="externalizations" uk="externalisations"/>
-  <item us="externalize" uk="externalise"/>
-  <item us="externalized" uk="externalised"/>
-  <item us="externalizes" uk="externalises"/>
-  <item us="externalizing" uk="externalising"/>
-  <item us="factorize" uk="factorise"/>
-  <item us="factorized" uk="factorised"/>
-  <item us="factorizes" uk="factorises"/>
-  <item us="factorizing" uk="factorising"/>
-  <item us="familiarization" uk="familiarisation"/>
-  <item us="familiarize" uk="familiarise"/>
-  <item us="familiarized" uk="familiarised"/>
-  <item us="familiarizes" uk="familiarises"/>
-  <item us="familiarizing" uk="familiarising"/>
-  <item us="fantasize" uk="fantasise"/>
-  <item us="fantasized" uk="fantasised"/>
-  <item us="fantasizes" uk="fantasises"/>
-  <item us="fantasizing" uk="fantasising"/>
-  <item us="favor" uk="favour"/>
-  <item us="favorable" uk="favourable"/>
-  <item us="favorably" uk="favourably"/>
-  <item us="favored" uk="favoured"/>
-  <item us="favoring" uk="favouring"/>
-  <item us="favorite" uk="favourite"/>
-  <item us="favorites" uk="favourites"/>
-  <item us="favoritism" uk="favouritism"/>
-  <item us="favors" uk="favours"/>
-  <item us="fecal" uk="faecal"/>
-  <item us="feces" uk="faeces"/>
-  <item us="feminize" uk="feminise"/>
-  <item us="feminized" uk="feminised"/>
-  <item us="feminizes" uk="feminises"/>
-  <item us="feminizing" uk="feminising"/>
-  <item us="fertilization" uk="fertilisation"/>
-  <item us="fertilize" uk="fertilise"/>
-  <item us="fertilized" uk="fertilised"/>
-  <item us="fertilizer" uk="fertiliser"/>
-  <item us="fertilizers" uk="fertilisers"/>
-  <item us="fertilizes" uk="fertilises"/>
-  <item us="fertilizing" uk="fertilising"/>
-  <item us="fervor" uk="fervour"/>
-  <item us="fetid" uk="foetid"/>
-  <item us="fiber" uk="fibre"/>
-  <item us="fiberglass" uk="fibreglass"/>
-  <item us="fibers" uk="fibres"/>
-  <item us="fictionalization" uk="fictionalisation"/>
-  <item us="fictionalizations" uk="fictionalisations"/>
-  <item us="fictionalize" uk="fictionalise"/>
-  <item us="fictionalized" uk="fictionalised"/>
-  <item us="fictionalizes" uk="fictionalises"/>
-  <item us="fictionalizing" uk="fictionalising"/>
-  <item us="filet" uk="fillet"/>
-  <item us="fileted" uk="filleted"/>
-  <item us="fileting" uk="filleting"/>
-  <item us="filets" uk="fillets"/>
-  <item us="finalization" uk="finalisation"/>
-  <item us="finalize" uk="finalise"/>
-  <item us="finalized" uk="finalised"/>
-  <item us="finalizes" uk="finalises"/>
-  <item us="finalizing" uk="finalising"/>
-  <item us="flavor" uk="flavour"/>
-  <item us="flavored" uk="flavoured"/>
-  <item us="flavoring" uk="flavouring"/>
-  <item us="flavorings" uk="flavourings"/>
-  <item us="flavorless" uk="flavourless"/>
-  <item us="flavors" uk="flavours"/>
-  <item us="flavorsome" uk="flavoursome"/>
-  <item us="flutist" uk="flautist"/>
-  <item us="flutists" uk="flautists"/>
-  <item us="formalization" uk="formalisation"/>
-  <item us="formalize" uk="formalise"/>
-  <item us="formalized" uk="formalised"/>
-  <item us="formalizes" uk="formalises"/>
-  <item us="formalizing" uk="formalising"/>
-  <item us="fossilization" uk="fossilisation"/>
-  <item us="fossilize" uk="fossilise"/>
-  <item us="fossilized" uk="fossilised"/>
-  <item us="fossilizes" uk="fossilises"/>
-  <item us="fossilizing" uk="fossilising"/>
-  <item us="fraternization" uk="fraternisation"/>
-  <item us="fraternize" uk="fraternise"/>
-  <item us="fraternized" uk="fraternised"/>
-  <item us="fraternizes" uk="fraternises"/>
-  <item us="fraternizing" uk="fraternising"/>
-  <item us="fulfill" uk="fulfil"/>
-  <item us="fulfillment" uk="fulfilment"/>
-  <item us="fulfills" uk="fulfils"/>
-  <item us="funneled" uk="funnelled"/>
-  <item us="funneling" uk="funnelling"/>
-  <item us="galvanize" uk="galvanise"/>
-  <item us="galvanized" uk="galvanised"/>
-  <item us="galvanizes" uk="galvanises"/>
-  <item us="galvanizing" uk="galvanising"/>
-  <item us="gamboled" uk="gambolled"/>
-  <item us="gamboling" uk="gambolling"/>
-  <item us="generalization" uk="generalisation"/>
-  <item us="generalizations" uk="generalisations"/>
-  <item us="generalize" uk="generalise"/>
-  <item us="generalized" uk="generalised"/>
-  <item us="generalizes" uk="generalises"/>
-  <item us="generalizing" uk="generalising"/>
-  <item us="ghettoize" uk="ghettoise"/>
-  <item us="ghettoized" uk="ghettoised"/>
-  <item us="ghettoizes" uk="ghettoises"/>
-  <item us="ghettoizing" uk="ghettoising"/>
-  <item us="glamor" uk="glamour"/>
-  <item us="glamorize" uk="glamorise"/>
-  <item us="glamorized" uk="glamorised"/>
-  <item us="glamorizes" uk="glamorises"/>
-  <item us="glamorizing" uk="glamorising"/>
-  <item us="globalization" uk="globalisation"/>
-  <item us="globalize" uk="globalise"/>
-  <item us="globalized" uk="globalised"/>
-  <item us="globalizes" uk="globalises"/>
-  <item us="globalizing" uk="globalising"/>
-  <item us="gluing" uk="glueing"/>
-  <item us="goiter" uk="goitre"/>
-  <item us="goiters" uk="goitres"/>
-  <item us="gonorrhea" uk="gonorrhoea"/>
-  <item us="graveled" uk="gravelled"/>
-  <item us="gray" uk="grey"/>
-  <item us="grayed" uk="greyed"/>
-  <item us="graying" uk="greying"/>
-  <item us="grayish" uk="greyish"/>
-  <item us="grayness" uk="greyness"/>
-  <item us="grays" uk="greys"/>
-  <item us="groveled" uk="grovelled"/>
-  <item us="groveling" uk="grovelling"/>
-  <item us="grueling" uk="gruelling"/>
-  <item us="gruelingly" uk="gruellingly"/>
-  <item us="gynecological" uk="gynaecological"/>
-  <item us="gynecologist" uk="gynaecologist"/>
-  <item us="gynecologists" uk="gynaecologists"/>
-  <item us="gynecology" uk="gynaecology"/>
-  <item us="harbor" uk="harbour"/>
-  <item us="harbored" uk="harboured"/>
-  <item us="harboring" uk="harbouring"/>
-  <item us="harbors" uk="harbours"/>
-  <item us="harmonization" uk="harmonisation"/>
-  <item us="harmonize" uk="harmonise"/>
-  <item us="harmonized" uk="harmonised"/>
-  <item us="harmonizes" uk="harmonises"/>
-  <item us="harmonizing" uk="harmonising"/>
-  <item us="hematological" uk="haematological"/>
-  <item us="hematologist" uk="haematologist"/>
-  <item us="hematologists" uk="haematologists"/>
-  <item us="hematology" uk="haematology"/>
-  <item us="hemoglobin" uk="haemoglobin"/>
-  <item us="hemophilia" uk="haemophilia"/>
-  <item us="hemophiliac" uk="haemophiliac"/>
-  <item us="hemophiliacs" uk="haemophiliacs"/>
-  <item us="hemorrhage" uk="haemorrhage"/>
-  <item us="hemorrhaged" uk="haemorrhaged"/>
-  <item us="hemorrhages" uk="haemorrhages"/>
-  <item us="hemorrhaging" uk="haemorrhaging"/>
-  <item us="hemorrhoids" uk="haemorrhoids"/>
-  <item us="homogenize" uk="homogenise"/>
-  <item us="homogenized" uk="homogenised"/>
-  <item us="homogenizes" uk="homogenises"/>
-  <item us="homogenizing" uk="homogenising"/>
-  <item us="honor" uk="honour"/>
-  <item us="honorable" uk="honourable"/>
-  <item us="honorably" uk="honourably"/>
-  <item us="honored" uk="honoured"/>
-  <item us="honoring" uk="honouring"/>
-  <item us="honors" uk="honours"/>
-  <item us="hospitalization" uk="hospitalisation"/>
-  <item us="hospitalize" uk="hospitalise"/>
-  <item us="hospitalized" uk="hospitalised"/>
-  <item us="hospitalizes" uk="hospitalises"/>
-  <item us="hospitalizing" uk="hospitalising"/>
-  <item us="humanize" uk="humanise"/>
-  <item us="humanized" uk="humanised"/>
-  <item us="humanizes" uk="humanises"/>
-  <item us="humanizing" uk="humanising"/>
-  <item us="humor" uk="humour"/>
-  <item us="humored" uk="humoured"/>
-  <item us="humoring" uk="humouring"/>
-  <item us="humorless" uk="humourless"/>
-  <item us="humors" uk="humours"/>
-  <item us="hybridize" uk="hybridise"/>
-  <item us="hybridized" uk="hybridised"/>
-  <item us="hybridizes" uk="hybridises"/>
-  <item us="hybridizing" uk="hybridising"/>
-  <item us="hypnotize" uk="hypnotise"/>
-  <item us="hypnotized" uk="hypnotised"/>
-  <item us="hypnotizes" uk="hypnotises"/>
-  <item us="hypnotizing" uk="hypnotising"/>
-  <item us="hypothesize" uk="hypothesise"/>
-  <item us="hypothesized" uk="hypothesised"/>
-  <item us="hypothesizes" uk="hypothesises"/>
-  <item us="hypothesizing" uk="hypothesising"/>
-  <item us="idealization" uk="idealisation"/>
-  <item us="idealize" uk="idealise"/>
-  <item us="idealized" uk="idealised"/>
-  <item us="idealizes" uk="idealises"/>
-  <item us="idealizing" uk="idealising"/>
-  <item us="idolize" uk="idolise"/>
-  <item us="idolized" uk="idolised"/>
-  <item us="idolizes" uk="idolises"/>
-  <item us="idolizing" uk="idolising"/>
-  <item us="immobilization" uk="immobilisation"/>
-  <item us="immobilize" uk="immobilise"/>
-  <item us="immobilized" uk="immobilised"/>
-  <item us="immobilizer" uk="immobiliser"/>
-  <item us="immobilizers" uk="immobilisers"/>
-  <item us="immobilizes" uk="immobilises"/>
-  <item us="immobilizing" uk="immobilising"/>
-  <item us="immortalize" uk="immortalise"/>
-  <item us="immortalized" uk="immortalised"/>
-  <item us="immortalizes" uk="immortalises"/>
-  <item us="immortalizing" uk="immortalising"/>
-  <item us="immunization" uk="immunisation"/>
-  <item us="immunize" uk="immunise"/>
-  <item us="immunized" uk="immunised"/>
-  <item us="immunizes" uk="immunises"/>
-  <item us="immunizing" uk="immunising"/>
-  <item us="imperiled" uk="imperilled"/>
-  <item us="imperiling" uk="imperilling"/>
-  <item us="individualize" uk="individualise"/>
-  <item us="individualized" uk="individualised"/>
-  <item us="individualizes" uk="individualises"/>
-  <item us="individualizing" uk="individualising"/>
-  <item us="industrialize" uk="industrialise"/>
-  <item us="industrialized" uk="industrialised"/>
-  <item us="industrializes" uk="industrialises"/>
-  <item us="industrializing" uk="industrialising"/>
-  <item us="initialed" uk="initialled"/>
-  <item us="initialing" uk="initialling"/>
-  <item us="instill" uk="instil"/>
-  <item us="instills" uk="instils"/>
-  <item us="institutionalization" uk="institutionalisation"/>
-  <item us="institutionalize" uk="institutionalise"/>
-  <item us="institutionalized" uk="institutionalised"/>
-  <item us="institutionalizes" uk="institutionalises"/>
-  <item us="institutionalizing" uk="institutionalising"/>
-  <item us="intellectualize" uk="intellectualise"/>
-  <item us="intellectualized" uk="intellectualised"/>
-  <item us="intellectualizes" uk="intellectualises"/>
-  <item us="intellectualizing" uk="intellectualising"/>
-  <item us="internalization" uk="internalisation"/>
-  <item us="internalize" uk="internalise"/>
-  <item us="internalized" uk="internalised"/>
-  <item us="internalizes" uk="internalises"/>
-  <item us="internalizing" uk="internalising"/>
-  <item us="internationalization" uk="internationalisation"/>
-  <item us="internationalize" uk="internationalise"/>
-  <item us="internationalized" uk="internationalised"/>
-  <item us="internationalizes" uk="internationalises"/>
-  <item us="internationalizing" uk="internationalising"/>
-  <item us="ionization" uk="ionisation"/>
-  <item us="ionize" uk="ionise"/>
-  <item us="ionized" uk="ionised"/>
-  <item us="ionizer" uk="ioniser"/>
-  <item us="ionizers" uk="ionisers"/>
-  <item us="ionizes" uk="ionises"/>
-  <item us="ionizing" uk="ionising"/>
-  <item us="italicize" uk="italicise"/>
-  <item us="italicized" uk="italicised"/>
-  <item us="italicizes" uk="italicises"/>
-  <item us="italicizing" uk="italicising"/>
-  <item us="itemize" uk="itemise"/>
-  <item us="itemized" uk="itemised"/>
-  <item us="itemizes" uk="itemises"/>
-  <item us="itemizing" uk="itemising"/>
-  <item us="jeopardize" uk="jeopardise"/>
-  <item us="jeopardized" uk="jeopardised"/>
-  <item us="jeopardizes" uk="jeopardises"/>
-  <item us="jeopardizing" uk="jeopardising"/>
-  <item us="jeweled" uk="jewelled"/>
-  <item us="jeweler" uk="jeweller"/>
-  <item us="jewelers" uk="jewellers"/>
-  <item us="jewelry" uk="jewellery"/>
-  <item us="kilometer" uk="kilometre"/>
-  <item us="kilometers" uk="kilometres"/>
-  <item us="labeled" uk="labelled"/>
-  <item us="labeling" uk="labelling"/>
-  <item us="labor" uk="labour"/>
-  <item us="labored" uk="laboured"/>
-  <item us="laborer" uk="labourer"/>
-  <item us="laborers" uk="labourers"/>
-  <item us="laboring" uk="labouring"/>
-  <item us="labors" uk="labours"/>
-  <item us="lackluster" uk="lacklustre"/>
-  <item us="legalization" uk="legalisation"/>
-  <item us="legalize" uk="legalise"/>
-  <item us="legalized" uk="legalised"/>
-  <item us="legalizes" uk="legalises"/>
-  <item us="legalizing" uk="legalising"/>
-  <item us="legitimize" uk="legitimise"/>
-  <item us="legitimized" uk="legitimised"/>
-  <item us="legitimizes" uk="legitimises"/>
-  <item us="legitimizing" uk="legitimising"/>
-  <item us="leukemia" uk="leukaemia"/>
-  <item us="leveled" uk="levelled"/>
-  <item us="leveler" uk="leveller"/>
-  <item us="levelers" uk="levellers"/>
-  <item us="leveling" uk="levelling"/>
-  <item us="libeled" uk="libelled"/>
-  <item us="libeling" uk="libelling"/>
-  <item us="libelous" uk="libellous"/>
-  <item us="liberalization" uk="liberalisation"/>
-  <item us="liberalize" uk="liberalise"/>
-  <item us="liberalized" uk="liberalised"/>
-  <item us="liberalizes" uk="liberalises"/>
-  <item us="liberalizing" uk="liberalising"/>
-  <item us="lionization" uk="lionisation"/>
-  <item us="lionize" uk="lionise"/>
-  <item us="lionized" uk="lionised"/>
-  <item us="lionizes" uk="lionises"/>
-  <item us="lionizing" uk="lionising"/>
-  <item us="liquidize" uk="liquidise"/>
-  <item us="liquidized" uk="liquidised"/>
-  <item us="liquidizer" uk="liquidiser"/>
-  <item us="liquidizers" uk="liquidisers"/>
-  <item us="liquidizes" uk="liquidises"/>
-  <item us="liquidizing" uk="liquidising"/>
-  <item us="liter" uk="litre"/>
-  <item us="liters" uk="litres"/>
-  <item us="localize" uk="localise"/>
-  <item us="localized" uk="localised"/>
-  <item us="localizes" uk="localises"/>
-  <item us="localizing" uk="localising"/>
-  <item us="louver" uk="louvre"/>
-  <item us="louvered" uk="louvred"/>
-  <item us="louvers" uk="louvres"/>
-  <item us="luster" uk="lustre"/>
-  <item us="magnetize" uk="magnetise"/>
-  <item us="magnetized" uk="magnetised"/>
-  <item us="magnetizes" uk="magnetises"/>
-  <item us="magnetizing" uk="magnetising"/>
-  <item us="maneuver" uk="manoeuvre"/>
-  <item us="maneuverability" uk="manoeuvrability"/>
-  <item us="maneuverable" uk="manoeuvrable"/>
-  <item us="maneuvered" uk="manoeuvred"/>
-  <item us="maneuvering" uk="manoeuvring"/>
-  <item us="maneuverings" uk="manoeuvrings"/>
-  <item us="maneuvers" uk="manoeuvres"/>
-  <item us="marginalization" uk="marginalisation"/>
-  <item us="marginalize" uk="marginalise"/>
-  <item us="marginalized" uk="marginalised"/>
-  <item us="marginalizes" uk="marginalises"/>
-  <item us="marginalizing" uk="marginalising"/>
-  <item us="marshaled" uk="marshalled"/>
-  <item us="marshaling" uk="marshalling"/>
-  <item us="marveled" uk="marvelled"/>
-  <item us="marveling" uk="marvelling"/>
-  <item us="marvelous" uk="marvellous"/>
-  <item us="marvelously" uk="marvellously"/>
-  <item us="materialization" uk="materialisation"/>
-  <item us="materialize" uk="materialise"/>
-  <item us="materialized" uk="materialised"/>
-  <item us="materializes" uk="materialises"/>
-  <item us="materializing" uk="materialising"/>
-  <item us="maximization" uk="maximisation"/>
-  <item us="maximize" uk="maximise"/>
-  <item us="maximized" uk="maximised"/>
-  <item us="maximizes" uk="maximises"/>
-  <item us="maximizing" uk="maximising"/>
-  <item us="meager" uk="meagre"/>
-  <item us="mechanization" uk="mechanisation"/>
-  <item us="mechanize" uk="mechanise"/>
-  <item us="mechanized" uk="mechanised"/>
-  <item us="mechanizes" uk="mechanises"/>
-  <item us="mechanizing" uk="mechanising"/>
-  <item us="memorialize" uk="memorialise"/>
-  <item us="memorialized" uk="memorialised"/>
-  <item us="memorializes" uk="memorialises"/>
-  <item us="memorializing" uk="memorialising"/>
-  <item us="memorize" uk="memorise"/>
-  <item us="memorized" uk="memorised"/>
-  <item us="memorizes" uk="memorises"/>
-  <item us="memorizing" uk="memorising"/>
-  <item us="mesmerize" uk="mesmerise"/>
-  <item us="mesmerized" uk="mesmerised"/>
-  <item us="mesmerizes" uk="mesmerises"/>
-  <item us="mesmerizing" uk="mesmerising"/>
-  <item us="metabolize" uk="metabolise"/>
-  <item us="metabolized" uk="metabolised"/>
-  <item us="metabolizes" uk="metabolises"/>
-  <item us="metabolizing" uk="metabolising"/>
-  <item us="meter" uk="metre"/>
-  <item us="meters" uk="metres"/>
-  <item us="micrometer" uk="micrometre"/>
-  <item us="micrometers" uk="micrometres"/>
-  <item us="militarize" uk="militarise"/>
-  <item us="militarized" uk="militarised"/>
-  <item us="militarizes" uk="militarises"/>
-  <item us="militarizing" uk="militarising"/>
-  <item us="milliliter" uk="millilitre"/>
-  <item us="milliliters" uk="millilitres"/>
-  <item us="millimeter" uk="millimetre"/>
-  <item us="millimeters" uk="millimetres"/>
-  <item us="miniaturization" uk="miniaturisation"/>
-  <item us="miniaturize" uk="miniaturise"/>
-  <item us="miniaturized" uk="miniaturised"/>
-  <item us="miniaturizes" uk="miniaturises"/>
-  <item us="miniaturizing" uk="miniaturising"/>
-  <item us="minimize" uk="minimise"/>
-  <item us="minimized" uk="minimised"/>
-  <item us="minimizes" uk="minimises"/>
-  <item us="minimizing" uk="minimising"/>
-  <item us="misbehavior" uk="misbehaviour"/>
-  <item us="misdemeanor" uk="misdemeanour"/>
-  <item us="misdemeanors" uk="misdemeanours"/>
-  <item us="miter" uk="mitre"/>
-  <item us="miters" uk="mitres"/>
-  <item us="mobilization" uk="mobilisation"/>
-  <item us="mobilize" uk="mobilise"/>
-  <item us="mobilized" uk="mobilised"/>
-  <item us="mobilizes" uk="mobilises"/>
-  <item us="mobilizing" uk="mobilising"/>
-  <item us="modeled" uk="modelled"/>
-  <item us="modeler" uk="modeller"/>
-  <item us="modelers" uk="modellers"/>
-  <item us="modeling" uk="modelling"/>
-  <item us="modernize" uk="modernise"/>
-  <item us="modernized" uk="modernised"/>
-  <item us="modernizes" uk="modernises"/>
-  <item us="modernizing" uk="modernising"/>
-  <item us="moisturize" uk="moisturise"/>
-  <item us="moisturized" uk="moisturised"/>
-  <item us="moisturizer" uk="moisturiser"/>
-  <item us="moisturizers" uk="moisturisers"/>
-  <item us="moisturizes" uk="moisturises"/>
-  <item us="moisturizing" uk="moisturising"/>
-  <item us="mold" uk="mould"/>
-  <item us="molded" uk="moulded"/>
-  <item us="molder" uk="moulder"/>
-  <item us="moldered" uk="mouldered"/>
-  <item us="moldering" uk="mouldering"/>
-  <item us="molders" uk="moulders"/>
-  <item us="moldier" uk="mouldier"/>
-  <item us="moldiest" uk="mouldiest"/>
-  <item us="molding" uk="moulding"/>
-  <item us="moldings" uk="mouldings"/>
-  <item us="molds" uk="moulds"/>
-  <item us="moldy" uk="mouldy"/>
-  <item us="molt" uk="moult"/>
-  <item us="molted" uk="moulted"/>
-  <item us="molting" uk="moulting"/>
-  <item us="molts" uk="moults"/>
-  <item us="monolog" uk="monologue"/>
-  <item us="monologs" uk="monologues"/>
-  <item us="monopolization" uk="monopolisation"/>
-  <item us="monopolize" uk="monopolise"/>
-  <item us="monopolized" uk="monopolised"/>
-  <item us="monopolizes" uk="monopolises"/>
-  <item us="monopolizing" uk="monopolising"/>
-  <item us="moralize" uk="moralise"/>
-  <item us="moralized" uk="moralised"/>
-  <item us="moralizes" uk="moralises"/>
-  <item us="moralizing" uk="moralising"/>
-  <item us="motorized" uk="motorised"/>
-  <item us="multicolored" uk="multicoloured"/>
-  <item us="mustache" uk="moustache"/>
-  <item us="mustached" uk="moustached"/>
-  <item us="mustaches" uk="moustaches"/>
-  <item us="nationalization" uk="nationalisation"/>
-  <item us="nationalizations" uk="nationalisations"/>
-  <item us="nationalize" uk="nationalise"/>
-  <item us="nationalized" uk="nationalised"/>
-  <item us="nationalizes" uk="nationalises"/>
-  <item us="nationalizing" uk="nationalising"/>
-  <item us="naturalization" uk="naturalisation"/>
-  <item us="naturalize" uk="naturalise"/>
-  <item us="naturalized" uk="naturalised"/>
-  <item us="naturalizes" uk="naturalises"/>
-  <item us="naturalizing" uk="naturalising"/>
-  <item us="neighbor" uk="neighbour"/>
-  <item us="neighborhood" uk="neighbourhood"/>
-  <item us="neighborhoods" uk="neighbourhoods"/>
-  <item us="neighboring" uk="neighbouring"/>
-  <item us="neighborliness" uk="neighbourliness"/>
-  <item us="neighborly" uk="neighbourly"/>
-  <item us="neighbors" uk="neighbours"/>
-  <item us="neutralization" uk="neutralisation"/>
-  <item us="neutralize" uk="neutralise"/>
-  <item us="neutralized" uk="neutralised"/>
-  <item us="neutralizes" uk="neutralises"/>
-  <item us="neutralizing" uk="neutralising"/>
-  <item us="normalization" uk="normalisation"/>
-  <item us="normalize" uk="normalise"/>
-  <item us="normalized" uk="normalised"/>
-  <item us="normalizes" uk="normalises"/>
-  <item us="normalizing" uk="normalising"/>
-  <item us="odor" uk="odour"/>
-  <item us="odorless" uk="odourless"/>
-  <item us="odors" uk="odours"/>
-  <item us="offense" uk="offence"/>
-  <item us="offenses" uk="offences"/>
-  <item us="omelet" uk="omelette"/>
-  <item us="omelets" uk="omelettes"/>
-  <item us="optimize" uk="optimise"/>
-  <item us="optimized" uk="optimised"/>
-  <item us="optimizes" uk="optimises"/>
-  <item us="optimizing" uk="optimising"/>
-  <item us="organization" uk="organisation"/>
-  <item us="organizational" uk="organisational"/>
-  <item us="organizations" uk="organisations"/>
-  <item us="organize" uk="organise"/>
-  <item us="organized" uk="organised"/>
-  <item us="organizer" uk="organiser"/>
-  <item us="organizers" uk="organisers"/>
-  <item us="organizes" uk="organises"/>
-  <item us="organizing" uk="organising"/>
-  <item us="orthopedic" uk="orthopaedic"/>
-  <item us="orthopedics" uk="orthopaedics"/>
-  <item us="ostracize" uk="ostracise"/>
-  <item us="ostracized" uk="ostracised"/>
-  <item us="ostracizes" uk="ostracises"/>
-  <item us="ostracizing" uk="ostracising"/>
-  <item us="outmaneuver" uk="outmanoeuvre"/>
-  <item us="outmaneuvered" uk="outmanoeuvred"/>
-  <item us="outmaneuvering" uk="outmanoeuvring"/>
-  <item us="outmaneuvers" uk="outmanoeuvres"/>
-  <item us="overemphasize" uk="overemphasise"/>
-  <item us="overemphasized" uk="overemphasised"/>
-  <item us="overemphasizes" uk="overemphasises"/>
-  <item us="overemphasizing" uk="overemphasising"/>
-  <item us="oxidization" uk="oxidisation"/>
-  <item us="oxidize" uk="oxidise"/>
-  <item us="oxidized" uk="oxidised"/>
-  <item us="oxidizes" uk="oxidises"/>
-  <item us="oxidizing" uk="oxidising"/>
-  <item us="pajama" uk="pyjama"/>
-  <item us="pajamas" uk="pyjamas"/>
-  <item us="paleolithic" uk="palaeolithic"/>
-  <item us="paleontologist" uk="palaeontologist"/>
-  <item us="paleontologists" uk="palaeontologists"/>
-  <item us="paleontology" uk="palaeontology"/>
-  <item us="paneled" uk="panelled"/>
-  <item us="paneling" uk="panelling"/>
-  <item us="panelist" uk="panellist"/>
-  <item us="panelists" uk="panellists"/>
-  <item us="paralyze" uk="paralyse"/>
-  <item us="paralyzed" uk="paralysed"/>
-  <item us="paralyzes" uk="paralyses"/>
-  <item us="paralyzing" uk="paralysing"/>
-  <item us="parceled" uk="parcelled"/>
-  <item us="parceling" uk="parcelling"/>
-  <item us="parlor" uk="parlour"/>
-  <item us="parlors" uk="parlours"/>
-  <item us="particularize" uk="particularise"/>
-  <item us="particularized" uk="particularised"/>
-  <item us="particularizes" uk="particularises"/>
-  <item us="particularizing" uk="particularising"/>
-  <item us="passivization" uk="passivisation"/>
-  <item us="passivize" uk="passivise"/>
-  <item us="passivized" uk="passivised"/>
-  <item us="passivizes" uk="passivises"/>
-  <item us="passivizing" uk="passivising"/>
-  <item us="pasteurization" uk="pasteurisation"/>
-  <item us="pasteurize" uk="pasteurise"/>
-  <item us="pasteurized" uk="pasteurised"/>
-  <item us="pasteurizes" uk="pasteurises"/>
-  <item us="pasteurizing" uk="pasteurising"/>
-  <item us="patronize" uk="patronise"/>
-  <item us="patronized" uk="patronised"/>
-  <item us="patronizes" uk="patronises"/>
-  <item us="patronizing" uk="patronising"/>
-  <item us="patronizingly" uk="patronisingly"/>
-  <item us="pedaled" uk="pedalled"/>
-  <item us="pedaling" uk="pedalling"/>
-  <item us="pedestrianization" uk="pedestrianisation"/>
-  <item us="pedestrianize" uk="pedestrianise"/>
-  <item us="pedestrianized" uk="pedestrianised"/>
-  <item us="pedestrianizes" uk="pedestrianises"/>
-  <item us="pedestrianizing" uk="pedestrianising"/>
-  <item us="pediatric" uk="paediatric"/>
-  <item us="pediatrician" uk="paediatrician"/>
-  <item us="pediatricians" uk="paediatricians"/>
-  <item us="pediatrics" uk="paediatrics"/>
-  <item us="pedophile" uk="paedophile"/>
-  <item us="pedophiles" uk="paedophiles"/>
-  <item us="pedophilia" uk="paedophilia"/>
-  <item us="penalize" uk="penalise"/>
-  <item us="penalized" uk="penalised"/>
-  <item us="penalizes" uk="penalises"/>
-  <item us="penalizing" uk="penalising"/>
-  <item us="penciled" uk="pencilled"/>
-  <item us="penciling" uk="pencilling"/>
-  <item us="personalize" uk="personalise"/>
-  <item us="personalized" uk="personalised"/>
-  <item us="personalizes" uk="personalises"/>
-  <item us="personalizing" uk="personalising"/>
-  <item us="pharmacopeia" uk="pharmacopoeia"/>
-  <item us="pharmacopeias" uk="pharmacopoeias"/>
-  <item us="philosophize" uk="philosophise"/>
-  <item us="philosophized" uk="philosophised"/>
-  <item us="philosophizes" uk="philosophises"/>
-  <item us="philosophizing" uk="philosophising"/>
-  <item us="plagiarize" uk="plagiarise"/>
-  <item us="plagiarized" uk="plagiarised"/>
-  <item us="plagiarizes" uk="plagiarises"/>
-  <item us="plagiarizing" uk="plagiarising"/>
-  <item us="plow" uk="plough"/>
-  <item us="plowed" uk="ploughed"/>
-  <item us="plowing" uk="ploughing"/>
-  <item us="plowman" uk="ploughman"/>
-  <item us="plowmen" uk="ploughmen"/>
-  <item us="plows" uk="ploughs"/>
-  <item us="plowshare" uk="ploughshare"/>
-  <item us="plowshares" uk="ploughshares"/>
-  <item us="polarization" uk="polarisation"/>
-  <item us="polarize" uk="polarise"/>
-  <item us="polarized" uk="polarised"/>
-  <item us="polarizes" uk="polarises"/>
-  <item us="polarizing" uk="polarising"/>
-  <item us="politicization" uk="politicisation"/>
-  <item us="politicize" uk="politicise"/>
-  <item us="politicized" uk="politicised"/>
-  <item us="politicizes" uk="politicises"/>
-  <item us="politicizing" uk="politicising"/>
-  <item us="popularization" uk="popularisation"/>
-  <item us="popularize" uk="popularise"/>
-  <item us="popularized" uk="popularised"/>
-  <item us="popularizes" uk="popularises"/>
-  <item us="popularizing" uk="popularising"/>
-  <item us="pressurization" uk="pressurisation"/>
-  <item us="pressurize" uk="pressurise"/>
-  <item us="pressurized" uk="pressurised"/>
-  <item us="pressurizes" uk="pressurises"/>
-  <item us="pressurizing" uk="pressurising"/>
-  <item us="pretense" uk="pretence"/>
-  <item us="pretenses" uk="pretences"/>
-  <item us="prioritization" uk="prioritisation"/>
-  <item us="prioritize" uk="prioritise"/>
-  <item us="prioritized" uk="prioritised"/>
-  <item us="prioritizes" uk="prioritises"/>
-  <item us="prioritizing" uk="prioritising"/>
-  <item us="privatization" uk="privatisation"/>
-  <item us="privatizations" uk="privatisations"/>
-  <item us="privatize" uk="privatise"/>
-  <item us="privatized" uk="privatised"/>
-  <item us="privatizes" uk="privatises"/>
-  <item us="privatizing" uk="privatising"/>
-  <item us="professionalization" uk="professionalisation"/>
-  <item us="professionalize" uk="professionalise"/>
-  <item us="professionalized" uk="professionalised"/>
-  <item us="professionalizes" uk="professionalises"/>
-  <item us="professionalizing" uk="professionalising"/>
-  <item us="prolog" uk="prologue"/>
-  <item us="prologs" uk="prologues"/>
-  <item us="propagandize" uk="propagandise"/>
-  <item us="propagandized" uk="propagandised"/>
-  <item us="propagandizes" uk="propagandises"/>
-  <item us="propagandizing" uk="propagandising"/>
-  <item us="proselytize" uk="proselytise"/>
-  <item us="proselytized" uk="proselytised"/>
-  <item us="proselytizer" uk="proselytiser"/>
-  <item us="proselytizers" uk="proselytisers"/>
-  <item us="proselytizes" uk="proselytises"/>
-  <item us="proselytizing" uk="proselytising"/>
-  <item us="psychoanalyze" uk="psychoanalyse"/>
-  <item us="psychoanalyzed" uk="psychoanalysed"/>
-  <item us="psychoanalyzes" uk="psychoanalyses"/>
-  <item us="psychoanalyzing" uk="psychoanalysing"/>
-  <item us="publicize" uk="publicise"/>
-  <item us="publicized" uk="publicised"/>
-  <item us="publicizes" uk="publicises"/>
-  <item us="publicizing" uk="publicising"/>
-  <item us="pulverization" uk="pulverisation"/>
-  <item us="pulverize" uk="pulverise"/>
-  <item us="pulverized" uk="pulverised"/>
-  <item us="pulverizes" uk="pulverises"/>
-  <item us="pulverizing" uk="pulverising"/>
-  <item us="pummel" uk="pummelled"/>
-  <item us="pummeled" uk="pummelling"/>
-  <item us="quarreled" uk="quarrelled"/>
-  <item us="quarreling" uk="quarrelling"/>
-  <item us="radicalize" uk="radicalise"/>
-  <item us="radicalized" uk="radicalised"/>
-  <item us="radicalizes" uk="radicalises"/>
-  <item us="radicalizing" uk="radicalising"/>
-  <item us="rancor" uk="rancour"/>
-  <item us="randomize" uk="randomise"/>
-  <item us="randomized" uk="randomised"/>
-  <item us="randomizes" uk="randomises"/>
-  <item us="randomizing" uk="randomising"/>
-  <item us="rationalization" uk="rationalisation"/>
-  <item us="rationalizations" uk="rationalisations"/>
-  <item us="rationalize" uk="rationalise"/>
-  <item us="rationalized" uk="rationalised"/>
-  <item us="rationalizes" uk="rationalises"/>
-  <item us="rationalizing" uk="rationalising"/>
-  <item us="raveled" uk="ravelled"/>
-  <item us="raveling" uk="ravelling"/>
-  <item us="realizable" uk="realisable"/>
-  <item us="realization" uk="realisation"/>
-  <item us="realizations" uk="realisations"/>
-  <item us="realize" uk="realise"/>
-  <item us="realized" uk="realised"/>
-  <item us="realizes" uk="realises"/>
-  <item us="realizing" uk="realising"/>
-  <item us="recanalization" uk="recanalisation"/>
-  <item us="recognizable" uk="recognisable"/>
-  <item us="recognizably" uk="recognisably"/>
-  <item us="recognizance" uk="recognisance"/>
-  <item us="recognize" uk="recognise"/>
-  <item us="recognized" uk="recognised"/>
-  <item us="recognizes" uk="recognises"/>
-  <item us="recognizing" uk="recognising"/>
-  <item us="reconnoiter" uk="reconnoitre"/>
-  <item us="reconnoitered" uk="reconnoitred"/>
-  <item us="reconnoitering" uk="reconnoitring"/>
-  <item us="reconnoiters" uk="reconnoitres"/>
-  <item us="refueled" uk="refuelled"/>
-  <item us="refueling" uk="refuelling"/>
-  <item us="regularization" uk="regularisation"/>
-  <item us="regularize" uk="regularise"/>
-  <item us="regularized" uk="regularised"/>
-  <item us="regularizes" uk="regularises"/>
-  <item us="regularizing" uk="regularising"/>
-  <item us="rehospitalization" uk="rehospitalisation"/>
-  <item us="remodeled" uk="remodelled"/>
-  <item us="remodeling" uk="remodelling"/>
-  <item us="remold" uk="remould"/>
-  <item us="remolded" uk="remoulded"/>
-  <item us="remolding" uk="remoulding"/>
-  <item us="remolds" uk="remoulds"/>
-  <item us="reorganization" uk="reorganisation"/>
-  <item us="reorganizations" uk="reorganisations"/>
-  <item us="reorganize" uk="reorganise"/>
-  <item us="reorganized" uk="reorganised"/>
-  <item us="reorganizes" uk="reorganises"/>
-  <item us="reorganizing" uk="reorganising"/>
-  <item us="revascularization" uk="revascularisation"/>
-  <item us="reveled" uk="revelled"/>
-  <item us="reveler" uk="reveller"/>
-  <item us="revelers" uk="revellers"/>
-  <item us="reveling" uk="revelling"/>
-  <item us="revitalize" uk="revitalise"/>
-  <item us="revitalized" uk="revitalised"/>
-  <item us="revitalizes" uk="revitalises"/>
-  <item us="revitalizing" uk="revitalising"/>
-  <item us="revolutionize" uk="revolutionise"/>
-  <item us="revolutionized" uk="revolutionised"/>
-  <item us="revolutionizes" uk="revolutionises"/>
-  <item us="revolutionizing" uk="revolutionising"/>
-  <item us="rhapsodize" uk="rhapsodise"/>
-  <item us="rhapsodized" uk="rhapsodised"/>
-  <item us="rhapsodizes" uk="rhapsodises"/>
-  <item us="rhapsodizing" uk="rhapsodising"/>
-  <item us="rigor" uk="rigour"/>
-  <item us="rigors" uk="rigours"/>
-  <item us="ritualized" uk="ritualised"/>
-  <item us="rivaled" uk="rivalled"/>
-  <item us="rivaling" uk="rivalling"/>
-  <item us="romanticize" uk="romanticise"/>
-  <item us="romanticized" uk="romanticised"/>
-  <item us="romanticizes" uk="romanticises"/>
-  <item us="romanticizing" uk="romanticising"/>
-  <item us="rumor" uk="rumour"/>
-  <item us="rumored" uk="rumoured"/>
-  <item us="rumors" uk="rumours"/>
-  <item us="saber" uk="sabre"/>
-  <item us="sabers" uk="sabres"/>
-  <item us="saltpeter" uk="saltpetre"/>
-  <item us="sanitize" uk="sanitise"/>
-  <item us="sanitized" uk="sanitised"/>
-  <item us="sanitizes" uk="sanitises"/>
-  <item us="sanitizing" uk="sanitising"/>
-  <item us="satirize" uk="satirise"/>
-  <item us="satirized" uk="satirised"/>
-  <item us="satirizes" uk="satirises"/>
-  <item us="satirizing" uk="satirising"/>
-  <item us="savior" uk="saviour"/>
-  <item us="saviors" uk="saviours"/>
-  <item us="savor" uk="savour"/>
-  <item us="savored" uk="savoured"/>
-  <item us="savories" uk="savouries"/>
-  <item us="savoring" uk="savouring"/>
-  <item us="savors" uk="savours"/>
-  <item us="savory" uk="savoury"/>
-  <item us="scandalize" uk="scandalise"/>
-  <item us="scandalized" uk="scandalised"/>
-  <item us="scandalizes" uk="scandalises"/>
-  <item us="scandalizing" uk="scandalising"/>
-  <item us="scepter" uk="sceptre"/>
-  <item us="scepters" uk="sceptres"/>
-  <item us="scrutinize" uk="scrutinise"/>
-  <item us="scrutinized" uk="scrutinised"/>
-  <item us="scrutinizes" uk="scrutinises"/>
-  <item us="scrutinizing" uk="scrutinising"/>
-  <item us="secularization" uk="secularisation"/>
-  <item us="secularize" uk="secularise"/>
-  <item us="secularized" uk="secularised"/>
-  <item us="secularizes" uk="secularises"/>
-  <item us="secularizing" uk="secularising"/>
-  <item us="sensationalize" uk="sensationalise"/>
-  <item us="sensationalized" uk="sensationalised"/>
-  <item us="sensationalizes" uk="sensationalises"/>
-  <item us="sensationalizing" uk="sensationalising"/>
-  <item us="sensitization" uk="sensitisation"/>
-  <item us="sensitize" uk="sensitise"/>
-  <item us="sensitized" uk="sensitised"/>
-  <item us="sensitizes" uk="sensitises"/>
-  <item us="sensitizing" uk="sensitising"/>
-  <item us="sentimentalize" uk="sentimentalise"/>
-  <item us="sentimentalized" uk="sentimentalised"/>
-  <item us="sentimentalizes" uk="sentimentalises"/>
-  <item us="sentimentalizing" uk="sentimentalising"/>
-  <item us="sepulcher" uk="sepulchre"/>
-  <item us="sepulchers" uk="sepulchres"/>
-  <item us="serialization" uk="serialisation"/>
-  <item us="serializations" uk="serialisations"/>
-  <item us="serialize" uk="serialise"/>
-  <item us="serialized" uk="serialised"/>
-  <item us="serializes" uk="serialises"/>
-  <item us="serializing" uk="serialising"/>
-  <item us="sermonize" uk="sermonise"/>
-  <item us="sermonized" uk="sermonised"/>
-  <item us="sermonizes" uk="sermonises"/>
-  <item us="sermonizing" uk="sermonising"/>
-  <item us="shoveled" uk="shovelled"/>
-  <item us="shoveling" uk="shovelling"/>
-  <item us="shriveled" uk="shrivelled"/>
-  <item us="shriveling" uk="shrivelling"/>
-  <item us="signaled" uk="signalled"/>
-  <item us="signaling" uk="signalling"/>
-  <item us="signalize" uk="signalise"/>
-  <item us="signalized" uk="signalised"/>
-  <item us="signalizes" uk="signalises"/>
-  <item us="signalizing" uk="signalising"/>
-  <item us="skeptic" uk="sceptic"/>
-  <item us="skeptical" uk="sceptical"/>
-  <item us="skeptically" uk="sceptically"/>
-  <item us="skepticism" uk="scepticism"/>
-  <item us="skeptics" uk="sceptics"/>
-  <item us="smolder" uk="smoulder"/>
-  <item us="smoldered" uk="smouldered"/>
-  <item us="smoldering" uk="smouldering"/>
-  <item us="smolders" uk="smoulders"/>
-  <item us="sniveled" uk="snivelled"/>
-  <item us="sniveling" uk="snivelling"/>
-  <item us="snorkeled" uk="snorkelled"/>
-  <item us="snorkeling" uk="snorkelling"/>
-  <item us="snowplow" uk="snowplough"/>
-  <item us="socialization" uk="socialisation"/>
-  <item us="socialize" uk="socialise"/>
-  <item us="socialized" uk="socialised"/>
-  <item us="socializes" uk="socialises"/>
-  <item us="socializing" uk="socialising"/>
-  <item us="sodomize" uk="sodomise"/>
-  <item us="sodomized" uk="sodomised"/>
-  <item us="sodomizes" uk="sodomises"/>
-  <item us="sodomizing" uk="sodomising"/>
-  <item us="solemnize" uk="solemnise"/>
-  <item us="solemnized" uk="solemnised"/>
-  <item us="solemnizes" uk="solemnises"/>
-  <item us="solemnizing" uk="solemnising"/>
-  <item us="somber" uk="sombre"/>
-  <item us="specialization" uk="specialisation"/>
-  <item us="specializations" uk="specialisations"/>
-  <item us="specialize" uk="specialise"/>
-  <item us="specialized" uk="specialised"/>
-  <item us="specializes" uk="specialises"/>
-  <item us="specializing" uk="specialising"/>
-  <item us="specter" uk="spectre"/>
-  <item us="specters" uk="spectres"/>
-  <item us="spiraled" uk="spiralled"/>
-  <item us="spiraling" uk="spiralling"/>
-  <item us="splendor" uk="splendour"/>
-  <item us="splendors" uk="splendours"/>
-  <item us="squirreled" uk="squirrelled"/>
-  <item us="squirreling" uk="squirrelling"/>
-  <item us="stabilization" uk="stabilisation"/>
-  <item us="stabilize" uk="stabilise"/>
-  <item us="stabilized" uk="stabilised"/>
-  <item us="stabilizer" uk="stabiliser"/>
-  <item us="stabilizers" uk="stabilisers"/>
-  <item us="stabilizes" uk="stabilises"/>
-  <item us="stabilizing" uk="stabilising"/>
-  <item us="standardization" uk="standardisation"/>
-  <item us="standardize" uk="standardise"/>
-  <item us="standardized" uk="standardised"/>
-  <item us="standardizes" uk="standardises"/>
-  <item us="standardizing" uk="standardising"/>
-  <item us="stenciled" uk="stencilled"/>
-  <item us="stenciling" uk="stencilling"/>
-  <item us="sterilization" uk="sterilisation"/>
-  <item us="sterilizations" uk="sterilisations"/>
-  <item us="sterilize" uk="sterilise"/>
-  <item us="sterilized" uk="sterilised"/>
-  <item us="sterilizer" uk="steriliser"/>
-  <item us="sterilizers" uk="sterilisers"/>
-  <item us="sterilizes" uk="sterilises"/>
-  <item us="sterilizing" uk="sterilising"/>
-  <item us="stigmatization" uk="stigmatisation"/>
-  <item us="stigmatize" uk="stigmatise"/>
-  <item us="stigmatized" uk="stigmatised"/>
-  <item us="stigmatizes" uk="stigmatises"/>
-  <item us="stigmatizing" uk="stigmatising"/>
-  <item us="subsidization" uk="subsidisation"/>
-  <item us="subsidize" uk="subsidise"/>
-  <item us="subsidized" uk="subsidised"/>
-  <item us="subsidizer" uk="subsidiser"/>
-  <item us="subsidizers" uk="subsidisers"/>
-  <item us="subsidizes" uk="subsidises"/>
-  <item us="subsidizing" uk="subsidising"/>
-  <item us="succor" uk="succour"/>
-  <item us="succored" uk="succoured"/>
-  <item us="succoring" uk="succouring"/>
-  <item us="succors" uk="succours"/>
-  <item us="summarize" uk="summarise"/>
-  <item us="summarized" uk="summarised"/>
-  <item us="summarizes" uk="summarises"/>
-  <item us="summarizing" uk="summarising"/>
-  <item us="swiveled" uk="swivelled"/>
-  <item us="swiveling" uk="swivelling"/>
-  <item us="symbolize" uk="symbolise"/>
-  <item us="symbolized" uk="symbolised"/>
-  <item us="symbolizes" uk="symbolises"/>
-  <item us="symbolizing" uk="symbolising"/>
-  <item us="sympathize" uk="sympathise"/>
-  <item us="sympathized" uk="sympathised"/>
-  <item us="sympathizer" uk="sympathiser"/>
-  <item us="sympathizers" uk="sympathisers"/>
-  <item us="sympathizes" uk="sympathises"/>
-  <item us="sympathizing" uk="sympathising"/>
-  <item us="synchronization" uk="synchronisation"/>
-  <item us="synchronize" uk="synchronise"/>
-  <item us="synchronized" uk="synchronised"/>
-  <item us="synchronizes" uk="synchronises"/>
-  <item us="synchronizing" uk="synchronising"/>
-  <item us="synthesize" uk="synthesise"/>
-  <item us="synthesized" uk="synthesised"/>
-  <item us="synthesizer" uk="synthesiser"/>
-  <item us="synthesizers" uk="synthesisers"/>
-  <item us="synthesizes" uk="synthesises"/>
-  <item us="synthesizing" uk="synthesising"/>
-  <item us="systematization" uk="systematisation"/>
-  <item us="systematize" uk="systematise"/>
-  <item us="systematized" uk="systematised"/>
-  <item us="systematizes" uk="systematises"/>
-  <item us="systematizing" uk="systematising"/>
-  <item us="tantalize" uk="tantalise"/>
-  <item us="tantalized" uk="tantalised"/>
-  <item us="tantalizes" uk="tantalises"/>
-  <item us="tantalizing" uk="tantalising"/>
-  <item us="tantalizingly" uk="tantalisingly"/>
-  <item us="tasseled" uk="tasselled"/>
-  <item us="technicolor" uk="technicolour"/>
-  <item us="temporize" uk="temporise"/>
-  <item us="temporized" uk="temporised"/>
-  <item us="temporizes" uk="temporises"/>
-  <item us="temporizing" uk="temporising"/>
-  <item us="tenderize" uk="tenderise"/>
-  <item us="tenderized" uk="tenderised"/>
-  <item us="tenderizes" uk="tenderises"/>
-  <item us="tenderizing" uk="tenderising"/>
-  <item us="terrorize" uk="terrorise"/>
-  <item us="terrorized" uk="terrorised"/>
-  <item us="terrorizes" uk="terrorises"/>
-  <item us="terrorizing" uk="terrorising"/>
-  <item us="theater" uk="theatre"/>
-  <item us="theatergoer" uk="theatregoer"/>
-  <item us="theatergoers" uk="theatregoers"/>
-  <item us="theaters" uk="theatres"/>
-  <item us="theorize" uk="theorise"/>
-  <item us="theorized" uk="theorised"/>
-  <item us="theorizes" uk="theorises"/>
-  <item us="theorizing" uk="theorising"/>
-  <item us="toweled" uk="towelled"/>
-  <item us="toweling" uk="towelling"/>
-  <item us="toxemia" uk="toxaemia"/>
-  <item us="tranquility" uk="tranquillity"/>
-  <item us="tranquilize" uk="tranquillise"/>
-  <item us="tranquilized" uk="tranquillised"/>
-  <item us="tranquilizer" uk="tranquilliser"/>
-  <item us="tranquilizers" uk="tranquillisers"/>
-  <item us="tranquilizes" uk="tranquillises"/>
-  <item us="tranquilizing" uk="tranquillising"/>
-  <item us="transistorized" uk="transistorised"/>
-  <item us="traumatize" uk="traumatise"/>
-  <item us="traumatized" uk="traumatised"/>
-  <item us="traumatizes" uk="traumatises"/>
-  <item us="traumatizing" uk="traumatising"/>
-  <item us="traveled" uk="travelled"/>
-  <item us="traveler" uk="traveller"/>
-  <item us="travelers" uk="travellers"/>
-  <item us="traveling" uk="travelling"/>
-  <item us="travelog" uk="travelogue"/>
-  <item us="travelogs" uk="travelogues"/>
-  <item us="trialed" uk="trialled"/>
-  <item us="trialing" uk="trialling"/>
-  <item us="tricolor" uk="tricolour"/>
-  <item us="tricolors" uk="tricolours"/>
-  <item us="trivialize" uk="trivialise"/>
-  <item us="trivialized" uk="trivialised"/>
-  <item us="trivializes" uk="trivialises"/>
-  <item us="trivializing" uk="trivialising"/>
-  <item us="tumor" uk="tumour"/>
-  <item us="tumors" uk="tumours"/>
-  <item us="tunneled" uk="tunnelled"/>
-  <item us="tunneling" uk="tunnelling"/>
-  <item us="tyrannize" uk="tyrannise"/>
-  <item us="tyrannized" uk="tyrannised"/>
-  <item us="tyrannizes" uk="tyrannises"/>
-  <item us="tyrannizing" uk="tyrannising"/>
-  <item us="unauthorized" uk="unauthorised"/>
-  <item us="uncivilized" uk="uncivilised"/>
-  <item us="underutilized" uk="underutilised"/>
-  <item us="unequaled" uk="unequalled"/>
-  <item us="unfavorable" uk="unfavourable"/>
-  <item us="unfavorably" uk="unfavourably"/>
-  <item us="unionization" uk="unionisation"/>
-  <item us="unionize" uk="unionise"/>
-  <item us="unionized" uk="unionised"/>
-  <item us="unionizes" uk="unionises"/>
-  <item us="unionizing" uk="unionising"/>
-  <item us="unorganized" uk="unorganised"/>
-  <item us="unraveled" uk="unravelled"/>
-  <item us="unraveling" uk="unravelling"/>
-  <item us="unrecognizable" uk="unrecognisable"/>
-  <item us="unrecognized" uk="unrecognised"/>
-  <item us="unrivaled" uk="unrivalled"/>
-  <item us="unsavory" uk="unsavoury"/>
-  <item us="untrammeled" uk="untrammelled"/>
-  <item us="urbanization" uk="urbanisation"/>
-  <item us="urbanize" uk="urbanise"/>
-  <item us="urbanized" uk="urbanised"/>
-  <item us="urbanizes" uk="urbanises"/>
-  <item us="urbanizing" uk="urbanising"/>
-  <item us="utilizable" uk="utilisable"/>
-  <item us="utilization" uk="utilisation"/>
-  <item us="utilize" uk="utilise"/>
-  <item us="utilized" uk="utilised"/>
-  <item us="utilizes" uk="utilises"/>
-  <item us="utilizing" uk="utilising"/>
-  <item us="valor" uk="valour"/>
-  <item us="vandalize" uk="vandalise"/>
-  <item us="vandalized" uk="vandalised"/>
-  <item us="vandalizes" uk="vandalises"/>
-  <item us="vandalizing" uk="vandalising"/>
-  <item us="vapor" uk="vapour"/>
-  <item us="vaporization" uk="vaporisation"/>
-  <item us="vaporize" uk="vaporise"/>
-  <item us="vaporized" uk="vaporised"/>
-  <item us="vaporizes" uk="vaporises"/>
-  <item us="vaporizing" uk="vaporising"/>
-  <item us="vapors" uk="vapours"/>
-  <item us="vascularization" uk="vascularisation"/>
-  <item us="verbalize" uk="verbalise"/>
-  <item us="verbalized" uk="verbalised"/>
-  <item us="verbalizes" uk="verbalises"/>
-  <item us="verbalizing" uk="verbalising"/>
-  <item us="victimization" uk="victimisation"/>
-  <item us="victimize" uk="victimise"/>
-  <item us="victimized" uk="victimised"/>
-  <item us="victimizes" uk="victimises"/>
-  <item us="victimizing" uk="victimising"/>
-  <item us="vigor" uk="vigour"/>
-  <item us="visualization" uk="visualisation"/>
-  <item us="visualizations" uk="visualisations"/>
-  <item us="visualize" uk="visualise"/>
-  <item us="visualized" uk="visualised"/>
-  <item us="visualizes" uk="visualises"/>
-  <item us="visualizing" uk="visualising"/>
-  <item us="vocalization" uk="vocalisation"/>
-  <item us="vocalizations" uk="vocalisations"/>
-  <item us="vocalize" uk="vocalise"/>
-  <item us="vocalized" uk="vocalised"/>
-  <item us="vocalizes" uk="vocalises"/>
-  <item us="vocalizing" uk="vocalising"/>
-  <item us="vulcanized" uk="vulcanised"/>
-  <item us="vulgarization" uk="vulgarisation"/>
-  <item us="vulgarize" uk="vulgarise"/>
-  <item us="vulgarized" uk="vulgarised"/>
-  <item us="vulgarizes" uk="vulgarises"/>
-  <item us="vulgarizing" uk="vulgarising"/>
-  <item us="watercolor" uk="watercolour"/>
-  <item us="watercolors" uk="watercolours"/>
-  <item us="weaseled" uk="weaselled"/>
-  <item us="weaseling" uk="weaselling"/>
-  <item us="westernization" uk="westernisation"/>
-  <item us="westernize" uk="westernise"/>
-  <item us="westernized" uk="westernised"/>
-  <item us="westernizes" uk="westernises"/>
-  <item us="westernizing" uk="westernising"/>
-  <item us="womanize" uk="womanise"/>
-  <item us="womanized" uk="womanised"/>
-  <item us="womanizer" uk="womaniser"/>
-  <item us="womanizers" uk="womanisers"/>
-  <item us="womanizes" uk="womanises"/>
-  <item us="womanizing" uk="womanising"/>
-  <item us="woolen" uk="woollen"/>
-  <item us="woolens" uk="woollens"/>
-  <item us="woolies" uk="woollies"/>
-  <item us="wooly" uk="woolly"/>
-  <item us="yodeled" uk="yodelled"/>
-  <item us="yodeling" uk="yodelling"/>
-  <item us="hemodynamic" uk="haemodynamic"/>
-  <item us="hemorrhagic" uk="haemorrhagic"/>
-  <item us="ischemic" uk="ischaemic"/>
-  <item us="optimization" uk="optimisation"/>
-  <item us="characterization" uk="characterisation"/>
-  <item us="hospitalization" uk="hospitalisation"/>
-  <item us="protocolized" uk="protocolised"/>
-  <item us="authorization" uk="authorisation"/>
+<item us="analyzing" uk="analysing"/>
+<item us="anemia" uk="anaemia"/>
+<item us="anemic" uk="anaemic"/>
+<item us="anesthesia" uk="anaesthesia"/>
+<item us="anesthetic" uk="anaesthetic"/>
+<item us="anesthetics" uk="anaesthetics"/>
+<item us="anesthetist" uk="anaesthetist"/>
+<item us="anesthetists" uk="anaesthetists"/>
+<item us="anesthetize" uk="anaesthetise"/>
+<item us="anesthetized" uk="anaesthetised"/>
+<item us="anesthetizes" uk="anaesthetises"/>
+<item us="anesthetizing" uk="anaesthetising"/>
+<item us="anglicize" uk="anglicise"/>
+<item us="anglicized" uk="anglicised"/>
+<item us="anglicizes" uk="anglicises"/>
+<item us="anglicizing" uk="anglicising"/>
+<item us="annualized" uk="annualised"/>
+<item us="antagonize" uk="antagonise"/>
+<item us="antagonized" uk="antagonised"/>
+<item us="antagonizes" uk="antagonises"/>
+<item us="antagonizing" uk="antagonising"/>
+<item us="apologize" uk="apologise"/>
+<item us="apologized" uk="apologised"/>
+<item us="apologizes" uk="apologises"/>
+<item us="apologizing" uk="apologising"/>
+<item us="appall" uk="appal"/>
+<item us="appalls" uk="appals"/>
+<item us="appetizer" uk="appetiser"/>
+<item us="appetizers" uk="appetisers"/>
+<item us="appetizing" uk="appetising"/>
+<item us="appetizingly" uk="appetisingly"/>
+<item us="arbor" uk="arbour"/>
+<item us="arbors" uk="arbours"/>
+<item us="ardor" uk="ardour"/>
+<item us="armor" uk="armour"/>
+<item us="armored" uk="armoured"/>
+<item us="armorer" uk="armourer"/>
+<item us="armorers" uk="armourers"/>
+<item us="armories" uk="armouries"/>
+<item us="armory" uk="armoury"/>
+<item us="artifact" uk="artefact"/>
+<item us="artifacts" uk="artefacts"/>
+<item us="authorize" uk="authorise"/>
+<item us="authorized" uk="authorised"/>
+<item us="authorizes" uk="authorises"/>
+<item us="authorizing" uk="authorising"/>
+<item us="backpedaled" uk="backpedalled"/>
+<item us="backpedaling" uk="backpedalling"/>
+<item us="balk" uk="baulk"/>
+<item us="balked" uk="baulked"/>
+<item us="balking" uk="baulking"/>
+<item us="balks" uk="baulks"/>
+<item us="banister" uk="bannister"/>
+<item us="banisters" uk="bannisters"/>
+<item us="baptize" uk="baptise"/>
+<item us="baptized" uk="baptised"/>
+<item us="baptizes" uk="baptises"/>
+<item us="baptizing" uk="baptising"/>
+<item us="bastardize" uk="bastardise"/>
+<item us="bastardized" uk="bastardised"/>
+<item us="bastardizes" uk="bastardises"/>
+<item us="bastardizing" uk="bastardising"/>
+<item us="battleax" uk="battleaxe"/>
+<item us="bedeviled" uk="bedevilled"/>
+<item us="bedeviling" uk="bedevilling"/>
+<item us="behavior" uk="behaviour"/>
+<item us="behavioral" uk="behavioural"/>
+<item us="behaviorism" uk="behaviourism"/>
+<item us="behaviorist" uk="behaviourist"/>
+<item us="behaviorists" uk="behaviourists"/>
+<item us="behaviors" uk="behaviours"/>
+<item us="behoove" uk="behove"/>
+<item us="behooved" uk="behoved"/>
+<item us="behooves" uk="behoves"/>
+<item us="bejeweled" uk="bejewelled"/>
+<item us="belabor" uk="belabour"/>
+<item us="belabored" uk="belaboured"/>
+<item us="belaboring" uk="belabouring"/>
+<item us="belabors" uk="belabours"/>
+<item us="beveled" uk="bevelled"/>
+<item us="binging" uk="bingeing"/>
+<item us="bowdlerize" uk="bowdlerise"/>
+<item us="bowdlerized" uk="bowdlerised"/>
+<item us="bowdlerizes" uk="bowdlerises"/>
+<item us="bowdlerizing" uk="bowdlerising"/>
+<item us="breathalyze" uk="breathalyse"/>
+<item us="breathalyzed" uk="breathalysed"/>
+<item us="breathalyzer" uk="breathalyser"/>
+<item us="breathalyzers" uk="breathalysers"/>
+<item us="breathalyzes" uk="breathalyses"/>
+<item us="breathalyzing" uk="breathalysing"/>
+<item us="brutalize" uk="brutalise"/>
+<item us="brutalized" uk="brutalised"/>
+<item us="brutalizes" uk="brutalises"/>
+<item us="brutalizing" uk="brutalising"/>
+<item us="busses" uk="buses"/>
+<item us="bussing" uk="busing"/>
+<item us="caliber" uk="calibre"/>
+<item us="calibers" uk="calibres"/>
+<item us="caliper" uk="calliper"/>
+<item us="calipers" uk="callipers"/>
+<item us="calisthenics" uk="callisthenics"/>
+<item us="canalize" uk="canalise"/>
+<item us="canalized" uk="canalised"/>
+<item us="canalizes" uk="canalises"/>
+<item us="canalizing" uk="canalising"/>
+<item us="cancelation" uk="cancellation"/>
+<item us="cancelations" uk="cancellations"/>
+<item us="canceled" uk="cancelled"/>
+<item us="canceling" uk="cancelling"/>
+<item us="candor" uk="candour"/>
+<item us="cannibalize" uk="cannibalise"/>
+<item us="cannibalized" uk="cannibalised"/>
+<item us="cannibalizes" uk="cannibalises"/>
+<item us="cannibalizing" uk="cannibalising"/>
+<item us="canonize" uk="canonise"/>
+<item us="canonized" uk="canonised"/>
+<item us="canonizes" uk="canonises"/>
+<item us="canonizing" uk="canonising"/>
+<item us="capitalize" uk="capitalise"/>
+<item us="capitalized" uk="capitalised"/>
+<item us="capitalizes" uk="capitalises"/>
+<item us="capitalizing" uk="capitalising"/>
+<item us="caramelize" uk="caramelise"/>
+<item us="caramelized" uk="caramelised"/>
+<item us="caramelizes" uk="caramelises"/>
+<item us="caramelizing" uk="caramelising"/>
+<item us="carbonize" uk="carbonise"/>
+<item us="carbonized" uk="carbonised"/>
+<item us="carbonizes" uk="carbonises"/>
+<item us="carbonizing" uk="carbonising"/>
+<item us="caroled" uk="carolled"/>
+<item us="caroling" uk="carolling"/>
+<item us="catalog" uk="catalogue"/>
+<item us="cataloged" uk="catalogued"/>
+<item us="cataloging" uk="cataloguing"/>
+<item us="catalogs" uk="catalogues"/>
+<item us="catalyze" uk="catalyse"/>
+<item us="catalyzed" uk="catalysed"/>
+<item us="catalyzes" uk="catalyses"/>
+<item us="catalyzing" uk="catalysing"/>
+<item us="categorize" uk="categorise"/>
+<item us="categorized" uk="categorised"/>
+<item us="categorizes" uk="categorises"/>
+<item us="categorizing" uk="categorising"/>
+<item us="cauterize" uk="cauterise"/>
+<item us="cauterized" uk="cauterised"/>
+<item us="cauterizes" uk="cauterises"/>
+<item us="cauterizing" uk="cauterising"/>
+<item us="caviled" uk="cavilled"/>
+<item us="caviling" uk="cavilling"/>
+<item us="center" uk="centre"/>
+<item us="centered" uk="centred"/>
+<item us="centerfold" uk="centrefold"/>
+<item us="centerfolds" uk="centrefolds"/>
+<item us="centerpiece" uk="centrepiece"/>
+<item us="centerpieces" uk="centrepieces"/>
+<item us="centers" uk="centres"/>
+<item us="centiliter" uk="centilitre"/>
+<item us="centiliters" uk="centilitres"/>
+<item us="centimeter" uk="centimetre"/>
+<item us="centimeters" uk="centimetres"/>
+<item us="centralize" uk="centralise"/>
+<item us="centralized" uk="centralised"/>
+<item us="centralizes" uk="centralises"/>
+<item us="centralizing" uk="centralising"/>
+<item us="cesarean" uk="caesarean"/>
+<item us="cesareans" uk="caesareans"/>
+<item us="channeled" uk="channelled"/>
+<item us="channeling" uk="channelling"/>
+<item us="characterize" uk="characterise"/>
+<item us="characterized" uk="characterised"/>
+<item us="characterizes" uk="characterises"/>
+<item us="characterizing" uk="characterising"/>
+<item us="checkbook" uk="chequebook"/>
+<item us="checkbooks" uk="chequebooks"/>
+<item us="checkered" uk="chequered"/>
+<item us="chiseled" uk="chiselled"/>
+<item us="chiseling" uk="chiselling"/>
+<item us="circularize" uk="circularise"/>
+<item us="circularized" uk="circularised"/>
+<item us="circularizes" uk="circularises"/>
+<item us="circularizing" uk="circularising"/>
+<item us="civilize" uk="civilise"/>
+<item us="civilized" uk="civilised"/>
+<item us="civilizes" uk="civilises"/>
+<item us="civilizing" uk="civilising"/>
+<item us="clamor" uk="clamour"/>
+<item us="clamored" uk="clamoured"/>
+<item us="clamoring" uk="clamouring"/>
+<item us="clamors" uk="clamours"/>
+<item us="clangor" uk="clangour"/>
+<item us="clarinetist" uk="clarinettist"/>
+<item us="clarinetists" uk="clarinettists"/>
+<item us="collectivize" uk="collectivise"/>
+<item us="collectivized" uk="collectivised"/>
+<item us="collectivizes" uk="collectivises"/>
+<item us="collectivizing" uk="collectivising"/>
+<item us="colonization" uk="colonisation"/>
+<item us="colonize" uk="colonise"/>
+<item us="colonized" uk="colonised"/>
+<item us="colonizer" uk="coloniser"/>
+<item us="colonizers" uk="colonisers"/>
+<item us="colonizes" uk="colonises"/>
+<item us="colonizing" uk="colonising"/>
+<item us="color" uk="colour"/>
+<item us="colorant" uk="colourant"/>
+<item us="colorants" uk="colourants"/>
+<item us="colored" uk="coloured"/>
+<item us="coloreds" uk="coloureds"/>
+<item us="colorful" uk="colourful"/>
+<item us="colorfully" uk="colourfully"/>
+<item us="coloring" uk="colouring"/>
+<item us="colorize" uk="colourize"/>
+<item us="colorized" uk="colourized"/>
+<item us="colorizes" uk="colourizes"/>
+<item us="colorizing" uk="colourizing"/>
+<item us="colorless" uk="colourless"/>
+<item us="colors" uk="colours"/>
+<item us="commercialize" uk="commercialise"/>
+<item us="commercialized" uk="commercialised"/>
+<item us="commercializes" uk="commercialises"/>
+<item us="commercializing" uk="commercialising"/>
+<item us="compartmentalize" uk="compartmentalise"/>
+<item us="compartmentalized" uk="compartmentalised"/>
+<item us="compartmentalizes" uk="compartmentalises"/>
+<item us="compartmentalizing" uk="compartmentalising"/>
+<item us="computerize" uk="computerise"/>
+<item us="computerized" uk="computerised"/>
+<item us="computerizes" uk="computerises"/>
+<item us="computerizing" uk="computerising"/>
+<item us="conceptualize" uk="conceptualise"/>
+<item us="conceptualized" uk="conceptualised"/>
+<item us="conceptualizes" uk="conceptualises"/>
+<item us="conceptualizing" uk="conceptualising"/>
+<item us="contextualize" uk="contextualise"/>
+<item us="contextualized" uk="contextualised"/>
+<item us="contextualizes" uk="contextualises"/>
+<item us="contextualizing" uk="contextualising"/>
+<item us="councilor" uk="councillor"/>
+<item us="councilors" uk="councillors"/>
+<item us="counseled" uk="counselled"/>
+<item us="counseling" uk="counselling"/>
+<item us="counselor" uk="counsellor"/>
+<item us="counselors" uk="counsellors"/>
+<item us="cozier" uk="cosier"/>
+<item us="cozies" uk="cosies"/>
+<item us="coziest" uk="cosiest"/>
+<item us="cozily" uk="cosily"/>
+<item us="coziness" uk="cosiness"/>
+<item us="cozy" uk="cosy"/>
+<item us="crenelated" uk="crenellated"/>
+<item us="criminalize" uk="criminalise"/>
+<item us="criminalized" uk="criminalised"/>
+<item us="criminalizes" uk="criminalises"/>
+<item us="criminalizing" uk="criminalising"/>
+<item us="criticize" uk="criticise"/>
+<item us="criticized" uk="criticised"/>
+<item us="criticizes" uk="criticises"/>
+<item us="criticizing" uk="criticising"/>
+<item us="crueler" uk="crueller"/>
+<item us="cruelest" uk="cruellest"/>
+<item us="crystallization" uk="crystallisation"/>
+<item us="crystallize" uk="crystallise"/>
+<item us="crystallized" uk="crystallised"/>
+<item us="crystallizes" uk="crystallises"/>
+<item us="crystallizing" uk="crystallising"/>
+<item us="cudgeled" uk="cudgelled"/>
+<item us="cudgeling" uk="cudgelling"/>
+<item us="customize" uk="customise"/>
+<item us="customized" uk="customised"/>
+<item us="customizes" uk="customises"/>
+<item us="customizing" uk="customising"/>
+<item us="decentralization" uk="decentralisation"/>
+<item us="decentralize" uk="decentralise"/>
+<item us="decentralized" uk="decentralised"/>
+<item us="decentralizes" uk="decentralises"/>
+<item us="decentralizing" uk="decentralising"/>
+<item us="decriminalization" uk="decriminalisation"/>
+<item us="decriminalize" uk="decriminalise"/>
+<item us="decriminalized" uk="decriminalised"/>
+<item us="decriminalizes" uk="decriminalises"/>
+<item us="decriminalizing" uk="decriminalising"/>
+<item us="dehumanization" uk="dehumanisation"/>
+<item us="dehumanize" uk="dehumanise"/>
+<item us="dehumanized" uk="dehumanised"/>
+<item us="dehumanizes" uk="dehumanises"/>
+<item us="dehumanizing" uk="dehumanising"/>
+<item us="demeanor" uk="demeanour"/>
+<item us="demilitarization" uk="demilitarisation"/>
+<item us="demilitarize" uk="demilitarise"/>
+<item us="demilitarized" uk="demilitarised"/>
+<item us="demilitarizes" uk="demilitarises"/>
+<item us="demilitarizing" uk="demilitarising"/>
+<item us="demobilization" uk="demobilisation"/>
+<item us="demobilize" uk="demobilise"/>
+<item us="demobilized" uk="demobilised"/>
+<item us="demobilizes" uk="demobilises"/>
+<item us="demobilizing" uk="demobilising"/>
+<item us="democratization" uk="democratisation"/>
+<item us="democratize" uk="democratise"/>
+<item us="democratized" uk="democratised"/>
+<item us="democratizes" uk="democratises"/>
+<item us="democratizing" uk="democratising"/>
+<item us="demonize" uk="demonise"/>
+<item us="demonized" uk="demonised"/>
+<item us="demonizes" uk="demonises"/>
+<item us="demonizing" uk="demonising"/>
+<item us="demoralization" uk="demoralisation"/>
+<item us="demoralize" uk="demoralise"/>
+<item us="demoralized" uk="demoralised"/>
+<item us="demoralizes" uk="demoralises"/>
+<item us="demoralizing" uk="demoralising"/>
+<item us="denationalization" uk="denationalisation"/>
+<item us="denationalize" uk="denationalise"/>
+<item us="denationalized" uk="denationalised"/>
+<item us="denationalizes" uk="denationalises"/>
+<item us="denationalizing" uk="denationalising"/>
+<item us="deodorize" uk="deodorise"/>
+<item us="deodorized" uk="deodorised"/>
+<item us="deodorizes" uk="deodorises"/>
+<item us="deodorizing" uk="deodorising"/>
+<item us="depersonalize" uk="depersonalise"/>
+<item us="depersonalized" uk="depersonalised"/>
+<item us="depersonalizes" uk="depersonalises"/>
+<item us="depersonalizing" uk="depersonalising"/>
+<item us="deputize" uk="deputise"/>
+<item us="deputized" uk="deputised"/>
+<item us="deputizes" uk="deputises"/>
+<item us="deputizing" uk="deputising"/>
+<item us="desensitization" uk="desensitisation"/>
+<item us="desensitize" uk="desensitise"/>
+<item us="desensitized" uk="desensitised"/>
+<item us="desensitizes" uk="desensitises"/>
+<item us="desensitizing" uk="desensitising"/>
+<item us="destabilization" uk="destabilisation"/>
+<item us="destabilize" uk="destabilise"/>
+<item us="destabilized" uk="destabilised"/>
+<item us="destabilizes" uk="destabilises"/>
+<item us="destabilizing" uk="destabilising"/>
+<item us="dialed" uk="dialled"/>
+<item us="dialing" uk="dialling"/>
+<item us="dialog" uk="dialogue"/>
+<item us="dialogs" uk="dialogues"/>
+<item us="diarrhea" uk="diarrhoea"/>
+<item us="digitize" uk="digitise"/>
+<item us="digitized" uk="digitised"/>
+<item us="digitizes" uk="digitises"/>
+<item us="digitizing" uk="digitising"/>
+<item us="discolor" uk="discolour"/>
+<item us="discolored" uk="discoloured"/>
+<item us="discoloring" uk="discolouring"/>
+<item us="discolors" uk="discolours"/>
+<item us="disemboweled" uk="disembowelled"/>
+<item us="disemboweling" uk="disembowelling"/>
+<item us="disfavor" uk="disfavour"/>
+<item us="disheveled" uk="dishevelled"/>
+<item us="dishonor" uk="dishonour"/>
+<item us="dishonorable" uk="dishonourable"/>
+<item us="dishonorably" uk="dishonourably"/>
+<item us="dishonored" uk="dishonoured"/>
+<item us="dishonoring" uk="dishonouring"/>
+<item us="dishonors" uk="dishonours"/>
+<item us="disorganization" uk="disorganisation"/>
+<item us="disorganized" uk="disorganised"/>
+<item us="distil" uk="distill"/>
+<item us="distils" uk="distills"/>
+<item us="draftboard" uk="draughtboard"/>
+<item us="draftboards" uk="draughtboards"/>
+<item us="draftier" uk="draughtier"/>
+<item us="draftiest" uk="draughtiest"/>
+<item us="draftsman" uk="draughtsman"/>
+<item us="draftsmanship" uk="draughtsmanship"/>
+<item us="draftsmen" uk="draughtsmen"/>
+<item us="draftswoman" uk="draughtswoman"/>
+<item us="draftswomen" uk="draughtswomen"/>
+<item us="drafty" uk="draughty"/>
+<item us="dramatization" uk="dramatisation"/>
+<item us="dramatizations" uk="dramatisations"/>
+<item us="dramatize" uk="dramatise"/>
+<item us="dramatized" uk="dramatised"/>
+<item us="dramatizes" uk="dramatises"/>
+<item us="dramatizing" uk="dramatising"/>
+<item us="driveled" uk="drivelled"/>
+<item us="driveling" uk="drivelling"/>
+<item us="dueled" uk="duelled"/>
+<item us="dueling" uk="duelling"/>
+<item us="economize" uk="economise"/>
+<item us="economized" uk="economised"/>
+<item us="economizes" uk="economises"/>
+<item us="economizing" uk="economising"/>
+<item us="edema" uk="oedema"/>
+<item us="edemas" uk="oedemas"/>
+<item us="editorialize" uk="editorialise"/>
+<item us="editorialized" uk="editorialised"/>
+<item us="editorializes" uk="editorialises"/>
+<item us="editorializing" uk="editorialising"/>
+<item us="empathize" uk="empathise"/>
+<item us="empathized" uk="empathised"/>
+<item us="empathizes" uk="empathises"/>
+<item us="empathizing" uk="empathising"/>
+<item us="emphasize" uk="emphasise"/>
+<item us="emphasized" uk="emphasised"/>
+<item us="emphasizes" uk="emphasises"/>
+<item us="emphasizing" uk="emphasising"/>
+<item us="enameled" uk="enamelled"/>
+<item us="enameling" uk="enamelling"/>
+<item us="enamored" uk="enamoured"/>
+<item us="endeavor" uk="endeavour"/>
+<item us="endeavored" uk="endeavoured"/>
+<item us="endeavoring" uk="endeavouring"/>
+<item us="endeavors" uk="endeavours"/>
+<item us="energize" uk="energise"/>
+<item us="energized" uk="energised"/>
+<item us="energizes" uk="energises"/>
+<item us="energizing" uk="energising"/>
+<item us="enroll" uk="enrol"/>
+<item us="enrolls" uk="enrols"/>
+<item us="enthrall" uk="enthral"/>
+<item us="enthralls" uk="enthrals"/>
+<item us="epaulet" uk="epaulette"/>
+<item us="epaulets" uk="epaulettes"/>
+<item us="epicenter" uk="epicentre"/>
+<item us="epicenters" uk="epicentres"/>
+<item us="epilog" uk="epilogue"/>
+<item us="epilogs" uk="epilogues"/>
+<item us="epitomize" uk="epitomise"/>
+<item us="epitomized" uk="epitomised"/>
+<item us="epitomizes" uk="epitomises"/>
+<item us="epitomizing" uk="epitomising"/>
+<item us="equalization" uk="equalisation"/>
+<item us="equalize" uk="equalise"/>
+<item us="equalized" uk="equalised"/>
+<item us="equalizer" uk="equaliser"/>
+<item us="equalizers" uk="equalisers"/>
+<item us="equalizes" uk="equalises"/>
+<item us="equalizing" uk="equalising"/>
+<item us="esophagus" uk="oesophagus"/>
+<item us="esophaguses" uk="oesophaguses"/>
+<item us="esthete" uk="aesthete"/>
+<item us="esthetes" uk="aesthetes"/>
+<item us="esthetic" uk="aesthetic"/>
+<item us="esthetically" uk="aesthetically"/>
+<item us="esthetics" uk="aesthetics"/>
+<item us="estrogen" uk="oestrogen"/>
+<item us="etiology" uk="aetiology"/>
+<item us="eulogize" uk="eulogise"/>
+<item us="eulogized" uk="eulogised"/>
+<item us="eulogizes" uk="eulogises"/>
+<item us="eulogizing" uk="eulogising"/>
+<item us="evangelize" uk="evangelise"/>
+<item us="evangelized" uk="evangelised"/>
+<item us="evangelizes" uk="evangelises"/>
+<item us="evangelizing" uk="evangelising"/>
+<item us="exorcize" uk="exorcise"/>
+<item us="exorcized" uk="exorcised"/>
+<item us="exorcizes" uk="exorcises"/>
+<item us="exorcizing" uk="exorcising"/>
+<item us="extemporization" uk="extemporisation"/>
+<item us="extemporize" uk="extemporise"/>
+<item us="extemporized" uk="extemporised"/>
+<item us="extemporizes" uk="extemporises"/>
+<item us="extemporizing" uk="extemporising"/>
+<item us="externalization" uk="externalisation"/>
+<item us="externalizations" uk="externalisations"/>
+<item us="externalize" uk="externalise"/>
+<item us="externalized" uk="externalised"/>
+<item us="externalizes" uk="externalises"/>
+<item us="externalizing" uk="externalising"/>
+<item us="factorize" uk="factorise"/>
+<item us="factorized" uk="factorised"/>
+<item us="factorizes" uk="factorises"/>
+<item us="factorizing" uk="factorising"/>
+<item us="familiarization" uk="familiarisation"/>
+<item us="familiarize" uk="familiarise"/>
+<item us="familiarized" uk="familiarised"/>
+<item us="familiarizes" uk="familiarises"/>
+<item us="familiarizing" uk="familiarising"/>
+<item us="fantasize" uk="fantasise"/>
+<item us="fantasized" uk="fantasised"/>
+<item us="fantasizes" uk="fantasises"/>
+<item us="fantasizing" uk="fantasising"/>
+<item us="favor" uk="favour"/>
+<item us="favorable" uk="favourable"/>
+<item us="favorably" uk="favourably"/>
+<item us="favored" uk="favoured"/>
+<item us="favoring" uk="favouring"/>
+<item us="favorite" uk="favourite"/>
+<item us="favorites" uk="favourites"/>
+<item us="favoritism" uk="favouritism"/>
+<item us="favors" uk="favours"/>
+<item us="fecal" uk="faecal"/>
+<item us="feces" uk="faeces"/>
+<item us="feminize" uk="feminise"/>
+<item us="feminized" uk="feminised"/>
+<item us="feminizes" uk="feminises"/>
+<item us="feminizing" uk="feminising"/>
+<item us="fertilization" uk="fertilisation"/>
+<item us="fertilize" uk="fertilise"/>
+<item us="fertilized" uk="fertilised"/>
+<item us="fertilizer" uk="fertiliser"/>
+<item us="fertilizers" uk="fertilisers"/>
+<item us="fertilizes" uk="fertilises"/>
+<item us="fertilizing" uk="fertilising"/>
+<item us="fervor" uk="fervour"/>
+<item us="fetid" uk="foetid"/>
+<item us="fiber" uk="fibre"/>
+<item us="fiberglass" uk="fibreglass"/>
+<item us="fibers" uk="fibres"/>
+<item us="fictionalization" uk="fictionalisation"/>
+<item us="fictionalizations" uk="fictionalisations"/>
+<item us="fictionalize" uk="fictionalise"/>
+<item us="fictionalized" uk="fictionalised"/>
+<item us="fictionalizes" uk="fictionalises"/>
+<item us="fictionalizing" uk="fictionalising"/>
+<item us="filet" uk="fillet"/>
+<item us="fileted" uk="filleted"/>
+<item us="fileting" uk="filleting"/>
+<item us="filets" uk="fillets"/>
+<item us="finalization" uk="finalisation"/>
+<item us="finalize" uk="finalise"/>
+<item us="finalized" uk="finalised"/>
+<item us="finalizes" uk="finalises"/>
+<item us="finalizing" uk="finalising"/>
+<item us="flavor" uk="flavour"/>
+<item us="flavored" uk="flavoured"/>
+<item us="flavoring" uk="flavouring"/>
+<item us="flavorings" uk="flavourings"/>
+<item us="flavorless" uk="flavourless"/>
+<item us="flavors" uk="flavours"/>
+<item us="flavorsome" uk="flavoursome"/>
+<item us="flutist" uk="flautist"/>
+<item us="flutists" uk="flautists"/>
+<item us="formalization" uk="formalisation"/>
+<item us="formalize" uk="formalise"/>
+<item us="formalized" uk="formalised"/>
+<item us="formalizes" uk="formalises"/>
+<item us="formalizing" uk="formalising"/>
+<item us="fossilization" uk="fossilisation"/>
+<item us="fossilize" uk="fossilise"/>
+<item us="fossilized" uk="fossilised"/>
+<item us="fossilizes" uk="fossilises"/>
+<item us="fossilizing" uk="fossilising"/>
+<item us="fraternization" uk="fraternisation"/>
+<item us="fraternize" uk="fraternise"/>
+<item us="fraternized" uk="fraternised"/>
+<item us="fraternizes" uk="fraternises"/>
+<item us="fraternizing" uk="fraternising"/>
+<item us="fulfill" uk="fulfil"/>
+<item us="fulfillment" uk="fulfilment"/>
+<item us="fulfills" uk="fulfils"/>
+<item us="funneled" uk="funnelled"/>
+<item us="funneling" uk="funnelling"/>
+<item us="galvanize" uk="galvanise"/>
+<item us="galvanized" uk="galvanised"/>
+<item us="galvanizes" uk="galvanises"/>
+<item us="galvanizing" uk="galvanising"/>
+<item us="gamboled" uk="gambolled"/>
+<item us="gamboling" uk="gambolling"/>
+<item us="generalization" uk="generalisation"/>
+<item us="generalizations" uk="generalisations"/>
+<item us="generalize" uk="generalise"/>
+<item us="generalized" uk="generalised"/>
+<item us="generalizes" uk="generalises"/>
+<item us="generalizing" uk="generalising"/>
+<item us="ghettoize" uk="ghettoise"/>
+<item us="ghettoized" uk="ghettoised"/>
+<item us="ghettoizes" uk="ghettoises"/>
+<item us="ghettoizing" uk="ghettoising"/>
+<item us="glamor" uk="glamour"/>
+<item us="glamorize" uk="glamorise"/>
+<item us="glamorized" uk="glamorised"/>
+<item us="glamorizes" uk="glamorises"/>
+<item us="glamorizing" uk="glamorising"/>
+<item us="globalization" uk="globalisation"/>
+<item us="globalize" uk="globalise"/>
+<item us="globalized" uk="globalised"/>
+<item us="globalizes" uk="globalises"/>
+<item us="globalizing" uk="globalising"/>
+<item us="gluing" uk="glueing"/>
+<item us="goiter" uk="goitre"/>
+<item us="goiters" uk="goitres"/>
+<item us="gonorrhea" uk="gonorrhoea"/>
+<item us="graveled" uk="gravelled"/>
+<item us="gray" uk="grey"/>
+<item us="grayed" uk="greyed"/>
+<item us="graying" uk="greying"/>
+<item us="grayish" uk="greyish"/>
+<item us="grayness" uk="greyness"/>
+<item us="grays" uk="greys"/>
+<item us="groveled" uk="grovelled"/>
+<item us="groveling" uk="grovelling"/>
+<item us="grueling" uk="gruelling"/>
+<item us="gruelingly" uk="gruellingly"/>
+<item us="gynecological" uk="gynaecological"/>
+<item us="gynecologist" uk="gynaecologist"/>
+<item us="gynecologists" uk="gynaecologists"/>
+<item us="gynecology" uk="gynaecology"/>
+<item us="harbor" uk="harbour"/>
+<item us="harbored" uk="harboured"/>
+<item us="harboring" uk="harbouring"/>
+<item us="harbors" uk="harbours"/>
+<item us="harmonization" uk="harmonisation"/>
+<item us="harmonize" uk="harmonise"/>
+<item us="harmonized" uk="harmonised"/>
+<item us="harmonizes" uk="harmonises"/>
+<item us="harmonizing" uk="harmonising"/>
+<item us="hematological" uk="haematological"/>
+<item us="hematologist" uk="haematologist"/>
+<item us="hematologists" uk="haematologists"/>
+<item us="hematology" uk="haematology"/>
+<item us="hemoglobin" uk="haemoglobin"/>
+<item us="hemophilia" uk="haemophilia"/>
+<item us="hemophiliac" uk="haemophiliac"/>
+<item us="hemophiliacs" uk="haemophiliacs"/>
+<item us="hemorrhage" uk="haemorrhage"/>
+<item us="hemorrhaged" uk="haemorrhaged"/>
+<item us="hemorrhages" uk="haemorrhages"/>
+<item us="hemorrhaging" uk="haemorrhaging"/>
+<item us="hemorrhoids" uk="haemorrhoids"/>
+<item us="homogenize" uk="homogenise"/>
+<item us="homogenized" uk="homogenised"/>
+<item us="homogenizes" uk="homogenises"/>
+<item us="homogenizing" uk="homogenising"/>
+<item us="honor" uk="honour"/>
+<item us="honorable" uk="honourable"/>
+<item us="honorably" uk="honourably"/>
+<item us="honored" uk="honoured"/>
+<item us="honoring" uk="honouring"/>
+<item us="honors" uk="honours"/>
+<item us="hospitalization" uk="hospitalisation"/>
+<item us="hospitalize" uk="hospitalise"/>
+<item us="hospitalized" uk="hospitalised"/>
+<item us="hospitalizes" uk="hospitalises"/>
+<item us="hospitalizing" uk="hospitalising"/>
+<item us="humanize" uk="humanise"/>
+<item us="humanized" uk="humanised"/>
+<item us="humanizes" uk="humanises"/>
+<item us="humanizing" uk="humanising"/>
+<item us="humor" uk="humour"/>
+<item us="humored" uk="humoured"/>
+<item us="humoring" uk="humouring"/>
+<item us="humorless" uk="humourless"/>
+<item us="humors" uk="humours"/>
+<item us="hybridize" uk="hybridise"/>
+<item us="hybridized" uk="hybridised"/>
+<item us="hybridizes" uk="hybridises"/>
+<item us="hybridizing" uk="hybridising"/>
+<item us="hypnotize" uk="hypnotise"/>
+<item us="hypnotized" uk="hypnotised"/>
+<item us="hypnotizes" uk="hypnotises"/>
+<item us="hypnotizing" uk="hypnotising"/>
+<item us="hypothesize" uk="hypothesise"/>
+<item us="hypothesized" uk="hypothesised"/>
+<item us="hypothesizes" uk="hypothesises"/>
+<item us="hypothesizing" uk="hypothesising"/>
+<item us="idealization" uk="idealisation"/>
+<item us="idealize" uk="idealise"/>
+<item us="idealized" uk="idealised"/>
+<item us="idealizes" uk="idealises"/>
+<item us="idealizing" uk="idealising"/>
+<item us="idolize" uk="idolise"/>
+<item us="idolized" uk="idolised"/>
+<item us="idolizes" uk="idolises"/>
+<item us="idolizing" uk="idolising"/>
+<item us="immobilization" uk="immobilisation"/>
+<item us="immobilize" uk="immobilise"/>
+<item us="immobilized" uk="immobilised"/>
+<item us="immobilizer" uk="immobiliser"/>
+<item us="immobilizers" uk="immobilisers"/>
+<item us="immobilizes" uk="immobilises"/>
+<item us="immobilizing" uk="immobilising"/>
+<item us="immortalize" uk="immortalise"/>
+<item us="immortalized" uk="immortalised"/>
+<item us="immortalizes" uk="immortalises"/>
+<item us="immortalizing" uk="immortalising"/>
+<item us="immunization" uk="immunisation"/>
+<item us="immunize" uk="immunise"/>
+<item us="immunized" uk="immunised"/>
+<item us="immunizes" uk="immunises"/>
+<item us="immunizing" uk="immunising"/>
+<item us="imperiled" uk="imperilled"/>
+<item us="imperiling" uk="imperilling"/>
+<item us="individualize" uk="individualise"/>
+<item us="individualized" uk="individualised"/>
+<item us="individualizes" uk="individualises"/>
+<item us="individualizing" uk="individualising"/>
+<item us="industrialize" uk="industrialise"/>
+<item us="industrialized" uk="industrialised"/>
+<item us="industrializes" uk="industrialises"/>
+<item us="industrializing" uk="industrialising"/>
+<item us="initialed" uk="initialled"/>
+<item us="initialing" uk="initialling"/>
+<item us="instill" uk="instil"/>
+<item us="instills" uk="instils"/>
+<item us="institutionalization" uk="institutionalisation"/>
+<item us="institutionalize" uk="institutionalise"/>
+<item us="institutionalized" uk="institutionalised"/>
+<item us="institutionalizes" uk="institutionalises"/>
+<item us="institutionalizing" uk="institutionalising"/>
+<item us="intellectualize" uk="intellectualise"/>
+<item us="intellectualized" uk="intellectualised"/>
+<item us="intellectualizes" uk="intellectualises"/>
+<item us="intellectualizing" uk="intellectualising"/>
+<item us="internalization" uk="internalisation"/>
+<item us="internalize" uk="internalise"/>
+<item us="internalized" uk="internalised"/>
+<item us="internalizes" uk="internalises"/>
+<item us="internalizing" uk="internalising"/>
+<item us="internationalization" uk="internationalisation"/>
+<item us="internationalize" uk="internationalise"/>
+<item us="internationalized" uk="internationalised"/>
+<item us="internationalizes" uk="internationalises"/>
+<item us="internationalizing" uk="internationalising"/>
+<item us="ionization" uk="ionisation"/>
+<item us="ionize" uk="ionise"/>
+<item us="ionized" uk="ionised"/>
+<item us="ionizer" uk="ioniser"/>
+<item us="ionizers" uk="ionisers"/>
+<item us="ionizes" uk="ionises"/>
+<item us="ionizing" uk="ionising"/>
+<item us="italicize" uk="italicise"/>
+<item us="italicized" uk="italicised"/>
+<item us="italicizes" uk="italicises"/>
+<item us="italicizing" uk="italicising"/>
+<item us="itemize" uk="itemise"/>
+<item us="itemized" uk="itemised"/>
+<item us="itemizes" uk="itemises"/>
+<item us="itemizing" uk="itemising"/>
+<item us="jeopardize" uk="jeopardise"/>
+<item us="jeopardized" uk="jeopardised"/>
+<item us="jeopardizes" uk="jeopardises"/>
+<item us="jeopardizing" uk="jeopardising"/>
+<item us="jeweled" uk="jewelled"/>
+<item us="jeweler" uk="jeweller"/>
+<item us="jewelers" uk="jewellers"/>
+<item us="jewelry" uk="jewellery"/>
+<item us="kilometer" uk="kilometre"/>
+<item us="kilometers" uk="kilometres"/>
+<item us="labeled" uk="labelled"/>
+<item us="labeling" uk="labelling"/>
+<item us="labor" uk="labour"/>
+<item us="labored" uk="laboured"/>
+<item us="laborer" uk="labourer"/>
+<item us="laborers" uk="labourers"/>
+<item us="laboring" uk="labouring"/>
+<item us="labors" uk="labours"/>
+<item us="lackluster" uk="lacklustre"/>
+<item us="legalization" uk="legalisation"/>
+<item us="legalize" uk="legalise"/>
+<item us="legalized" uk="legalised"/>
+<item us="legalizes" uk="legalises"/>
+<item us="legalizing" uk="legalising"/>
+<item us="legitimize" uk="legitimise"/>
+<item us="legitimized" uk="legitimised"/>
+<item us="legitimizes" uk="legitimises"/>
+<item us="legitimizing" uk="legitimising"/>
+<item us="leukemia" uk="leukaemia"/>
+<item us="leveled" uk="levelled"/>
+<item us="leveler" uk="leveller"/>
+<item us="levelers" uk="levellers"/>
+<item us="leveling" uk="levelling"/>
+<item us="libeled" uk="libelled"/>
+<item us="libeling" uk="libelling"/>
+<item us="libelous" uk="libellous"/>
+<item us="liberalization" uk="liberalisation"/>
+<item us="liberalize" uk="liberalise"/>
+<item us="liberalized" uk="liberalised"/>
+<item us="liberalizes" uk="liberalises"/>
+<item us="liberalizing" uk="liberalising"/>
+<item us="lionization" uk="lionisation"/>
+<item us="lionize" uk="lionise"/>
+<item us="lionized" uk="lionised"/>
+<item us="lionizes" uk="lionises"/>
+<item us="lionizing" uk="lionising"/>
+<item us="liquidize" uk="liquidise"/>
+<item us="liquidized" uk="liquidised"/>
+<item us="liquidizer" uk="liquidiser"/>
+<item us="liquidizers" uk="liquidisers"/>
+<item us="liquidizes" uk="liquidises"/>
+<item us="liquidizing" uk="liquidising"/>
+<item us="liter" uk="litre"/>
+<item us="liters" uk="litres"/>
+<item us="localize" uk="localise"/>
+<item us="localized" uk="localised"/>
+<item us="localizes" uk="localises"/>
+<item us="localizing" uk="localising"/>
+<item us="louver" uk="louvre"/>
+<item us="louvered" uk="louvred"/>
+<item us="louvers" uk="louvres"/>
+<item us="luster" uk="lustre"/>
+<item us="magnetize" uk="magnetise"/>
+<item us="magnetized" uk="magnetised"/>
+<item us="magnetizes" uk="magnetises"/>
+<item us="magnetizing" uk="magnetising"/>
+<item us="maneuver" uk="manoeuvre"/>
+<item us="maneuverability" uk="manoeuvrability"/>
+<item us="maneuverable" uk="manoeuvrable"/>
+<item us="maneuvered" uk="manoeuvred"/>
+<item us="maneuvering" uk="manoeuvring"/>
+<item us="maneuverings" uk="manoeuvrings"/>
+<item us="maneuvers" uk="manoeuvres"/>
+<item us="marginalization" uk="marginalisation"/>
+<item us="marginalize" uk="marginalise"/>
+<item us="marginalized" uk="marginalised"/>
+<item us="marginalizes" uk="marginalises"/>
+<item us="marginalizing" uk="marginalising"/>
+<item us="marshaled" uk="marshalled"/>
+<item us="marshaling" uk="marshalling"/>
+<item us="marveled" uk="marvelled"/>
+<item us="marveling" uk="marvelling"/>
+<item us="marvelous" uk="marvellous"/>
+<item us="marvelously" uk="marvellously"/>
+<item us="materialization" uk="materialisation"/>
+<item us="materialize" uk="materialise"/>
+<item us="materialized" uk="materialised"/>
+<item us="materializes" uk="materialises"/>
+<item us="materializing" uk="materialising"/>
+<item us="maximization" uk="maximisation"/>
+<item us="maximize" uk="maximise"/>
+<item us="maximized" uk="maximised"/>
+<item us="maximizes" uk="maximises"/>
+<item us="maximizing" uk="maximising"/>
+<item us="meager" uk="meagre"/>
+<item us="mechanization" uk="mechanisation"/>
+<item us="mechanize" uk="mechanise"/>
+<item us="mechanized" uk="mechanised"/>
+<item us="mechanizes" uk="mechanises"/>
+<item us="mechanizing" uk="mechanising"/>
+<item us="memorialize" uk="memorialise"/>
+<item us="memorialized" uk="memorialised"/>
+<item us="memorializes" uk="memorialises"/>
+<item us="memorializing" uk="memorialising"/>
+<item us="memorize" uk="memorise"/>
+<item us="memorized" uk="memorised"/>
+<item us="memorizes" uk="memorises"/>
+<item us="memorizing" uk="memorising"/>
+<item us="mesmerize" uk="mesmerise"/>
+<item us="mesmerized" uk="mesmerised"/>
+<item us="mesmerizes" uk="mesmerises"/>
+<item us="mesmerizing" uk="mesmerising"/>
+<item us="metabolize" uk="metabolise"/>
+<item us="metabolized" uk="metabolised"/>
+<item us="metabolizes" uk="metabolises"/>
+<item us="metabolizing" uk="metabolising"/>
+<item us="meter" uk="metre"/>
+<item us="meters" uk="metres"/>
+<item us="micrometer" uk="micrometre"/>
+<item us="micrometers" uk="micrometres"/>
+<item us="militarize" uk="militarise"/>
+<item us="militarized" uk="militarised"/>
+<item us="militarizes" uk="militarises"/>
+<item us="militarizing" uk="militarising"/>
+<item us="milliliter" uk="millilitre"/>
+<item us="milliliters" uk="millilitres"/>
+<item us="millimeter" uk="millimetre"/>
+<item us="millimeters" uk="millimetres"/>
+<item us="miniaturization" uk="miniaturisation"/>
+<item us="miniaturize" uk="miniaturise"/>
+<item us="miniaturized" uk="miniaturised"/>
+<item us="miniaturizes" uk="miniaturises"/>
+<item us="miniaturizing" uk="miniaturising"/>
+<item us="minimize" uk="minimise"/>
+<item us="minimized" uk="minimised"/>
+<item us="minimizes" uk="minimises"/>
+<item us="minimizing" uk="minimising"/>
+<item us="misbehavior" uk="misbehaviour"/>
+<item us="misdemeanor" uk="misdemeanour"/>
+<item us="misdemeanors" uk="misdemeanours"/>
+<item us="miter" uk="mitre"/>
+<item us="miters" uk="mitres"/>
+<item us="mobilization" uk="mobilisation"/>
+<item us="mobilize" uk="mobilise"/>
+<item us="mobilized" uk="mobilised"/>
+<item us="mobilizes" uk="mobilises"/>
+<item us="mobilizing" uk="mobilising"/>
+<item us="modeled" uk="modelled"/>
+<item us="modeler" uk="modeller"/>
+<item us="modelers" uk="modellers"/>
+<item us="modeling" uk="modelling"/>
+<item us="modernize" uk="modernise"/>
+<item us="modernized" uk="modernised"/>
+<item us="modernizes" uk="modernises"/>
+<item us="modernizing" uk="modernising"/>
+<item us="moisturize" uk="moisturise"/>
+<item us="moisturized" uk="moisturised"/>
+<item us="moisturizer" uk="moisturiser"/>
+<item us="moisturizers" uk="moisturisers"/>
+<item us="moisturizes" uk="moisturises"/>
+<item us="moisturizing" uk="moisturising"/>
+<item us="mold" uk="mould"/>
+<item us="molded" uk="moulded"/>
+<item us="molder" uk="moulder"/>
+<item us="moldered" uk="mouldered"/>
+<item us="moldering" uk="mouldering"/>
+<item us="molders" uk="moulders"/>
+<item us="moldier" uk="mouldier"/>
+<item us="moldiest" uk="mouldiest"/>
+<item us="molding" uk="moulding"/>
+<item us="moldings" uk="mouldings"/>
+<item us="molds" uk="moulds"/>
+<item us="moldy" uk="mouldy"/>
+<item us="molt" uk="moult"/>
+<item us="molted" uk="moulted"/>
+<item us="molting" uk="moulting"/>
+<item us="molts" uk="moults"/>
+<item us="monolog" uk="monologue"/>
+<item us="monologs" uk="monologues"/>
+<item us="monopolization" uk="monopolisation"/>
+<item us="monopolize" uk="monopolise"/>
+<item us="monopolized" uk="monopolised"/>
+<item us="monopolizes" uk="monopolises"/>
+<item us="monopolizing" uk="monopolising"/>
+<item us="moralize" uk="moralise"/>
+<item us="moralized" uk="moralised"/>
+<item us="moralizes" uk="moralises"/>
+<item us="moralizing" uk="moralising"/>
+<item us="motorized" uk="motorised"/>
+<item us="multicolored" uk="multicoloured"/>
+<item us="mustache" uk="moustache"/>
+<item us="mustached" uk="moustached"/>
+<item us="mustaches" uk="moustaches"/>
+<item us="nationalization" uk="nationalisation"/>
+<item us="nationalizations" uk="nationalisations"/>
+<item us="nationalize" uk="nationalise"/>
+<item us="nationalized" uk="nationalised"/>
+<item us="nationalizes" uk="nationalises"/>
+<item us="nationalizing" uk="nationalising"/>
+<item us="naturalization" uk="naturalisation"/>
+<item us="naturalize" uk="naturalise"/>
+<item us="naturalized" uk="naturalised"/>
+<item us="naturalizes" uk="naturalises"/>
+<item us="naturalizing" uk="naturalising"/>
+<item us="neighbor" uk="neighbour"/>
+<item us="neighborhood" uk="neighbourhood"/>
+<item us="neighborhoods" uk="neighbourhoods"/>
+<item us="neighboring" uk="neighbouring"/>
+<item us="neighborliness" uk="neighbourliness"/>
+<item us="neighborly" uk="neighbourly"/>
+<item us="neighbors" uk="neighbours"/>
+<item us="neutralization" uk="neutralisation"/>
+<item us="neutralize" uk="neutralise"/>
+<item us="neutralized" uk="neutralised"/>
+<item us="neutralizes" uk="neutralises"/>
+<item us="neutralizing" uk="neutralising"/>
+<item us="normalization" uk="normalisation"/>
+<item us="normalize" uk="normalise"/>
+<item us="normalized" uk="normalised"/>
+<item us="normalizes" uk="normalises"/>
+<item us="normalizing" uk="normalising"/>
+<item us="odor" uk="odour"/>
+<item us="odorless" uk="odourless"/>
+<item us="odors" uk="odours"/>
+<item us="offense" uk="offence"/>
+<item us="offenses" uk="offences"/>
+<item us="omelet" uk="omelette"/>
+<item us="omelets" uk="omelettes"/>
+<item us="optimize" uk="optimise"/>
+<item us="optimized" uk="optimised"/>
+<item us="optimizes" uk="optimises"/>
+<item us="optimizing" uk="optimising"/>
+<item us="organization" uk="organisation"/>
+<item us="organizational" uk="organisational"/>
+<item us="organizations" uk="organisations"/>
+<item us="organize" uk="organise"/>
+<item us="organized" uk="organised"/>
+<item us="organizer" uk="organiser"/>
+<item us="organizers" uk="organisers"/>
+<item us="organizes" uk="organises"/>
+<item us="organizing" uk="organising"/>
+<item us="orthopedic" uk="orthopaedic"/>
+<item us="orthopedics" uk="orthopaedics"/>
+<item us="ostracize" uk="ostracise"/>
+<item us="ostracized" uk="ostracised"/>
+<item us="ostracizes" uk="ostracises"/>
+<item us="ostracizing" uk="ostracising"/>
+<item us="outmaneuver" uk="outmanoeuvre"/>
+<item us="outmaneuvered" uk="outmanoeuvred"/>
+<item us="outmaneuvering" uk="outmanoeuvring"/>
+<item us="outmaneuvers" uk="outmanoeuvres"/>
+<item us="overemphasize" uk="overemphasise"/>
+<item us="overemphasized" uk="overemphasised"/>
+<item us="overemphasizes" uk="overemphasises"/>
+<item us="overemphasizing" uk="overemphasising"/>
+<item us="oxidization" uk="oxidisation"/>
+<item us="oxidize" uk="oxidise"/>
+<item us="oxidized" uk="oxidised"/>
+<item us="oxidizes" uk="oxidises"/>
+<item us="oxidizing" uk="oxidising"/>
+<item us="pajama" uk="pyjama"/>
+<item us="pajamas" uk="pyjamas"/>
+<item us="paleolithic" uk="palaeolithic"/>
+<item us="paleontologist" uk="palaeontologist"/>
+<item us="paleontologists" uk="palaeontologists"/>
+<item us="paleontology" uk="palaeontology"/>
+<item us="paneled" uk="panelled"/>
+<item us="paneling" uk="panelling"/>
+<item us="panelist" uk="panellist"/>
+<item us="panelists" uk="panellists"/>
+<item us="paralyze" uk="paralyse"/>
+<item us="paralyzed" uk="paralysed"/>
+<item us="paralyzes" uk="paralyses"/>
+<item us="paralyzing" uk="paralysing"/>
+<item us="parceled" uk="parcelled"/>
+<item us="parceling" uk="parcelling"/>
+<item us="parlor" uk="parlour"/>
+<item us="parlors" uk="parlours"/>
+<item us="particularize" uk="particularise"/>
+<item us="particularized" uk="particularised"/>
+<item us="particularizes" uk="particularises"/>
+<item us="particularizing" uk="particularising"/>
+<item us="passivization" uk="passivisation"/>
+<item us="passivize" uk="passivise"/>
+<item us="passivized" uk="passivised"/>
+<item us="passivizes" uk="passivises"/>
+<item us="passivizing" uk="passivising"/>
+<item us="pasteurization" uk="pasteurisation"/>
+<item us="pasteurize" uk="pasteurise"/>
+<item us="pasteurized" uk="pasteurised"/>
+<item us="pasteurizes" uk="pasteurises"/>
+<item us="pasteurizing" uk="pasteurising"/>
+<item us="patronize" uk="patronise"/>
+<item us="patronized" uk="patronised"/>
+<item us="patronizes" uk="patronises"/>
+<item us="patronizing" uk="patronising"/>
+<item us="patronizingly" uk="patronisingly"/>
+<item us="pedaled" uk="pedalled"/>
+<item us="pedaling" uk="pedalling"/>
+<item us="pedestrianization" uk="pedestrianisation"/>
+<item us="pedestrianize" uk="pedestrianise"/>
+<item us="pedestrianized" uk="pedestrianised"/>
+<item us="pedestrianizes" uk="pedestrianises"/>
+<item us="pedestrianizing" uk="pedestrianising"/>
+<item us="pediatric" uk="paediatric"/>
+<item us="pediatrician" uk="paediatrician"/>
+<item us="pediatricians" uk="paediatricians"/>
+<item us="pediatrics" uk="paediatrics"/>
+<item us="pedophile" uk="paedophile"/>
+<item us="pedophiles" uk="paedophiles"/>
+<item us="pedophilia" uk="paedophilia"/>
+<item us="penalize" uk="penalise"/>
+<item us="penalized" uk="penalised"/>
+<item us="penalizes" uk="penalises"/>
+<item us="penalizing" uk="penalising"/>
+<item us="penciled" uk="pencilled"/>
+<item us="penciling" uk="pencilling"/>
+<item us="personalize" uk="personalise"/>
+<item us="personalized" uk="personalised"/>
+<item us="personalizes" uk="personalises"/>
+<item us="personalizing" uk="personalising"/>
+<item us="pharmacopeia" uk="pharmacopoeia"/>
+<item us="pharmacopeias" uk="pharmacopoeias"/>
+<item us="philosophize" uk="philosophise"/>
+<item us="philosophized" uk="philosophised"/>
+<item us="philosophizes" uk="philosophises"/>
+<item us="philosophizing" uk="philosophising"/>
+<item us="plagiarize" uk="plagiarise"/>
+<item us="plagiarized" uk="plagiarised"/>
+<item us="plagiarizes" uk="plagiarises"/>
+<item us="plagiarizing" uk="plagiarising"/>
+<item us="plow" uk="plough"/>
+<item us="plowed" uk="ploughed"/>
+<item us="plowing" uk="ploughing"/>
+<item us="plowman" uk="ploughman"/>
+<item us="plowmen" uk="ploughmen"/>
+<item us="plows" uk="ploughs"/>
+<item us="plowshare" uk="ploughshare"/>
+<item us="plowshares" uk="ploughshares"/>
+<item us="polarization" uk="polarisation"/>
+<item us="polarize" uk="polarise"/>
+<item us="polarized" uk="polarised"/>
+<item us="polarizes" uk="polarises"/>
+<item us="polarizing" uk="polarising"/>
+<item us="politicization" uk="politicisation"/>
+<item us="politicize" uk="politicise"/>
+<item us="politicized" uk="politicised"/>
+<item us="politicizes" uk="politicises"/>
+<item us="politicizing" uk="politicising"/>
+<item us="popularization" uk="popularisation"/>
+<item us="popularize" uk="popularise"/>
+<item us="popularized" uk="popularised"/>
+<item us="popularizes" uk="popularises"/>
+<item us="popularizing" uk="popularising"/>
+<item us="pressurization" uk="pressurisation"/>
+<item us="pressurize" uk="pressurise"/>
+<item us="pressurized" uk="pressurised"/>
+<item us="pressurizes" uk="pressurises"/>
+<item us="pressurizing" uk="pressurising"/>
+<item us="pretense" uk="pretence"/>
+<item us="pretenses" uk="pretences"/>
+<item us="prioritization" uk="prioritisation"/>
+<item us="prioritize" uk="prioritise"/>
+<item us="prioritized" uk="prioritised"/>
+<item us="prioritizes" uk="prioritises"/>
+<item us="prioritizing" uk="prioritising"/>
+<item us="privatization" uk="privatisation"/>
+<item us="privatizations" uk="privatisations"/>
+<item us="privatize" uk="privatise"/>
+<item us="privatized" uk="privatised"/>
+<item us="privatizes" uk="privatises"/>
+<item us="privatizing" uk="privatising"/>
+<item us="professionalization" uk="professionalisation"/>
+<item us="professionalize" uk="professionalise"/>
+<item us="professionalized" uk="professionalised"/>
+<item us="professionalizes" uk="professionalises"/>
+<item us="professionalizing" uk="professionalising"/>
+<item us="prolog" uk="prologue"/>
+<item us="prologs" uk="prologues"/>
+<item us="propagandize" uk="propagandise"/>
+<item us="propagandized" uk="propagandised"/>
+<item us="propagandizes" uk="propagandises"/>
+<item us="propagandizing" uk="propagandising"/>
+<item us="proselytize" uk="proselytise"/>
+<item us="proselytized" uk="proselytised"/>
+<item us="proselytizer" uk="proselytiser"/>
+<item us="proselytizers" uk="proselytisers"/>
+<item us="proselytizes" uk="proselytises"/>
+<item us="proselytizing" uk="proselytising"/>
+<item us="psychoanalyze" uk="psychoanalyse"/>
+<item us="psychoanalyzed" uk="psychoanalysed"/>
+<item us="psychoanalyzes" uk="psychoanalyses"/>
+<item us="psychoanalyzing" uk="psychoanalysing"/>
+<item us="publicize" uk="publicise"/>
+<item us="publicized" uk="publicised"/>
+<item us="publicizes" uk="publicises"/>
+<item us="publicizing" uk="publicising"/>
+<item us="pulverization" uk="pulverisation"/>
+<item us="pulverize" uk="pulverise"/>
+<item us="pulverized" uk="pulverised"/>
+<item us="pulverizes" uk="pulverises"/>
+<item us="pulverizing" uk="pulverising"/>
+<item us="pummel" uk="pummelled"/>
+<item us="pummeled" uk="pummelling"/>
+<item us="quarreled" uk="quarrelled"/>
+<item us="quarreling" uk="quarrelling"/>
+<item us="radicalize" uk="radicalise"/>
+<item us="radicalized" uk="radicalised"/>
+<item us="radicalizes" uk="radicalises"/>
+<item us="radicalizing" uk="radicalising"/>
+<item us="rancor" uk="rancour"/>
+<item us="randomize" uk="randomise"/>
+<item us="randomized" uk="randomised"/>
+<item us="randomizes" uk="randomises"/>
+<item us="randomizing" uk="randomising"/>
+<item us="rationalization" uk="rationalisation"/>
+<item us="rationalizations" uk="rationalisations"/>
+<item us="rationalize" uk="rationalise"/>
+<item us="rationalized" uk="rationalised"/>
+<item us="rationalizes" uk="rationalises"/>
+<item us="rationalizing" uk="rationalising"/>
+<item us="raveled" uk="ravelled"/>
+<item us="raveling" uk="ravelling"/>
+<item us="realizable" uk="realisable"/>
+<item us="realization" uk="realisation"/>
+<item us="realizations" uk="realisations"/>
+<item us="realize" uk="realise"/>
+<item us="realized" uk="realised"/>
+<item us="realizes" uk="realises"/>
+<item us="realizing" uk="realising"/>
+<item us="recanalization" uk="recanalisation"/>
+<item us="recognizable" uk="recognisable"/>
+<item us="recognizably" uk="recognisably"/>
+<item us="recognizance" uk="recognisance"/>
+<item us="recognize" uk="recognise"/>
+<item us="recognized" uk="recognised"/>
+<item us="recognizes" uk="recognises"/>
+<item us="recognizing" uk="recognising"/>
+<item us="reconnoiter" uk="reconnoitre"/>
+<item us="reconnoitered" uk="reconnoitred"/>
+<item us="reconnoitering" uk="reconnoitring"/>
+<item us="reconnoiters" uk="reconnoitres"/>
+<item us="refueled" uk="refuelled"/>
+<item us="refueling" uk="refuelling"/>
+<item us="regularization" uk="regularisation"/>
+<item us="regularize" uk="regularise"/>
+<item us="regularized" uk="regularised"/>
+<item us="regularizes" uk="regularises"/>
+<item us="regularizing" uk="regularising"/>
+<item us="rehospitalization" uk="rehospitalisation"/>
+<item us="remodeled" uk="remodelled"/>
+<item us="remodeling" uk="remodelling"/>
+<item us="remold" uk="remould"/>
+<item us="remolded" uk="remoulded"/>
+<item us="remolding" uk="remoulding"/>
+<item us="remolds" uk="remoulds"/>
+<item us="reorganization" uk="reorganisation"/>
+<item us="reorganizations" uk="reorganisations"/>
+<item us="reorganize" uk="reorganise"/>
+<item us="reorganized" uk="reorganised"/>
+<item us="reorganizes" uk="reorganises"/>
+<item us="reorganizing" uk="reorganising"/>
+<item us="revascularization" uk="revascularisation"/>
+<item us="reveled" uk="revelled"/>
+<item us="reveler" uk="reveller"/>
+<item us="revelers" uk="revellers"/>
+<item us="reveling" uk="revelling"/>
+<item us="revitalize" uk="revitalise"/>
+<item us="revitalized" uk="revitalised"/>
+<item us="revitalizes" uk="revitalises"/>
+<item us="revitalizing" uk="revitalising"/>
+<item us="revolutionize" uk="revolutionise"/>
+<item us="revolutionized" uk="revolutionised"/>
+<item us="revolutionizes" uk="revolutionises"/>
+<item us="revolutionizing" uk="revolutionising"/>
+<item us="rhapsodize" uk="rhapsodise"/>
+<item us="rhapsodized" uk="rhapsodised"/>
+<item us="rhapsodizes" uk="rhapsodises"/>
+<item us="rhapsodizing" uk="rhapsodising"/>
+<item us="rigor" uk="rigour"/>
+<item us="rigors" uk="rigours"/>
+<item us="ritualized" uk="ritualised"/>
+<item us="rivaled" uk="rivalled"/>
+<item us="rivaling" uk="rivalling"/>
+<item us="romanticize" uk="romanticise"/>
+<item us="romanticized" uk="romanticised"/>
+<item us="romanticizes" uk="romanticises"/>
+<item us="romanticizing" uk="romanticising"/>
+<item us="rumor" uk="rumour"/>
+<item us="rumored" uk="rumoured"/>
+<item us="rumors" uk="rumours"/>
+<item us="saber" uk="sabre"/>
+<item us="sabers" uk="sabres"/>
+<item us="saltpeter" uk="saltpetre"/>
+<item us="sanitize" uk="sanitise"/>
+<item us="sanitized" uk="sanitised"/>
+<item us="sanitizes" uk="sanitises"/>
+<item us="sanitizing" uk="sanitising"/>
+<item us="satirize" uk="satirise"/>
+<item us="satirized" uk="satirised"/>
+<item us="satirizes" uk="satirises"/>
+<item us="satirizing" uk="satirising"/>
+<item us="savior" uk="saviour"/>
+<item us="saviors" uk="saviours"/>
+<item us="savor" uk="savour"/>
+<item us="savored" uk="savoured"/>
+<item us="savories" uk="savouries"/>
+<item us="savoring" uk="savouring"/>
+<item us="savors" uk="savours"/>
+<item us="savory" uk="savoury"/>
+<item us="scandalize" uk="scandalise"/>
+<item us="scandalized" uk="scandalised"/>
+<item us="scandalizes" uk="scandalises"/>
+<item us="scandalizing" uk="scandalising"/>
+<item us="scepter" uk="sceptre"/>
+<item us="scepters" uk="sceptres"/>
+<item us="scrutinize" uk="scrutinise"/>
+<item us="scrutinized" uk="scrutinised"/>
+<item us="scrutinizes" uk="scrutinises"/>
+<item us="scrutinizing" uk="scrutinising"/>
+<item us="secularization" uk="secularisation"/>
+<item us="secularize" uk="secularise"/>
+<item us="secularized" uk="secularised"/>
+<item us="secularizes" uk="secularises"/>
+<item us="secularizing" uk="secularising"/>
+<item us="sensationalize" uk="sensationalise"/>
+<item us="sensationalized" uk="sensationalised"/>
+<item us="sensationalizes" uk="sensationalises"/>
+<item us="sensationalizing" uk="sensationalising"/>
+<item us="sensitization" uk="sensitisation"/>
+<item us="sensitize" uk="sensitise"/>
+<item us="sensitized" uk="sensitised"/>
+<item us="sensitizes" uk="sensitises"/>
+<item us="sensitizing" uk="sensitising"/>
+<item us="sentimentalize" uk="sentimentalise"/>
+<item us="sentimentalized" uk="sentimentalised"/>
+<item us="sentimentalizes" uk="sentimentalises"/>
+<item us="sentimentalizing" uk="sentimentalising"/>
+<item us="sepulcher" uk="sepulchre"/>
+<item us="sepulchers" uk="sepulchres"/>
+<item us="serialization" uk="serialisation"/>
+<item us="serializations" uk="serialisations"/>
+<item us="serialize" uk="serialise"/>
+<item us="serialized" uk="serialised"/>
+<item us="serializes" uk="serialises"/>
+<item us="serializing" uk="serialising"/>
+<item us="sermonize" uk="sermonise"/>
+<item us="sermonized" uk="sermonised"/>
+<item us="sermonizes" uk="sermonises"/>
+<item us="sermonizing" uk="sermonising"/>
+<item us="shoveled" uk="shovelled"/>
+<item us="shoveling" uk="shovelling"/>
+<item us="shriveled" uk="shrivelled"/>
+<item us="shriveling" uk="shrivelling"/>
+<item us="signaled" uk="signalled"/>
+<item us="signaling" uk="signalling"/>
+<item us="signalize" uk="signalise"/>
+<item us="signalized" uk="signalised"/>
+<item us="signalizes" uk="signalises"/>
+<item us="signalizing" uk="signalising"/>
+<item us="skeptic" uk="sceptic"/>
+<item us="skeptical" uk="sceptical"/>
+<item us="skeptically" uk="sceptically"/>
+<item us="skepticism" uk="scepticism"/>
+<item us="skeptics" uk="sceptics"/>
+<item us="smolder" uk="smoulder"/>
+<item us="smoldered" uk="smouldered"/>
+<item us="smoldering" uk="smouldering"/>
+<item us="smolders" uk="smoulders"/>
+<item us="sniveled" uk="snivelled"/>
+<item us="sniveling" uk="snivelling"/>
+<item us="snorkeled" uk="snorkelled"/>
+<item us="snorkeling" uk="snorkelling"/>
+<item us="snowplow" uk="snowplough"/>
+<item us="socialization" uk="socialisation"/>
+<item us="socialize" uk="socialise"/>
+<item us="socialized" uk="socialised"/>
+<item us="socializes" uk="socialises"/>
+<item us="socializing" uk="socialising"/>
+<item us="sodomize" uk="sodomise"/>
+<item us="sodomized" uk="sodomised"/>
+<item us="sodomizes" uk="sodomises"/>
+<item us="sodomizing" uk="sodomising"/>
+<item us="solemnize" uk="solemnise"/>
+<item us="solemnized" uk="solemnised"/>
+<item us="solemnizes" uk="solemnises"/>
+<item us="solemnizing" uk="solemnising"/>
+<item us="somber" uk="sombre"/>
+<item us="specialization" uk="specialisation"/>
+<item us="specializations" uk="specialisations"/>
+<item us="specialize" uk="specialise"/>
+<item us="specialized" uk="specialised"/>
+<item us="specializes" uk="specialises"/>
+<item us="specializing" uk="specialising"/>
+<item us="specter" uk="spectre"/>
+<item us="specters" uk="spectres"/>
+<item us="spiraled" uk="spiralled"/>
+<item us="spiraling" uk="spiralling"/>
+<item us="splendor" uk="splendour"/>
+<item us="splendors" uk="splendours"/>
+<item us="squirreled" uk="squirrelled"/>
+<item us="squirreling" uk="squirrelling"/>
+<item us="stabilization" uk="stabilisation"/>
+<item us="stabilize" uk="stabilise"/>
+<item us="stabilized" uk="stabilised"/>
+<item us="stabilizer" uk="stabiliser"/>
+<item us="stabilizers" uk="stabilisers"/>
+<item us="stabilizes" uk="stabilises"/>
+<item us="stabilizing" uk="stabilising"/>
+<item us="standardization" uk="standardisation"/>
+<item us="standardize" uk="standardise"/>
+<item us="standardized" uk="standardised"/>
+<item us="standardizes" uk="standardises"/>
+<item us="standardizing" uk="standardising"/>
+<item us="stenciled" uk="stencilled"/>
+<item us="stenciling" uk="stencilling"/>
+<item us="sterilization" uk="sterilisation"/>
+<item us="sterilizations" uk="sterilisations"/>
+<item us="sterilize" uk="sterilise"/>
+<item us="sterilized" uk="sterilised"/>
+<item us="sterilizer" uk="steriliser"/>
+<item us="sterilizers" uk="sterilisers"/>
+<item us="sterilizes" uk="sterilises"/>
+<item us="sterilizing" uk="sterilising"/>
+<item us="stigmatization" uk="stigmatisation"/>
+<item us="stigmatize" uk="stigmatise"/>
+<item us="stigmatized" uk="stigmatised"/>
+<item us="stigmatizes" uk="stigmatises"/>
+<item us="stigmatizing" uk="stigmatising"/>
+<item us="subsidization" uk="subsidisation"/>
+<item us="subsidize" uk="subsidise"/>
+<item us="subsidized" uk="subsidised"/>
+<item us="subsidizer" uk="subsidiser"/>
+<item us="subsidizers" uk="subsidisers"/>
+<item us="subsidizes" uk="subsidises"/>
+<item us="subsidizing" uk="subsidising"/>
+<item us="succor" uk="succour"/>
+<item us="succored" uk="succoured"/>
+<item us="succoring" uk="succouring"/>
+<item us="succors" uk="succours"/>
+<item us="summarize" uk="summarise"/>
+<item us="summarized" uk="summarised"/>
+<item us="summarizes" uk="summarises"/>
+<item us="summarizing" uk="summarising"/>
+<item us="swiveled" uk="swivelled"/>
+<item us="swiveling" uk="swivelling"/>
+<item us="symbolize" uk="symbolise"/>
+<item us="symbolized" uk="symbolised"/>
+<item us="symbolizes" uk="symbolises"/>
+<item us="symbolizing" uk="symbolising"/>
+<item us="sympathize" uk="sympathise"/>
+<item us="sympathized" uk="sympathised"/>
+<item us="sympathizer" uk="sympathiser"/>
+<item us="sympathizers" uk="sympathisers"/>
+<item us="sympathizes" uk="sympathises"/>
+<item us="sympathizing" uk="sympathising"/>
+<item us="synchronization" uk="synchronisation"/>
+<item us="synchronize" uk="synchronise"/>
+<item us="synchronized" uk="synchronised"/>
+<item us="synchronizes" uk="synchronises"/>
+<item us="synchronizing" uk="synchronising"/>
+<item us="synthesize" uk="synthesise"/>
+<item us="synthesized" uk="synthesised"/>
+<item us="synthesizer" uk="synthesiser"/>
+<item us="synthesizers" uk="synthesisers"/>
+<item us="synthesizes" uk="synthesises"/>
+<item us="synthesizing" uk="synthesising"/>
+<item us="systematization" uk="systematisation"/>
+<item us="systematize" uk="systematise"/>
+<item us="systematized" uk="systematised"/>
+<item us="systematizes" uk="systematises"/>
+<item us="systematizing" uk="systematising"/>
+<item us="tantalize" uk="tantalise"/>
+<item us="tantalized" uk="tantalised"/>
+<item us="tantalizes" uk="tantalises"/>
+<item us="tantalizing" uk="tantalising"/>
+<item us="tantalizingly" uk="tantalisingly"/>
+<item us="tasseled" uk="tasselled"/>
+<item us="technicolor" uk="technicolour"/>
+<item us="temporize" uk="temporise"/>
+<item us="temporized" uk="temporised"/>
+<item us="temporizes" uk="temporises"/>
+<item us="temporizing" uk="temporising"/>
+<item us="tenderize" uk="tenderise"/>
+<item us="tenderized" uk="tenderised"/>
+<item us="tenderizes" uk="tenderises"/>
+<item us="tenderizing" uk="tenderising"/>
+<item us="terrorize" uk="terrorise"/>
+<item us="terrorized" uk="terrorised"/>
+<item us="terrorizes" uk="terrorises"/>
+<item us="terrorizing" uk="terrorising"/>
+<item us="theater" uk="theatre"/>
+<item us="theatergoer" uk="theatregoer"/>
+<item us="theatergoers" uk="theatregoers"/>
+<item us="theaters" uk="theatres"/>
+<item us="theorize" uk="theorise"/>
+<item us="theorized" uk="theorised"/>
+<item us="theorizes" uk="theorises"/>
+<item us="theorizing" uk="theorising"/>
+<item us="toweled" uk="towelled"/>
+<item us="toweling" uk="towelling"/>
+<item us="toxemia" uk="toxaemia"/>
+<item us="tranquility" uk="tranquillity"/>
+<item us="tranquilize" uk="tranquillise"/>
+<item us="tranquilized" uk="tranquillised"/>
+<item us="tranquilizer" uk="tranquilliser"/>
+<item us="tranquilizers" uk="tranquillisers"/>
+<item us="tranquilizes" uk="tranquillises"/>
+<item us="tranquilizing" uk="tranquillising"/>
+<item us="transistorized" uk="transistorised"/>
+<item us="traumatize" uk="traumatise"/>
+<item us="traumatized" uk="traumatised"/>
+<item us="traumatizes" uk="traumatises"/>
+<item us="traumatizing" uk="traumatising"/>
+<item us="traveled" uk="travelled"/>
+<item us="traveler" uk="traveller"/>
+<item us="travelers" uk="travellers"/>
+<item us="traveling" uk="travelling"/>
+<item us="travelog" uk="travelogue"/>
+<item us="travelogs" uk="travelogues"/>
+<item us="trialed" uk="trialled"/>
+<item us="trialing" uk="trialling"/>
+<item us="tricolor" uk="tricolour"/>
+<item us="tricolors" uk="tricolours"/>
+<item us="trivialize" uk="trivialise"/>
+<item us="trivialized" uk="trivialised"/>
+<item us="trivializes" uk="trivialises"/>
+<item us="trivializing" uk="trivialising"/>
+<item us="tumor" uk="tumour"/>
+<item us="tumors" uk="tumours"/>
+<item us="tunneled" uk="tunnelled"/>
+<item us="tunneling" uk="tunnelling"/>
+<item us="tyrannize" uk="tyrannise"/>
+<item us="tyrannized" uk="tyrannised"/>
+<item us="tyrannizes" uk="tyrannises"/>
+<item us="tyrannizing" uk="tyrannising"/>
+<item us="unauthorized" uk="unauthorised"/>
+<item us="uncivilized" uk="uncivilised"/>
+<item us="underutilized" uk="underutilised"/>
+<item us="unequaled" uk="unequalled"/>
+<item us="unfavorable" uk="unfavourable"/>
+<item us="unfavorably" uk="unfavourably"/>
+<item us="unionization" uk="unionisation"/>
+<item us="unionize" uk="unionise"/>
+<item us="unionized" uk="unionised"/>
+<item us="unionizes" uk="unionises"/>
+<item us="unionizing" uk="unionising"/>
+<item us="unorganized" uk="unorganised"/>
+<item us="unraveled" uk="unravelled"/>
+<item us="unraveling" uk="unravelling"/>
+<item us="unrecognizable" uk="unrecognisable"/>
+<item us="unrecognized" uk="unrecognised"/>
+<item us="unrivaled" uk="unrivalled"/>
+<item us="unsavory" uk="unsavoury"/>
+<item us="untrammeled" uk="untrammelled"/>
+<item us="urbanization" uk="urbanisation"/>
+<item us="urbanize" uk="urbanise"/>
+<item us="urbanized" uk="urbanised"/>
+<item us="urbanizes" uk="urbanises"/>
+<item us="urbanizing" uk="urbanising"/>
+<item us="utilizable" uk="utilisable"/>
+<item us="utilization" uk="utilisation"/>
+<item us="utilize" uk="utilise"/>
+<item us="utilized" uk="utilised"/>
+<item us="utilizes" uk="utilises"/>
+<item us="utilizing" uk="utilising"/>
+<item us="valor" uk="valour"/>
+<item us="vandalize" uk="vandalise"/>
+<item us="vandalized" uk="vandalised"/>
+<item us="vandalizes" uk="vandalises"/>
+<item us="vandalizing" uk="vandalising"/>
+<item us="vapor" uk="vapour"/>
+<item us="vaporization" uk="vaporisation"/>
+<item us="vaporize" uk="vaporise"/>
+<item us="vaporized" uk="vaporised"/>
+<item us="vaporizes" uk="vaporises"/>
+<item us="vaporizing" uk="vaporising"/>
+<item us="vapors" uk="vapours"/>
+<item us="vascularization" uk="vascularisation"/>
+<item us="verbalize" uk="verbalise"/>
+<item us="verbalized" uk="verbalised"/>
+<item us="verbalizes" uk="verbalises"/>
+<item us="verbalizing" uk="verbalising"/>
+<item us="victimization" uk="victimisation"/>
+<item us="victimize" uk="victimise"/>
+<item us="victimized" uk="victimised"/>
+<item us="victimizes" uk="victimises"/>
+<item us="victimizing" uk="victimising"/>
+<item us="vigor" uk="vigour"/>
+<item us="visualization" uk="visualisation"/>
+<item us="visualizations" uk="visualisations"/>
+<item us="visualize" uk="visualise"/>
+<item us="visualized" uk="visualised"/>
+<item us="visualizes" uk="visualises"/>
+<item us="visualizing" uk="visualising"/>
+<item us="vocalization" uk="vocalisation"/>
+<item us="vocalizations" uk="vocalisations"/>
+<item us="vocalize" uk="vocalise"/>
+<item us="vocalized" uk="vocalised"/>
+<item us="vocalizes" uk="vocalises"/>
+<item us="vocalizing" uk="vocalising"/>
+<item us="vulcanized" uk="vulcanised"/>
+<item us="vulgarization" uk="vulgarisation"/>
+<item us="vulgarize" uk="vulgarise"/>
+<item us="vulgarized" uk="vulgarised"/>
+<item us="vulgarizes" uk="vulgarises"/>
+<item us="vulgarizing" uk="vulgarising"/>
+<item us="watercolor" uk="watercolour"/>
+<item us="watercolors" uk="watercolours"/>
+<item us="weaseled" uk="weaselled"/>
+<item us="weaseling" uk="weaselling"/>
+<item us="westernization" uk="westernisation"/>
+<item us="westernize" uk="westernise"/>
+<item us="westernized" uk="westernised"/>
+<item us="westernizes" uk="westernises"/>
+<item us="westernizing" uk="westernising"/>
+<item us="womanize" uk="womanise"/>
+<item us="womanized" uk="womanised"/>
+<item us="womanizer" uk="womaniser"/>
+<item us="womanizers" uk="womanisers"/>
+<item us="womanizes" uk="womanises"/>
+<item us="womanizing" uk="womanising"/>
+<item us="woolen" uk="woollen"/>
+<item us="woolens" uk="woollens"/>
+<item us="woolies" uk="woollies"/>
+<item us="wooly" uk="woolly"/>
+<item us="yodeled" uk="yodelled"/>
+<item us="yodeling" uk="yodelling"/>
+<item us="hemodynamic" uk="haemodynamic"/>
+<item us="hemorrhagic" uk="haemorrhagic"/>
+<item us="ischemic" uk="ischaemic"/>
+<item us="optimization" uk="optimisation"/>
+<item us="characterization" uk="characterisation"/>
+<item us="hospitalization" uk="hospitalisation"/>
+<item us="protocolized" uk="protocolised"/>
+<item us="authorization" uk="authorisation"/>
 </list>

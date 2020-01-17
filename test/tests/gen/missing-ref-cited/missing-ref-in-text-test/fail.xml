@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="missing-ref-in-text-test.sch"?>
-<!--Context: p[ancestor::app or ancestor::body[parent::article]]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]
+<!--Context: p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]
 Test: report    matches($text,$missing-ref-regex)
 Message:  element contains possible citation which is unlinked or a missing reference  search  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
