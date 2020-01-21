@@ -7325,6 +7325,10 @@
         role="warning"
         id="figurefigure-presence"><name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
+      <report test="matches(.,'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')"
+        role="warning"
+        id="plus-minus-presence"><name/> element contains two plus or minus signs separate by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/></report>
+      
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')"
         role="warning"
         id="supplementalfigure-presence"><name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>

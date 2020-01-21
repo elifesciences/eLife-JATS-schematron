@@ -11279,6 +11279,16 @@
         <x:expect-report id="figurefigure-presence" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="plus-minus-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/plus-minus-presence/pass.xml"/>
+        <x:expect-not-report id="plus-minus-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="plus-minus-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/plus-minus-presence/fail.xml"/>
+        <x:expect-report id="plus-minus-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="supplementalfigure-presence-pass">
         <x:context href="../tests/gen/unallowed-symbol-tests/supplementalfigure-presence/pass.xml"/>
         <x:expect-not-report id="supplementalfigure-presence" role="warning"/>
