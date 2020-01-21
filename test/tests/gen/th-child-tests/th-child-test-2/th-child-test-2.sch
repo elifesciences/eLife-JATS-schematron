@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula')"/>
+      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/>
       <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct?</report>
     </rule>
   </pattern>

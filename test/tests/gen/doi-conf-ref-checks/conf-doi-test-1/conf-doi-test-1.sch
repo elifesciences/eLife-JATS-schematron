@@ -683,15 +683,17 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/>
-      <assert test="self::*/local-name() = ($allowed-blocks,'bold')" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
+  <pattern id="doi-ref-checks">
+    <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="name" value="lower-case(conf-name[1])"/>
+      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
+        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="source[1]"/>). Should it have one?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::th/*" role="error" id="th-child-tests-xspec-assert">th/* must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>
     </rule>
   </pattern>
 </schema>

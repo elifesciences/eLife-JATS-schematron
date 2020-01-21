@@ -1962,7 +1962,7 @@
   </pattern>
   <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula')"/> 
+      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/> 
       
       <assert test="self::*/local-name() = ($allowed-blocks,'bold')" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
       
@@ -5494,6 +5494,10 @@
       <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
         <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
+      <report test="matches(.,'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">
+        <name/> element contains two plus or minus signs separate by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
+      </report>
+      
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">
         <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
@@ -5647,7 +5651,7 @@
       
       <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
-      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data type reference.</report>
+      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference.</report>
       
       <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
@@ -6354,6 +6358,16 @@
       
     </rule>
   </pattern>
+  <pattern id="doi-conf-ref-checks-pattern">
+    <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="name" value="lower-case(conf-name[1])"/>
+      
+      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
+        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="source[1]"/>). Should it have one?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="element-whitelist-pattern">
     <rule context="article//*[not(ancestor::mml:math)]" id="element-whitelist">
@@ -6677,6 +6691,7 @@
       <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>
       <assert test="descendant::article//*[not(ancestor::mml:math)]" role="error" id="element-whitelist-xspec-assert">article//*[not(ancestor::mml:math)] must be present.</assert>
     </rule>
   </pattern>
