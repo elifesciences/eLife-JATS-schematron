@@ -1956,7 +1956,7 @@
   </pattern>
   <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula')"/> 
+      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/> 
       
       <assert test="self::*/local-name() = ($allowed-blocks,'bold')" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
       
@@ -6332,6 +6332,16 @@
       
       <report test="$host='figshare'" role="warning" id="software-doi-test-2">
         <value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.6084/m9.figshare'. Should it have one?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="doi-conf-ref-checks-pattern">
+    <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
+      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="name" value="lower-case(conf-name[1])"/>
+      
+      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
+        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="source[1]"/>). Should it have one?</report>
       
     </rule>
   </pattern>

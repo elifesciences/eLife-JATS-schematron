@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="conf-doi-test-1.sch"?>
+<!--Context: element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]
+Test: report    contains($name,'ieee')
+Message:  is a conference ref without a doi, but it's a conference which is know to possibly have dois  (). Should it have one?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="confproc">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Jiang</surname> <given-names>W</given-names>
+        </name>
+        <name>
+          <surname>Pailla</surname> <given-names>T</given-names>
+        </name>
+        <name>
+          <surname>Dichter</surname> <given-names>B</given-names>
+        </name>
+        <name>
+          <surname>Chang</surname> <given-names>EF</given-names>
+        </name>
+        <name>
+          <surname>Gilja</surname> <given-names>V</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2016">2016</year>
+      <article-title> Decoding speech using the timing of neural signal modulation </article-title>
+      <conf-name>2016 38th Annual International Conference of the Engineering in Medicine and Biology Society (EMBC)</conf-name>
+      <fpage>1532</fpage>
+      <lpage>1535</lpage>
+    </element-citation>
+  </article>
+</root>
