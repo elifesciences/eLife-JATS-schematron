@@ -79,8 +79,6 @@ function e:upload()
 
 
 declare function e:svrl2json($svrl){
-  let $status := if ($svrl//*[@role="error"]) then 'invalid'
-                 else 'valid'
   
   let $errors :=
       concat(
@@ -115,9 +113,8 @@ let $warnings :=
       
 let $json :=  
     concat(
-      '{', 
-      ('"status": "'||$status||'",'),
-      '"results": {',
+      '{
+        "results": {',
       $errors,
       ',',
       $warnings,
