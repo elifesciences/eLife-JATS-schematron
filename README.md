@@ -1,7 +1,9 @@
 # eLife-JATS-schematron
+
 Schematron for all JATS eLife content.
 
 2 Schematron files are intended to be used:
+
 - `src/pre-JATS-schematron.sch` (for pre-author validation).
 - `src/final-JATS-schematron.sch` (for post-author validation).
 
@@ -10,14 +12,17 @@ Schematron for all JATS eLife content.
 These three files are all derived from running `xquery/refactor.xq` on `src/schematron.sch`. `src/schematron.sch` is not intended to be used as a Schematron file itself, rather treated as master file from which other files are derived and all patterns can be tested.
 
 ## Copy-edit
+
 - `src/copy-edit.sch` is also included and intended to be used to determine whether US English or UK English should be used throughout an article (and what words need changing in order to achieve consistency)
 
 ## Testing
+
 An XSpec file is generated from `src/schematron.sch` and `src/copy-edit.sch` when `xquery/refactor.xq` is run (`test/xspec/schematron.xspec` and `test/xspec/copy-edit.xspec`) (XSpec: https://github.com/xspec/xspec/wiki).
 
 XSpec unit testing is carried out on a pr based on every `test/xspec/*.xspec`.
 
 ### In depth info for writing tests
+
 For every `sch:assert` and `sch:report` there is both a `pass.xml` and `fail.xml` file. It's expected that `fail.xml` will fire, but `pass.xml` will not. A Schemalet file is included in each folder, which allows for default validation in oXygen when writing the tests. Schemalets also include a test for the context of the rule being tested - i.e. for a test in the context of `article-meta`, there must be an `article-meta` element as a descendant of the `root` element in both test files for them to pass unit testing.
 
 Schemalets and new pass/fail cases are generated from `src/schematron.sch` using `xquery/write-tests.xq` (generated XML files only include `<root><article/></root>` and need content added - as specified above).
@@ -25,3 +30,19 @@ Schemalets and new pass/fail cases are generated from `src/schematron.sch` using
 Running `xquery/get-xspec-failures.xq` provides a list of pass/fail cases which do not pass the unit testing (based on the latest local output of `xspec/xspec/schematron-result.xml` and `xspec/xspec/copy-edit-result.xml`).
 
 Less robust Schematron unit testing can also be carried out in BaseX using `xquery/old/test-schematron.xq`, which makes use of Schematron for BaseX: https://github.com/Schematron/schematron-basex.
+
+## Docker
+
+You can now build a container based on basexhttp that contains the schematron and can be used for testing.
+
+```
+docker build . --tag elife-schematron
+docker run --rm --memory="1g" -p 1984:1984 -p 8984:8984 elife-schematron
+```
+
+You can then interact with the service on port 8984 for example using either...
+
+```
+curl -F xml=@elife45905.xml http://localhost:8984/schematron/pre
+curl -F xml=@elife45905.xml http://localhost:8984/schematron/final
+```
