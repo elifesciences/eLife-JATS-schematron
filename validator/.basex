@@ -1,8 +1,8 @@
-# General Options
+ General Options
 DEBUG = false
-DBPATH = /Applications/basex/data
+DBPATH = /srv/basex/data
 LOGPATH = .logs
-REPOPATH = /Applications/basex/repo
+REPOPATH = /srv/basex/repo
 LANG = English
 LANGKEYS = false
 FAIRLOCK = false
@@ -27,7 +27,7 @@ LOG = true
 LOGMSGMAXLEN = 1000
 
 # HTTP Services
-WEBPATH = /Applications/basex/webapp
+WEBPATH = /srv/basex/webapp
 RESTPATH = 
 RESTXQPATH = 
 PARSERESTXQ = 3
