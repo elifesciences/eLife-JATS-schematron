@@ -686,6 +686,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
+      <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
       <assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
     </rule>
   </pattern>

@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
-      <report test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
+      <report test="matches(.,'[Rr]equest')" role="warning" flag="pub-check" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

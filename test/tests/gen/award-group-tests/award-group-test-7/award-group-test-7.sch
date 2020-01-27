@@ -686,7 +686,8 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
-      <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no xref from a contrib pointing to this award-group. This is incorrect.</assert>
+      <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
+      <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;)</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

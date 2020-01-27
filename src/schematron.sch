@@ -1676,13 +1676,12 @@
 	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')"
 	  	role="warning" 
 	  	id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'The author[s] declare[s] that there was no funding for this work.'</report>
-		
-		
     </rule>
 	
 	<rule context="funding-group/award-group" 
 		id="award-group-tests">
 	  <let name="id" value="@id"/>
+	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		
 		<assert test="funding-source"
   		role="error" 
@@ -1706,7 +1705,7 @@
 	  
 	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id"
 	    role="error"
-	    id="award-group-test-7">There is no xref from a contrib pointing to this award-group. This is incorrect.</assert>
+	    id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>">)</assert>
 	</rule>
     
     <rule context="funding-group/award-group/award-id" 
@@ -1736,6 +1735,7 @@
       
       <assert test="institution-id[@institution-id-type='FundRef']"
         role="warning"
+        flag="pub-check"
         id="institution-id-test">Whenever possible, institution-id[@institution-id-type="FundRef"] should be present in institution-wrap; warn staff if not</assert>
       
     </rule>
@@ -8172,7 +8172,8 @@
         id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
       <report test="matches(.,'[Rr]equest')"
-        role="warning" 
+        role="warning"
+        flag="pub-check"
         id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
       
       <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))"
@@ -8563,7 +8564,8 @@
       <let name="test" value="e:code-check(.)"/>
       
       <report test="$test//*:match"
-        role="warning" 
+        role="warning"
+        flag="pub-check"
         id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/></report>
     </rule>
     
@@ -8618,18 +8620,18 @@
       
     </rule>
     
-    <rule context="element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]"
+    <rule context="element-citation[(@publication-type='software') and year and source]"
       id="doi-software-ref-checks">
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="host" value="lower-case(source[1])"/>
       
-      <report test="$host='zenodo'"
+      <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))"
         role="warning" 
-        id="software-doi-test-1"><value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.5281/zenodo'. Should it have one?</report>
+        id="software-doi-test-1"><value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'http://doi.org/10.5281/zenodo...'?</report>
       
-      <report test="$host='figshare'"
+      <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))"
         role="warning" 
-        id="software-doi-test-2"><value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.6084/m9.figshare'. Should it have one?</report>
+        id="software-doi-test-2"><value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>)known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?</report>
       
     </rule>
     
@@ -8640,7 +8642,7 @@
       
       <report test="contains($name,'ieee')"
         role="warning" 
-        id="conf-doi-test-1"><value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="source[1]"/>). Should it have one?</report>
+        id="conf-doi-test-1"><value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conference-name[1]"/>). Should it have one?</report>
       
     </rule>
   </pattern>

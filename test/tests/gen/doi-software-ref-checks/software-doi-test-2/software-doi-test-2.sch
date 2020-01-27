@@ -684,16 +684,16 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="doi-ref-checks">
-    <rule context="element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-software-ref-checks">
+    <rule context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="host" value="lower-case(source[1])"/>
-      <report test="$host='figshare'" role="warning" id="software-doi-test-2">
-        <value-of select="$cite"/> is a software ref without a doi, but its host (<value-of select="source[1]"/>) is known to register dois starting with '10.6084/m9.figshare'. Should it have one?</report>
+      <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))" role="warning" id="software-doi-test-2">
+        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>)known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>
     </rule>
   </pattern>
 </schema>

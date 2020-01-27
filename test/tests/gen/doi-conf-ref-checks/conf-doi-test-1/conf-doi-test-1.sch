@@ -688,7 +688,7 @@
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="name" value="lower-case(conf-name[1])"/>
       <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
-        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="source[1]"/>). Should it have one?</report>
+        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conference-name[1]"/>). Should it have one?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
