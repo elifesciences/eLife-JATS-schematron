@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-doi-test-2.sch"?>
-<!--Context: element-citation[(@publication-type='software') and not(pub-id[@pub-id-type='doi']) and year and source]
-Test: report    $host='figshare'
-Message:  is a software ref without a doi, but its host () is known to register dois starting with '10.6084/m9.figshare'. Should it have one?-->
+<!--Context: element-citation[(@publication-type='software') and year and source]
+Test: report    $host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))
+Message:  is a software ref with a host ()known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="software">
@@ -21,8 +21,8 @@ Message:  is a software ref without a doi, but its host () is known to register 
       </person-group>
       <year iso-8601-date="2019">2019</year>
       <data-title>Figure source data for coding strategies in the otolith system differ for translational head motion vs. static orientation relative to gravity</data-title>
-      <source>vejqr[bvjreiqw</source>
-      
+      <source>figshare</source>
+      <ext-link xlink:href="https://doi.org/10.6084/m9.figshare.8251613">https://doi.org/10.6084/m9.figshare.8251613</ext-link>
     </element-citation>
   </article>
 </root>

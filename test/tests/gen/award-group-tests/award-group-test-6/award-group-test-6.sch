@@ -686,6 +686,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
+      <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
       <assert test="count(funding-source/institution-wrap/institution) = 1" role="error" id="award-group-test-6">One and only one institution must be present.</assert>
     </rule>
   </pattern>

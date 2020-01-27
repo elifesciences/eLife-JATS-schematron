@@ -686,7 +686,7 @@
   <pattern id="house-style">
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(.)"/>
-      <report test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>
+      <report test="$test//*:match" role="warning" flag="pub-check" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>
       </report>
     </rule>
   </pattern>

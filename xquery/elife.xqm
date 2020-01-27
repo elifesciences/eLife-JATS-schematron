@@ -149,6 +149,7 @@ declare function elife:sch2final($sch){
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
       else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
+      else if ($x/@flag) then delete node $x/@flag
       else (),
 
       for $x in $copy3//xsl:function[@name="java:file-exists"]
@@ -168,7 +169,10 @@ declare function elife:sch2final-package($sch){
     copy $copy1 := $sch
     modify(
       for $x in $copy1//*:pattern
-      return replace node $x with $x/*
+      return replace node $x with $x/*,
+      
+      for $y in $copy1//*[@flag]
+      return delete node $y/@flag
     )
     return
     copy $copy2 := $copy1
@@ -183,6 +187,7 @@ declare function elife:sch2final-package($sch){
       for $x in $copy3//(*:report|*:assert)
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
+      else if ($x/@flag) then delete node $x/@flag
       else ()
     )
   return $copy3
