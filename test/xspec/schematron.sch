@@ -1324,6 +1324,25 @@
     <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
   </pattern>
+  <pattern id="author-aff-tests-pattern">
+    <rule context="article-meta/contrib-group[not(@*)]/aff" id="author-aff-tests">
+      <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
+      
+      <assert test="country" role="warning" id="pre-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>. Please query with the authors.</assert>
+      
+      <assert test="country" role="error" id="final-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
+      
+      <assert test="addr-line[named-content[@content-type='city']]" role="watning" id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Pleasde query the authors.</assert>
+      
+      <assert test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>
+      </assert>
+      
+      <assert test="institution[not(@*)]" role="warning" id="pre-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
+      
+      <assert test="institution[not(@*)]" role="error" id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>
+      </assert>
+    </rule>
+  </pattern>
   <pattern id="funding-group-tests-pattern">
     <rule context="article-meta/funding-group" id="funding-group-tests">
 		
@@ -6420,6 +6439,7 @@
       <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type)]/sec/related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type)]/sec/related-object must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/aff" role="error" id="aff-tests-xspec-assert">article-meta/contrib-group/aff must be present.</assert>
+      <assert test="descendant::article-meta/contrib-group[not(@*)]/aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]/aff must be present.</assert>
       <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>

@@ -1716,6 +1716,68 @@
         <x:expect-not-assert id="aff-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="author-aff-tests">
+      <x:scenario label="pre-auth-aff-test-1-pass">
+        <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-1/pass.xml"/>
+        <x:expect-not-assert id="pre-auth-aff-test-1" role="warning"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-auth-aff-test-1-fail">
+        <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-1/fail.xml"/>
+        <x:expect-assert id="pre-auth-aff-test-1" role="warning"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-auth-aff-test-1-pass">
+        <x:context href="../tests/gen/author-aff-tests/final-auth-aff-test-1/pass.xml"/>
+        <x:expect-not-assert id="final-auth-aff-test-1" role="error"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-auth-aff-test-1-fail">
+        <x:context href="../tests/gen/author-aff-tests/final-auth-aff-test-1/fail.xml"/>
+        <x:expect-assert id="final-auth-aff-test-1" role="error"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-auth-aff-test-2-pass">
+        <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-2/pass.xml"/>
+        <x:expect-not-assert id="pre-auth-aff-test-2" role="watning"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-auth-aff-test-2-fail">
+        <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-2/fail.xml"/>
+        <x:expect-assert id="pre-auth-aff-test-2" role="watning"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-auth-aff-test-2-pass">
+        <x:context href="../tests/gen/author-aff-tests/final-auth-aff-test-2/pass.xml"/>
+        <x:expect-not-assert id="final-auth-aff-test-2" role="error"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-auth-aff-test-2-fail">
+        <x:context href="../tests/gen/author-aff-tests/final-auth-aff-test-2/fail.xml"/>
+        <x:expect-assert id="final-auth-aff-test-2" role="error"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-auth-aff-test-3-pass">
+        <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-3/pass.xml"/>
+        <x:expect-not-assert id="pre-auth-aff-test-3" role="warning"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-auth-aff-test-3-fail">
+        <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-3/fail.xml"/>
+        <x:expect-assert id="pre-auth-aff-test-3" role="warning"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-auth-aff-test-3-pass">
+        <x:context href="../tests/gen/author-aff-tests/final-auth-aff-test-3/pass.xml"/>
+        <x:expect-not-assert id="final-auth-aff-test-3" role="error"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-auth-aff-test-3-fail">
+        <x:context href="../tests/gen/author-aff-tests/final-auth-aff-test-3/fail.xml"/>
+        <x:expect-assert id="final-auth-aff-test-3" role="error"/>
+        <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="funding-group-tests">
       <x:scenario label="funding-group-test-1-pass">
         <x:context href="../tests/gen/funding-group-tests/funding-group-test-1/pass.xml"/>
