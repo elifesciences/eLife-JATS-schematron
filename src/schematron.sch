@@ -1662,6 +1662,35 @@
       id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
     
+    <rule context="article-meta/contrib-group[not(@*)]/aff" 
+      id="author-aff-tests">
+      <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"></let>
+      
+      <assert test="country"
+        role="warning"
+        id="pre-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>. Please query with the authors.</assert>
+      
+      <assert test="country"
+        role="error"
+        id="final-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
+      
+      <assert test="addr-line[named-content[@content-type='city']]"
+        role="watning"
+        id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Pleasde query the authors.</assert>
+      
+      <assert test="addr-line[named-content[@content-type='city']]"
+        role="error"
+        id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/></assert>
+      
+      <assert test="institution[not(@*)]"
+        role="warning"
+        id="pre-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
+      
+      <assert test="institution[not(@*)]"
+        role="error"
+        id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
+    </rule>
+    
 	<rule context="article-meta/funding-group" 
 		id="funding-group-tests">
 		
