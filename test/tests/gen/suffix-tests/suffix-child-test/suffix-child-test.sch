@@ -684,14 +684,14 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/suffix" id="suffix-tests">
+    <rule context="contrib-group//name/suffix" id="suffix-tests">
       <report test="*" role="error" id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/>
       </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">article-meta/contrib-group//name/suffix must be present.</assert>
+      <assert test="descendant::contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">contrib-group//name/suffix must be present.</assert>
     </rule>
   </pattern>
 </schema>

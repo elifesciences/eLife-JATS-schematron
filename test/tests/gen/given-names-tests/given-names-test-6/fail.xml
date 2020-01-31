@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="given-names-test-6.sch"?>
-<!--Context: article-meta/contrib-group//name/given-names
+<!--Context: contrib-group//name/given-names
 Test: assert    matches(.,'^\p{Lu}')
 Message: givennames doesn't begin with a capital letter  ''. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

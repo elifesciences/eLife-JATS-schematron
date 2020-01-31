@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="err-elem-cit-data-10.sch"?>
-<!--Context: element-citation[@publication-type='data']
+<!--Context: ref/element-citation[@publication-type='data']
 Test: assert    count(data-title)=1
 Message: [errelemcitdata10]
         Each  <elementcitation> of type 'data' must contain one and only one <datatitle> element.

@@ -684,7 +684,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="element-citation-data-tests">
-    <rule context="element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
+    <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1]
         If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. 
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type 
@@ -693,7 +693,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']/pub-id" role="error" id="elem-citation-data-pub-id-xspec-assert">element-citation[@publication-type='data']/pub-id must be present.</assert>
+      <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id" role="error" id="elem-citation-data-pub-id-xspec-assert">ref/element-citation[@publication-type='data']/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="err-elem-cit-data-18.sch"?>
-<!--Context: element-citation[@publication-type='data']
+<!--Context: ref/element-citation[@publication-type='data']
 Test: assert    count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)
 Message: [errelemcitdata18]
         The only tags that are allowed as children of <elementcitation> with the publicationtype="data" are:

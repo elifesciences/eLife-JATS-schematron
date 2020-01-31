@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="empty-xref-test.sch"?>
+<!--Context: body//xref
+Test: report    not(child::*) and normalize-space(.)=''
+Message: Empty xref in the body is not allowed. It's position here in the text  "".-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>Here is a <italic>citation</italic> <xref ref-type="bibr" rid="bib25">Eccles et al., 1966</xref> to a reference.</p>
+    </body>
+    <sub-article>
+      <body>
+        <p>Here is a citation <xref ref-type="bibr" rid="bib25">Eccles et al., 1966</xref> to a reference.</p>
+      </body>
+    </sub-article>
+  </article>
+</root>
