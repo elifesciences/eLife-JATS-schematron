@@ -5875,9 +5875,9 @@
         role="error" 
         id="das-pub-id-1">Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi.</report>
       
-      <report test="normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
+      <report test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
         role="error" 
-        id="das-pub-id-2">Each pub-id element must have an @xlink-href (which is not empty).</report>
+        id="das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
       
     </rule>
     
