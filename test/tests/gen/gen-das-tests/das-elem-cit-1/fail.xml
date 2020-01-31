@@ -1,0 +1,38 @@
+<?oxygen SCHSchema="das-elem-cit-1.sch"?>
+<!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
+Test: assert    @specific-use
+Message: Every reference in the data availability section must have an @specificuse. The reference in position  does not.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="data-availability">
+        <element-citation id="dataset1" publication-type="data">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>JW</given-names>
+            </name>
+            ...
+          </person-group>
+          <year iso-8601-date="2019">2019</year>
+          <data-title>STRIPAK directs PP2A activity to promote oncogenic <italic>transformation</italic></data-title>
+          <source>NCBI Gene Expression Omnibus</source>
+          <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118272">GSE118272</pub-id>
+        </element-citation>
+        <element-citation id="dataset2" publication-type="data">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>JW</given-names>
+            </name>
+            ...
+          </person-group>
+          <year iso-8601-date="2019">2019</year>
+          <data-title>STRIPAK directs PP2A activity to promote oncogenic <italic>transformation</italic></data-title>
+          <source>NCBI Gene Expression Omnibus</source>
+          <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118273">GSE118273</pub-id>
+        </element-citation>
+      </sec>
+    </back>
+  </article>
+</root>

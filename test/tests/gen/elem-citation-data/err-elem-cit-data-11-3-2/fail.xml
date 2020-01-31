@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="err-elem-cit-data-11-3-2.sch"?>
-<!--Context: element-citation[@publication-type='data']
+<!--Context: ref/element-citation[@publication-type='data']
 Test: assert    count(source)=1 and count(source/*)=count(source/(italic | sub | sup))
 Message: [errelemcitdata1132]
         A  <source> element within a <elementcitation> of type 'data' may only contain the child 

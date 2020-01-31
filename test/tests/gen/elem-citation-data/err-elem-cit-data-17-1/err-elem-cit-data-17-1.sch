@@ -684,7 +684,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="element-citation-data-tests">
-    <rule context="element-citation[@publication-type='data']" id="elem-citation-data">
+    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" role="error" id="err-elem-cit-data-17-1">[err-elem-cit-data-17-1]
         The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements
@@ -693,7 +693,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

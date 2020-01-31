@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="err-elem-cit-data-13-1.sch"?>
-<!--Context: element-citation[@publication-type='data']
+<!--Context: ref/element-citation[@publication-type='data']
 Test: assert    pub-id or ext-link
 Message: [errelemcitdata131]
         There must be at least one pubid OR an <extlink>. There may be more than one pubid.

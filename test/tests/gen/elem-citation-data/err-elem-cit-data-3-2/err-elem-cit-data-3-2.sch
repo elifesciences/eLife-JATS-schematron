@@ -684,7 +684,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="element-citation-data-tests">
-    <rule context="element-citation[@publication-type='data']" id="elem-citation-data">
+    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       <assert test="count(person-group) ge 1" role="error" id="err-elem-cit-data-3-2">[err-elem-cit-data-3-2]
         Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
@@ -693,7 +693,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

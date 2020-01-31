@@ -684,7 +684,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="element-citation-data-tests">
-    <rule context="element-citation[@publication-type='data']" id="elem-citation-data">
+    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">[err-elem-cit-data-18]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are:
         &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;.
@@ -693,7 +693,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

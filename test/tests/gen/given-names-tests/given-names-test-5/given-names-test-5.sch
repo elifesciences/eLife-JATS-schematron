@@ -684,13 +684,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/given-names" id="given-names-tests">
+    <rule context="contrib-group//name/given-names" id="given-names-tests">
       <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">article-meta/contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
     </rule>
   </pattern>
 </schema>

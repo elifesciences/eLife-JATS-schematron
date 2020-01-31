@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="err-elem-cit-data-13-2.sch"?>
-<!--Context: element-citation[@publication-type='data']/pub-id
+<!--Context: ref/element-citation[@publication-type='data']/pub-id
 Test: assert    @pub-id-type=('accession', 'archive', 'ark', 'doi')
 Message: [errelemcitdata132]
         Each pubid element must have one of these types: accession, archive, ark, assigningauthority or doi. 

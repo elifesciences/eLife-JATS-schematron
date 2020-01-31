@@ -684,13 +684,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/given-names" id="given-names-tests">
+    <rule context="contrib-group//name/given-names" id="given-names-tests">
       <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">article-meta/contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
     </rule>
   </pattern>
 </schema>

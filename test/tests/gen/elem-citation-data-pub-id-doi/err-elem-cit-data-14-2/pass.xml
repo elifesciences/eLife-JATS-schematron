@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="err-elem-cit-data-14-2.sch"?>
-<!--Context: element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']
+<!--Context: ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']
 Test: assert    not(@xlink:href)
 Message: [errelemcitdata142]
         If the pubid is of pubidtype doi, it may not have an @xlink:href.

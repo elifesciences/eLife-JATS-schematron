@@ -996,7 +996,7 @@
 	</rule>
   </pattern>
   <pattern id="surname-tests-pattern">
-    <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
+    <rule context="contrib-group//name/surname" id="surname-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">surname must not be empty.</report>
 		
@@ -1013,7 +1013,7 @@
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">
-    <rule context="article-meta/contrib-group//name/given-names" id="given-names-tests">
+    <rule context="contrib-group//name/given-names" id="given-names-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">given-names must not be empty.</report>
 		
@@ -3547,7 +3547,7 @@
   </pattern>
   
   <pattern id="elem-citation-data-pattern">
-    <rule context="element-citation[@publication-type='data']" id="elem-citation-data">
+    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       
       <assert test="count(person-group[@person-group-type='author']) le 1 and       count(person-group[@person-group-type='compiler']) le 1 and       count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1]
         Only one person-group of each type (author, compiler, curator) is allowed. 
@@ -3603,7 +3603,7 @@
     </rule>
   </pattern>
   <pattern id="elem-citation-data-pub-id-doi-pattern">
-    <rule context="element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
+    <rule context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
       
       <assert test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">[err-elem-cit-data-14-2]
         If the pub-id is of pub-id-type doi, it may not have an @xlink:href.
@@ -3613,7 +3613,7 @@
     </rule>
   </pattern>
   <pattern id="elem-citation-data-pub-id-pattern">
-    <rule context="element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
+    <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
       <assert test="@pub-id-type=('accession', 'archive', 'ark', 'doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
         Each pub-id element must have one of these types: accession, archive, ark, assigning-authority or doi. 
@@ -4483,6 +4483,74 @@
     </rule>
   </pattern>
   
+  <pattern id="gen-das-tests-pattern">
+    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
+      <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/> 
+      
+      
+      
+      <assert test="count(person-group[@person-group-type='author'])=1" role="error" id="final-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them.</assert>
+      
+      <report test="count(person-group) gt 1" role="error" id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect</report>
+      
+      
+      
+      <report test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" role="error" id="final-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (person-group[@person-group-type='author']). Please ensure to add them in.</report>
+      
+      
+      
+      <assert test="count(data-title)=1" role="error" id="final-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it</assert>
+      
+      
+      
+      <assert test="count(source)=1" role="error" id="final-das-elem-source-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in.</assert>
+      
+      
+      
+      <assert test="count(pub-id)=1" role="error" id="final-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in.</assert>
+      
+      
+      
+      <report test="normalize-space(pub-id)=''" role="error" id="final-das-elem-pub-id-2">The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in.</report>
+      
+      
+      
+      <assert test="count(year)=1" role="error" id="final-das-elem-year-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in.</assert>
+      
+      <assert test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not.</assert>
+      
+      <report test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="das-elem-citation-data-pub-id-pattern">
+    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
+      
+      <report test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'archive', 'doi'))" role="error" id="das-pub-id-1">Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi.</report>
+      
+      <report test="normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" role="error" id="das-pub-id-2">Each pub-id element must have an @xlink-href (which is not empty).</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="das-elem-citation-children-pattern">
+    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
+      <let name="allowed-elems" value="('sup','sub','italic')"/>
+      
+      <assert test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
+    </rule>
+  </pattern>
+  <pattern id="das-elem-citation-year-tests-pattern">
+    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
+      <let name="digits" value="replace(.,'[^\d]','')"/>
+      
+      <report test="(.!='') and (@iso-8601-date!=$digits)" role="error" id="das-elem-citation-year-1">Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'.</report>
+      
+      
+      
+      <report test="normalize-space(.)=''" role="error" id="final-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in.</report>
+    </rule>
+  </pattern>
+  
   <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
@@ -4690,8 +4758,8 @@
       
       <report test="matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <assert test="$url-text = ''" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
-      </assert>
+      <report test="not(ancestor::sub-article) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      </report>
     </rule>
   </pattern>
   

@@ -684,13 +684,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
+    <rule context="contrib-group//name/surname" id="surname-tests">
       <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">surname must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">article-meta/contrib-group//name/surname must be present.</assert>
+      <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
     </rule>
   </pattern>
 </schema>

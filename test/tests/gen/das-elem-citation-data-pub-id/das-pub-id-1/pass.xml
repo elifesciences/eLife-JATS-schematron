@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="das-pub-id-1.sch"?>
+<!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
+Test: report    normalize-space(.)!='' and not(@pub-id-type=('accession', 'archive', 'doi'))
+Message: Each pubid element must have an @pubidtype with one of these types: accession, archive, or doi.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="data-availability">
+        <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>JW</given-names>
+            </name>
+            ...
+          </person-group>
+          <year iso-8601-date="2019">2019</year>
+          <data-title>STRIPAK directs PP2A activity to promote oncogenic transformation</data-title>
+          <source>NCBI Gene Expression Omnibus</source>
+          <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118272">GSE118272</pub-id>
+        </element-citation>
+      </sec>
+    </back>
+  </article>
+</root>

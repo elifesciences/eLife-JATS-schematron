@@ -684,13 +684,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group//name/surname" id="surname-tests">
+    <rule context="contrib-group//name/surname" id="surname-tests">
       <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">article-meta/contrib-group//name/surname must be present.</assert>
+      <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
     </rule>
   </pattern>
 </schema>
