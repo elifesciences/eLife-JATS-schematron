@@ -979,7 +979,7 @@
     </rule>
   </pattern>
   <pattern id="name-tests-pattern">
-    <rule context="article-meta/contrib-group//name" id="name-tests">
+    <rule context="contrib-group//name" id="name-tests">
 		
     	<assert test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
 	  
@@ -1037,7 +1037,7 @@
 	</rule>
   </pattern>
   <pattern id="suffix-tests-pattern">
-    <rule context="article-meta/contrib-group//name/suffix" id="suffix-tests">
+    <rule context="contrib-group//name/suffix" id="suffix-tests">
       
       <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
@@ -1047,7 +1047,7 @@
     </rule>
   </pattern>
   <pattern id="name-child-tests-pattern">
-    <rule context="article-meta/contrib-group//name/*" id="name-child-tests">
+    <rule context="contrib-group//name/*" id="name-child-tests">
       
       <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
         <value-of select="local-name()"/> is not allowed as a child of name.</assert>

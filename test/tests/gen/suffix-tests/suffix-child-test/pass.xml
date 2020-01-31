@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="suffix-child-test.sch"?>
-<!--Context: article-meta/contrib-group//name/suffix
+<!--Context: contrib-group//name/suffix
 Test: report    *
 Message: suffix cannot have any child elements  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

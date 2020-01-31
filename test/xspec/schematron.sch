@@ -979,7 +979,7 @@
     </rule>
   </pattern>
   <pattern id="name-tests-pattern">
-    <rule context="article-meta/contrib-group//name" id="name-tests">
+    <rule context="contrib-group//name" id="name-tests">
 		
     	<assert test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
 	  
@@ -1037,7 +1037,7 @@
 	</rule>
   </pattern>
   <pattern id="suffix-tests-pattern">
-    <rule context="article-meta/contrib-group//name/suffix" id="suffix-tests">
+    <rule context="contrib-group//name/suffix" id="suffix-tests">
       
       <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
@@ -1047,7 +1047,7 @@
     </rule>
   </pattern>
   <pattern id="name-child-tests-pattern">
-    <rule context="article-meta/contrib-group//name/*" id="name-child-tests">
+    <rule context="contrib-group//name/*" id="name-child-tests">
       
       <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
         <value-of select="local-name()"/> is not allowed as a child of name.</assert>
@@ -6531,11 +6531,11 @@
       <assert test="descendant::article/front/article-meta/contrib-group" role="error" id="test-contrib-group-xspec-assert">article/front/article-meta/contrib-group must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']" role="error" id="test-editor-contrib-group-xspec-assert">article/front/article-meta/contrib-group[@content-type='section'] must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']/contrib" role="error" id="test-editors-contrib-xspec-assert">article/front/article-meta/contrib-group[@content-type='section']/contrib must be present.</assert>
-      <assert test="descendant::article-meta/contrib-group//name" role="error" id="name-tests-xspec-assert">article-meta/contrib-group//name must be present.</assert>
+      <assert test="descendant::contrib-group//name" role="error" id="name-tests-xspec-assert">contrib-group//name must be present.</assert>
       <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
       <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
-      <assert test="descendant::article-meta/contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">article-meta/contrib-group//name/suffix must be present.</assert>
-      <assert test="descendant::article-meta/contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">article-meta/contrib-group//name/* must be present.</assert>
+      <assert test="descendant::contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">contrib-group//name/suffix must be present.</assert>
+      <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
       <assert test="descendant::article-meta//contrib[@contrib-type='author']/*" role="error" id="author-children-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/* must be present.</assert>
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>

@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="given-names-test-2.sch"?>
-<!--Context: article-meta/contrib-group//name
+<!--Context: contrib-group//name
 Test: assert    given-names
 Message: This name    does not contain a givenname. Please check with eLife staff that this is correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

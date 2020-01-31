@@ -1144,7 +1144,7 @@
       
     </rule>
 	
-	<rule context="article-meta/contrib-group//name" 
+	<rule context="contrib-group//name" 
 		id="name-tests">
 		
     	<assert test="count(surname) = 1"
@@ -1243,7 +1243,7 @@
 		
 	</rule>
     
-    <rule context="article-meta/contrib-group//name/suffix" 
+    <rule context="contrib-group//name/suffix" 
       id="suffix-tests">
       
       <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')"
@@ -1256,7 +1256,7 @@
       
     </rule>
     
-    <rule context="article-meta/contrib-group//name/*" 
+    <rule context="contrib-group//name/*" 
       id="name-child-tests">
       
       <assert test="local-name() = ('surname','given-names','suffix')"
