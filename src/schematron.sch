@@ -1270,15 +1270,15 @@
 	  <let name="type" value="@contrib-type"/>
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
-	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)]"/>
+	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)][1]"/>
 	  <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
-	  <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)]"/>
+	  <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)][1]"/>
 	  <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
-	  <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)]"/>
+	  <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)][1]"/>
 	  <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
-	  <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)]"/>
+	  <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)][1]"/>
 	  <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
-	  <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)]"/>
+	  <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)][1]"/>
 	  <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
 	  <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
 	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
@@ -1664,7 +1664,7 @@
     
     <rule context="article-meta/contrib-group[not(@*)]/aff" 
       id="author-aff-tests">
-      <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"></let>
+      <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
       
       <assert test="country"
         role="warning"
@@ -1689,6 +1689,61 @@
       <assert test="institution[not(@*)]"
         role="error"
         id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
+    </rule>
+    
+    <rule context="aff" 
+      id="gen-aff-tests">
+      <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
+      
+     <report test="count(institution[not(@*)]) gt 1"
+      role="error"
+      id="gen-aff-test-1">Affiliations cannot have more than 1 top level institutions. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+    
+     <report test="count(institution[@content-type='dept']) gt 1"
+      role="error"
+      id="gen-aff-test-2">Affiliations cannot have more than 1 departments. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+      
+      <report test="count(label) gt 1"
+        role="error"
+        id="gen-aff-test-3">Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+      
+      <report test="count(addr-line) gt 1"
+        role="error"
+        id="gen-aff-test-4">Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+      
+      <report test="count(country) gt 1"
+        role="error"
+        id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+    </rule>
+    
+    <rule context="aff/*" 
+      id="aff-child-tests">
+      <let name="allowed-elems" value="('label','institution','addr-line','country')"/>
+      
+      <assert test="name()=$allowed-elems"
+        role="error"
+        id="aff-child-conformity"><value-of select="name()"/> is not allowed as a child of &lt;aff>.</assert>
+      
+    </rule>
+    
+    <rule context="addr-line" 
+      id="addr-line-parent-test">
+      
+      <assert test="parent::aff"
+        role="error"
+        id="addr-line-parent"><value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>>.</assert>
+    </rule>
+    
+    <rule context="addr-line/*" 
+      id="addr-line-child-tests">
+      
+      <assert test="name()='named-content'"
+        role="error"
+        id="addr-line-child-1"><value-of select="name()"/> is not allowed as a child of &lt;addr-line>.</assert>
+      
+      <report test="(name()='named-content') and not(@content-type='city')"
+        role="error"
+        id="addr-line-child-2"><value-of select="name()"/> in &lt;addr-line> must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule>
     
 	<rule context="article-meta/funding-group" 
@@ -1940,7 +1995,7 @@
     
     <rule context="article-meta/elocation-id" 
       id="elocation-id-tests">
-      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       
       <assert test=". = concat('e' , $article-id)"
         role="error" 
@@ -2096,6 +2151,15 @@
       <report test="boolean($target) = false()"
         role="error" 
         id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
+    </rule>
+    
+    <rule context="body//xref" 
+      id="body-xref-tests">
+      
+      <report test="not(child::*) and normalize-space(.)=''"
+        role="error" 
+        id="empty-xref-test">Empty xref in the body is not allowed. It's position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+      
     </rule>
     
     <rule context="ext-link[@ext-link-type='uri']" 
@@ -3607,10 +3671,10 @@
     <rule context="aff[not(parent::contrib)]" 
       id="aff-ids">
       
-      <assert test="if (label) then @id = concat('aff',label)
+      <assert test="if (label) then @id = concat('aff',label[1])
                     else starts-with(@id,'aff')"
         role="error"
-        id="aff-id-test">aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label)"/>.</assert>
+        id="aff-id-test">aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>
     </rule>
     
     <!-- @id for fn[parent::table-wrap-foot] not accounted for -->
@@ -5831,8 +5895,8 @@
      id="feature-bio-tests">
      <let name="name" value="e:get-name(parent::contrib/name)"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
-     <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)]/normalize-space(.)
-       else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)]/normalize-space(.)"/>
+     <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)
+       else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
      
      <assert test="p[1]/bold = $name"
        role="error"

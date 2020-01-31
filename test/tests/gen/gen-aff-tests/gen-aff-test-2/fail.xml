@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="gen-aff-test-2.sch"?>
+<!--Context: aff
+Test: report    count(institution[@content-type='dept']) gt 1
+Message: Affiliations cannot have more than 1 departments.  has .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff>
+      <label/>
+      <institution content-type="dept"/>
+      <institution content-type="dept"/>
+      <addr-line/>
+      <country/>
+    </aff>
+  </article>
+</root>

@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="addr-line-child-1.sch"?>
+<!--Context: addr-line/*
+Test: assert    name()='named-content'
+Message:  is not allowed as a child of <addrline>.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <addr-line>
+      <named-content content-type="city"/>
+    </addr-line>
+  </article>
+</root>

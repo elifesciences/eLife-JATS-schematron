@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/elocation-id" id="elocation-id-tests">
-      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <assert test=". = concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
     </rule>
   </pattern>
