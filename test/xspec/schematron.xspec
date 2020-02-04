@@ -5485,6 +5485,16 @@
         <x:expect-report id="back-test-9" role="error"/>
         <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="back-test-11-pass">
+        <x:context href="../tests/gen/back-tests/back-test-11/pass.xml"/>
+        <x:expect-not-report id="back-test-11" role="error"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-test-11-fail">
+        <x:context href="../tests/gen/back-tests/back-test-11/fail.xml"/>
+        <x:expect-report id="back-test-11" role="error"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="data-content-tests">
       <x:scenario label="data-p-presence-pass">
@@ -5583,6 +5593,16 @@
       <x:scenario label="pre-additional-info-test-3-fail">
         <x:context href="../tests/gen/additional-info-tests/pre-additional-info-test-3/fail.xml"/>
         <x:expect-report id="pre-additional-info-test-3" role="warning"/>
+        <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="additional-info-test-4-pass">
+        <x:context href="../tests/gen/additional-info-tests/additional-info-test-4/pass.xml"/>
+        <x:expect-not-report id="additional-info-test-4" role="error"/>
+        <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="additional-info-test-4-fail">
+        <x:context href="../tests/gen/additional-info-tests/additional-info-test-4/fail.xml"/>
+        <x:expect-report id="additional-info-test-4" role="error"/>
         <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -13587,14 +13607,24 @@
         <x:expect-assert id="das-sentence-conformity" role="error"/>
         <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="das-dryad-conformity-pass">
-        <x:context href="../tests/gen/data-availability-statement/das-dryad-conformity/pass.xml"/>
-        <x:expect-not-report id="das-dryad-conformity" role="error"/>
+      <x:scenario label="pre-das-dryad-conformity-pass">
+        <x:context href="../tests/gen/data-availability-statement/pre-das-dryad-conformity/pass.xml"/>
+        <x:expect-not-report id="pre-das-dryad-conformity" role="warning"/>
         <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="das-dryad-conformity-fail">
-        <x:context href="../tests/gen/data-availability-statement/das-dryad-conformity/fail.xml"/>
-        <x:expect-report id="das-dryad-conformity" role="error"/>
+      <x:scenario label="pre-das-dryad-conformity-fail">
+        <x:context href="../tests/gen/data-availability-statement/pre-das-dryad-conformity/fail.xml"/>
+        <x:expect-report id="pre-das-dryad-conformity" role="warning"/>
+        <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-das-dryad-conformity-pass">
+        <x:context href="../tests/gen/data-availability-statement/final-das-dryad-conformity/pass.xml"/>
+        <x:expect-not-report id="final-das-dryad-conformity" role="error"/>
+        <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-das-dryad-conformity-fail">
+        <x:context href="../tests/gen/data-availability-statement/final-das-dryad-conformity/fail.xml"/>
+        <x:expect-report id="final-das-dryad-conformity" role="error"/>
         <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="das-supplemental-conformity-pass">

@@ -157,7 +157,7 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(translate($string,'àáâãäåăçčèéêěëęħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaaacceeeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
-  <xsl:function name="e:citation-format1">
+  <xsl:function name="e:citation-format1" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -189,7 +189,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:citation-format2">
+  <xsl:function name="e:citation-format2" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -242,7 +242,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:isbn-sum" as="xs:string">
+  <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -687,7 +687,7 @@
     <rule context="element-citation/pub-id[@pub-id-type='isbn']" id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
-      <assert test="number($sum) = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
+      <assert test="$sum = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

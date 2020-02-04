@@ -197,7 +197,7 @@
     <xsl:value-of select="replace(replace(translate($string,'àáâãäåăçčèéêěëęħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaaacceeeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
-  <xsl:function name="e:citation-format1">
+  <xsl:function name="e:citation-format1" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -228,7 +228,7 @@
     </xsl:choose>
   </xsl:function>
 
-  <xsl:function name="e:citation-format2">
+  <xsl:function name="e:citation-format2" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -281,7 +281,7 @@
     </xsl:choose>
   </xsl:function>
   
-  <xsl:function name="e:isbn-sum" as="xs:string">
+  <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -3861,6 +3861,10 @@
         role="error"
         id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
       
+      <report test="($article-type = ('article-commentary', 'editorial', 'book-review', 'discussion')) and sec[@sec-type='additional-information']"
+        role="error"
+        id="back-test-11"><value-of select="$article-type"/> type articles cannot contain additional information sections (sec[@sec-type="additional-information"]).</report>
+      
     </rule>
     
     <!-- Included as a separate rule so that it won't be flagged in features content -->
@@ -3904,6 +3908,7 @@
       id='additional-info-tests'>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
+      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', 'correction', 'retraction', 'review-article')"/>
       
       <assert test="parent::back"
         role="error"
@@ -3924,6 +3929,10 @@
         else ()"
         role="warning"
         id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
+      
+      <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']"
+        role="error"
+        id="additional-info-test-4"><value-of select="$article-type"/> type articles should not contain author contributions.</report>
       
     </rule>
     
@@ -8385,9 +8394,9 @@
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
-      <assert test="number($sum) = 0"
+      <assert test="$sum = 0"
         role="error" 
-        id="isbn-conformity-test">pub-id contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
+        id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
     
     <rule context="isbn" 
@@ -8395,9 +8404,9 @@
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
-      <assert test="number($sum) = 0"
+      <assert test="$sum = 0"
         role="error" 
-        id="isbn-conformity-test-2">isbn contains an invalid ISBN. Should it be captured as another type of pub-id?</assert>
+        id="isbn-conformity-test-2">isbn contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
     
     <rule context="sec[@sec-type='data-availability']/p[1]" 
@@ -8408,8 +8417,12 @@
         id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
       <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])"
+        role="warning" 
+        id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. If there is a dryad dataset present, esnure the assigning authority is dryad, otherwise please query the authors for the reference details.</report>
+      
+      <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])"
         role="error" 
-        id="das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority.</report>
+        id="final-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority.</report>
       
       <report test="matches(.,'[Ss]upplemental [Ffigure]')"
         role="warning" 
