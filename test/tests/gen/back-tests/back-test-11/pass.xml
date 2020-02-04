@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="back-test-11.sch"?>
+<!--Context: back
+Test: report    ($article-type = ('article-commentary', 'editorial', 'book-review', 'discussion')) and sec[@sec-type='additional-information']
+Message:  type articles cannot contain additional information sections (sec[@sectype="additionalinformation"]).-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <back>
+      <sec sec-type="additional-information"/>
+    </back>
+  </article>
+</root>

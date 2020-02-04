@@ -157,7 +157,7 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(translate($string,'àáâãäåăçčèéêěëęħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaaacceeeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
   </xsl:function>
-  <xsl:function name="e:citation-format1">
+  <xsl:function name="e:citation-format1" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -189,7 +189,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:citation-format2">
+  <xsl:function name="e:citation-format2" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -242,7 +242,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:isbn-sum" as="xs:string">
+  <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -687,6 +687,7 @@
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
+      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', 'correction', 'retraction', 'review-article')"/>
       <assert test="parent::back" role="error" id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
     </rule>
   </pattern>
