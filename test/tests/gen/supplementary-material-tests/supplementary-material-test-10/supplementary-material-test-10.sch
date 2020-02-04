@@ -683,17 +683,17 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="doi-ref-checks">
-    <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
-      <let name="name" value="lower-case(conf-name[1])"/>
-      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
-        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+  <pattern id="content-containers">
+    <rule context="supplementary-material" id="supplementary-material-tests">
+      <let name="link" value="media[1]/@xlink:href"/>
+      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
+      <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
+      <report test="matches(label,'^Reporting standard \d{1,4}\.$')" flag="pub-check" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>
+      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
     </rule>
   </pattern>
 </schema>

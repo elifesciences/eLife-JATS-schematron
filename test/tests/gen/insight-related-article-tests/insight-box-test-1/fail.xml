@@ -1,0 +1,81 @@
+<?oxygen SCHSchema="insight-box-test-1.sch"?>
+<!--Context: article[@article-type='article-commentary']//article-meta/related-article
+Test: assert    contains($text,$citation)
+Message: A citation for related article  is not included in the relatedarticle box text in the body of the article. '' is not present (or is different to the relevant passage) in ''-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="article-commentary">
+    <front>
+      <article-meta> 
+        ... 
+        <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article" xlink:href="10.7554/eLife.43079"/>
+        <related-article ext-link-type="doi" id="ra2" related-article-type="commentary-article" xlink:href="10.7554/eLife.44590"/>
+      </article-meta>
+    </front>
+    <body>
+      <boxed-text>
+        <p><bold>Related research article</bold> Frechter S, Dolan M-J, Bates AS, Dan C, Huoviala P, Roberts RJV, Schlegel P, Dhawan S, Tabano R, Dionne H, Christoforou C, Close K, Sutcliffe B, Giuliani B, Feng L , Costa M, Ihrke G, Meissner GW, Bock DD, Aso Y, Rubin GM, Jefferis GSXE. 2019. Neurogenetic dissection of the Drosophila lateral horn reveals major outputs, diverse behavioural functions, and interactions with the mushroom body. <italic>eLife</italic> <bold>8</bold>:e43079. doi: <ext-link ext-link-type="uri" xlink:href="http://doi.org/10.7554/eLife.43079">10.7554/eLife.43079</ext-link></p>
+        <p><bold>Related research article</bold> Frechter S, Bates AS, Tootoonian S, Dolan M_J, Manton JD, Jamasb A, Kohl J, Bock DD, Jefferis GSXE. 2019. Neurogenetic dissection of the <italic>Drosophila </italic>lateral horn reveals major outputs, diverse behavioural functions, and interactions with the mushroom body. <italic>eLife</italic> <bold>8</bold>:e44590. doi: <ext-link ext-link-type="uri" xlink:href="http://doi.org/10.7554/eLife.44590">10.7554/eLife.44590</ext-link></p>
+      </boxed-text>
+    </body>
+    <back>
+      <ref-list>
+        <ref id="bib3">
+          <element-citation publication-type="journal">
+            <person-group person-group-type="author">
+              <name><surname>Dolan</surname><given-names>M-J</given-names></name>
+              <name><surname>Frechter</surname><given-names>S</given-names></name>
+              <name><surname>Bates</surname><given-names>AS</given-names></name>
+              <name><surname>Dan</surname><given-names>C</given-names></name>
+              <name><surname>Huoviala</surname><given-names>P</given-names></name>
+              <name><surname>Roberts</surname><given-names>RJV</given-names></name>
+              <name><surname>Schlegel</surname><given-names>P</given-names></name>
+              <name><surname>Dhawan</surname><given-names>S</given-names></name>
+              <name><surname>Tabano</surname><given-names>R</given-names></name>
+              <name><surname>Dionne</surname><given-names>H</given-names></name>
+              <name><surname>Christoforou</surname><given-names>C</given-names></name>
+              <name><surname>Close</surname><given-names>K</given-names></name>
+              <name><surname>Sutcliffe</surname><given-names>B</given-names></name>
+              <name><surname>Giuliani</surname><given-names>B</given-names></name>
+              <name><surname>Feng L</surname></name>
+              <name><surname>Costa</surname><given-names>M</given-names></name>
+              <name><surname>Ihrke</surname><given-names>G</given-names></name>
+              <name><surname>Meissner</surname><given-names>GW</given-names></name>
+              <name><surname>Bock</surname><given-names>DD</given-names></name>
+              <name><surname>Aso</surname><given-names>Y</given-names></name>
+              <name><surname>Rubin</surname><given-names>GM</given-names></name>
+              <name><surname>Jefferis</surname><given-names>GSXE</given-names></name>
+            </person-group>
+            <year iso-8601-date="2019">2019</year>
+            <article-title>Neurogenetic dissection of the <italic>Drosophila </italic>lateral horn reveals major outputs, diverse behavioural functions, and interactions with the mushroom body</article-title>
+            <source>eLife</source>
+            <volume>8</volume>
+            <elocation-id>e43079</elocation-id>
+            <pub-id pub-id-type="doi">10.7554/eLife.43079</pub-id>
+          </element-citation>
+        </ref>
+        <ref id="bib4">
+          <element-citation publication-type="journal">
+            <person-group person-group-type="author">
+              <name><surname>Frechter</surname> <given-names>S</given-names></name>
+              <name><surname>Bates</surname> <given-names>AS</given-names></name>
+              <name><surname>Tootoonian</surname> <given-names>S</given-names></name>
+              <name><surname>Dolan</surname> <given-names>M_J</given-names></name>
+              <name><surname>Manton</surname> <given-names>JD</given-names></name>
+              <name><surname>Jamasb</surname> <given-names>A</given-names></name>
+              <name><surname>Kohl</surname> <given-names>J</given-names></name>
+              <name><surname>Bock</surname> <given-names>DD</given-names></name>
+              <name><surname>Jefferis</surname> <given-names>GSXE</given-names></name>
+            </person-group>
+            <year iso-8601-date="2019">2019</year>
+            <article-title>Functional and anatomical specificity in a higher olfactory centre</article-title>
+            <source>eLife</source>
+            <volume>8</volume>
+            <elocation-id>e44590</elocation-id>
+            <pub-id pub-id-type="doi">10.7554/eLife.44590</pub-id>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
+</root>

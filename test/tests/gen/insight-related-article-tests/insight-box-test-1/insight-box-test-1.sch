@@ -683,17 +683,17 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="doi-ref-checks">
-    <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
-      <let name="name" value="lower-case(conf-name[1])"/>
-      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
-        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+  <pattern id="features">
+    <rule context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
+      <let name="doi" value="@xlink:href"/>
+      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
+      <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        $x/year,        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+      <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>
+      <assert test="descendant::article[@article-type='article-commentary']//article-meta/related-article" role="error" id="insight-related-article-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>
