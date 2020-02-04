@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="related-articles-test-10.sch"?>
+<!--Context: related-article
+Test: report    @xlink:href = preceding::related-article/@xlink:href
+Message: relatedarticle elements must contain a distinct @xlink:href. There is more than 1 related article link for .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        ...
+        <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article" xlink:href="10.7554/eLife.43079"/>
+        <related-article ext-link-type="doi" id="ra2" related-article-type="commentary-article" xlink:href="10.7554/eLife.44590"/>
+      </article-meta>
+    </front>
+  </article>
+</root>

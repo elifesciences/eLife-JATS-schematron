@@ -3203,6 +3203,16 @@
         <x:expect-report id="supplementary-material-test-9" role="error"/>
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="supplementary-material-test-10-pass">
+        <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-10/pass.xml"/>
+        <x:expect-not-report id="supplementary-material-test-10" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementary-material-test-10-fail">
+        <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-10/fail.xml"/>
+        <x:expect-report id="supplementary-material-test-10" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="source-code-test-1-pass">
         <x:context href="../tests/gen/supplementary-material-tests/source-code-test-1/pass.xml"/>
         <x:expect-not-report id="source-code-test-1" role="warning"/>
@@ -6039,6 +6049,16 @@
         <x:expect-assert id="related-articles-test-6" role="error"/>
         <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="related-articles-test-10-pass">
+        <x:context href="../tests/gen/related-articles-conformance/related-articles-test-10/pass.xml"/>
+        <x:expect-not-report id="related-articles-test-10" role="error"/>
+        <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-articles-test-10-fail">
+        <x:context href="../tests/gen/related-articles-conformance/related-articles-test-10/fail.xml"/>
+        <x:expect-report id="related-articles-test-10" role="error"/>
+        <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-general">
       <x:scenario label="err-elem-cit-gen-name-5-pass">
@@ -8568,6 +8588,18 @@
         <x:context href="../tests/gen/insight-asbtract-tests/insight-asbtract-impact-test-2/fail.xml"/>
         <x:expect-assert id="insight-asbtract-impact-test-2" role="warning"/>
         <x:expect-not-assert id="insight-asbtract-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="insight-related-article-tests">
+      <x:scenario label="insight-box-test-1-pass">
+        <x:context href="../tests/gen/insight-related-article-tests/insight-box-test-1/pass.xml"/>
+        <x:expect-not-assert id="insight-box-test-1" role="warning"/>
+        <x:expect-not-assert id="insight-related-article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="insight-box-test-1-fail">
+        <x:context href="../tests/gen/insight-related-article-tests/insight-box-test-1/fail.xml"/>
+        <x:expect-assert id="insight-box-test-1" role="warning"/>
+        <x:expect-not-assert id="insight-related-article-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="correction-tests">

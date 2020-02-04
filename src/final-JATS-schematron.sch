@@ -1845,6 +1845,8 @@
       <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">
         <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
       
+      <report test="matches(label,'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
+      
       <report test="($file = $code-files) and not(matches(label,'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
         <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
     </rule>
@@ -3009,6 +3011,8 @@
       <assert test="@ext-link-type='doi'" role="error" id="related-articles-test-5">related-article element must contain a @ext-link-type='doi'.</assert>
       
       <assert test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')" role="error" id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
+      
+      <report test="@xlink:href = preceding::related-article/@xlink:href" role="error" id="related-articles-test-10">related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
       
     </rule>
   </pattern>
@@ -4665,6 +4669,15 @@
      
    </rule>
   </pattern>
+  <pattern id="insight-related-article-tests-pattern">
+    <rule context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
+     <let name="doi" value="@xlink:href"/>
+     <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
+     <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        $x/year,        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+     
+     <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
+   </rule>
+  </pattern>
   
   <pattern id="correction-tests-pattern">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
@@ -4735,8 +4748,8 @@
       <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))])" role="warning" id="org-test">
         <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
-      <report test="not(descendant::monospace) and ($code-text != '')" role="warning" id="code-test">
-        <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;preformat/&gt;?</report>
+      <report test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">
+        <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
       
       <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])" role="warning" id="cell-spacing-test">
         <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
@@ -6479,7 +6492,7 @@
       <let name="name" value="lower-case(conf-name[1])"/>
       
       <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
-        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conference-name[1]"/>). Should it have one?</report>
+        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
   </pattern>
