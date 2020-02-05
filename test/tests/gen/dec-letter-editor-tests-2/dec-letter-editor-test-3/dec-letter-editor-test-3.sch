@@ -687,9 +687,8 @@
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role"/>
-      <let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>
       <let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>
-      <assert test="$role='Reviewing Editor'" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

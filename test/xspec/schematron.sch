@@ -2924,12 +2924,14 @@
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role"/>
-      <let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>
+      <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
       <let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>
       
-      <assert test="$role='Reviewing Editor'" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
       
-      <report test="($top-name!='') and ($top-name!=$name)" role="error" id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>
+      <!--<report test="($top-name!='') and ($top-name!=$name)"
+        role="error"
+        id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-pattern">
@@ -2947,13 +2949,6 @@
       <let name="name" value="e:get-name(name[1])"/>
       
       <assert test="role='Reviewer'" role="error" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
-      
-      <report test="parent::contrib-group/preceding-sibling::contrib-group/contrib[e:get-name(name[1]) = $name]" role="error" id="dec-letter-reviewer-test-4">
-        <value-of select="$name"/> is listed as both a Reviewer and a <value-of select="parent::contrib-group/preceding-sibling::contrib-group/contrib[e:get-name(name[1]) = $name][1]/role"/>
-      </report>
-      
-      <report test="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1]) = $name]" role="error" id="dec-letter-reviewer-test-5">
-        <value-of select="$name"/> is a Reviewer in the decision letter but is also present in the in the top-level article details (as a <value-of select="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1]) = $name]/role"/>).</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-body-tests-pattern">
