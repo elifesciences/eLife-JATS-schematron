@@ -684,15 +684,15 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
+    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" id="dec-letter-editor-tests-3">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role"/>
-      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+      <assert test="$role=('Senior Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-6">Senior Editor in decision letter front-stub must have the role 'Senior Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" role="error" id="dec-letter-editor-tests-2-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" role="error" id="dec-letter-editor-tests-3-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

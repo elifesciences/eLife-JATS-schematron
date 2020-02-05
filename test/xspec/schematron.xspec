@@ -5836,6 +5836,18 @@
         <x:expect-not-assert id="dec-letter-editor-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="dec-letter-editor-tests-3">
+      <x:scenario label="dec-letter-editor-test-6-pass">
+        <x:context href="../tests/gen/dec-letter-editor-tests-3/dec-letter-editor-test-6/pass.xml"/>
+        <x:expect-not-assert id="dec-letter-editor-test-6" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-3-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-editor-test-6-fail">
+        <x:context href="../tests/gen/dec-letter-editor-tests-3/dec-letter-editor-test-6/fail.xml"/>
+        <x:expect-assert id="dec-letter-editor-test-6" role="error"/>
+        <x:expect-not-assert id="dec-letter-editor-tests-3-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="dec-letter-reviewer-tests">
       <x:scenario label="dec-letter-reviewer-test-1-pass">
         <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-1/pass.xml"/>
