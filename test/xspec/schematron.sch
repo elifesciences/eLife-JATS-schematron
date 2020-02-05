@@ -2925,13 +2925,21 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role"/>
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
-      <let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>
+      <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
       
       <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
       
       <!--<report test="($top-name!='') and ($top-name!=$name)"
         role="error"
         id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
+    </rule>
+  </pattern>
+  <pattern id="dec-letter-editor-tests-3-pattern">
+    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" id="dec-letter-editor-tests-3">
+      <let name="name" value="e:get-name(name[1])"/>
+      <let name="role" value="role"/>
+      
+      <assert test="$role=('Senior Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-6">Senior Editor in decision letter front-stub must have the role 'Senior Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-pattern">
@@ -6702,6 +6710,7 @@
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" role="error" id="dec-letter-editor-tests-2-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" role="error" id="dec-letter-editor-tests-3-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" role="error" id="dec-letter-reviewer-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" role="error" id="dec-letter-reviewer-tests-2-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/body" role="error" id="dec-letter-body-tests-xspec-assert">sub-article[@article-type='decision-letter']/body must be present.</assert>
