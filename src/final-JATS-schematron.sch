@@ -1667,7 +1667,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
       
@@ -4755,7 +4755,7 @@
       
       <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
-      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))])" role="warning" id="org-test">
+      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">
         <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
       <report test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">
@@ -4885,6 +4885,10 @@
       <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
       <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\]\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
+      
+      <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
+      
+      <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
       
     </rule>
   </pattern>
@@ -6465,7 +6469,7 @@
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
-      <let name="journal" value="lower-case(source[1])"/>
+      <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
       <let name="journals" value="'journals.xml'"/>
       
       <assert test="some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))" role="warning" id="journal-doi-test-1">
