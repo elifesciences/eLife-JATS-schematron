@@ -683,23 +683,25 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="rrid-org-pattern">
-    <rule context="p|td|th" id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
-      <let name="lc" value="lower-case(.)"/>
-      <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')          return $x)) -1"/>
-      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
-      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
-      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
-      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
-      <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
-      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">
-        <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+  <pattern id="ref-xref-pattern">
+    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
+      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
+      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
+      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
+      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
+      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
+      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
+      <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

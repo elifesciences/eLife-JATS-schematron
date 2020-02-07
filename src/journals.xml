@@ -1,17 +1,42 @@
+<!--  
+  - Always lower-case the tite.
+  - Always remove 'the' from the beginning og the journal name. i.e. 'the embo journal' becomes 'embo journal'.
+  - year attribute contains the least recent year that journal has dois.
+--> 
 <journals>
+  <journal title="american journal of human genetics" year="1997"/>
+  <journal title="american journal of pathology" year="1998"/>
+  <journal title="applied and environmental microbiology" year="2001"/>
   <journal title="bulletin of the world health organization" year="2006"/>
   <journal title="cancer research" year="2004"/>
   <journal title="computational crystallography newsletter" year="9999"/>
   <journal title="development" year="2002"/>
+  <journal title="embo journal" year="1997"/>
   <journal title="genetics" year="2004"/>
-  <journal title="histology and histopathology" year=""/>
+  <journal title="histology and histopathology" year="9999"/>
+  <journal title="infection and immunity" year="2001"/>
+  <journal title="international journal of clinical and experimental medicine" year="9999"/>
+  <journal title="international journal of developmental biology" year="2005"/>
+  <journal title="investigative ophthalmology &amp; visual science" year="2002"/>
   <journal title="journal of applied physiology" year="2002"/>
+  <journal title="journal of bacteriology" year="2001"/>
   <journal title="journal of biomolecular nmr" year="2004"/>
   <journal title="journal of biological chemistry" year="1995"/>
   <journal title="journal of cell science" year="2002"/>
+  <journal title="journal of clinical microbiology" year="2001"/>
+  <journal title="journal of experimental biology" year="2002"/>
+  <journal title="journal of immunology" year="2001"/>
+  <journal title="journal of lipid research" year="2002"/>
   <journal title="journal of neurophysiology" year="2002"/>
   <journal title="journal of neuroscience" year="2004"/>
   <journal title="journal of pharmacology and experimental therapeutics" year="2002"/>
+  <journal title="journal of physiology" year="1998"/>
+  <journal title="journal of virology" year="2001"/>
+  <journal title="learning &amp; memory" year="1998"/>
+  <journal title="microbiological reviews" year="2001"/>
+  <journal title="molecular pharmacology" year="1996"/>
+  <journal title="molecular vision" year="9999"/>
+  <journal title="oncogene" year="1996"/>
   <journal title="physiological reviews" year="2002"/>
-  <journal title="the embo journal" year="1997"/>
+  <journal title="rna" year="1998"/>
 </journals>

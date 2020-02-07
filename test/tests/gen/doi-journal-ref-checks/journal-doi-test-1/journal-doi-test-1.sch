@@ -687,7 +687,7 @@
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
-      <let name="journal" value="lower-case(source[1])"/>
+      <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
       <let name="journals" value="'../../../../../src/journals.xml'"/>
       <assert test="some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))" role="warning" id="journal-doi-test-1">
         <value-of select="$cite"/> is a journal ref without a doi. Should it have one?</assert>
