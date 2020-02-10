@@ -683,15 +683,17 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-meta/contrib-group[not(@*)]/aff" id="author-aff-tests">
-      <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
-      <assert test="addr-line[named-content[@content-type='city']]" role="warning" id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Pleasde query the authors.</assert>
+  <pattern id="fundref-pattern">
+    <rule context="article//ack" id="fundref-rule">
+      <let name="ack" value="."/>
+      <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
+      <let name="funders" value="'../../../../../src/funders.xml'"/>
+      <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group[not(@*)]/aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]/aff must be present.</assert>
+      <assert test="descendant::article//ack" role="error" id="fundref-rule-xspec-assert">article//ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

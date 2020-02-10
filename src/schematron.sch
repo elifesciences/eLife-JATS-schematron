@@ -1675,7 +1675,7 @@
         id="final-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
       
       <assert test="addr-line[named-content[@content-type='city']]"
-        role="watning"
+        role="warning"
         id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Pleasde query the authors.</assert>
       
       <assert test="addr-line[named-content[@content-type='city']]"
@@ -8912,6 +8912,22 @@
         id="conf-doi-test-1"><value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
+  </pattern>
+  
+  <pattern
+    id="fundref-pattern">
+    
+    <rule context="article//ack"
+      id="fundref-rule">
+      <let name="ack" value="."/>   
+      <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
+      <let name="funders" value="'funders.xml'"/>
+      
+      <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))"
+        role="warning" 
+        id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
+    </rule>
+    
   </pattern>
   
   <pattern

@@ -1739,12 +1739,12 @@
       </x:scenario>
       <x:scenario label="pre-auth-aff-test-2-pass">
         <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-2/pass.xml"/>
-        <x:expect-not-assert id="pre-auth-aff-test-2" role="watning"/>
+        <x:expect-not-assert id="pre-auth-aff-test-2" role="warning"/>
         <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-auth-aff-test-2-fail">
         <x:context href="../tests/gen/author-aff-tests/pre-auth-aff-test-2/fail.xml"/>
-        <x:expect-assert id="pre-auth-aff-test-2" role="watning"/>
+        <x:expect-assert id="pre-auth-aff-test-2" role="warning"/>
         <x:expect-not-assert id="author-aff-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-auth-aff-test-2-pass">
@@ -14502,6 +14502,18 @@
         <x:context href="../tests/gen/doi-conf-ref-checks/conf-doi-test-1/fail.xml"/>
         <x:expect-report id="conf-doi-test-1" role="warning"/>
         <x:expect-not-assert id="doi-conf-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="fundref-rule">
+      <x:scenario label="fundref-test-1-pass">
+        <x:context href="../tests/gen/fundref-rule/fundref-test-1/pass.xml"/>
+        <x:expect-not-report id="fundref-test-1" role="warning"/>
+        <x:expect-not-assert id="fundref-rule-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fundref-test-1-fail">
+        <x:context href="../tests/gen/fundref-rule/fundref-test-1/fail.xml"/>
+        <x:expect-report id="fundref-test-1" role="warning"/>
+        <x:expect-not-assert id="fundref-rule-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="element-whitelist">
