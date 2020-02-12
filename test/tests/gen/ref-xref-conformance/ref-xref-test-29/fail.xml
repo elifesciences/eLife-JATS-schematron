@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-xref-test-29.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    matches($pre-text,'cf[\.]?\s?[\(]?$')
+Message: citation is preceded by ''. The 'cf.' is unnecessary and should be removed.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>test cf. <xref ref-type="bibr">...</xref> test</p>
+  </article>
+</root>

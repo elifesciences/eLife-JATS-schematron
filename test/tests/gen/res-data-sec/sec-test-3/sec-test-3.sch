@@ -683,20 +683,14 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="video-tests">
-    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
-      <let name="no" value="substring-after(@id,'video')"/>
-      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label,$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label,$fig-label)])"/>
-      <report test="not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))" role="error" id="body-video-position-test-1">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
+  <pattern id="sec-specific">
+    <rule context="article[@article-type='research-article']//sec[not(@sec-type)]" id="res-data-sec">
+      <report test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type)]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

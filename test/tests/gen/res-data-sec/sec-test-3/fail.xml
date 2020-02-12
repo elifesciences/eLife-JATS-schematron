@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="sec-test-3.sch"?>
+<!--Context: article[@article-type='research-article']//sec[not(@sec-type)]
+Test: report    matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))
+Message: Section has a title ''. Is it a duplicate of the data availability section (and therefore should be removed)?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <body>
+    <sec>
+      <title>Data and code availability</title>
+      ...
+    </sec>
+    </body>
+    <back>
+      <sec sec-type="data-availability" id="s7">
+        <title>Data availability</title>
+        <p>Data will be made available on Figshare at the time of publication.</p></sec>
+    </back>
+  </article>
+</root>

@@ -684,7 +684,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="figure-xref-pattern">
-    <rule context="xref[@ref-type='fig']" id="fig-xref-conformance">
+    <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
@@ -697,7 +697,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='fig']" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='fig' and @rid]" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig' and @rid] must be present.</assert>
     </rule>
   </pattern>
 </schema>
