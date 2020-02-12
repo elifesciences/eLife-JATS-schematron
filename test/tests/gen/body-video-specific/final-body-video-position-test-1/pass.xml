@@ -1,16 +1,16 @@
-<?oxygen SCHSchema="body-video-position-test-1.sch"?>
+<?oxygen SCHSchema="final-body-video-position-test-1.sch"?>
 <!--Context: article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']
 Test: report    not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))
 Message:  does not appear in sequence which is incorrect. Relative to the other videos it is placed in position .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <body>
-      <media mimetype="video" id="video2">
-        <label>Video 2.</label>
-      </media>
-      <p/>
       <media mimetype="video" id="video1">
         <label>Video 1.</label>
+      </media>
+      <p/>
+      <media mimetype="video" id="video2">
+        <label>Video 2.</label>
       </media>
     </body>
   </article>

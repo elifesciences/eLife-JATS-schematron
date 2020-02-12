@@ -685,7 +685,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') and (source[1]!='Dryad Digital Repository')" role="warning" id="data-dryad-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5061/dryad' but the database name is not 'Dryad Digital Repository' - <value-of select="source[1]"/>.</report>
+      <report test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')" role="warning" id="data-dryad-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the database name is not 'Dryad Digital Repository' - <value-of select="source[1]"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
