@@ -2182,7 +2182,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
         role="warning"
         id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
