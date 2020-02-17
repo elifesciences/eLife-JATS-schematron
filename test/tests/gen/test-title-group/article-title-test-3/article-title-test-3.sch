@@ -689,7 +689,7 @@
       <let name="lc" value="normalize-space(lower-case(article-title))"/>
       <let name="title" value="replace(article-title,'\p{P}','')"/>
       <let name="body" value="ancestor::front/following-sibling::body"/>
-      <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
+      <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
       <report test="article-title[text() != ''] = upper-case(article-title)" role="error" id="article-title-test-3">Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
     </rule>
   </pattern>

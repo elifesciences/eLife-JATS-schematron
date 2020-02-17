@@ -914,7 +914,7 @@
 	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
 	  <let name="title" value="replace(article-title,'\p{P}','')"/>
 	  <let name="body" value="ancestor::front/following-sibling::body"/>
-	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
+	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
     <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
    
@@ -1854,8 +1854,8 @@
   <pattern id="source-data-specific-tests-pattern">
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
-      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (descendant::xref[contains(.,'upplement')])" role="warning" id="fig-data-test-1">
-        <value-of select="label"/> is figure level source data, but contains a link to a figure supplement - should it be figure supplement source data?</report>
+      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">
+        <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
       
     </rule>
   </pattern>
