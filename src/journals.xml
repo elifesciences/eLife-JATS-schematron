@@ -4,6 +4,7 @@
   - year attribute contains the most recent year that journal has no dois.
 --> 
 <journals>
+  <journal title="american journal of cancer research" year="9999"/>
   <journal title="american journal of human genetics" year="1996"/>
   <journal title="american journal of pathology" year="1997"/>
   <journal title="applied and environmental microbiology" year="2000"/>
