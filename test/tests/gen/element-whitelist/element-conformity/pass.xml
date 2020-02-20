@@ -92,7 +92,6 @@ Message:  element is not allowed.-->
     <media/>
     <meta-name/>
     <meta-value/>
-    <mixed-citation/>
     <mml:math><mml:menclose/><mml:mfenced/><mml:mfrac/><mml:mi/><mml:mmultiscripts/><mml:mn/><mml:mo/><mml:mover/><mml:mpadded/><mml:mroot/><mml:mrow/><mml:mspace/><mml:msqrt/><mml:mstyle/><mml:msub/><mml:msubsup/><mml:msup/><mml:mtable/><mml:mtext/><mml:munder/><mml:munderover/><mml:semantics/></mml:math>
     <monospace/>
     <month/>
@@ -141,7 +140,6 @@ Message:  element is not allowed.-->
     <title-group/>
     <tr/>
     <underline/>
-    <uri/>
     <version/>
     <volume/>
     <xref/>
