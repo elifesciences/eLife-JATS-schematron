@@ -3939,6 +3939,16 @@
         <x:expect-report id="code-child-test" role="error"/>
         <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="code-sibling-test-pass">
+        <x:context href="../tests/gen/code-tests/code-sibling-test/pass.xml"/>
+        <x:expect-not-report id="code-sibling-test" role="warning"/>
+        <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="code-sibling-test-fail">
+        <x:context href="../tests/gen/code-tests/code-sibling-test/fail.xml"/>
+        <x:expect-report id="code-sibling-test" role="warning"/>
+        <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="generic-label-tests">
       <x:scenario label="label-fig-group-conformance-1-pass">
