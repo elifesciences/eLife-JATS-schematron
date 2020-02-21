@@ -8903,6 +8903,16 @@
         <x:expect-report id="unlinked-url" role="warning"/>
         <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="year-style-test-pass">
+        <x:context href="../tests/gen/rrid-org-code/year-style-test/pass.xml"/>
+        <x:expect-not-report id="year-style-test" role="warning"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="year-style-test-fail">
+        <x:context href="../tests/gen/rrid-org-code/year-style-test/fail.xml"/>
+        <x:expect-report id="year-style-test" role="warning"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="duplicate-ref">
       <x:scenario label="duplicate-ref-test-1-pass">
@@ -12432,15 +12442,39 @@
         <x:expect-not-assert id="journal-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ref-chapter-title-tests">
+      <x:scenario label="report-chapter-title-test-pass">
+        <x:context href="../tests/gen/ref-chapter-title-tests/report-chapter-title-test/pass.xml"/>
+        <x:expect-not-report id="report-chapter-title-test" role="warning"/>
+        <x:expect-not-assert id="ref-chapter-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="report-chapter-title-test-fail">
+        <x:context href="../tests/gen/ref-chapter-title-tests/report-chapter-title-test/fail.xml"/>
+        <x:expect-report id="report-chapter-title-test" role="warning"/>
+        <x:expect-not-assert id="ref-chapter-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ref-book-source-tests">
+      <x:scenario label="report-book-source-test-pass">
+        <x:context href="../tests/gen/ref-book-source-tests/report-book-source-test/pass.xml"/>
+        <x:expect-not-report id="report-book-source-test" role="warning"/>
+        <x:expect-not-assert id="ref-book-source-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="report-book-source-test-fail">
+        <x:context href="../tests/gen/ref-book-source-tests/report-book-source-test/fail.xml"/>
+        <x:expect-report id="report-book-source-test" role="warning"/>
+        <x:expect-not-assert id="ref-book-source-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="preprint-title-tests">
       <x:scenario label="not-rxiv-test-pass">
         <x:context href="../tests/gen/preprint-title-tests/not-rxiv-test/pass.xml"/>
-        <x:expect-not-report id="not-rxiv-test" role="warning"/>
+        <x:expect-not-assert id="not-rxiv-test" role="warning"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="not-rxiv-test-fail">
         <x:context href="../tests/gen/preprint-title-tests/not-rxiv-test/fail.xml"/>
-        <x:expect-report id="not-rxiv-test" role="warning"/>
+        <x:expect-assert id="not-rxiv-test" role="warning"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="biorxiv-test-pass">
@@ -13853,6 +13887,36 @@
       <x:scenario label="sec-title-italic-fail">
         <x:context href="../tests/gen/sec-title-conformity/sec-title-italic/fail.xml"/>
         <x:expect-report id="sec-title-italic" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-dna-pass">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-dna/pass.xml"/>
+        <x:expect-not-report id="sec-title-dna" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-dna-fail">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-dna/fail.xml"/>
+        <x:expect-report id="sec-title-dna" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-rna-pass">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-rna/pass.xml"/>
+        <x:expect-not-report id="sec-title-rna" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-rna-fail">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-rna/fail.xml"/>
+        <x:expect-report id="sec-title-rna" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-dimension-pass">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-dimension/pass.xml"/>
+        <x:expect-not-report id="sec-title-dimension" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-dimension-fail">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-dimension/fail.xml"/>
+        <x:expect-report id="sec-title-dimension" role="warning"/>
         <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

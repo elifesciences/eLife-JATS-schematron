@@ -686,7 +686,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
-      <report test="not(matches($lc,'biorxiv|arxiv|chemrxiv|peerj preprints|psyarxiv|paleorxiv|preprints'))" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</report>
+      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

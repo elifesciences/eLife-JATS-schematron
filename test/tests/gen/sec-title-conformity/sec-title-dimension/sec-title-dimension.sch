@@ -687,7 +687,7 @@
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
-      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
+      <report test="matches($no-link-text,'^[1-4]d | [1-4]d | [1-4]d$')" role="warning" id="sec-title-dimension">Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D' - <value-of select="."/>
       </report>
     </rule>
   </pattern>

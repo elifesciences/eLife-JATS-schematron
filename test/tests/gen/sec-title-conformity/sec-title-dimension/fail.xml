@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="sec-title-dimension.sch"?>
+<!--Context: sec/title
+Test: report    matches($no-link-text,'^[1-4]d | [1-4]d | [1-4]d$')
+Message: Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D'  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <title>This is in 3d</title>
+      </sec>
+      <sec>
+        <title>This is in 4d</title>
+      </sec>
+    </body>
+  </article>
+</root>

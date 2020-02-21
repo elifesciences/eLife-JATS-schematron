@@ -686,6 +686,7 @@
   <pattern id="house-style">
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
+      <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <report test="(count(*) = 1) and child::bold and ($free-text='')" role="error" id="sec-title-bold">All section title content is captured in bold. This is incorrect - <value-of select="."/>
       </report>
     </rule>

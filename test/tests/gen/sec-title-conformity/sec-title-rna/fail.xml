@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="sec-title-rna.sch"?>
+<!--Context: sec/title
+Test: report    matches(upper-case($no-link-text),'^RNA | RNA | RNA$') and not(matches($no-link-text,'^RNA | RNA | RNA$'))
+Message: Section title contains the phrase RNA, but it is not in all caps  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec>
+      <title>What even is Rna?</title>
+    </sec>
+  </article>
+</root>
