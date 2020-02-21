@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="report-chapter-title-test.sch"?>
+<!--Context: element-citation[@publication-type='book']/chapter-title
+Test: report    matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')
+Message: ref '' is tagged as a book reference, but the chapter title is . Should it be captured as a report type reference instead?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib81">
+      <element-citation publication-type="book">
+        <person-group person-group-type="author">
+          <collab>National Institute of Health, National Cancer Institute</collab>
+        </person-group>
+        <year iso-8601-date="1996">1996</year>
+        <chapter-title>Report of the NCI Expert Committee</chapter-title>
+        <source>The FTC Cigarette Test Method for Determining Tar, Nicotine, and Carbon Monoxide
+          Yields of U.S. Cigarettes</source>
+        <publisher-loc>Bethesda, MD</publisher-loc>
+        <publisher-name>U.S. Department of Health and Human Services, Public Health Service,
+          National Institutes of Health</publisher-name>
+      </element-citation>
+    </ref>
+  </article>
+</root>

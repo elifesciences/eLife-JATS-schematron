@@ -4786,6 +4786,8 @@
       
       <report test="not(ancestor::sub-article) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
+      
+      <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
     </rule>
   </pattern>
   
@@ -5880,11 +5882,25 @@
       
     </rule>
   </pattern>
+  <pattern id="ref-chapter-title-tests-pattern">
+    <rule context="element-citation[@publication-type='book']/chapter-title" id="ref-chapter-title-tests">
+      
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-chapter-title-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ref-book-source-tests-pattern">
+    <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
+      
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
+      
+    </rule>
+  </pattern>
   <pattern id="preprint-title-tests-pattern">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="not(matches($lc,'biorxiv|arxiv|chemrxiv|peerj preprints|psyarxiv|paleorxiv|preprints'))" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</report>
+      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
       <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
@@ -6219,6 +6235,7 @@
   <pattern id="sec-title-conformity-pattern">
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
+      <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
@@ -6238,6 +6255,15 @@
       </report>
       
       <report test="(count(*) = 1) and child::italic and ($free-text='')" role="warning" id="sec-title-italic">All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/>
+      </report>
+      
+      <report test="matches(upper-case($no-link-text),'^DNA | DNA | DNA$') and not(matches($no-link-text,'^DNA | DNA | DNA$'))" role="warning" id="sec-title-dna">Section title contains the phrase DNA, but it is not in all caps - <value-of select="."/>
+      </report>
+      
+      <report test="matches(upper-case($no-link-text),'^RNA | RNA | RNA$') and not(matches($no-link-text,'^RNA | RNA | RNA$'))" role="warning" id="sec-title-rna">Section title contains the phrase RNA, but it is not in all caps - <value-of select="."/>
+      </report>
+      
+      <report test="matches($no-link-text,'^[1-4]d | [1-4]d | [1-4]d$')" role="warning" id="sec-title-dimension">Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D' - <value-of select="."/>
       </report>
       
     </rule>

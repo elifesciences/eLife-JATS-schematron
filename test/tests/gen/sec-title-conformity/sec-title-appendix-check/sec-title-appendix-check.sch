@@ -686,6 +686,7 @@
   <pattern id="house-style">
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
+      <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <report test="matches(.,'^[Aa]ppendix')" role="warning" id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
     </rule>
   </pattern>

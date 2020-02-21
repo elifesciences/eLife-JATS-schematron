@@ -684,16 +684,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="sec/title" id="sec-title-conformity">
-      <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
-      <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
-      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
-      </report>
+    <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/source" role="error" id="ref-book-source-tests-xspec-assert">element-citation[@publication-type='book']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -683,17 +683,22 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="sec/title" id="sec-title-conformity">
-      <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
-      <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
-      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
-      </report>
+  <pattern id="rrid-org-pattern">
+    <rule context="p|td|th" id="rrid-org-code">
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
+      <let name="lc" value="lower-case(.)"/>
+      <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')          return $x)) -1"/>
+      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
+      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
+      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
+      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
+      <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
+      <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -687,7 +687,7 @@
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
-      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
+      <report test="matches(upper-case($no-link-text),'^RNA | RNA | RNA$') and not(matches($no-link-text,'^RNA | RNA | RNA$'))" role="warning" id="sec-title-rna">Section title contains the phrase RNA, but it is not in all caps - <value-of select="."/>
       </report>
     </rule>
   </pattern>
