@@ -1949,8 +1949,12 @@
         id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       
       <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))"
+        role="warning"
+        id="pre-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
+      
+      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))"
         role="error"
-        id="rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/></report>
+        id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/></report>
     </rule>
     
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" 
@@ -7941,7 +7945,7 @@
       id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')"
+      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')"
         role="warning" 
         id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       

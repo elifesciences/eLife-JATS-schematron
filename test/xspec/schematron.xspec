@@ -2265,14 +2265,24 @@
         <x:expect-report id="custom-meta-test-13" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="rep-study-custom-meta-test-pass">
-        <x:context href="../tests/gen/meta-value-tests/rep-study-custom-meta-test/pass.xml"/>
-        <x:expect-not-report id="rep-study-custom-meta-test" role="error"/>
+      <x:scenario label="pre-rep-study-custom-meta-test-pass">
+        <x:context href="../tests/gen/meta-value-tests/pre-rep-study-custom-meta-test/pass.xml"/>
+        <x:expect-not-report id="pre-rep-study-custom-meta-test" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="rep-study-custom-meta-test-fail">
-        <x:context href="../tests/gen/meta-value-tests/rep-study-custom-meta-test/fail.xml"/>
-        <x:expect-report id="rep-study-custom-meta-test" role="error"/>
+      <x:scenario label="pre-rep-study-custom-meta-test-fail">
+        <x:context href="../tests/gen/meta-value-tests/pre-rep-study-custom-meta-test/fail.xml"/>
+        <x:expect-report id="pre-rep-study-custom-meta-test" role="warning"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-rep-study-custom-meta-test-pass">
+        <x:context href="../tests/gen/meta-value-tests/final-rep-study-custom-meta-test/pass.xml"/>
+        <x:expect-not-report id="final-rep-study-custom-meta-test" role="error"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-rep-study-custom-meta-test-fail">
+        <x:context href="../tests/gen/meta-value-tests/final-rep-study-custom-meta-test/fail.xml"/>
+        <x:expect-report id="final-rep-study-custom-meta-test" role="error"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
