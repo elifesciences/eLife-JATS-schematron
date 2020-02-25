@@ -5914,6 +5914,8 @@
       
       <report test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')" role="error" id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
       
+      <report test="matches($lc,'medrxiv') and not(. = 'medRxiv')" role="error" id="medrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
+      
       <report test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')" role="error" id="peerjpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
       
       <report test="matches($lc,'psyarxiv') and not(. = 'PsyArXiv')" role="error" id="psyarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'.</report>
