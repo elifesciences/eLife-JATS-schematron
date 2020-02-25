@@ -12517,6 +12517,16 @@
         <x:expect-report id="chemrxiv-test" role="error"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="medrxiv-test-pass">
+        <x:context href="../tests/gen/preprint-title-tests/medrxiv-test/pass.xml"/>
+        <x:expect-not-report id="medrxiv-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medrxiv-test-fail">
+        <x:context href="../tests/gen/preprint-title-tests/medrxiv-test/fail.xml"/>
+        <x:expect-report id="medrxiv-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="peerjpreprints-test-pass">
         <x:context href="../tests/gen/preprint-title-tests/peerjpreprints-test/pass.xml"/>
         <x:expect-not-report id="peerjpreprints-test" role="error"/>
