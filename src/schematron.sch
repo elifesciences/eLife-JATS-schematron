@@ -319,6 +319,11 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:escape-for-regex" as="xs:string">
+    <xsl:param name="arg" as="xs:string?"/>
+    <xsl:sequence select="replace($arg,'(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
+  </xsl:function>
+  
   <!-- Global variable included here for convenience -->
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   
@@ -3382,7 +3387,7 @@
     
     <rule context="supplementary-material/caption/title" 
       id="supplementary-material-title-tests"> 
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning"
@@ -3399,6 +3404,14 @@
       <report test="matches(.,'^\s')" 
         role="error"
         id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+      
+      <report test="contains(lower-case(.),'key resource table')" 
+        role="warning"
+        id="supplementary-material-title-test-5">title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
+      
+      <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" 
+        role="warning"
+        id="supplementary-material-title-test-6">title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
     </rule>
     
     <rule context="media/caption/title" 
