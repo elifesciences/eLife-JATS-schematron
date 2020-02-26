@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="supplementary-material-title-test-6.sch"?>
+<!--Context: supplementary-material/caption/title
+Test: report    (normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))
+Message: title for  is '', which suggest the label should be in the format Supplementary file X instead.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <supplementary-material id="source-code2">
+      <label>Source code 2.</label>
+      <caption>
+        <title>Key resources table.</title>
+      </caption>
+      ...
+    </supplementary-material>
+  </article>
+</root>
