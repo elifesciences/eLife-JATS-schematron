@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="vid-code-test-2.sch"?>
+<!--Context: media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]
+Test: assert    $number = $pos
+Message: '' ends with , but it is placed . Either it is misnumbered or it should be moved to a different position.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <media id="fig4media1" mime-subtype="mp4" mimetype="video">
+      <label>Figure 4—video 1.</label>
+      <caption>
+        <title>Animated structure of the Rho hexamer with mutated residues highlighted.</title>
+        <p>...</p>
+        <p>
+          <supplementary-material id="fig4media1code1">
+            <label>Figure 4—video 1—source code 2.</label>
+            <caption>
+              <title>Rho mutations from all replicate evolution experiments.</title>
+              ...
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+      </caption>
+    </media>
+  </article>
+</root>

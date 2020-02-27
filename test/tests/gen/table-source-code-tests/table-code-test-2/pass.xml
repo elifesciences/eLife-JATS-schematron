@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="table-code-test-2.sch"?>
+<!--Context: table-wrap//supplementary-material[contains(label[1],' code ')]
+Test: assert    $number = $pos
+Message: '' ends with , but it is placed . Either it is misnumbered or it should be moved to a different position.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="table1">
+      <label>Table 1</label>
+      <caption>
+        <title>Effect of a second siRNA H2A.Z.2 (siZ2#).</title>
+        <p>
+          <supplementary-material id="table1data2">
+            <label>Table 1&#x2014;source code 1.</label>
+            <caption>
+              <title>Source Data for the histogrammes representing the effect of a second siRNA
+                H2A.</title>
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+        <p>
+          <supplementary-material id="table1sdata2">
+            <label>Table 1&#x2014;source code 2.</label>
+            <caption>
+              <title>Source Data for the histogrammes representing the effect of a second siRNA
+                H2A.</title>
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+      </caption>
+      <table/>
+    </table-wrap>
+  </article>
+</root>
