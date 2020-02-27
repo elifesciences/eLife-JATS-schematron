@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="body">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
       <report test="count(sec) = 0" role="error" id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>

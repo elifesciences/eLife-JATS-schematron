@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
-      <report test="matches(label,'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0.</report>
+      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

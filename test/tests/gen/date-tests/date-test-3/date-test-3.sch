@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="date" id="date-tests">
-      <assert test="matches(year,'^[0-9]{4}$')" role="error" id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

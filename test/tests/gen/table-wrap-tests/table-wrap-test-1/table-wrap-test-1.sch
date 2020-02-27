@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <assert test="table" role="error" id="table-wrap-test-1">table-wrap must have one table.</assert>
     </rule>

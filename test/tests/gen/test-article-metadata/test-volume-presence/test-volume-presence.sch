@@ -689,9 +689,9 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article/front/article-meta" id="test-article-metadata">
-      <let name="article-id" value="article-id[@pub-id-type='publisher-id']"/>
+      <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
       <assert test="volume" role="error" id="test-volume-presence">There must be a child volume in article-meta.</assert>

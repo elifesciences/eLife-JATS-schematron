@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
-      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
+      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
       <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
     </rule>

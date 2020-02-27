@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
     </rule>

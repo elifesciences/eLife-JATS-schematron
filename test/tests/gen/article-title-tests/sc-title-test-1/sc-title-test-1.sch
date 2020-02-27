@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="article-meta//article-title" id="article-title-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
       <report test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" role="error" id="sc-title-test-1">title of a '<value-of select="$type"/>' contains a left double quotation mark. The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
     </rule>

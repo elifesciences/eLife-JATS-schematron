@@ -690,7 +690,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/article-categories" id="test-article-categories">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
+      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <assert test="count(subj-group[@subj-group-type='display-channel']/subject) = 1" role="error" id="disp-subj-test2">subj-group[@subj-group-type='display-channel'] must contain only one subject. Currently there are <value-of select="count(subj-group[@subj-group-type='display-channel']/subject)"/>.</assert>
     </rule>
   </pattern>

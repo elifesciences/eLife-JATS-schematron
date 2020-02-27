@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="warning" id="pre-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
     </rule>
   </pattern>

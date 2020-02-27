@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct.</report>
     </rule>

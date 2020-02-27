@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="article-meta//article-title" id="article-title-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
       <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))                     else ()" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
     </rule>

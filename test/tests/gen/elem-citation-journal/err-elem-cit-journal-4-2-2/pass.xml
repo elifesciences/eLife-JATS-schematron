@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-journal-4-2-2.sch"?>
 <!--Context: element-citation[@publication-type='journal']
-Test: assert    count(source)=1 and count(source/*)=0
+Test: report    count(source)=1 and count(source/*)!=0
 Message: [errelemcitjournal422]
         A  <source> element within a <elementcitation> of type 'journal' may not contain child 
         elements.

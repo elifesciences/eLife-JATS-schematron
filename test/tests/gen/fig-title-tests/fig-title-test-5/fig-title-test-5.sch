@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <report test="matches(.,'^\p{P}')" role="warning" id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/>
       </report>
     </rule>

@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="media/caption/title" id="video-title-tests">
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <report test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
     </rule>
   </pattern>

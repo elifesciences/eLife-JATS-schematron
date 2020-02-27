@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="app//table-wrap/label" id="app-table-label-tests">
-      <let name="app" value="ancestor::app/title"/>
+      <let name="app" value="ancestor::app/title[1]"/>
       <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">
         <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.</assert>
     </rule>

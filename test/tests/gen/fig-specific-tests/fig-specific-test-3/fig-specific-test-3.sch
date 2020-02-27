@@ -691,12 +691,12 @@
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
-      <let name="count" value="count(ancestor::article//fig[matches(label,'^Figure \d{1,4}\.$')])"/>
-      <let name="pos" value="$count - count(following::fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label[1],'^Figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label[1],'^Figure \d{1,4}\.$')])"/>
       <let name="no" value="substring-after($id,'fig')"/>
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
-      <let name="lab" value="replace(label,'\.','')"/>
+      <let name="lab" value="replace(label[1],'\.','')"/>
       <report test="if ($article-type = ('correction','retraction')) then ()          else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" role="warning" id="fig-specific-test-3">
         <value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
     </rule>

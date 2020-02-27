@@ -689,10 +689,10 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
-      <assert test="count(source)=1 and count(source/*)=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
+      <report test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
         elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

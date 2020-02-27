@@ -689,8 +689,8 @@
   </xsl:function>
   <pattern id="features">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
-      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
-      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
+      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" role="warning" id="feature-template-test-3">
         <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
     </rule>

@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
     </rule>

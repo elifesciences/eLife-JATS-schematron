@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>

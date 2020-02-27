@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">table-wrap has an id <value-of select="$id"/> but it's label is not 'Key resources table', which is incorrect.</report>
     </rule>

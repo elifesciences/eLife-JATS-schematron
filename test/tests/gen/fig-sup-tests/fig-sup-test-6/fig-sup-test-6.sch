@@ -692,10 +692,10 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
-      <let name="label-conform" value="matches(label,'^Figure [\d]+—figure supplement [\d]+')"/>
+      <let name="label-conform" value="matches(label[1],'^Figure [\d]+—figure supplement [\d]+')"/>
       <let name="no" value="substring-after(@id,'s')"/>
-      <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')]/@id,'fig')"/>
-      <let name="label-no" value="replace(substring-after(label,'supplement'),'[^\d]','')"/>
+      <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
+      <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
       <report test="($label-conform = true()) and ($no != $label-no)" role="error" id="fig-sup-test-6">
         <value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect.</report>
     </rule>

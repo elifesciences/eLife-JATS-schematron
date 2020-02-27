@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
-      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
+      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
       <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'RNA' should be upper-case.</report>

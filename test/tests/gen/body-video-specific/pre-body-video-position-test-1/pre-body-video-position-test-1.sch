@@ -689,12 +689,12 @@
   </xsl:function>
   <pattern id="video-tests">
     <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label,$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label,$fig-label)])"/>
-      <report test="not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))" role="warning" id="pre-body-video-position-test-1">
+      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <report test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))" role="warning" id="pre-body-video-position-test-1">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>. Please ensure this is queried with the authors if they have cited them out of position.</report>
     </rule>
   </pattern>

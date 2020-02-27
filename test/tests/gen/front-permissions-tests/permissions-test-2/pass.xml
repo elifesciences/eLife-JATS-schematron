@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="permissions-test-2.sch"?>
 <!--Context: front//permissions
-Test: report    if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(matches(copyright-year,'^[0-9]{4}$'))
+Test: report    if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(matches(copyright-year[1],'^[0-9]{4}$'))
 Message: permissions must contain copyrightyear in the format 0000. Currently it is -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

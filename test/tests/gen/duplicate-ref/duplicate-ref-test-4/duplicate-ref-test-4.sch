@@ -690,10 +690,10 @@
   <pattern id="reference">
     <rule context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
-      <let name="a-title" value="element-citation/article-title"/>
-      <let name="c-title" value="element-citation/chapter-title"/>
-      <let name="source" value="element-citation/source"/>
-      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="a-title" value="element-citation/article-title[1]"/>
+      <let name="c-title" value="element-citation/chapter-title[1]"/>
+      <let name="source" value="element-citation/source[1]"/>
+      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
       <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and not($x/source = $source))         or          (($x/chapter-title = $c-title) and not($x/source = $source))         )" role="warning" id="duplicate-ref-test-4">ref '<value-of select="@id"/>' has the same title as another reference, but a different source. Is this correct? - '<value-of select="$a-title"/>'</report>
     </rule>
   </pattern>

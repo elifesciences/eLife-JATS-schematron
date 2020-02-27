@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
-      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
+      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
       <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>

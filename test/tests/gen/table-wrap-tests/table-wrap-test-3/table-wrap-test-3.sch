@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct.</report>
     </rule>

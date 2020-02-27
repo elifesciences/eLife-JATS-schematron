@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="body">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
       <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">

@@ -692,7 +692,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report test="($file = $code-files) and not(matches(label,'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
+      <report test="($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
         <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
     </rule>
   </pattern>

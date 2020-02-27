@@ -689,8 +689,8 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
-      <let name="label" value="replace(label,'\.','')"/>
-      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <let name="label" value="replace(label[1],'\.','')"/>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

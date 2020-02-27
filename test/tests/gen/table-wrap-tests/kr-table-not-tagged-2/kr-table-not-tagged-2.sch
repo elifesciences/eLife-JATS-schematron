@@ -690,7 +690,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
         <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a ke resources table. Is this correct?</report>

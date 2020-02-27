@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
-      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
     </rule>

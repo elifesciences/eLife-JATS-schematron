@@ -689,9 +689,9 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article/front/article-meta" id="test-article-metadata">
-      <let name="article-id" value="article-id[@pub-id-type='publisher-id']"/>
+      <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
       <report test="if ($subj-type = $exceptions) then ()                   else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>

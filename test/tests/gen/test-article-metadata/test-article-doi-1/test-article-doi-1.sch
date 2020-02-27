@@ -689,12 +689,12 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article/front/article-meta" id="test-article-metadata">
-      <let name="article-id" value="article-id[@pub-id-type='publisher-id']"/>
+      <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
-      <assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
+      <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
     </rule>
   </pattern>

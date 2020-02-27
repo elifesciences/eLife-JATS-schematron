@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
-      <let name="id-prefix" value="substring-after(ancestor::app/@id,'-')"/>
+      <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>

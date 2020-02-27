@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="media/caption/title" id="video-title-tests">
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <report test="matches(.,'^\s')" role="error" id="video-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
   </pattern>

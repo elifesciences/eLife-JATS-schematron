@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="app/table-wrap" id="app-table-wrap-ids">
-      <let name="app-no" value="substring-after(ancestor::app/@id,'-')"/>
+      <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</assert>
     </rule>
   </pattern>

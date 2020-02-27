@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="source-code-test-1.sch"?>
 <!--Context: supplementary-material
-Test: report    ($file = $code-files) and not(matches(label,'[Ss]ource code \d{1,4}\.$'))
+Test: report    ($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))
 Message:  has a file which looks like code  , but it's not labelled as code.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

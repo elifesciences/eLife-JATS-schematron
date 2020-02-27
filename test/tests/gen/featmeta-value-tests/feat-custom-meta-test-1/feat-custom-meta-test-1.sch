@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="child::*" role="error" id="feat-custom-meta-test-1">
         <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
     </rule>

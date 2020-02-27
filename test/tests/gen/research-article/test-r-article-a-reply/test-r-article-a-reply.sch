@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article">
     <rule context="article[@article-type='research-article']" id="research-article">
-      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
     </rule>
   </pattern>

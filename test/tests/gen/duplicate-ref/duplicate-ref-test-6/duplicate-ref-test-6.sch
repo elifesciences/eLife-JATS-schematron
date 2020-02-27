@@ -690,10 +690,10 @@
   <pattern id="reference">
     <rule context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
-      <let name="a-title" value="element-citation/article-title"/>
-      <let name="c-title" value="element-citation/chapter-title"/>
-      <let name="source" value="element-citation/source"/>
-      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="a-title" value="element-citation/article-title[1]"/>
+      <let name="c-title" value="element-citation/chapter-title[1]"/>
+      <let name="source" value="element-citation/source[1]"/>
+      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
       <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>

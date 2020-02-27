@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="date" id="date-tests">
-      <assert test="@iso-8601-date = concat(year,'-',month,'-',day)" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
+      <assert test="@iso-8601-date = concat(year[1],'-',month[1],'-',day[1])" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

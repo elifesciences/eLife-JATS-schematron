@@ -690,7 +690,7 @@
   <pattern id="ref-xref-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
+      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid][1]"/>
       <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
       <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>

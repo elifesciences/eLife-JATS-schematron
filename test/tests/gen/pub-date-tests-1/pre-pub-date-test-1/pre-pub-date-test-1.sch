@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
-      <assert test="matches(day,'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-1">day is not present in pub-date.</assert>
+      <assert test="matches(day[1],'^[0-9]{2}$')" role="warning" id="pre-pub-date-test-1">day is not present in pub-date.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
