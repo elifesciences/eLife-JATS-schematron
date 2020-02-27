@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article">
     <rule context="article[@article-type='research-article']" id="research-article">
-      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
     </rule>
   </pattern>

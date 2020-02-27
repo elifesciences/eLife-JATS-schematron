@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
-      <let name="name" value="e:get-name(parent::contrib/name)"/>
+      <let name="name" value="e:get-name(parent::contrib/name[1])"/>
       <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
       <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
       <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>

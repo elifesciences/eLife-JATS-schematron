@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
-      <assert test="matches(day,'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+      <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

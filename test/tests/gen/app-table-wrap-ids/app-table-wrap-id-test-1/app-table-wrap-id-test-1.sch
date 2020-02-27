@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="app/table-wrap" id="app-table-wrap-ids">
-      <let name="app-no" value="substring-after(ancestor::app/@id,'-')"/>
+      <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'.</assert>
     </rule>
   </pattern>

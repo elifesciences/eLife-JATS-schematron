@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
-      <assert test="matches(label,'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
+      <assert test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

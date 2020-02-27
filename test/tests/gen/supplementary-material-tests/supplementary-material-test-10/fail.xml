@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="supplementary-material-test-10.sch"?>
 <!--Context: supplementary-material
-Test: report    matches(label,'^Reporting standard \d{1,4}\.$')
+Test: report    matches(label[1],'^Reporting standard \d{1,4}\.$')
 Message: Article contains  Please check with eLife  is this actually a reporting standard?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

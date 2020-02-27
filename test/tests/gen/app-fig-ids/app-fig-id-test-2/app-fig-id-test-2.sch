@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
-      <report test="matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0.</report>
+      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

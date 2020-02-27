@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="app-fig-id-test-2.sch"?>
 <!--Context: article/back//app//fig[not(@specific-use='child-fig')]
-Test: report    matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))
+Test: report    matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))
 Message: Chemical structures must have an @id in the format app0chem0.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

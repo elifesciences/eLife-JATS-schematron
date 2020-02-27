@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="journal-volume">
     <rule context="article-meta/volume" id="volume-test">
-      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>
+      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]"/>
       <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
   </pattern>

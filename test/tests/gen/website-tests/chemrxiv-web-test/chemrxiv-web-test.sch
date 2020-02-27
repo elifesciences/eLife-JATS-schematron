@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
-      <let name="link" value="lower-case(ext-link)"/>
+      <let name="link" value="lower-case(ext-link[1])"/>
       <report test="matches($link,'chemrxiv.org')" role="error" id="chemrxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
     </rule>

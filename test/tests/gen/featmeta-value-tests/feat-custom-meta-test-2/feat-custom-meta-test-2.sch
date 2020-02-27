@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <assert test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
     </rule>
   </pattern>

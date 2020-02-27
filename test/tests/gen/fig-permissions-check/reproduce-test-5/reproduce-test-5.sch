@@ -689,8 +689,8 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
-      <let name="label" value="replace(label,'\.','')"/>
-      <report test="not(descendant::permissions) and matches(caption,'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <let name="label" value="replace(label[1],'\.','')"/>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

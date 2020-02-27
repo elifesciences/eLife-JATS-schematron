@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-article-doi-1.sch"?>
 <!--Context: article/front/article-meta
-Test: assert    starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')
+Test: assert    starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')
 Message: Article level DOI must start with '10.7554/eLife.'. Currently it is -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">

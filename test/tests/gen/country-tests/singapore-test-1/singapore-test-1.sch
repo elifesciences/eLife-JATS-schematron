@@ -691,7 +691,7 @@
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city']"/>
+      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>

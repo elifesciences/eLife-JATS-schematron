@@ -689,12 +689,12 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article/front/article-meta/title-group" id="test-title-group">
-      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <let name="lc" value="normalize-space(lower-case(article-title))"/>
-      <let name="title" value="replace(article-title,'\p{P}','')"/>
-      <let name="body" value="ancestor::front/following-sibling::body"/>
+      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
+      <let name="title" value="replace(article-title[1],'\p{P}','')"/>
+      <let name="body" value="ancestor::front/following-sibling::body[1]"/>
       <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
-      <report test="matches(article-title,' [Bb]ased ') and not(matches(article-title,' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
+      <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
       </report>
     </rule>
   </pattern>

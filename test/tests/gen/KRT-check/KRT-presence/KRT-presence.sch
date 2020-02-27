@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="article" id="KRT-check">
-      <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
     </rule>

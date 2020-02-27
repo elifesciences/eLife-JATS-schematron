@@ -690,7 +690,7 @@
   <pattern id="article-metadata">
     <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
       <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role"/>
+      <let name="role" value="role[1]"/>
       <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" role="error" id="editor-conformance-3">
         <value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
     </rule>

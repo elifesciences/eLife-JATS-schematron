@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="($type='Insight') and (. != '1')" role="error" id="feat-custom-meta-test-3">
         <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
     </rule>

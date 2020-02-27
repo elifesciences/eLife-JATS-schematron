@@ -741,7 +741,7 @@
   </pattern>
   <pattern id="research-article-pattern">
     <rule context="article[@article-type='research-article']" id="research-article">
-	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/> 
+	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
 	
 	  
 	  
@@ -786,19 +786,19 @@
 
   <pattern id="test-article-metadata-pattern">
     <rule context="article/front/article-meta" id="test-article-metadata">
-    <let name="article-id" value="article-id[@pub-id-type='publisher-id']"/>
+    <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
     <let name="article-type" value="ancestor::article/@article-type"/>
-    <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+    <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
     <let name="exceptions" value="('Insight','Retraction','Correction')"/>
     <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
       </assert> 
 	 
-	 <assert test="starts-with(article-id[@pub-id-type='doi'],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
+	 <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
 	   
-  	 <assert test="substring-after(article-id[@pub-id-type='doi'],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
+  	 <assert test="substring-after(article-id[@pub-id-type='doi'][1],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
 	   
      <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
@@ -812,7 +812,7 @@
 	  
     <assert test="volume" role="error" id="test-volume-presence">There must be a child volume in article-meta.</assert> 
 		
-    <assert test="matches(volume,'^[0-9]*$')" role="error" id="test-volume-contents">volume must only contain a number.</assert> 
+    <assert test="matches(volume[1],'^[0-9]*$')" role="error" id="test-volume-contents">volume must only contain a number.</assert> 
 	   
     <assert test="elocation-id" role="error" id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
 		
@@ -861,7 +861,7 @@
   <pattern id="test-article-categories-pattern">
     <rule context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
-   <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
+   <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
 	   
      <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
 	   
@@ -915,19 +915,19 @@
   </pattern>
   <pattern id="test-title-group-pattern">
     <rule context="article/front/article-meta/title-group" id="test-title-group">
-	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
-	  <let name="lc" value="normalize-space(lower-case(article-title))"/>
-	  <let name="title" value="replace(article-title,'\p{P}','')"/>
-	  <let name="body" value="ancestor::front/following-sibling::body"/>
+	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+	  <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
+	  <let name="title" value="replace(article-title[1],'\p{P}','')"/>
+	  <let name="body" value="ancestor::front/following-sibling::body[1]"/>
 	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
-    <report test="ends-with(replace(article-title,'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
+    <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
    
-    <report test="article-title[text() != ''] = lower-case(article-title)" role="warning" id="article-title-test-2">Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
+    <report test="article-title[text() != ''] = lower-case(article-title[1])" role="warning" id="article-title-test-2">Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
    
-    <report test="article-title[text() != ''] = upper-case(article-title)" role="error" id="article-title-test-3">Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
+    <report test="article-title[text() != ''] = upper-case(article-title[1])" role="error" id="article-title-test-3">Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
 	  
-	  <report test="not(article-title/*) and normalize-space(article-title)=''" role="error" id="article-title-test-4">Article title must not be empty.</report>
+	  <report test="not(article-title/*) and normalize-space(article-title[1])=''" role="error" id="article-title-test-4">Article title must not be empty.</report>
 	  
     <report test="article-title//mml:math" role="warning" id="article-title-test-5">Article title contains maths. Is this correct?</report>
 	  
@@ -937,16 +937,16 @@
 	  
 	  <report test="article-title//break" role="error" id="article-title-test-8">Article title must not contain a line break (the element 'break').</report>
 	  
-	  <report test="matches(article-title,'-Based ')" role="error" id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/>
+	  <report test="matches(article-title[1],'-Based ')" role="error" id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and matches(article-title,':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
+	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
       </report>
 	  
 	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="matches(article-title,' [Bb]ased ') and not(matches(article-title,' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
+	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
       </report>
 	
 	</rule>
@@ -973,7 +973,7 @@
   <pattern id="test-editors-contrib-pattern">
     <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
       <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role"/>
+      <let name="role" value="role[1]"/>
       
       <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" role="error" id="editor-conformance-3">
         <value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
@@ -1062,7 +1062,7 @@
   <pattern id="contrib-tests-pattern">
     <rule context="article-meta//contrib" id="contrib-tests">
 	  <let name="type" value="@contrib-type"/>
-	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
 	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)][1]"/>
 	  <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
@@ -1075,7 +1075,7 @@
 	  <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)][1]"/>
 	  <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
 	  <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
-	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p"/>
+	  <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p[1]"/>
 	  <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
 	  <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
 	  <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
@@ -1108,7 +1108,7 @@
   <pattern id="author-children-tests-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
-		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
+		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
 			<let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref')"/>
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
 		
@@ -1148,13 +1148,13 @@
   <pattern id="date-tests-pattern">
     <rule context="date" id="date-tests">
 	  
-	  <assert test="matches(day,'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+	  <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
-	  <assert test="matches(month,'^[0-9]{2}$')" role="error" id="date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+	  <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
 	  
-	  <assert test="matches(year,'^[0-9]{4}$')" role="error" id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+	  <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
 		
-    	<assert test="@iso-8601-date = concat(year,'-',month,'-',day)" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
+    	<assert test="@iso-8601-date = concat(year[1],'-',month[1],'-',day[1])" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
 	
 	</rule>
   </pattern>
@@ -1191,24 +1191,24 @@
       
       
       
-      <assert test="matches(day,'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+      <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
       
       
       
-      <assert test="matches(month,'^[0-9]{2}$')" role="error" id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+      <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
       
-      <assert test="matches(year,'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="pub-date-tests-2-pattern">
     <rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
       
-      <assert test="matches(year,'^[0-9]{4}$')" role="error" id="pub-date-test-4">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-4">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
       <report test="*/local-name() != 'year'" role="error" id="pub-date-test-5">pub-date[@pub-type='collection'] can only contain a year element.</report>
       
-      <assert test="year = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year" role="error" id="pub-date-test-6">pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
+      <assert test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]" role="error" id="pub-date-test-6">pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
       
     </rule>
   </pattern>
@@ -1219,7 +1219,7 @@
 	
 	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(matches(copyright-year,'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
 	
 	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-holder)" role="error" id="permissions-test-3">permissions must contain copyright-holder.</report>
@@ -1449,7 +1449,6 @@
   </pattern>
   <pattern id="ro-kwd-group-tests-pattern">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
-      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
 	  
       <assert test="title = 'Research organism'" role="error" id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
       
@@ -1468,7 +1467,7 @@
   </pattern>
   <pattern id="custom-meta-group-tests-pattern">
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
-      <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" role="error" id="custom-meta-presence">1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
@@ -1478,7 +1477,7 @@
   </pattern>
   <pattern id="custom-meta-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
-      <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
       <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
@@ -1495,7 +1494,7 @@
   </pattern>
   <pattern id="meta-value-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
-      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
@@ -1534,7 +1533,7 @@
   </pattern>
   <pattern id="featmeta-value-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="child::*" role="error" id="feat-custom-meta-test-1">
         <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
@@ -1571,7 +1570,7 @@
   
   <pattern id="volume-test-pattern">
     <rule context="article-meta/volume" id="volume-test">
-      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>
+      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]"/>
       
       <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
@@ -1791,7 +1790,7 @@
       
       <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
-      <report test="matches(label,'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
+      <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
         <value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
       
       <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
@@ -1842,26 +1841,26 @@
       <assert test="media" role="error" id="final-supplementary-material-test-5">
         <value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
       
-      <assert test="matches(label,'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
+      <assert test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
       <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
-      <report test="matches(label,'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
+      <report test="matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
         <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
       
       <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">
         <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
       
-      <report test="matches(label,'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
+      <report test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
       
-      <report test="($file = $code-files) and not(matches(label,'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
+      <report test="($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
         <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
     </rule>
   </pattern>
   <pattern id="source-data-specific-tests-pattern">
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
-      <report test="matches(label,'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">
+      <report test="matches(label[1],'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">
         <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
       
     </rule>
@@ -1944,7 +1943,7 @@
   <pattern id="table-wrap-tests-pattern">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label"/>
+      <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert test="table" role="error" id="table-wrap-test-1">table-wrap must have one table.</assert>
@@ -1981,7 +1980,7 @@
   </pattern>
   <pattern id="app-table-label-tests-pattern">
     <rule context="app//table-wrap/label" id="app-table-label-tests">
-      <let name="app" value="ancestor::app/title"/>
+      <let name="app" value="ancestor::app/title[1]"/>
       
       <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')" role="error" id="app-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
@@ -2155,18 +2154,18 @@
   
   <pattern id="body-video-specific-pattern">
     <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label,'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label,'^Video [\d]+\.$')][ancestor::body])"/>
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label,$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label,$fig-label)])"/>
+      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
       
       
       
-      <report test="not(ancestor::fig-group) and (matches(label,'[Vv]ideo')) and ($no != string($pos))" role="error" id="final-body-video-position-test-1">
+      <report test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))" role="error" id="final-body-video-position-test-1">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
       
-      <assert test="starts-with(label,$fig-label)" role="error" id="fig-video-label-test">
+      <assert test="starts-with(label[1],$fig-label)" role="error" id="fig-video-label-test">
         <value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
       
       <report test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">
@@ -2237,12 +2236,12 @@
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
-      <let name="count" value="count(ancestor::article//fig[matches(label,'^Figure \d{1,4}\.$')])"/>
-      <let name="pos" value="$count - count(following::fig[matches(label,'^Figure \d{1,4}\.$')])"/>
+      <let name="count" value="count(ancestor::article//fig[matches(label[1],'^Figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[matches(label[1],'^Figure \d{1,4}\.$')])"/>
       <let name="no" value="substring-after($id,'fig')"/>
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
-      <let name="lab" value="replace(label,'\.','')"/>
+      <let name="lab" value="replace(label[1],'\.','')"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
@@ -2279,16 +2278,16 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
-      <let name="label-conform" value="matches(label,'^Figure [\d]+—figure supplement [\d]+')"/>
+      <let name="label-conform" value="matches(label[1],'^Figure [\d]+—figure supplement [\d]+')"/>
       <let name="no" value="substring-after(@id,'s')"/>
-      <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')]/@id,'fig')"/>
-      <let name="label-no" value="replace(substring-after(label,'supplement'),'[^\d]','')"/>
+      <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
+      <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
       
       <assert test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
       
       <assert test="$label-conform = true()" role="error" id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure X—figure supplement X.' (where X is one or more digits).</assert>
       
-      <assert test="starts-with(label,concat('Figure ',$parent-fig-no))" role="error" id="fig-sup-test-3">
+      <assert test="starts-with(label[1],concat('Figure ',$parent-fig-no))" role="error" id="fig-sup-test-3">
         <value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
       
       <report test="if ($article-type = ('correction','retraction')) then ()                      else $no != string($pos)" role="error" id="fig-sup-test-4">
@@ -2307,7 +2306,7 @@
       
       <assert test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>
       
-      <assert test="matches(label,'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
+      <assert test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
       
     </rule>
   </pattern>
@@ -2316,7 +2315,7 @@
       
       <assert test="label" role="error" id="dec-fig-test-1">fig must have a label.</assert>
       
-      <assert test="matches(label,'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
+      <assert test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
       
     </rule>
   </pattern>
@@ -2385,7 +2384,7 @@
   
   <pattern id="ra-body-tests-pattern">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
     
@@ -2402,7 +2401,7 @@
   </pattern>
   <pattern id="top-level-sec-tests-pattern">
     <rule context="body/sec" id="top-level-sec-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions', 'Model and methods')"/>
       
@@ -2424,7 +2423,7 @@
   
   <pattern id="article-title-tests-pattern">
     <rule context="article-meta//article-title" id="article-title-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
       
       <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))                     else ()" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
@@ -2446,7 +2445,7 @@
   </pattern>
   <pattern id="fig-title-tests-pattern">
     <rule context="fig/caption/title" id="fig-title-tests"> 
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
@@ -2479,7 +2478,7 @@
   </pattern>
   <pattern id="video-title-tests-pattern">
     <rule context="media/caption/title" id="video-title-tests"> 
-      <let name="label" value="parent::caption/preceding-sibling::label"/>
+      <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
@@ -2569,13 +2568,18 @@
   <pattern id="fig-ids-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
+      <!-- Needs updating once scheme/checmical structure ids have been updated -->
       <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes).</assert>
       
-      <report test="matches(label,'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0.</report>
+      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0.</report>
       
-      <report test="matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^chem[0-9]{1,3}$'))" role="warning" id="fig-id-test-3">Chemical structures must have an @id in the format chem0.</report>
+      <!--<report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^chem[0-9]{1,3}$'))" 
+        role="warning"
+        id="fig-id-test-3">Chemical structures must have an @id in the format chem0.</report>-->
       
-      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^scheme[0-9]{1,3}$'))" role="warning" id="fig-id-test-4">Schemes must have an @id in the format scheme0.</report>
+      <!--<report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^scheme[0-9]{1,3}$'))" 
+        role="warning"
+        id="fig-id-test-4">Schemes must have an @id in the format scheme0.</report>-->
     </rule>
   </pattern>
   <pattern id="fig-sup-ids-pattern">
@@ -2596,11 +2600,11 @@
   <pattern id="app-fig-ids-pattern">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       
-      <report test="matches(label,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0.</report>
+      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0.</report>
       
-      <report test="matches(label,'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0.</report>
+      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0.</report>
       
-      <report test="matches(label,'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0.</report>
+      <report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0.</report>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-ids-pattern">
@@ -2639,7 +2643,7 @@
   </pattern>
   <pattern id="app-video-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
-      <let name="id-prefix" value="substring-after(ancestor::app/@id,'-')"/>
+      <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       
       <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
       
@@ -2648,7 +2652,7 @@
   </pattern>
   <pattern id="app-video-sup-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
-      <let name="id-prefix-1" value="substring-after(ancestor::app/@id,'-')"/>
+      <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
       <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -2701,7 +2705,7 @@
   </pattern>
   <pattern id="app-table-wrap-ids-pattern">
     <rule context="app/table-wrap" id="app-table-wrap-ids">
-      <let name="app-no" value="substring-after(ancestor::app/@id,'-')"/>
+      <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
       <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'.</assert>
       
@@ -2933,7 +2937,7 @@
   <pattern id="dec-letter-editor-tests-2-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role"/>
+      <let name="role" value="role[1]"/>
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
       <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
       
@@ -2947,7 +2951,7 @@
   <pattern id="dec-letter-editor-tests-3-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" id="dec-letter-editor-tests-3">
       <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role"/>
+      <let name="role" value="role[1]"/>
       
       <assert test="$role=('Senior Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-6">Senior Editor in decision letter front-stub must have the role 'Senior Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
     </rule>
@@ -3323,10 +3327,10 @@
         at least two characters.
         Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
-      <assert test="count(source)=1 and count(source/*)=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
+      <report test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
         elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
       
       <assert test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">[err-elem-cit-journal-5-1-3]
         There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
@@ -3996,7 +4000,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
         &lt;publisher-name&gt; elements.</assert>
       
-      <report test="some $p in document($publisher-locations)/locations/location/text()       satisfies ends-with(publisher-name,$p)" role="warning" id="warning-elem-cit-report-11-3">[warning-elem-cit-report-11-3]
+      <report test="some $p in document($publisher-locations)/locations/location/text()       satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-report-11-3">[warning-elem-cit-report-11-3]
         The content of &lt;publisher-name&gt; may not end with a publisher location. 
         Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>,
         which ends with a publisher location.</report>
@@ -4596,7 +4600,7 @@
   
  <pattern id="feature-title-tests-pattern">
     <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
-     <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject"/>
+     <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject[1]"/>
      
      <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
      
@@ -4651,7 +4655,7 @@
   </pattern>
   <pattern id="feature-bio-tests-pattern">
     <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
-     <let name="name" value="e:get-name(parent::contrib/name)"/>
+     <let name="name" value="e:get-name(parent::contrib/name[1])"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
      
@@ -4672,8 +4676,8 @@
   </pattern>
   <pattern id="feature-template-tests-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
-     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
-     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
+     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
      <report test="($template = ('1','2')) and child::sub-article" role="error" id="feature-template-test-1">
         <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
@@ -4691,8 +4695,8 @@
   </pattern>
   <pattern id="insight-asbtract-tests-pattern">
     <rule context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">
-     <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value"/>
-     <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value/*)"/>
+     <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
+     <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
      <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abtsracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
      
@@ -4806,10 +4810,10 @@
   <pattern id="duplicate-ref-pattern">
     <rule context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
-      <let name="a-title" value="element-citation/article-title"/>
-      <let name="c-title" value="element-citation/chapter-title"/>
-      <let name="source" value="element-citation/source"/>
-      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="a-title" value="element-citation/article-title[1]"/>
+      <let name="c-title" value="element-citation/chapter-title[1]"/>
+      <let name="source" value="element-citation/source[1]"/>
+      <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
       
       <report test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
@@ -4826,7 +4830,7 @@
   <pattern id="ref-xref-conformance-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid]"/>
+      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid][1]"/>
       <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
       <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
@@ -5746,7 +5750,7 @@
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city']"/>
+      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       
       <report test="$text = 'United States of America'" role="error" id="united-states-test-1">
@@ -5820,7 +5824,7 @@
   </pattern>
   <pattern id="journal-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
-      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi']"/>
+      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
         
       <report test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains
@@ -5886,7 +5890,7 @@
       
       <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
-      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'],'^10.7554/eLife.\d{5}$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife.\d{5}$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       
       <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal title <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
       
@@ -5936,7 +5940,7 @@
   </pattern>
   <pattern id="website-tests-pattern">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
-      <let name="link" value="lower-case(ext-link)"/>
+      <let name="link" value="lower-case(ext-link[1])"/>
       
       <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
       
@@ -5974,7 +5978,7 @@
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a 'http://www.r-project.org' type link.</report>
       
-      <report test="matches(lower-case(source),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
+      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
       
       <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
@@ -6199,7 +6203,7 @@
     <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
       <let name="cite" value="e:citation-format1(year)"/>
       
-      <report test="matches(lower-case(source),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">
+      <report test="matches(lower-case(source[1]),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">
         <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
       
     </rule>
@@ -6284,7 +6288,7 @@
   </pattern>
   <pattern id="abstract-house-tests-pattern">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       
@@ -6304,7 +6308,7 @@
   </pattern>
   <pattern id="KRT-check-pattern">
     <rule context="article" id="KRT-check">
-      <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
       
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
@@ -6469,17 +6473,17 @@
   </pattern>
   <pattern id="fig-permissions-check-pattern">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
-      <let name="label" value="replace(label,'\.','')"/>
+      <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption,'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption,'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption,'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption,'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">

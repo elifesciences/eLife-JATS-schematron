@@ -689,7 +689,6 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
-      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <assert test="kwd" role="warning" id="ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
   </pattern>

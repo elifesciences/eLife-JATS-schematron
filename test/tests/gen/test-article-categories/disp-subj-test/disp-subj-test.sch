@@ -690,7 +690,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/article-categories" id="test-article-categories">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value"/>
+      <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
     </rule>
   </pattern>

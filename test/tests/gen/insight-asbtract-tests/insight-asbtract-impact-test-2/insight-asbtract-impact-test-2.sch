@@ -689,8 +689,8 @@
   </xsl:function>
   <pattern id="features">
     <rule context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">
-      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value"/>
-      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value/*)"/>
+      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
+      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
       <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abtsracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
     </rule>
   </pattern>

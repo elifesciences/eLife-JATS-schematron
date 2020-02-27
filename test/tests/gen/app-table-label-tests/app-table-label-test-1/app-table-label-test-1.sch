@@ -689,7 +689,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="app//table-wrap/label" id="app-table-label-tests">
-      <let name="app" value="ancestor::app/title"/>
+      <let name="app" value="ancestor::app/title[1]"/>
       <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')" role="error" id="app-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
     </rule>
