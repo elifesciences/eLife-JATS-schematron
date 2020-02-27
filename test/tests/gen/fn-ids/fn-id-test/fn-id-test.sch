@@ -283,6 +283,30 @@
     <xsl:param name="arg" as="xs:string?"/>
     <xsl:sequence select="replace($arg,'(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
   </xsl:function>
+  <xsl:function name="e:get-ordinal" as="xs:string">
+    <xsl:param name="value" as="xs:integer?"/>
+    <xsl:if test="translate(string($value), '0123456789', '') = '' and number($value) &gt; 0">
+      <xsl:variable name="mod100" select="$value mod 100"/>
+      <xsl:variable name="mod10" select="$value mod 10"/>
+      <xsl:choose>
+        <xsl:when test="$mod100 = 11 or $mod100 = 12 or $mod100 = 13">
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 1">
+          <xsl:value-of select="concat($value,'st')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 2">
+          <xsl:value-of select="concat($value,'nd')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 3">
+          <xsl:value-of select="concat($value,'rd')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:function>
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>

@@ -305,6 +305,31 @@
     <xsl:sequence select="replace($arg,'(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
   </xsl:function>
   
+  <xsl:function name="e:get-ordinal" as="xs:string">
+    <xsl:param name="value" as="xs:integer?"/>
+    <xsl:if test="translate(string($value), '0123456789', '') = '' and number($value) &gt; 0">
+      <xsl:variable name="mod100" select="$value mod 100"/>
+      <xsl:variable name="mod10" select="$value mod 10"/>
+      <xsl:choose>
+        <xsl:when test="$mod100 = 11 or $mod100 = 12 or $mod100 = 13">
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 1">
+          <xsl:value-of select="concat($value,'st')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 2">
+          <xsl:value-of select="concat($value,'nd')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 3">
+          <xsl:value-of select="concat($value,'rd')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:function>
+  
   <!-- Global variable included here for convenience -->
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   
@@ -1868,6 +1893,81 @@
       
       <report test="matches(label[1],'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">
         <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
+      
+      <report test="matches(label[1],'^Figure \d{1,4}—source code \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source code \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-code-test-1">
+        <value-of select="label"/> is figure level source code, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source code?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="fig-source-data-tests-pattern">
+    <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" id="fig-source-data-tests">
+      <let name="label" value="label[1]"/>
+      <let name="fig-id" value="ancestor::fig[1]/@id"/>
+      <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
+      <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
+      
+      <assert test="$number = $pos" role="error" id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="fig-source-code-tests-pattern">
+    <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" id="fig-source-code-tests">
+      <let name="label" value="label[1]"/>
+      <let name="fig-id" value="ancestor::fig[1]/@id"/>
+      <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
+      <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>
+      
+      <assert test="$number = $pos" role="error" id="fig-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="vid-source-data-tests-pattern">
+    <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" id="vid-source-data-tests">
+      <let name="label" value="label[1]"/>
+      <let name="vid-id" value="ancestor::media[1]/@id"/>
+      <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
+      <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' data ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' data ')])"/>
+      
+      <assert test="$number = $pos" role="error" id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="vid-source-code-tests-pattern">
+    <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" id="vid-source-code-tests">
+      <let name="label" value="label[1]"/>
+      <let name="vid-id" value="ancestor::media[1]/@id"/>
+      <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
+      <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' code ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' code ')])"/>
+      
+      <assert test="$number = $pos" role="error" id="vid-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="table-source-data-tests-pattern">
+    <rule context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
+      <let name="label" value="label[1]"/>
+      <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
+      <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
+      <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
+      
+      <assert test="$number = $pos" role="error" id="table-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="table-source-code-tests-pattern">
+    <rule context="table-wrap//supplementary-material[contains(label[1],' code ')]" id="table-source-code-tests">
+      <let name="label" value="label[1]"/>
+      <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
+      <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
+      <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' code ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' code ')])"/>
+      
+      <assert test="$number = $pos" role="error" id="table-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
     </rule>
   </pattern>
