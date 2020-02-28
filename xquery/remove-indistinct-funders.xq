@@ -32,7 +32,8 @@ let $new-funders := copy $copy := $funders
     for $funder in $copy//*:funder[.=$non-distinct]
     let $doi := $funder/@fundref
     let $latest-doi := $dates//*:item[text()=$funder/text()]/@fundref
-    return if ($doi=$latest-doi) then ()
+    let $dx-doi := ('http://dx.doi.org/'||substring-after($latest-doi,'doi.org/'))
+    return if ($doi=$dx-doi) then ()
     else delete node $funder
     )
 return $copy

@@ -268,6 +268,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100000989">Ball Brothers Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100000990">Baptist Community Ministries</funder>
   <funder fundref="http://dx.doi.org/10.13039/100000991">Barry Community Foundation</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/100000993">Battelle</funder>
   <funder fundref="http://dx.doi.org/10.13039/100000994">Battle Creek Community Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100000996">SD Bechtel, Jr Foundation and Stephen Bechtel Fund</funder>
@@ -275,7 +276,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100000999">Berkshire Taconic Community Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001000">Mary E Bivins Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001002">Blue Shield of California Foundation</funder>
-  <funder fundref="http://dx.doi.org/10.13039/100001003">Boehringer Ingelheim</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/100001004">Bohemian Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001005">Bonfils-Stanton Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001006">Breast Cancer Research Foundation</funder>
@@ -285,6 +286,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100001011">Joe W and Dorothy Dorsett Brown Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001012">Buhl Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001013">Buoniconti Fund to Cure Paralysis</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/100001018">California Health Care Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001019">California Wellness Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001020">Cancer and Leukemia Group B Foundation</funder>
@@ -357,8 +359,8 @@
   <funder fundref="http://dx.doi.org/10.13039/100001110">Flora Family Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001111">Foellinger Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001114">Ford Motor Company Fund and Community Services</funder>
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100001115">Foster Foundation</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100001116">Foundation Fighting Blindness</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001117">amfAR, The Foundation for AIDS Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001119">Freddie Mac Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001120">Frey Foundation</funder>
@@ -462,7 +464,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100001256">National Childhood Cancer Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001257">National Geographic Society Education Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001258">National Kidney Foundation of Louisiana</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100001259">National Kidney Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001260">National Organization for Rare Disorders</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001261">National Park Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100001262">National Parkinson Foundation</funder>
@@ -1062,7 +1064,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100002269">Pacific Vision Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100002271">Pasteur Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100002272">Patron Saints Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100002275">Pediatric Cancer Foundation</funder>
   
   <funder fundref="http://dx.doi.org/10.13039/100002277">Kitty M Perkins Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100002280">Plastic Surgery Foundation</funder>
@@ -1787,7 +1789,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100004318">Microsoft</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004319">Pfizer</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004320">Philips</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100004322">Agilent Technologies</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004323">Amylin Pharmaceuticals</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004324">Astellas Pharma US</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004325">AstraZeneca</funder>
@@ -1868,10 +1870,11 @@
   <funder fundref="http://dx.doi.org/10.13039/100004408">Council for International Exchange of Scholars</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004409">Doctors Without Borders</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004410">European Molecular Biology Organization</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100004411">Heart and Stroke Foundation of Canada</funder>
   
   
   <funder fundref="http://dx.doi.org/10.13039/100004414">International Monetary Fund</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100004415">North Atlantic Treaty Organization</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004416">Novartis Foundation for Sustainable Development</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004417">Global Fund to Fight AIDS, Tuberculosis and Malaria</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004418">Nike Foundation</funder>
@@ -1902,7 +1905,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100004443">Emerging Markets Development Advisers Program</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004444">European Tropical Forest Research Network</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004445">Freedome House</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100004446">Institute of Current World Affairs</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004447">Japan Foundation, New York</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004448">Aga Khan Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004449">Commonwealth Forestry Association</funder>
@@ -2093,7 +2096,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100004845">New Jersey Department of Labor and Workforce Development</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004846">State of New Jersey Department of State</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004847">New Jersey Department of Transportation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100004848">Office of the Attorney General</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004849">Dormitory Authority of the State of New York</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004850">Empire State Development Corporation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100004851">New York City Department of Health and Mental Hygiene</funder>
@@ -2545,7 +2548,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100005424">New Hampshire State Council on the Arts</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005425">Arts Midwest</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005426">Association for Research in Vision and Ophthalmology</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100005427">Asian Pacific American Institute for Congressional Studies</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005428">Asian/Pacific American Librarians Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005429">American Society of Interior Designers Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005430">American Society for Microbiology</funder>
@@ -2737,9 +2740,11 @@
   <funder fundref="http://dx.doi.org/10.13039/100005627">Thrasher Research Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005628">North Carolina Exploring Cultural Heritage Online</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005629">Viropharma</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/100005631">Thoracic Surgery Foundation for Research and Education</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005632">Forest Laboratories</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005633">King Pharmaceuticals</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/100005636">National Operating Committee on Standards for Athletic Equipment</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005637">MDC</funder>
   <funder fundref="http://dx.doi.org/10.13039/100005638">Christopher Reynolds Foundation</funder>
@@ -3161,7 +3166,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100006093">Patient-Centered Outcomes Research Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006094">University of Delaware</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006095">California Department of Pesticide Regulation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100006096">Bogliasco Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006097">US Department of the Treasury</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006098">Radiological Society of North America</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006099">Whitaker International Fellows and Scholars Program</funder>
@@ -3178,7 +3183,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100006111">Michelson Prize and Grants</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006112">Microsoft Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006113">Office of Under Secretary</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100006114">Office of Energy Policy</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006115">Solar Energy Technologies Program</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006116">Advanced Manufacturing Office</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006117">Weatherization and Intergovernmental Program</funder>
@@ -3206,7 +3211,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100006140">Oil and Natural Gas</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006141">Office of Environmental and Nuclear Programs</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006142">Office of Nuclear Safety</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100006143">Office of Inspector General</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006144">Office of Intelligence and Counterintelligence</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006145">Office of Site Operations</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006146">Office of Naval Reactors</funder>
@@ -3376,7 +3381,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100006353">Charles Stark Draper Laboratory</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006354">Butler University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006356">AACC International</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100006357">AACCI Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006358">University of California, Santa Cruz</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006359">Robert M McCormick Tribune Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006360">Frankel Family Foundation</funder>
@@ -3498,7 +3503,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100006476">Comer Children's Hospital, University of Chicago Medicine</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006477">Connecticut Breast Health Initiative</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006478">Copper Development Association</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100006479">Cordis</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006480">Institute for the Social Sciences, Cornell University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006481">Cotton Incorporated</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006482">Council on Ocean Affairs Science and Technology, California State University</funder>
@@ -3906,7 +3911,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100006998">Nuclear Energy Enabling Technologies</funder>
   <funder fundref="http://dx.doi.org/10.13039/100006999">Nuclear Energy University Program</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007000">Laboratory Directed Research and Development</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007001">Small Business Innovative Research and Small Business Technology Transfer</funder>
   
   <funder fundref="http://dx.doi.org/10.13039/100007013">F Hoffmann-La Roche</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007014">Cooperative State Research, Education, and Extension Service</funder>
@@ -3926,7 +3931,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007029">Leonard Wood Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007030">Les Turner ALS Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007031">LifeCell</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007032">Lincoln University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007033">Lincy Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007034">Long Island League to Abolish Cancer</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007035">Louisiana Department of Wildlife and Fisheries</funder>
@@ -4119,7 +4124,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007222">Department of Human Services, State Government of Victoria</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007223">Technische Universitat Wien</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007224">National Foundation for Science and Technology Development</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007225">Ministry of Science and Technology</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007226">Villanova University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007227">Vincentine Hermes-Luh Endowment</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007228">Skip Viragh Foundation</funder>
@@ -4237,7 +4242,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007340">Public Risk Management Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007341">Eastern Savings Bank Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007342">Willis-Ekbom Disease Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007343">Shire</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007344">International Association of Fire Fighters Charitable Foundation Burn Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007345">University of Arizona Cancer Center</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007346">Armstrong Flight Research Center</funder>
@@ -4288,7 +4293,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007391">Association pour la Recherche sur le Cancer</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007392">Japan Association for the Advancement of Medical Equipment</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007393">Association Française contre les Myopathies</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007394">Association Laurette Fugain</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007395">Fondazione AIOM</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007396">Telecom Italia</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007397">Univerzita Karlova v Praze</funder>
@@ -4415,6 +4420,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007519">Nephcure Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007520">Nationwide Children's Hospital</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007521">Polar Environment, Safety and Health Section</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/100007523">Division of Advanced Cyberinfrastructure</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007524">Listening and Spoken Language Knowledge Center</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007525">AG Bell Academy for Listening and Spoken Language</funder>
@@ -4657,8 +4663,8 @@
   <funder fundref="http://dx.doi.org/10.13039/100007762">Communications Technology Laboratory</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007763">Engineering Laboratory</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007764">Information Technology Laboratory</funder>
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007765">Kansas State University</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100007766">Kansas State University Research Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007767">Material Measurement Laboratory</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007768">NIST Center for Neutron Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007769">Physical Measurement Laboratory</funder>
@@ -4770,7 +4776,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007875">Tulane University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007876">School of Liberal Arts</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007877">Joslin Diabetes Center</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007878">Diabetes Research Center</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007879">Tertiary Education Commission</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007880">Johns Hopkins University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007881">Johns Hopkins Children's Center</funder>
@@ -4807,7 +4813,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100007912">Eastern Kentucky University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007913">Institute for Translational Neuroscience</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007914">University of Texas Southwestern Medical Center</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100007915">Baylor College of Medicine</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007916">Naman Family Fund for Basic Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007917">Agricultural Research Service</funder>
   <funder fundref="http://dx.doi.org/10.13039/100007918">National Council on Aging</funder>
@@ -5161,6 +5167,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100008346">AC3</funder>
   <funder fundref="http://dx.doi.org/10.13039/100008347">Building Research Establishment Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/100008348">Burton D Morgan Foundation</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100008349">Boehringer Ingelheim</funder>
   <funder fundref="http://dx.doi.org/10.13039/100008350">Bremerhavener Gesellschaft für Investitionsförderung und Stadtentwicklung</funder>
   <funder fundref="http://dx.doi.org/10.13039/100008351">ARISE-The Scoliosis Research Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/100008352">Wabash College</funder>
@@ -6024,7 +6031,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100009278">Shwachman Diamond Syndrome Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009279">Sunflower Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009280">Leaky Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100009281">Fondation Thierry Latran</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009282">United Mitochondrial Disease Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009283">Orthopaedic Research Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009284">Association of Law Libraries of Upstate New York</funder>
@@ -6066,7 +6073,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100009320">American Association of Critical-Care Nurses</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009321">American College of Emergency Physicians</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009322">American College of Healthcare Architects</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100009323">Campbell Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009324">Glyndŵr University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009325">Canadian Health Services Research Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009326">Cancer Research Society</funder>
@@ -6361,7 +6368,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100009620">Agriculture, Forestry and Fisheries Research Council</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009621">Center on Philanthropy and Civil Society, Graduate Center, City University of New York</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009622">Association for Women in Science</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100009623">Cerebral Palsy Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009624">Veterans of Foreign Wars Auxiliary</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009625">Grantsmanship Center</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009626">John Glenn College of Public Affairs, Ohio State University</funder>
@@ -6382,7 +6389,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100009644">National Academy of Engineering</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009645">National Academy of Medicine</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009646">Gulf Research Program</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100009647">Ministry of Health</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009648">National Health Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009649">University of the West Indies</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009650">Forest Conservation Fund</funder>
@@ -6527,7 +6534,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100009791">College of Agricultural Sciences, Pennsylvania State University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009792">Kennesaw State University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009793">Chapman University</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100009794">Breast Cancer Now</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009795">Pancreatic Cancer UK</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009796">Health Foundation of South Florida</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009797">Barrow Neurological Foundation</funder>
@@ -6636,7 +6643,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100009900">Defense Equal Opportunity Management Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009901">National Intelligence University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009902">Joint Military Intelligence College</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100009903">National Defense University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009904">College of International Security Affairs</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009905">Joint Forces Staff College</funder>
   <funder fundref="http://dx.doi.org/10.13039/100009906">Institute for National Strategic Studies</funder>
@@ -7002,7 +7009,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100010266">Alfred Friendly Press Partners</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010267">Foundation for Pharmaceutical education, Training, and Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010268">Fuel Cell Technologies Office</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100010269">Wellcome Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010270">Water Environment and Reuse Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010271">Rolex</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010272">Baylor Collections of Political Materials</funder>
@@ -7147,7 +7154,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100010411">Asia Pacific Observatory on Health Systems and Policies</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010412">Global Risk Institute in Financial Services</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010413">Interpace Diagnostics</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100010414">Health Research Board</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010415">CRCMining</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010416">Rollins School of Public Health</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010417">University Hospital Southampton NHS Foundation Trust</funder>
@@ -7183,7 +7190,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100010447">Deutsches Zentrum für Herz-Kreislaufforschung</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010448">Clínica Las Condes</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010449">Ministry of Education, Libya</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100010450">Ministry of Higher Education and Scientific Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010451">Defense Intelligence Agency</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010452">Center for Complex Operations</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010453">Center for Joint and Strategic Logistics</funder>
@@ -7347,7 +7354,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100010611">University of Toledo Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010612">ChadTough Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010613">Manitoba Beekeepers' Association</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100010614">Canadian Physiotherapy Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010615">Community Foundation of Northern Illinois</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010616">Dr M Aylwin Cotton Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100010617">Michael Wolk Heart Foundation</funder>
@@ -7833,10 +7840,10 @@
   <funder fundref="http://dx.doi.org/10.13039/100011099">Center for Computational, Evolutionary and Human Genomics, Stanford University</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011100">Ministère du Développement Économique, de l’Innovation et de l’Exportation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011101">Oregon Chapter of the American Fisheries Society</funder>
-  
-  
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011102">Seventh Framework Programme</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011103">Sixth Framework Programme</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011104">Fifth Framework Programme</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011105">Fourth Framework Programme</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011106">Graduate School, University of North Carolina at Chapel Hill</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011107">Council on Research, Computing, and Libraries, University of California, Irvine</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011108">Jacobs School of Engineering, University of California, San Diego</funder>
@@ -8399,7 +8406,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100011673">Harris Foundation Las Vegas, Nevada</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011674">Supreme Court of the United States</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011675">GLMA: Health Professionals Advancing LGBT Equality</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011676">Elekta</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011680">Weatherization and Intergovernmental Programs Office</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011681">Geothermal Technologies Office</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011682">Building Technologies Office</funder>
@@ -8421,18 +8428,18 @@
   <funder fundref="http://dx.doi.org/10.13039/100011700">Crohn’s in Childhood Research Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011701">British Society for Research on Ageing</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011702">Childhood Eye Cancer Trust</funder>
-  
-  
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011703">Yorkshire Cancer Research</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011704">Pancreatic Cancer Research Fund</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011705">MQ: Transforming Mental Health</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011706">Autistica</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011707">PSP Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011708">SMA Trust</funder>
-  
-  
-  
-  
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011709">South West Thames Kidney Fund</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011710">Niemann-Pick Research Foundation</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011711">Pancreatic Cancer Action</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011712">Encephalitis Society</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011713">Worldwide Cancer Research</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011714">Lullaby Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011715">Macmillan Cancer Support</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011716">British Journal of Anaesthesia</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011717">Leuka</funder>
@@ -8440,19 +8447,19 @@
   <funder fundref="http://dx.doi.org/10.13039/100011719">Bone Cancer Research Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011720">British Pain Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011721">Chronic Disease Research Foundation</funder>
-  
-  
-  
-  
-  
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011722">Higher Education Funding Council for England</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011723">Myeloma UK</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011724">Muscular Dystrophy UK</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011725">Meningitis Now</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011726">Wessex Medical Research</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011727">Target Ovarian Cancer</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011728">WellChild</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011729">Abbeyfield Research Foundation</funder>
-  
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011730">A-T Society</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011731">Action for A-T</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100011732">British Sjögren's Syndrome Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011733">Glasgow Children’s Hospital Charity</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100011734">Chronic Granulomatous Disorder Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011735">Bioenergy Technologies Office</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011736">Internationalt Center for Forskning i Økologisk Jordbrug og Fødevaresystemer</funder>
   <funder fundref="http://dx.doi.org/10.13039/100011737">GenØk – Senter for Biosikkerhet</funder>
@@ -8783,7 +8790,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100012063">Association for Continence Advice</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012064">Historical Metallurgy Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012065">Houghton Trust</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100012066">Wings for Life</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012067">Babraham Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012068">Health and Care Research Wales</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012069">Aerosol Society</funder>
@@ -8822,16 +8829,16 @@
   <funder fundref="http://dx.doi.org/10.13039/100012105">Socio-Legal Studies Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012106">Systematics Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012107">Waterloo Foundation</funder>
-  
-  
-  
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100012111">Foundation for Liver Research</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100012112">Isaac Newton Institute for Mathematical Sciences</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100012113">Canadian Tobacco Control Research Initiative</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100012114">Defence Research and Development Canada</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100012115">Canadian Language and Literacy Research Network</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012116">European Bioinformatics Institute</funder>
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/100012117">Lady Tata Memorial Trust</funder>
+  <funder fundref="http://dx.doi.org/10.13039/100012118">Ontario Institute for Cancer Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012119">United Nations University</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100012120">Ontario Mental Health Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012121">Douglas-Coldwell Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012122">Colorado Scientific Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012123">Alan and Babette Sainsbury Charitable Fund</funder>
@@ -9242,7 +9249,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100012558">Skåne County Council's Research and Development Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012559">New Zealand Society of Authors</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012560">New Zealand Film Commission</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100012561">Department of Conservation, New Zealand</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012562">Heritage New Zealand Pouhere Taonga</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012563">Aotearoa New Zealand Science Journalism Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/100012564">Foundation North</funder>
@@ -10211,7 +10218,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100013548">Filmbase</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013549">First Peoples Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013550">James Marston Fitch Charitable Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100013551">Fondation du Barreau du Québec</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013552">Force and Motion Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013553">Foundation for MetroWest</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013554">Foundation for Women and Girls with Blood Disorders</funder>
@@ -10220,7 +10227,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100013557">Fund4Trees</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013558">Gannett Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013559">Gas Safety Trust</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100013560">GBS/CIDP Foundation International</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013561">General Nursing Council for England and Wales Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013562">Genetics Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013563">Genetics Society of America</funder>
@@ -10622,7 +10629,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100013968">Johnson and Johnson Vision Care</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013969">VISTAKON Pharmaceuticals</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013970">Healthwise</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100013971">Directorate-General for International Cooperation and Development</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013972">Directorate-General for Regional and Urban Policy</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013973">Indiana University Health Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/100013974">GRAMMY Museum Foundation</funder>
@@ -12020,7 +12027,7 @@
   <funder fundref="http://dx.doi.org/10.13039/100015394">American Society for Transplantation and Cellular Therapy</funder>
   <funder fundref="http://dx.doi.org/10.13039/100015395">West Virginia Department of Arts, Culture and History</funder>
   <funder fundref="http://dx.doi.org/10.13039/100015396">Thailand Center of Excellence for Life Sciences</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/100015397">Ministère de la Culture</funder>
   <funder fundref="http://dx.doi.org/10.13039/100015398">Spinal Muscular Atrophy UK</funder>
   <funder fundref="http://dx.doi.org/10.13039/100015399">Naval Information Warfare Systems Command</funder>
   <funder fundref="http://dx.doi.org/10.13039/100015400">Fonds Erasme</funder>
@@ -12130,7 +12137,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000144">Alberta Gambling Research Institute, University of Alberta</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000145">Alberta Innovates - Health Solutions</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000146">Alberta Innovates - Technology Futures</funder>
-  <funder fundref="http://dx.doi.org/10.13039/501100000147">Canadian Cancer Society</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/501100000148">Canadian Anesthesiologists' Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000149">Canadian Association of Gastroenterology</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000150">Canadian Breast Cancer Research Alliance</funder>
@@ -12164,7 +12171,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000193">International Development Research Centre</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000194">Nova Scotia Health Research Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000195">Canada Council for the Arts</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100000196">Canada Foundation for Innovation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000197">Atkinson Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000198">Donner Canadian Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000199">Associated Medical Services</funder>
@@ -12266,7 +12273,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000327">Heart Research UK</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000328">Leukaemia Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000329">Novo Nordisk UK Research Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100000330">Prostate Action</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000331">British Scoliosis Research Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000332">Royal Society of Edinburgh</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000333">Council for British Research in the Levant</funder>
@@ -12304,7 +12311,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000370">CGD Research Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000371">Circulation Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000372">British Association for Cancer Research</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100000373">Biochemical Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000374">British Medical Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000376">British Society for Haematology</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000377">Dunhill Medical Trust</funder>
@@ -12321,7 +12328,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000388">St Peter’s Trust for Kidney Bladder and Prostate Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000389">British Renal Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000390">Blackie Foundation Trust</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100000391">Association for International Cancer Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000393">Neuroblastoma Society</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000394">Samantha Dickson Brain Tumour Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000395">Royal College of Physicians</funder>
@@ -12345,6 +12352,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000413">Foyle Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000414">Pasold Research Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000415">Northern Ireland Chest, Heart and Stroke Association</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/501100000522">Company of Biologists</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000523">Chartered Institute of Logistics and Transport</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000524">All Souls College, University of Oxford</funder>
@@ -12465,12 +12473,12 @@
   <funder fundref="http://dx.doi.org/10.13039/501100000647">Kennedy Memorial Trust</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000648">King's College Cambridge, University of Cambridge</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000649">Lady Margaret Hall, University of Oxford</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100000650">Institute of Cancer Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000651">Leukaemia and Lymphoma Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000652">Lord Dowding Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000653">Magdalene College, University of Cambridge</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000654">Marie Curie</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100000655">Marine Biological Association</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000656">Menzies Centre for Australian Studies, King's College London, University of London</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000657">Mercers' Company</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100000658">Myotubular Trust</funder>
@@ -12800,7 +12808,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100001075">Channel 7 Children's Research Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001076">Stillbirth Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001077">Royal Brisbane and Women's Hospital Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001078">Emergency Medicine Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001079">auDA Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001080">New South Wales Trade and Investment</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001081">Hunter Medical Research Institute</funder>
@@ -13022,7 +13030,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100001332">Council for Scientific and Industrial Research, South Africa</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001333">Rhodes University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001334">National Arts Council of South Africa</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001336">University of the Witwatersrand, Johannesburg</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001337">Claude Leon Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001338">University of Capetown</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001339">Protein Research Foundation</funder>
@@ -13252,14 +13260,14 @@
   <funder fundref="http://dx.doi.org/10.13039/501100001670">Euroscience</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001671">European Synchrotron Radiation Facility</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001672">French Norwegian Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001673">Fondation Jérôme Lejeune</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001674">Fondation Leducq</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001675">International Brain Research Organization</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001676">International Social Science Council</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001677">Institut National de la Santé et de la Recherche Médicale</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001681">Abdus Salam International Centre for Theoretical Physics</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001682">American Academy in Rome</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001683">Bioversity International</funder>
   
   <funder fundref="http://dx.doi.org/10.13039/501100001685">European School of Oncology</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001686">European University Institute</funder>
@@ -13283,7 +13291,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100001704">European Society of Clinical Microbiology and Infectious Diseases</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001705">International Federation of University Women</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001706">Louis-Jeantet Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001707">Union for International Cancer Control</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001708">International Foundation for Research in Paraplegia</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001709">Faculté des Sciences de la Vie, École Polytechnique Fédérale de Lausanne</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001710">Branco Weiss Fellowship – Society in Science</funder>
@@ -13300,7 +13308,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100001721">Rijksuniversiteit Groningen</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001722">Koninklijke Nederlandse Akademie van Wetenschappen</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001723">South-South Exchange Programme for Research on History Development</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001724">International Foundation for Science</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001725">Royal Swedish Academy of Sciences</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001726">Stockholm International Water Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001727">Sweden-America Foundation</funder>
@@ -13413,7 +13421,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100001859">Swedish National Space Agency</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001861">Forskningsrådet för Arbetsliv och Socialvetenskap</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001862">Svenska Forskningsrådet Formas</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100001863">New Energy and Industrial Technology Development Organization</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001864">Ministry of Education and Science, Republic of Latvia</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001865">Latvijas Zinatnu Akademija</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100001866">Fonds National de la Recherche Luxembourg</funder>
@@ -13467,7 +13475,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100002205">Forschungszentrum Gotha, Universität Erfurt</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002206">Ministry of Micro, Small and Medium Enterprises</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002207">Directorate-General for Communications Networks, Content and Technology</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100002222">The World Academy of Sciences</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002241">Japan Science and Technology Agency</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002261">Russian Foundation for Basic Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002281">Indian National Trust for Art and Cultural Heritage</funder>
@@ -13817,7 +13825,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100002680">Adivit</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002681">Canadian Prostate Cancer Research Initiative</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002682">Kemian tekniikan korkeakoulu, Aalto-yliopisto</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100002701">Ministry of Education</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002702">Aalborg Universitet</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002703">Jiangsu University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100002704">Fundación Científica Asociación Española Contra el Cáncer</funder>
@@ -14517,7 +14525,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100003622">Korea Communications Commission</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003623">Office for Government Policy Coordination, Prime Minister's Secretariat</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003624">Ministry of Agriculture, Food and Rural Affairs</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100003625">Ministry of Health and Welfare</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003626">Defense Acquisition Program Administration</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003627">Rural Development Administration</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003628">Korean Intellectual Property Office</funder>
@@ -14537,7 +14545,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100003642">Masan National Hospital</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003643">Mokpo National Hospital</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003644">Naju National Hospital</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100003645">National Cancer Center</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003646">National Health Insurance Service</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003647">National Health Personnel Licensing Examination Board</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100003648">National Medical Center</funder>
@@ -14942,7 +14950,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100004181">Nokia Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100004182">Nordisk Ministerråd</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100004183">Norske Skog</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100004184">Northeastern University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100004185">Northern Counties Kidney Research Fund</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100004186">Northwest Regional Development Agency</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100004187">Nortura</funder>
@@ -15662,7 +15670,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100005038">Hartcentrum Leiden, Leids Universitair Medisch Centrum</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005039">Leids Universitair Medisch Centrum</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005040">Bontius Stichting</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100005041">Université Catholique de Louvain</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005042">Cliniques Universitaires Saint-Luc</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005043">Fonds Joseph Maisin</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005044">Keele University</funder>
@@ -15906,7 +15914,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100005378">Hacettepe Üniversitesi</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005379">Seirei Christopher University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005380">Bundesamt für Energie</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100005381">Financial Markets Foundation for Children</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005382">National Yang-Ming University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005383">Ústav živocišné fyziologie a genetiky AV CR</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005384">Indian Agricultural Research Institute</funder>
@@ -16267,7 +16275,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100005989">Ministrstvo za Izobraževanje, Znanost in Šport</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005990">Australian Mathematical Sciences Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005991">Pharmaceutical and Medical Device Regulatory Science Society of Japan</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100005992">Ministry of Education and Science</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005993">National Council for Scientific Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005994">Lietuvos Valstybinis Mokslo ir Studiju Fondas</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100005995">Bulgarian Academy of Sciences</funder>
@@ -16335,7 +16343,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100006075">Greta och Johan Kocks stiftelser</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100006081">Lounais-Suomen Syöpäyhdistys</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100006082">Bộ Nông Nghiệp và Phát Triển Nông Thôn</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100006083">Ministry of Defence</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100006084">Aeronautical Development Agency</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100006085">National Root Crops Research Institute</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100006086">Disaster Prevention Research Institute, Kyoto University</funder>
@@ -17139,7 +17147,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100007267">Centre International de Mathématiques et Informatique de Toulouse</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007268">Associazione Ricerca Malattie Immunologiche e Allergiche</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007269">Arts, Sciences and Technology University in Lebanon</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100007270">National Academy of Agricultural Science</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007271">National Center for GM Crops</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007272">Comisión Asesora de Investigación Científica y Técnica</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007273">Comisión Interministerial de Ciencia y Tecnología</funder>
@@ -17148,7 +17156,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100007277">Center for Massive Data Algorithmics</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007278">National University of Sciences and Technology</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007279">Shanghai Municipal Health Bureau</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100007280">Srinakharinwirot University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007281">National Drug and Alcohol Research Centre</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007282">UniBern Forschungsstiftung</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007283">Bonn-Aachen International Center for Information Technology</funder>
@@ -17162,8 +17170,8 @@
   <funder fundref="http://dx.doi.org/10.13039/501100007291">SUVA</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007292">Aerostatic Science Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007293">Zimmerman Foundation of Banking and Finance</funder>
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100007294">Myndigheten för Samhällsskydd och Beredskap</funder>
+  <funder fundref="http://dx.doi.org/10.13039/501100007295">Sasakawa Memorial Health Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007296">Infosys Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007297">International Islamic University Malaysia</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007298">Urmia University</funder>
@@ -17550,7 +17558,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100007729">Ministerie van Buitenlandse Zaken</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007730">Beilstein-Institut zur Förderung der Chemischen Wissenschaften</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007731">ZNS - Hannelore Kohl Stiftung</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100007732">New Energy Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007733">Prof Dr Peter und Jytte Wolf-Stiftung für Epilepsie</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007734">Stiftung Michael</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007735">Deutsche Gesellschaft für Neurologie</funder>
@@ -17691,7 +17699,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100007910">WorkplaceNL</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007912">Department of Education and Training</funder>
   
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100007914">Brunel University London</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007915">Wine Australia</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007916">Swinburne</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100007917">Australian European University Institute Fellowships Association Incorporated</funder>
@@ -18231,7 +18239,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100008636">Lewisham</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100008638">Environment and Climate Change Canada</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100008639">Sir Edward 'Weary' Dunlop Medical Research Foundation</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100008640">Ministry for Primary Industries</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100008641">Chung Shan Medical University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100008642">Foundation for Dietary Scientific Research</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100008643">Japan Brain Foundation</funder>
@@ -18652,8 +18660,8 @@
   <funder fundref="http://dx.doi.org/10.13039/501100009128">Research for Patient Benefit Programme</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009129">Systematic Reviews Programme</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009130">Programme Development Grants</funder>
-  
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100009147">College of Medicine and Veterinary Medicine, University of Edinburgh</funder>
+  <funder fundref="http://dx.doi.org/10.13039/501100009148">Centre for Paediatrics and Child Health, University of Manchester</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009149">National Center of Competence in Research Quantum Science and Technology</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009150">National Center of Competence in Research Materials’ Revolution: Computational Design and Discovery of Novel Materials</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009151">AIRIcerca</funder>
@@ -18942,7 +18950,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100009561">Arcadis</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009562">Consejería de Sanidad y Política Social, Comunidad Autónoma de la Región de Murcia</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009563">Fundación para la Formación e Investigación Sanitarias de la Región de Murcia</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100009564">Health and Family Planning Commission of Sichuan Province</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009565">Japan Society of Nutrition and Food Science</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009566">Livsvitenskap, Universitetet i Oslo</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100009567">Conseil Régional de Franche-Comté</funder>
@@ -19282,7 +19290,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100010024">Hungarian Science Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010025">Bairen Program of Yunnan Province</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010026">Beijing Higher Education Young Elite Teacher Project</funder>
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100010029">Taishan Scholar Foundation of Shandong Province</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010030">China National Textile and Apparel Council</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010031">Postdoctoral Research Foundation of China</funder>
   
@@ -19637,6 +19645,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100010486">Teijin Pharma</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010487">United Pharmaceuticals</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010489">Advanced Centre for Treatment, Research and Education in Cancer, Tata Memorial Centre</funder>
+  
   <funder fundref="http://dx.doi.org/10.13039/501100010547">Faculty of Medicine, Assiut University</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010548">Komisia J Williama Fulbrighta</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100010549">Centro Interdisciplinario de Neurociencia de Valparaíso, Universidad de Valparaíso</funder>
@@ -20039,7 +20048,7 @@
   <funder fundref="http://dx.doi.org/10.13039/501100011041">Light Metal Educational Foundation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100011042">École nationale supérieure d'architecture de Lyon</funder>
   
-  
+  <funder fundref="http://dx.doi.org/10.13039/501100011045">Ministère de l'Enseignement supérieur, de la Recherche et de l'Innovation</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100011049">Centre on Innovation and Energy Demand, University of Sussex</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100011050">Sydney Southeast Asia Centre, University of Sydney</funder>
   <funder fundref="http://dx.doi.org/10.13039/501100011051">Council on grants of the President of the Russian Federation</funder>

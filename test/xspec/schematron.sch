@@ -5137,6 +5137,8 @@
       <report test="matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')" role="warning" id="fig-xref-test-13">Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="fig-xref-test-14">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      
+      <report test="matches(.,' [Ff]ig[\.]? ')" role="error" id="fig-xref-test-15">Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
     </rule>
   </pattern>
   
