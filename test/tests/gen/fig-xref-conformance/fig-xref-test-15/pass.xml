@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="fig-xref-test-15.sch"?>
+<!--Context: xref[@ref-type='fig' and @rid]
+Test: report    matches(.,' [Ff]ig[\.]? ')
+Message: Link  ''  is incomplete. It should have 'figure' or 'Figure' spelt out.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="fig" rid="app1fig1">Appendix-figure 1</xref>
+  </article>
+</root>

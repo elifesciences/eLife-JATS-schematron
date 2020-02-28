@@ -2,16 +2,15 @@
 <!--Context: fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]
 Test: assert    $number = $pos
 Message: '' ends with , but it is placed . Either it is misnumbered or it should be moved to a different position.-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig id="fig2s2" position="float" specific-use="child-fig">
-      <label>Figure 2&#x2014;figure supplement 2.</label>
+      <label>Figure 2—figure supplement 2.</label>
       <caption>
         <title>Effect of a second siRNA H2A.Z.2 (siZ2#).</title>
         <p>
           <supplementary-material id="fig2s2sdata2">
-            <label>Figure 2&#x2014;figure supplement 2&#x2014;source data 1.</label>
+            <label>Figure 2—figure supplement 2—source data 1.</label>
             <caption>
               <title>Source Data for the histogrammes representing the effect of a second siRNA
                 H2A.</title>
@@ -21,7 +20,7 @@ Message: '' ends with , but it is placed . Either it is misnumbered or it should
         </p>
         <p>
           <supplementary-material id="fig2s2sdata1">
-            <label>Figure 2&#x2014;figure supplement 2&#x2014;source code 1.</label>
+            <label>Figure 2—figure supplement 2—source code 1.</label>
             <caption>
               <title>Source Data for the histogrammes representing the effect of a second siRNA
                 H2A.</title>
