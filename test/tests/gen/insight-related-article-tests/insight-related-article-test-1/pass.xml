@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="insight-related-article-test-1.sch"?>
+<!--Context: article[@article-type='article-commentary']//article-meta/related-article
+Test: assert    @related-article-type='commentary-article'
+Message: Insight related article links must have the relatedarticletype 'commentaryarticle'. The link for  has ''.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="article-commentary">
+    <article-meta>
+      <related-article related-article-type="commentary-article" xlink:href="test"/>
+    </article-meta>
+  </article>
+</root>

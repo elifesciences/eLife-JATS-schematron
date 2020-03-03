@@ -4824,6 +4824,8 @@
      <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        $x/year,        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
      <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
+     
+     <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
    </rule>
   </pattern>
   
@@ -4887,7 +4889,7 @@
       <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')          return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
-      <let name="unequal-equal-text" value="string-join(for $x in tokenize(.,' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
+      <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
       
@@ -4909,9 +4911,9 @@
       
       <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Ttype]\s?[Oo]ne\s?[Dd]iabetes')])" role="error" id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
+      <report test="matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')])" role="error" id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
       
-      <report test="matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Ttype]\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
+      <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
       <report test="not(ancestor::sub-article) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
@@ -5156,10 +5158,10 @@
       <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
         <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
       
-      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="error" id="table-xref-conformity-3">
+      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
       
-      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2,1)))) and not(contains(.,'–'))" role="error" id="table-xref-conformity-4">
+      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">

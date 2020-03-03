@@ -711,22 +711,17 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="rrid-org-pattern">
-    <rule context="p|td|th" id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
-      <let name="lc" value="lower-case(.)"/>
-      <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')          return $x)) -1"/>
-      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
-      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
-      <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
-      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
-      <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
-      <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+  <pattern id="features">
+    <rule context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
+      <let name="doi" value="@xlink:href"/>
+      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
+      <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        $x/year,        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+      <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
+      <assert test="descendant::article[@article-type='article-commentary']//article-meta/related-article" role="error" id="insight-related-article-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>
