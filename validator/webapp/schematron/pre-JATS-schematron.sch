@@ -1708,6 +1708,8 @@
       <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
       
       <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary.</report>
+      
+      <report test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
     </rule>
   </pattern>
   <pattern id="fig-group-tests-pattern">
@@ -2133,6 +2135,13 @@
       <assert test="self::*/local-name() = ($allowed-blocks,'bold')" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
       
       <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="table-fn-label-tests-pattern">
+    <rule context="table-wrap-foot//fn/p/*[1]" id="table-fn-label-tests"> 
+      <let name="house-labels" value="('*', '†', '‡', '§', '¶','**', '††', '‡‡', '§§', '¶¶','***', '†††', '‡‡‡', '§§§', '¶¶¶','****', '††††', '‡‡‡‡', '§§§§', '¶¶¶¶')"/>
+      
+      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
     </rule>
   </pattern>
   <pattern id="fn-tests-pattern">
@@ -5888,6 +5897,10 @@
       
       <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
+      
+      <report test="matches(.,'\d')" role="warning" id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
+      
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
@@ -5992,7 +6005,7 @@
       
       <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
-      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife.\d{5}$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       
       <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal title <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
       
@@ -6592,7 +6605,7 @@
     <rule context="xref[not(@ref-type='bibr')]" id="xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
-      <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
+      <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby')"/>
       
       <report test="$parent = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
@@ -6629,6 +6642,26 @@
       <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
+    </rule>
+  </pattern>
+  <pattern id="ref-given-names-pattern">
+    <rule context="ref-list//element-citation/person-group[@person-group-type='author']//given-names" id="ref-given-names">
+      
+      <report test="string-length(.) gt 4" role="warning" id="ref-given-names-test-1">Given names should always be initialised. Ref '<value-of select="ancestor::ref[1]/@id"/>' contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
+    </rule>
+  </pattern>
+  <pattern id="data-ref-given-names-pattern">
+    <rule context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">      
+      
+      <report test="string-length(.) gt 4" role="warning" id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ar-fig-title-tests-pattern">
+    <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">     
+      
+      <report test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
+      
     </rule>
   </pattern>
   

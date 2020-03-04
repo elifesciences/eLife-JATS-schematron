@@ -712,13 +712,15 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="element-citation[@publication-type='journal']" id="journal-tests">
-      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+    <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
+      <let name="lc" value="normalize-space(lower-case(.))"/>
+      <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
