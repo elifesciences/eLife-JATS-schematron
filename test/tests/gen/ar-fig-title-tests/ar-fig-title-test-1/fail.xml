@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="ar-fig-title-test-1.sch"?>
+<!--Context: fig[ancestor::sub-article]/caption/title
+Test: report    lower-case(normalize-space(.))=('title','title.')
+Message: Please query author for a  title, and/or remove placeholder title text  .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="reply">
+      <fig id="sa2fig1"><label>Author response image 1.</label>
+        <caption><title>Title</title></caption><graphic xlink:href="{.}..resources/elife2/ecs/article/172702/resources/elife-53638-sa2-fig1.jpg" mimetype="image" mime-subtype="jpeg"/></fig>
+    </sub-article>
+  </article>
+</root>

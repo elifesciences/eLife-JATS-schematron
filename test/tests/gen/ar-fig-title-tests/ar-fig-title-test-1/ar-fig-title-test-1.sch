@@ -712,13 +712,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="element-citation[@publication-type='journal']" id="journal-tests">
-      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+    <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">
+      <report test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

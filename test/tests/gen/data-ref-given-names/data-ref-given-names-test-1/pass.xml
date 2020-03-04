@@ -1,0 +1,56 @@
+<?oxygen SCHSchema="data-ref-given-names-test-1.sch"?>
+<!--Context: sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names
+Test: report    string-length(.) gt 4
+Message: Given names should always be initialised. Ref contains a given names with a string longer than 4 characters  '' in . Is this a surname captured as given names? Or a fully spelt out given names?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec id="s7" sec-type="data-availability">
+      <p>
+        <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sankaranarayanan</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Ianiri</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Coelho</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Reza</surname>
+              <given-names>MH</given-names>
+            </name>
+            <name>
+              <surname>Thimmappa</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Ganguly</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Vadnala</surname>
+              <given-names>RN</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Siddharthan</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2019">2019</year>
+          <data-title>Genome assembly of Malassezia slooffiae</data-title>
+          <source>NCBI BioSample</source>
+          <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/biosample/10720088">SAMN10720088</pub-id>
+        </element-citation>
+      </p>
+    </sec>
+  </article>
+</root>
