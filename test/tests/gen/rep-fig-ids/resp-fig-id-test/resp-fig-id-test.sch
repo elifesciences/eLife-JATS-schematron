@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -712,13 +712,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="id-conformance">
-    <rule context="sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
-      <assert test="matches(@id,'^respfig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">author response fig must have @id in the format respfig0.</assert>
+    <rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
+      <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">fig in decision letter/author reponse must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" role="error" id="rep-fig-ids-xspec-assert">sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert test="descendant::sub-article//fig[not(@specific-use='child-fig')]" role="error" id="rep-fig-ids-xspec-assert">sub-article//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

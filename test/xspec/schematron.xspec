@@ -4130,6 +4130,18 @@
         <x:expect-not-assert id="aff-label-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="disp-quote-tests">
+      <x:scenario label="disp-quote-test-1-pass">
+        <x:context href="../tests/gen/disp-quote-tests/disp-quote-test-1/pass.xml"/>
+        <x:expect-not-report id="disp-quote-test-1" role="warning"/>
+        <x:expect-not-assert id="disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-quote-test-1-fail">
+        <x:context href="../tests/gen/disp-quote-tests/disp-quote-test-1/fail.xml"/>
+        <x:expect-report id="disp-quote-test-1" role="warning"/>
+        <x:expect-not-assert id="disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="pre-body-video-position-test-1-pass">
         <x:context href="../tests/gen/body-video-specific/pre-body-video-position-test-1/pass.xml"/>
@@ -5371,24 +5383,44 @@
     <x:scenario label="disp-formula-ids">
       <x:scenario label="disp-formula-id-test-pass">
         <x:context href="../tests/gen/disp-formula-ids/disp-formula-id-test/pass.xml"/>
-        <x:expect-not-assert id="disp-formula-id-test" role="error"/>
+        <x:expect-not-report id="disp-formula-id-test" role="error"/>
         <x:expect-not-assert id="disp-formula-ids-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="disp-formula-id-test-fail">
         <x:context href="../tests/gen/disp-formula-ids/disp-formula-id-test/fail.xml"/>
-        <x:expect-assert id="disp-formula-id-test" role="error"/>
+        <x:expect-report id="disp-formula-id-test" role="error"/>
+        <x:expect-not-assert id="disp-formula-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-disp-formula-id-test-pass">
+        <x:context href="../tests/gen/disp-formula-ids/sub-disp-formula-id-test/pass.xml"/>
+        <x:expect-not-report id="sub-disp-formula-id-test" role="error"/>
+        <x:expect-not-assert id="disp-formula-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-disp-formula-id-test-fail">
+        <x:context href="../tests/gen/disp-formula-ids/sub-disp-formula-id-test/fail.xml"/>
+        <x:expect-report id="sub-disp-formula-id-test" role="error"/>
         <x:expect-not-assert id="disp-formula-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="mml-math-ids">
       <x:scenario label="mml-math-id-test-pass">
         <x:context href="../tests/gen/mml-math-ids/mml-math-id-test/pass.xml"/>
-        <x:expect-not-assert id="mml-math-id-test" role="error"/>
+        <x:expect-not-report id="mml-math-id-test" role="error"/>
         <x:expect-not-assert id="mml-math-ids-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="mml-math-id-test-fail">
         <x:context href="../tests/gen/mml-math-ids/mml-math-id-test/fail.xml"/>
-        <x:expect-assert id="mml-math-id-test" role="error"/>
+        <x:expect-report id="mml-math-id-test" role="error"/>
+        <x:expect-not-assert id="mml-math-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-mml-math-id-test-pass">
+        <x:context href="../tests/gen/mml-math-ids/sub-mml-math-id-test/pass.xml"/>
+        <x:expect-not-report id="sub-mml-math-id-test" role="error"/>
+        <x:expect-not-assert id="mml-math-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-mml-math-id-test-fail">
+        <x:context href="../tests/gen/mml-math-ids/sub-mml-math-id-test/fail.xml"/>
+        <x:expect-report id="sub-mml-math-id-test" role="error"/>
         <x:expect-not-assert id="mml-math-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

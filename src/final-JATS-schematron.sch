@@ -160,7 +160,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -2257,7 +2257,13 @@
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
       <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
+    </rule>
+  </pattern>
+  <pattern id="disp-quote-tests-pattern">
+    <rule context="disp-quote" id="disp-quote-tests">
       
+      <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   
@@ -2665,22 +2671,22 @@
   <pattern id="author-contrib-ids-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
       
-      <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string.</report>
+      <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="award-group-ids-pattern">
     <rule context="funding-group/award-group" id="award-group-ids">
       
-      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit.</assert>
+      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="fig-ids-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
       <!-- Needs updating once scheme/checmical structure ids have been updated -->
-      <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes).</assert>
+      <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
       
-      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0.</report>
+      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>
       
       <!--<report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^chem[0-9]{1,3}$'))" 
         role="warning"
@@ -2688,50 +2694,50 @@
       
       <!--<report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^scheme[0-9]{1,3}$'))" 
         role="warning"
-        id="fig-id-test-4">Schemes must have an @id in the format scheme0.</report>-->
+        id="fig-id-test-4">Schemes must have an @id in the format scheme0. <value-of select="@id"/> does not conform to this.</report>-->
     </rule>
   </pattern>
   <pattern id="fig-sup-ids-pattern">
     <rule context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
       
-      <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0.</assert>
+      <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="box-fig-ids-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
-      <assert test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="box-fig-id-1">fig must have @id in the format box0fig0.</assert>
+      <assert test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
+      <assert test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-ids-pattern">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       
-      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0.</report>
+      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0.</report>
+      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0.</report>
+      <report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-ids-pattern">
     <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
       
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0.</assert>
+      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="rep-fig-ids-pattern">
-    <rule context="sub-article[@article-type='reply']//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
+    <rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       
-      <assert test="matches(@id,'^respfig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">author response fig must have @id in the format respfig0.</assert>
+      <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">fig in decision letter/author reponse must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="rep-fig-sup-ids-pattern">
-    <rule context="sub-article[@article-type='reply']//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
+    <rule context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
       
-      <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="resp-fig-sup-id-test">author response figure supplement must have @id in the format respfig0s0.</assert>
+      <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="resp-fig-sup-id-test">figure supplement in decision letter/author reponse must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
       
     </rule>
   </pattern>
@@ -2803,28 +2809,32 @@
   <pattern id="disp-formula-ids-pattern">
     <rule context="disp-formula" id="disp-formula-ids">
       
-      <assert test="matches(@id,'^equ[0-9]{1,9}$')" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</assert>
+      <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
+      
+      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" id="sub-disp-formula-id-test">disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="mml-math-ids-pattern">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
-      <assert test="matches(@id,'^m[0-9]{1,9}$')" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.</assert>
+      <report test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
+      
+      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" id="sub-mml-math-id-test">mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="app-table-wrap-ids-pattern">
     <rule context="app/table-wrap" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'.</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this.</assert>
       
       <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="resp-table-wrap-ids-pattern">
-    <rule context="sub-article[@article-type='reply']//table-wrap" id="resp-table-wrap-ids">
+    <rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
  
-      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.</assert>
+      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not.</assert>
     </rule>
   </pattern>
   <pattern id="table-wrap-ids-pattern">
@@ -2978,7 +2988,7 @@
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-tests">
       <let name="author-count" value="count(ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author'])"/>
       
-      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">fn-group does not contain one fn for each author. Currently there are <value-of select="$author-count"/> authors but <value-of select="count(fn)"/> footnotes. Is this correct?</assert>
+      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">There are <value-of select="count(fn)"/> contribution footnotes, but <value-of select="$author-count"/> authors. Each author should have their own contribution footnote.</assert>
     </rule>
   </pattern>
   <pattern id="auth-cont-fn-tests-pattern">
@@ -4897,7 +4907,7 @@
       <report test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">
         <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
       
-      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')])" role="warning" id="cell-spacing-test">
+      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')]) and not(child::code) and not(child::monospace)" role="warning" id="cell-spacing-test">
         <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
       </report>
       

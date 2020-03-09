@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-table-wrap-id-test-1.sch"?>
 <!--Context: app/table-wrap
 Test: assert    matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')
-Message: tablewrap @id in appendix must be in the format 'app0table0'.-->
+Message: tablewrap @id in appendix must be in the format 'app0table0'.  does not conform to this.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-fig-id-test-1.sch"?>
 <!--Context: article/back//app//fig[not(@specific-use='child-fig')]
 Test: report    matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))
-Message: figures in appendices must have an @id in the format app0fig0.-->
+Message: figures in appendices must have an @id in the format app0fig0.  does not conform to this.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>
