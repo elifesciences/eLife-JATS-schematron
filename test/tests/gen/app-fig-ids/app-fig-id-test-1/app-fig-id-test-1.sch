@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -713,7 +713,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
-      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0.</report>
+      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

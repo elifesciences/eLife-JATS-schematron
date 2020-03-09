@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -713,7 +713,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="funding-group/award-group" id="award-group-ids">
-      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit.</assert>
+      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

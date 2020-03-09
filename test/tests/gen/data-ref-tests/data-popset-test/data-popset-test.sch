@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>

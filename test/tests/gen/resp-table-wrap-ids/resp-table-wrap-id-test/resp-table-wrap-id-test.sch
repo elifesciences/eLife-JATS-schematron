@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -712,13 +712,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="id-conformance">
-    <rule context="sub-article[@article-type='reply']//table-wrap" id="resp-table-wrap-ids">
-      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' if it has a label or in the format 'respinlinetable0' if it does not.</assert>
+    <rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
+      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']//table-wrap" role="error" id="resp-table-wrap-ids-xspec-assert">sub-article[@article-type='reply']//table-wrap must be present.</assert>
+      <assert test="descendant::sub-article//table-wrap" role="error" id="resp-table-wrap-ids-xspec-assert">sub-article//table-wrap must be present.</assert>
     </rule>
   </pattern>
 </schema>

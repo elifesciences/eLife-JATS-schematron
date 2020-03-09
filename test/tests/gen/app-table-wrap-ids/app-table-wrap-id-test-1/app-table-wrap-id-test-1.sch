@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -714,7 +714,7 @@
   <pattern id="id-conformance">
     <rule context="app/table-wrap" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'.</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

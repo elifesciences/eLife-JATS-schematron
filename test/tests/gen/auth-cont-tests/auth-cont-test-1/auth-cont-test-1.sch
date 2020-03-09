@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -714,7 +714,7 @@
   <pattern id="back">
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-tests">
       <let name="author-count" value="count(ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author'])"/>
-      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">fn-group does not contain one fn for each author. Currently there are <value-of select="$author-count"/> authors but <value-of select="count(fn)"/> footnotes. Is this correct?</assert>
+      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">There are <value-of select="count(fn)"/> contribution footnotes, but <value-of select="$author-count"/> authors. Each author should have their own contribution footnote.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

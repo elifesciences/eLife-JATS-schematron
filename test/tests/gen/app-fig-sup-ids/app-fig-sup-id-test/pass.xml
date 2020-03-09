@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-fig-sup-id-test.sch"?>
 <!--Context: article/back//app//fig[@specific-use='child-fig']
 Test: assert    matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')
-Message: figure supplements in appendices must have an @id in the format app0fig0s0.-->
+Message: figure supplements in appendices must have an @id in the format app0fig0s0.  does not conform to this.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

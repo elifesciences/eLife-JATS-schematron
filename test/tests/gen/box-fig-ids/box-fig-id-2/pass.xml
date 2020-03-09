@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="box-fig-id-2.sch"?>
 <!--Context: article/body//boxed-text//fig[not(@specific-use='child-fig')]
 Test: assert    contains(@id,$box-id)
-Message: fig id does not contain its ancestor boxedtext id. Please ensure the first part of the id contains ''.-->
+Message: fig id () does not contain its ancestor boxedtext id. Please ensure the first part of the id contains ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

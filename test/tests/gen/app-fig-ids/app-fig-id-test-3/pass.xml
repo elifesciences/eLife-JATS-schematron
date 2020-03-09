@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-fig-id-test-3.sch"?>
 <!--Context: article/back//app//fig[not(@specific-use='child-fig')]
 Test: report    matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))
-Message: Schemes must have an @id in the format app0scheme0.-->
+Message: Schemes must have an @id in the format app0scheme0.  does not conform to this.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

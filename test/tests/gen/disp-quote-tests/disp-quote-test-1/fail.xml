@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="disp-quote-test-1.sch"?>
+<!--Context: disp-quote
+Test: report    ancestor::sub-article[@article-type='decision-letter']
+Message: Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="decision-letter">
+      <body>
+        <disp-quote>Test</disp-quote>
+      </body>
+    </sub-article>
+  </article>
+</root>
