@@ -262,6 +262,18 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:get-collab">
+    <xsl:param name="collab"/>
+    <xsl:for-each select="$collab/(*|text())">
+      <xsl:choose>
+        <xsl:when test="./name()='contrib-group'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:function>
+  
   <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1006,6 +1018,20 @@
       <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">
         <value-of select="$name"/> has a @contrib-type='editor_editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
       
+    </rule>
+  </pattern>
+  <pattern id="auth-cont-tests-pattern">
+    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
+      
+      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="auth-cont-test-1">
+        <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+    </rule>
+  </pattern>
+  <pattern id="collab-cont-tests-pattern">
+    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
+      
+      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="collab-cont-test-1">
+        <value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="name-tests-pattern">
@@ -2916,6 +2942,8 @@
       
       <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
       
+      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='author-contribution']) != 1)" role="error" id="back-test-12">One and only one fn-group[@content-type='author-contribution'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
+      
       <report test="($article-type = ('article-commentary', 'editorial', 'book-review', 'discussion')) and sec[@sec-type='additional-information']" role="error" id="back-test-11">
         <value-of select="$article-type"/> type articles cannot contain additional information sections (sec[@sec-type="additional-information"]).</report>
       
@@ -2980,13 +3008,6 @@
       
       <assert test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
       
-    </rule>
-  </pattern>
-  <pattern id="auth-cont-tests-pattern">
-    <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-tests">
-      <let name="author-count" value="count(ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author'])"/>
-      
-      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">There are <value-of select="count(fn)"/> contribution footnotes, but <value-of select="$author-count"/> authors. Each author should have their own contribution footnote.</assert>
     </rule>
   </pattern>
   <pattern id="auth-cont-fn-tests-pattern">
@@ -5981,6 +6002,8 @@
       </report>
       
       <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
+      
+      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal title '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
@@ -6061,6 +6084,8 @@
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
+      
+      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a journal title '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
@@ -6608,7 +6633,11 @@
       
       <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">

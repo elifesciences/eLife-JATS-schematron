@@ -1,0 +1,46 @@
+<?oxygen SCHSchema="collab-cont-test-1.sch"?>
+<!--Context: article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]
+Test: assert    child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]
+Message:  has no contributions. Please ensure to query this with the authors.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes">
+            <email>tim@cos.io</email>
+            <email>nicole@scienceexchange.com</email>
+            <collab>Reproducibility Project: <italic>Cancer</italic> Biology<contrib-group><contrib
+              contrib-type="author"><name><surname>Iorns</surname><given-names>Elizabeth</given-names></name><aff><institution>Science
+                Exchange</institution><addr-line><named-content content-type="city">Palo
+                  Alto</named-content></addr-line><country>United
+                    States</country></aff></contrib><contrib contrib-type="author"
+                      ><name><surname>Tsui</surname><given-names>Rachel</given-names></name><aff><institution>Science
+                        Exchange</institution><addr-line><named-content content-type="city">Palo
+                          Alto</named-content></addr-line><country>United
+                            States</country></aff></contrib><contrib contrib-type="author"
+                              ><name><surname>Denis</surname><given-names>Alexandria</given-names></name><contrib-id
+                                authenticated="true" contrib-id-type="orcid"
+                                >http://orcid.org/0000-0002-1210-2309</contrib-id><aff><institution>Center for
+                                  Open Science</institution><addr-line><named-content content-type="city"
+                                    >Charlottesville</named-content></addr-line><country>United
+                                      States</country></aff></contrib><contrib contrib-type="author"
+                                        ><name><surname>Perfito</surname><given-names>Nicole</given-names></name><aff><institution>Science
+                                          Exchange</institution><addr-line><named-content content-type="city">Palo
+                                            Alto</named-content></addr-line><country>United
+                                              States</country></aff></contrib><contrib contrib-type="author"
+                                                ><name><surname>Errington</surname><given-names>Timothy
+                                                  M</given-names></name><contrib-id authenticated="true" contrib-id-type="orcid"
+                                                    >http://orcid.org/0000-0002-4959-5143</contrib-id><aff><institution>Center for
+                                                      Open Science</institution><addr-line><named-content content-type="city"
+                                                        >Charlottesville</named-content></addr-line><country>United
+                                                          States</country></aff></contrib></contrib-group></collab>
+            <xref ref-type="other" rid="fund1"/>
+            <xref ref-type="fn" rid="conf7"/>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

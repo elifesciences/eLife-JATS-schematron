@@ -242,6 +242,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:get-collab">
+    <xsl:param name="collab"/>
+    <xsl:for-each select="$collab/(*|text())">
+      <xsl:choose>
+        <xsl:when test="./name()='contrib-group'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:function>
   <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -711,15 +722,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="back">
-    <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-tests">
-      <let name="author-count" value="count(ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author'])"/>
-      <assert test="$author-count = count(fn)" role="warning" id="auth-cont-test-1">There are <value-of select="count(fn)"/> contribution footnotes, but <value-of select="$author-count"/> authors. Each author should have their own contribution footnote.</assert>
+  <pattern id="article-metadata">
+    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
+      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="auth-cont-test-1">
+        <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='author-contribution']" role="error" id="auth-cont-tests-xspec-assert">fn-group[@content-type='author-contribution'] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" role="error" id="auth-cont-tests-xspec-assert">article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
