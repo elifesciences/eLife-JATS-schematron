@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="preprint-handbook-presence.sch"?>
+<!--Context: element-citation[@publication-type='preprint']/source
+Test: report    contains(.,'handbook')
+Message: Preprint ref '' has a journal title ''. Should it be captured as a book type reference instead?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <back>
+      <ref-list>
+        ...
+        <ref>
+          <element-citation publication-type="preprint">
+            ...
+            <source>handbook of arXiv</source>
+            ...
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
+</root>

@@ -242,6 +242,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:get-collab">
+    <xsl:param name="collab"/>
+    <xsl:for-each select="$collab/(*|text())">
+      <xsl:choose>
+        <xsl:when test="./name()='contrib-group'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:function>
   <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -714,7 +725,7 @@
   <pattern id="house-style">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

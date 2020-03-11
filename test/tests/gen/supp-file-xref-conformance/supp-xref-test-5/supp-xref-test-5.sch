@@ -242,6 +242,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:get-collab">
+    <xsl:param name="collab"/>
+    <xsl:for-each select="$collab/(*|text())">
+      <xsl:choose>
+        <xsl:when test="./name()='contrib-group'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:function>
   <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="reproduce-test-5.sch"?>
 <!--Context: fig|media[@mimetype='video']
 Test: report    not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')
-Message: The caption for  contains the text 'reprinted with permission', but has no permissions. Is this correct?-->
+Message: The caption for  contains the text 'reprinted from', but has no permissions. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

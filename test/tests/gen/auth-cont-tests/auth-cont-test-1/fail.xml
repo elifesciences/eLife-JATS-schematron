@@ -1,20 +1,30 @@
 <?oxygen SCHSchema="auth-cont-test-1.sch"?>
-<!--Context: fn-group[@content-type='author-contribution']
-Test: assert    $author-count = count(fn)
-Message: There are  contribution footnotes, but  authors. Each author should have their own contribution footnote.-->
+<!--Context: article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]
+Test: assert    child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]
+Message:  has no contributions. Please ensure to query this with the authors.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article article-type="research-article">
     <front>
       <article-meta>
         <contrib-group>
-          <contrib contrib-type="author"/>
-          <contrib contrib-type="author"/>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Zoolander</surname><given-names>Derek</given-names>
+            </name>
+            ...
+            <xref ref-type="fn" rid="con1"/>
+          </contrib>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Hansel</surname>
+            </name>
+          </contrib>
         </contrib-group>
       </article-meta>
     </front>
     <back>
       <fn-group content-type="author-contribution">
-        <fn fn-type="con"/>
+        <fn fn-type="con" rid="con1"/>
       </fn-group>
     </back>
   </article>

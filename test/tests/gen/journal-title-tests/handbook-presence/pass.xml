@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="handbook-presence.sch"?>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: report    contains($uc,'HANDBOOK')
+Message: Journal ref '' has a journal title ''. Should it be captured as a book type reference instead?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib1">
+      <element-citation publication-type="journal">
+        <person-group person-group-type="author">
+          <name>
+            <surname>Beaudet</surname>
+            <given-names>A</given-names>
+          </name>
+        </person-group>
+        <year iso-8601-date="2019">2019</year>
+        <article-title>...</article-title>
+        <source>Journal of Human Evolution</source>
+        <volume>127</volume>
+        <fpage>67</fpage>
+        <lpage>80</lpage>
+        <pub-id pub-id-type="doi">10.1016/j.jhevol.2018.12.002</pub-id>
+        <pub-id pub-id-type="pmid">30777359</pub-id>
+      </element-citation>
+    </ref>
+  </article>
+</root>
