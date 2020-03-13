@@ -722,18 +722,16 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="missing-ref-cited-pattern">
-    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
-      <let name="text" value="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
-      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
-      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">
-        <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(           tokenize(substring-before($text,' et al'),' ')[last()],           ' et al ',           tokenize(substring-after($text,' et al'),' ')[2]           )"/>
-      </report>
+  <pattern id="house-style">
+    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="lc" value="lower-case($pre-text)"/>
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)] or descendant::td[ancestor::app or ancestor::body[parent::article]] or descendant::th[ancestor::app or ancestor::body[parent::article]]" role="error" id="missing-ref-cited-xspec-assert">p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]] must be present.</assert>
+      <assert test="descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
