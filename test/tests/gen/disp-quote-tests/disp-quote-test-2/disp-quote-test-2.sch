@@ -722,18 +722,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="missing-ref-cited-pattern">
-    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
-      <let name="text" value="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
-      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
-      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">
-        <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(           tokenize(substring-before($text,' et al'),' ')[last()],           ' et al ',           tokenize(substring-after($text,' et al'),' ')[2]           )"/>
-      </report>
+  <pattern id="content-containers">
+    <rule context="disp-quote" id="disp-quote-tests">
+      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)] or descendant::td[ancestor::app or ancestor::body[parent::article]] or descendant::th[ancestor::app or ancestor::body[parent::article]]" role="error" id="missing-ref-cited-xspec-assert">p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]] must be present.</assert>
+      <assert test="descendant::disp-quote" role="error" id="disp-quote-tests-xspec-assert">disp-quote must be present.</assert>
     </rule>
   </pattern>
 </schema>

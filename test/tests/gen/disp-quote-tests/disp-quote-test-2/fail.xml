@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="disp-quote-test-2.sch"?>
+<!--Context: disp-quote
+Test: report    not(ancestor::sub-article) and ($subj=$research-subj)
+Message: Display quote in a  is not allowed. Please capture as paragraph instead  ''-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Neuroscience</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+    <disp-quote/>
+    <sub-article>
+      <disp-quote/>
+    </sub-article>
+  </article>
+</root>

@@ -3075,10 +3075,15 @@
     
     <rule context="disp-quote"
       id="disp-quote-tests">
+      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="ancestor::sub-article[@article-type='decision-letter']"
         role="warning"
         id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/></report>
+      
+      <report test="not(ancestor::sub-article) and ($subj=$research-subj)"
+        role="error"
+        id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
     
   </pattern>
@@ -6686,7 +6691,7 @@
   
   <pattern id="missing-ref-cited-pattern">
     
-    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]"
+    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]"
       id="missing-ref-cited">
       <let name="text" value="string-join(for $x in self::*/(*|text())
         return if ($x/local-name()='xref') then ()
@@ -7953,7 +7958,7 @@
         role="warning"
         id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada ')"
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')"
         role="warning"
         id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
@@ -7968,6 +7973,10 @@
       <report test="matches(.,'�')"
         role="error"
         id="institution-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed.</report>
+      
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')"
+        role="warning"
+        id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
     </rule>
     
@@ -9036,6 +9045,34 @@
         role="warning" 
         id="pmc-presence"><value-of select="parent::*/local-name()"/> element contains what looks like a link to a PMC article - <value-of select="."/> - should this be added a reference instead?</report>
       
+    </rule>
+    
+    <rule context="table-wrap//ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') and not(ancestor::sub-article)]" 
+      id="pubmed-link-2">
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="lc" value="lower-case($pre-text)"/>
+      
+      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')"
+        role="error" 
+        id="pre-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')"
+        role="warning" 
+        id="final-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+    </rule>
+    
+    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" 
+      id="rrid-link">
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="lc" value="lower-case($pre-text)"/>
+      
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')"
+        role="error" 
+        id="pre-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')"
+        role="warning" 
+        id="final-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
     
     <rule context="ref-list/ref" 

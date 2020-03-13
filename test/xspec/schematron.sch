@@ -2293,9 +2293,12 @@
   </pattern>
   <pattern id="disp-quote-tests-pattern">
     <rule context="disp-quote" id="disp-quote-tests">
+      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
       </report>
+      
+      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   
@@ -5936,7 +5939,7 @@
       
       <report test="matches(.,'\d')" role="warning" id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
@@ -5947,6 +5950,8 @@
       
       <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
+      
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -6634,6 +6639,26 @@
       
     </rule>
   </pattern>
+  <pattern id="pubmed-link-2-pattern">
+    <rule context="table-wrap//ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') and not(ancestor::sub-article)]" id="pubmed-link-2">
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="lc" value="lower-case($pre-text)"/>
+      
+      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="error" id="pre-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="warning" id="final-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+    </rule>
+  </pattern>
+  <pattern id="rrid-link-pattern">
+    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="lc" value="lower-case($pre-text)"/>
+      
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="error" id="pre-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+    </rule>
+  </pattern>
   <pattern id="ref-link-mandate-pattern">
     <rule context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
@@ -7121,6 +7146,8 @@
       <assert test="descendant::article/body//p[not(parent::list-item)]" role="error" id="p-punctuation-xspec-assert">article/body//p[not(parent::list-item)] must be present.</assert>
       <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
       <assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::table-wrap//ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') and not(ancestor::sub-article)]" role="error" id="pubmed-link-2-xspec-assert">table-wrap//ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') and not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ref-list/ref" role="error" id="ref-link-mandate-xspec-assert">ref-list/ref must be present.</assert>
       <assert test="descendant::fig or descendant::media[@mimetype='video']" role="error" id="fig-permissions-check-xspec-assert">fig|media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>

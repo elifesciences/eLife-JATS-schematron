@@ -4165,6 +4165,16 @@
         <x:expect-report id="disp-quote-test-1" role="warning"/>
         <x:expect-not-assert id="disp-quote-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="disp-quote-test-2-pass">
+        <x:context href="../tests/gen/disp-quote-tests/disp-quote-test-2/pass.xml"/>
+        <x:expect-not-report id="disp-quote-test-2" role="error"/>
+        <x:expect-not-assert id="disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-quote-test-2-fail">
+        <x:context href="../tests/gen/disp-quote-tests/disp-quote-test-2/fail.xml"/>
+        <x:expect-report id="disp-quote-test-2" role="error"/>
+        <x:expect-not-assert id="disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="pre-body-video-position-test-1-pass">
@@ -12351,6 +12361,16 @@
         <x:expect-report id="institution-replacement-character-presence" role="error"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="institution-street-presence-pass">
+        <x:context href="../tests/gen/institution-tests/institution-street-presence/pass.xml"/>
+        <x:expect-not-report id="institution-street-presence" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-street-presence-fail">
+        <x:context href="../tests/gen/institution-tests/institution-street-presence/fail.xml"/>
+        <x:expect-report id="institution-street-presence" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="department-tests">
       <x:scenario label="plural-test-1-pass">
@@ -14676,6 +14696,50 @@
         <x:context href="../tests/gen/pubmed-link/pmc-presence/fail.xml"/>
         <x:expect-report id="pmc-presence" role="warning"/>
         <x:expect-not-assert id="pubmed-link-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="pubmed-link-2">
+      <x:scenario label="pre-pmid-spacing-table-pass">
+        <x:context href="../tests/gen/pubmed-link-2/pre-pmid-spacing-table/pass.xml"/>
+        <x:expect-not-report id="pre-pmid-spacing-table" role="error"/>
+        <x:expect-not-assert id="pubmed-link-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-pmid-spacing-table-fail">
+        <x:context href="../tests/gen/pubmed-link-2/pre-pmid-spacing-table/fail.xml"/>
+        <x:expect-report id="pre-pmid-spacing-table" role="error"/>
+        <x:expect-not-assert id="pubmed-link-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pmid-spacing-table-pass">
+        <x:context href="../tests/gen/pubmed-link-2/final-pmid-spacing-table/pass.xml"/>
+        <x:expect-not-report id="final-pmid-spacing-table" role="warning"/>
+        <x:expect-not-assert id="pubmed-link-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pmid-spacing-table-fail">
+        <x:context href="../tests/gen/pubmed-link-2/final-pmid-spacing-table/fail.xml"/>
+        <x:expect-report id="final-pmid-spacing-table" role="warning"/>
+        <x:expect-not-assert id="pubmed-link-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="rrid-link">
+      <x:scenario label="pre-rrid-spacing-pass">
+        <x:context href="../tests/gen/rrid-link/pre-rrid-spacing/pass.xml"/>
+        <x:expect-not-report id="pre-rrid-spacing" role="error"/>
+        <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-rrid-spacing-fail">
+        <x:context href="../tests/gen/rrid-link/pre-rrid-spacing/fail.xml"/>
+        <x:expect-report id="pre-rrid-spacing" role="error"/>
+        <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-rrid-spacing-pass">
+        <x:context href="../tests/gen/rrid-link/final-rrid-spacing/pass.xml"/>
+        <x:expect-not-report id="final-rrid-spacing" role="warning"/>
+        <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-rrid-spacing-fail">
+        <x:context href="../tests/gen/rrid-link/final-rrid-spacing/fail.xml"/>
+        <x:expect-report id="final-rrid-spacing" role="warning"/>
+        <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="ref-link-mandate">
