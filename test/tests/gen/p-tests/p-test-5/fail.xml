@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="p-test-5.sch"?>
 <!--Context: p
-Test: report    (ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')
+Test: report    ((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')
 Message: p element starts with bolded text    Should it be a header?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article article-type="research-article">
     <body>
       <sec>
         <p><bold>Experiment 1</bold> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
