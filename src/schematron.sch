@@ -1815,7 +1815,7 @@
 		
 	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')"
 	  	role="warning" 
-	  	id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'The author[s] declare[s] that there was no funding for this work.'</report>
+	  	id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
     </rule>
 	
 	<rule context="funding-group/award-group" 
@@ -1985,11 +1985,11 @@
       
       <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')"
         role="warning"
-        id="pre-custom-meta-test-9">Impact statement contains a possesive phrase. This is not allowed</report>
+        id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed</report>
       
       <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')"
         role="error"
-        id="final-custom-meta-test-9">Impact statement contains a possesive phrase. This is not allowed</report>
+        id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed</report>
       
       <report test="matches(.,'^[\d]+$')"
         role="error"
@@ -1997,7 +1997,7 @@
       
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')"
         role="warning"
-        id="custom-meta-test-11">Impact statement contains 'our'. Is this possesive langauge relating to the article or research itself (which should be removed)?</report>
+        id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)?</report>
       
       <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))"
         role="warning"
@@ -2121,7 +2121,7 @@
         role="error" 
         id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
-      <report test="(ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')"
+      <report test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')"
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
@@ -6085,6 +6085,14 @@
       <report test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" 
         role="error" 
         id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
+      
+      <report test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" 
+        role="error" 
+        id="das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
+      
+      <report test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" 
+        role="warning" 
+        id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
       
     </rule>
     

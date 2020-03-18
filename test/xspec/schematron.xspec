@@ -8475,6 +8475,26 @@
         <x:expect-report id="das-elem-cit-2" role="error"/>
         <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="das-elem-cit-3-pass">
+        <x:context href="../tests/gen/gen-das-tests/das-elem-cit-3/pass.xml"/>
+        <x:expect-not-report id="das-elem-cit-3" role="error"/>
+        <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-elem-cit-3-fail">
+        <x:context href="../tests/gen/gen-das-tests/das-elem-cit-3/fail.xml"/>
+        <x:expect-report id="das-elem-cit-3" role="error"/>
+        <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-elem-cit-4-pass">
+        <x:context href="../tests/gen/gen-das-tests/das-elem-cit-4/pass.xml"/>
+        <x:expect-not-report id="das-elem-cit-4" role="warning"/>
+        <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-elem-cit-4-fail">
+        <x:context href="../tests/gen/gen-das-tests/das-elem-cit-4/fail.xml"/>
+        <x:expect-report id="das-elem-cit-4" role="warning"/>
+        <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="das-elem-citation-data-pub-id">
       <x:scenario label="das-pub-id-1-pass">
