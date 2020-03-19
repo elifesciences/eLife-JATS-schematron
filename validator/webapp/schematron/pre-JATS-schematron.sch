@@ -712,6 +712,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
+          <xsl:when test="contains(./@rid,'app')"/>
           <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
@@ -1559,7 +1560,7 @@
       
       
       
-      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
       
       <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)?</report>
       

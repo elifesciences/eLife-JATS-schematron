@@ -683,6 +683,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
+          <xsl:when test="contains(./@rid,'app')"/>
           <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
@@ -726,7 +727,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of letters, which must be incorrect.</report>
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

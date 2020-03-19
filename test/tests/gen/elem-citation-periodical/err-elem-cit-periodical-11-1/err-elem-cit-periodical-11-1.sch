@@ -683,6 +683,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
+          <xsl:when test="contains(./@rid,'app')"/>
           <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
