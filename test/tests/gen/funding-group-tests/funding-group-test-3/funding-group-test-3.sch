@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
+      <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -4250,6 +4250,18 @@
         <x:expect-not-assert id="app-video-specific-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-video-specific">
+      <x:scenario label="fig-video-position-test-2-pass">
+        <x:context href="../tests/gen/fig-video-specific/fig-video-position-test-2/pass.xml"/>
+        <x:expect-not-report id="fig-video-position-test-2" role="error"/>
+        <x:expect-not-assert id="fig-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-video-position-test-2-fail">
+        <x:context href="../tests/gen/fig-video-specific/fig-video-position-test-2/fail.xml"/>
+        <x:expect-report id="fig-video-position-test-2" role="error"/>
+        <x:expect-not-assert id="fig-video-specific-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ar-video-specific">
       <x:scenario label="pre-ar-video-position-test-pass">
         <x:context href="../tests/gen/ar-video-specific/pre-ar-video-position-test/pass.xml"/>
@@ -6270,6 +6282,18 @@
         <x:context href="../tests/gen/related-articles-conformance/related-articles-test-10/fail.xml"/>
         <x:expect-report id="related-articles-test-10" role="error"/>
         <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="video-parent-conformance">
+      <x:scenario label="video-parent-test-pass">
+        <x:context href="../tests/gen/video-parent-conformance/video-parent-test/pass.xml"/>
+        <x:expect-not-assert id="video-parent-test" role="error"/>
+        <x:expect-not-assert id="video-parent-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-parent-test-fail">
+        <x:context href="../tests/gen/video-parent-conformance/video-parent-test/fail.xml"/>
+        <x:expect-assert id="video-parent-test" role="error"/>
+        <x:expect-not-assert id="video-parent-conformance-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-general">
@@ -12244,6 +12268,18 @@
         <x:context href="../tests/gen/unallowed-symbol-tests-sup/ring-diacritic-symbol-sup/fail.xml"/>
         <x:expect-report id="ring-diacritic-symbol-sup" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-sup-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="underline-tests">
+      <x:scenario label="underline-test-1-pass">
+        <x:context href="../tests/gen/underline-tests/underline-test-1/pass.xml"/>
+        <x:expect-not-report id="underline-test-1" role="warning"/>
+        <x:expect-not-assert id="underline-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-test-1-fail">
+        <x:context href="../tests/gen/underline-tests/underline-test-1/fail.xml"/>
+        <x:expect-report id="underline-test-1" role="warning"/>
+        <x:expect-not-assert id="underline-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="country-tests">

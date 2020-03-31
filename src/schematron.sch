@@ -1351,7 +1351,7 @@
     	  else if ($type != 'author') then ()
     	  else count(xref[@ref-type='aff']) = 0"
       	role="error" 
-      	id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
+      	id="contrib-test-1">author contrib should contain at least 1 link to an affiliation (xref[@ref-type='aff']).</report>
 	  
 	  <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)"
 	     role="warning" 
@@ -1364,7 +1364,7 @@
 	     <report test="if (collab) then ()
 	       else count(name) != 1"
 	       role="error" 
-	       id="name-test">Contrib contains no collab but has more than one name. This is not correct.</report>
+	       id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]"
 	       role="error" 
@@ -1816,7 +1816,7 @@
 		
 	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')"
 	  	role="warning" 
-	  	id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
+	  	id="funding-group-test-3">Is this funding-statement correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
     </rule>
 	
 	<rule context="funding-group/award-group" 
@@ -1970,7 +1970,7 @@
       
       <report test="($count gt 30)"
         role="warning"
-        id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
+        id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       
       <assert test="matches(.,'[\.|\?]$')"
         role="error"
@@ -2439,7 +2439,7 @@
                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))
                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))
-                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))
+                    else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))
                     else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="warning"
         id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
@@ -3135,6 +3135,15 @@
       <assert test="$no = string($pos)" 
         role="error"
         id="final-app-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+    </rule>
+    
+    <rule context="fig-group/media[@mimetype='video']" 
+      id="fig-video-specific">
+      
+      <report test="following-sibling::fig" 
+        role="error"
+        id="fig-video-position-test-2"><value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
+      
     </rule>
     
     <rule context="sub-article/body//media[@mimetype='video']" 
@@ -4428,6 +4437,21 @@
       
     </rule>
     
+  </pattern>
+  
+  <pattern
+  id="parent-tests">
+    
+    <rule context="media[@mimetype='video']" 
+      id="video-parent-conformance">
+      <let name="parent" value="name(..)"/>
+      
+      <assert test="$parent = ('sec','fig-group','body','boxed-text','app')"
+        role="error"
+        id="video-parent-test"><value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>> element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
+      
+    </rule>
+  
   </pattern>
   
   <pattern id="element-citation-general-tests">
@@ -7908,6 +7932,15 @@
       <report test="contains(.,'˚')"
         role="warning"
         id="ring-diacritic-symbol-sup">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+    </rule>
+    
+    <rule context="underline"
+      id="underline-tests">
+      
+      <report test="matches(.,'^\p{P}*$')"
+        role="warning"
+        id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      
     </rule>
     
     <rule context="front//aff/country"
