@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="video-parent-test.sch"?>
+<!--Context: media[@mimetype='video']
+Test: assert    $parent = ('sec','fig-group','body','boxed-text','app')
+Message:  is a child of a <> element. It can only be a child of sec, figgroup, body, boxedtext, or app.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <supplementary-material>
+      <media mimetype="video"/>
+    </supplementary-material>
+    <p>
+      <media mimetype="video"/>
+    </p>
+    <italic>
+      <media mimetype="video"/>
+    </italic>
+    <fig>
+      <media mimetype="video"/>
+    </fig>
+  </article>
+</root>

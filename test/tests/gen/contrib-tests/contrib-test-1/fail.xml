@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="contrib-test-1.sch"?>
 <!--Context: article-meta//contrib
 Test: report    if ($subj-type = ('Retraction','Correction')) then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0
-Message: author contrib should contain at least 1 xref[@reftype='aff'].-->
+Message: author contrib should contain at least 1 link to an affiliation (xref[@reftype='aff']).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

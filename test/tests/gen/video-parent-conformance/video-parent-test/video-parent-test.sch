@@ -723,33 +723,16 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-meta//contrib" id="contrib-tests">
-      <let name="type" value="@contrib-type"/>
-      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
-      <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
-      <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
-      <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
-      <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
-      <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)][1]"/>
-      <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
-      <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
-      <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p[1]"/>
-      <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
-      <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
-      <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
-      <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+  <pattern id="parent-tests">
+    <rule context="media[@mimetype='video']" id="video-parent-conformance">
+      <let name="parent" value="name(..)"/>
+      <assert test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
+        <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert test="descendant::media[@mimetype='video']" role="error" id="video-parent-conformance-xspec-assert">media[@mimetype='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

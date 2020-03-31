@@ -1134,13 +1134,13 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
+    	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 link to an affiliation (xref[@ref-type='aff']).</report>
 	  
 	  <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
 	  
-	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has more than one name. This is not correct.</report>
+	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">Corresponding authors must have an email.</report>
 	  
@@ -1448,7 +1448,7 @@
 		
 		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">funding-group contains no award-groups. Is this correct? Please check with eLife staff.</report>
 		
-	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is funding-statement this correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -1550,7 +1550,7 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
-      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed - please alert eLife staff.</report>
+      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
       
       <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       
@@ -1842,7 +1842,7 @@
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
         <value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
@@ -2332,6 +2332,14 @@
       
       <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="fig-video-specific-pattern">
+    <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
+      
+      <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">
+        <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
+      
     </rule>
   </pattern>
   <pattern id="ar-video-specific-pattern">
@@ -3192,6 +3200,16 @@
       <assert test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')" role="error" id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
       
       <report test="@xlink:href = preceding::related-article/@xlink:href" role="error" id="related-articles-test-10">related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
+      
+    </rule>
+  </pattern>
+  
+  <pattern id="video-parent-conformance-pattern">
+    <rule context="media[@mimetype='video']" id="video-parent-conformance">
+      <let name="parent" value="name(..)"/>
+      
+      <assert test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
+        <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
       
     </rule>
   </pattern>
@@ -5896,6 +5914,13 @@
       <report test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">'<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
       <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+    </rule>
+  </pattern>
+  <pattern id="underline-tests-pattern">
+    <rule context="underline" id="underline-tests">
+      
+      <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">

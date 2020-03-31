@@ -744,7 +744,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 xref[@ref-type='aff'].</report>
+      <report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 link to an affiliation (xref[@ref-type='aff']).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

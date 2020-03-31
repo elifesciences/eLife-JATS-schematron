@@ -723,33 +723,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-meta//contrib" id="contrib-tests">
-      <let name="type" value="@contrib-type"/>
-      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
-      <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
-      <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
-      <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
-      <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
-      <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)][1]"/>
-      <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
-      <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
-      <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p[1]"/>
-      <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
-      <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
-      <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
-      <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+  <pattern id="video-tests">
+    <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
+      <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">
+        <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
