@@ -724,13 +724,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="sec-specific">
-    <rule context="article[@article-type='research-article']//sec[not(@sec-type)]" id="res-data-sec">
+    <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
       <report test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type)]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type)] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub or descendant::[Gg]itlab or descendant::[Cc]ode[Pp]lex or descendant::[Ss]ource[Ff]orge or descendant::[Bb]it[Bb]ucket'))]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))] must be present.</assert>
     </rule>
   </pattern>
 </schema>
