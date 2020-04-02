@@ -422,6 +422,18 @@
         <x:expect-not-assert id="test-research-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="editorial-metadata">
+      <x:scenario label="editorial-editors-presence-pass">
+        <x:context href="../tests/gen/editorial-metadata/editorial-editors-presence/pass.xml"/>
+        <x:expect-not-report id="editorial-editors-presence" role="error"/>
+        <x:expect-not-assert id="editorial-metadata-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editorial-editors-presence-fail">
+        <x:context href="../tests/gen/editorial-metadata/editorial-editors-presence/fail.xml"/>
+        <x:expect-report id="editorial-editors-presence" role="error"/>
+        <x:expect-not-assert id="editorial-metadata-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="test-article-categories">
       <x:scenario label="disp-subj-test-pass">
         <x:context href="../tests/gen/test-article-categories/disp-subj-test/pass.xml"/>
@@ -1975,12 +1987,12 @@
       </x:scenario>
       <x:scenario label="award-group-test-6-pass">
         <x:context href="../tests/gen/award-group-tests/award-group-test-6/pass.xml"/>
-        <x:expect-not-assert id="award-group-test-6" role="error"/>
+        <x:expect-not-report id="award-group-test-6" role="error"/>
         <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="award-group-test-6-fail">
         <x:context href="../tests/gen/award-group-tests/award-group-test-6/fail.xml"/>
-        <x:expect-assert id="award-group-test-6" role="error"/>
+        <x:expect-report id="award-group-test-6" role="error"/>
         <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="award-group-test-7-pass">
@@ -1991,6 +2003,16 @@
       <x:scenario label="award-group-test-7-fail">
         <x:context href="../tests/gen/award-group-tests/award-group-test-7/fail.xml"/>
         <x:expect-assert id="award-group-test-7" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-8-pass">
+        <x:context href="../tests/gen/award-group-tests/award-group-test-8/pass.xml"/>
+        <x:expect-not-report id="award-group-test-8" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-8-fail">
+        <x:context href="../tests/gen/award-group-tests/award-group-test-8/fail.xml"/>
+        <x:expect-report id="award-group-test-8" role="error"/>
         <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

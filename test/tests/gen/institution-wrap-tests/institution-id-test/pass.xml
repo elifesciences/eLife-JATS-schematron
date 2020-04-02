@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="institution-id-test.sch"?>
 <!--Context: article-meta//award-group//institution-wrap
 Test: assert    institution-id[@institution-id-type='FundRef']
-Message: Whenever possible, institutionid[@institutionidtype="FundRef"] should be present in institutionwrap; warn staff if not-->
+Message: Whenever possible, a funder should have a doi  please check whether there is an appropriate doi in the open funder registry. (institutionid[@institutionidtype="FundRef"] is not present in institutionwrap).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
