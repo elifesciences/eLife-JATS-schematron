@@ -724,13 +724,16 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta/funding-group" id="funding-group-tests">
-      <report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?</report>
+    <rule context="funding-group/award-group" id="award-group-tests">
+      <let name="id" value="@id"/>
+      <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
+      <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
+      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

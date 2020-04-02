@@ -902,6 +902,13 @@
    
    </rule>
   </pattern>
+  <pattern id="editorial-metadata-pattern">
+    <rule context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
+      
+      <report test="contrib-group[@content-type='section']" role="error" id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="test-article-categories-pattern">
     <rule context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
@@ -1452,9 +1459,9 @@
 		
 		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
 		
-		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">funding-group contains no award-groups. Is this correct? Please check with eLife staff.</report>
+		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?</report>
 		
-	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? Please check with eLife staff. Usually it should be 'No external funding was received for this work.'</report>
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.'</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -1470,9 +1477,12 @@
 		
 		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
 		
-		<assert test="count(funding-source/institution-wrap/institution) = 1" role="error" id="award-group-test-6">One and only one institution must be present.</assert>
+		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
 	  
 	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;)</assert>
+	  
+	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>
+      </report>
 	</rule>
   </pattern>
   <pattern id="award-id-tests-pattern">
@@ -1493,7 +1503,7 @@
   <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, institution-id[@institution-id-type="FundRef"] should be present in institution-wrap; warn staff if not</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
       
     </rule>
   </pattern>
