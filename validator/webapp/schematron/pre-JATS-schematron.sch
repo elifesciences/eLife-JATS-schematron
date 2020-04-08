@@ -6803,7 +6803,7 @@
     <rule context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
       <let name="following-text" value="following-sibling::text()[1]"/>
       
-      <report test="(name()=('italic','bold')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d'))" role="warning" id="section-title-test-1">
+      <report test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d'))" role="warning" id="section-title-test-1">
         <name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
       
     </rule>
