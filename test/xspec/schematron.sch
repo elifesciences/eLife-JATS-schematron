@@ -1719,6 +1719,8 @@
       
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. It's position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
+      <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text.</report>
+      
     </rule>
   </pattern>
   <pattern id="ext-link-tests-pattern">
@@ -1789,7 +1791,7 @@
         <value-of select="label"/> has no title or caption (caption element).</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="warning" id="pre-fig-test-5">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
+        <value-of select="label"/> does not have a title.</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="error" id="final-fig-test-5">fig caption must have a title.</report>
       
@@ -1875,7 +1877,7 @@
     <rule context="media[child::label]" id="video-test">
       
       <assert test="caption/title" role="warning" id="pre-video-title">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+        <value-of select="label"/> does not have a title.</assert>
       
       <assert test="caption/title" role="error" id="final-video-title">
         <value-of select="label"/> does not have a title, which is incorrect.</assert>
@@ -1894,7 +1896,7 @@
         <value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</report>
       
       <report test="if (caption) then not(caption/title)                     else ()" role="warning" id="pre-supplementary-material-test-3">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
+        <value-of select="label"/> does not have a title.</report>
       
       <report test="if (caption) then not(caption/title)         else ()" role="warning" id="final-supplementary-material-test-3">
         <value-of select="label"/> doesn't have a title. Is this correct?</report>
@@ -2111,7 +2113,28 @@
         <value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
       
       <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
-        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a ke resources table. Is this correct?</report>
+        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="kr-table-heading-tests-pattern">
+    <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
+      
+      <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format.</report>
+      
+      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">Key resources table has more than 1 row in its header, which is incorrect.</report>
+      
+      <report test="count(tr) lt 1" role="warning" id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
+      
+      <assert test="normalize-space(tr[1]/th[1]) = 'Reagent type (species) or resource'" role="warning" id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'.</assert>
+      
+      <assert test="normalize-space(tr[1]/th[2]) = 'Designation'" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</assert>
+      
+      <assert test="normalize-space(tr[1]/th[3]) = 'Source or reference'" role="warning" id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</assert>
+      
+      <assert test="normalize-space(tr[1]/th[4]) = 'Identifiers'" role="warning" id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'.</assert>
+      
+      <assert test="normalize-space(tr[1]/th[5]) = 'Additional information'" role="warning" id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</assert>
       
     </rule>
   </pattern>
@@ -4991,7 +5014,7 @@
       
       <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(ancestor::sub-article) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      <report test="not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
       
       <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
@@ -5119,7 +5142,7 @@
       <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
       <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
       <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
-      <let name="regex" value="concat($cite1,'|',$cite2)"/>
+      <let name="regex" value="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
       <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
@@ -5875,7 +5898,7 @@
       <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
         <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(replace(.,' ',' '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">
+      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">
         <name/> element contains two plus or minus signs separate by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
       </report>
       
@@ -5907,6 +5930,12 @@
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">
         <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
+      
+      <report test="contains(.,'..')" role="warning" id="extra-full-stop-presence">
+        <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
+      
+      <report test="matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">
+        <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -6459,6 +6488,8 @@
       
       <report test="matches(.,'^[Aa]ppendix')" role="warning" id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
       
+      <report test="ancestor::body and matches(.,'^[Ss]upplementary [Mm]ethod|^[Ss]upplemental [Mm]ethod')" role="warning" id="sec-title-appendix-check-2">Shoudld the section titled '<value-of select="."/>' be captured as an appendix?</report>
+      
       <report test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
       <report test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">Section title must not be empty.</report>
@@ -6520,7 +6551,7 @@
       
       <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
-      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pubmed/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
+      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
       
       <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
@@ -6790,6 +6821,15 @@
       
     </rule>
   </pattern>
+  <pattern id="section-title-tests-pattern">
+    <rule context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
+      <let name="following-text" value="following-sibling::text()[1]"/>
+      
+      <report test="(name()=('italic','bold')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d'))" role="warning" id="section-title-test-1">
+        <name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="doi-journal-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
@@ -6950,6 +6990,7 @@
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
       <assert test="descendant::disp-formula/* or descendant::inline-formula/*" role="error" id="formula-child-tests-xspec-assert">disp-formula/*|inline-formula/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
+      <assert test="descendant::table-wrap[@id='keyresource']/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[@id='keyresource']/table/thead[1] must be present.</assert>
       <assert test="descendant::body//table-wrap/label" role="error" id="body-table-label-tests-xspec-assert">body//table-wrap/label must be present.</assert>
       <assert test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
       <assert test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
@@ -7201,6 +7242,7 @@
       <assert test="descendant::ref-list//element-citation/person-group[@person-group-type='author']//given-names" role="error" id="ref-given-names-xspec-assert">ref-list//element-citation/person-group[@person-group-type='author']//given-names must be present.</assert>
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" role="error" id="data-ref-given-names-xspec-assert">sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names must be present.</assert>
       <assert test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
+      <assert test="descendant::sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" role="error" id="section-title-tests-xspec-assert">sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>

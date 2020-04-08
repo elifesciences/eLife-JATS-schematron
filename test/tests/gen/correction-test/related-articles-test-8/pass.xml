@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-8.sch"?>
 <!--Context: article[@article-type='correction']//article-meta
 Test: assert    count(related-article[@related-article-type='corrected-article']) gt 0
-Message: Corrections must contain at least 1 relatedarticle link with the attribute relatedarticletype='correctedarticle'.-->
+Message: Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="correction">
     <front>

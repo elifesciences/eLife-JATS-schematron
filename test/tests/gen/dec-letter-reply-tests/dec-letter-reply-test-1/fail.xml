@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reply-test-1.sch"?>
 <!--Context: article/sub-article
 Test: assert    if ($pos = 1) then @article-type='decision-letter' else @article-type='reply'
-Message: 1st subarticle must be the decision letter. 2nd subarticle must be the author response.-->
+Message: 1st sub-article must be the decision letter. 2nd sub-article must be the author response.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="reply">

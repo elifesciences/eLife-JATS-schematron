@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-test-2.sch"?>
 <!--Context: supplementary-material
 Test: report    if (contains(label,'Transparent reporting form')) then () else not(caption)
-Message:  is missing a title/caption  is this correct?  (supplementarymaterial should have a child caption.)-->
+Message:  is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <supplementary-material>

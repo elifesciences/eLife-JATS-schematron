@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-patent-11-1.sch"?>
 <!--Context: element-citation[@publication-type='patent']
 Test: assert    ext-link
-Message: [errelemcitpatent111]
-        The <extlink> element is required.
-        Reference '' has no <extlink> elements.-->
+Message: [err-elem-cit-patent-11-1]
+        The <ext-link> element is required.
+        Reference '' has no <ext-link> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

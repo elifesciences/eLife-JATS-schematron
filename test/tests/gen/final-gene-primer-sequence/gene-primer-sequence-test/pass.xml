@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="gene-primer-sequence-test.sch"?>
 <!--Context: p
 Test: assert    (($text-count le $count) or ($text-count = $count))
-Message: p element contains what looks like an untagged primer or gene sequence  .-->
+Message: p element contains what looks like an untagged primer or gene sequence - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>

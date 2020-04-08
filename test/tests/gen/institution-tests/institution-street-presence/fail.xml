@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="institution-street-presence.sch"?>
 <!--Context: aff/institution[not(@*)]
 Test: report    matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')
-Message: institution likely contains a street or building name, which is likely to be incorrect  .-->
+Message: institution likely contains a street or building name, which is likely to be incorrect - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <aff>

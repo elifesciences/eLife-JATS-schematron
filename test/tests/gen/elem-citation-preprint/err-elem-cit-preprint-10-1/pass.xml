@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-preprint-10-1.sch"?>
 <!--Context: element-citation[@publication-type='preprint']
 Test: assert    count(pub-id) le 1
-Message: [errelemcitpreprint101]
-        One <pubid> element is allowed.
-        Reference '' has  <pubid> elements.-->
+Message: [err-elem-cit-preprint-10-1]
+        One <pub-id> element is allowed.
+        Reference '' has  <pub-id> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

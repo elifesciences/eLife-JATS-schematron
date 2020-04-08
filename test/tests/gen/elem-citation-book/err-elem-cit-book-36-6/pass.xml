@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-book-36-6.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: report    count(lpage) > 1 or count(fpage) > 1
-Message: [errelemcitbook366]
+Message: [err-elem-cit-book-36-6]
         At most one <lpage> and one <fpage> are allowed. 
         Reference '' has  <lpage> 
         elements and  <fpage> elements.-->

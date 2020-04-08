@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-12.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    ((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+'))) or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($'))) and (. = $cite1)
-Message:   citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style  -->
+Message:  - citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="order-test-1.sch"?>
 <!--Context: list-item
 Test: report    ($type='order') and matches(.,'^\s?\d+')
-Message: listitem is part of an ordered list, but it begins with a number. Is this correct? -->
+Message: list-item is part of an ordered list, but it begins with a number. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <list list-type="order">

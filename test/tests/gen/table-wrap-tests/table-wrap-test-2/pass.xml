@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-wrap-test-2.sch"?>
 <!--Context: table-wrap
 Test: report    count(table) > 1
-Message: tablewrap has more than one table  Is this correct?-->
+Message: table-wrap has more than one table - Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <xref ref-type="table" rid="table1"/>

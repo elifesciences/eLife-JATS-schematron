@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="elem-cit-source.sch"?>
 <!--Context: ref/element-citation/source
 Test: assert    string-length(normalize-space(.)) ge 2
-Message: A  <source> element within a  type <elementcitation> must contain at least two characters.  . See Ref ''.-->
+Message: A  <source> element within a  type <element-citation> must contain at least two characters. - . See Ref ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

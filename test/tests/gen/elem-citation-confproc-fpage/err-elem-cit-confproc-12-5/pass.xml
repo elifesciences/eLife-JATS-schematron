@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-12-5.sch"?>
 <!--Context: element-citation[@publication-type='confproc']/fpage
 Test: assert    matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))
-Message: [errelemcitconfproc125]
+Message: [err-elem-cit-confproc-12-5]
         If the content of <fpage> begins with a letter, then the content of <lpage> must begin with 
         the same letter. 
         Reference '' has <fpage>=''

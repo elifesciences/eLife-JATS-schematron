@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-title-test-1.sch"?>
 <!--Context: article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title
 Test: report    (count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)
-Message: title starts with the subdisplaychannel. This is certainly incorrect.-->
+Message: title starts with the sub-display-channel. This is certainly incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <article-meta>

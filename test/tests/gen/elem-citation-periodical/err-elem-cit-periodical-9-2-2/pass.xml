@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-9-2-2.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: assert    count(source)=1 and count(source/*)=count(source/(italic | sub | sup))
-Message: [errelemcitperiodical922]
-        A  <source> element within a <elementcitation> of type 'periodical' may only contain the child 
+Message: [err-elem-cit-periodical-9-2-2]
+        A  <source> element within a <element-citation> of type 'periodical' may only contain the child 
         elements<italic>, <sub>, and <sup>. 
         No other elements are allowed.
         Reference '' has disallowed child elements.-->

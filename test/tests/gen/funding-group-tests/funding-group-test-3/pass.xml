@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="funding-group-test-3.sch"?>
 <!--Context: article-meta/funding-group
 Test: report    (count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')
-Message: Is this fundingstatement correct?  '' Usually it should be 'No external funding was received for this work.'-->
+Message: Is this funding-statement correct? - '' Usually it should be 'No external funding was received for this work.'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

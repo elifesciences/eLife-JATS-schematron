@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-web-11-2-2.sch"?>
 <!--Context: element-citation[@publication-type='web']/date-in-citation
 Test: assert    matches(./@iso-8601-date,'^\d{4}-\d{2}-\d{2}$')
-Message: [errelemcitweb1122]
-        The <dateincitation> element's @iso8601date attribute must have the format
-        'YYYYMMDD'.
+Message: [err-elem-cit-web-11-2-2]
+        The <date-in-citation> element's @iso-8601-date attribute must have the format
+        'YYYY-MM-DD'.
         Reference '' has '',
         which does not have that format.
       -->

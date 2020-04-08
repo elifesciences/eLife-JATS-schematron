@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-journal-9-1.sch"?>
 <!--Context: element-citation[@publication-type='journal']/pub-id
 Test: assert    @pub-id-type='doi' or @pub-id-type='pmid'
-Message: [errelemcitjournal91]
-        Each <pubid>, if present in a journal reference, must have a @pubidtype of either "doi" or "pmid".
-        The pubidtype attribute on <pubid> in Reference '' 
+Message: [err-elem-cit-journal-9-1]
+        Each <pub-id>, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid".
+        The pub-id-type attribute on <pub-id> in Reference '' 
         is .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="media-test-5.sch"?>
 <!--Context: media
 Test: report    matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')
-Message:  media wwith animation type lable must have a @mimesubtype='gif'.-->
+Message:  media wwith animation type lable must have a @mime-subtype='gif'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <media mimetype="text" mime-subtype="xml" xlink:href="file.xml">

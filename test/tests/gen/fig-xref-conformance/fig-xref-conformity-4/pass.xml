@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-xref-conformity-4.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
 Test: report    ($type = 'Figure') and matches(.,'[Ss]upplement')
-Message:   figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.-->
+Message:  - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>
         <xref ref-type="fig" rid="fig1">Figure 1</xref>

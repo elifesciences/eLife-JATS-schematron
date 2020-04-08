@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-patent-8-2-1.sch"?>
 <!--Context: element-citation[@publication-type='patent']/article-title
 Test: assert    ./string-length() + sum(*/string-length()) ge 2
-Message: [errelemcitpatent821]
-        A  <articletitle> element within a <elementcitation> of type 'patent' must contain 
+Message: [err-elem-cit-patent-8-2-1]
+        A  <article-title> element within a <element-citation> of type 'patent' must contain 
         at least two characters.
         Reference '' has too few characters.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

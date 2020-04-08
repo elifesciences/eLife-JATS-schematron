@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-front-test-3.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub
 Test: report    $count gt 2
-Message: decision letter frontstub contains more than 2 contribgroup elements.-->
+Message: decision letter front-stub contains more than 2 contrib-group elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="uk-confirm.sch"?>
 <!--Context: article
 Test: report    ($uk-count > $us-count)
-Message: UK terms are prevalent, and corresponding author affiliaiton countries are  -->
+Message: UK terms are prevalent, and corresponding author affiliaiton countries are - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

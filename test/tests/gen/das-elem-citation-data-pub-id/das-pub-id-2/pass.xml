@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-pub-id-2.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
 Test: report    @pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))
-Message: Each pubid element which is not a doi must have an @xlinkhref (which is not empty).-->
+Message: Each pub-id element which is not a doi must have an @xlink-href (which is not empty).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

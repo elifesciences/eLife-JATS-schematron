@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="funding-group-test-1.sch"?>
 <!--Context: article-meta/funding-group
 Test: assert    count(funding-statement) = 1
-Message: One fundingstatement should be present in fundinggroup.-->
+Message: One funding-statement should be present in funding-group.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

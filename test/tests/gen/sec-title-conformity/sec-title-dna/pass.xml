@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sec-title-dna.sch"?>
 <!--Context: sec/title
 Test: report    matches(upper-case($no-link-text),'^DNA | DNA | DNA$') and not(matches($no-link-text,'^DNA | DNA | DNA$'))
-Message: Section title contains the phrase DNA, but it is not in all caps  -->
+Message: Section title contains the phrase DNA, but it is not in all caps - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

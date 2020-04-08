@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-journal-12.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: assert    count(*) = count(person-group| year| article-title| source| volume| fpage| lpage| elocation-id| comment| pub-id)
-Message: [errelemcitjournal12]
-        The only elements allowed as children of <elementcitation> with the publicationtype="journal" are:
-        <persongroup>, <year>, <articletitle>, <source>, <volume>, <fpage>, <lpage>, 
-        <elocationid>, <comment>, and <pubid>.
+Message: [err-elem-cit-journal-12]
+        The only elements allowed as children of <element-citation> with the publication-type="journal" are:
+        <person-group>, <year>, <article-title>, <source>, <volume>, <fpage>, <lpage>, 
+        <elocation-id>, <comment>, and <pub-id>.
         Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

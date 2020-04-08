@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-software-16.sch"?>
 <!--Context: element-citation[@publication-type = 'software']
 Test: assert    count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)
-Message: [errelemcitsoftware16] The only tags that are
-        allowed as children of <elementcitation> with the publicationtype="software" are:
-        <persongroup>, <year>, <datatitle>, <source>, <version>, <publishername>,
-        <publisherloc>, and <extlink> Reference ''
+Message: [err-elem-cit-software-16] The only tags that are
+        allowed as children of <element-citation> with the publication-type="software" are:
+        <person-group>, <year>, <data-title>, <source>, <version>, <publisher-name>,
+        <publisher-loc>, and <ext-link> Reference ''
         has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

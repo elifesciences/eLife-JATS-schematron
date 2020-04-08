@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-preprint-13.sch"?>
 <!--Context: element-citation[@publication-type='preprint']
 Test: assert    count(*) = count(person-group| article-title| source| year| pub-id| ext-link)
-Message: [errelemcitpreprint13]
-        The only tags that are allowed as children of <elementcitation> with the publicationtype="preprint" are:
-        <persongroup>, <articletitle>, <source>, <year>, <pubid>, and <extlink>.
+Message: [err-elem-cit-preprint-13]
+        The only tags that are allowed as children of <element-citation> with the publication-type="preprint" are:
+        <person-group>, <article-title>, <source>, <year>, <pub-id>, and <ext-link>.
         Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

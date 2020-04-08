@@ -729,7 +729,7 @@
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       <report test="if (caption) then not(caption/title)                     else ()" role="warning" id="pre-supplementary-material-test-3">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
+        <value-of select="label"/> does not have a title.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

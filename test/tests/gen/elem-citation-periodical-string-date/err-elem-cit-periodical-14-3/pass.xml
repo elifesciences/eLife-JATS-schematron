@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-3.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date
 Test: assert    count(day) le 1
-Message: [errelemcitperiodical143]
-        The <stringdate> element may include one <day> element.
+Message: [err-elem-cit-periodical-14-3]
+        The <string-date> element may include one <day> element.
         Reference '' does not meet this requirement as it contains
          <day> elements.
       -->

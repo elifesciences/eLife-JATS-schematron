@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-supplementary-material-test-5.sch"?>
 <!--Context: supplementary-material
 Test: assert    media
-Message:  is missing a file (supplementarymaterial missing a media element)  please ensure that this is queried with the author.-->
+Message:  is missing a file (supplementary-material missing a media element) - please ensure that this is queried with the author.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <supplementary-material>

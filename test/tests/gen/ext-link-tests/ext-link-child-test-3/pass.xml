@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ext-link-child-test-3.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
 Test: report    contains(.,'copy archived')
-Message: extlink    contains the phrase 'copy archived', which is incorrect.-->
+Message: ext-link -  - contains the phrase 'copy archived', which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>The code was uploaded to GitHub at <ext-link ext-link-type="uri" xlink:href="https://github.com/derdikman/Almog-et-al.-Matlab-code">https://github.com/derdikman/Almog-et-al.-Matlab-code</ext-link> (<xref ref-type="bibr" rid="bib6">Derdikman, 2019</xref>' <xref/>; copy archived at <ext-link ext-link-type="uri" xlink:href="https://github.com/elifesciences-publications/Almog-et-al.-Matlab-code">https://github.com/elifesciences-publications/Almog-et-al.-Matlab-code</ext-link>).</p>

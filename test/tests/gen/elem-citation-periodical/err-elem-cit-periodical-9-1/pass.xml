@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-9-1.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: assert    count(source)=1
-Message: [errelemcitperiodical91]
-        Each  <elementcitation> of type 'periodical' must contain one and
+Message: [err-elem-cit-periodical-9-1]
+        Each  <element-citation> of type 'periodical' must contain one and
         only one <source> element.
         Reference '' has 
          <source> elements.-->

@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-journal-4-1.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: assert    count(source)=1
-Message: [errelemcitjournal41]
-        Each  <elementcitation> of type 'journal' must contain one and
+Message: [err-elem-cit-journal-4-1]
+        Each  <element-citation> of type 'journal' must contain one and
         only one <source> element.
         Reference '' has 
          <source> elements.-->

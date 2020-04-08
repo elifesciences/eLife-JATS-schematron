@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-high-2-2.sch"?>
 <!--Context: ref
 Test: assert    if (count(element-citation/person-group[1]/*) != 2) then (count(preceding-sibling::ref) = 0 or ($name > $preceding-name) or ($name = $preceding-name and element-citation/year >= preceding-sibling::ref[1]/element-citation/year)) else (count(preceding-sibling::ref) = 0 or ($name > $preceding-name) or ($name = $preceding-name and $name2 > $preceding-name2) or ($name = $preceding-name and $name2 = $preceding-name2 and element-citation/year >= preceding-sibling::ref[1]/element-citation/year) or ($name = $preceding-name and count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2) )
-Message: [errelemcithigh22]
-        The order of <elementcitation>s in the reference list should be name and date, arranged alphabetically 
+Message: [err-elem-cit-high-2-2]
+        The order of <element-citation>s in the reference list should be name and date, arranged alphabetically 
         by the first author’s surname, or by the value of the first <collab> element. In the case of
         two authors, the sequence should be arranged by both authors' surnames, then date. For
         three or more authors, the sequence should be the first author's surname, then date.

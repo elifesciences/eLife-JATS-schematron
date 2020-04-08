@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="city-street-presence.sch"?>
 <!--Context: front//aff//named-content[@content-type='city']
 Test: report    matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')
-Message: city likely contains a street or building name, which is almost certainly incorrect  .-->
+Message: city likely contains a street or building name, which is almost certainly incorrect - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

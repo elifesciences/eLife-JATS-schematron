@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-patent-10-2.sch"?>
 <!--Context: element-citation[@publication-type='patent']/patent
 Test: assert    some $x in document($countries)/countries/country satisfies ($x=@country)
-Message: [errelemcitpatent102]
+Message: [err-elem-cit-patent-10-2]
         The <patent> element must have a country attribute, the value of which must be an allowed value.
         Reference '' has a patent/@country attribute with the value 
         '', which is not in the list.-->

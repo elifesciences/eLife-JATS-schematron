@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="permissions-test-6.sch"?>
 <!--Context: front//permissions
 Test: report    if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)
-Message: copyrightyear must match the contents of the year in the pubdate[@publicationformat='electronic'][@datetype='publication']. Currently, copyrightyear= and pubdate=.-->
+Message: copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year= and pub-date=.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

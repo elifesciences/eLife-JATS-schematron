@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-12-1.sch"?>
 <!--Context: element-citation[@publication-type='confproc']
 Test: report    (fpage and elocation-id) or (lpage and elocation-id)
-Message: [errelemcitconfproc121]
-        The citation may contain <fpage> and <lpage>, only <fpage>, or only <elocationid> elements, but not a mixture.
+Message: [err-elem-cit-confproc-12-1]
+        The citation may contain <fpage> and <lpage>, only <fpage>, or only <elocation-id> elements, but not a mixture.
         Reference '' has 
         <fpage> elements,   <lpage> elements, and 
-         <elocationid> elements.-->
+         <elocation-id> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

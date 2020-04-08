@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reply-test-3.sch"?>
 <!--Context: article/sub-article
 Test: assert    count(front-stub) = 1
-Message: subarticle contain one and only one frontstub.-->
+Message: sub-article contain one and only one front-stub.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="decision-letter" id="SA1">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-fn-label-test-1.sch"?>
 <!--Context: table-wrap-foot//fn/p/*[1]
 Test: report    not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)
-Message: Footnote starts with label which is not in line with house style  . Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.-->
+Message: Footnote starts with label which is not in line with house style - . Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap-foot>

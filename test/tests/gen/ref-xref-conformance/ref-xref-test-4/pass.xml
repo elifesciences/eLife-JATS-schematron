@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-4.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: assert    matches(normalize-space(.),'\p{N}')
-Message: citation doesn't contain numbers, which must be incorrect   -->
+Message: citation doesn't contain numbers, which must be incorrect -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>

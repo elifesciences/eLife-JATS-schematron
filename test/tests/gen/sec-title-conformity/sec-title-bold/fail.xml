@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sec-title-bold.sch"?>
 <!--Context: sec/title
 Test: report    (count(*) = 1) and child::bold and ($free-text='')
-Message: All section title content is captured in bold. This is incorrect  -->
+Message: All section title content is captured in bold. This is incorrect - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec id="s4-7-2">

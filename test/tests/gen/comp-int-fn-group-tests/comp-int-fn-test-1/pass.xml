@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="comp-int-fn-test-1.sch"?>
 <!--Context: fn-group[@content-type='competing-interest']
 Test: assert    count(fn) gt 0
-Message: At least one child fn element should be present in fngroup[@contenttype='competinginterest'].-->
+Message: At least one child fn element should be present in fn-group[@content-type='competing-interest'].-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

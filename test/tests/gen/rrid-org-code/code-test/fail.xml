@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="code-test.sch"?>
 <!--Context: p|td|th
 Test: report    not(descendant::monospace) and not(descendant::code) and ($code-text != '')
-Message:  element contains what looks like unformatted code  ''  does this need tagging with <monospace/> or <code/>?-->
+Message:  element contains what looks like unformatted code - '' - does this need tagging with <monospace/> or <code/>?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p> --test-code </p>

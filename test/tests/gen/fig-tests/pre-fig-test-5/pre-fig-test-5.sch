@@ -727,7 +727,7 @@
     <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="warning" id="pre-fig-test-5">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</report>
+        <value-of select="label"/> does not have a title.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

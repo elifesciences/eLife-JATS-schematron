@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="inline-formula-test-2.sch"?>
 <!--Context: inline-formula
 Test: report    matches($pre-text,'[\p{L}\p{N}\p{M}]$')
-Message: There is no space between inlineformula and the preceding text    Is this correct?-->
+Message: There is no space between inline-formula and the preceding text -  - Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>test <italic>test</italic> test <inline-formula><mml:math/></inline-formula>test</p>

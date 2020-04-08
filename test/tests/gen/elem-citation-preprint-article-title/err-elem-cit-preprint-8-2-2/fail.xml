@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-preprint-8-2-2.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/article-title
 Test: assert    count(*)=count(italic | sub | sup)
-Message: [errelemcitpreprint822]
-        A <articletitle> element within a <elementcitation> of type 'preprint' may only contain the child 
+Message: [err-elem-cit-preprint-8-2-2]
+        A <article-title> element within a <element-citation> of type 'preprint' may only contain the child 
         elements<italic>, <sub>, and <sup>. No other elements are allowed.
         Reference '' has disallowed child elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

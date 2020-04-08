@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-title-test-3.sch"?>
 <!--Context: article/front/article-meta/title-group
 Test: report    article-title[text() != ''] = upper-case(article-title[1])
-Message: Article title must not be entirely in upper case   .-->
+Message: Article title must not be entirely in upper case  - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

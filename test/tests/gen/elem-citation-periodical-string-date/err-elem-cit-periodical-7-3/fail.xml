@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-3.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date
 Test: assert    matches(normalize-space(@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')
-Message: [errelemcitperiodical73]
-        The @iso8601date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
+Message: [err-elem-cit-periodical-7-3]
+        The @iso-8601-date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
         Reference '' does not meet this requirement as it contains
         the value ''.
       -->

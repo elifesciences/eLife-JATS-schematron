@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-10-1-2.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/volume
 Test: assert    count(*)=0 and (string-length(text()) ge 1)
-Message: [errelemcitperiodical1012]
-        A  <volume> element within a <elementcitation> of type 'periodical' must contain 
+Message: [err-elem-cit-periodical-10-1-2]
+        A  <volume> element within a <element-citation> of type 'periodical' must contain 
         at least one character and may not contain child elements.
         Reference '' has too few characters and/or
         child elements.-->

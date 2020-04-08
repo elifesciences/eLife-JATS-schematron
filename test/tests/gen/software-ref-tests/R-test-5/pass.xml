@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="R-test-5.sch"?>
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches(lower-case(source[1]),'r: a language and environment for statistical computing')
-Message: software ref '' has a source    but this is the datatitle.-->
+Message: software ref '' has a source -  - but this is the data-title.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref id="bib33"><element-citation publication-type="software">

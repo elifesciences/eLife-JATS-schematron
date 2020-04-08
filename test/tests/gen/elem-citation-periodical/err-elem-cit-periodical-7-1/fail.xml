@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-1.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: assert    count(string-date/year)=1
-Message: [errelemcitperiodical71]
-        There must be one and only one <year> element in a <stringdate> element.
+Message: [err-elem-cit-periodical-7-1]
+        There must be one and only one <year> element in a <string-date> element.
         Reference '' has 
-        <year> elements in the <stringdate> element.-->
+        <year> elements in the <string-date> element.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

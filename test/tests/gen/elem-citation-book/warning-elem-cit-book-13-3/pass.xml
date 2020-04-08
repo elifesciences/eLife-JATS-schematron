@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="warning-elem-cit-book-13-3.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: report    some $p in document($publisher-locations)/locations/location/text() satisfies ends-with(publisher-name[1],$p)
-Message: [warningelemcitbook133]
-        The content of <publishername> may not end with a publisher location. 
+Message: [warning-elem-cit-book-13-3]
+        The content of <publisher-name> may not end with a publisher location. 
         Reference '' contains the string ,
         which ends with a publisher location.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

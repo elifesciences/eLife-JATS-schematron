@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="media-test-6.sch"?>
 <!--Context: media
 Test: report    matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$') and (@mime-subtype='octet-stream')
-Message: media has @mimesubtype='octetstream', but the file reference ends with a recognised mimetype. Is this correct?-->
+Message: media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <media mimetype="text" mime-subtype="octet-stream" xlink:href="file.xml"/>

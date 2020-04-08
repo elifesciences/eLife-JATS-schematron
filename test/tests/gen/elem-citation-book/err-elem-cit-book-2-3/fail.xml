@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="err-elem-cit-book-2-3.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: assert    count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)
-Message: [errelemcitbook23]
-        In a book reference, there should be a single persongroup element (either author or editor) or
-        one persongroup with @persongrouptype="author" and one persongroup with @persongrouptype=editor.
+Message: [err-elem-cit-book-2-3]
+        In a book reference, there should be a single person-group element (either author or editor) or
+        one person-group with @person-group-type="author" and one person-group with @person-group-type=editor.
         Reference '' has 
-         <persongroup> elements.-->
+         <person-group> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="reply-front-test-1.sch"?>
 <!--Context: sub-article[@article-type='reply']/front-stub
 Test: assert    count(article-id[@pub-id-type='doi']) = 1
-Message: subarticle frontstub must contain articleid[@pubidtype='doi'].-->
+Message: sub-article front-stub must contain article-id[@pub-id-type='doi'].-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="reply">

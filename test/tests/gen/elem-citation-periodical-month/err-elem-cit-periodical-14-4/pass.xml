@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-4.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/month
 Test: assert    .=('January','February','March','April','May','June','July','August','September','October','November','December')
-Message: [errelemcitperiodical144]
+Message: [err-elem-cit-periodical-14-4]
         The content of <month> must be the month, written out, with correct capitalization.
         Reference '' does not meet this requirement as it contains
         the value  <month>=''.

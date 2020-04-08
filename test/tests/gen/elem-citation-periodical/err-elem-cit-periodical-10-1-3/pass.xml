@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-10-1-3.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: assert    count(volume) le 1
-Message: [errelemcitperiodical1013]
-        There may be at most one  <volume> element within a <elementcitation> of type 'periodical'.
+Message: [err-elem-cit-periodical-10-1-3]
+        There may be at most one  <volume> element within a <element-citation> of type 'periodical'.
         Reference '' has 
         <volume> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

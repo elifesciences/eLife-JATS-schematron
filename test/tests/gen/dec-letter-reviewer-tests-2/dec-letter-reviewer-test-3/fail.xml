@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reviewer-test-3.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']
 Test: assert    role='Reviewer'
-Message: Reviewer in decision letter frontstub must have the role 'Reviewer'.  has ''.-->
+Message: Reviewer in decision letter front-stub must have the role 'Reviewer'.  has ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

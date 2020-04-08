@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="month-conformity.sch"?>
 <!--Context: month[not(parent::string-date)]
 Test: assert    matches(.,'^[0][1-9]$|^[1][0-2]$')
-Message: month must contain 2 digits which are between '01' and '12'  '' doesn't meet this requirement.-->
+Message: month must contain 2 digits which are between '01' and '12' - '' doesn't meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <month>99</month>

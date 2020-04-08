@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kwd-group-type.sch"?>
 <!--Context: article-meta/kwd-group[not(@kwd-group-type='research-organism')]
 Test: assert    @kwd-group-type='author-keywords'
-Message: kwdgroup must have a @kwdgrouptype 'researchorganism', or 'authorkeywords'.-->
+Message: kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

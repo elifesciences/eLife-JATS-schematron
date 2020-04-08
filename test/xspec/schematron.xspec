@@ -2701,6 +2701,16 @@
         <x:expect-report id="empty-xref-test" role="error"/>
         <x:expect-not-assert id="body-xref-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="semi-colon-xref-test-pass">
+        <x:context href="../tests/gen/body-xref-tests/semi-colon-xref-test/pass.xml"/>
+        <x:expect-not-report id="semi-colon-xref-test" role="warning"/>
+        <x:expect-not-assert id="body-xref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="semi-colon-xref-test-fail">
+        <x:context href="../tests/gen/body-xref-tests/semi-colon-xref-test/fail.xml"/>
+        <x:expect-report id="semi-colon-xref-test" role="warning"/>
+        <x:expect-not-assert id="body-xref-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ext-link-tests">
       <x:scenario label="url-conformance-test-pass">
@@ -3742,6 +3752,88 @@
         <x:context href="../tests/gen/table-wrap-tests/kr-table-not-tagged-2/fail.xml"/>
         <x:expect-report id="kr-table-not-tagged-2" role="warning"/>
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="kr-table-heading-tests">
+      <x:scenario label="kr-table-header-1-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-1/pass.xml"/>
+        <x:expect-not-report id="kr-table-header-1" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-1-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-1/fail.xml"/>
+        <x:expect-report id="kr-table-header-1" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-2-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-2/pass.xml"/>
+        <x:expect-not-report id="kr-table-header-2" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-2-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-2/fail.xml"/>
+        <x:expect-report id="kr-table-header-2" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-3-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-3/pass.xml"/>
+        <x:expect-not-report id="kr-table-header-3" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-3-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-3/fail.xml"/>
+        <x:expect-report id="kr-table-header-3" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-4-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-4/pass.xml"/>
+        <x:expect-not-assert id="kr-table-header-4" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-4-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-4/fail.xml"/>
+        <x:expect-assert id="kr-table-header-4" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-5-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-5/pass.xml"/>
+        <x:expect-not-assert id="kr-table-header-5" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-5-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-5/fail.xml"/>
+        <x:expect-assert id="kr-table-header-5" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-6-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-6/pass.xml"/>
+        <x:expect-not-assert id="kr-table-header-6" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-6-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-6/fail.xml"/>
+        <x:expect-assert id="kr-table-header-6" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-7-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-7/pass.xml"/>
+        <x:expect-not-assert id="kr-table-header-7" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-7-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-7/fail.xml"/>
+        <x:expect-assert id="kr-table-header-7" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-8-pass">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-8/pass.xml"/>
+        <x:expect-not-assert id="kr-table-header-8" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-header-8-fail">
+        <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-8/fail.xml"/>
+        <x:expect-assert id="kr-table-header-8" role="warning"/>
+        <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="body-table-label-tests">
@@ -12209,6 +12301,26 @@
         <x:expect-report id="broken-unicode-presence" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="extra-full-stop-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/extra-full-stop-presence/pass.xml"/>
+        <x:expect-not-report id="extra-full-stop-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="extra-full-stop-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/extra-full-stop-presence/fail.xml"/>
+        <x:expect-report id="extra-full-stop-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="extra-space-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/extra-space-presence/pass.xml"/>
+        <x:expect-not-report id="extra-space-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="extra-space-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/extra-space-presence/fail.xml"/>
+        <x:expect-report id="extra-space-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="unallowed-symbol-tests-sup">
       <x:scenario label="copyright-symbol-sup-pass">
@@ -14165,6 +14277,16 @@
         <x:expect-report id="sec-title-appendix-check" role="warning"/>
         <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-title-appendix-check-2-pass">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-appendix-check-2/pass.xml"/>
+        <x:expect-not-report id="sec-title-appendix-check-2" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-title-appendix-check-2-fail">
+        <x:context href="../tests/gen/sec-title-conformity/sec-title-appendix-check-2/fail.xml"/>
+        <x:expect-report id="sec-title-appendix-check-2" role="warning"/>
+        <x:expect-not-assert id="sec-title-conformity-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="sec-title-abbr-check-pass">
         <x:context href="../tests/gen/sec-title-conformity/sec-title-abbr-check/pass.xml"/>
         <x:expect-not-report id="sec-title-abbr-check" role="warning"/>
@@ -15036,6 +15158,18 @@
         <x:context href="../tests/gen/ar-fig-title-tests/ar-fig-title-test-1/fail.xml"/>
         <x:expect-report id="ar-fig-title-test-1" role="warning"/>
         <x:expect-not-assert id="ar-fig-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="section-title-tests">
+      <x:scenario label="section-title-test-1-pass">
+        <x:context href="../tests/gen/section-title-tests/section-title-test-1/pass.xml"/>
+        <x:expect-not-report id="section-title-test-1" role="warning"/>
+        <x:expect-not-assert id="section-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="section-title-test-1-fail">
+        <x:context href="../tests/gen/section-title-tests/section-title-test-1/fail.xml"/>
+        <x:expect-report id="section-title-test-1" role="warning"/>
+        <x:expect-not-assert id="section-title-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="doi-journal-ref-checks">

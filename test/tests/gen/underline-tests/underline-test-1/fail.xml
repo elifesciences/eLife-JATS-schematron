@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="underline-test-1.sch"?>
 <!--Context: underline
 Test: report    matches(.,'^\p{P}*$')
-Message: '' element only contains punctuation    Should it have underline formatting?-->
+Message: '' element only contains punctuation -  - Should it have underline formatting?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>test <underline>(</underline>test).</p>

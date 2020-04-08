@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fundref-test-1.sch"?>
 <!--Context: article//ack
 Test: report    some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))
-Message: Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check  .-->
+Message: Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

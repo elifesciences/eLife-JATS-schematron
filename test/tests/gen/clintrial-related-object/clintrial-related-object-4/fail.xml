@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="clintrial-related-object-4.sch"?>
 <!--Context: abstract[not(@abstract-type)]/sec/related-object
 Test: assert    @source-id-type='registry-name'
-Message:  must have an @sourceidtype='registryname'.-->
+Message:  must have an @source-id-type='registry-name'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

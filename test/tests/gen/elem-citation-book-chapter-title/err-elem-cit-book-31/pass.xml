@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-book-31.sch"?>
 <!--Context: element-citation[@publication-type='book']/chapter-title
 Test: assert    count(*) = count(sub|sup|italic)
-Message: [errelemcitbook31]
-        A <chaptertitle> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
+Message: [err-elem-cit-book-31]
+        A <chapter-title> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
         No other elements are allowed.
         Reference '' does not meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

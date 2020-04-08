@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="kr-table-header-3.sch"?>
+<!--Context: table-wrap[@id='keyresource']/table/thead[1]
+Test: report    count(tr) lt 1
+Message: Key resources table has no rows in its header, which is incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource" position="anchor">
+      <label>Key resources table</label>
+      <table frame="hsides" rules="groups">
+        <thead>
+          
+        </thead>
+        <tbody/>
+      </table>
+    </table-wrap>
+  </article>
+</root>

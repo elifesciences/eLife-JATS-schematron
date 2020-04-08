@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-pub-date-test-2.sch"?>
 <!--Context: pub-date[not(@pub-type='collection')]
 Test: assert    matches(month[1],'^[0-9]{2}$')
-Message: pubdate must contain month in the format 00. Currently it is ''.-->
+Message: pub-date must contain month in the format 00. Currently it is ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <pub-date>

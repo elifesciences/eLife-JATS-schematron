@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-preprint-10-2.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/pub-id
 Test: assert    @pub-id-type='doi'
-Message: [errelemcitpreprint102]
-        If present, the <pubid> element must contain @pubidtype='doi'.
-        The <pubid> element in Reference ''
-        contains @pubidtype=''.-->
+Message: [err-elem-cit-preprint-10-2]
+        If present, the <pub-id> element must contain @pub-id-type='doi'.
+        The <pub-id> element in Reference ''
+        contains @pub-id-type=''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

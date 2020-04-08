@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-front-test-4.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub
 Test: report    $count = 1
-Message: decision letter frontstub has only 1 contribgroup element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous?-->
+Message: decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
