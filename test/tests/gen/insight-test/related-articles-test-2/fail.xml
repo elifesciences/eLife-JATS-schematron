@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-2.sch"?>
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta
 Test: assert    count(related-article) gt 0
-Message: Insight must contain an articlereference link to the original article it is discussing.-->
+Message: Insight must contain an article-reference link to the original article it is discussing.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

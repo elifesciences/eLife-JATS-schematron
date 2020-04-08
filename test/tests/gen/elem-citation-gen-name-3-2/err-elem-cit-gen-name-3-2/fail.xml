@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-3-2.sch"?>
 <!--Context: element-citation/person-group/collab
 Test: assert    count(*) = count(italic | sub | sup)
-Message: [errelemcitgenname32]
+Message: [err-elem-cit-gen-name-3-2]
         A <collab> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
         No other elements are allowed.
         Reference '' contains addiitonal elements.-->

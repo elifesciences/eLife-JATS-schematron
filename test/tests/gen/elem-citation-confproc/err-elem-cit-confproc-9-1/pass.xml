@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-9-1.sch"?>
 <!--Context: element-citation[@publication-type='confproc']
 Test: assert    count(source) le 1
-Message: [errelemconfprocconfproc91]
-        Each  <elementcitation> of type 'confproc' must not contain more than one <source> element(s).
+Message: [err-elem-confproc-confproc-9-1]
+        Each  <element-citation> of type 'confproc' must not contain more than one <source> element(s).
         Reference '' has 
          <source> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

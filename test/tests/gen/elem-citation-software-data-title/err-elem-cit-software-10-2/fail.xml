@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-software-10-2.sch"?>
 <!--Context: element-citation[@publication-type = 'software']/data-title
 Test: assert    count(*) = count(sub | sup | italic)
-Message: [errelemcitsoftware102] An <datatitle> element in a reference may contain characters
+Message: [err-elem-cit-software-10-2] An <data-title> element in a reference may contain characters
         and <italic>, <sub>, and <sup>. No other elements are allowed. Reference
         '' does not meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

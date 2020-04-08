@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="uk-conformity.sch"?>
 <!--Context: article
 Test: report    ($uk-count > $us-count) and ($us-text != '')
-Message: There are more UK terms than US terms ( to  respectively), but US words are present in the article. Search  . Correct UK variants are  .-->
+Message: There are more UK terms than US terms ( to  respectively), but US words are present in the article. Search - . Correct UK variants are - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

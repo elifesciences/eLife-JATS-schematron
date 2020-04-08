@@ -726,7 +726,7 @@
   <pattern id="content-containers">
     <rule context="media[child::label]" id="video-test">
       <assert test="caption/title" role="warning" id="pre-video-title">
-        <value-of select="label"/> does not have a title. Please alert eLife staff.</assert>
+        <value-of select="label"/> does not have a title.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

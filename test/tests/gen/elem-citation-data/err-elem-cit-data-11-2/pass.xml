@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-data-11-2.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
 Test: assert    count(source)=1
-Message: [errelemcitdata112]
-        Each  <elementcitation> of type 'data' must contain one and only one <source> element.
+Message: [err-elem-cit-data-11-2]
+        Each  <element-citation> of type 'data' must contain one and only one <source> element.
         Reference '' has 
          <source> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

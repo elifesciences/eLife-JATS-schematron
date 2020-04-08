@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-book-10-1.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: assert    count(source)=1
-Message: [errelembookbook101]
-        Each  <elementcitation> of type 'book' must contain one and
+Message: [err-elem-book-book-10-1]
+        Each  <element-citation> of type 'book' must contain one and
         only one <source> element.
         Reference '' has 
          <source> elements.-->

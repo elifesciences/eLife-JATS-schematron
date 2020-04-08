@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-thesis-3.sch"?>
 <!--Context: element-citation[@publication-type='thesis']
 Test: assert    count(descendant::collab)=0
-Message: [errelemcitthesis3]
+Message: [err-elem-cit-thesis-3]
         No <collab> elements are allowed in thesis citations.
         Reference '' has 
          <collab> elements.-->

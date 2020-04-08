@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-table-label-test-2.sch"?>
 <!--Context: app//table-wrap/label
 Test: assert    starts-with(.,$app)
-Message:   Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.-->
+Message:  - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-contrib-group-presence-2.sch"?>
 <!--Context: article[@article-type='research-article']/front/article-meta
 Test: assert    contrib-group[@content-type='section']
-Message: contribgroup[@contenttype='section'] must be present (as a child of articlemeta) for research articles (this is the contribgroup which contains reviewers and editors).-->
+Message: contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

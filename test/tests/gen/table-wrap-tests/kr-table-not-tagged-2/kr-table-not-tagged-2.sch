@@ -729,7 +729,7 @@
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
-        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a ke resources table. Is this correct?</report>
+        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="isbn-conformity-test-2.sch"?>
 <!--Context: isbn
 Test: assert    $sum = 0
-Message: isbn contains an invalid ISBN  ''. Should it be captured as another type of pubid?-->
+Message: isbn contains an invalid ISBN - ''. Should it be captured as another type of pub-id?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <isbn>2844674428</isbn>

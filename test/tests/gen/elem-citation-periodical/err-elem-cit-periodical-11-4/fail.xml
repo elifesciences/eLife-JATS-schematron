@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-11-4.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: assert    count(fpage/*)=0 and count(lpage/*)=0
-Message: [errelemcitperiodical114]
+Message: [err-elem-cit-periodical-11-4]
         The content of the <fpage> and <lpage> elements can contain any alpha numeric value but no child elements are allowed.
         Reference '' has  child elements in
         <fpage> and   child elements in <lpage>.-->

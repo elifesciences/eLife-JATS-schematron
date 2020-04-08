@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feat-custom-meta-test-1.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value
 Test: report    child::*
-Message:  is not allowed in a Template type metavalue.-->
+Message:  is not allowed in a Template type meta-value.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="article-commentary">
     <front>

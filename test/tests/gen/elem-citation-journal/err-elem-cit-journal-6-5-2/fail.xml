@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-journal-6-5-2.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: report    lpage and (number(fpage[1]) >= number(lpage[1]))
-Message: [errelemcitjournal652]
+Message: [err-elem-cit-journal-6-5-2]
         <lpage> must be larger than <fpage>, if present. 
         Reference '' has first page <fpage> = '' 
         but last page <lpage> = ''.-->

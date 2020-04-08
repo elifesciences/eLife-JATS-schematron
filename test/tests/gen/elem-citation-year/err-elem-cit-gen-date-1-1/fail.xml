@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-1.sch"?>
 <!--Context: ref/element-citation/year
 Test: assert    matches(normalize-space(.),'(^\d{4}[a-z]?)')
-Message: [errelemcitgendate11]
-        The <year> element in a reference must contain 4 digits, possibly followed by one (and only one) lowercase letter.
+Message: [err-elem-cit-gen-date-1-1]
+        The <year> element in a reference must contain 4 digits, possibly followed by one (and only one) lower-case letter.
         Reference '' does not meet this requirement as it contains
         the value ''.
       -->

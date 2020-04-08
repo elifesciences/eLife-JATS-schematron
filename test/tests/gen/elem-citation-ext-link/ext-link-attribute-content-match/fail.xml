@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ext-link-attribute-content-match.sch"?>
 <!--Context: ref/element-citation/ext-link
 Test: assert    (normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')
-Message: <extlink> must contain content and have an @xlink:href, the value of which must be the same as the content of <extlink>. The <extlink> element in Reference '' has @xlink:href='' and content ''.-->
+Message: <ext-link> must contain content and have an @xlink:href, the value of which must be the same as the content of <ext-link>. The <ext-link> element in Reference '' has @xlink:href='' and content ''.-->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <ref-list>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="equal-author-test-1.sch"?>
 <!--Context: article-meta//contrib[@contrib-type='author']
 Test: report    @equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])
-Message: Equal authors must contain an xref[@reftype='fn'] with an @rid that starts with 'equalcontrib' and ends in a digit.-->
+Message: Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

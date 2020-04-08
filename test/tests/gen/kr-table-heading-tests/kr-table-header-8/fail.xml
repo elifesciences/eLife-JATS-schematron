@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="kr-table-header-8.sch"?>
+<!--Context: table-wrap[@id='keyresource']/table/thead[1]
+Test: assert    normalize-space(tr[1]/th[5]) = 'Additional information'
+Message: The fifth column header in a Key resources table is usually 'Additional information' but this one has ''.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource" position="anchor">
+      <label>Key resources table</label>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top">Reagent type <break/>(species) or resource</th>
+            <th valign="top">Designation</th>
+            <th valign="top">Source or reference</th>
+            <th valign="top">Identifiers</th>
+            <th valign="top">Additionals information</th>
+          </tr>
+        </thead>
+        <tbody/>
+      </table>
+    </table-wrap>
+  </article>
+</root>

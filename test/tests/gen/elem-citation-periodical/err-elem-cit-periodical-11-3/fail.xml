@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-11-3.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: report    (lpage and fpage) and (fpage[1] ge lpage[1])
-Message: [errelemcitperiodical113]
+Message: [err-elem-cit-periodical-11-3]
         If both <lpage> and <fpage> are present, the value of <fpage> must be less than the value of <lpage>. 
         Reference '' has <lpage> , which is 
         less than or equal to <fpage> .-->

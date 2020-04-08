@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-2-1.sch"?>
 <!--Context: element-citation[@publication-type='confproc']
 Test: assert    count(person-group)=1
-Message: [errelemcitconfproc21]
-        One and only one persongroup element is allowed.
+Message: [err-elem-cit-confproc-2-1]
+        One and only one person-group element is allowed.
         Reference '' has 
-         <persongroup> elements.-->
+         <person-group> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

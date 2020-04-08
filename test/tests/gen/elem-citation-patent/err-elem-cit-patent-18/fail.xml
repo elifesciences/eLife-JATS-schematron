@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-patent-18.sch"?>
 <!--Context: element-citation[@publication-type='patent']
 Test: assert    count(*) = count(person-group| article-title| source| year| patent| ext-link)
-Message: [errelemcitpatent18]
-        The only tags that are allowed as children of <elementcitation> with the publicationtype="patent" are:
-        <persongroup>, <articletitle>, <source>, <year>, <patent>, and <extlink>.
+Message: [err-elem-cit-patent-18]
+        The only tags that are allowed as children of <element-citation> with the publication-type="patent" are:
+        <person-group>, <article-title>, <source>, <year>, <patent>, and <ext-link>.
         Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

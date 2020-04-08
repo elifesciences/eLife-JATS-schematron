@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sec-title-full-stop.sch"?>
 <!--Context: sec/title
 Test: report    matches(replace(.,' ',' '),'\.[\s]*$')
-Message: Section title ends with full stop, which is very likely to be incorrect  -->
+Message: Section title ends with full stop, which is very likely to be incorrect - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec id="s4-7-2">

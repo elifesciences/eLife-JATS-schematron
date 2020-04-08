@@ -22,8 +22,8 @@ return
 
   let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"') 
   let $comment := comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
-Test: ',$test/local-name(),'    ',normalize-space($test/@test/string()),'
-Message: ',replace($test/data(),'-',''))}
+Test: ',$test/local-name(),'    ',replace(normalize-space($test/@test/string()),'[-—–][-—–]',''),'
+Message: ',replace($test/data(),'[-—–][-—–]',''))}
 
   let $node := 
   (processing-instruction {'oxygen'}{$pi-content},
@@ -59,8 +59,8 @@ for $test2 in $copy-edit-base//(*:assert|*:report)
   
   let $pi-content := ('SCHSchema="'||$test2/@id||'.sch'||'"') 
   let $comment := comment{concat('Context: ',$test2/parent::*:rule/@context/string(),'
-Test: ',$test2/local-name(),'    ',normalize-space($test2/@test/string()),'
-Message: ',replace($test2/data(),'-',''))}
+Test: ',$test2/local-name(),'    ',replace(normalize-space($test2/@test/string()),'[-—–][-—–]',''),'
+Message: ',replace($test2/data(),'[-—–][-—–]',''))}
 
   let $node := 
   (processing-instruction {'oxygen'}{$pi-content},

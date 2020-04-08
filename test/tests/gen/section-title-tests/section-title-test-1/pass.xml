@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="section-title-test-1.sch"?>
+<!--Context: sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]
+Test: report    (name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d'))
+Message:  text begins a paragraph -  - Should it be marked up as a section title (Heading level )?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <sec>
+          <p/>
+          <p/>
+          <sec>
+            <title>Cloning and mutagenesis.</title>
+            <p><italic>Drosophila</italic> genes in this study were ...</p>
+          </sec>
+        </sec>
+      </sec>
+    </body>
+  </article>
+</root>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="clintrial-conformance-1.sch"?>
 <!--Context: abstract[not(@abstract-type)]/sec
 Test: report    ($pos = 1) and (title != 'Background:')
-Message: First section title is ''  but the only allowed value is 'Background:'.-->
+Message: First section title is '' - but the only allowed value is 'Background:'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

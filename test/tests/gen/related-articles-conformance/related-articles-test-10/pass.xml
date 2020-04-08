@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-10.sch"?>
 <!--Context: related-article
 Test: report    @xlink:href = preceding::related-article/@xlink:href
-Message: relatedarticle elements must contain a distinct @xlink:href. There is more than 1 related article link for .-->
+Message: related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="err-elem-cit-data-13-2.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']/pub-id
 Test: assert    @pub-id-type=('accession', 'archive', 'ark', 'doi')
-Message: [errelemcitdata132]
-        Each pubid element must have one of these types: accession, archive, ark, assigningauthority or doi. 
-        Reference '' has a <pubid element with types 
+Message: [err-elem-cit-data-13-2]
+        Each pub-id element must have one of these types: accession, archive, ark, assigning-authority or doi. 
+        Reference '' has a <pub-id element with types 
         ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

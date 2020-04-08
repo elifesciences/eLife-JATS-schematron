@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-book-36.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: report    (lpage and fpage) and (number(fpage[1]) >= number(lpage[1]))
-Message: [errelemcitbook361]
+Message: [err-elem-cit-book-36-1]
         If both <lpage> and <fpage> are present, the value of <fpage> must be less than the value of <lpage>. 
         Reference '' has <lpage> , which is 
         less than or equal to <fpage> .-->

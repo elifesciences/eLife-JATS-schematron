@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reply-test-5.sch"?>
 <!--Context: article/sub-article
 Test: report    matches(.,'<[/]?[Aa]uthor response')
-Message:  contains what looks like pseudocode, search  '</Author response' or '<Author response'.-->
+Message:  contains what looks like pseudo-code, search - '</Author response' or '<Author response'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="decision-letter" id="SA1">

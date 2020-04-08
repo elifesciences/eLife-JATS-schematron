@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-5.sch"?>
 <!--Context: ref/element-citation/year
 Test: assert    not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY
-Message: [errelemcitgendate15]
-        The numeric value of the first 4 digits of the @iso8601date attribute must match the first 4 digits on the 
+Message: [err-elem-cit-gen-date-1-5]
+        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
         <year> element.
         Reference '' does not meet this requirement as the element contains
         the value '' and the attribute contains the value 

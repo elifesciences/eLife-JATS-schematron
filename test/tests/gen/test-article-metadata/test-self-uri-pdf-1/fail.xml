@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-self-uri-pdf-1.sch"?>
 <!--Context: article/front/article-meta
 Test: report    (($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])
-Message: selfuri must have attribute xlink:href="elifexxxxx.pdf" where xxxxx = the articleid. Currently it is . It should start with elife.-->
+Message: self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is . It should start with elife-.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

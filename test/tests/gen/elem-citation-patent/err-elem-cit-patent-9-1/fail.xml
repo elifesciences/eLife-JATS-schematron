@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-patent-9-1.sch"?>
 <!--Context: element-citation[@publication-type='patent']
 Test: assert    count(source)=1
-Message: [errelemcitpatent91]
-        Each  <elementcitation> of type 'patent' must contain one and only one <source> elements.
+Message: [err-elem-cit-patent-9-1]
+        Each  <element-citation> of type 'patent' must contain one and only one <source> elements.
         Reference '' has 
          <source> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="err-elem-cit-journal-6-7.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: report    count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1
-Message: [errelemcitjournal67]
-        The following elements may not occur more than once in an <elementcitation>: <fpage>, <lpage>, 
-        <elocationid>, and <comment>In press</comment>. 
+Message: [err-elem-cit-journal-6-7]
+        The following elements may not occur more than once in an <element-citation>: <fpage>, <lpage>, 
+        <elocation-id>, and <comment>In press</comment>. 
         Reference '' has 
          <fpage>,  <lpage>,
-         <elocationid>, and 
+         <elocation-id>, and 
          <comment> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

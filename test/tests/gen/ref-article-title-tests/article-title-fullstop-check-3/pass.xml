@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-title-fullstop-check-3.sch"?>
 <!--Context: element-citation[@publication-type='journal']/article-title
 Test: report    matches(.,'\.$') and matches(.,'\.\.$')
-Message: ref '' has an articletitle which ends with some full stops  is this correct?  -->
+Message: ref '' has an article-title which ends with some full stops - is this correct? - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">

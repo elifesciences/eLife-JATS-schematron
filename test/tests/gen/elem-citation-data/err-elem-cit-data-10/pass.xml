@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-data-10.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
 Test: assert    count(data-title)=1
-Message: [errelemcitdata10]
-        Each  <elementcitation> of type 'data' must contain one and only one <datatitle> element.
+Message: [err-elem-cit-data-10]
+        Each  <element-citation> of type 'data' must contain one and only one <data-title> element.
         Reference '' has 
-         <datatitle> elements.-->
+         <data-title> elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

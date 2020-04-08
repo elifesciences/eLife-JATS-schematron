@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sec-type-title-test.sch"?>
 <!--Context: sec[@sec-type]/title
 Test: report    if ($title = 'undefined') then () else . != $title
-Message: title of a sec with an @sectype='' should usually be ''.-->
+Message: title of a sec with an @sec-type='' should usually be ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

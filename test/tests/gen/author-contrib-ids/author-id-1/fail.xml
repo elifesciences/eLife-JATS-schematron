@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="author-id-1.sch"?>
 <!--Context: article-meta//contrib[@contrib-type='author']
 Test: report    if (collab) then () else if (ancestor::collab) then () else not(matches(@id,'^[a-z]+-[0-9]+$'))
-Message: contrib[@contribtype="author"] must have an @id which is an alphanumeric string.  does not conform to this.-->
+Message: contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string.  does not conform to this.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="article-commentary">
     <front>

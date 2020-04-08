@@ -1,9 +1,8 @@
 <?oxygen SCHSchema="editorial-editors-presence.sch"?>
 <!--Context: article[@article-type='editorial']/front/article-meta
 Test: report    contrib-group[@content-type='section']
-Message: Editorials cannot contain Editors and/or Reviewers. This one has a contribgroup[@contenttype='section'] containing .-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Message: Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="editorial">
     <front>
       <article-meta>
@@ -13,8 +12,7 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
               <surname>Eisen</surname>
               <given-names>Michael B</given-names>
             </name>
-            <contrib-id contrib-id-type="orcid" authenticated="true"
-              >https://orcid.org/0000-0002-7528-738X</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-7528-738X</contrib-id>
             <email>mbeisen@gmail.com</email>
             <xref ref-type="aff" rid="aff1">1</xref>
             <xref ref-type="fn" rid="con1"/>
@@ -28,8 +26,7 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
               <surname>Akhmanova</surname>
               <given-names>Anna</given-names>
             </name>
-            <contrib-id contrib-id-type="orcid" authenticated="true"
-              >https://orcid.org/0000-0002-9048-8614</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-9048-8614</contrib-id>
             <xref ref-type="aff" rid="aff2">2</xref>
             <xref ref-type="fn" rid="con2"/>
             <xref ref-type="fn" rid="conf2"/>
@@ -42,8 +39,7 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
               <surname>Behrens</surname>
               <given-names>Timothy E</given-names>
             </name>
-            <contrib-id contrib-id-type="orcid" authenticated="true"
-              >https://orcid.org/0000-0003-0048-1177</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0003-0048-1177</contrib-id>
             <xref ref-type="aff" rid="aff3">3</xref>
             <xref ref-type="fn" rid="con3"/>
             <xref ref-type="fn" rid="conf2"/>
@@ -56,8 +52,7 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
               <surname>Weigel</surname>
               <given-names>Detlef</given-names>
             </name>
-            <contrib-id contrib-id-type="orcid" authenticated="true"
-              >https://orcid.org/0000-0002-2114-7963</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-2114-7963</contrib-id>
             <xref ref-type="aff" rid="aff4">4</xref>
             <xref ref-type="fn" rid="con4"/>
             <xref ref-type="fn" rid="conf2"/>
@@ -95,7 +90,7 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <institution>Department of Molecular Biology, Max Planck Institute for Developmental
               Biology</institution>
             <addr-line>
-              <named-content content-type="city">T&#x00FC;bingen</named-content>
+              <named-content content-type="city">Tübingen</named-content>
             </addr-line>
             <country>Germany</country>
           </aff>

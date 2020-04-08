@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="aff-test-1.sch"?>
 <!--Context: article-meta/contrib-group/aff
 Test: assert    parent::contrib-group//contrib//xref/@rid = @id
-Message: aff elements that are direct children of contribgroup must have an xref in that contribgroup pointing to them.-->
+Message: aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-permissions-test-11.sch"?>
 <!--Context: fig/permissions
 Test: assert    copyright-statement or license
-Message: figure level permissions must either have a <copyrightstatement> or a <license> element, but those for  have neither.-->
+Message: figure level permissions must either have a <copyright-statement> or a <license> element, but those for  have neither.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig>

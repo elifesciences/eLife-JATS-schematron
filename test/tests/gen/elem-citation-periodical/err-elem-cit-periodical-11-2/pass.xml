@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-11-2.sch"?>
 <!--Context: element-citation[@publication-type='periodical']
 Test: report    count(fpage) gt 1 or count(lpage) gt 1
-Message: [errelemcitperiodical112]
+Message: [err-elem-cit-periodical-11-2]
         The citation may contain no more than one <fpage> or <lpage> elements.
         Reference '' has 
         <fpage> elements and  <lpage> elements.-->

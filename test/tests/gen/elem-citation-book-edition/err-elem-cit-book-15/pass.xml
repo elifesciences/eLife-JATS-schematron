@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-book-15.sch"?>
 <!--Context: element-citation[@publication-type='book']/edition
 Test: assert    count(*)=0
-Message: [errelemcitbook15]
+Message: [err-elem-cit-book-15]
         No elements are allowed inside <edition>.
         Reference '' has child elements within the
         <edition> element.-->

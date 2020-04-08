@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-17.sch"?>
 <!--Context: element-citation[@publication-type='confproc']
 Test: assert    count(*) = count(person-group | article-title | year| source | conf-loc | conf-name | lpage | fpage | elocation-id | ext-link | pub-id)
-Message: [errelemcitconfproc17]
-        The only tags that are allowed as children of <elementcitation> with the publicationtype="confproc" are:
-        <persongroup>, <year>, <articletitle>, <source>, <confloc>, <confname>, 
-        <fpage>, <lpage>, <elocationid>, <extlink>, and <pubid>.
+Message: [err-elem-cit-confproc-17]
+        The only tags that are allowed as children of <element-citation> with the publication-type="confproc" are:
+        <person-group>, <year>, <article-title>, <source>, <conf-loc>, <conf-name>, 
+        <fpage>, <lpage>, <elocation-id>, <ext-link>, and <pub-id>.
         Reference '' has other elements.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

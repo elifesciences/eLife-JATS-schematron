@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="vid-xref-test-4.sch"?>
 <!--Context: xref[@ref-type='video']
 Test: report    (ancestor::media[@mimetype='video']/@id = $rid)
-Message:   video citation is in the caption of the video that it links to. Is it correct or necessary?-->
+Message:  - video citation is in the caption of the video that it links to. Is it correct or necessary?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     

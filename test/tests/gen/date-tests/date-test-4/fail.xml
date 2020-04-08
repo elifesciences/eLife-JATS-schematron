@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="date-test-4.sch"?>
 <!--Context: date
 Test: assert    @iso-8601-date = concat(year[1],'-',month[1],'-',day[1])
-Message: date must have an @iso8601date the value of which must be the values of the yearmonthday elements. Currently it is , when it should be .-->
+Message: date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is , when it should be .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <date iso-8601-date="1999-01-01">

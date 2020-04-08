@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-confproc-8-2.sch"?>
 <!--Context: element-citation[@publication-type='confproc']/article-title
 Test: assert    count(*) = count(sub|sup|italic)
-Message: [errelemcitconfproc82]
-        An <articletitle> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
+Message: [err-elem-cit-confproc-8-2]
+        An <article-title> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
         No other elements are allowed.
         Reference '' does not meet this requirement.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

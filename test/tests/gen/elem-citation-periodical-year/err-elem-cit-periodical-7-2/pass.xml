@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-7-2.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date/year
 Test: assert    ./@iso-8601-date
-Message: [errelemcitperiodical72]
-        The <year> element must have an @iso8601date attribute.
+Message: [err-elem-cit-periodical-7-2]
+        The <year> element must have an @iso-8601-date attribute.
         Reference '' does not.
       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

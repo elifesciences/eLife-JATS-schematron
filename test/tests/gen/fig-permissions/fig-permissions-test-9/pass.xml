@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-permissions-test-9.sch"?>
 <!--Context: fig/permissions
 Test: report    (count(license) = 1) and not(license/license-p)
-Message: permissions for  has a <license> element, but not <licensep> element, which is incorrect.-->
+Message: permissions for  has a <license> element, but not <license-p> element, which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig>

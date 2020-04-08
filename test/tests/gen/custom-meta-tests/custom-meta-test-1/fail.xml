@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-test-1.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta
 Test: assert    count(meta-name) = 1
-Message: One metaname must be present in custommeta.-->
+Message: One meta-name must be present in custom-meta.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="err-elem-cit-journal-2-2.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: assert    person-group[@person-group-type='author']
-Message: [errelemcitjournal22]
-        Each  <elementcitation> of type 'journal' must contain one <persongroup> 
-        with the attribute persongrouptype 'author'.
-        Reference '' has a  <persongroup> type of 
+Message: [err-elem-cit-journal-2-2]
+        Each  <element-citation> of type 'journal' must contain one <person-group> 
+        with the attribute person-group-type 'author'.
+        Reference '' has a  <person-group> type of 
         ''.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

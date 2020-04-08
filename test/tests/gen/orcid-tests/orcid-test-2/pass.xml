@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="orcid-test-2.sch"?>
 <!--Context: contrib-id[@contrib-id-type='orcid']
 Test: assert    matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')
-Message: contribid[@contribidtype="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000000000000000'-->
+Message: contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-0000-0001</contrib-id>

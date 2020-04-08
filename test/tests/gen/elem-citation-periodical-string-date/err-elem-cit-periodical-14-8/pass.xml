@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-periodical-14-8.sch"?>
 <!--Context: element-citation[@publication-type='periodical']/string-date
 Test: assert    (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=' ' and name(child::node()[3])='day' and replace(child::node()[4],'\s+',' ')=', ' and name(*[position()=last()])='year') or (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=', ' and name(*[position()=last()])='year')
-Message: [errelemcitperiodical148]
+Message: [err-elem-cit-periodical-14-8]
         The format of the element content must match <month>, space, <day>, comma, <year>, or <month>, comma, <year>.
         Reference '' has .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
