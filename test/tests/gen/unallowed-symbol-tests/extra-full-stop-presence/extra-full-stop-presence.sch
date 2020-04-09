@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'..')" role="warning" id="extra-full-stop-presence">
+      <report test="contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">
         <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
     </rule>
   </pattern>

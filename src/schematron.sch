@@ -7951,11 +7951,11 @@
         role="warning"
         id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="contains(.,'..')"
+      <report test="contains(.,'..') and not(contains(.,'...'))"
         role="warning"
         id="extra-full-stop-presence"><name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       
-      <report test="matches(replace(.,'&#x00A0;',' '),'\s\s+')"
+      <report test="not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,'&#x00A0;',' '),'\s\s+')"
         role="warning"
         id="extra-space-presence"><name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
     </rule>
