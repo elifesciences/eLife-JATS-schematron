@@ -1199,6 +1199,26 @@
         <x:expect-assert id="orcid-test-2" role="error"/>
         <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pre-orcid-test-3-pass">
+        <x:context href="../tests/gen/orcid-tests/pre-orcid-test-3/pass.xml"/>
+        <x:expect-not-report id="pre-orcid-test-3" role="warning"/>
+        <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-orcid-test-3-fail">
+        <x:context href="../tests/gen/orcid-tests/pre-orcid-test-3/fail.xml"/>
+        <x:expect-report id="pre-orcid-test-3" role="warning"/>
+        <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-orcid-test-3-pass">
+        <x:context href="../tests/gen/orcid-tests/final-orcid-test-3/pass.xml"/>
+        <x:expect-not-report id="final-orcid-test-3" role="error"/>
+        <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-orcid-test-3-fail">
+        <x:context href="../tests/gen/orcid-tests/final-orcid-test-3/fail.xml"/>
+        <x:expect-report id="final-orcid-test-3" role="error"/>
+        <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="email-tests">
       <x:scenario label="email-test-pass">

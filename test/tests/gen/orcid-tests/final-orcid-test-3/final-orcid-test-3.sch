@@ -726,7 +726,8 @@
   <pattern id="article-metadata">
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
       <let name="text" value="."/>
-      <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
+      <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)" role="error" id="final-orcid-test-3">
+        <value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

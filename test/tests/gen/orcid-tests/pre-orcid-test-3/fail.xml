@@ -1,0 +1,176 @@
+<?oxygen SCHSchema="pre-orcid-test-3.sch"?>
+<!--Context: contrib-id[@contrib-id-type='orcid']
+Test: report    (preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)
+Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD -  - is associated with  authors. Please confirm which author this ORCiD belongs to.'.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <contrib-group>
+      <contrib contrib-type="author" equal-contrib="yes" id="author-129295">
+        <name>
+          <surname>Sheen</surname>
+          <given-names>Mee Rie</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff1">1</xref>
+        <xref ref-type="fn" rid="equal-contrib1">†</xref>
+        <xref ref-type="fn" rid="con1"/>
+        <xref ref-type="fn" rid="conf1"/>
+        <xref ref-type="fn" rid="pa1">§</xref>
+      </contrib>
+      <contrib contrib-type="author" equal-contrib="yes" id="author-129296">
+        <name>
+          <surname>Fields</surname>
+          <given-names>Jennifer L</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff1">1</xref>
+        <xref ref-type="fn" rid="equal-contrib1">†</xref>
+        <xref ref-type="fn" rid="con2"/>
+        <xref ref-type="fn" rid="conf2"/>
+      </contrib>
+      <contrib contrib-type="author" equal-contrib="yes" id="author-129297">
+        <name>
+          <surname>Northan</surname>
+          <given-names>Brian</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff2">2</xref>
+        <xref ref-type="fn" rid="equal-contrib2">‡</xref>
+        <xref ref-type="fn" rid="con3"/>
+        <xref ref-type="fn" rid="conf3"/>
+      </contrib>
+      <contrib contrib-type="author" equal-contrib="yes" id="author-18945">
+        <name>
+          <surname>Lacoste</surname>
+          <given-names>Judith</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff2">2</xref>
+        <xref ref-type="fn" rid="equal-contrib2">‡</xref>
+        <xref ref-type="fn" rid="con4"/>
+        <xref ref-type="fn" rid="conf4"/>
+      </contrib>
+      <contrib contrib-type="author" id="author-18944">
+        <name>
+          <surname>Ang</surname>
+          <given-names>Lay-Hong</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff3">3</xref>
+        <xref ref-type="fn" rid="con5"/>
+        <xref ref-type="fn" rid="conf5"/>
+      </contrib>
+      <contrib contrib-type="author" id="author-33234">
+        <name>
+          <surname>Fiering</surname>
+          <given-names>Steven</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff1">1</xref>
+        <xref ref-type="fn" rid="con6"/>
+        <xref ref-type="fn" rid="conf6"/>
+      </contrib>
+      <contrib contrib-type="author" corresp="yes">
+        <email>tim@cos.io</email>
+        <email>nicole@scienceexchange.com</email>
+        <collab>
+          Reproducibility Project: Cancer Biology
+          <contrib-group>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Iorns</surname>
+                <given-names>Elizabeth</given-names>
+              </name>
+              <aff>
+                <institution>Science Exchange</institution>
+                <addr-line>
+                  <named-content content-type="city">Palo Alto</named-content>
+                </addr-line>
+                <country>United States</country>
+              </aff>
+            </contrib>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Tsui</surname>
+                <given-names>Rachel</given-names>
+              </name>
+              <contrib-id authenticated="true" contrib-id-type="orcid">http://orcid.org/0000-0002-4959-5143</contrib-id>
+              <aff>
+                <institution>Science Exchange</institution>
+                <addr-line>
+                  <named-content content-type="city">Palo Alto</named-content>
+                </addr-line>
+                <country>United States</country>
+              </aff>
+            </contrib>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Denis</surname>
+                <given-names>Alexandria</given-names>
+              </name>
+              <contrib-id authenticated="true" contrib-id-type="orcid">http://orcid.org/0000-0002-1210-2309</contrib-id>
+              <aff>
+                <institution>Center for Open Science</institution>
+                <addr-line>
+                  <named-content content-type="city">Charlottesville</named-content>
+                </addr-line>
+                <country>United States</country>
+              </aff>
+            </contrib>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Perfito</surname>
+                <given-names>Nicole</given-names>
+              </name>
+              <contrib-id authenticated="true" contrib-id-type="orcid">http://orcid.org/0000-0002-4959-5143</contrib-id>
+              <aff>
+                <institution>Science Exchange</institution>
+                <addr-line>
+                  <named-content content-type="city">Palo Alto</named-content>
+                </addr-line>
+                <country>United States</country>
+              </aff>
+            </contrib>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Errington</surname>
+                <given-names>Timothy M</given-names>
+              </name>
+              <contrib-id authenticated="true" contrib-id-type="orcid">http://orcid.org/0000-0002-4959-5143</contrib-id>
+              <aff>
+                <institution>Center for Open Science</institution>
+                <addr-line>
+                  <named-content content-type="city">Charlottesville</named-content>
+                </addr-line>
+                <country>United States</country>
+              </aff>
+            </contrib>
+          </contrib-group>
+        </collab>
+        <xref ref-type="other" rid="fund1"/>
+        <xref ref-type="fn" rid="con7"/>
+        <xref ref-type="fn" rid="conf7"/>
+      </contrib>
+      <aff id="aff1">
+        <label>1</label>
+        <institution content-type="dept">Geisel School of Medicine at Dartmouth</institution>
+        <institution>Department of Microbiology and Immunology</institution>
+        <addr-line>
+          <named-content content-type="city">Lebanon</named-content>
+        </addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff2">
+        <label>2</label>
+        <institution>MIA Cellavie Inc</institution>
+        <addr-line>
+          <named-content content-type="city">Montreal</named-content>
+        </addr-line>
+        <country>Canada</country>
+      </aff>
+      <aff id="aff3">
+        <label>3</label>
+        <institution content-type="dept">Beth Israel Deaconess Medical Center</institution>
+        <institution>Harvard Medical School</institution>
+        <addr-line>
+          <named-content content-type="city">Boston</named-content>
+        </addr-line>
+        <country>United States</country>
+      </aff>
+    </contrib-group>
+  </article>
+</root>
