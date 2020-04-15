@@ -725,6 +725,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
+      <let name="text" value="."/>
       <assert test="@authenticated='true'" role="error" id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
     </rule>
   </pattern>

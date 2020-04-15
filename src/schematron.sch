@@ -1143,7 +1143,7 @@
 	    role="warning" 
 	    id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/></report>
 	  
-	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and matches($tokens,'[A-Za-z]')"
+	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')"
 	    role="warning" 
 	    id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/></report>
 	  
@@ -1416,6 +1416,7 @@
 
 	<rule context="contrib-id[@contrib-id-type='orcid']" 
 		id="orcid-tests">
+	  <let name="text" value="."/>
 		
     	<assert test="@authenticated='true'"
       	role="error" 
@@ -1425,6 +1426,14 @@
 	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')"
       	role="error" 
       	id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
+	  
+	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)"
+	    role="warning" 
+	    id="pre-orcid-test-3"><value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD - <value-of select="."/> - is associated with <value-of select="count(preceding::contrib-id[@contrib-id-type='orcid' and text()=$text]) + count(following::contrib-id[@contrib-id-type='orcid' and text()=$text]) + 1"/> authors. Please confirm which author this ORCiD belongs to.'.</report>
+	  
+	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)"
+	    role="error" 
+	    id="final-orcid-test-3"><value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</report>
 		
 		</rule>
 	

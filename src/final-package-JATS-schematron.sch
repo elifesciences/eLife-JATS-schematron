@@ -994,7 +994,7 @@
 	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
+	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	  
 	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
@@ -1185,11 +1185,17 @@
   </pattern>
   <pattern id="orcid-tests-pattern">
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
+	  <let name="text" value="."/>
 		
     	<assert test="@authenticated='true'" role="error" id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
 		
 		<!-- Needs updating to only allow https when this is implemented -->
 	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
+	  
+	  
+	  
+	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)" role="error" id="final-orcid-test-3">
+        <value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</report>
 		
 		</rule>
   </pattern>
