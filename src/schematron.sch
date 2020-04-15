@@ -6602,8 +6602,8 @@
         or 
         (($x/chapter-title = $c-title) and ($x/source = $source))
         )"
-        role="error" 
-        id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which must be incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
+        role="warning" 
+        id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
       
       <report test="some $x in preceding-sibling::ref/element-citation satisfies (
         (($x/article-title = $a-title) and not($x/source = $source))
