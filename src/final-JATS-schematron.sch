@@ -171,7 +171,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłɍŧɏƶ','bcdeghijklrtyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
   <xsl:function name="e:citation-format1" as="xs:string">
@@ -5919,13 +5919,13 @@
       <report test="not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')" role="error" id="refs-presence">
         <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
-      <report test="matches(.,'�')" role="error" id="replacement-character-presence">
+      <report test="contains(.,'�')" role="error" id="replacement-character-presence">
         <name/> element contains the replacement character '�' which is not allowed.</report>
       
-      <report test="matches(.,'')" role="error" id="junk-character-presence">
+      <report test="contains(.,'')" role="error" id="junk-character-presence">
         <name/> element contains a junk character '' which should be replaced.</report>
       
-      <report test="matches(.,'¿')" role="warning" id="inverterted-question-presence">
+      <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">
         <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
       <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" role="warning" id="empty-parentheses-presence">
@@ -5939,6 +5939,10 @@
       
       <report test="not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">
         <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
+      
+      <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">
+        <name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
@@ -6536,7 +6540,7 @@
   <pattern id="KRT-xref-tests-pattern">
     <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       
-      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
+      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
       
     </rule>
   </pattern>

@@ -155,7 +155,7 @@
   </xsl:function>
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłɍŧɏƶ','bcdeghijklrtyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
   <xsl:function name="e:citation-format1" as="xs:string">
     <xsl:param name="year"/>
@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="matches(.,'�')" role="error" id="replacement-character-presence">
+      <report test="contains(.,'�')" role="error" id="replacement-character-presence">
         <name/> element contains the replacement character '�' which is not allowed.</report>
     </rule>
   </pattern>

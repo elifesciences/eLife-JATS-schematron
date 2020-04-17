@@ -155,7 +155,7 @@
   </xsl:function>
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłɍŧɏƶ','bcdeghijklrtyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
   <xsl:function name="e:citation-format1" as="xs:string">
     <xsl:param name="year"/>
@@ -724,13 +724,15 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
-      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-colum-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+      <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">
+        <name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
     </rule>
   </pattern>
 </schema>
