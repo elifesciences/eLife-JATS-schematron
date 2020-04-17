@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="xref-colum-test.sch"?>
+<?oxygen SCHSchema="xref-column-test.sch"?>
 <!--Context: table-wrap[@id='keyresource']//xref[@ref-type='bibr']
 Test: report    (count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)
 Message: '' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?-->

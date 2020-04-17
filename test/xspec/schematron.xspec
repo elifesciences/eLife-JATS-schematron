@@ -12341,6 +12341,16 @@
         <x:expect-report id="extra-space-presence" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="operating-system-command-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/operating-system-command-presence/pass.xml"/>
+        <x:expect-not-report id="operating-system-command-presence" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="operating-system-command-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/operating-system-command-presence/fail.xml"/>
+        <x:expect-report id="operating-system-command-presence" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="unallowed-symbol-tests-sup">
       <x:scenario label="copyright-symbol-sup-pass">
@@ -14441,14 +14451,14 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="KRT-xref-tests">
-      <x:scenario label="xref-colum-test-pass">
-        <x:context href="../tests/gen/KRT-xref-tests/xref-colum-test/pass.xml"/>
-        <x:expect-not-report id="xref-colum-test" role="warning"/>
+      <x:scenario label="xref-column-test-pass">
+        <x:context href="../tests/gen/KRT-xref-tests/xref-column-test/pass.xml"/>
+        <x:expect-not-report id="xref-column-test" role="warning"/>
         <x:expect-not-assert id="KRT-xref-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="xref-colum-test-fail">
-        <x:context href="../tests/gen/KRT-xref-tests/xref-colum-test/fail.xml"/>
-        <x:expect-report id="xref-colum-test" role="warning"/>
+      <x:scenario label="xref-column-test-fail">
+        <x:context href="../tests/gen/KRT-xref-tests/xref-column-test/fail.xml"/>
+        <x:expect-report id="xref-column-test" role="warning"/>
         <x:expect-not-assert id="KRT-xref-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
