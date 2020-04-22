@@ -6036,6 +6036,8 @@
       <report test="matches(.,'\d')" role="warning" id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
       <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
+      
+      <report test="(parent::*/following-sibling::country[1] != 'Taiwan') and  (matches(lower-case(.),'taipei|taichung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua'))" role="warning" id="taiwan-test">Affiliaiton has a Taiwanese city <value-of select="."/> but it's country is <value-of select="parent::*/following-sibling::country[1]"/>. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
