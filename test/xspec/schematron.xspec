@@ -12521,6 +12521,36 @@
         <x:expect-report id="singapore-test-1" role="error"/>
         <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="taiwan-test-pass">
+        <x:context href="../tests/gen/country-tests/taiwan-test/pass.xml"/>
+        <x:expect-not-report id="taiwan-test" role="warning"/>
+        <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="taiwan-test-fail">
+        <x:context href="../tests/gen/country-tests/taiwan-test/fail.xml"/>
+        <x:expect-report id="taiwan-test" role="warning"/>
+        <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="s-korea-test-pass">
+        <x:context href="../tests/gen/country-tests/s-korea-test/pass.xml"/>
+        <x:expect-not-report id="s-korea-test" role="warning"/>
+        <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="s-korea-test-fail">
+        <x:context href="../tests/gen/country-tests/s-korea-test/fail.xml"/>
+        <x:expect-report id="s-korea-test" role="warning"/>
+        <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="n-korea-test-pass">
+        <x:context href="../tests/gen/country-tests/n-korea-test/pass.xml"/>
+        <x:expect-not-report id="n-korea-test" role="warning"/>
+        <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="n-korea-test-fail">
+        <x:context href="../tests/gen/country-tests/n-korea-test/fail.xml"/>
+        <x:expect-report id="n-korea-test" role="warning"/>
+        <x:expect-not-assert id="country-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="city-tests">
       <x:scenario label="pre-US-states-test-pass">
@@ -12581,16 +12611,6 @@
       <x:scenario label="city-street-presence-fail">
         <x:context href="../tests/gen/city-tests/city-street-presence/fail.xml"/>
         <x:expect-report id="city-street-presence" role="warning"/>
-        <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="taiwan-test-pass">
-        <x:context href="../tests/gen/city-tests/taiwan-test/pass.xml"/>
-        <x:expect-not-report id="taiwan-test" role="warning"/>
-        <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="taiwan-test-fail">
-        <x:context href="../tests/gen/city-tests/taiwan-test/fail.xml"/>
-        <x:expect-report id="taiwan-test" role="warning"/>
         <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

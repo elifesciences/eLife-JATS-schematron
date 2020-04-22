@@ -5989,7 +5989,7 @@
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
       <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
-      <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
+      <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
       <report test="$text = 'United States of America'" role="error" id="united-states-test-1">
         <value-of select="."/> is not allowed it. This should be 'United States'.</report>
@@ -6008,6 +6008,12 @@
       
       <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
+      
+      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\s?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but it's country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
+      
+      <report test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))" role="warning" id="s-korea-test">Affiliation has a South Korean city - <value-of select="$city"/> - but it's country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
+      
+      <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as it's country which is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="city-tests-pattern">
@@ -6028,8 +6034,6 @@
       <report test="matches(.,'\d')" role="warning" id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
       <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
-      
-      <report test="(parent::*/following-sibling::country[1] != 'Taiwan') and  (matches(lower-case(.),'taipei|taichung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua'))" role="warning" id="taiwan-test">Affiliaiton has a Taiwanese city <value-of select="."/> but it's country is <value-of select="parent::*/following-sibling::country[1]"/>. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
