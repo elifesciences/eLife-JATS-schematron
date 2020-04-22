@@ -728,7 +728,6 @@
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
-      <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">
         <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
     </rule>

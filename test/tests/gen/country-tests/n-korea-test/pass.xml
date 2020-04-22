@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="n-korea-test.sch"?>
+<!--Context: front//aff/country
+Test: report    replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'
+Message: Affiliation has '' as it's country which is very likely to be incorrect.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <aff id="aff8">
+        <label>8</label>
+        <institution/>
+        <addr-line><named-content content-type="city">Seoul</named-content></addr-line>
+        <country>Republic of Korea</country>
+      </aff>
+    </front>
+  </article>
+</root>
