@@ -6105,15 +6105,27 @@
         <x:expect-assert id="dec-letter-reply-test-4" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
+    </x:scenario>
+    <x:scenario label="dec-letter-reply-content-tests">
       <x:scenario label="dec-letter-reply-test-5-pass">
-        <x:context href="../tests/gen/dec-letter-reply-tests/dec-letter-reply-test-5/pass.xml"/>
+        <x:context href="../tests/gen/dec-letter-reply-content-tests/dec-letter-reply-test-5/pass.xml"/>
         <x:expect-not-report id="dec-letter-reply-test-5" role="error"/>
-        <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
+        <x:expect-not-assert id="dec-letter-reply-content-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-reply-test-5-fail">
-        <x:context href="../tests/gen/dec-letter-reply-tests/dec-letter-reply-test-5/fail.xml"/>
+        <x:context href="../tests/gen/dec-letter-reply-content-tests/dec-letter-reply-test-5/fail.xml"/>
         <x:expect-report id="dec-letter-reply-test-5" role="error"/>
-        <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
+        <x:expect-not-assert id="dec-letter-reply-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reply-test-6-pass">
+        <x:context href="../tests/gen/dec-letter-reply-content-tests/dec-letter-reply-test-6/pass.xml"/>
+        <x:expect-not-report id="dec-letter-reply-test-6" role="warning"/>
+        <x:expect-not-assert id="dec-letter-reply-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reply-test-6-fail">
+        <x:context href="../tests/gen/dec-letter-reply-content-tests/dec-letter-reply-test-6/fail.xml"/>
+        <x:expect-report id="dec-letter-reply-test-6" role="warning"/>
+        <x:expect-not-assert id="dec-letter-reply-content-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="dec-letter-front-tests">
@@ -6316,6 +6328,18 @@
         <x:context href="../tests/gen/reply-missing-disp-quote-tests/reply-missing-disp-quote-test-1/fail.xml"/>
         <x:expect-report id="reply-missing-disp-quote-test-1" role="warning"/>
         <x:expect-not-assert id="reply-missing-disp-quote-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="reply-missing-disp-quote-tests-2">
+      <x:scenario label="reply-missing-disp-quote-test-2-pass">
+        <x:context href="../tests/gen/reply-missing-disp-quote-tests-2/reply-missing-disp-quote-test-2/pass.xml"/>
+        <x:expect-not-report id="reply-missing-disp-quote-test-2" role="warning"/>
+        <x:expect-not-assert id="reply-missing-disp-quote-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="reply-missing-disp-quote-test-2-fail">
+        <x:context href="../tests/gen/reply-missing-disp-quote-tests-2/reply-missing-disp-quote-test-2/fail.xml"/>
+        <x:expect-report id="reply-missing-disp-quote-test-2" role="warning"/>
+        <x:expect-not-assert id="reply-missing-disp-quote-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="research-advance-test">

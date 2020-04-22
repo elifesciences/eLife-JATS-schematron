@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="dec-letter-reply-test-6.sch"?>
+<!--Context: article/sub-article//p
+Test: report    matches(.,'<\s?/?\s?[a-z]*\s?/?\s?>')
+Message:  paragraph contains what might be pseudo-code or tags which should likely be removed - .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="reply">
+      <p>&lt; / italic &gt; bvjerbwuovrebuwovbfeowbveor.</p>
+    </sub-article>
+  </article>
+</root>

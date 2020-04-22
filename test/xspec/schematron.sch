@@ -3113,8 +3113,16 @@
       
       <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article contain one and only one body.</assert>
       
+    </rule>
+  </pattern>
+  <pattern id="dec-letter-reply-content-tests-pattern">
+    <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
+      
       <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">
-        <value-of select="@article-type"/> contains what looks like pseudo-code, search - '&lt;/Author response' or '&lt;Author response'.</report>
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
+      
+      <report test="matches(.,'&lt;\s?/?\s?[a-z]*\s?/?\s?&gt;')" role="warning" id="dec-letter-reply-test-6">
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">
@@ -3208,6 +3216,12 @@
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
+    </rule>
+  </pattern>
+  <pattern id="reply-missing-disp-quote-tests-2-pattern">
+    <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+      
+      <report test="string-length(.) ge 50" role="warning" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
   
@@ -7092,6 +7106,7 @@
       <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-fn-tests-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
       <assert test="descendant::article/sub-article" role="error" id="dec-letter-reply-tests-xspec-assert">article/sub-article must be present.</assert>
+      <assert test="descendant::article/sub-article//p" role="error" id="dec-letter-reply-content-tests-xspec-assert">article/sub-article//p must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" role="error" id="dec-letter-editor-tests-2-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor'] must be present.</assert>
@@ -7103,6 +7118,7 @@
       <assert test="descendant::sub-article[@article-type='reply']/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type='reply']/body must be present.</assert>
       <assert test="descendant::sub-article[@article-type='reply']/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//disp-quote must be present.</assert>
       <assert test="descendant::sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-2-xspec-assert">sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)] must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" role="error" id="insight-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</assert>
       <assert test="descendant::article[@article-type='correction']//article-meta" role="error" id="correction-test-xspec-assert">article[@article-type='correction']//article-meta must be present.</assert>
