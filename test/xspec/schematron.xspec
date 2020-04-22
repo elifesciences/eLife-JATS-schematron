@@ -12583,6 +12583,16 @@
         <x:expect-report id="city-street-presence" role="warning"/>
         <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="taiwan-test-pass">
+        <x:context href="../tests/gen/city-tests/taiwan-test/pass.xml"/>
+        <x:expect-not-report id="taiwan-test" role="warning"/>
+        <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="taiwan-test-fail">
+        <x:context href="../tests/gen/city-tests/taiwan-test/fail.xml"/>
+        <x:expect-report id="taiwan-test" role="warning"/>
+        <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="institution-tests">
       <x:scenario label="UC-no-test1-pass">
