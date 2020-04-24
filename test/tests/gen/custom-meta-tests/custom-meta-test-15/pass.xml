@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-test-15.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta
 Test: report    ($type = $features-subj) and ($pos=2) and (meta-name != 'Template')
-Message: The value of the 2nd meta-name can only be 'Template'. Currently it is .-->
+Message: The value of the 2nd meta-name can only be 'Template'. Currently it is . More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-15-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <front>

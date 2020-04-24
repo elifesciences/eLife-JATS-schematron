@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
+      <assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

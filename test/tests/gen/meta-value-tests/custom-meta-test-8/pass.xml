@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-test-8.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    not($subj = 'Replication Study') and matches(.,'[:;]')
-Message: Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.-->
+Message: Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-8-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

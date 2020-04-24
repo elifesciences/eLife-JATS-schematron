@@ -13213,6 +13213,16 @@
         <x:expect-report id="R-test-5" role="error"/>
         <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="R-test-6-pass">
+        <x:context href="../tests/gen/software-ref-tests/R-test-6/pass.xml"/>
+        <x:expect-not-report id="R-test-6" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="R-test-6-fail">
+        <x:context href="../tests/gen/software-ref-tests/R-test-6/fail.xml"/>
+        <x:expect-report id="R-test-6" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="software-replacement-character-presence-pass">
         <x:context href="../tests/gen/software-ref-tests/software-replacement-character-presence/pass.xml"/>
         <x:expect-not-report id="software-replacement-character-presence" role="error"/>
@@ -13443,6 +13453,26 @@
       <x:scenario label="data-emdb-test-3-fail">
         <x:context href="../tests/gen/data-ref-tests/data-emdb-test-3/fail.xml"/>
         <x:expect-report id="data-emdb-test-3" role="warning"/>
+        <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-empiar-test-1-pass">
+        <x:context href="../tests/gen/data-ref-tests/data-empiar-test-1/pass.xml"/>
+        <x:expect-not-report id="data-empiar-test-1" role="warning"/>
+        <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-empiar-test-1-fail">
+        <x:context href="../tests/gen/data-ref-tests/data-empiar-test-1/fail.xml"/>
+        <x:expect-report id="data-empiar-test-1" role="warning"/>
+        <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-empiar-test-2-pass">
+        <x:context href="../tests/gen/data-ref-tests/data-empiar-test-2/pass.xml"/>
+        <x:expect-not-report id="data-empiar-test-2" role="warning"/>
+        <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-empiar-test-2-fail">
+        <x:context href="../tests/gen/data-ref-tests/data-empiar-test-2/fail.xml"/>
+        <x:expect-report id="data-empiar-test-2" role="warning"/>
         <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="data-arrayexpress-test-1-pass">
@@ -15324,6 +15354,918 @@
         <x:context href="../tests/gen/fundref-rule/fundref-test-1/fail.xml"/>
         <x:expect-report id="fundref-test-1" role="warning"/>
         <x:expect-not-assert id="fundref-rule-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="unicode-tests">
+      <x:scenario label="unicode-test-1-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-1/pass.xml"/>
+        <x:expect-not-report id="unicode-test-1" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-1-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-1/fail.xml"/>
+        <x:expect-report id="unicode-test-1" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-2-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-2/pass.xml"/>
+        <x:expect-not-report id="unicode-test-2" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-2-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-2/fail.xml"/>
+        <x:expect-report id="unicode-test-2" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-3-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-3/pass.xml"/>
+        <x:expect-not-report id="unicode-test-3" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-3-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-3/fail.xml"/>
+        <x:expect-report id="unicode-test-3" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-4-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-4/pass.xml"/>
+        <x:expect-not-report id="unicode-test-4" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-4-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-4/fail.xml"/>
+        <x:expect-report id="unicode-test-4" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-5-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-5/pass.xml"/>
+        <x:expect-not-report id="unicode-test-5" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-5-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-5/fail.xml"/>
+        <x:expect-report id="unicode-test-5" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-6-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-6/pass.xml"/>
+        <x:expect-not-report id="unicode-test-6" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-6-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-6/fail.xml"/>
+        <x:expect-report id="unicode-test-6" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-7-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-7/pass.xml"/>
+        <x:expect-not-report id="unicode-test-7" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-7-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-7/fail.xml"/>
+        <x:expect-report id="unicode-test-7" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-8-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-8/pass.xml"/>
+        <x:expect-not-report id="unicode-test-8" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-8-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-8/fail.xml"/>
+        <x:expect-report id="unicode-test-8" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-9-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-9/pass.xml"/>
+        <x:expect-not-report id="unicode-test-9" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-9-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-9/fail.xml"/>
+        <x:expect-report id="unicode-test-9" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-10-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-10/pass.xml"/>
+        <x:expect-not-report id="unicode-test-10" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-10-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-10/fail.xml"/>
+        <x:expect-report id="unicode-test-10" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-11-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-11/pass.xml"/>
+        <x:expect-not-report id="unicode-test-11" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-11-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-11/fail.xml"/>
+        <x:expect-report id="unicode-test-11" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-13-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-13/pass.xml"/>
+        <x:expect-not-report id="unicode-test-13" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-13-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-13/fail.xml"/>
+        <x:expect-report id="unicode-test-13" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-14-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-14/pass.xml"/>
+        <x:expect-not-report id="unicode-test-14" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-14-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-14/fail.xml"/>
+        <x:expect-report id="unicode-test-14" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-15-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-15/pass.xml"/>
+        <x:expect-not-report id="unicode-test-15" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-15-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-15/fail.xml"/>
+        <x:expect-report id="unicode-test-15" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-16-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-16/pass.xml"/>
+        <x:expect-not-report id="unicode-test-16" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-16-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-16/fail.xml"/>
+        <x:expect-report id="unicode-test-16" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-17-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-17/pass.xml"/>
+        <x:expect-not-report id="unicode-test-17" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-17-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-17/fail.xml"/>
+        <x:expect-report id="unicode-test-17" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-18-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-18/pass.xml"/>
+        <x:expect-not-report id="unicode-test-18" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-18-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-18/fail.xml"/>
+        <x:expect-report id="unicode-test-18" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-19-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-19/pass.xml"/>
+        <x:expect-not-report id="unicode-test-19" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-19-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-19/fail.xml"/>
+        <x:expect-report id="unicode-test-19" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-21-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-21/pass.xml"/>
+        <x:expect-not-report id="unicode-test-21" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-21-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-21/fail.xml"/>
+        <x:expect-report id="unicode-test-21" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-22-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-22/pass.xml"/>
+        <x:expect-not-report id="unicode-test-22" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-22-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-22/fail.xml"/>
+        <x:expect-report id="unicode-test-22" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-23-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-23/pass.xml"/>
+        <x:expect-not-report id="unicode-test-23" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-23-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-23/fail.xml"/>
+        <x:expect-report id="unicode-test-23" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-24-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-24/pass.xml"/>
+        <x:expect-not-report id="unicode-test-24" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-24-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-24/fail.xml"/>
+        <x:expect-report id="unicode-test-24" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-25-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-25/pass.xml"/>
+        <x:expect-not-report id="unicode-test-25" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-25-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-25/fail.xml"/>
+        <x:expect-report id="unicode-test-25" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-26-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-26/pass.xml"/>
+        <x:expect-not-report id="unicode-test-26" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-26-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-26/fail.xml"/>
+        <x:expect-report id="unicode-test-26" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-27-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-27/pass.xml"/>
+        <x:expect-not-report id="unicode-test-27" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-27-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-27/fail.xml"/>
+        <x:expect-report id="unicode-test-27" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-28-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-28/pass.xml"/>
+        <x:expect-not-report id="unicode-test-28" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-28-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-28/fail.xml"/>
+        <x:expect-report id="unicode-test-28" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-29-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-29/pass.xml"/>
+        <x:expect-not-report id="unicode-test-29" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-29-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-29/fail.xml"/>
+        <x:expect-report id="unicode-test-29" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-30-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-30/pass.xml"/>
+        <x:expect-not-report id="unicode-test-30" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-30-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-30/fail.xml"/>
+        <x:expect-report id="unicode-test-30" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-31-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-31/pass.xml"/>
+        <x:expect-not-report id="unicode-test-31" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-31-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-31/fail.xml"/>
+        <x:expect-report id="unicode-test-31" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-32-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-32/pass.xml"/>
+        <x:expect-not-report id="unicode-test-32" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-32-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-32/fail.xml"/>
+        <x:expect-report id="unicode-test-32" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-33-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-33/pass.xml"/>
+        <x:expect-not-report id="unicode-test-33" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-33-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-33/fail.xml"/>
+        <x:expect-report id="unicode-test-33" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-34-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-34/pass.xml"/>
+        <x:expect-not-report id="unicode-test-34" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-34-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-34/fail.xml"/>
+        <x:expect-report id="unicode-test-34" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-35-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-35/pass.xml"/>
+        <x:expect-not-report id="unicode-test-35" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-35-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-35/fail.xml"/>
+        <x:expect-report id="unicode-test-35" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-36-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-36/pass.xml"/>
+        <x:expect-not-report id="unicode-test-36" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-36-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-36/fail.xml"/>
+        <x:expect-report id="unicode-test-36" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-37-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-37/pass.xml"/>
+        <x:expect-not-report id="unicode-test-37" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-37-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-37/fail.xml"/>
+        <x:expect-report id="unicode-test-37" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-38-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-38/pass.xml"/>
+        <x:expect-not-report id="unicode-test-38" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-38-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-38/fail.xml"/>
+        <x:expect-report id="unicode-test-38" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-39-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-39/pass.xml"/>
+        <x:expect-not-report id="unicode-test-39" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-39-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-39/fail.xml"/>
+        <x:expect-report id="unicode-test-39" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-40-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-40/pass.xml"/>
+        <x:expect-not-report id="unicode-test-40" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-40-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-40/fail.xml"/>
+        <x:expect-report id="unicode-test-40" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-41-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-41/pass.xml"/>
+        <x:expect-not-report id="unicode-test-41" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-41-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-41/fail.xml"/>
+        <x:expect-report id="unicode-test-41" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-42-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-42/pass.xml"/>
+        <x:expect-not-report id="unicode-test-42" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-42-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-42/fail.xml"/>
+        <x:expect-report id="unicode-test-42" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-43-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-43/pass.xml"/>
+        <x:expect-not-report id="unicode-test-43" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-43-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-43/fail.xml"/>
+        <x:expect-report id="unicode-test-43" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-44-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-44/pass.xml"/>
+        <x:expect-not-report id="unicode-test-44" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-44-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-44/fail.xml"/>
+        <x:expect-report id="unicode-test-44" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-45-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-45/pass.xml"/>
+        <x:expect-not-report id="unicode-test-45" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-45-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-45/fail.xml"/>
+        <x:expect-report id="unicode-test-45" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-46-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-46/pass.xml"/>
+        <x:expect-not-report id="unicode-test-46" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-46-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-46/fail.xml"/>
+        <x:expect-report id="unicode-test-46" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-47-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-47/pass.xml"/>
+        <x:expect-not-report id="unicode-test-47" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-47-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-47/fail.xml"/>
+        <x:expect-report id="unicode-test-47" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-48-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-48/pass.xml"/>
+        <x:expect-not-report id="unicode-test-48" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-48-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-48/fail.xml"/>
+        <x:expect-report id="unicode-test-48" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-49-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-49/pass.xml"/>
+        <x:expect-not-report id="unicode-test-49" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-49-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-49/fail.xml"/>
+        <x:expect-report id="unicode-test-49" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-50-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-50/pass.xml"/>
+        <x:expect-not-report id="unicode-test-50" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-50-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-50/fail.xml"/>
+        <x:expect-report id="unicode-test-50" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-51-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-51/pass.xml"/>
+        <x:expect-not-report id="unicode-test-51" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-51-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-51/fail.xml"/>
+        <x:expect-report id="unicode-test-51" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-52-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-52/pass.xml"/>
+        <x:expect-not-report id="unicode-test-52" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-52-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-52/fail.xml"/>
+        <x:expect-report id="unicode-test-52" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-53-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-53/pass.xml"/>
+        <x:expect-not-report id="unicode-test-53" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-53-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-53/fail.xml"/>
+        <x:expect-report id="unicode-test-53" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-54-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-54/pass.xml"/>
+        <x:expect-not-report id="unicode-test-54" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-54-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-54/fail.xml"/>
+        <x:expect-report id="unicode-test-54" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-55-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-55/pass.xml"/>
+        <x:expect-not-report id="unicode-test-55" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-55-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-55/fail.xml"/>
+        <x:expect-report id="unicode-test-55" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-56-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-56/pass.xml"/>
+        <x:expect-not-report id="unicode-test-56" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-56-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-56/fail.xml"/>
+        <x:expect-report id="unicode-test-56" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-57-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-57/pass.xml"/>
+        <x:expect-not-report id="unicode-test-57" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-57-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-57/fail.xml"/>
+        <x:expect-report id="unicode-test-57" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-58-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-58/pass.xml"/>
+        <x:expect-not-report id="unicode-test-58" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-58-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-58/fail.xml"/>
+        <x:expect-report id="unicode-test-58" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-59-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-59/pass.xml"/>
+        <x:expect-not-report id="unicode-test-59" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-59-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-59/fail.xml"/>
+        <x:expect-report id="unicode-test-59" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-60-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-60/pass.xml"/>
+        <x:expect-not-report id="unicode-test-60" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-60-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-60/fail.xml"/>
+        <x:expect-report id="unicode-test-60" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-61-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-61/pass.xml"/>
+        <x:expect-not-report id="unicode-test-61" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-61-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-61/fail.xml"/>
+        <x:expect-report id="unicode-test-61" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-62-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-62/pass.xml"/>
+        <x:expect-not-report id="unicode-test-62" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-62-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-62/fail.xml"/>
+        <x:expect-report id="unicode-test-62" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-63-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-63/pass.xml"/>
+        <x:expect-not-report id="unicode-test-63" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-63-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-63/fail.xml"/>
+        <x:expect-report id="unicode-test-63" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-64-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-64/pass.xml"/>
+        <x:expect-not-report id="unicode-test-64" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-64-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-64/fail.xml"/>
+        <x:expect-report id="unicode-test-64" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-65-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-65/pass.xml"/>
+        <x:expect-not-report id="unicode-test-65" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-65-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-65/fail.xml"/>
+        <x:expect-report id="unicode-test-65" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-66-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-66/pass.xml"/>
+        <x:expect-not-report id="unicode-test-66" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-66-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-66/fail.xml"/>
+        <x:expect-report id="unicode-test-66" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-67-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-67/pass.xml"/>
+        <x:expect-not-report id="unicode-test-67" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-67-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-67/fail.xml"/>
+        <x:expect-report id="unicode-test-67" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-68-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-68/pass.xml"/>
+        <x:expect-not-report id="unicode-test-68" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-68-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-68/fail.xml"/>
+        <x:expect-report id="unicode-test-68" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-69-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-69/pass.xml"/>
+        <x:expect-not-report id="unicode-test-69" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-69-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-69/fail.xml"/>
+        <x:expect-report id="unicode-test-69" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-70-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-70/pass.xml"/>
+        <x:expect-not-report id="unicode-test-70" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-70-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-70/fail.xml"/>
+        <x:expect-report id="unicode-test-70" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-71-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-71/pass.xml"/>
+        <x:expect-not-report id="unicode-test-71" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-71-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-71/fail.xml"/>
+        <x:expect-report id="unicode-test-71" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-72-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-72/pass.xml"/>
+        <x:expect-not-report id="unicode-test-72" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-72-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-72/fail.xml"/>
+        <x:expect-report id="unicode-test-72" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-73-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-73/pass.xml"/>
+        <x:expect-not-report id="unicode-test-73" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-73-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-73/fail.xml"/>
+        <x:expect-report id="unicode-test-73" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-74-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-74/pass.xml"/>
+        <x:expect-not-report id="unicode-test-74" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-74-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-74/fail.xml"/>
+        <x:expect-report id="unicode-test-74" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-75-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-75/pass.xml"/>
+        <x:expect-not-report id="unicode-test-75" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-75-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-75/fail.xml"/>
+        <x:expect-report id="unicode-test-75" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-76-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-76/pass.xml"/>
+        <x:expect-not-report id="unicode-test-76" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-76-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-76/fail.xml"/>
+        <x:expect-report id="unicode-test-76" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-77-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-77/pass.xml"/>
+        <x:expect-not-report id="unicode-test-77" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-77-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-77/fail.xml"/>
+        <x:expect-report id="unicode-test-77" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-78-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-78/pass.xml"/>
+        <x:expect-not-report id="unicode-test-78" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-78-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-78/fail.xml"/>
+        <x:expect-report id="unicode-test-78" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-79-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-79/pass.xml"/>
+        <x:expect-not-report id="unicode-test-79" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-79-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-79/fail.xml"/>
+        <x:expect-report id="unicode-test-79" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-80-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-80/pass.xml"/>
+        <x:expect-not-report id="unicode-test-80" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-80-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-80/fail.xml"/>
+        <x:expect-report id="unicode-test-80" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-81-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-81/pass.xml"/>
+        <x:expect-not-report id="unicode-test-81" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-81-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-81/fail.xml"/>
+        <x:expect-report id="unicode-test-81" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-82-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-82/pass.xml"/>
+        <x:expect-not-report id="unicode-test-82" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-82-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-82/fail.xml"/>
+        <x:expect-report id="unicode-test-82" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-83-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-83/pass.xml"/>
+        <x:expect-not-report id="unicode-test-83" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-83-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-83/fail.xml"/>
+        <x:expect-report id="unicode-test-83" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-84-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-84/pass.xml"/>
+        <x:expect-not-report id="unicode-test-84" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-84-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-84/fail.xml"/>
+        <x:expect-report id="unicode-test-84" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-85-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-85/pass.xml"/>
+        <x:expect-not-report id="unicode-test-85" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-85-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-85/fail.xml"/>
+        <x:expect-report id="unicode-test-85" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-86-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-86/pass.xml"/>
+        <x:expect-not-report id="unicode-test-86" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-86-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-86/fail.xml"/>
+        <x:expect-report id="unicode-test-86" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-87-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-87/pass.xml"/>
+        <x:expect-not-report id="unicode-test-87" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-87-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-87/fail.xml"/>
+        <x:expect-report id="unicode-test-87" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-88-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-88/pass.xml"/>
+        <x:expect-not-report id="unicode-test-88" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-88-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-88/fail.xml"/>
+        <x:expect-report id="unicode-test-88" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-89-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-89/pass.xml"/>
+        <x:expect-not-report id="unicode-test-89" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-89-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-89/fail.xml"/>
+        <x:expect-report id="unicode-test-89" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-90-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-90/pass.xml"/>
+        <x:expect-not-report id="unicode-test-90" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-90-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-90/fail.xml"/>
+        <x:expect-report id="unicode-test-90" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-91-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-91/pass.xml"/>
+        <x:expect-not-report id="unicode-test-91" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-91-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-91/fail.xml"/>
+        <x:expect-report id="unicode-test-91" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-92-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-92/pass.xml"/>
+        <x:expect-not-report id="unicode-test-92" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-92-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-92/fail.xml"/>
+        <x:expect-report id="unicode-test-92" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-93-pass">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-93/pass.xml"/>
+        <x:expect-not-report id="unicode-test-93" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unicode-test-93-fail">
+        <x:context href="../tests/gen/unicode-tests/unicode-test-93/fail.xml"/>
+        <x:expect-report id="unicode-test-93" role="warning"/>
+        <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="element-whitelist">

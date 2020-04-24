@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="award-group-test-6.sch"?>
 <!--Context: funding-group/award-group
 Test: report    count(funding-source/institution-wrap/institution) = 0
-Message: Every piece of funding must have an institution. <award-group id=""> does not have one.-->
+Message: Every piece of funding must have an institution. <award-group id=""> does not have one. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-6-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

@@ -1463,11 +1463,11 @@
   <pattern id="funding-group-tests-pattern">
     <rule context="article-meta/funding-group" id="funding-group-tests">
 		
-		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
+		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-1</assert>
 		
-		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?</report>
+		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-2</report>
 		
-	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.'</report>
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-3</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -1475,41 +1475,39 @@
 	  <let name="id" value="@id"/>
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		
-		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source.</assert>
+		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-2</assert>
 		
-		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient.</assert>
+		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-3</assert>
 		
-		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id.</report>
+		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-4</report>
 		
-		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
+		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-5</assert>
 		
-		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
+		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-6</report>
 	  
-	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;)</assert>
+	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-7</assert>
 	  
-	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>
-      </report>
+	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-8</report>
 	</rule>
   </pattern>
   <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       
-      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>
-      </report>
+      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-1</report>
       
-      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-2</report>
       
-      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-3</report>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-4</report>
       
     </rule>
   </pattern>
   <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#institution-id-test</assert>
       
     </rule>
   </pattern>
@@ -1554,15 +1552,15 @@
       <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
-      <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
+      <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-1</assert>
       
-      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
+      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-2</report>
       
-      <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
+      <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-3</assert>
       
-      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
+      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-14</report>
       
-      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>.</report>
+      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-15</report>
       
     </rule>
   </pattern>
@@ -1572,28 +1570,27 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
-      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed.</report>
+      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-5</report>
       
-      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
+      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#final-custom-meta-test-6</assert>
       
-      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-7</report>
       
-      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
-      
-      
-      
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed</report>
-      
-      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
-      
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)?</report>
-      
-      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
+      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-8</report>
       
       
       
-      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>
-      </report>
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#final-custom-meta-test-9</report>
+      
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-10</report>
+      
+      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-11</report>
+      
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-13</report>
+      
+      
+      
+      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#final-rep-study-custom-meta-test</report>
     </rule>
   </pattern>
   <pattern id="meta-value-child-tests-pattern">
@@ -1601,7 +1598,7 @@
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       
       <assert test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
-        <name/> is not allowed in impact statement.</assert>
+        <name/> is not allowed in impact statement. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-child-test-1</assert>
       
     </rule>
   </pattern>
@@ -4923,9 +4920,9 @@
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abtsracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
+     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abtsracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
      
-     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abtsracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
+     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abtsracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
      
    </rule>
   </pattern>
@@ -6242,6 +6239,8 @@
       
       <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
       
+      <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="source"/> - but this is the data-title.</report>
+      
       <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
@@ -6288,11 +6287,15 @@
       
       <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link.</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and not(source[1]='Electron Microscopy Data Bank')" role="warning" id="data-emdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but the database name is not 'Electron Microscopy Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
+      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and not(source[1]='Electron Microscopy Data Bank')" role="warning" id="data-emdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but the database name is not 'Electron Microscopy Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" role="warning" id="data-emdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect</report>
+      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" role="warning" id="data-emdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect</report>
       
       <report test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-emdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a EMDB 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked as an accession type link.</report>
+      
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and not(source[1]='Electron Microscopy Public Image Archive')" role="warning" id="data-empiar-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <value-of select="source[1]"/>. Is that correct?</report>
+      
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-empiar-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but is not marked with EBI as its assigning authority, which must be incorrect.</report>
       
       <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')" role="warning" id="data-arrayexpress-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but the database name is not 'ArrayExpress' - <value-of select="source[1]"/>. Is that correct?</report>
       
@@ -6903,6 +6906,285 @@
       
       <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
+  </pattern>
+  
+  <pattern id="unicode-tests-pattern">
+    <rule context="p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|     td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|     th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
+    
+    
+    <report test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">
+        <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã€')" role="warning" id="unicode-test-2">
+        <name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-3">
+        <name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€š')" role="warning" id="unicode-test-4">
+        <name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã‚')" role="warning" id="unicode-test-5">
+        <name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Æ’')" role="warning" id="unicode-test-6">
+        <name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãƒ')" role="warning" id="unicode-test-7">
+        <name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€ž')" role="warning" id="unicode-test-8">
+        <name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã„')" role="warning" id="unicode-test-9">
+        <name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€¦')" role="warning" id="unicode-test-10">
+        <name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã…')" role="warning" id="unicode-test-11">
+        <name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã†')" role="warning" id="unicode-test-13">
+        <name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€¡')" role="warning" id="unicode-test-14">
+        <name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã‡')" role="warning" id="unicode-test-15">
+        <name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ë†')" role="warning" id="unicode-test-16">
+        <name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">
+        <name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€°')" role="warning" id="unicode-test-18">
+        <name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã‰')" role="warning" id="unicode-test-19">
+        <name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'ÃŠ')" role="warning" id="unicode-test-21">
+        <name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€¹')" role="warning" id="unicode-test-22">
+        <name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã‹')" role="warning" id="unicode-test-23">
+        <name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Å’')" role="warning" id="unicode-test-24">
+        <name/> element contains 'Å’' - this should instead be the character 'Œ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'ÃŒ')" role="warning" id="unicode-test-25">
+        <name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-26">
+        <name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Å½')" role="warning" id="unicode-test-27">
+        <name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'ÃŽ')" role="warning" id="unicode-test-28">
+        <name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-29">
+        <name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-30">
+        <name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€˜')" role="warning" id="unicode-test-31">
+        <name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã‘')" role="warning" id="unicode-test-32">
+        <name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€™')" role="warning" id="unicode-test-33">
+        <name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã’')" role="warning" id="unicode-test-34">
+        <name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€œ')" role="warning" id="unicode-test-35">
+        <name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã“')" role="warning" id="unicode-test-36">
+        <name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€')" role="warning" id="unicode-test-37">
+        <name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã”')" role="warning" id="unicode-test-38">
+        <name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã•')" role="warning" id="unicode-test-39">
+        <name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€“')" role="warning" id="unicode-test-40">
+        <name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã–')" role="warning" id="unicode-test-41">
+        <name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€”')" role="warning" id="unicode-test-42">
+        <name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã—')" role="warning" id="unicode-test-43">
+        <name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ëœ')" role="warning" id="unicode-test-44">
+        <name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã˜')" role="warning" id="unicode-test-45">
+        <name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã™')" role="warning" id="unicode-test-46">
+        <name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Å¡')" role="warning" id="unicode-test-47">
+        <name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãš')" role="warning" id="unicode-test-48">
+        <name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'â€º')" role="warning" id="unicode-test-49">
+        <name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã›')" role="warning" id="unicode-test-50">
+        <name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Å“')" role="warning" id="unicode-test-51">
+        <name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãœ')" role="warning" id="unicode-test-52">
+        <name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-53">
+        <name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Å¾')" role="warning" id="unicode-test-54">
+        <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãž')" role="warning" id="unicode-test-55">
+        <name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Å¸')" role="warning" id="unicode-test-56">
+        <name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'ÃŸ')" role="warning" id="unicode-test-57">
+        <name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¡')" role="warning" id="unicode-test-58">
+        <name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¡')" role="warning" id="unicode-test-59">
+        <name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¢')" role="warning" id="unicode-test-60">
+        <name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¢')" role="warning" id="unicode-test-61">
+        <name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â£')" role="warning" id="unicode-test-62">
+        <name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã£')" role="warning" id="unicode-test-63">
+        <name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¤')" role="warning" id="unicode-test-64">
+        <name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¤')" role="warning" id="unicode-test-65">
+        <name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¥')" role="warning" id="unicode-test-66">
+        <name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¨')" role="warning" id="unicode-test-67">
+        <name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¨')" role="warning" id="unicode-test-68">
+        <name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Âª')" role="warning" id="unicode-test-69">
+        <name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãª')" role="warning" id="unicode-test-70">
+        <name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â­')" role="warning" id="unicode-test-71">
+        <name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã­')" role="warning" id="unicode-test-72">
+        <name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¯')" role="warning" id="unicode-test-73">
+        <name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¯')" role="warning" id="unicode-test-74">
+        <name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â°')" role="warning" id="unicode-test-75">
+        <name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã°')" role="warning" id="unicode-test-76">
+        <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â±')" role="warning" id="unicode-test-77">
+        <name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã±')" role="warning" id="unicode-test-78">
+        <name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â´')" role="warning" id="unicode-test-79">
+        <name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã´')" role="warning" id="unicode-test-80">
+        <name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Âµ')" role="warning" id="unicode-test-81">
+        <name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãµ')" role="warning" id="unicode-test-82">
+        <name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¶')" role="warning" id="unicode-test-83">
+        <name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¶')" role="warning" id="unicode-test-84">
+        <name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â·')" role="warning" id="unicode-test-85">
+        <name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã·')" role="warning" id="unicode-test-86">
+        <name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¸')" role="warning" id="unicode-test-87">
+        <name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¸')" role="warning" id="unicode-test-88">
+        <name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¹')" role="warning" id="unicode-test-89">
+        <name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Âº')" role="warning" id="unicode-test-90">
+        <name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ãº')" role="warning" id="unicode-test-91">
+        <name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Â¿')" role="warning" id="unicode-test-92">
+        <name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>.</report>
+    
+    <report test="contains(.,'Ã¿')" role="warning" id="unicode-test-93">
+        <name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
+</rule>
   </pattern>
   
   <pattern id="element-whitelist-pattern">
