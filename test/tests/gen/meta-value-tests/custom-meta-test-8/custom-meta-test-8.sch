@@ -727,7 +727,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
+      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-8</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

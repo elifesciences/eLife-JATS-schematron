@@ -727,7 +727,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
+      <assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-5</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

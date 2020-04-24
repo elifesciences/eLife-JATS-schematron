@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" role="warning" id="data-emdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect</report>
+      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" role="warning" id="data-emdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

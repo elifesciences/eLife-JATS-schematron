@@ -726,7 +726,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
-      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -727,8 +727,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>
-      </report>
+      <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-8</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

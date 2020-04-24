@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="award-group-test-7.sch"?>
 <!--Context: funding-group/award-group
 Test: assert    ancestor::article//article-meta//contrib//xref/@rid = $id
-Message: There is no author associated with the funding for , which is incorrect. (There is no xref from a contrib pointing to this <award-group id="">)-->
+Message: There is no author associated with the funding for , which is incorrect. (There is no xref from a contrib pointing to this <award-group id="">). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-7-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

@@ -727,7 +727,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id.</report>
+      <report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

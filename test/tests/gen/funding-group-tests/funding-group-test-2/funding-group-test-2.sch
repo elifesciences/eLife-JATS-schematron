@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?</report>
+      <report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

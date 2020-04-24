@@ -725,7 +725,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" flag="pub-check" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" flag="pub-check" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#institution-id-test</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
