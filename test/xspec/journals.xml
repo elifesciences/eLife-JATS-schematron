@@ -4,6 +4,9 @@
   - year attribute contains the most recent year that journal has no dois.
 -->
 <journals>
+  <journal title="acta embryol morphol exp" year="9999"/>
+  <journal title="acta embryologiae et morphologiae experimentalis" year="9999"/>
+  <journal title="acta embryologiae experimentalis" year="9999"/>
   <journal title="american journal of cancer research" year="9999"/>
   <journal title="american journal of human genetics" year="1996"/>
   <journal title="american journal of pathology" year="1997"/>
@@ -40,7 +43,9 @@
   <journal title="microbiological reviews" year="2000"/>
   <journal title="molecular pharmacology" year="1995"/>
   <journal title="molecular vision" year="9999"/>
-  <journal title="oncogene" year="1995"/>
+  <journal title="oncogene" year="2000"/>
+  <journal title="pediatric endocrinology reviews" year="9999"/>
+  <journal title="pediatr endocrinol rev" year="9999"/>
   <journal title="physiological reviews" year="2002"/>
   <journal title="rna" year="1998"/>
 </journals>

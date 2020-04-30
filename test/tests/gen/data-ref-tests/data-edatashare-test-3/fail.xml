@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="data-edatashare-test-3.sch"?>
 <!--Context: element-citation[@publication-type='data']
 Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University' or not(@assigning-authority)])
-Message: Data reference with the title '' has a Edinburgh DataShare type doi - , but the assigning authority is not 'Edinburgh University', which must be incorrect.-->
+Message: Data reference with the title '' has an Edinburgh DataShare type doi - , but the assigning authority is not 'Edinburgh University', which must be incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">

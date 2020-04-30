@@ -1073,6 +1073,8 @@
 	  <report test="matches(.,'^\s')" role="error" id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
 	  <report test="matches(.,'\s$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	    
+	    <report test="matches(.,'^[A-Z]{1,2}\s') and (string-length(.) gt 3)" role="warning" id="surname-test-8">surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
 		
 	  </rule>
   </pattern>
@@ -2982,9 +2984,9 @@
       
       <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
       
-      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availiability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
       
-      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)" role="warning" id="back-test-10">One and only one Data availiability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for '<value-of select="$article-type"/>'. Is this a new version which was published first without one? If not, then it certainly needs adding.</report>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)" role="warning" id="back-test-10">One and only one Data availability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for '<value-of select="$article-type"/>'. Is this a new version which was published first without one? If not, then it certainly needs adding.</report>
       
       <report test="count(ack) gt 1" role="error" id="back-test-4">One and only one ack may be present in back.</report>
       
@@ -3509,6 +3511,14 @@
         Reference '<value-of select="../@id"/>' has the publication-type 
         '<value-of select="@publication-type"/>'.</assert>
       
+    </rule>
+  </pattern>
+  <pattern id="element-citation-descendants-pattern">
+    <rule context="element-citation//*" id="element-citation-descendants">
+      
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="empty-elem-cit-des">
+        <name/> element is empty - this is not allowed. It must contain content.</report>
+    
     </rule>
   </pattern>
   
@@ -4750,7 +4760,7 @@
       
       
       
-      <assert test="count(data-title)=1" role="error" id="final-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it</assert>
+      <assert test="count(data-title)=1" role="error" id="final-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in.</assert>
       
       
       
@@ -4920,9 +4930,9 @@
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abtsracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
+     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
      
-     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abtsracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
+     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
      
    </rule>
   </pattern>
@@ -6371,7 +6381,7 @@
       
       <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" role="warning" id="data-edatashare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect.</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])" role="warning" id="data-edatashare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Edinburgh DataShare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'Edinburgh University', which must be incorrect.</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])" role="warning" id="data-edatashare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an Edinburgh DataShare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'Edinburgh University', which must be incorrect.</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')" role="warning" id="data-eth-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.3929' but the database name is not 'ETH Library research collection' - <value-of select="source[1]"/>.</report>
       
@@ -6601,22 +6611,49 @@
       </report>
     </rule>
   </pattern>
+  <pattern id="colour-table-2-pattern">
+    <rule context="th[@style]|td[@style]" id="colour-table-2">
+      <let name="allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
+      
+      
+      
+      <assert test="@style=$allowed-values" role="warning" id="final-colour-check-table-2">
+        <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
+    </rule>
+  </pattern>
   <pattern id="colour-named-content-pattern">
     <rule context="named-content" id="colour-named-content">
       <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
+      <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
       
       <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">
         <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/>
       </report>
+      
+      <assert test="@content-type = $allowed-values" role="error" id="named-content-type-check">
+        <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="$allowed-values"/>.</assert>
+      
     </rule>
   </pattern>
   <pattern id="colour-styled-content-pattern">
     <rule context="styled-content" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
-      <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       
-      <report test="." role="warning" id="colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. Is this correct?  Preceding text - <value-of select="concat($prec-text,.)"/>
-      </report>
+      
+      
+      <report test="." role="final" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please esnure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+    </rule>
+  </pattern>
+  <pattern id="math-colour-tests-pattern">
+    <rule context="mml:mstyle[@mathcolor]" id="math-colour-tests">
+      <let name="allowed-values" value="('red','blue','purple')"/>
+      
+      
+      
+      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+      
+      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      
     </rule>
   </pattern>
   <pattern id="p-punctuation-pattern">

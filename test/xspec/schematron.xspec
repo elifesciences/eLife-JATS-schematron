@@ -917,6 +917,16 @@
         <x:expect-report id="surname-test-7" role="error"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="surname-test-8-pass">
+        <x:context href="../tests/gen/surname-tests/surname-test-8/pass.xml"/>
+        <x:expect-not-report id="surname-test-8" role="warning"/>
+        <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="surname-test-8-fail">
+        <x:context href="../tests/gen/surname-tests/surname-test-8/fail.xml"/>
+        <x:expect-report id="surname-test-8" role="warning"/>
+        <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="given-names-tests">
       <x:scenario label="given-names-test-3-pass">
@@ -6722,6 +6732,18 @@
         <x:context href="../tests/gen/elem-citation/err-elem-cit-high-6-2/fail.xml"/>
         <x:expect-assert id="err-elem-cit-high-6-2" role="error"/>
         <x:expect-not-assert id="elem-citation-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="element-citation-descendants">
+      <x:scenario label="empty-elem-cit-des-pass">
+        <x:context href="../tests/gen/element-citation-descendants/empty-elem-cit-des/pass.xml"/>
+        <x:expect-not-report id="empty-elem-cit-des" role="error"/>
+        <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="empty-elem-cit-des-fail">
+        <x:context href="../tests/gen/element-citation-descendants/empty-elem-cit-des/fail.xml"/>
+        <x:expect-report id="empty-elem-cit-des" role="error"/>
+        <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-journal">
@@ -14602,6 +14624,28 @@
         <x:expect-not-assert id="colour-table-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="colour-table-2">
+      <x:scenario label="pre-colour-check-table-2-pass">
+        <x:context href="../tests/gen/colour-table-2/pre-colour-check-table-2/pass.xml"/>
+        <x:expect-not-assert id="pre-colour-check-table-2" role="warning"/>
+        <x:expect-not-assert id="colour-table-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-colour-check-table-2-fail">
+        <x:context href="../tests/gen/colour-table-2/pre-colour-check-table-2/fail.xml"/>
+        <x:expect-assert id="pre-colour-check-table-2" role="warning"/>
+        <x:expect-not-assert id="colour-table-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-colour-check-table-2-pass">
+        <x:context href="../tests/gen/colour-table-2/final-colour-check-table-2/pass.xml"/>
+        <x:expect-not-assert id="final-colour-check-table-2" role="warning"/>
+        <x:expect-not-assert id="colour-table-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-colour-check-table-2-fail">
+        <x:context href="../tests/gen/colour-table-2/final-colour-check-table-2/fail.xml"/>
+        <x:expect-assert id="final-colour-check-table-2" role="warning"/>
+        <x:expect-not-assert id="colour-table-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="colour-named-content">
       <x:scenario label="colour-named-content-check-pass">
         <x:context href="../tests/gen/colour-named-content/colour-named-content-check/pass.xml"/>
@@ -14613,17 +14657,69 @@
         <x:expect-report id="colour-named-content-check" role="warning"/>
         <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="named-content-type-check-pass">
+        <x:context href="../tests/gen/colour-named-content/named-content-type-check/pass.xml"/>
+        <x:expect-not-assert id="named-content-type-check" role="error"/>
+        <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="named-content-type-check-fail">
+        <x:context href="../tests/gen/colour-named-content/named-content-type-check/fail.xml"/>
+        <x:expect-assert id="named-content-type-check" role="error"/>
+        <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="colour-styled-content">
-      <x:scenario label="colour-styled-content-check-pass">
-        <x:context href="../tests/gen/colour-styled-content/colour-styled-content-check/pass.xml"/>
-        <x:expect-not-report id="colour-styled-content-check" role="warning"/>
+      <x:scenario label="pre-colour-styled-content-check-pass">
+        <x:context href="../tests/gen/colour-styled-content/pre-colour-styled-content-check/pass.xml"/>
+        <x:expect-not-report id="pre-colour-styled-content-check" role="warning"/>
         <x:expect-not-assert id="colour-styled-content-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="colour-styled-content-check-fail">
-        <x:context href="../tests/gen/colour-styled-content/colour-styled-content-check/fail.xml"/>
-        <x:expect-report id="colour-styled-content-check" role="warning"/>
+      <x:scenario label="pre-colour-styled-content-check-fail">
+        <x:context href="../tests/gen/colour-styled-content/pre-colour-styled-content-check/fail.xml"/>
+        <x:expect-report id="pre-colour-styled-content-check" role="warning"/>
         <x:expect-not-assert id="colour-styled-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-colour-styled-content-check-pass">
+        <x:context href="../tests/gen/colour-styled-content/final-colour-styled-content-check/pass.xml"/>
+        <x:expect-not-report id="final-colour-styled-content-check" role="final"/>
+        <x:expect-not-assert id="colour-styled-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-colour-styled-content-check-fail">
+        <x:context href="../tests/gen/colour-styled-content/final-colour-styled-content-check/fail.xml"/>
+        <x:expect-report id="final-colour-styled-content-check" role="final"/>
+        <x:expect-not-assert id="colour-styled-content-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="math-colour-tests">
+      <x:scenario label="pre-mathcolor-test-1-pass">
+        <x:context href="../tests/gen/math-colour-tests/pre-mathcolor-test-1/pass.xml"/>
+        <x:expect-not-assert id="pre-mathcolor-test-1" role="warning"/>
+        <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-mathcolor-test-1-fail">
+        <x:context href="../tests/gen/math-colour-tests/pre-mathcolor-test-1/fail.xml"/>
+        <x:expect-assert id="pre-mathcolor-test-1" role="warning"/>
+        <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mathcolor-test-1-pass">
+        <x:context href="../tests/gen/math-colour-tests/final-mathcolor-test-1/pass.xml"/>
+        <x:expect-not-assert id="final-mathcolor-test-1" role="error"/>
+        <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mathcolor-test-1-fail">
+        <x:context href="../tests/gen/math-colour-tests/final-mathcolor-test-1/fail.xml"/>
+        <x:expect-assert id="final-mathcolor-test-1" role="error"/>
+        <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mathcolor-test-2-pass">
+        <x:context href="../tests/gen/math-colour-tests/mathcolor-test-2/pass.xml"/>
+        <x:expect-not-report id="mathcolor-test-2" role="warning"/>
+        <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mathcolor-test-2-fail">
+        <x:context href="../tests/gen/math-colour-tests/mathcolor-test-2/fail.xml"/>
+        <x:expect-report id="mathcolor-test-2" role="warning"/>
+        <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="p-punctuation">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-das-elem-data-title-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: assert    count(data-title)=1
-Message: The reference in position  of the data availability section does not have a title (no data-title). Please ensure to add it-->
+Message: The reference in position  of the data availability section does not have a title (no data-title). Please ensure to add it in.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

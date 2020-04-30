@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="mathcolor-test-2.sch"?>
+<!--Context: mml:mstyle[@mathcolor]
+Test: report    @mathcolor = $allowed-values
+Message: math containing '' has  colour formatting. Is this OK?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <mml:math>
+      <mml:mstyle mathcolor="#D50000"><mml:mo>∙</mml:mo></mml:mstyle>
+    </mml:math>
+  </article>
+</root>

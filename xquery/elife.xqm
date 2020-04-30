@@ -57,7 +57,7 @@ return delete node $x,
             else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
     
     return 
-    if ($id="colour-styled-content-check") then ()
+    if ($id=('pre-colour-styled-content-check','final-colour-styled-content-check')) then ()
     else insert node 
         <pattern id="root-pattern">
         <rule context="root" id="root-rule">
