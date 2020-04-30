@@ -4388,8 +4388,8 @@
         id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
       
       <report test="count(contrib[@contrib-type='reviewer']) gt 3"
-        role="error"
-        id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than three reviewers.</report>
+        role="warning"
+        id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than three reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']"

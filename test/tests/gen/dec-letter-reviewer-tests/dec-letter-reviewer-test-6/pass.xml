@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reviewer-test-6.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]
 Test: report    count(contrib[@contrib-type='reviewer']) gt 3
-Message: Second contrib-group in decision letter contains more than three reviewers.-->
+Message: Second contrib-group in decision letter contains more than three reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
