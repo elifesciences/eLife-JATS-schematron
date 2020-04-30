@@ -6249,12 +6249,12 @@
       </x:scenario>
       <x:scenario label="dec-letter-reviewer-test-6-pass">
         <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-6/pass.xml"/>
-        <x:expect-not-report id="dec-letter-reviewer-test-6" role="error"/>
+        <x:expect-not-report id="dec-letter-reviewer-test-6" role="warning"/>
         <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-reviewer-test-6-fail">
         <x:context href="../tests/gen/dec-letter-reviewer-tests/dec-letter-reviewer-test-6/fail.xml"/>
-        <x:expect-report id="dec-letter-reviewer-test-6" role="error"/>
+        <x:expect-report id="dec-letter-reviewer-test-6" role="warning"/>
         <x:expect-not-assert id="dec-letter-reviewer-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
