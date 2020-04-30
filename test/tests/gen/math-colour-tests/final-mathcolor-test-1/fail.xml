@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="final-mathcolor-test-1.sch"?>
+<!--Context: mml:mstyle[@mathcolor]
+Test: assert    @mathcolor = $allowed-values
+Message: math containing '' has a color style which is not red, blue or purple - '', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <mml:math>
+      <mml:mstyle mathcolor="#D50000"><mml:mo>∙</mml:mo></mml:mstyle>
+    </mml:math>
+  </article>
+</root>

@@ -724,11 +724,14 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="styled-content" id="colour-styled-content">
-      <let name="parent" value="parent::*/local-name()"/>
-      <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
-      <report test="." role="warning" id="colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. Is this correct?  Preceding text - <value-of select="concat($prec-text,.)"/>
-      </report>
+    <rule context="mml:mstyle[@mathcolor]" id="math-colour-tests">
+      <let name="allowed-values" value="('red','blue','purple')"/>
+      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::mml:mstyle[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:mstyle[@mathcolor] must be present.</assert>
     </rule>
   </pattern>
 </schema>

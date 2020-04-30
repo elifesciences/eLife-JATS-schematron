@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="colour-styled-content-check.sch"?>
-<!--Context: styled-content
-Test: report    .
-Message: '' -  element contains a styled content element. Is this correct?  Preceding text - -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <p>test 1 test 2</p>
-  </article>
-</root>
