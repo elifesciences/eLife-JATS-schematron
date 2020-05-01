@@ -2261,6 +2261,16 @@
         <x:expect-report id="custom-meta-test-5" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pre-custom-meta-test-6-pass">
+        <x:context href="../tests/gen/meta-value-tests/pre-custom-meta-test-6/pass.xml"/>
+        <x:expect-not-assert id="pre-custom-meta-test-6" role="warning"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-custom-meta-test-6-fail">
+        <x:context href="../tests/gen/meta-value-tests/pre-custom-meta-test-6/fail.xml"/>
+        <x:expect-assert id="pre-custom-meta-test-6" role="warning"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="final-custom-meta-test-6-pass">
         <x:context href="../tests/gen/meta-value-tests/final-custom-meta-test-6/pass.xml"/>
         <x:expect-not-assert id="final-custom-meta-test-6" role="error"/>
