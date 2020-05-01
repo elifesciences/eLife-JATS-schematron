@@ -145,7 +145,7 @@
       <xsl:when test="matches($s,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')">
         <xsl:value-of select="'Appendix figure supplement'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$')">
+      <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -155,9 +155,9 @@
   </xsl:function>
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(translate($string,'àáâãäåçčèéêěëęħìíîïłñňòóôõöőøřšśşùúûüýÿž','aaaaaacceeeeeehiiiilnnooooooorsssuuuuyyz'),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
-  <xsl:function name="e:citation-format1">
+  <xsl:function name="e:citation-format1" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -189,7 +189,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:citation-format2">
+  <xsl:function name="e:citation-format2" as="xs:string">
     <xsl:param name="year"/>
     <xsl:choose>
       <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
@@ -242,7 +242,18 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:isbn-sum" as="xs:string">
+  <xsl:function name="e:get-collab">
+    <xsl:param name="collab"/>
+    <xsl:for-each select="$collab/(*|text())">
+      <xsl:choose>
+        <xsl:when test="./name()='contrib-group'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:function>
+  <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -278,6 +289,34 @@
         <xsl:value-of select="number('1')"/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:escape-for-regex" as="xs:string">
+    <xsl:param name="arg" as="xs:string?"/>
+    <xsl:sequence select="replace($arg,'(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
+  </xsl:function>
+  <xsl:function name="e:get-ordinal" as="xs:string">
+    <xsl:param name="value" as="xs:integer?"/>
+    <xsl:if test="translate(string($value), '0123456789', '') = '' and number($value) &gt; 0">
+      <xsl:variable name="mod100" select="$value mod 100"/>
+      <xsl:variable name="mod10" select="$value mod 10"/>
+      <xsl:choose>
+        <xsl:when test="$mod100 = 11 or $mod100 = 12 or $mod100 = 13">
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 1">
+          <xsl:value-of select="concat($value,'st')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 2">
+          <xsl:value-of select="concat($value,'nd')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 3">
+          <xsl:value-of select="concat($value,'rd')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </xsl:function>
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   <xsl:function name="e:org-conform" as="xs:string">
@@ -644,7 +683,8 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '—') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+          <xsl:when test="contains(./@rid,'app')"/>
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -652,7 +692,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—'))">
+          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'–'))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -675,19 +715,19 @@
   </xsl:function>
   <xsl:function name="e:get-iso-pub-date">
     <xsl:param name="element"/>
-    <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publicaiton') or (@date-type='pub')]"/>
     <xsl:choose>
-      <xsl:when test="$pub-date=false()"/>
-      <xsl:otherwise>
+      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
+        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
         <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
-      </xsl:otherwise>
+      </xsl:when>
+      <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
-      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject"/>
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement should end with a full stop or question mark - please alert eLife staff.</assert>
+      <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement must end with a full stop or question mark. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#pre-custom-meta-test-6</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
