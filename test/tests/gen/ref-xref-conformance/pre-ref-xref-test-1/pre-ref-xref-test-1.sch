@@ -734,11 +734,8 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report test="((matches($post-text,'^[,]? used') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? used') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-25">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'used', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
+      <assert test="replace(.,' ',' ') = $cite1" role="error" id="pre-ref-xref-test-1">
+        <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

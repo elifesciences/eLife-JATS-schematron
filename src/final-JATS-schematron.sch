@@ -5066,11 +5066,10 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
       
-      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="ref-xref-test-1">
+      
+      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="final-ref-xref-test-1">
         <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
@@ -5081,54 +5080,14 @@
       
       <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/> </assert>
       
-      <report test="matches($pre-text,'\($|\[$') and (. = $cite2)" role="error" id="ref-xref-test-6">
-        <value-of select="concat(substring($pre-text, string-length($pre-text), 1),.)"/> - citation is in non-parenthetic style, but the preceding text ends with open parentheses, so this isn't correct.</report>
+      <report test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" role="warning" id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
       
-      <report test="matches($post-text,'^\)|^\]') and (. = $cite2)" role="error" id="ref-xref-test-7">
-        <value-of select="concat(.,substring($post-text,1,1))"/> - citation is in non-parenthetic style, but the following text ends with closing parentheses, so this isn't correct.</report>
-      
-      <report test="($open gt $close) and (. = $cite2)" role="warning" id="ref-xref-test-8">
-        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in non-parenthetic style, but the preceding text has open parentheses. Should it be in the style of <value-of select="$cite1"/>?</report>
-      
-      <report test="(($open - $close) gt 1) and (. = $cite1)" role="warning" id="ref-xref-test-9">sentence before citation has more open brackets than closed - <value-of select="concat($pre-sentence,.)"/> - Either one of the brackets is unnecessary or the citation should be in square brackets - <value-of select="concat('[',.,']')"/>.</report>
-      
-      <report test="(         (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$| follows [\(]{1}$| following [\(]{1}$') and (($open - $close) = 1))           or           (matches($pre-sentence,' from [\(]{1}$| in [\(]{1}$| by [\(]{1}$| of [\(]{1}$| on [\(]{1}$| to [\(]{1}$| see [\(]{1}$| see also [\(]{1}$| at [\(]{1}$| per [\(]{1}$| follows [\(]{1}$| following [\(]{1}$') and (($open - $close) = 0) and matches($pre-sentence,'^[\)]'))           or            (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $| follows $| following $') and (($open - $close) = 0) and not(matches($pre-sentence,'^[\)]')))           or           (matches($pre-sentence,' from $| in $| by $| of $| on $| to $| see $| see also $| at $| per $| follows $| following $') and (($open - $close) lt 0))          )         and (. = $cite1)" role="warning" id="ref-xref-test-11">
-        <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/> - citation is in parenthetic style, but the preceding text ends with '<value-of select="substring($pre-text,string-length($pre-text)-6)"/>' which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
-      
-      <report test="((matches($post-text,'^[,]? who') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? who') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-12">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'who', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
-      
-      <report test="((matches($post-text,'^[,]? have') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? have') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-13">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'have', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
-      
-      <report test="((matches($post-text,'^[,]? found') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? found') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-23">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'found', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
-      
-      <report test="((matches($post-text,'^[,]? used') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? used') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-25">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'used', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
-      
-      <report test="((matches($post-text,'^[,]? demonstrate') and not(matches($pre-text,'[\(]+')))         or (matches($post-text,'^[\),]? demonstrate') and matches($pre-sentence,'^\($')))         and (. = $cite1)" role="warning" id="ref-xref-test-26">
-        <value-of select="concat(.,substring($post-text,1,10))"/> - citation is in parenthetic style, but the following text begins with 'demonstrate', which suggests it should be in the style - <value-of select="$cite2"/>
-      </report>
+      <report test="matches($post-text,'^[\)]+\s*who|^[\)]+\s*have|^[\)]+\s*found|^[\)]+\s*used|^[\)]+\s*demonstrate|^[\)]+\s*follow[s]?|^[\)]+\s*followed')" role="warning" id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
       
       <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>
       </report>
       
-      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - <value-of select="concat(.,$post-sentence)"/>
-      </report>
-      
-      <report test="matches($post-sentence,'^[\)][\)]+')" role="error" id="ref-xref-test-16">citation is followed by text starting with 2 or more closing brackets, which must be incorrect - <value-of select="concat(.,$post-sentence)"/>
-      </report>
-      
-      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(ancestor::th) and not(matches($post-sentence,'^[\)]'))" role="warning" id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
-      
-      <report test="($pre-sentence = ', ') and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td)" role="warning" id="ref-xref-test-18">citation is in parenthetic format, but the preceding text is ', ' . Should the preceding text be '; ' instead? <value-of select="concat($pre-sentence,.)"/>
-      </report>
+      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'</report>
       
       <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
@@ -5139,13 +5098,9 @@
       
       <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
-      <report test="(.=$cite1) and ((preceding-sibling::*[1]/local-name()!='xref') or not(preceding-sibling::*[1])) and matches($post-sentence,'^\]') and matches($pre-sentence,'\[$') and not(matches($pre-sentence,'\(')) and not(matches($post-sentence,'^\]\)'))" role="warning" id="ref-xref-test-24">citation is surrounded by square brackets, do the square brackets need removing? - '<value-of select="concat($pre-sentence,.,$post-sentence)"/>' - it doesn't seem to be already inside round brackets (a parenthetic reference inside parentheses) which is against house style.</report>
-      
       <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
       
       <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
-      
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="ref-xref-test-29">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
     </rule>
   </pattern>

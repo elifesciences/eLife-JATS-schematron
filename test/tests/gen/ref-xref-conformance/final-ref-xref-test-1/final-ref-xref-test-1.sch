@@ -734,9 +734,8 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report test="(not(matches($pre-sentence,'[\(]$|\[$|^[\)]'))) and (not(matches($pre-text,'; $| and $| see $|cf\. $'))) and (($open - $close) = 0) and (. = $cite1) and not(ancestor::td) and not(ancestor::th) and not(matches($post-sentence,'^[\)]'))" role="warning" id="ref-xref-test-17">citation is in parenthetic format - <value-of select="."/> - but the preceding text does not contain open parentheses. Should it be in the format - <value-of select="$cite2"/>?</report>
+      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="final-ref-xref-test-1">
+        <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
