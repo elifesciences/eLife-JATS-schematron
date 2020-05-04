@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-das-dryad-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
 Test: report    matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])
-Message: Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. If there is a dryad dataset present, esnure the assigning authority is dryad, otherwise please query the authors for the reference details.-->
+Message: Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. If there is a dryad dataset present, ensure the assigning authority is dryad, otherwise please query the authors for the reference details.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="data-availability">

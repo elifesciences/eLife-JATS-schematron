@@ -319,6 +319,7 @@
     </xsl:if>
   </xsl:function>
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
+  <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -725,7 +726,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
-      <report test="matches(.,'[Rr]equest')" role="warning" flag="pub-check" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
+      <report test="matches(.,'[Rr]equest')" role="warning" flag="pub-check" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

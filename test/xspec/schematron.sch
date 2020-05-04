@@ -345,6 +345,8 @@
   <!-- Global variable included here for convenience -->
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   
+  <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
+  
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1793,7 +1795,7 @@
       <report test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="warning" id="pre-fig-test-4">
-        <value-of select="label"/> has no title or caption (caption element). Esnure this is queried with the author.</report>
+        <value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="error" id="final-fig-test-4">
         <value-of select="label"/> has no title or caption (caption element).</report>
@@ -1805,7 +1807,7 @@
       
       <report test="if ($article-type = ('correction','retraction')) then ()          else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" role="warning" id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
       
-      <assert test="graphic" role="warning" id="pre-fig-test-7">fig does not have graphic. Esnure author query is added asking for file.</assert>
+      <assert test="graphic" role="warning" id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file.</assert>
       
       <assert test="graphic" role="error" id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
@@ -1819,7 +1821,7 @@
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">Author Response fig must have a label.</report>
       
-      <assert test="graphic" role="warning" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Esnure author query is added asking for file.</assert>
+      <assert test="graphic" role="warning" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Ensure author query is added asking for file.</assert>
       
       <assert test="graphic" role="error" id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
       
@@ -6460,13 +6462,13 @@
       
       <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
-      <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="warning" id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. If there is a dryad dataset present, esnure the assigning authority is dryad, otherwise please query the authors for the reference details.</report>
+      <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="warning" id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. If there is a dryad dataset present, ensure the assigning authority is dryad, otherwise please query the authors for the reference details.</report>
       
       <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="error" id="final-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority.</report>
       
       <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
-      <report test="matches(.,'[Rr]equest')" role="warning" flag="pub-check" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is avaialble upon request, and if so, has this been approved by editorial?</report>
+      <report test="matches(.,'[Rr]equest')" role="warning" flag="pub-check" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial?</report>
       
       <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
       
@@ -6598,7 +6600,7 @@
       
       <report test="." role="warning" id="pre-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. If it is red, blue or purple then it should be tagged using &lt;named-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
       
-      <report test="." role="final" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please esnure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+      <report test="." role="final" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
   <pattern id="math-colour-tests-pattern">
@@ -6855,7 +6857,7 @@
     <rule context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
       <let name="following-text" value="following-sibling::text()[1]"/>
       
-      <report test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d'))" role="warning" id="section-title-test-1">
+      <report test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" role="warning" id="section-title-test-1">
         <name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
       
     </rule>
