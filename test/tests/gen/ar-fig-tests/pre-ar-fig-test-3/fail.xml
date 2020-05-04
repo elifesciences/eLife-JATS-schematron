@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-ar-fig-test-3.sch"?>
 <!--Context: fig[ancestor::sub-article[@article-type='reply']]
 Test: assert    graphic
-Message: Author Response fig does not have graphic. Esnure author query is added asking for file.-->
+Message: Author Response fig does not have graphic. Ensure author query is added asking for file.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <sub-article article-type="reply">
