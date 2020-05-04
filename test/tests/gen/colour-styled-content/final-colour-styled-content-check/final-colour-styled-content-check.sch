@@ -727,7 +727,7 @@
   <pattern id="house-style">
     <rule context="styled-content" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
-      <report test="." role="final" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+      <report test="." role="error" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
 </schema>
