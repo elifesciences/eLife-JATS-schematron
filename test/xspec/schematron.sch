@@ -6600,7 +6600,7 @@
       
       <report test="." role="warning" id="pre-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. If it is red, blue or purple then it should be tagged using &lt;named-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
       
-      <report test="." role="final" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+      <report test="." role="error" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
   <pattern id="math-colour-tests-pattern">
