@@ -2129,15 +2129,15 @@
       
       <report test="count(tr) lt 1" role="warning" id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
       
-      <assert test="normalize-space(tr[1]/th[1]) = 'Reagent type (species) or resource'" role="warning" id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'.</assert>
+      <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[2]) = 'Designation'" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</assert>
+      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[3]) = 'Source or reference'" role="warning" id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</assert>
+      <report test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[4]) = 'Identifiers'" role="warning" id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'.</assert>
+      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[5]) = 'Additional information'" role="warning" id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</assert>
+      <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" role="warning" id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</report>
       
     </rule>
   </pattern>
@@ -2903,7 +2903,7 @@
     </rule>
   </pattern>
   <pattern id="app-table-wrap-ids-pattern">
-    <rule context="app/table-wrap" id="app-table-wrap-ids">
+    <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
       <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this.</assert>
@@ -6204,7 +6204,7 @@
       
       <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="source"/> - but this is the data-title.</report>
       
-      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software citation contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
     </rule>
@@ -6873,7 +6873,7 @@
         <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'http://doi.org/10.5281/zenodo...'?</report>
       
       <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))" role="warning" id="software-doi-test-2">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>)known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?</report>
+        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?</report>
       
     </rule>
   </pattern>

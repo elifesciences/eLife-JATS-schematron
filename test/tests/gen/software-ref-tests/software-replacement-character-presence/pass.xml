@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-replacement-character-presence.sch"?>
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches(.,'�')
-Message: software citation contains the replacement character '�' which is unallowed - -->
+Message: software reference contains the replacement character '�' which is unallowed - -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref id="bib33"><element-citation publication-type="software">
