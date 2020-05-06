@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="fig-test-6.sch"?>
-<!--Context: fig[not(ancestor::sub-article[@article-type='reply'])]
+<!--Context: fig[not(ancestor::sub-article)]
 Test: report    if ($article-type = ('correction','retraction')) then () else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))
 Message: Figure does not have a legend, which is very unorthadox. Is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

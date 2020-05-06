@@ -1782,7 +1782,7 @@
     </rule>
   </pattern>
   <pattern id="fig-tests-pattern">
-    <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" id="fig-tests">
+    <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert test="@position" role="error" id="fig-test-2">fig must have a @position.</assert>
@@ -4816,7 +4816,7 @@
   <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol.</report>
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="."/> does not.</report>
       
       <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
