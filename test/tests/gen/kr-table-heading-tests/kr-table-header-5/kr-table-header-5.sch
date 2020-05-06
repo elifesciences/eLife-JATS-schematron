@@ -726,7 +726,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
-      <assert test="normalize-space(tr[1]/th[2]) = 'Designation'" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</assert>
+      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

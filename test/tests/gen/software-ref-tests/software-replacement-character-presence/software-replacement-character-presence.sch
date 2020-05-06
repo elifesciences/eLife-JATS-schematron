@@ -727,7 +727,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software citation contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
     </rule>
   </pattern>

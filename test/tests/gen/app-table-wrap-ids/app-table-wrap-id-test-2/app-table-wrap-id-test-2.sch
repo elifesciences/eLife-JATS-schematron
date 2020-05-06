@@ -725,14 +725,14 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="id-conformance">
-    <rule context="app/table-wrap" id="app-table-wrap-ids">
+    <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app/table-wrap" role="error" id="app-table-wrap-ids-xspec-assert">app/table-wrap must be present.</assert>
+      <assert test="descendant::app//table-wrap[label]" role="error" id="app-table-wrap-ids-xspec-assert">app//table-wrap[label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

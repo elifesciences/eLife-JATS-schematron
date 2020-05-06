@@ -3827,52 +3827,52 @@
       </x:scenario>
       <x:scenario label="kr-table-header-4-pass">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-4/pass.xml"/>
-        <x:expect-not-assert id="kr-table-header-4" role="warning"/>
+        <x:expect-not-report id="kr-table-header-4" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-4-fail">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-4/fail.xml"/>
-        <x:expect-assert id="kr-table-header-4" role="warning"/>
+        <x:expect-report id="kr-table-header-4" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-5-pass">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-5/pass.xml"/>
-        <x:expect-not-assert id="kr-table-header-5" role="warning"/>
+        <x:expect-not-report id="kr-table-header-5" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-5-fail">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-5/fail.xml"/>
-        <x:expect-assert id="kr-table-header-5" role="warning"/>
+        <x:expect-report id="kr-table-header-5" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-6-pass">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-6/pass.xml"/>
-        <x:expect-not-assert id="kr-table-header-6" role="warning"/>
+        <x:expect-not-report id="kr-table-header-6" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-6-fail">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-6/fail.xml"/>
-        <x:expect-assert id="kr-table-header-6" role="warning"/>
+        <x:expect-report id="kr-table-header-6" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-7-pass">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-7/pass.xml"/>
-        <x:expect-not-assert id="kr-table-header-7" role="warning"/>
+        <x:expect-not-report id="kr-table-header-7" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-7-fail">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-7/fail.xml"/>
-        <x:expect-assert id="kr-table-header-7" role="warning"/>
+        <x:expect-report id="kr-table-header-7" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-8-pass">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-8/pass.xml"/>
-        <x:expect-not-assert id="kr-table-header-8" role="warning"/>
+        <x:expect-not-report id="kr-table-header-8" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-header-8-fail">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-8/fail.xml"/>
-        <x:expect-assert id="kr-table-header-8" role="warning"/>
+        <x:expect-report id="kr-table-header-8" role="warning"/>
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

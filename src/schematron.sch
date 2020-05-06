@@ -2880,25 +2880,25 @@
         role="warning"
         id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
       
-      <assert test="normalize-space(tr[1]/th[1]) = 'Reagent type (species) or resource'" 
+      <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" 
         role="warning"
-        id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'.</assert>
+        id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[2]) = 'Designation'" 
+      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" 
         role="warning"
-        id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</assert>
+        id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[3]) = 'Source or reference'" 
+      <report test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" 
         role="warning"
-        id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</assert>
+        id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[4]) = 'Identifiers'" 
+      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" 
         role="warning"
-        id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'.</assert>
+        id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'.</report>
       
-      <assert test="normalize-space(tr[1]/th[5]) = 'Additional information'" 
+      <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" 
         role="warning"
-        id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</assert>
+        id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</report>
       
     </rule>
     
@@ -4000,7 +4000,7 @@
         id="sub-mml-math-id-test">mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
     
-    <rule context="app/table-wrap" 
+    <rule context="app//table-wrap[label]" 
     id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
@@ -8356,7 +8356,7 @@
       
       <report test="matches(.,'�')"
         role="error"
-        id="software-replacement-character-presence">software citation contains the replacement character '�' which is unallowed - <value-of select="."/></report>
+        id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/></report>
       
     </rule>
     
@@ -9417,7 +9417,7 @@
       
       <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))"
         role="warning" 
-        id="software-doi-test-2"><value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>)known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?</report>
+        id="software-doi-test-2"><value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'http://doi.org/10.6084/m9.figshare...'?</report>
       
     </rule>
     
