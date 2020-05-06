@@ -725,14 +725,14 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig[not(ancestor::sub-article[@article-type='reply'])]" id="fig-tests">
+    <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[not(ancestor::sub-article[@article-type='reply'])]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article[@article-type='reply'])] must be present.</assert>
+      <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
