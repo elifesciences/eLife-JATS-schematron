@@ -724,17 +724,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="doi-ref-checks">
-    <rule context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
-      <let name="host" value="lower-case(source[1])"/>
-      <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</report>
+  <pattern id="article-metadata">
+    <rule context="institution-wrap/institution-id" id="institution-id-tests">
+      <assert test="@institution-id-type='FundRef'" role="error" id="institution-id-test-2">
+        <name/> element must have the attribute institution-id-type="FundRef".</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>
+      <assert test="descendant::institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">institution-wrap/institution-id must be present.</assert>
     </rule>
   </pattern>
 </schema>
