@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="institution-id-test-4.sch"?>
+<!--Context: institution-wrap/institution-id
+Test: report    *
+Message: The  element in funding entry for  contains child element(s) () which is not allowed.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <award-group id="fund6">
+      <funding-source>
+        <institution-wrap>
+          <institution-id institution-id-type="FundRef">http://<bold/> <italic/>dx.doi.org/10.13039/100000001</institution-id>
+          <institution>National Science Foundation</institution>
+        </institution-wrap>
+      </funding-source>
+      <award-id>Fellowship</award-id>
+      <principal-award-recipient>
+        <name>
+          <surname>Yahara</surname>
+          <given-names>Yasuhito</given-names>
+        </name>
+      </principal-award-recipient>
+    </award-group>
+  </article>
+</root>

@@ -724,17 +724,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="doi-ref-checks">
-    <rule context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
-      <let name="host" value="lower-case(source[1])"/>
-      <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</report>
+  <pattern id="house-style">
+    <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
+      <let name="lc" value="lower-case(data-title[1])"/>
+      <report test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -2100,6 +2100,48 @@
         <x:expect-not-assert id="institution-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="institution-id-tests">
+      <x:scenario label="institution-id-test-2-pass">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="institution-id-test-2" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-2-fail">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-2/fail.xml"/>
+        <x:expect-assert id="institution-id-test-2" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-3-pass">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-3/pass.xml"/>
+        <x:expect-not-assert id="institution-id-test-3" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-3-fail">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-3/fail.xml"/>
+        <x:expect-assert id="institution-id-test-3" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-4-pass">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-4/pass.xml"/>
+        <x:expect-not-report id="institution-id-test-4" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-4-fail">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-4/fail.xml"/>
+        <x:expect-report id="institution-id-test-4" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-5-pass">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-5/pass.xml"/>
+        <x:expect-not-report id="institution-id-test-5" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-id-test-5-fail">
+        <x:context href="../tests/gen/institution-id-tests/institution-id-test-5/fail.xml"/>
+        <x:expect-report id="institution-id-test-5" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="kwd-group-tests">
       <x:scenario label="kwd-group-type-pass">
         <x:context href="../tests/gen/kwd-group-tests/kwd-group-type/pass.xml"/>
@@ -13135,6 +13177,16 @@
         <x:expect-report id="R-test-6" role="error"/>
         <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="R-test-7-pass">
+        <x:context href="../tests/gen/software-ref-tests/R-test-7/pass.xml"/>
+        <x:expect-not-report id="R-test-7" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="R-test-7-fail">
+        <x:context href="../tests/gen/software-ref-tests/R-test-7/fail.xml"/>
+        <x:expect-report id="R-test-7" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="software-replacement-character-presence-pass">
         <x:context href="../tests/gen/software-ref-tests/software-replacement-character-presence/pass.xml"/>
         <x:expect-not-report id="software-replacement-character-presence" role="error"/>
@@ -13143,6 +13195,46 @@
       <x:scenario label="software-replacement-character-presence-fail">
         <x:context href="../tests/gen/software-ref-tests/software-replacement-character-presence/fail.xml"/>
         <x:expect-report id="software-replacement-character-presence" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-1-pass">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-1/pass.xml"/>
+        <x:expect-not-report id="ref-software-test-1" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-1-fail">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-1/fail.xml"/>
+        <x:expect-report id="ref-software-test-1" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-2-pass">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-2/pass.xml"/>
+        <x:expect-not-assert id="ref-software-test-2" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-2-fail">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-2/fail.xml"/>
+        <x:expect-assert id="ref-software-test-2" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-3-pass">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-3/pass.xml"/>
+        <x:expect-not-report id="ref-software-test-3" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-3-fail">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-3/fail.xml"/>
+        <x:expect-report id="ref-software-test-3" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-4-pass">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-4/pass.xml"/>
+        <x:expect-not-report id="ref-software-test-4" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-4-fail">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-4/fail.xml"/>
+        <x:expect-report id="ref-software-test-4" role="error"/>
         <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

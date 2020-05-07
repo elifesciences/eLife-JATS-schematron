@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="ref-software-test-4.sch"?>
+<!--Context: element-citation[@publication-type='software']
+Test: report    matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio \,? inc|mathworks| llc| ltd')
+Message: software ref '' has a source (Software name) - . Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="software">
+      <person-group person-group-type="author">
+        <collab>R Development Core Team</collab>
+      </person-group>
+      <data-title>R: a language and environment for statistical computing</data-title>
+      <!-- designator attribute added for version - Feb 8 2017 -->
+      <version designator="3.2.2">3.2.2</version>
+      <year iso-8601-date="2015">2015</year>
+      <publisher-loc>Vienna, Austria</publisher-loc>
+      <publisher-name>R Foundation for Statistical Computing</publisher-name>
+      <ext-link ext-link-type="uri" xlink:href="http://www.r-project.org/">http://www.r-project.org/</ext-link>
+    </element-citation>
+  </article>
+</root>
