@@ -1162,7 +1162,7 @@
       
       <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" role="warning" id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
+      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|^[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
 	</rule>
   </pattern>
