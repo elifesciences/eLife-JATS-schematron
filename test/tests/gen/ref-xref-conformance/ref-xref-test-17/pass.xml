@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-xref-test-17.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    matches($pre-sentence,'\(\(\s?$')
+Message: citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>text (text <xref ref-type="bibr">Smith et al., 2020</xref>; <xref>Fig 1</xref> text) text</p>
+  </article>
+</root>

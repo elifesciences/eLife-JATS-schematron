@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="contrib-test-2.sch"?>
 <!--Context: article-meta//contrib
-Test: report    (($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)
-Message: non-author contrib doesn't have an affiliation -  - is this correct?-->
+Test: report    ($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)
+Message: The  doesn't have an affiliation -  - is this correct?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>
         <contrib-group content-type="section">
-          <contrib>
+          <contrib contrib-type="senior_editor">
             <name>
               <surname>Zoolander</surname>
               <given-names>Derek</given-names>

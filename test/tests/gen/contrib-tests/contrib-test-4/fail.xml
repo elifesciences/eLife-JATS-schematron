@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="contrib-test-4.sch"?>
+<!--Context: article-meta//contrib
+Test: report    ($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)
+Message: The   () must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="editor"><name><surname>Akhmanova</surname><given-names>Anna</given-names></name><role>Reviewing Editor</role></contrib>
+    </article-meta>
+  </article>
+</root>

@@ -9,7 +9,15 @@ Message: software ref '' with the title -  - must contain either one source elem
         <collab>R Development Core Team</collab>
       </person-group>
       <data-title>R: a language and environment for statistical computing</data-title>
-      <!-- designator attribute added for version - Feb 8 2017 -->
+      
+
+
+<!--Context: element-citation[@publication-type='software']
+Test: assert    source or publisher-name
+Message: software ref '' with the title -  - must contain either one source element (Software name) or one publisher-name element (Software host).-->
+
+
+
       <version designator="3.2.2">3.2.2</version>
       <year iso-8601-date="2015">2015</year>
       <publisher-loc>Vienna, Austria</publisher-loc>

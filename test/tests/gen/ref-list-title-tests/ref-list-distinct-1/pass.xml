@@ -1,0 +1,148 @@
+<?oxygen SCHSchema="ref-list-distinct-1.sch"?>
+<!--Context: ref-list
+Test: report    $non-distinct//*:item
+Message: In the reference list, each reference must be unique in it's citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a).  does not meet this requirement.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abad-Franch</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Palomeque</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Aguilar</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2005">2005a</year>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abad-Franch</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Palomeque</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Aguilar</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2005">2005b</year>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abad-Franch</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Palomeque</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Aguilar</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2005">2005c</year>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abad</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Palomeque</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Aguilar</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2005">2005a</year>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abad</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Palomeque</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Aguilar</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2005">2005b</year>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abad-Franch</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Palomeque</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Aguilar</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2006">2006</year>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>

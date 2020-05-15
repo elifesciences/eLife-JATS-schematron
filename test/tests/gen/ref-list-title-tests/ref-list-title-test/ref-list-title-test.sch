@@ -221,6 +221,58 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:ref-cite-list">
+    <xsl:param name="ref-list" as="node()"/>
+    <xsl:element name="list">
+      <xsl:for-each select="$ref-list/ref[element-citation[year]]">
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:element name="item">
+          <xsl:attribute name="id">
+            <xsl:value-of select="./@id"/>
+          </xsl:attribute>
+          <xsl:attribute name="no-suffix">
+            <xsl:value-of select="replace($cite,'[A-Za-z]$','')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+        </xsl:element>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:non-distinct-citations">
+    <xsl:param name="cite-list" as="node()"/>
+    <xsl:element name="list">
+    <xsl:for-each select="$cite-list//*:item">
+      <xsl:variable name="cite" select="./string()"/>
+      <xsl:choose>
+        <xsl:when test="./preceding::*:item/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+            <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and (./preceding::*:item/@no-suffix/string() = $cite)">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and ./following::*:item/@no-suffix/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -726,6 +778,8 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="ref-list" id="ref-list-title-tests">
+      <let name="cite-list" value="e:ref-cite-list(.)"/>
+      <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>
       <assert test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
     </rule>
   </pattern>

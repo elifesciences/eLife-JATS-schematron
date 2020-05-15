@@ -1,21 +1,28 @@
 <?oxygen SCHSchema="R-test-7.sch"?>
 <!--Context: element-citation[@publication-type='software']
-Test: report    matches($lc,'r: a language and environment for statistical computing') and lower-case(publisher-name[1] != 'r foundation for statistical computing')
-Message: software ref '' with the title -  - must have a publisher-name (Software host) which contains 'R Foundation for Statistical Computing'.-->
-<root  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Test: report    matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')
+Message: software ref '' with the title -  - must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="software">
       <person-group person-group-type="author">
         <collab>R Development Core Team</collab>
       </person-group>
       <data-title>R: a language and environment for statistical computing</data-title>
-      <!-- designator attribute added for version - Feb 8 2017 -->
+      
+
+
+<!--Context: element-citation[@publication-type='software']
+Test: report    matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')
+Message: software ref '' with the title -  - must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.-->
+
+
+
       <version designator="3.2.2">3.2.2</version>
       <year iso-8601-date="2015">2015</year>
       <publisher-loc>Vienna, Austria</publisher-loc>
       <publisher-name>R Foundation for Statistical Computing</publisher-name>
-      <ext-link ext-link-type="uri" xlink:href="http://www.r-project.org/"
-        >http://www.r-project.org/</ext-link>
+      <ext-link ext-link-type="uri" xlink:href="http://www.r-project.org/">http://www.r-project.org/</ext-link>
     </element-citation>
   </article>
 </root>

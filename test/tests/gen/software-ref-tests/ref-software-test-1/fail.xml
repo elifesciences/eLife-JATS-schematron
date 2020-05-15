@@ -10,7 +10,15 @@ Message: software ref '' has both a source (Software name) -  - and a publisher-
       </person-group>
       <data-title>R: a language and environment for statistical computing</data-title>
       <source>R Foundation for Statistical Computing</source>
-      <!-- designator attribute added for version - Feb 8 2017 -->
+      
+
+
+<!--Context: element-citation[@publication-type='software']
+Test: report    source and publisher-name
+Message: software ref '' has both a source (Software name) -  - and a publisher-name (Software host) -  - which is incorrect. It should have either one or the other.-->
+
+
+
       <version designator="3.2.2">3.2.2</version>
       <year iso-8601-date="2015">2015</year>
       <publisher-loc>Vienna, Austria</publisher-loc>

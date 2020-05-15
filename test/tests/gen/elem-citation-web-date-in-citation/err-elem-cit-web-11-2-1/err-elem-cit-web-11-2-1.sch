@@ -221,6 +221,58 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:ref-cite-list">
+    <xsl:param name="ref-list" as="node()"/>
+    <xsl:element name="list">
+      <xsl:for-each select="$ref-list/ref[element-citation[year]]">
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:element name="item">
+          <xsl:attribute name="id">
+            <xsl:value-of select="./@id"/>
+          </xsl:attribute>
+          <xsl:attribute name="no-suffix">
+            <xsl:value-of select="replace($cite,'[A-Za-z]$','')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+        </xsl:element>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:non-distinct-citations">
+    <xsl:param name="cite-list" as="node()"/>
+    <xsl:element name="list">
+    <xsl:for-each select="$cite-list//*:item">
+      <xsl:variable name="cite" select="./string()"/>
+      <xsl:choose>
+        <xsl:when test="./preceding::*:item/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+            <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and (./preceding::*:item/@no-suffix/string() = $cite)">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and ./following::*:item/@no-suffix/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -726,6 +778,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation">
+      <let name="date-regex" value="'^[12][0-9][0-9][0-9]\-0[13578]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-3[01]$|         ^[12][0-9][0-9][0-9]\-02\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-02\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-30$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-3[01]$|         ^[12][0-9][0-9][0-9]\-11\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-11\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-11\-30$'"/>
       <assert test="./@iso-8601-date" role="error" id="err-elem-cit-web-11-2-1">[err-elem-cit-web-11-2-1]
         The &lt;date-in-citation&gt; element must have an @iso-8601-date attribute.
         Reference '<value-of select="ancestor::ref/@id"/>' does not.

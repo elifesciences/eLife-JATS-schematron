@@ -221,6 +221,58 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:ref-cite-list">
+    <xsl:param name="ref-list" as="node()"/>
+    <xsl:element name="list">
+      <xsl:for-each select="$ref-list/ref[element-citation[year]]">
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:element name="item">
+          <xsl:attribute name="id">
+            <xsl:value-of select="./@id"/>
+          </xsl:attribute>
+          <xsl:attribute name="no-suffix">
+            <xsl:value-of select="replace($cite,'[A-Za-z]$','')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+        </xsl:element>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:non-distinct-citations">
+    <xsl:param name="cite-list" as="node()"/>
+    <xsl:element name="list">
+    <xsl:for-each select="$cite-list//*:item">
+      <xsl:variable name="cite" select="./string()"/>
+      <xsl:choose>
+        <xsl:when test="./preceding::*:item/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+            <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and (./preceding::*:item/@no-suffix/string() = $cite)">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and ./following::*:item/@no-suffix/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -745,7 +797,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
+      <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
