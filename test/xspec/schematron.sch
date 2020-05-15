@@ -240,6 +240,60 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:ref-cite-list">
+    <xsl:param name="ref-list" as="node()"/>
+    <xsl:element name="list">
+      <xsl:for-each select="$ref-list/ref[element-citation[year]]">
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:element name="item">
+          <xsl:attribute name="id">
+            <xsl:value-of select="./@id"/>
+          </xsl:attribute>
+          <xsl:attribute name="no-suffix">
+            <xsl:value-of select="replace($cite,'[A-Za-z]$','')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+        </xsl:element>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  
+  <xsl:function name="e:non-distinct-citations">
+    <xsl:param name="cite-list" as="node()"/>
+    <xsl:element name="list">
+    <xsl:for-each select="$cite-list//*:item">
+      <xsl:variable name="cite" select="./string()"/>
+      <xsl:choose>
+        <xsl:when test="./preceding::*:item/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+            <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and (./preceding::*:item/@no-suffix/string() = $cite)">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and ./following::*:item/@no-suffix/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -1101,6 +1155,8 @@
       <report test="matches(.,'[A-Za-z] [Ee]l$')" role="warning" id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
       <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" role="warning" id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      
+      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
 	</rule>
   </pattern>
@@ -1147,7 +1203,9 @@
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
     	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">author contrib should contain at least 1 link to an affiliation (xref[@ref-type='aff']).</report>
 	  
-	  <report test="(($type != 'author') or not(@contrib-type)) and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">non-author contrib doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
+	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
+	  
+	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">The  <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
 	  
@@ -2680,6 +2738,8 @@
       
       <report test="matches(.,'^\p{P}')" role="warning" id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/>
       </report>
+      
+      <report test="matches(.,'^[Pp]anel ')" role="warning" id="fig-title-test-6">title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
     </rule>
   </pattern>
   <pattern id="supplementary-material-title-tests-pattern">
@@ -2731,8 +2791,12 @@
   </pattern>
   <pattern id="ref-list-title-tests-pattern">
     <rule context="ref-list" id="ref-list-title-tests">
+      <let name="cite-list" value="e:ref-cite-list(.)"/>
+      <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>
       
       <assert test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
+      
+      <report test="$non-distinct//*:item" role="error" id="ref-list-distinct-1">In the reference list, each reference must be unique in it's citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
       
     </rule>
   </pattern>
@@ -3394,10 +3458,6 @@
         If the &lt;year&gt; element contains any letter other than 'a' after the digits, there must be another 
         reference with the same first author surname (or collab) with the preceding letter after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
-      
-      <report test="some $x in (preceding::year[ancestor::ref-list])       satisfies  e:citation-format1($x) = $citation" role="error" id="err-elem-cit-gen-date-1-8">[err-elem-cit-gen-date-1-8]
-        Letter suffixes must be unique for the combination of year and author information. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as its citation is '<value-of select="$citation"/>', which is the same as at least one other reference.</report>
       
     </rule>
   </pattern>
@@ -4209,6 +4269,8 @@
   </pattern>
   <pattern id="elem-citation-web-date-in-citation-pattern">
     <rule context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation"> 
+      <let name="date-regex" value="'^[12][0-9][0-9][0-9]\-0[13578]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-3[01]$|         ^[12][0-9][0-9][0-9]\-02\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-02\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-30$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-3[01]$|         ^[12][0-9][0-9][0-9]\-11\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-11\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-11\-30$'"/>
+      
       <assert test="./@iso-8601-date" role="error" id="err-elem-cit-web-11-2-1">[err-elem-cit-web-11-2-1]
         The &lt;date-in-citation&gt; element must have an @iso-8601-date attribute.
         Reference '<value-of select="ancestor::ref/@id"/>' does not.
@@ -4225,9 +4287,12 @@
         The format of the element content must match month, space, day, comma, year.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>
       
+      <assert test="(matches(@iso-8601-date,replace($date-regex,'\s','')))" role="error" id="err-elem-cit-web-11-5">
+        The @iso-8601-date value on accessed date must be a valid date value. <value-of select="@iso-8601-date"/> in reference '<value-of select="ancestor::ref/@id"/>' is not valid.</assert>
+      
       <!-- issue 5 on the eLife lists -->
-      <report test="if (string-length(@iso-8601-date) = 10) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else (string-length(@iso-8601-date) &lt; 10)" role="error" id="err-elem-cit-web-11-4">[err-elem-cit-web-11-4]
-        The element content date must match the @iso-8601-date value.
+      <report test="if (matches(@iso-8601-date,replace($date-regex,'\s',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else ()" role="error" id="err-elem-cit-web-11-4">
+        The Accessed date value must match the @iso-8601-date value in the format 'January 1, 2020'.
         Reference '<value-of select="ancestor::ref/@id"/>' has element content of 
         <value-of select="."/> but an @iso-8601-date value of 
         <value-of select="@iso-8601-date"/>.</report>
@@ -5123,14 +5188,29 @@
       
       <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'</report>
       
-      <report test="matches(.,'^et al|^ and|^[\(]\d|^,')" role="error" id="ref-xref-test-19">
+      <report test="matches($pre-sentence,'\(\[\s?$')" role="warning" id="ref-xref-test-13">citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/>
+      </report>
+      
+      <report test="matches($post-sentence,'^\s?\)\)')" role="error" id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>
+      </report>
+      
+      <report test="matches($pre-sentence,'\(\(\s?$')" role="error" id="ref-xref-test-17">citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/>
+      </report>
+      
+      <report test="matches($pre-sentence,'\(\s?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)" role="warning" id="ref-xref-test-10">citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>
+      </report>
+      
+      <report test="matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')" role="warning" id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>
+      </report>
+      
+      <report test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       
-      <report test="matches($post-text,'^[\)];\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
+      <report test="matches($post-text,'^\);\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
       
-      <report test="matches($pre-sentence,'[A-Za-z0-9][\(]$')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
+      <report test="matches($pre-sentence,'[A-Za-z0-9]\($')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
       
-      <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+      <report test="matches($post-sentence,'^\)[A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
       <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
       
@@ -5154,6 +5234,18 @@
   </pattern>
   
   
+  
+  <pattern id="unlinked-object-cite-pattern">
+    <rule context="fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
+      <let name="cite1" value="replace(label[1],'\.','')"/>
+      <let name="regex" value="replace($cite1,'—','[—–\\-]')"/>
+      <let name="article-text" value="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*                  return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()                  else if ($x/ancestor::sec[@sec-type='additional-information']) then ()                  else if ($x/ancestor::ref-list) then ()                  else if ($x/local-name() = 'xref') then ()                  else $x/text(),'')"/>
+      
+      <report test="matches($article-text,$regex)" role="warning" id="text-v-object-cite-test">
+        <value-of select="$cite1"/> has possible unlinked citations in the text.</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="vid-xref-conformance-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
@@ -5189,6 +5281,7 @@
       
     </rule>
   </pattern>
+  
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -6236,6 +6329,12 @@
       <report test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host).</report>
       
       <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field.</report>
+      
+      <report test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">
+        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct?</report>
+      
+      <report test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)" role="error" id="ref-software-test-6">
+        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="data-ref-tests-pattern">
@@ -7530,6 +7629,7 @@
       <assert test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
       <assert test="descendant::ref-list/ref/element-citation" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation must be present.</assert>
+      <assert test="descendant::fig[not(ancestor::sub-article) and label] or descendant::                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']] or descendant::                    media[not(ancestor::sub-article) and label] or descendant::                    supplementary-material[not(ancestor::sub-article) and label]" role="error" id="unlinked-object-cite-xspec-assert">fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label] must be present.</assert>
       <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='fig' and @rid]" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig' and @rid] must be present.</assert>
       <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>

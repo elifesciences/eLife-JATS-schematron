@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="text-v-object-cite-test.sch"?>
+<!--Context: fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label]
+Test: report    matches($article-text,$regex)
+Message:  has possible unlinked citations in the text.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>text text <xref>Figure 1</xref> text <xref>Table 1</xref> text</p>
+      <fig>
+        <label>Figure 1.</label>
+      </fig>
+      <table-wrap>
+        <label>Table 1.</label>
+      </table-wrap>
+    </body>
+  </article>
+</root>

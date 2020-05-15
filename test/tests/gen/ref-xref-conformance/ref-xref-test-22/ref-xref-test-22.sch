@@ -221,6 +221,58 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:ref-cite-list">
+    <xsl:param name="ref-list" as="node()"/>
+    <xsl:element name="list">
+      <xsl:for-each select="$ref-list/ref[element-citation[year]]">
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:element name="item">
+          <xsl:attribute name="id">
+            <xsl:value-of select="./@id"/>
+          </xsl:attribute>
+          <xsl:attribute name="no-suffix">
+            <xsl:value-of select="replace($cite,'[A-Za-z]$','')"/>
+          </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+        </xsl:element>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:non-distinct-citations">
+    <xsl:param name="cite-list" as="node()"/>
+    <xsl:element name="list">
+    <xsl:for-each select="$cite-list//*:item">
+      <xsl:variable name="cite" select="./string()"/>
+      <xsl:choose>
+        <xsl:when test="./preceding::*:item/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+            <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and (./preceding::*:item/@no-suffix/string() = $cite)">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:when test="not(matches($cite,'[A-Za-z]$')) and ./following::*:item/@no-suffix/string() = $cite">
+          <xsl:element name="item">
+            <xsl:attribute name="id">
+              <xsl:value-of select="./@id"/>
+            </xsl:attribute>
+          <xsl:value-of select="$cite"/>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -735,7 +787,7 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <report test="matches($post-sentence,'^[\)][A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+      <report test="matches($post-sentence,'^\)[A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

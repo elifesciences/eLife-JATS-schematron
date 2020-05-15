@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="given-names-test-15.sch"?>
+<!--Context: contrib-group//name/given-names
+Test: report    matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|[A-za-z]\s[A-za-z]$')
+Message: given-names contains initials with spaces. Esnure that the space(s) is removed between initials - ''.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <contrib-group>
+      <name>
+        <given-names>FPA</given-names>
+      </name>
+      <name>
+        <given-names>FP</given-names>
+      </name>
+      <name>
+        <given-names>FP Art</given-names>
+      </name>
+    </contrib-group>
+  </article>
+</root>

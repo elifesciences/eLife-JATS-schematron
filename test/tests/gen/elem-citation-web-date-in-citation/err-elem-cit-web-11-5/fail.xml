@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="err-elem-cit-web-11-5.sch"?>
+<!--Context: element-citation[@publication-type='web']/date-in-citation
+Test: assert    (matches(@iso-8601-date,replace($date-regex,'\s','')))
+Message: 
+        The @iso-8601-date value on accessed date must be a valid date value.  in reference '' is not valid.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="web"><person-group person-group-type="author"><collab>WHO</collab></person-group><year iso-8601-date="2019">2019</year><article-title>World health organization. chagas disease (American trypanosomiasis)</article-title><source>Fact Sheets</source><ext-link ext-link-type="uri" xlink:href="https://www.who.int/en/news-room/fact-sheets/detail/chagas-disease-(american-trypanosomiasis)">https://www.who.int/en/news-room/fact-sheets/detail/chagas-disease-(american-trypanosomiasis)</ext-link><date-in-citation iso-8601-date="2019-06-31">June 31, 2019</date-in-citation></element-citation>
+  </article>
+</root>
