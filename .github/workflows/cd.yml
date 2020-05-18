@@ -1,0 +1,56 @@
+name: Continuous Deployment
+
+on: [push, pull_request]
+
+jobs:
+  cd:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Setup
+        run: |
+          npm install
+        env:
+          CI: true
+      - name: Build
+        run: |
+          npm run build
+        env:
+          CI: true
+      - name: Lint
+        run: |
+          npm run lint:ci
+        env:
+          CI: true
+      - name: Test
+        run: |
+          npm run test:ci
+        env:
+          CI: true
+      - name: Publish as 'unstable'
+        if: github.repository_owner == 'libero' && github.ref == 'refs/heads/master'
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build --no-cache -t $DOCKER_USERNAME/$REPO_NAME:unstable .
+          docker push $DOCKER_USERNAME/$REPO_NAME:unstable
+          .scripts/github/retag-and-push.sh $REPO_NAME unstable
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish as 'stable'
+        if: github.repository_owner == 'libero' &&  contains(github.ref, 'refs/tags/v')
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build --no-cache -t $DOCKER_USERNAME/$REPO_NAME:stable .
+          docker push $DOCKER_USERNAME/$REPO_NAME:stable
+          .scripts/github/retag-and-push.sh $REPO_NAME stable
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
