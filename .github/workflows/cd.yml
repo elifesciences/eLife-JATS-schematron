@@ -14,7 +14,7 @@ jobs:
           ./run-test.sh
         env:
           CI: true
-          SAXON_HOME: $GITHUB_WORKSPACE/elife-jats-schematron/validator
+          SAXON_HOME: ${GITHUB_WORKSPACE}/elife-jats-schematron/validator
       - name: Publish as 'unstable'
         if: github.ref == 'refs/heads/master'
         run: |
