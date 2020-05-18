@@ -9,6 +9,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Test
+        run: |
+          ./run-test.sh
+        env:
+          CI: true
+          SAXON_HOME: $GITHUB_WORKSPACE/elife-jats-schematron/validator
       - name: Publish as 'unstable'
         if: github.ref == 'refs/heads/master'
         run: |
