@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #export SAXON_HOME=/home/travis/tmp/saxon
+echo "SAXON_HOME=$GITHUB_WORKSPACE"
 echo "SAXON_HOME=$SAXON_HOME"
 for xspectest in test/xspec/*.xspec;
 do /home/travis/tmp/xspec/bin/xspec.sh -s $xspectest &> result.log
