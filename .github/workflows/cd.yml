@@ -9,16 +9,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: FIXME
-        run: |
-          SEMVER="${GITHUB_REF/refs\/tags\/v/}"
-          MAJOR="$(echo "${SEMVER}" | cut -d'.' -f1)"
-          MINOR="$(echo "${SEMVER}" | cut -d'.' -f2)"
-          PATCH="$(echo "${SEMVER}" | cut -d'.' -f3)"
-          echo SEMVER=$SEMVER
-          echo MAJOR=$MAJOR
-          echo MINOR=$MINOR
-          echo PATCH=$PATCH
       - name: Test
         run: |
           ./run-test.sh
@@ -41,10 +31,13 @@ jobs:
       - name: Publish as 'stable'
         if: contains(github.ref, 'refs/tags/v')
         run: |
+          SEMVER="${GITHUB_REF/refs\/tags\/v/}"
+          MAJOR="$(echo "${SEMVER}" | cut -d'.' -f1)"
+          MINOR="$(echo "${SEMVER}" | cut -d'.' -f2)"
+          PATCH="$(echo "${SEMVER}" | cut -d'.' -f3)"
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build --no-cache -t $PROJECT/$CONTAINER_NAME:stable .
-          docker push $PROJECT/$CONTAINER_NAME:stable
-          .scripts/github/retag-and-push.sh $CONTAINER_NAME stable
+          docker build --no-cache -t $PROJECT/$CONTAINER_NAME:stable -t $PROJECT/$CONTAINER_NAME:${MAJOR}.${MINOR}.${PATCH} -t $PROJECT/$CONTAINER_NAME:${MAJOR}.${MINOR} -t $PROJECT/$CONTAINER_NAME:${MAJOR} .
+          docker push $PROJECT/$CONTAINER_NAME
         env:
           PROJECT: elifesciences
           CONTAINER_NAME: basex-validator
