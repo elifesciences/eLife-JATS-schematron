@@ -22,7 +22,7 @@ jobs:
           SHORT_SHA=${GITHUB_SHA:0:8}
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker build --no-cache -t $PROJECT/$CONTAINER_NAME:unstable -t $PROJECT/$CONTAINER_NAME:${BRANCH}-${SHORT_SHA}-${TIMESTAMP} -t $PROJECT/$CONTAINER_NAME:${BRANCH}-${SHORT_SHA} -t $PROJECT/$CONTAINER_NAME:latest .
-          docker push $DOCKER_USERNAME/$REPO_NAME
+          docker push $PROJECT/$CONTAINER_NAME
         env:
           PROJECT: elifesciences
           CONTAINER_NAME: basex-validator
