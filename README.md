@@ -36,8 +36,8 @@ Less robust Schematron unit testing can also be carried out in BaseX using `xque
 You can now build a container based on basexhttp that contains the schematron and can be used for testing.
 
 ```
-docker build . --tag elife-schematron
-docker run --rm --memory="1g" -p 1984:1984 -p 8984:8984 elife-schematron
+docker build . --tag elife-schematron:test
+docker run --rm --memory="512Mi" -p 1984:1984 -p 8984:8984 elife-schematron:test
 ```
 
 You can then interact with the service on port 8984 for example using either...
