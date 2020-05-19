@@ -10,14 +10,14 @@ jobs:
         with:
           submodules: true
       - name: FIXME
-          run: |
-            echo BRANCH=$BRANCH
-            echo TIMESTAMP=$TIMESTAMP
-            echo SHORT_SHA=$SHORT_SHA
-          env:
-            BRANCH: "${GITHUB_REF/refs\/heads\//}"
-            TIMESTAMP: $(date --utc +%Y%m%d.%H%M)
-            SHORT_SHA: ${GITHUB_SHA:0:8}
+        run: |
+          echo BRANCH=$BRANCH
+          echo TIMESTAMP=$TIMESTAMP
+          echo SHORT_SHA=$SHORT_SHA
+        env:
+          BRANCH: "${GITHUB_REF/refs\/heads\//}"
+          TIMESTAMP: $(date --utc +%Y%m%d.%H%M)
+          SHORT_SHA: ${GITHUB_SHA:0:8}
       - name: Test
         run: |
           ./run-test.sh
