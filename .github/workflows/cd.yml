@@ -18,21 +18,21 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build --no-cache -t $DOCKER_USERNAME/$REPO_NAME:unstable .
-          docker push $DOCKER_USERNAME/$REPO_NAME:unstable
-          .scripts/github/retag-and-push.sh $REPO_NAME unstable
+          docker build --no-cache -t $DOCKER_USERNAME/$CONTAINER_NAME:unstable .
+          docker push $DOCKER_USERNAME/$CONTAINER_NAME:unstable
+          .scripts/github/retag-and-push.sh $CONTAINER_NAME unstable
         env:
-          REPO_NAME: basex-validator
+          CONTAINER_NAME: basex-validator
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Publish as 'stable'
         if: contains(github.ref, 'refs/tags/v')
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build --no-cache -t $DOCKER_USERNAME/$REPO_NAME:stable .
-          docker push $DOCKER_USERNAME/$REPO_NAME:stable
-          .scripts/github/retag-and-push.sh $REPO_NAME stable
+          docker build --no-cache -t $DOCKER_USERNAME/$CONTAINER_NAME:stable .
+          docker push $DOCKER_USERNAME/$CONTAINER_NAME:stable
+          .scripts/github/retag-and-push.sh $CONTAINER_NAME stable
         env:
-          REPO_NAME: basex-validator
+          CONTAINER_NAME: basex-validator
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
