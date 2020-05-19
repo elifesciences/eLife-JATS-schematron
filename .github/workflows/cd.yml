@@ -1,0 +1,45 @@
+name: Continuous Deployment
+
+on: [push, pull_request]
+
+jobs:
+  cd:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Test
+        run: |
+          ./run-test.sh
+        env:
+          SAXON_HOME: ${{ github.workspace }}/validator
+      - name: Publish as 'unstable'
+        if: github.ref == 'refs/heads/master'
+        run: |
+          BRANCH=${GITHUB_REF/refs\/heads\//}
+          TIMESTAMP=$(date --utc +%Y%m%d.%H%M)
+          SHORT_SHA=${GITHUB_SHA:0:8}
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build --no-cache -t $PROJECT/$CONTAINER_NAME:unstable -t $PROJECT/$CONTAINER_NAME:${BRANCH}-${SHORT_SHA}-${TIMESTAMP} -t $PROJECT/$CONTAINER_NAME:${BRANCH}-${SHORT_SHA} -t $PROJECT/$CONTAINER_NAME:latest .
+          docker push $DOCKER_USERNAME/$REPO_NAME
+        env:
+          PROJECT: elifesciences
+          CONTAINER_NAME: basex-validator
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish as 'stable'
+        if: contains(github.ref, 'refs/tags/v')
+        run: |
+          SEMVER="${GITHUB_REF/refs\/tags\/v/}"
+          MAJOR="$(echo "${SEMVER}" | cut -d'.' -f1)"
+          MINOR="$(echo "${SEMVER}" | cut -d'.' -f2)"
+          PATCH="$(echo "${SEMVER}" | cut -d'.' -f3)"
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build --no-cache -t $PROJECT/$CONTAINER_NAME:stable -t $PROJECT/$CONTAINER_NAME:${MAJOR}.${MINOR}.${PATCH} -t $PROJECT/$CONTAINER_NAME:${MAJOR}.${MINOR} -t $PROJECT/$CONTAINER_NAME:${MAJOR} .
+          docker push $PROJECT/$CONTAINER_NAME
+        env:
+          PROJECT: elifesciences
+          CONTAINER_NAME: basex-validator
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
