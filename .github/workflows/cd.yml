@@ -11,12 +11,14 @@ jobs:
           submodules: true
       - name: FIXME
         run: |
-          BRANCH=${GITHUB_REF/refs\/heads\//}
-          TIMESTAMP=$(date --utc +%Y%m%d.%H%M)
-          SHORT_SHA=${GITHUB_SHA:0:8}
-          echo BRANCH=$BRANCH
-          echo TIMESTAMP=$TIMESTAMP
-          echo SHORT_SHA=$SHORT_SHA
+          SEMVER="${GITHUB_REF/refs\/tags\/v/}"
+          MAJOR="$(echo "${SEMVER}" | cut -d'.' -f1)"
+          MINOR="$(echo "${SEMVER}" | cut -d'.' -f2)"
+          PATCH="$(echo "${SEMVER}" | cut -d'.' -f3)"
+          echo SEMVER=$SEMVER
+          echo MAJOR=$MAJOR
+          echo MINOR=$MINOR
+          echo PATCH=$PATCH
       - name: Test
         run: |
           ./run-test.sh
@@ -25,10 +27,12 @@ jobs:
       - name: Publish as 'unstable'
         if: github.ref == 'refs/heads/master'
         run: |
+          BRANCH=${GITHUB_REF/refs\/heads\//}
+          TIMESTAMP=$(date --utc +%Y%m%d.%H%M)
+          SHORT_SHA=${GITHUB_SHA:0:8}
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build --no-cache -t $PROJECT/$CONTAINER_NAME:unstable .
-          docker push $PROJECT/$CONTAINER_NAME:unstable
-          .scripts/github/retag-and-push.sh $CONTAINER_NAME unstable
+          docker build --no-cache -t $PROJECT/$CONTAINER_NAME:unstable -t $PROJECT/$CONTAINER_NAME:${BRANCH}-${SHORT_SHA}-${TIMESTAMP} -t $PROJECT/$CONTAINER_NAME:${BRANCH}-${SHORT_SHA} -t $PROJECT/$CONTAINER_NAME:latest .
+          docker push $DOCKER_USERNAME/$REPO_NAME
         env:
           PROJECT: elifesciences
           CONTAINER_NAME: basex-validator
