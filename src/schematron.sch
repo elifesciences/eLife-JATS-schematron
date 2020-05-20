@@ -69,7 +69,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
             <xsl:value-of select="concat(upper-case($token1),
               ' ',
               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
@@ -3073,6 +3073,15 @@
       <report test="self::*/local-name() = 'bold'"
         role="warning"
         id="th-child-test-2">th contains bold. Is this correct?</report>
+    </rule>
+    
+    <rule context="th" 
+      id="th-tests">
+      
+      <report test="following-sibling::td or preceding-sibling::td"
+        role="warning"
+        id="th-row-test">Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row?</report>
+      
     </rule>
     
     <rule context="table-wrap-foot//fn/p/*[1]" 
@@ -8360,6 +8369,10 @@
         role="warning" 
         id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
+      <assert test="volume"
+        role="warning" 
+        id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</assert>
+      
       <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')"
         role="error" 
         id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
@@ -8375,6 +8388,19 @@
       <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')"
         role="warning" 
         id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal title containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal title?</report>
+      
+    </rule>
+    
+    <rule context="element-citation[(@publication-type='book') and chapter-title]" 
+      id="book-chapter-tests">
+      
+      <assert test="person-group[@person-group-type='editor']"
+        role="warning" 
+        id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
+      
+      <assert test="fpage and lpage"
+        role="warning" 
+        id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
       
     </rule>
     
@@ -9087,6 +9113,11 @@
         role="warning" 
         id="sec-title-dimension">Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D' - <value-of select="."/></report>
       
+      <!-- AIDS not included due to other meaning/use -->
+      <report test="matches(upper-case($no-link-text),'^HIV | HIV | HIV') and not(matches($no-link-text,'^HIV | HIV | HIV'))"
+        role="warning" 
+        id="sec-title-hiv">Section title contains the word HIV, but it is not in all caps - <value-of select="."/></report>
+      
     </rule>
     
     <rule context="abstract[not(@*)]" 
@@ -9631,9 +9662,9 @@
   
   <pattern id="unicode-checks">
     
-    <rule context="p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|
-    td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|
-    th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]"
+    <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|
+      sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|
+      sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]"
         id='unicode-tests'>
     
     
@@ -9723,7 +9754,7 @@
     
     <report test="contains(.,'Å’')" 
         role="warning" 
-        id="unicode-test-24"><name/> element contains 'Å’' - this should instead be the character 'Œ'. - <value-of select="."/>.</report>
+        id="unicode-test-24"><name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>.</report>
     
     <report test="contains(.,'ÃŒ')" 
         role="warning" 
