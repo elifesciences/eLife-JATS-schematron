@@ -1,0 +1,34 @@
+<?oxygen SCHSchema="book-chapter-test-1.sch"?>
+<!--Context: element-citation[(@publication-type='book') and chapter-title]
+Test: assert    person-group[@person-group-type='editor']
+Message: ref '' () is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Murphy</surname> <given-names>C</given-names>
+        </name>
+        <name>
+          <surname>Mobasheri</surname> <given-names>A</given-names>
+        </name>
+        <name>
+          <surname>Táncos</surname> <given-names>Z</given-names>
+        </name>
+        <name>
+          <surname>Kobolák</surname> <given-names>J</given-names>
+        </name>
+        <name>
+          <surname>Dinnyés</surname> <given-names>A</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2017">2017</year>
+      <chapter-title>The potency of induced pluripotent stem cells in cartilage regeneration and osteoarthritis treatment</chapter-title>
+      <source>Cell Biology and Translational Medicine, Volume 1. Advances in Experimental Medicine and Biology</source>
+      <publisher-name>Springer</publisher-name>
+      <fpage>55</fpage>
+      <lpage>68</lpage>
+      <pub-id pub-id-type="doi">10.1007/978-3-319-93867-7</pub-id>
+    </element-citation>
+  </article>
+</root>

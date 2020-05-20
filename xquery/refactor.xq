@@ -38,8 +38,7 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
   return (
     file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
     file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
-    file:write((substring-before($outputDir,'src')||'validator/webapp/schematron/pre-JATS-schematron.sch'),$pre-sch),
-    file:write((substring-before($outputDir,'src')||'validator/webapp/schematron/final-JATS-schematron.sch'),$final-sch),
+    
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
     file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch),
     file:write(($root||'/test/xspec/schematron.xspec'),$xspec)

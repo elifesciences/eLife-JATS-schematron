@@ -44,7 +44,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
