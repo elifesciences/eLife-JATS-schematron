@@ -4,6 +4,8 @@ Test: report    contains(.,'Ãƒ')
 Message:  element contains 'Ãƒ' - this should instead be the character 'Ã'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>Ãƒ</p>
+    <sub-article>
+      <p>Ãƒ</p>
+    </sub-article>
   </article>
 </root>

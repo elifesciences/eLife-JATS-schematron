@@ -4,6 +4,8 @@ Test: report    contains(.,'Ãš')
 Message:  element contains 'Ãš' - this should instead be the character 'Ú'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>â test test Ú</p>
+    <sub-article>
+      <p>â test test Ú</p>
+    </sub-article>
   </article>
 </root>

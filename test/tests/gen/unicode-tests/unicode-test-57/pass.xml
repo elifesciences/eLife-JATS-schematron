@@ -4,6 +4,8 @@ Test: report    contains(.,'ÃŸ')
 Message:  element contains 'ÃŸ' - this should instead be the character 'ß'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>â test test ß</p>
+    <sub-article>
+      <p>â test test ß</p>
+    </sub-article>
   </article>
 </root>

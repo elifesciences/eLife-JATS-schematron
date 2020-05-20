@@ -4,6 +4,8 @@ Test: report    contains(.,'Æ’')
 Message:  element contains 'Æ’' - this should instead be the character 'ƒ'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>Æ’ </p>
+    <sub-article>
+      <p>Æ’ </p>
+    </sub-article>
   </article>
 </root>

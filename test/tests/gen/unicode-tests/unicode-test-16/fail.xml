@@ -4,6 +4,8 @@ Test: report    contains(.,'Ë†')
 Message:  element contains 'Ë†' - this should instead be the character 'ˆ'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>Ë† </p>
+    <sub-article>
+      <p>Ë† </p>
+    </sub-article>
   </article>
 </root>

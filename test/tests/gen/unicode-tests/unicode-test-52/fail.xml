@@ -4,6 +4,8 @@ Test: report    contains(.,'Ãœ')
 Message:  element contains 'Ãœ' - this should instead be the character 'Ü'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>Ãœ</p>
+    <sub-article>
+      <p>Ãœ</p>
+    </sub-article>
   </article>
 </root>

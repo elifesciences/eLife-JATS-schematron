@@ -4,6 +4,8 @@ Test: report    contains(.,'Å½')
 Message:  element contains 'Å½' - this should instead be the character 'Ž'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>Å½ </p>
+    <sub-article>
+      <p>Å½ </p>
+    </sub-article>
   </article>
 </root>

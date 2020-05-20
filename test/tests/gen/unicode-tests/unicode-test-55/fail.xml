@@ -4,6 +4,8 @@ Test: report    contains(.,'Ãž')
 Message:  element contains 'Ãž' - this should instead be the character 'Þ'. - .-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <p>Ãž</p>
+    <sub-article>
+      <p>Ãž</p>
+    </sub-article>
   </article>
 </root>
