@@ -781,7 +781,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report test="matches(label[1],'^Reporting standard \d{1,4}\.$')" flag="pub-check" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
+      <report test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

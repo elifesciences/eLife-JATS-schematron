@@ -780,7 +780,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-10</report>
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

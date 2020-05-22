@@ -779,7 +779,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
-      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-1</report>
+      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

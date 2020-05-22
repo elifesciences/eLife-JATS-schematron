@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-3</report>
+      <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

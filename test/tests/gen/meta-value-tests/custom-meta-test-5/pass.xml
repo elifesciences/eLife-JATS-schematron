@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-test-5.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    ($count gt 30)
-Message: Impact statement contains more than 30 words. This is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-5-->
+Message: Impact statement contains more than 30 words. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>

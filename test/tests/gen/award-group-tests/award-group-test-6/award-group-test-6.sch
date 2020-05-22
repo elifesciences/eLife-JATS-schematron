@@ -780,7 +780,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-6</report>
+      <report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-6</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

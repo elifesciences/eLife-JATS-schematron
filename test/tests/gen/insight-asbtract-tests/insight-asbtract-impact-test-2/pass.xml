@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="insight-asbtract-impact-test-2.sch"?>
 <!--Context: article[@article-type='article-commentary']//article-meta/abstract
 Test: assert    count(p/*) = $impact-statement-element-count
-Message: In insights, abstracts must be the same as impact statements. Here the abstract has  child element(s), whereas the impact statement has  child element(s). Check for possible missing formatting. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-2-->
+Message: In insights, abstracts must be the same as impact statements. Here the abstract has  child element(s), whereas the impact statement has  child element(s). Check for possible missing formatting. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="article-commentary">
     <article-meta>

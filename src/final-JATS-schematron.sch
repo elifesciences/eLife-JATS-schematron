@@ -1519,11 +1519,11 @@
   <pattern id="funding-group-tests-pattern">
     <rule context="article-meta/funding-group" id="funding-group-tests">
 		
-		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-1</assert>
+		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-1</assert>
 		
-		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-2</report>
+		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-2</report>
 		
-	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#funding-group-test-3</report>
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-3</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -1531,39 +1531,39 @@
 	  <let name="id" value="@id"/>
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		
-		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-2</assert>
+		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-2</assert>
 		
-		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-3</assert>
+		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-3</assert>
 		
-		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-4</report>
+		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-4</report>
 		
-		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-5</assert>
+		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-5</assert>
 		
-		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-6</report>
+		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-6</report>
 	  
-	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-7</assert>
+	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-7</assert>
 	  
-	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-8</report>
+	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-8</report>
 	</rule>
   </pattern>
   <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       
-      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-1</report>
+      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-1</report>
       
-      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-2</report>
+      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-2</report>
       
-      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-3</report>
+      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-3</report>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-id-test-4</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-4</report>
       
     </rule>
   </pattern>
   <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#institution-id-test</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#institution-id-test</assert>
       
     </rule>
   </pattern>
@@ -1623,15 +1623,15 @@
       <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
-      <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-1</assert>
+      <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-1</assert>
       
-      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-2</report>
+      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-2</report>
       
-      <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-3</assert>
+      <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-3</assert>
       
-      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-14</report>
+      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-14</report>
       
-      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-15</report>
+      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-15</report>
       
     </rule>
   </pattern>
@@ -1641,29 +1641,29 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
-      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-5</report>
+      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
       
       
       
-      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#final-custom-meta-test-6</assert>
+      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-6</assert>
       
-      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-7</report>
+      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-7</report>
       
-      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-8</report>
-      
-      
-      
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#final-custom-meta-test-9</report>
-      
-      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-10</report>
-      
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-11</report>
-      
-      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-test-13</report>
+      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-8</report>
       
       
       
-      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#final-rep-study-custom-meta-test</report>
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9</report>
+      
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10</report>
+      
+      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-11</report>
+      
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-13</report>
+      
+      
+      
+      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-rep-study-custom-meta-test</report>
     </rule>
   </pattern>
   <pattern id="meta-value-child-tests-pattern">
@@ -1671,7 +1671,7 @@
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       
       <assert test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
-        <name/> is not allowed in impact statement. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#custom-meta-child-test-1</assert>
+        <name/> is not allowed in impact statement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1</assert>
       
     </rule>
   </pattern>
@@ -4071,22 +4071,22 @@
         &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
         author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
         &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/>
-        &lt;person-group&gt; elements.</assert>
+        &lt;person-group&gt; elements.   More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1</assert>
       
       <assert test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type
         'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to
         'author'or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a
-        &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
+        &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2</assert>
       
       <report test="count(data-title) &gt; 1" role="error" id="err-elem-cit-software-10-1">[err-elem-cit-software-10-1] Each &lt;element-citation&gt; of type 'software' may contain one
         and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>'
-        has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
+        has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.   More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1</report>
       
       <assert test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)" role="error" id="err-elem-cit-software-16">[err-elem-cit-software-16] The only tags that are
         allowed as children of &lt;element-citation&gt; with the publication-type="software" are:
         &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;,
         &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>'
-        has other elements.</assert>
+        has other elements.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16</assert>
       
     </rule>
   </pattern>
@@ -4095,7 +4095,7 @@
       
       <assert test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters
         and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference
-        '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+        '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2</assert>
       
     </rule>
   </pattern>
@@ -5017,9 +5017,9 @@
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
+     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
      
-     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
+     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
      
    </rule>
   </pattern>
@@ -6184,7 +6184,7 @@
       
       <report test="$uc = 'RESEARCH GATE'" role="warning" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
-      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference.</report>
+      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#zenodo-check</report>
       
       <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
@@ -6292,7 +6292,7 @@
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
       
-      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
+      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test</report>
       
       <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
@@ -6320,36 +6320,35 @@
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" role="error" id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" role="error" id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-1</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" role="error" id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" role="error" id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-2</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-3</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4</report>
       
-      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title.</report>
+      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-5</report>
       
-      <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title.</report>
+      <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-6</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" role="error" id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" role="error" id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7</report>
       
-      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>
-      </report>
+      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence</report>
       
-      <report test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source (Software name) - <value-of select="source[1]"/> - and a publisher-name (Software host) - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
+      <report test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source (Software name) - <value-of select="source[1]"/> - and a publisher-name (Software host) - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1</report>
       
-      <assert test="source or publisher-name" role="error" id="ref-software-test-2">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element (Software name) or one publisher-name element (Software host).</assert>
+      <assert test="source or publisher-name" role="error" id="ref-software-test-2">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element (Software name) or one publisher-name element (Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2</assert>
       
-      <report test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host).</report>
+      <report test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3</report>
       
-      <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field.</report>
+      <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4</report>
       
       <report test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">
-        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct?</report>
+        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-5</report>
       
       <report test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)" role="error" id="ref-software-test-6">
-        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL which is incorrect.</report>
+        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-6</report>
     </rule>
   </pattern>
   <pattern id="data-ref-tests-pattern">
@@ -6942,8 +6941,7 @@
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(.)"/>
       
-      <report test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>
-      </report>
+      <report test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info</report>
     </rule>
   </pattern>
   <pattern id="auth-kwd-style-pattern">
@@ -7017,10 +7015,10 @@
       <let name="host" value="lower-case(source[1])"/>
       
       <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</report>
+        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1</report>
       
       <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))" role="warning" id="software-doi-test-2">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?</report>
+        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-2</report>
       
     </rule>
   </pattern>

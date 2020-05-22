@@ -780,7 +780,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-7</assert>
+      <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-7</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

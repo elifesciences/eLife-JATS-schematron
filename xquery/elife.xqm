@@ -149,7 +149,6 @@ declare function elife:sch2final($sch){
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
       else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
-      else if ($x/@flag) then delete node $x/@flag
       else (),
 
       for $x in $copy3//xsl:function[@name="java:file-exists"]

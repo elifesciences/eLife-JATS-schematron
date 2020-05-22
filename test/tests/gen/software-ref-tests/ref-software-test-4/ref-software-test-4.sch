@@ -779,7 +779,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field.</report>
+      <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
