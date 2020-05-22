@@ -44,7 +44,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
@@ -783,7 +783,7 @@
         &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
         author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
         &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/>
-        &lt;person-group&gt; elements.</assert>
+        &lt;person-group&gt; elements.   More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

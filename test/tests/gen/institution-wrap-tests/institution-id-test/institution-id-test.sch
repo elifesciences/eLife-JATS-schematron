@@ -44,7 +44,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" flag="pub-check" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#institution-id-test</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#institution-id-test</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="award-group-test-3.sch"?>
 <!--Context: funding-group/award-group
 Test: assert    principal-award-recipient
-Message: award-group must contain a principal-award-recipient. More information here - https://app.gitbook.com/@elifesciences/s/schematron/article-details/content/impact-statement#award-group-test-3-->
+Message: award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-3-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

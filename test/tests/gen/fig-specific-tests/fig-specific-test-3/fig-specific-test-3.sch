@@ -44,7 +44,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
@@ -786,7 +786,9 @@
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label[1],'\.','')"/>
-      <report test="if ($article-type = ('correction','retraction')) then ()          else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" role="warning" id="fig-specific-test-3">
+      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and (@rid = $id)][1]"/>
+      <let name="first-cite-parent" value="$first-cite/parent::p"/>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(                $first-cite-parent/following-sibling::*[1][@id=$id] or                ($first-cite-parent/following-sibling::*[1][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[1]/*[1][@id=$id])                or                (                ($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and  ($first-cite-parent/following-sibling::*[2][@id=$id] or                ($first-cite-parent/following-sibling::*[2][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[2]/*[1][@id=$id])))                or                (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[3][@id=$id] or                ($first-cite-parent/following-sibling::*[3][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[3]/*[1][@id=$id])))                or                (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and                ($first-cite-parent/following-sibling::*[3]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[4][@id=$id] or ($first-cite-parent/following-sibling::*[4][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[4]/*[1][@id=$id])))                 )" role="warning" id="fig-specific-test-3">
         <value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
     </rule>
   </pattern>

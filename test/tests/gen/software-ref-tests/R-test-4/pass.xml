@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="R-test-4.sch"?>
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))
-Message: software ref '' has a data-title -  - but does not have a 'http://www.r-project.org' type link.-->
+Message: software ref '' has a data-title '' but does not have a 'http://www.r-project.org' type link. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref id="bib33"><element-citation publication-type="software">
