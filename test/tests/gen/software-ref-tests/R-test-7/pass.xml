@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="R-test-7.sch"?>
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')
-Message: software ref '' with the title -  - must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.-->
+Message: software ref '' with the title '' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="software">
@@ -16,9 +16,11 @@ Message: software ref '' with the title -  - must have a publisher-name element 
 
 
 
+
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')
-Message: software ref '' with the title -  - must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.-->
+Message: software ref '' with the title '' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.-->
+
 
 
 

@@ -69,7 +69,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="concat(upper-case($token1),
               ' ',
               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
@@ -3383,6 +3383,8 @@
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label[1],'\.','')"/>
+      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and (@rid = $id)][1]"/>
+      <let name="first-cite-parent" value="$first-cite/parent::p"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" 
         role="error"
@@ -3403,7 +3405,20 @@
         id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
-        else not((preceding::p[1]//xref[@rid = $id]) or (preceding::p[parent::sec][1]//xref[@rid = $id]))" 
+        else not(
+               $first-cite-parent/following-sibling::*[1][@id=$id] or
+               ($first-cite-parent/following-sibling::*[1][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[1]/*[1][@id=$id])
+               or
+               (
+               ($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and  ($first-cite-parent/following-sibling::*[2][@id=$id] or
+               ($first-cite-parent/following-sibling::*[2][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[2]/*[1][@id=$id])))
+               or
+               (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[3][@id=$id] or
+               ($first-cite-parent/following-sibling::*[3][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[3]/*[1][@id=$id])))
+               or
+               (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and
+               ($first-cite-parent/following-sibling::*[3]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[4][@id=$id] or ($first-cite-parent/following-sibling::*[4][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[4]/*[1][@id=$id]))) 
+               )" 
         role="warning"
         id="fig-specific-test-3"><value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
       
@@ -8511,31 +8526,31 @@
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))"
         role="error" 
-        id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but it does not have one collab element containing 'R Development Core Team'.</report>
+        id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'.</report>
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)"
         role="error" 
-        id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
+        id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)"
         role="error"
-        id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
+        id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" 
         role="error" 
-        id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title - <value-of select="data-title[1]"/> - but does not have a 'http://www.r-project.org' type link.</report>
+        id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link.</report>
       
       <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')"
         role="error" 
-        id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
+        id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title.</report>
       
       <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')"
         role="error" 
-        id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="source"/> - but this is the data-title.</report>
+        id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title.</report>
       
       <report test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')"
         role="error" 
-        id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.</report>
+        id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.</report>
       
       <report test="matches(.,'�')"
         role="error"

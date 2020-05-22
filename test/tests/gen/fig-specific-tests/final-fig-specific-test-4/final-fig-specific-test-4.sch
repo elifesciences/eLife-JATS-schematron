@@ -44,7 +44,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
@@ -786,6 +786,8 @@
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label[1],'\.','')"/>
+      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and (@rid = $id)][1]"/>
+      <let name="first-cite-parent" value="$first-cite/parent::p"/>
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
     </rule>
   </pattern>

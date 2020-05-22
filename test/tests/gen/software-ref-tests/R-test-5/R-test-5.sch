@@ -44,7 +44,7 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
-          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids')">
+          <xsl:when test="lower-case($token1)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
@@ -779,7 +779,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source"/> - but this is the data-title.</report>
+      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

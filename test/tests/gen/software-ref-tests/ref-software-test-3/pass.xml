@@ -16,9 +16,11 @@ Message: software ref '' has a publisher-name (Software host) - . Since this is 
 
 
 
+
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')
 Message: software ref '' has a publisher-name (Software host) - . Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host).-->
+
 
 
 
