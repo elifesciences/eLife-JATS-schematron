@@ -9,29 +9,6 @@ Message: software ref '' with the title '' must have a publisher-name element (S
         <collab>R Development Core Team</collab>
       </person-group>
       <data-title>R: a language and environment for statistical computing</data-title>
-      
-
-
-
-
-
-
-
-
-
-<!--Context: element-citation[@publication-type='software']
-Test: report    matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')
-Message: software ref '' with the title '' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7-->
-
-
-
-
-
-
-
-
-
-
       <version designator="3.2.2">3.2.2</version>
       <year iso-8601-date="2015">2015</year>
       <publisher-loc>Vienna, Austria</publisher-loc>

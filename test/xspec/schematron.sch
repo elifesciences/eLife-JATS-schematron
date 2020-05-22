@@ -1520,11 +1520,11 @@
   <pattern id="funding-group-tests-pattern">
     <rule context="article-meta/funding-group" id="funding-group-tests">
 		
-		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-1</assert>
+		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1</assert>
 		
-		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-2</report>
+		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-2</report>
 		
-	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#funding-group-test-3</report>
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-3</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -1532,39 +1532,39 @@
 	  <let name="id" value="@id"/>
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		
-		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-2</assert>
+		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-2</assert>
 		
-		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-3</assert>
+		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-3</assert>
 		
-		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-4</report>
+		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4</report>
 		
-		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-5</assert>
+		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-5</assert>
 		
-		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-6</report>
+		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-6</report>
 	  
-	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-7</assert>
+	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-7</assert>
 	  
-	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-group-test-8</report>
+	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8</report>
 	</rule>
   </pattern>
   <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       
-      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-1</report>
+      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-1</report>
       
-      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-2</report>
+      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2</report>
       
-      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-3</report>
+      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-3</report>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#award-id-test-4</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4</report>
       
     </rule>
   </pattern>
   <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#institution-id-test</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test</assert>
       
     </rule>
   </pattern>
