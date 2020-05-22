@@ -6,7 +6,6 @@ Message: software ref '' has a data-title '' but it has  collab element(s). More
   <article>
     <ref id="bib33"><element-citation publication-type="software">
       <person-group person-group-type="author">
-        
       </person-group>
       <data-title>R: a language and environment for statistical computing</data-title>
       <version designator="3.2.2">3.2.2</version>
