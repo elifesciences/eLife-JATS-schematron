@@ -1105,6 +1105,16 @@
         <x:expect-report id="contrib-test-1" role="error"/>
         <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="contrib-test-5-pass">
+        <x:context href="../tests/gen/contrib-tests/contrib-test-5/pass.xml"/>
+        <x:expect-not-report id="contrib-test-5" role="warning"/>
+        <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-test-5-fail">
+        <x:context href="../tests/gen/contrib-tests/contrib-test-5/fail.xml"/>
+        <x:expect-report id="contrib-test-5" role="warning"/>
+        <x:expect-not-assert id="contrib-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="contrib-test-2-pass">
         <x:context href="../tests/gen/contrib-tests/contrib-test-2/pass.xml"/>
         <x:expect-not-report id="contrib-test-2" role="warning"/>
@@ -1877,12 +1887,12 @@
       </x:scenario>
       <x:scenario label="gen-aff-test-2-pass">
         <x:context href="../tests/gen/gen-aff-tests/gen-aff-test-2/pass.xml"/>
-        <x:expect-not-report id="gen-aff-test-2" role="error"/>
+        <x:expect-not-report id="gen-aff-test-2" role="warning"/>
         <x:expect-not-assert id="gen-aff-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="gen-aff-test-2-fail">
         <x:context href="../tests/gen/gen-aff-tests/gen-aff-test-2/fail.xml"/>
-        <x:expect-report id="gen-aff-test-2" role="error"/>
+        <x:expect-report id="gen-aff-test-2" role="warning"/>
         <x:expect-not-assert id="gen-aff-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="gen-aff-test-3-pass">
