@@ -779,7 +779,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
-      <report test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+      <report test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

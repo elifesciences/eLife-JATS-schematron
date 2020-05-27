@@ -779,7 +779,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
-      <report test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+      <report test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
