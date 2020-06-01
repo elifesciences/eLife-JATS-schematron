@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="UC-no-test1.sch"?>
 <!--Context: aff/institution[not(@*)]
-Test: report    matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')
+Test: report    matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')
 Message:  is not allowed as insitution name, since this is always followed by city name. This should very likely be  (provided there is a city tagged).-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

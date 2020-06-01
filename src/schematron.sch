@@ -2920,7 +2920,7 @@
       
       <report test="($id = 'keyresource') and ($lab != 'Key resources table')"
         role="error"
-        id="kr-table-wrap-test-1">table-wrap has an id <value-of select="$id"/> but it's label is not 'Key resources table', which is incorrect.</report>
+        id="kr-table-wrap-test-1">table-wrap has an id <value-of select="$id"/> but its label is not 'Key resources table', which is incorrect.</report>
       
       <report test="if ($id = 'keyresource') then ()
         else if (contains($id,'inline')) then ()
@@ -2946,7 +2946,7 @@
       
       <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" 
         role="error"
-        id="kr-table-not-tagged"><value-of select="$lab"/> has headings that are for the Key reources table, but it does not have an @id='keyresource'.</report>
+        id="kr-table-not-tagged"><value-of select="$lab"/> has headings that are for the Key resources table, but it does not have an @id='keyresource'.</report>
       
       <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" 
         role="warning"
@@ -2988,6 +2988,15 @@
       <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" 
         role="warning"
         id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</report>
+      
+    </rule>
+    
+    <rule context="table-wrap[@id='keyresource']/table/tbody/tr/*" 
+      id="kr-table-body-tests">
+      
+      <assert test="local-name()='td'" 
+        role="error"
+        id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td).</assert>
       
     </rule>
     
@@ -3052,11 +3061,11 @@
       
       <report test="th and (parent::tbody)"
         role="warning"
-        id="tr-test-2">table row in body contains a th element (a header), which is unusual. Please check that this is correct.</report>
+        id="tr-test-2">table row in body contains a th element (a header). Please check that this is correct.</report>
       
       <report test="td and (parent::thead)"
         role="warning"
-        id="tr-test-3">table row in body contains a td element (table data), which is unusual. Please check that this is correct.</report>
+        id="tr-test-3">table row in header contains a td element (table data), which is unusual. Please check that this is correct.</report>
     </rule>
     
     <rule context="td/*" 
@@ -3065,16 +3074,16 @@
       
       <assert test="self::*/local-name() = $allowed-blocks"
         role="error"
-        id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold','italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace', and 'xref'.</assert>
+        id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
     </rule>
     
     <rule context="th/*" 
       id="th-child-tests">
-      <let name="allowed-blocks" value="('italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/> 
+      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/> 
       
-      <assert test="self::*/local-name() = ($allowed-blocks,'bold')"
+      <assert test="self::*/local-name() = ($allowed-blocks)"
         role="error"
-        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace' and 'xref'.</assert>
+        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'.</assert>
       
       <report test="self::*/local-name() = 'bold'"
         role="warning"
@@ -8074,7 +8083,7 @@
       
       <report test="matches(translate(.,'—–&#x00A0;','-- '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')"
         role="warning"
-        id="plus-minus-presence"><name/> element contains two plus or minus signs separate by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/></report>
+        id="plus-minus-presence"><name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/></report>
       
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')"
         role="warning"
@@ -8246,10 +8255,15 @@
     
     <rule context="aff/institution[not(@*)]" 
       id="institution-tests">
+      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
       
-      <report test="matches(normalize-space(.),'^[Uu]niversity of [Cc]alifornia$')"
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')"
         role="error" 
-        id="UC-no-test1"><value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'])"/> (provided there is a city tagged).</report>
+        id="UC-no-test1"><value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
+      
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and ($city !='') and not(contains(.,$city))"
+        role="error" 
+        id="UC-no-test-2"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
       
       <report test="matches(.,'�')"
         role="error"
@@ -8330,7 +8344,7 @@
         id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       
       <report test="$uc = 'RESEARCH GATE'"
-        role="warning" 
+        role="error" 
         id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
       <report test="$uc = 'ZENODO'"
@@ -9212,10 +9226,10 @@
       
       <assert test="@style=$allowed-values"
         role="warning" 
-        id="pre-colour-check-table-2"><name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
+        id="pre-colour-check-table-2"><name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
       
       <assert test="@style=$allowed-values"
-        role="warning" 
+        role="error" 
         id="final-colour-check-table-2"><name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
     

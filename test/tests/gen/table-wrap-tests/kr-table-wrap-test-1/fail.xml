@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-wrap-test-1.sch"?>
 <!--Context: table-wrap
 Test: report    ($id = 'keyresource') and ($lab != 'Key resources table')
-Message: table-wrap has an id  but it's label is not 'Key resources table', which is incorrect.-->
+Message: table-wrap has an id  but its label is not 'Key resources table', which is incorrect.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <table-wrap id="keyresource" position="anchor">

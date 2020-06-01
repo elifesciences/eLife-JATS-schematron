@@ -779,7 +779,7 @@
   <pattern id="content-containers">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/>
-      <report test="td and (parent::thead)" role="warning" id="tr-test-3">table row in body contains a td element (table data), which is unusual. Please check that this is correct.</report>
+      <report test="td and (parent::thead)" role="warning" id="tr-test-3">table row in header contains a td element (table data), which is unusual. Please check that this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
