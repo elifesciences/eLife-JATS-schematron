@@ -3948,6 +3948,18 @@
         <x:expect-not-assert id="kr-table-heading-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="kr-table-body-tests">
+      <x:scenario label="kr-table-body-1-pass">
+        <x:context href="../tests/gen/kr-table-body-tests/kr-table-body-1/pass.xml"/>
+        <x:expect-not-assert id="kr-table-body-1" role="error"/>
+        <x:expect-not-assert id="kr-table-body-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-body-1-fail">
+        <x:context href="../tests/gen/kr-table-body-tests/kr-table-body-1/fail.xml"/>
+        <x:expect-assert id="kr-table-body-1" role="error"/>
+        <x:expect-not-assert id="kr-table-body-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-table-label-tests">
       <x:scenario label="body-table-label-test-1-pass">
         <x:context href="../tests/gen/body-table-label-tests/body-table-label-test-1/pass.xml"/>
@@ -12703,6 +12715,16 @@
         <x:expect-report id="UC-no-test1" role="error"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="UC-no-test-2-pass">
+        <x:context href="../tests/gen/institution-tests/UC-no-test-2/pass.xml"/>
+        <x:expect-not-report id="UC-no-test-2" role="error"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="UC-no-test-2-fail">
+        <x:context href="../tests/gen/institution-tests/UC-no-test-2/fail.xml"/>
+        <x:expect-report id="UC-no-test-2" role="error"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="institution-replacement-character-presence-pass">
         <x:context href="../tests/gen/institution-tests/institution-replacement-character-presence/pass.xml"/>
         <x:expect-not-report id="institution-replacement-character-presence" role="error"/>
@@ -12859,12 +12881,12 @@
       </x:scenario>
       <x:scenario label="Research-gate-check-pass">
         <x:context href="../tests/gen/journal-title-tests/Research-gate-check/pass.xml"/>
-        <x:expect-not-report id="Research-gate-check" role="warning"/>
+        <x:expect-not-report id="Research-gate-check" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="Research-gate-check-fail">
         <x:context href="../tests/gen/journal-title-tests/Research-gate-check/fail.xml"/>
-        <x:expect-report id="Research-gate-check" role="warning"/>
+        <x:expect-report id="Research-gate-check" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="zenodo-check-pass">
@@ -14805,12 +14827,12 @@
       </x:scenario>
       <x:scenario label="final-colour-check-table-2-pass">
         <x:context href="../tests/gen/colour-table-2/final-colour-check-table-2/pass.xml"/>
-        <x:expect-not-assert id="final-colour-check-table-2" role="warning"/>
+        <x:expect-not-assert id="final-colour-check-table-2" role="error"/>
         <x:expect-not-assert id="colour-table-2-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-colour-check-table-2-fail">
         <x:context href="../tests/gen/colour-table-2/final-colour-check-table-2/fail.xml"/>
-        <x:expect-assert id="final-colour-check-table-2" role="warning"/>
+        <x:expect-assert id="final-colour-check-table-2" role="error"/>
         <x:expect-not-assert id="colour-table-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

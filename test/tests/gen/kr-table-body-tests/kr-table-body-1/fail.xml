@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="kr-table-body-1.sch"?>
+<!--Context: table-wrap[@id='keyresource']/table/tbody/tr/*
+Test: assert    local-name()='td'
+Message: Table cell in KR table containing '' is captured as a table header cell (), which is not allowed. Ensure that this is changed to a normal table cell (td).-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource">
+      <table>
+        <tbody>
+          <tr><td/><td/><td/><td/><th>test</th></tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </article>
+</root>

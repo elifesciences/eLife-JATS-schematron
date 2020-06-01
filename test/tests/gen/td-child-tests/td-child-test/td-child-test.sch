@@ -779,7 +779,7 @@
   <pattern id="content-containers">
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/>
-      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold','italic','sup','sub','sc','ext-link', 'break', 'named-content', 'monospace', and 'xref'.</assert>
+      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

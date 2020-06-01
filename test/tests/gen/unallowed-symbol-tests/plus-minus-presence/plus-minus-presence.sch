@@ -779,7 +779,7 @@
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">
-        <name/> element contains two plus or minus signs separate by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
+        <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
       </report>
     </rule>
   </pattern>

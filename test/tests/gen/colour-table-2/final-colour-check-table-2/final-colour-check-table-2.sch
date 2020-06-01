@@ -779,7 +779,7 @@
   <pattern id="house-style">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
       <let name="allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
-      <assert test="@style=$allowed-values" role="warning" id="final-colour-check-table-2">
+      <assert test="@style=$allowed-values" role="error" id="final-colour-check-table-2">
         <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
   </pattern>

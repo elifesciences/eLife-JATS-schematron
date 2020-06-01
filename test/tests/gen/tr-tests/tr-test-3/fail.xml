@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="tr-test-3.sch"?>
 <!--Context: tr
 Test: report    td and (parent::thead)
-Message: table row in body contains a td element (table data), which is unusual. Please check that this is correct.-->
+Message: table row in header contains a td element (table data), which is unusual. Please check that this is correct.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <thead>

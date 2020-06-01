@@ -778,6 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
+      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
       <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>

@@ -779,8 +779,8 @@
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
-        <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and ($city !='') and not(contains(.,$city))" role="error" id="UC-no-test-2">
+        <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
