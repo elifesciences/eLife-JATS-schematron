@@ -787,8 +787,7 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <report test="matches($post-sentence,'^\s?\)\)')" role="error" id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>
-      </report>
+      <report test="matches($post-sentence,'^\s?\)\)')" role="error" id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

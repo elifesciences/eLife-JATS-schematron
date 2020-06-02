@@ -31,9 +31,15 @@ Message: software ref '' has both a source (Software name) -  - and a publisher-
 
 
 
+
+
+
 <!--Context: element-citation[@publication-type='software']
 Test: report    source and publisher-name
 Message: software ref '' has both a source (Software name) -  - and a publisher-name (Software host) -  - which is incorrect. It should have either one or the other. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1-->
+
+
+
 
 
 

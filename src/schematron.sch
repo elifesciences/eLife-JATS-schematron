@@ -1855,7 +1855,7 @@
     
      <report test="count(institution[@content-type='dept']) ge 1"
       role="warning"
-      id="gen-aff-test-2">Affiliations has <value-of select="count(institution[@content-type='dept'])"/> depatement field(s) - <value-of select="$display"/>. Is this correct?</report>
+      id="gen-aff-test-2">Affiliation has <value-of select="count(institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
       
       <report test="count(label) gt 1"
         role="error"
@@ -2920,7 +2920,7 @@
       
       <report test="($id = 'keyresource') and ($lab != 'Key resources table')"
         role="error"
-        id="kr-table-wrap-test-1">table-wrap has an id <value-of select="$id"/> but its label is not 'Key resources table', which is incorrect.</report>
+        id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect.</report>
       
       <report test="if ($id = 'keyresource') then ()
         else if (contains($id,'inline')) then ()
@@ -3003,7 +3003,7 @@
     <rule context="body//table-wrap/label" 
       id="body-table-label-tests">
       
-      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$')"
+      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')"
         role="error"
         id="body-table-label-test-1"><value-of select="."/> - Table label does not conform to the usual format.</assert>
       
@@ -4924,8 +4924,12 @@
       id="element-citation-descendants">
       
       <report test="not(*) and (normalize-space(.)='')"
+        role="warning"
+        id="pre-empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
+      
+      <report test="not(*) and (normalize-space(.)='')"
         role="error"
-        id="empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content.</report>
+        id="final-empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content.</report>
     
     </rule>
   </pattern>
@@ -6820,87 +6824,87 @@
       
       <assert test="replace(.,'&#x00A0;',' ') = $cite1" 
         role="error" 
-        id="pre-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
+        id="pre-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</assert>
       
       <assert test="replace(.,'&#x00A0;',' ') = ($cite1,$cite2)" 
         role="error" 
-        id="final-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
+        id="final-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</assert>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')"
         role="warning"
-        id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+        id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')"
         role="warning"
-        id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+        id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <assert test="matches(normalize-space(.),'\p{N}')"
         role="error"
-        id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/> </assert>
+        id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 </assert>
       
       <assert test="matches(normalize-space(.),'\p{L}')"
         role="error"
-        id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/> </assert>
+        id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 </assert>
       
       <report test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')"
         role="warning"
-        id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
+        id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-text,'^[\)]+\s*who|^[\)]+\s*have|^[\)]+\s*found|^[\)]+\s*used|^[\)]+\s*demonstrate|^[\)]+\s*follow[s]?|^[\)]+\s*followed')"
         role="warning"
-        id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
+        id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-sentence,$cite3)"
         role="warning"
-        id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/></report>
+        id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-sentence,$cite3)"
         role="warning"
-        id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'</report>
+        id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-sentence,'\(\[\s?$')"
         role="warning"
-        id="ref-xref-test-13">citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/></report>
+        id="ref-xref-test-13">citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-sentence,'^\s?\)\)')"
         role="error"
-        id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/></report>
+        id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-sentence,'\(\(\s?$')"
         role="error"
-        id="ref-xref-test-17">citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/></report>
+        id="ref-xref-test-17">citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-sentence,'\(\s?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)"
         role="warning"
-        id="ref-xref-test-10">citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/></report>
+        id="ref-xref-test-10">citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')"
         role="warning"
-        id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/></report>
+        id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches(.,'^et al|^ and|^\(\d|^,')"
         role="error"
-        id="ref-xref-test-19"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
+        id="ref-xref-test-19"><value-of select="."/> - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-text,'^\);\s?$') and (following-sibling::*[1]/local-name() = 'xref')"
         role="error"
-        id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
+        id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-sentence,'[A-Za-z0-9]\($')"
         role="warning"
-        id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
+        id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-sentence,'^\)[A-Za-z0-9]')"
         role="warning"
-        id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+        id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')"
         role="warning"
-        id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
+        id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
       <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')"
         role="warning"
-        id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
+        id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
     </rule>
     
@@ -8261,9 +8265,13 @@
         role="error" 
         id="UC-no-test1"><value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and ($city !='') and not(contains(.,$city))"
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))"
         role="error" 
         id="UC-no-test-2"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
+      
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')"
+        role="warning" 
+        id="UC-no-test-3"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
       
       <report test="matches(.,'�')"
         role="error"
@@ -8343,7 +8351,7 @@
         role="warning" 
         id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       
-      <report test="$uc = 'RESEARCH GATE'"
+      <report test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')"
         role="error" 
         id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
