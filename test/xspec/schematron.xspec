@@ -6851,14 +6851,24 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="element-citation-descendants">
-      <x:scenario label="empty-elem-cit-des-pass">
-        <x:context href="../tests/gen/element-citation-descendants/empty-elem-cit-des/pass.xml"/>
-        <x:expect-not-report id="empty-elem-cit-des" role="error"/>
+      <x:scenario label="pre-empty-elem-cit-des-pass">
+        <x:context href="../tests/gen/element-citation-descendants/pre-empty-elem-cit-des/pass.xml"/>
+        <x:expect-not-report id="pre-empty-elem-cit-des" role="warning"/>
         <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="empty-elem-cit-des-fail">
-        <x:context href="../tests/gen/element-citation-descendants/empty-elem-cit-des/fail.xml"/>
-        <x:expect-report id="empty-elem-cit-des" role="error"/>
+      <x:scenario label="pre-empty-elem-cit-des-fail">
+        <x:context href="../tests/gen/element-citation-descendants/pre-empty-elem-cit-des/fail.xml"/>
+        <x:expect-report id="pre-empty-elem-cit-des" role="warning"/>
+        <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-empty-elem-cit-des-pass">
+        <x:context href="../tests/gen/element-citation-descendants/final-empty-elem-cit-des/pass.xml"/>
+        <x:expect-not-report id="final-empty-elem-cit-des" role="error"/>
+        <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-empty-elem-cit-des-fail">
+        <x:context href="../tests/gen/element-citation-descendants/final-empty-elem-cit-des/fail.xml"/>
+        <x:expect-report id="final-empty-elem-cit-des" role="error"/>
         <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -12723,6 +12733,16 @@
       <x:scenario label="UC-no-test-2-fail">
         <x:context href="../tests/gen/institution-tests/UC-no-test-2/fail.xml"/>
         <x:expect-report id="UC-no-test-2" role="error"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="UC-no-test-3-pass">
+        <x:context href="../tests/gen/institution-tests/UC-no-test-3/pass.xml"/>
+        <x:expect-not-report id="UC-no-test-3" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="UC-no-test-3-fail">
+        <x:context href="../tests/gen/institution-tests/UC-no-test-3/fail.xml"/>
+        <x:expect-report id="UC-no-test-3" role="warning"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="institution-replacement-character-presence-pass">

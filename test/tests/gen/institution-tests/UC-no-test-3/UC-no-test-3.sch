@@ -776,15 +776,16 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="element-citation-high-tests">
-    <rule context="element-citation//*" id="element-citation-descendants">
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="empty-elem-cit-des">
-        <name/> element is empty - this is not allowed. It must contain content.</report>
+  <pattern id="house-style">
+    <rule context="aff/institution[not(@*)]" id="institution-tests">
+      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">
+        <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
+      <assert test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

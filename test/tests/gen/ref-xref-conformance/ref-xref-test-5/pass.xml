@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-5.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: assert    matches(normalize-space(.),'\p{L}')
-Message: citation doesn't contain letters, which must be incorrect -  -->
+Message: citation doesn't contain letters, which must be incorrect - . More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>

@@ -1,11 +1,11 @@
-<?oxygen SCHSchema="empty-elem-cit-des.sch"?>
+<?oxygen SCHSchema="pre-empty-elem-cit-des.sch"?>
 <!--Context: element-citation//*
 Test: report    not(*) and (normalize-space(.)='')
-Message:  element is empty - this is not allowed. It must contain content.-->
+Message:  element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation>
-      <year/>
+      <year>2020</year>
     </element-citation>
   </article>
 </root>

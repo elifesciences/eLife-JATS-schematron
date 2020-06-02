@@ -779,7 +779,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
-      <report test="count(institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">Affiliations has <value-of select="count(institution[@content-type='dept'])"/> depatement field(s) - <value-of select="$display"/>. Is this correct?</report>
+      <report test="count(institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">Affiliation has <value-of select="count(institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
