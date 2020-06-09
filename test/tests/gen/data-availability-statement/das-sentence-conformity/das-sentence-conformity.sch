@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
-      <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-sentence-conformity</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

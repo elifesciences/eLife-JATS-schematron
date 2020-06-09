@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/gap') and not(source[1]='NCBI dbGaP')" role="warning" id="data-dbgap-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/gap' type link, but the database name is not 'NCBI dbGaP' - <value-of select="source[1]"/>. Is that correct?</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/gap') and not(source[1]='NCBI dbGaP')" role="warning" id="data-dbgap-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/gap' type link, but the database name is not 'NCBI dbGaP' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dbgap-test</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

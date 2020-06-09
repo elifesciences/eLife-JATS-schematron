@@ -777,13 +777,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="features">
-    <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" id="feature-author-tests">
+    <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
       <assert test="bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author'] must be present.</assert>
+      <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

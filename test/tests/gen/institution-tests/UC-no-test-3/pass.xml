@@ -2,8 +2,7 @@
 <!--Context: aff/institution[not(@*)]
 Test: report    matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')
 Message:  has '' as its campus name in the institution field, but '' is the city. Should the institution end with 'University of California, San Diego' instead?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <aff id="aff4">
       <label>4</label>

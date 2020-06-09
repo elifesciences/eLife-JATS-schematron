@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]" role="warning" id="data-osf-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect.</report>
+      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]" role="warning" id="data-osf-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

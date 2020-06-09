@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-elem-citation-child-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*
 Test: assert    name()=$allowed-elems
-Message: Reference in the data availability section has a  element in a  element which is not allowed.-->
+Message: Reference in the data availability section has a  element in a  element which is not allowed. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-child-1-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

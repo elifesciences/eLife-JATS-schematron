@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])" role="warning" id="data-figshare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a figshare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not figshare, which must be incorrect.</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])" role="warning" id="data-figshare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a figshare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not figshare, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

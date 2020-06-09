@@ -782,7 +782,7 @@
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
       <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
-      <report test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
+      <report test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

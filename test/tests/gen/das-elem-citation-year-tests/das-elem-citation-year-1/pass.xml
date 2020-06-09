@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-elem-citation-year-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year
 Test: report    (.!='') and (@iso-8601-date!=$digits)
-Message: Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id  has a year '' but an @iso-8601-date ''.-->
+Message: Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id  has a year '' but an @iso-8601-date ''. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-year-1-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

@@ -779,7 +779,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
-      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a journal title '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

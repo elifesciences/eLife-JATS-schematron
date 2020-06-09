@@ -6,6 +6,11 @@ Message: One meta-value must be present in custom-meta. More information here - 
   <article>
     <front>
       <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Editorial</subject>
+          </subj-group>
+        </article-categories>
         <custom-meta-group>
           <custom-meta>
             <meta-name>Impact statement</meta-name>
