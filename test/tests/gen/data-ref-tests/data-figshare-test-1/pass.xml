@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="data-figshare-test-1.sch"?>
 <!--Context: element-citation[@publication-type='data']
 Test: report    starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (source[1]!='figshare')
-Message: Data reference with the title '' has a doi starting with '10.6084/m9.figshare' but the database name is not 'figshare' - .-->
+Message: Data reference with the title '' has a doi starting with '10.6084/m9.figshare' but the database name is not 'figshare' - . More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-1-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset2" publication-type="data" specific-use="isSupplementedBy">

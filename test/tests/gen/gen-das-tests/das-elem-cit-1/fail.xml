@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-elem-cit-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: assert    @specific-use
-Message: Every reference in the data availability section must have an @specific-use. The reference in position  does not.-->
+Message: Every reference in the data availability section must have an @specific-use. The reference in position  does not. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-arrayexpress-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an ArrayExpress 'www.ebi.ac.uk/arrayexpress' type link, but is not marked as an accession type link.</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-arrayexpress-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an ArrayExpress 'www.ebi.ac.uk/arrayexpress' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

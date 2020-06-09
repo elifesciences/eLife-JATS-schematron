@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ext-link-child-test-5.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
 Test: report    contains(@xlink:href,'datadryad.org/review?')
-Message: ext-link looks like it points to a review dryad dataset - . Should it be updated?-->
+Message: ext-link looks like it points to a review dryad dataset - . Should it be updated? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ext-link ext-link-type="uri" xlink:href="https://datadryad.org/doi:10.5061/dryad.1t61c80">https://datadryad.org/review?doi=doi:10.5061/dryad.1t61c80</ext-link>

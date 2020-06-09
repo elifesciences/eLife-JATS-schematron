@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="feature-author-test-1.sch"?>
-<!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']
+<!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']
 Test: assert    bio
 Message: Author must contain child bio in feature content.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

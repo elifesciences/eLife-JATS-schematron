@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-elem-cit-4.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: report    pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]
-Message: The reference in position  of the data availability section has a pub-id () which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.-->
+Message: The reference in position  of the data availability section has a pub-id () which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec id="s7" sec-type="data-availability">

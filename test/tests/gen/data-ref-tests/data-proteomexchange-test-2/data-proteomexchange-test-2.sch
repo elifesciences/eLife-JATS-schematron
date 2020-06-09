@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-proteomexchange-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</report>
+      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-proteomexchange-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

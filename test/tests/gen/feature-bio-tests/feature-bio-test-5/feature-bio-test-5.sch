@@ -777,7 +777,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="features">
-    <rule context="article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
+    <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
       <let name="name" value="e:get-name(parent::contrib/name[1])"/>
       <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
       <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
@@ -788,7 +788,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio must be present.</assert>
+      <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio must be present.</assert>
     </rule>
   </pattern>
 </schema>

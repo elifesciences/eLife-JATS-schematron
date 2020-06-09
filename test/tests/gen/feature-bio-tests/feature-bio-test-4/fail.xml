@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="feature-bio-test-4.sch"?>
-<!--Context: article[@article-type = $features-article-types]//article-meta//contrib[@contrib-type='author']/bio
+<!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
 Test: assert    (count(p) = 1)
 Message: One and only 1 <p> is allowed as a child of bio. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

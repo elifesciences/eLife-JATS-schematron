@@ -780,7 +780,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes|Genomes|Genetics') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the title is
+      <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes|Genomes|Genetics') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
         <value-of select="."/> - it should be either 'G3: Genes|Genomes|Genetics' or 'G3: Genes, Genomes, Genetics'.</report>
     </rule>
   </pattern>

@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
-      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
+      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

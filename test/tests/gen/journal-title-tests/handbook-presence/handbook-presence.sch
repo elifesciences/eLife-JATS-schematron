@@ -780,7 +780,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal title '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
