@@ -784,7 +784,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">
-        <value-of select="."/> - Citation content does not match what it directs to.</report>
+        <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

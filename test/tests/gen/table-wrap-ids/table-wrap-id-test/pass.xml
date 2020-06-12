@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-wrap-id-test.sch"?>
 <!--Context: article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]
 Test: assert    if (label = 'Key resources table') then @id='keyresource' else if (label) then matches(@id, '^table[0-9]{1,3}$') else matches(@id, '^inlinetable[0-9]{1,3}$')
-Message: table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.-->
+Message: table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-id-test-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <xref ref-type="table" rid="table1"/>

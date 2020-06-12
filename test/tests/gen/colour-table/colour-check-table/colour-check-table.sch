@@ -779,8 +779,7 @@
   <pattern id="house-style">
     <rule context="th|td" id="colour-table">
       <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">
-        <name/> element has colour background. Is this correct? It contains <value-of select="."/>
-      </report>
+        <name/> element has colour background. Is this correct? It contains <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#colour-check-table</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

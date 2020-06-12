@@ -784,7 +784,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">
-        <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
+        <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

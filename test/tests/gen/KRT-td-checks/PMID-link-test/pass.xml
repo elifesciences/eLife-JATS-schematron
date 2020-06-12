@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="PMID-link-test.sch"?>
 <!--Context: table-wrap[@id='keyresource']//td
 Test: report    matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)
-Message: td element containing - '' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.-->
+Message: td element containing - '' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMID-link-test-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>
