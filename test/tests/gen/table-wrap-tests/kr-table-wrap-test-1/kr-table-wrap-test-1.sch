@@ -781,7 +781,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect.</report>
+      <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

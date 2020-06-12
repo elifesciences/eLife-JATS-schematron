@@ -779,7 +779,7 @@
   <pattern id="content-containers">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/>
-      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header). Please check that this is correct.</report>
+      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header). Please check that this is correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

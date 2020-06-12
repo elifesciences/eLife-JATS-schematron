@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-table-wrap-cite-1.sch"?>
 <!--Context: table-wrap
 Test: report    if ($id = 'keyresource') then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,'correction','retraction')) then () else if (ancestor::app or ancestor::sub-article) then () else not(ancestor::article//xref[@rid = $id])
-Message: There is no citation to  Ensure this is added.-->
+Message: There is no citation to  Ensure this is added. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-table-wrap-cite-1-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <xref ref-type="table" rid="table1"/>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="tr-test-3.sch"?>
 <!--Context: tr
 Test: report    td and (parent::thead)
-Message: table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header.-->
+Message: table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-3-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <thead>

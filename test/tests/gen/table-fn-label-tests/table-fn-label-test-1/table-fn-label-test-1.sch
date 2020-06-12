@@ -779,7 +779,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap-foot//fn/p/*[1]" id="table-fn-label-tests">
       <let name="house-labels" value="('*', '†', '‡', '§', '¶','**', '††', '‡‡', '§§', '¶¶','***', '†††', '‡‡‡', '§§§', '¶¶¶','****', '††††', '‡‡‡‡', '§§§§', '¶¶¶¶')"/>
-      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
+      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
-      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">Key resources table has more than 1 row in its header, which is incorrect.</report>
+      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">Key resources table has more than 1 row in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
