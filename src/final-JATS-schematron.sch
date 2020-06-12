@@ -2505,6 +2505,7 @@
       <let name="app-no" value="substring-after($app-id,'appendix-')"/>
       <let name="id-regex" value="concat('^app',$app-no,'table[\d]+$')"/>
       <let name="count" value="count(ancestor::app//table-wrap[matches(@id,$id-regex)])"/>
+      <let name="pos" value="$count - count(following::table-wrap[matches(@id,$id-regex)])"/>
       <let name="no" value="substring-after(@id,concat($app-no,'table'))"/>
       
       

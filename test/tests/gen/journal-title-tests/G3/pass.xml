@@ -6,7 +6,7 @@ Message: ref '' has the doi for 'G3' but the journal name is
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">
-      <source>G3: Genes|Genomes|Genetics</source>
+      <source>G3: Genes, Genomes, Genetics</source>
       <pub-id pub-id-type="doi">10.1534/g3/0001</pub-id>
     </element-citation>
   </article>
