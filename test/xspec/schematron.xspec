@@ -1613,6 +1613,16 @@
         <x:expect-report id="abstract-test-5" role="error"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="abstract-test-6-pass">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-6/pass.xml"/>
+        <x:expect-not-report id="abstract-test-6" role="warning"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-6-fail">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-6/fail.xml"/>
+        <x:expect-report id="abstract-test-6" role="warning"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-children-tests">
       <x:scenario label="abstract-child-test-1-pass">
@@ -4977,6 +4987,16 @@
         <x:expect-assert id="fig-caption-test-1" role="warning"/>
         <x:expect-not-assert id="fig-caption-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-caption-test-2-pass">
+        <x:context href="../tests/gen/fig-caption-tests/fig-caption-test-2/pass.xml"/>
+        <x:expect-not-report id="fig-caption-test-2" role="warning"/>
+        <x:expect-not-assert id="fig-caption-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-caption-test-2-fail">
+        <x:context href="../tests/gen/fig-caption-tests/fig-caption-test-2/fail.xml"/>
+        <x:expect-report id="fig-caption-test-2" role="warning"/>
+        <x:expect-not-assert id="fig-caption-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ra-body-tests">
       <x:scenario label="ra-sec-test-1-pass">
@@ -6575,6 +6595,16 @@
       <x:scenario label="related-articles-test-10-fail">
         <x:context href="../tests/gen/related-articles-conformance/related-articles-test-10/fail.xml"/>
         <x:expect-report id="related-articles-test-10" role="error"/>
+        <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-articles-test-11-pass">
+        <x:context href="../tests/gen/related-articles-conformance/related-articles-test-11/pass.xml"/>
+        <x:expect-not-report id="related-articles-test-11" role="error"/>
+        <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-articles-test-11-fail">
+        <x:context href="../tests/gen/related-articles-conformance/related-articles-test-11/fail.xml"/>
+        <x:expect-report id="related-articles-test-11" role="error"/>
         <x:expect-not-assert id="related-articles-conformance-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -9137,6 +9167,26 @@
       <x:scenario label="feature-template-test-4-fail">
         <x:context href="../tests/gen/feature-template-tests/feature-template-test-4/fail.xml"/>
         <x:expect-report id="feature-template-test-4" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-templates-no-bre-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-templates-no-bre/pass.xml"/>
+        <x:expect-not-report id="feature-templates-no-bre" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-templates-no-bre-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-templates-no-bre/fail.xml"/>
+        <x:expect-report id="feature-templates-no-bre" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-templates-author-cont-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-templates-author-cont/pass.xml"/>
+        <x:expect-not-report id="feature-templates-author-cont" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-templates-author-cont-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-templates-author-cont/fail.xml"/>
+        <x:expect-report id="feature-templates-author-cont" role="error"/>
         <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -15453,6 +15503,16 @@
       <x:scenario label="reproduce-test-7-fail">
         <x:context href="../tests/gen/fig-permissions-check/reproduce-test-7/fail.xml"/>
         <x:expect-report id="reproduce-test-7" role="warning"/>
+        <x:expect-not-assert id="fig-permissions-check-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="reproduce-test-8-pass">
+        <x:context href="../tests/gen/fig-permissions-check/reproduce-test-8/pass.xml"/>
+        <x:expect-not-report id="reproduce-test-8" role="warning"/>
+        <x:expect-not-assert id="fig-permissions-check-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="reproduce-test-8-fail">
+        <x:context href="../tests/gen/fig-permissions-check/reproduce-test-8/fail.xml"/>
+        <x:expect-report id="reproduce-test-8" role="warning"/>
         <x:expect-not-assert id="fig-permissions-check-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

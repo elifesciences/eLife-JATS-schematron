@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-caption-test-2.sch"?>
+<!--Context: fig/caption/p
+Test: report    contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)
+Message: Caption for  contains what looks like an image credit. It's quite likely that this should be captured in an <attrib> element instead - -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>
+        <title>Adult and nestling house sparrows.</title>
+        <p>(<bold>A</bold>) Female house sparrow. (<bold>B</bold>) Male house sparrow. (<bold>C</bold>) Nestling house sparrows. (<bold>D</bold>) Male house sparrow provisioning nestlings. Image Credits: All images taken by Janneke Case in Tampa, Florida, United States, in 2019.</p></caption>
+    </fig>
+  </article>
+</root>

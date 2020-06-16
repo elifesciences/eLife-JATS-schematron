@@ -1,0 +1,139 @@
+<?oxygen SCHSchema="feature-templates-no-bre.sch"?>
+<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
+Test: report    front/article-meta/contrib-group[@content-type='section'] and ($template != '5')
+Message:  is a template , which means that it should not have any BREs. This  has . Please remove any senior/reviewing editors.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="discussion" dtd-version="1.1">
+    <front>
+      <journal-meta>
+        <journal-id journal-id-type="nlm-ta">elife</journal-id>
+        <journal-id journal-id-type="publisher-id">eLife</journal-id>
+        <journal-title-group>
+          <journal-title>eLife</journal-title>
+        </journal-title-group>
+        <issn publication-format="electronic" pub-type="epub">2050-084X</issn>
+        <publisher>
+          <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+        </publisher>
+      </journal-meta>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">59285</article-id>
+        <article-id pub-id-type="doi">10.7554/eLife.59285</article-id>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Feature Article</subject>
+          </subj-group>
+          <subj-group subj-group-type="sub-display-channel">
+            <subject>COVID-19 and the Research Community</subject>
+          </subj-group>
+        </article-categories>
+        <title-group>
+          <article-title>Being vulnerable</article-title>
+        </title-group>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes" id="author-189586">
+            <name>
+              <surname>Hunt</surname>
+              <given-names>Jasper Elan</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-6547-0463</contrib-id>
+            <email>jasper.hunt@lincoln.ox.ac.uk</email>
+            <xref ref-type="aff" rid="aff1"/>
+            <xref ref-type="fn" rid="con1"/>
+            <xref ref-type="fn" rid="conf1"/>
+            <bio>
+              <p><bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
+                Genetics, University of Oxford, Oxford, United Kingdom</p>
+            </bio>
+          </contrib>
+          <aff id="aff1">
+            <institution>Department of Physiology, Anatomy and Genetics, University of
+              Oxford</institution>
+            <addr-line>
+              <named-content content-type="city">Oxford</named-content>
+            </addr-line>
+            <country>United Kingdom</country>
+          </aff>
+        </contrib-group>
+        <contrib-group content-type="section">
+          <contrib contrib-type="editor">
+            <name>
+              <surname>King</surname>
+              <given-names>Stuart RF</given-names>
+            </name>
+            <role>Reviewing Editor</role>
+            <aff>
+              <institution>eLife</institution>
+              <country>United Kingdom</country>
+            </aff>
+          </contrib>
+          <contrib contrib-type="senior_editor">
+            <name>
+              <surname>Rodgers</surname>
+              <given-names>Peter</given-names>
+            </name>
+            <role>Senior Editor</role>
+            <aff>
+              <institution>eLife</institution>
+              <country>United Kingdom</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+        <pub-date date-type="publication" publication-format="electronic">
+          <year>2020</year>
+        </pub-date>
+        <pub-date pub-type="collection">
+          <year>2020</year>
+        </pub-date>
+        <volume>9</volume>
+        <elocation-id>e59285</elocation-id>
+        <history>
+          <date date-type="received" iso-8601-date="2020-05-26">
+            <day>26</day>
+            <month>05</month>
+            <year>2020</year>
+          </date>
+          <date date-type="accepted" iso-8601-date="2020-06-01">
+            <day>01</day>
+            <month>06</month>
+            <year>2020</year>
+          </date>
+        </history>
+        <permissions>
+          <copyright-statement>© 2020, Hunt</copyright-statement>
+          <copyright-year>2020</copyright-year>
+          <copyright-holder>Hunt</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and
+              redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+        <self-uri content-type="pdf" xlink:href="elife-59285.pdf"/>
+        <abstract>
+          <p>Early-career researchers feel discouraged from exposing vulnerability even during a
+            global crisis.</p>
+        </abstract>
+        <kwd-group kwd-group-type="author-keywords">
+          <kwd>COVID-19 and the Research Community</kwd>
+          <kwd>early-career researchers</kwd>
+          <kwd>mental health</kwd>
+          <kwd>careers in science</kwd>
+          <kwd>grad school</kwd>
+        </kwd-group>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>Early-career researchers feel discouraged from exposing vulnerability even
+              during a global crisis.</meta-value>
+          </custom-meta>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Template</meta-name>
+            <meta-value>3</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

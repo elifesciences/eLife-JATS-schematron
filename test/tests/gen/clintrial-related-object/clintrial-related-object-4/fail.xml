@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="clintrial-related-object-4.sch"?>
-<!--Context: abstract[not(@abstract-type)]/sec/related-object
+<!--Context: abstract[not(@abstract-type)]/sec/p/related-object
 Test: assert    @source-id-type='registry-name'
 Message:  must have an @source-id-type='registry-name'.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
@@ -26,7 +26,7 @@ Message:  must have an @source-id-type='registry-name'.-->
           </sec>
           <sec id="abs6">
             <title>Clinical trial number:</title>
-            <related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" document-id="NCT02968459" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object>
+            <p><related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" document-id="NCT02968459" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object></p>
           </sec>
         </abstract>
       </article-meta>
