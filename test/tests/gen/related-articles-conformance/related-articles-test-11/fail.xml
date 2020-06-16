@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="related-articles-test-11.sch"?>
+<!--Context: related-article
+Test: report    contains(@xlink:href,$article-doi)
+Message: An article cannot contain a related-article link to itself - please delete the related article link to .-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-id pub-id-type="doi">10.7554/eLife.54558</article-id>
+      <related-article ext-link-type="doi" id="ra1" related-article-type="commentary" xlink:href="10.7554/eLife.54558"/>
+    </article-meta>
+  </article>
+</root>

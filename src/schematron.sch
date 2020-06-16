@@ -1718,6 +1718,10 @@
 	  <report test="child::sec and count(sec) != 6"
 	    role="error" 
 	    id="abstract-test-5">If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts.</report>
+	  
+	  <report test="matches(lower-case(.),'^\s*abstract')"
+	    role="warning" 
+	    id="abstract-test-6">Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/></report>
 		
     </rule>
     
@@ -1767,7 +1771,7 @@
         id="clintrial-conformance-8"><name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
     </rule>
     
-    <rule context="abstract[not(@abstract-type)]/sec/related-object" 
+    <rule context="abstract[not(@abstract-type)]/sec/p/related-object" 
       id="clintrial-related-object">
       
       <assert test="ancestor::sec[title = 'Clinical trial number:']"
@@ -3632,6 +3636,10 @@
       <assert test="count($text-tokens) = 0"
         role="warning"
         id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
+      
+      <report test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)"
+        role="warning"
+        id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib> element instead - <value-of select="."/></report>
     </rule>
   </pattern>
   
@@ -4640,6 +4648,7 @@
     <rule context="related-article" 
       id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article')"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
       
       <assert test="@related-article-type"
         role="error"
@@ -4661,6 +4670,9 @@
         role="error"
         id="related-articles-test-10">related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
       
+      <report test="contains(@xlink:href,$article-doi)"
+        role="error"
+        id="related-articles-test-11">An article cannot contain a related-article link to itself - please delete the related article link to <value-of select="@xlink:href"/>.</report>
     </rule>
     
   </pattern>
@@ -6562,6 +6574,26 @@
        role="warning"
        id="feature-template-test-4"><value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
      
+     <report test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')"
+       role="error"
+       id="feature-templates-no-bre"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="
+         string-join(
+          for $x in front/article-meta/contrib-group[@content-type='section']/contrib
+          return concat(e:get-name($x/name[1]),' as ',$x/role[1])
+          ,
+          ' and '
+          )
+         "/>. Please remove any senior/reviewing editors.</report>
+     
+     <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')"
+       role="error"
+       id="feature-templates-author-cont"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any Author contributions. This <value-of select="$type"/> has <value-of select="
+         string-join(for $x in back/fn-group[@content-type='author-contribution']/fn
+         return concat('&quot;', $x,'&quot;') 
+         ,
+         '; '
+         )
+         "/>. Please remove any author contributions.</report>
    </rule>
    
    <rule context="article[@article-type='article-commentary']//article-meta/abstract"
@@ -9526,6 +9558,10 @@
       <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')"
         role="warning" 
         id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
+      
+      <report test="not(descendant::permissions) and matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')"
+        role="warning" 
+        id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>
     
     <rule context="xref[not(@ref-type='bibr')]" 

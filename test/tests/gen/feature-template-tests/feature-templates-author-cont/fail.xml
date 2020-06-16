@@ -1,0 +1,62 @@
+<?oxygen SCHSchema="feature-templates-author-cont.sch"?>
+<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
+Test: report    back/fn-group[@content-type='author-contribution'] and ($template != '5')
+Message:  is a template , which means that it should not have any Author contributions. This  has . Please remove any author contributions.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="discussion" dtd-version="1.1">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Feature Article</subject>
+          </subj-group>
+          <subj-group subj-group-type="sub-display-channel">
+            <subject>COVID-19 and the Research Community</subject>
+          </subj-group>
+        </article-categories>
+        <title-group>
+          <article-title>Being vulnerable</article-title>
+        </title-group>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes" id="author-189586">
+            <name>
+              <surname>Hunt</surname>
+              <given-names>Jasper Elan</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-6547-0463</contrib-id>
+            <email>jasper.hunt@lincoln.ox.ac.uk</email>
+            <xref ref-type="aff" rid="aff1"/>
+            <xref ref-type="fn" rid="con1"/>
+            <xref ref-type="fn" rid="conf1"/>
+            <bio>
+              <p><bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
+                Genetics, University of Oxford, Oxford, United Kingdom</p>
+            </bio>
+          </contrib>
+          <aff id="aff1">
+            <institution>Department of Physiology, Anatomy and Genetics, University of
+              Oxford</institution>
+            <addr-line>
+              <named-content content-type="city">Oxford</named-content>
+            </addr-line>
+            <country>United Kingdom</country>
+          </aff>
+        </contrib-group>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>Early-career researchers feel discouraged from exposing vulnerability even
+              during a global crisis.</meta-value>
+          </custom-meta>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Template</meta-name>
+            <meta-value>3</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <back>
+      <fn-group content-type="author-contribution"><title>Author contributions</title><fn fn-type="con" id="con1"><p>Writing - original draft, Writing - review and editing</p></fn></fn-group>
+    </back>
+  </article>
+</root>

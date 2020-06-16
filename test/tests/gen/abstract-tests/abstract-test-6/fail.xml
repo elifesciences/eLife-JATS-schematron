@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="abstract-test-6.sch"?>
+<!--Context: front//abstract
+Test: report    matches(lower-case(.),'^\s*abstract')
+Message: Abstract starts with the word 'Abstract', which is almost certainly incorrect - -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <abstract><p><bold>Abstract</bold> The lipid kinase VPS34 orchestrates diverse processes, including autophagy, endocytic sorting, phagocytosis, anabolic responses and cell division. VPS34 forms various complexes that help adapt it to specific pathways, with complexes I and II being the most prominent ones. We found that physicochemical properties of membranes strongly modulate VPS34 activity. Greater unsaturation of both substrate and non-substrate lipids, negative charge and curvature activate VPS34 complexes, adapting them to their cellular compartments. Hydrogen/deuterium exchange mass spectrometry (HDX-MS) of complexes I and II on membranes elucidated structural determinants that enable them to bind membranes. Among these are the Barkor/ATG14L autophagosome targeting sequence (BATS), which makes autophagy-specific complex I more active than the endocytic complex II, and the Beclin1 BARA domain. Interestingly, even though Beclin1 BARA is common to both complexes, its membrane-interacting loops are critical for complex II, but have only a minor role for complex I.</p></abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>
