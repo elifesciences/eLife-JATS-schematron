@@ -816,19 +816,19 @@
  <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
       
-	  <report test="@dtd-version" role="info" id="dtd-info">DTD version is <value-of select="@dtd-version"/>
+	  <report test="@dtd-version" role="info" id="dtd-info">[dtd-info] DTD version is <value-of select="@dtd-version"/>
       </report>
 	  
-	  <assert test="@article-type = $allowed-article-types" role="error" id="test-article-type">article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is <value-of select="@article-type"/>
+	  <assert test="@article-type = $allowed-article-types" role="error" id="test-article-type">[test-article-type] article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is <value-of select="@article-type"/>
       </assert>
 		
-	  <assert test="count(front) = 1" role="error" id="test-article-front">Article must have one child front. Currently there are <value-of select="count(front)"/>
+	  <assert test="count(front) = 1" role="error" id="test-article-front">[test-article-front] Article must have one child front. Currently there are <value-of select="count(front)"/>
       </assert>
 		
-	  <assert test="count(body) = 1" role="error" id="test-article-body">Article must have one child body. Currently there are <value-of select="count(body)"/>
+	  <assert test="count(body) = 1" role="error" id="test-article-body">[test-article-body] Article must have one child body. Currently there are <value-of select="count(body)"/>
       </assert>
 		
-      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" role="error" id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/>
+      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" role="error" id="test-article-back">[test-article-back] Article must have one child back. Currently there are <value-of select="count(back)"/>
       </report>
 		
  	</rule>
@@ -839,9 +839,9 @@
 	
 	  
 	  
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="error" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
+	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="error" id="final-test-r-article-d-letter">[final-test-r-article-d-letter] A decision letter must be present for research articles.</report>
 		
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
+	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" id="test-r-article-a-reply">[test-r-article-a-reply] Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
 	
 	</rule>
   </pattern>
@@ -849,10 +849,10 @@
   <pattern id="test-front-pattern">
     <rule context="article/front" id="test-front">
 	 
-  	  <assert test="count(journal-meta) = 1" role="error" id="test-front-jmeta">There must be one journal-meta that is a child of front. Currently there are <value-of select="count(journal-meta)"/>
+  	  <assert test="count(journal-meta) = 1" role="error" id="test-front-jmeta">[test-front-jmeta] There must be one journal-meta that is a child of front. Currently there are <value-of select="count(journal-meta)"/>
       </assert>
 		  
-  	  <assert test="count(article-meta) = 1" role="error" id="test-front-ameta">There must be one article-meta that is a child of front. Currently there are <value-of select="count(article-meta)"/>
+  	  <assert test="count(article-meta) = 1" role="error" id="test-front-ameta">[test-front-ameta] There must be one article-meta that is a child of front. Currently there are <value-of select="count(article-meta)"/>
       </assert>
 	 
 	 </rule>
@@ -861,19 +861,19 @@
   <pattern id="test-journal-meta-pattern">
     <rule context="article/front/journal-meta" id="test-journal-meta">
 	 
-		<assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" role="error" id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/>
+		<assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" role="error" id="test-journal-nlm">[test-journal-nlm] journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/>
       </assert>
 		  
-		<assert test="journal-id[@journal-id-type='publisher-id'] = 'eLife'" role="error" id="test-journal-pubid-1">journal-id[@journal-id-type='publisher-id'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='publisher-id']"/>
+		<assert test="journal-id[@journal-id-type='publisher-id'] = 'eLife'" role="error" id="test-journal-pubid-1">[test-journal-pubid-1] journal-id[@journal-id-type='publisher-id'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='publisher-id']"/>
       </assert>
 	 
-		<assert test="journal-title-group/journal-title = 'eLife'" role="error" id="test-journal-pubid-2">journal-meta must contain a journal-title-group with a child journal-title which must be equal to 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='publisher-id']"/>
+		<assert test="journal-title-group/journal-title = 'eLife'" role="error" id="test-journal-pubid-2">[test-journal-pubid-2] journal-meta must contain a journal-title-group with a child journal-title which must be equal to 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='publisher-id']"/>
       </assert>
 		  
-		<assert test="issn = '2050-084X'" role="error" id="test-journal-pubid-3">ISSN must be 2050-084X. Currently it is <value-of select="issn"/>
+		<assert test="issn = '2050-084X'" role="error" id="test-journal-pubid-3">[test-journal-pubid-3] ISSN must be 2050-084X. Currently it is <value-of select="issn"/>
       </assert>
 		  
-		<assert test="issn[@publication-format='electronic'][@pub-type='epub']" role="error" id="test-journal-pubid-4">The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'.</assert>
+		<assert test="issn[@publication-format='electronic'][@pub-type='epub']" role="error" id="test-journal-pubid-4">[test-journal-pubid-4] The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'.</assert>
 	    
 	 </rule>
   </pattern>
@@ -886,76 +886,74 @@
     <let name="exceptions" value="('Insight','Retraction','Correction')"/>
     <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
     
-	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
+	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">[test-article-id] article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
       </assert> 
 	 
-	 <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
+	 <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" role="error" id="test-article-doi-1">[test-article-doi-1] Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
 	   
-  	 <assert test="substring-after(article-id[@pub-id-type='doi'][1],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
+  	 <assert test="substring-after(article-id[@pub-id-type='doi'][1],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">[test-article-doi-2] Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
 	   
-     <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
+     <assert test="count(article-categories) = 1" role="error" id="test-article-presence">[test-article-presence] There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
       </assert>
 	   
-    <assert test="title-group[article-title]" role="error" id="test-title-group-presence">title-group containing article-title must be present.</assert>
+    <assert test="title-group[article-title]" role="error" id="test-title-group-presence">[test-title-group-presence] title-group containing article-title must be present.</assert>
 	   
-    <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" role="error" id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert>
+    <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" role="error" id="test-epub-date">[test-epub-date] There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert>
 	   
-    <assert test="pub-date[@pub-type='collection']" role="error" id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</assert> 
+    <assert test="pub-date[@pub-type='collection']" role="error" id="test-pub-collection-presence">[test-pub-collection-presence] There must be a child pub-date[@pub-type='collection'] in article-meta.</assert> 
 	  
-    <assert test="volume" role="error" id="test-volume-presence">There must be a child volume in article-meta.</assert> 
+    <assert test="volume" role="error" id="test-volume-presence">[test-volume-presence] There must be a child volume in article-meta.</assert> 
 		
-    <assert test="matches(volume[1],'^[0-9]*$')" role="error" id="test-volume-contents">volume must only contain a number.</assert> 
+    <assert test="matches(volume[1],'^[0-9]*$')" role="error" id="test-volume-contents">[test-volume-contents] volume must only contain a number.</assert> 
 	   
-    <assert test="elocation-id" role="error" id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
+    <assert test="elocation-id" role="error" id="test-elocation-presence">[test-elocation-presence] There must be a child elocation-id in article-meta.</assert>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)" role="error" id="test-self-uri-presence">There must be a child self-uri in article-meta.</report>
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)" role="error" id="test-self-uri-presence">[test-self-uri-presence] There must be a child self-uri in article-meta.</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])" role="error" id="test-self-uri-att">self-uri must have an @content-type="pdf"</report>
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])" role="error" id="test-self-uri-att">[test-self-uri-att] self-uri must have an @content-type="pdf"</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" role="error" id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" role="error" id="test-self-uri-pdf-1">[test-self-uri-pdf-1] self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
     
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">self-uri does not conform.</report>
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">[test-self-uri-pdf-2] self-uri does not conform.</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1" role="error" id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1" role="error" id="test-history-presence">[test-history-presence] There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
       </report>
 		  
-    <assert test="count(permissions) = 1" role="error" id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
+    <assert test="count(permissions) = 1" role="error" id="test-permissions-presence">[test-permissions-presence] There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
       </assert>
 		  
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
+    <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">[test-abstracts] There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
     
-    <report test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
+    <report test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">[test-no-digest] '<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
-    <report test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then ()                    else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
+    <report test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then ()                    else count(funding-group) != 1" role="error" id="test-funding-group-presence">[test-funding-group-presence] There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     
-    <report test="if ($subj-type = $exceptions) then ()                   else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
+    <report test="if ($subj-type = $exceptions) then ()                   else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">[test-custom-meta-group-presence] One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
 	   
-    <report test="if ($subj-type = ('Correction','Retraction')) then ()       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" role="error" id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
+    <report test="if ($subj-type = ('Correction','Retraction')) then ()       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" role="error" id="test-auth-kwd-group-presence-1">[test-auth-kwd-group-presence-1] One author keyword group must be present in article-meta.</report>
     
-    <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
-        <value-of select="$subj-type"/> articles must not have any author keywords</report>
+    <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">[test-auth-kwd-group-presence-2] <value-of select="$subj-type"/> articles must not have any author keywords</report>
     
-    <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
+    <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence-1">[test-ro-kwd-group-presence-1] More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
     
-    <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))        then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
-        <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
+    <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))        then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">[test-ro-kwd-group-presence-2] <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
    </rule>
   </pattern>
   <pattern id="test-research-article-metadata-pattern">
     <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
-    <assert test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
+    <assert test="contrib-group" role="error" id="test-contrib-group-presence-1">[test-contrib-group-presence-1] contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
      
-     <assert test="contrib-group[@content-type='section']" role="error" id="test-contrib-group-presence-2">contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</assert>
+     <assert test="contrib-group[@content-type='section']" role="error" id="test-contrib-group-presence-2">[test-contrib-group-presence-2] contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</assert>
    
    </rule>
   </pattern>
   <pattern id="editorial-metadata-pattern">
     <rule context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
       
-      <report test="contrib-group[@content-type='section']" role="error" id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
+      <report test="contrib-group[@content-type='section']" role="error" id="editorial-editors-presence">[editorial-editors-presence] Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
       
     </rule>
   </pattern>
@@ -964,17 +962,17 @@
 	 <let name="article-type" value="ancestor::article/@article-type"/>
    <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
 	   
-     <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
+     <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">[disp-subj-test] There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
 	   
-     <assert test="count(subj-group[@subj-group-type='display-channel']/subject) = 1" role="error" id="disp-subj-test2">subj-group[@subj-group-type='display-channel'] must contain only one subject. Currently there are <value-of select="count(subj-group[@subj-group-type='display-channel']/subject)"/>.</assert>
+     <assert test="count(subj-group[@subj-group-type='display-channel']/subject) = 1" role="error" id="disp-subj-test2">[disp-subj-test2] subj-group[@subj-group-type='display-channel'] must contain only one subject. Currently there are <value-of select="count(subj-group[@subj-group-type='display-channel']/subject)"/>.</assert>
     
-     <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">[head-subj-test1] article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
 	   
-     <report test="($article-type = ('correction','research-article','retraction','review-article')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     <report test="($article-type = ('correction','research-article','retraction','review-article')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">[head-subj-test2] article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
      
-     <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" role="warning" id="head-subj-test3">article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
+     <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" role="warning" id="head-subj-test3">[head-subj-test3] article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
 	   
-     <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
+     <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">[head-subj-distinct-test] Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
 	</rule>
   </pattern>
   <pattern id="disp-channel-checks-pattern">
@@ -982,36 +980,36 @@
     <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
       
-      <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="."/>.</assert>
+      <assert test=". = $allowed-disp-subj" role="error" id="disp-subj-value-test-1">[disp-subj-value-test-1] Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="."/>.</assert>
       
-      <report test="($article-type = 'research-article') and not(.=($research-disp-channels,'Feature Article'))" role="error" id="disp-subj-value-test-2">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
+      <report test="($article-type = 'research-article') and not(.=($research-disp-channels,'Feature Article'))" role="error" id="disp-subj-value-test-2">[disp-subj-value-test-2] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
       
-      <report test="($article-type = 'article-commentary') and not(.='Insight')" role="error" id="disp-subj-value-test-3">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
+      <report test="($article-type = 'article-commentary') and not(.='Insight')" role="error" id="disp-subj-value-test-3">[disp-subj-value-test-3] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
       
-      <report test="($article-type = 'editorial') and not(.='Editorial')" role="error" id="disp-subj-value-test-4">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
+      <report test="($article-type = 'editorial') and not(.='Editorial')" role="error" id="disp-subj-value-test-4">[disp-subj-value-test-4] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
       
-      <report test="($article-type = 'correction') and not(.='Correction')" role="error" id="disp-subj-value-test-5">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
+      <report test="($article-type = 'correction') and not(.='Correction')" role="error" id="disp-subj-value-test-5">[disp-subj-value-test-5] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
       
-      <report test="($article-type = 'discussion') and not(.='Feature Article')" role="error" id="disp-subj-value-test-6">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
+      <report test="($article-type = 'discussion') and not(.='Feature Article')" role="error" id="disp-subj-value-test-6">[disp-subj-value-test-6] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
       
-      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
+      <report test="($article-type = 'review-article') and not(.='Review Article')" role="error" id="disp-subj-value-test-7">[disp-subj-value-test-7] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
       
-      <report test="($article-type = 'retraction') and not(.='Retraction')" role="error" id="disp-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
+      <report test="($article-type = 'retraction') and not(.='Retraction')" role="error" id="disp-subj-value-test-8">[disp-subj-value-test-8] Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
   </rule>
   </pattern>
   <pattern id="MSA-checks-pattern">
     <rule context="article-categories/subj-group[@subj-group-type='heading']/subject" id="MSA-checks">
       
-      <assert test=". = $MSAs" role="error" id="head-subj-MSA-test">Content of the heading must match one of the MSAs.</assert>
+      <assert test=". = $MSAs" role="error" id="head-subj-MSA-test">[head-subj-MSA-test] Content of the heading must match one of the MSAs.</assert>
     </rule>
   </pattern>
   <pattern id="head-subj-checks-pattern">
     <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert test="count(subject) le 3" role="error" id="head-subj-test-1">There cannot be more than two MSAs.</assert>
+      <assert test="count(subject) le 3" role="error" id="head-subj-test-1">[head-subj-test-1] There cannot be more than two MSAs.</assert>
       
-      <report test="if ($article-type = 'editorial') then ()         else count(subject) = 0" role="error" id="head-subj-test-2">There must be at least one MSA.</report>
+      <report test="if ($article-type = 'editorial') then ()         else count(subject) = 0" role="error" id="head-subj-test-2">[head-subj-test-2] There must be at least one MSA.</report>
     </rule>
   </pattern>
   <pattern id="test-title-group-pattern">
@@ -1022,32 +1020,32 @@
 	  <let name="body" value="ancestor::front/following-sibling::body[1]"/>
 	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return       if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
-    <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
+    <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">[article-title-test-1] Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
    
-    <report test="article-title[text() != ''] = lower-case(article-title[1])" role="warning" id="article-title-test-2">Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
+    <report test="article-title[text() != ''] = lower-case(article-title[1])" role="warning" id="article-title-test-2">[article-title-test-2] Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
    
-    <report test="article-title[text() != ''] = upper-case(article-title[1])" role="error" id="article-title-test-3">Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
+    <report test="article-title[text() != ''] = upper-case(article-title[1])" role="error" id="article-title-test-3">[article-title-test-3] Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
 	  
-	  <report test="not(article-title/*) and normalize-space(article-title[1])=''" role="error" id="article-title-test-4">Article title must not be empty.</report>
+	  <report test="not(article-title/*) and normalize-space(article-title[1])=''" role="error" id="article-title-test-4">[article-title-test-4] Article title must not be empty.</report>
 	  
-    <report test="article-title//mml:math" role="warning" id="article-title-test-5">Article title contains maths. Is this correct?</report>
+    <report test="article-title//mml:math" role="warning" id="article-title-test-5">[article-title-test-5] Article title contains maths. Is this correct?</report>
 	  
-    <report test="article-title//bold" role="error" id="article-title-test-6">Article title must not contain bold.</report>
+    <report test="article-title//bold" role="error" id="article-title-test-6">[article-title-test-6] Article title must not contain bold.</report>
 	  
-	  <report test="article-title//underline" role="error" id="article-title-test-7">Article title must not contain underline.</report>
+	  <report test="article-title//underline" role="error" id="article-title-test-7">[article-title-test-7] Article title must not contain underline.</report>
 	  
-	  <report test="article-title//break" role="error" id="article-title-test-8">Article title must not contain a line break (the element 'break').</report>
+	  <report test="article-title//break" role="error" id="article-title-test-8">[article-title-test-8] Article title must not contain a line break (the element 'break').</report>
 	  
-	  <report test="matches(article-title[1],'-Based ')" role="error" id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/>
+	  <report test="matches(article-title[1],'-Based ')" role="error" id="article-title-test-9">[article-title-test-9] Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
+	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" role="warning" id="article-title-test-10">[article-title-test-10] Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
+	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">[article-title-test-11] Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
+	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">[article-title-test-12] Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
       </report>
 	
 	</rule>
@@ -1055,9 +1053,9 @@
   <pattern id="test-contrib-group-pattern">
     <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
 		
-    <assert test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
+    <assert test="contrib" role="error" id="contrib-presence-test">[contrib-presence-test] contrib-group must contain at least one contrib.</assert>
 		  
-    <report test="count(contrib[@equal-contrib='yes']) = 1" role="error" id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'.This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/>
+    <report test="count(contrib[@equal-contrib='yes']) = 1" role="error" id="equal-count-test">[equal-count-test] There is one contrib with the attribute equal-contrib='yes'.This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/>
       </report>
 	
 	</rule>
@@ -1065,9 +1063,9 @@
   <pattern id="test-editor-contrib-group-pattern">
     <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
       
-      <assert test="count(contrib[@contrib-type='senior_editor']) = 1" role="error" id="editor-conformance-1">contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
+      <assert test="count(contrib[@contrib-type='senior_editor']) = 1" role="error" id="editor-conformance-1">[editor-conformance-1] contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
       
-      <assert test="count(contrib[@contrib-type='editor']) = 1" role="error" id="editor-conformance-2">contrib-group[@content-type='section'] must contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']).</assert>
+      <assert test="count(contrib[@contrib-type='editor']) = 1" role="error" id="editor-conformance-2">[editor-conformance-2] contrib-group[@content-type='section'] must contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']).</assert>
       
     </rule>
   </pattern>
@@ -1076,96 +1074,92 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       
-      <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" role="error" id="editor-conformance-3">
-        <value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
+      <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" role="error" id="editor-conformance-3">[editor-conformance-3] <value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
       
-      <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">
-        <value-of select="$name"/> has a @contrib-type='editor_editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
+      <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">[editor-conformance-4] <value-of select="$name"/> has a @contrib-type='editor_editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
       
     </rule>
   </pattern>
   <pattern id="auth-cont-tests-pattern">
     <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
       
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="auth-cont-test-1">
-        <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="auth-cont-test-1">[auth-cont-test-1] <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="collab-cont-tests-pattern">
     <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
       
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="collab-cont-test-1">
-        <value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="collab-cont-test-1">[collab-cont-test-1] <value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="name-tests-pattern">
     <rule context="contrib-group//name" id="name-tests">
 		
-    	<assert test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
+    	<assert test="count(surname) = 1" role="error" id="surname-test-1">[surname-test-1] Each name must contain only one surname.</assert>
 	  
-	  <report test="count(given-names) gt 1" role="error" id="given-names-test-1">Each name must contain only one given-names element.</report>
+	  <report test="count(given-names) gt 1" role="error" id="given-names-test-1">[given-names-test-1] Each name must contain only one given-names element.</report>
 	  
-	  <assert test="given-names" role="warning" id="given-names-test-2">This name - <value-of select="."/> - does not contain a given-name. Please check with eLife staff that this is correct.</assert>
+	  <assert test="given-names" role="warning" id="given-names-test-2">[given-names-test-2] This name - <value-of select="."/> - does not contain a given-name. Please check with eLife staff that this is correct.</assert>
 	  
 	</rule>
   </pattern>
   <pattern id="surname-tests-pattern">
     <rule context="contrib-group//name/surname" id="surname-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">surname must not be empty.</report>
+	  <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">[surname-test-2] surname must not be empty.</report>
 		
-    <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
+    <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">[surname-test-3] surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="error" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="error" id="surname-test-4">[surname-test-4] surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</assert>
+	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="surname-test-5">[surname-test-5] surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</assert>
 	  
-	  <report test="matches(.,'^\s')" role="error" id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'^\s')" role="error" id="surname-test-6">[surname-test-6] surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\s$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'\s$')" role="error" id="surname-test-7">[surname-test-7] surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	    
-	    <report test="matches(.,'^[A-Z]{1,2}\s') and (string-length(.) gt 3)" role="warning" id="surname-test-8">surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
+	    <report test="matches(.,'^[A-Z]{1,2}\s') and (string-length(.) gt 3)" role="warning" id="surname-test-8">[surname-test-8] surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
 		
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">
     <rule context="contrib-group//name/given-names" id="given-names-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">given-names must not be empty.</report>
+	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">[given-names-test-3] given-names must not be empty.</report>
 		
-    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
+    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">[given-names-test-4] given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)" role="error" id="given-names-test-5">[given-names-test-5] given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
+	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">[given-names-test-6] given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  
-	  <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="."/>
+	  <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" role="error" id="given-names-test-7">[given-names-test-7] given-names contains initialised full stop(s) which is incorrect - <value-of select="."/>
       </report>
 	  
-	  <report test="matches(.,'^\s')" role="error" id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'^\s')" role="error" id="given-names-test-8">[given-names-test-8] given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\s$')" role="error" id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'\s$')" role="error" id="given-names-test-9">[given-names-test-9] given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'[A-Za-z] [Dd]e[rn]?$')" role="warning" id="given-names-test-10">given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'[A-Za-z] [Dd]e[rn]?$')" role="warning" id="given-names-test-10">[given-names-test-10] given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
-	  <report test="matches(.,'[A-Za-z] [Vv]an$')" role="warning" id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'[A-Za-z] [Vv]an$')" role="warning" id="given-names-test-11">[given-names-test-11] given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-      <report test="matches(.,'[A-Za-z] [Vv]on$')" role="warning" id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      <report test="matches(.,'[A-Za-z] [Vv]on$')" role="warning" id="given-names-test-12">[given-names-test-12] given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-      <report test="matches(.,'[A-Za-z] [Ee]l$')" role="warning" id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      <report test="matches(.,'[A-Za-z] [Ee]l$')" role="warning" id="given-names-test-13">[given-names-test-13] given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" role="warning" id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
+      <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" role="warning" id="given-names-test-14">[given-names-test-14] given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|^[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
+      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|^[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">[given-names-test-15] given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
 	</rule>
   </pattern>
   <pattern id="suffix-tests-pattern">
     <rule context="contrib-group//name/suffix" id="suffix-tests">
       
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">[suffix-assert] suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
-      <report test="*" role="error" id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/>
+      <report test="*" role="error" id="suffix-child-test">[suffix-child-test] suffix cannot have any child elements - <value-of select="*/local-name()"/>
       </report>
       
     </rule>
@@ -1173,8 +1167,7 @@
   <pattern id="name-child-tests-pattern">
     <rule context="contrib-group//name/*" id="name-child-tests">
       
-      <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
-        <value-of select="local-name()"/> is not allowed as a child of name.</assert>
+      <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">[disallowed-child-assert] <value-of select="local-name()"/> is not allowed as a child of name.</assert>
       
     </rule>
   </pattern>
@@ -1201,30 +1194,27 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
+    	<report test="if ($subj-type = ('Retraction','Correction')) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">[contrib-test-1] Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
-	  <report test="if ($subj-type = ('Retraction','Correction')) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" role="warning" id="contrib-test-5">Group author members should very likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
+	  <report test="if ($subj-type = ('Retraction','Correction')) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" role="warning" id="contrib-test-5">[contrib-test-5] Group author members should very likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
-	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
+	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
 	  
-	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">The  <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
+	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The  <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
 	  
-	     <report test="name and collab" role="error" id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
+	     <report test="name and collab" role="error" id="contrib-test-3">[contrib-test-3] author contains both a child name and a child collab. This is not correct.</report>
 	  
-	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">[name-test] Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
-	     <report test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">Corresponding authors must have an email.</report>
+	     <report test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">[contrib-email-1] Corresponding authors must have an email.</report>
 	  
-	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)" role="error" id="contrib-email-2">Non-corresponding authors must not have an email.</report>
+	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)" role="error" id="contrib-email-2">[contrib-email-2] Non-corresponding authors must not have an email.</report>
 	  
-	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">
-        <value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
+	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">[COI-test] <value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
 	  
-	  <report test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
-        <value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
+	  <report test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">[deceased-test-1] <value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
 	  
-	  <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
-        <value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
+	  <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">[deceased-test-2] <value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
 		
 		</rule>
   </pattern>
@@ -1236,8 +1226,7 @@
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
 		
 		  <!-- Exception included for group authors - subject to change. The capture here may use xrefs instead of affs - if it does then the else if param can simply be removed. -->
-		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]                   else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]                   else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]                   else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">
-        <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
+		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]                   else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]                   else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]                   else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">[author-children-test] <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
 		
 		</rule>
   </pattern>
@@ -1245,31 +1234,30 @@
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
 	  <let name="text" value="."/>
 		
-    	<assert test="@authenticated='true'" role="error" id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
+    	<assert test="@authenticated='true'" role="error" id="orcid-test-1">[orcid-test-1] contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
 		
 		<!-- Needs updating to only allow https when this is implemented -->
-	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
+	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">[orcid-test-2] contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
 	  
 	  
 	  
-	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)" role="error" id="final-orcid-test-3">
-        <value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</report>
+	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)" role="error" id="final-orcid-test-3">[final-orcid-test-3] <value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</report>
 		
 		</rule>
   </pattern>
   <pattern id="email-tests-pattern">
     <rule context="article-meta//email" id="email-tests">
 		
-    	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$')" role="error" id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
+    	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$')" role="error" id="email-test">[email-test] email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
 	</rule>
   </pattern>
   <pattern id="history-tests-pattern">
     <rule context="article-meta/history" id="history-tests">
 		
-    	<assert test="date[@date-type='received']" role="error" id="history-date-test-1">history must contain date[@date-type='received']</assert>
+    	<assert test="date[@date-type='received']" role="error" id="history-date-test-1">[history-date-test-1] history must contain date[@date-type='received']</assert>
 		
-    	<assert test="date[@date-type='accepted']" role="error" id="history-date-test-2">history must contain date[@date-type='accepted']</assert>
+    	<assert test="date[@date-type='accepted']" role="error" id="history-date-test-2">[history-date-test-2] history must contain date[@date-type='accepted']</assert>
 	
 	
 	</rule>
@@ -1277,41 +1265,41 @@
   <pattern id="date-tests-pattern">
     <rule context="date" id="date-tests">
 	  
-	  <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+	  <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="date-test-1">[date-test-1] date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
-	  <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+	  <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="date-test-2">[date-test-2] date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
 	  
-	  <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="date-test-3">date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
+	  <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="date-test-3">[date-test-3] date must contain year in the format 0000. Currently it is Currently it is '<value-of select="year"/>'.</assert>
 		
-    	<assert test="@iso-8601-date = concat(year[1],'-',month[1],'-',day[1])" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
+    	<assert test="@iso-8601-date = concat(year[1],'-',month[1],'-',day[1])" role="error" id="date-test-4">[date-test-4] date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
 	
 	</rule>
   </pattern>
   <pattern id="day-tests-pattern">
     <rule context="day[not(parent::string-date)]" id="day-tests">
       
-      <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">[day-conformity] day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
   <pattern id="month-tests-pattern">
     <rule context="month[not(parent::string-date)]" id="month-tests">
       
-      <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')" role="error" id="month-conformity">month must contain 2 digits which are between '01' and '12' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')" role="error" id="month-conformity">[month-conformity] month must contain 2 digits which are between '01' and '12' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
   <pattern id="year-article-meta-tests-pattern">
     <rule context="year[ancestor::article-meta]" id="year-article-meta-tests">
       
-      <assert test="matches(.,'^[2]0[0-2][0-9]$')" role="error" id="year-article-meta-conformity">year in article-meta must contain 4 digits which match the regular expression '^[2]0[0-2][0-9]$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      <assert test="matches(.,'^[2]0[0-2][0-9]$')" role="error" id="year-article-meta-conformity">[year-article-meta-conformity] year in article-meta must contain 4 digits which match the regular expression '^[2]0[0-2][0-9]$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
   <pattern id="year-element-citation-tests-pattern">
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       
-      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">[year-element-citation-conformity] year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
@@ -1320,24 +1308,24 @@
       
       
       
-      <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+      <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">[final-pub-date-test-1] pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
       
       
       
-      <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+      <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-2">[final-pub-date-test-2] pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
       
-      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">[pub-date-test-3] pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="pub-date-tests-2-pattern">
     <rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
       
-      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-4">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-4">[pub-date-test-4] date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
-      <report test="*/local-name() != 'year'" role="error" id="pub-date-test-5">pub-date[@pub-type='collection'] can only contain a year element.</report>
+      <report test="*/local-name() != 'year'" role="error" id="pub-date-test-5">[pub-date-test-5] pub-date[@pub-type='collection'] can only contain a year element.</report>
       
-      <assert test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]" role="error" id="pub-date-test-6">pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
+      <assert test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]" role="error" id="pub-date-test-6">[pub-date-test-6] pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
       
     </rule>
   </pattern>
@@ -1346,35 +1334,35 @@
 	<let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement)" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement.</report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">[permissions-test-2] permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-holder)" role="error" id="permissions-test-3">permissions must contain copyright-holder.</report>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-holder)" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder.</report>
 	
-	<assert test="ali:free_to_read" role="error" id="permissions-test-4">permissions must contain an ali:free_to_read element.</assert>
+	<assert test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
 	
-	<assert test="license" role="error" id="permissions-test-5">permissions must contain license.</assert>
+	<assert test="license" role="error" id="permissions-test-5">[permissions-test-5] permissions must contain license.</assert>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')" role="error" id="permissions-test-7">copyright-holder is incorrect. If the article has one author then it should be their surname. If it has two authors it should be the surname of the first, then ' and ' and then the surname of the second. If three or more, it should be the surname of the first, and then ' et al'. Currently it's <value-of select="copyright-holder"/>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname. If it has two authors it should be the surname of the first, then ' and ' and then the surname of the second. If three or more, it should be the surname of the first, and then ' et al'. Currently it's <value-of select="copyright-holder"/>
       </report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
+	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">[permissions-test-8] copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
       </report>
 	  
-	  <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
+	  <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">[permissions-test-9] license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	
 	</rule>
   </pattern>
   <pattern id="license-tests-pattern">
     <rule context="front//permissions/license" id="license-tests">
 	
-	<assert test="ali:license_ref" role="error" id="license-test-1">license must contain ali:license_ref.</assert>
+	<assert test="ali:license_ref" role="error" id="license-test-1">[license-test-1] license must contain ali:license_ref.</assert>
 	
-	<assert test="count(license-p) = 1" role="error" id="license-test-2">license must contain one and only one license-p.</assert>
+	<assert test="count(license-p) = 1" role="error" id="license-test-2">[license-test-2] license must contain one and only one license-p.</assert>
 	
 	</rule>
   </pattern>
@@ -1382,13 +1370,13 @@
     <rule context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
 	
-	<report test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
+	<report test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">[abstract-test-2] At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
 	
-	<report test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
+	<report test="descendant::disp-formula" role="error" id="abstract-test-4">[abstract-test-4] abstracts cannot contain display formulas.</report>
 	  
-	  <report test="child::sec and count(sec) != 6" role="error" id="abstract-test-5">If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts.</report>
+	  <report test="child::sec and count(sec) != 6" role="error" id="abstract-test-5">[abstract-test-5] If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts.</report>
 	  
-	  <report test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
+	  <report test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">[abstract-test-6] Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
       </report>
 		
     </rule>
@@ -1397,68 +1385,57 @@
     <rule context="front//abstract/*" id="abstract-children-tests">
       <let name="allowed-elems" value="('p','sec','title')"/>
       
-      <assert test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">
-        <name/> is not allowed as a child of abstract.</assert>
+      <assert test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not allowed as a child of abstract.</assert>
     </rule>
   </pattern>
   <pattern id="abstract-sec-titles-pattern">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
       
-      <report test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
+      <report test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">[clintrial-conformance-1] First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
       
-      <report test="($pos = 2) and (title != 'Methods:')" role="error" id="clintrial-conformance-2">Second section title is '<value-of select="title"/>' - but the only allowed value is 'Methods:'.</report>
+      <report test="($pos = 2) and (title != 'Methods:')" role="error" id="clintrial-conformance-2">[clintrial-conformance-2] Second section title is '<value-of select="title"/>' - but the only allowed value is 'Methods:'.</report>
       
-      <report test="($pos = 3) and (title != 'Results:')" role="error" id="clintrial-conformance-3">Third section title is '<value-of select="title"/>' - but the only allowed value is 'Results:'.</report>
+      <report test="($pos = 3) and (title != 'Results:')" role="error" id="clintrial-conformance-3">[clintrial-conformance-3] Third section title is '<value-of select="title"/>' - but the only allowed value is 'Results:'.</report>
       
-      <report test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
+      <report test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">[clintrial-conformance-4] Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
       
-      <report test="($pos = 6) and (title != 'Clinical trial number:')" role="error" id="clintrial-conformance-5">Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
+      <report test="($pos = 6) and (title != 'Clinical trial number:')" role="error" id="clintrial-conformance-5">[clintrial-conformance-5] Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
       
-      <report test="($pos = 5) and (title != 'Funding:')" role="error" id="clintrial-conformance-6">Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
+      <report test="($pos = 5) and (title != 'Funding:')" role="error" id="clintrial-conformance-6">[clintrial-conformance-6] Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
       
-      <report test="child::sec" role="error" id="clintrial-conformance-7">Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
+      <report test="child::sec" role="error" id="clintrial-conformance-7">[clintrial-conformance-7] Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
       
-      <assert test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">
-        <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
+      <assert test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">[clintrial-conformance-8] <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-pattern">
     <rule context="abstract[not(@abstract-type)]/sec/p/related-object" id="clintrial-related-object">
       
-      <assert test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">
-        <name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
+      <assert test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">[clintrial-related-object-1] <name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
       
-      <assert test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">
-        <name/> must have an @source-type='clinical-trials-registry'.</assert>
+      <assert test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">[clintrial-related-object-2] <name/> must have an @source-type='clinical-trials-registry'.</assert>
       
-      <assert test="@source-id" role="error" id="clintrial-related-object-3">
-        <name/> must have an @source-id.</assert>
+      <assert test="@source-id" role="error" id="clintrial-related-object-3">[clintrial-related-object-3] <name/> must have an @source-id.</assert>
       
-      <assert test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">
-        <name/> must have an @source-id-type='registry-name'.</assert>
+      <assert test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">[clintrial-related-object-4] <name/> must have an @source-id-type='registry-name'.</assert>
       
-      <assert test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">
-        <name/> must have an @document-id-type='clinical-trial-number'.</assert>
+      <assert test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">[clintrial-related-object-5] <name/> must have an @document-id-type='clinical-trial-number'.</assert>
       
-      <assert test="@document-id" role="error" id="clintrial-related-object-6">
-        <name/> must have an @document-id.</assert>
+      <assert test="@document-id" role="error" id="clintrial-related-object-6">[clintrial-related-object-6] <name/> must have an @document-id.</assert>
       
-      <assert test="@xlink:href" role="error" id="clintrial-related-object-7">
-        <name/> must have an @xlink:href.</assert>
+      <assert test="@xlink:href" role="error" id="clintrial-related-object-7">[clintrial-related-object-7] <name/> must have an @xlink:href.</assert>
       
-      <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">
-        <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
       
-      <assert test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">
-        <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
+      <assert test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">[clintrial-related-object-9] <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
       
     </rule>
   </pattern>
   <pattern id="aff-tests-pattern">
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
       
-    <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
+    <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">[aff-test-1] aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
   </pattern>
   <pattern id="author-aff-tests-pattern">
@@ -1467,16 +1444,16 @@
       
       
       
-      <assert test="country" role="error" id="final-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
+      <assert test="country" role="error" id="final-auth-aff-test-1">[final-auth-aff-test-1] Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
       
       
       
-      <assert test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>
+      <assert test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">[final-auth-aff-test-2] Author affiliations must have a city. This one does not - <value-of select="$display"/>
       </assert>
       
       
       
-      <assert test="institution[not(@*)]" role="error" id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>
+      <assert test="institution[not(@*)]" role="error" id="final-auth-aff-test-3">[final-auth-aff-test-3] Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>
       </assert>
     </rule>
   </pattern>
@@ -1484,51 +1461,47 @@
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
       
-     <report test="count(institution[not(@*)]) gt 1" role="error" id="gen-aff-test-1">Affiliations cannot have more than 1 top level institutions. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
+     <report test="count(institution[not(@*)]) gt 1" role="error" id="gen-aff-test-1">[gen-aff-test-1] Affiliations cannot have more than 1 top level institutions. <value-of select="$display"/> has <value-of select="count(institution[not(@*)])"/>.</report>
     
-     <report test="count(institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">Affiliation has <value-of select="count(institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
+     <report test="count(institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">[gen-aff-test-2] Affiliation has <value-of select="count(institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
       
-      <report test="count(label) gt 1" role="error" id="gen-aff-test-3">Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
+      <report test="count(label) gt 1" role="error" id="gen-aff-test-3">[gen-aff-test-3] Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
       
-      <report test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
+      <report test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">[gen-aff-test-4] Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
       
-      <report test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
+      <report test="count(country) gt 1" role="error" id="gen-aff-test-5">[gen-aff-test-5] Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
     </rule>
   </pattern>
   <pattern id="aff-child-tests-pattern">
     <rule context="aff/*" id="aff-child-tests">
       <let name="allowed-elems" value="('label','institution','addr-line','country')"/>
       
-      <assert test="name()=$allowed-elems" role="error" id="aff-child-conformity">
-        <value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
+      <assert test="name()=$allowed-elems" role="error" id="aff-child-conformity">[aff-child-conformity] <value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
       
     </rule>
   </pattern>
   <pattern id="addr-line-parent-test-pattern">
     <rule context="addr-line" id="addr-line-parent-test">
       
-      <assert test="parent::aff" role="error" id="addr-line-parent">
-        <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
+      <assert test="parent::aff" role="error" id="addr-line-parent">[addr-line-parent] <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
     </rule>
   </pattern>
   <pattern id="addr-line-child-tests-pattern">
     <rule context="addr-line/*" id="addr-line-child-tests">
       
-      <assert test="name()='named-content'" role="error" id="addr-line-child-1">
-        <value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
+      <assert test="name()='named-content'" role="error" id="addr-line-child-1">[addr-line-child-1] <value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
       
-      <report test="(name()='named-content') and not(@content-type='city')" role="error" id="addr-line-child-2">
-        <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
+      <report test="(name()='named-content') and not(@content-type='city')" role="error" id="addr-line-child-2">[addr-line-child-2] <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule>
   </pattern>
   <pattern id="funding-group-tests-pattern">
     <rule context="article-meta/funding-group" id="funding-group-tests">
 		
-		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1</assert>
+		<assert test="count(funding-statement) = 1" role="error" id="funding-group-test-1">[funding-group-test-1] One funding-statement should be present in funding-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1</assert>
 		
-		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-2</report>
+		<report test="count(award-group) = 0" role="warning" id="funding-group-test-2">[funding-group-test-2] There is no funding for this article. Is this correct?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-2</report>
 		
-	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-3</report>
+	  <report test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">[funding-group-test-3] Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-3</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -1536,80 +1509,78 @@
 	  <let name="id" value="@id"/>
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		
-		<assert test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-2</assert>
+		<assert test="funding-source" role="error" id="award-group-test-2">[award-group-test-2] award-group must contain a funding-source. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-2</assert>
 		
-		<assert test="principal-award-recipient" role="error" id="award-group-test-3">award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-3</assert>
+		<assert test="principal-award-recipient" role="error" id="award-group-test-3">[award-group-test-3] award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-3</assert>
 		
-		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4</report>
+		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">[award-group-test-4] award-group may contain one and only one award-id. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4</report>
 		
-		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-5</assert>
+		<assert test="funding-source/institution-wrap" role="error" id="award-group-test-5">[award-group-test-5] funding-source must contain an institution-wrap. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-5</assert>
 		
-		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-6</report>
+		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-6</report>
 	  
-	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-7</assert>
+	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">[award-group-test-7] There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-7</assert>
 	  
-	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8</report>
+	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8</report>
 	</rule>
   </pattern>
   <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       
-      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-1</report>
+      <report test="matches(.,',|;')" role="warning" id="award-id-test-1">[award-id-test-1] Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-1</report>
       
-      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2</report>
+      <report test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">[award-id-test-2] Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2</report>
       
-      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-3</report>
+      <report test="matches(.,'^\s?[Nn]one[\.]?\s?$')" role="error" id="award-id-test-3">[award-id-test-3] Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-3</report>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">[award-id-test-4] Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4</report>
       
     </rule>
   </pattern>
   <pattern id="institution-wrap-tests-pattern">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test</assert>
+      <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">[institution-id-test] Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test</assert>
       
     </rule>
   </pattern>
   <pattern id="institution-id-tests-pattern">
     <rule context="institution-wrap/institution-id" id="institution-id-tests">
       
-      <assert test="@institution-id-type='FundRef'" role="error" id="institution-id-test-2">
-        <name/> element must have the attribute institution-id-type="FundRef".</assert>
+      <assert test="@institution-id-type='FundRef'" role="error" id="institution-id-test-2">[institution-id-test-2] <name/> element must have the attribute institution-id-type="FundRef".</assert>
       
-      <assert test="normalize-space(.) != ''" role="error" id="institution-id-test-3">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
+      <assert test="normalize-space(.) != ''" role="error" id="institution-id-test-3">[institution-id-test-3] The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
       
-        <report test="*" role="error" id="institution-id-test-4">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
+        <report test="*" role="error" id="institution-id-test-4">[institution-id-test-4] The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
       
-      <report test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">
-        <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
+      <report test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">[institution-id-test-5] <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
       
     </rule>
   </pattern>
   <pattern id="kwd-group-tests-pattern">
     <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
       
-      <assert test="@kwd-group-type='author-keywords'" role="error" id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
+      <assert test="@kwd-group-type='author-keywords'" role="error" id="kwd-group-type">[kwd-group-type] kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
       
-      <assert test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
+      <assert test="kwd" role="warning" id="non-ro-kwd-presence-test">[non-ro-kwd-presence-test] kwd-group must contain at least one kwd</assert>
     </rule>
   </pattern>
   <pattern id="ro-kwd-group-tests-pattern">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
 	  
-      <assert test="title = 'Research organism'" role="error" id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
+      <assert test="title = 'Research organism'" role="error" id="kwd-group-title">[kwd-group-title] kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
       
-      <assert test="kwd" role="warning" id="ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
+      <assert test="kwd" role="warning" id="ro-kwd-presence-test">[ro-kwd-presence-test] kwd-group must contain at least one kwd</assert>
 	
 	</rule>
   </pattern>
   <pattern id="ro-kwd-tests-pattern">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
       
-      <assert test="substring(.,1,1) = upper-case(substring(.,1,1))" role="error" id="kwd-upper-case">research-organism kwd elements should start with an upper-case letter.</assert>
+      <assert test="substring(.,1,1) = upper-case(substring(.,1,1))" role="error" id="kwd-upper-case">[kwd-upper-case] research-organism kwd elements should start with an upper-case letter.</assert>
       
-      <report test="*[local-name() != 'italic']" role="error" id="kwd-child-test">research-organism keywords cannot have child elements such as <value-of select="*/local-name()"/>.</report>
+      <report test="*[local-name() != 'italic']" role="error" id="kwd-child-test">[kwd-child-test] research-organism keywords cannot have child elements such as <value-of select="*/local-name()"/>.</report>
       
     </rule>
   </pattern>
@@ -1617,9 +1588,9 @@
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
       <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" role="error" id="custom-meta-presence">1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
+      <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" role="error" id="custom-meta-presence">[custom-meta-presence] 1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
-      <report test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
+      <report test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">[features-custom-meta-presence] 2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
     </rule>
   </pattern>
@@ -1628,15 +1599,15 @@
       <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
-      <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-1</assert>
+      <assert test="count(meta-name) = 1" role="error" id="custom-meta-test-1">[custom-meta-test-1] One meta-name must be present in custom-meta. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-1</assert>
       
-      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-2</report>
+      <report test="($type = $research-subj) and (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-2">[custom-meta-test-2] The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-2</report>
       
-      <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-3</assert>
+      <assert test="count(meta-value) = 1" role="error" id="custom-meta-test-3">[custom-meta-test-3] One meta-value must be present in custom-meta. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-3</assert>
       
-      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-14</report>
+      <report test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" role="error" id="custom-meta-test-14">[custom-meta-test-14] The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-14</report>
       
-      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-15</report>
+      <report test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" role="error" id="custom-meta-test-15">[custom-meta-test-15] The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-15</report>
       
     </rule>
   </pattern>
@@ -1644,39 +1615,38 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">The value of meta-value cannot be empty</report>
+      <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">[custom-meta-test-4] The value of meta-value cannot be empty</report>
       
-      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
-      
-      
-      
-      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-6</assert>
-      
-      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-7</report>
-      
-      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-8</report>
+      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">[custom-meta-test-5] Impact statement contains more than 30 words. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
       
       
       
-      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9</report>
+      <assert test="matches(.,'[\.|\?]$')" role="error" id="final-custom-meta-test-6">[final-custom-meta-test-6] Impact statement must end with a full stop or question mark. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-6</assert>
       
-      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10</report>
+      <report test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" role="warning" id="custom-meta-test-7">[custom-meta-test-7] Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-7</report>
       
-      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-11</report>
-      
-      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-13</report>
+      <report test="not($subj = 'Replication Study') and matches(.,'[:;]')" role="warning" id="custom-meta-test-8">[custom-meta-test-8] Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-8</report>
       
       
       
-      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-rep-study-custom-meta-test</report>
+      <report test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">[final-custom-meta-test-9] Impact statement contains a possessive phrase. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9</report>
+      
+      <report test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">[custom-meta-test-10] Impact statement is comprised entirely of numbers, which must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10</report>
+      
+      <report test="matches(.,' [Oo]ur |^[Oo]ur ')" role="warning" id="custom-meta-test-11">[custom-meta-test-11] Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-11</report>
+      
+      <report test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" role="warning" id="custom-meta-test-13">[custom-meta-test-13] Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-13</report>
+      
+      
+      
+      <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">[final-rep-study-custom-meta-test] Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-rep-study-custom-meta-test</report>
     </rule>
   </pattern>
   <pattern id="meta-value-child-tests-pattern">
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       
-      <assert test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
-        <name/> is not allowed in impact statement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1</assert>
+      <assert test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">[custom-meta-child-test-1] <name/> is not allowed in impact statement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1</assert>
       
     </rule>
   </pattern>
@@ -1684,21 +1654,17 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="child::*" role="error" id="feat-custom-meta-test-1">
-        <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
+      <report test="child::*" role="error" id="feat-custom-meta-test-1">[feat-custom-meta-test-1] <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
       
-      <assert test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
+      <assert test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">[feat-custom-meta-test-2] Template type meta-value must one of '1','2','3','4', or '5'.</assert>
       
-      <report test=". = ('1','2','3','4','5')" role="info" id="feat-custom-meta-test-info">Template <value-of select="."/>.</report>
+      <report test=". = ('1','2','3','4','5')" role="info" id="feat-custom-meta-test-info">[feat-custom-meta-test-info] Template <value-of select="."/>.</report>
       
-      <report test="($type='Insight') and (. != '1')" role="error" id="feat-custom-meta-test-3">
-        <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
+      <report test="($type='Insight') and (. != '1')" role="error" id="feat-custom-meta-test-3">[feat-custom-meta-test-3] <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
       
-      <report test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">
-        <value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
+      <report test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">[feat-custom-meta-test-4] <value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
       
-      <report test="($type='Feature Article') and not(.=('3','4','5'))" role="error" id="feat-custom-meta-test-5">
-        <value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
+      <report test="($type='Feature Article') and not(.=('3','4','5'))" role="error" id="feat-custom-meta-test-5">[feat-custom-meta-test-5] <value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -1706,14 +1672,13 @@
     <rule context="article-meta/elocation-id" id="elocation-id-tests">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       
-      <assert test=". = concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
+      <assert test=". = concat('e' , $article-id)" role="error" id="test-elocation-conformance">[test-elocation-conformance] elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="related-object-tests-pattern">
     <rule context="related-object" id="related-object-tests">
       
-      <assert test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancetsor">
-        <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
+      <assert test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancetsor">[related-object-ancetsor] <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
     </rule>
   </pattern>
   
@@ -1721,16 +1686,16 @@
     <rule context="article-meta/volume" id="volume-test">
       <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]"/>
       
-      <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+      <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">[volume-test-1] Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
   </pattern>
 
   <pattern id="equal-author-tests-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
     	
-    <report test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
+    <report test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">[equal-author-test-1] Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
     
-    <report test="xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')" role="error" id="equal-author-test-2">author contains an xref[@ref-type='fn'] with a 'equal-contrib0' type @rid, but the contrib has no @equal-contrib='yes'.</report>
+    <report test="xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')" role="error" id="equal-author-test-2">[equal-author-test-2] author contains an xref[@ref-type='fn'] with a 'equal-contrib0' type @rid, but the contrib has no @equal-contrib='yes'.</report>
 		
 		</rule>
   </pattern> 	
@@ -1744,15 +1709,15 @@
         role="error" 
         id="p-test-1">p element begins with '<value-of select="substring(.,1,1)"/>'. Is this OK? Usually it should begin with an upper-case letter, or digit, or mathematic symbol, or open parenthesis, or open quote. Or perhaps it should not be the beginning of a new paragraph?</report>-->
       
-      <report test="@*" role="error" id="p-test-2">p element must not have any attributes.</report>
+      <report test="@*" role="error" id="p-test-2">[p-test-2] p element must not have any attributes.</report>
       
-      <assert test="count($text-tokens) = 0" role="error" id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
+      <assert test="count($text-tokens) = 0" role="error" id="p-test-3">[p-test-3] p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
-      <report test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" role="warning" id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
+      <report test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" role="warning" id="p-test-5">[p-test-5] p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body) and (string-length(.) le 100) and not(parent::*[local-name() = ('fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
+      <report test="(ancestor::body) and (string-length(.) le 100) and not(parent::*[local-name() = ('fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not(ancestor::sub-article) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">[p-test-6] Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
-      <report test="matches(.,'^\s?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
+      <report test="matches(.,'^\s?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">[p-test-7] p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -1760,7 +1725,7 @@
     <rule context="p/*" id="p-child-tests">
       <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap')"/>
       
-      <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')                     else self::*/local-name() = $allowed-p-blocks" role="error" id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</assert>
+      <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')                     else self::*/local-name() = $allowed-p-blocks" role="error" id="allowed-p-test">[allowed-p-test] p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</assert>
     </rule>
   </pattern>
   <pattern id="xref-target-tests-pattern">
@@ -1768,45 +1733,45 @@
       <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       
-      <report test="(@ref-type='aff') and ($target/local-name() != 'aff')" role="error" id="aff-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='aff') and ($target/local-name() != 'aff')" role="error" id="aff-xref-target-test">[aff-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='fn') and ($target/local-name() != 'fn')" role="error" id="fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='fn') and ($target/local-name() != 'fn')" role="error" id="fn-xref-target-test">[fn-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='fig') and ($target/local-name() != 'fig')" role="error" id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='fig') and ($target/local-name() != 'fig')" role="error" id="fig-xref-target-test">[fig-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" role="error" id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</report>
+      <report test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" role="error" id="vid-xref-target-test">[vid-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</report>
       
-      <report test="(@ref-type='bibr') and ($target/local-name() != 'ref')" role="error" id="bibr-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='bibr') and ($target/local-name() != 'ref')" role="error" id="bibr-xref-target-test">[bibr-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='supplementary-material') and ($target/local-name() != 'supplementary-material')" role="error" id="supplementary-material-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='supplementary-material') and ($target/local-name() != 'supplementary-material')" role="error" id="supplementary-material-xref-target-test">[supplementary-material-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='other') and ($target/local-name() != 'award-group') and ($target/local-name() != 'element-citation')" role="error" id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='other') and ($target/local-name() != 'award-group') and ($target/local-name() != 'element-citation')" role="error" id="other-xref-target-test">[other-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" role="error" id="table-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" role="error" id="table-xref-target-test">[table-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" role="error" id="table-fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" role="error" id="table-fn-xref-target-test">[table-fn-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" role="error" id="box-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" role="error" id="box-xref-target-test">[box-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='sec') and ($target/local-name() != 'sec')" role="error" id="sec-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='sec') and ($target/local-name() != 'sec')" role="error" id="sec-xref-target-test">[sec-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='app') and ($target/local-name() != 'app')" role="error" id="app-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='app') and ($target/local-name() != 'app')" role="error" id="app-xref-target-test">[app-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='decision-letter') and ($target/local-name() != 'sub-article')" role="error" id="decision-letter-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='decision-letter') and ($target/local-name() != 'sub-article')" role="error" id="decision-letter-xref-target-test">[decision-letter-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">[disp-formula-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
+      <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">[xref-ref-type-conformance] @ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
-      <report test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
+      <report test="boolean($target) = false()" role="error" id="xref-target-conformance">[xref-target-conformance] xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
     </rule>
   </pattern>
   <pattern id="body-xref-tests-pattern">
     <rule context="body//xref" id="body-xref-tests">
       
-      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. It's position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">[empty-xref-test] Empty xref in the body is not allowed. It's position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
-      <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text.</report>
+      <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">[semi-colon-xref-test] xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text.</report>
       
     </rule>
   </pattern>
@@ -1824,40 +1789,38 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">[url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
-      <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
+      <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">[url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
       
-      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)" role="warning" id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
+      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)" role="warning" id="ext-link-parent-test">[ext-link-parent-test] ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
       
-      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))" role="error" id="ext-link-child-test">ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$form-children"/> - which is not correct.</report>
+      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))" role="error" id="ext-link-child-test">[ext-link-child-test] ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$form-children"/> - which is not correct.</report>
       
-      <assert test="$non-form-children=''" role="error" id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
+      <assert test="$non-form-children=''" role="error" id="ext-link-child-test-2">[ext-link-child-test-2] ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
-      <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#ext-link-child-test-3</report>
+      <report test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">[ext-link-child-test-3] ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#ext-link-child-test-3</report>
       
-      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary.</report>
+      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">[ext-link-child-test-4] ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary.</report>
       
-      <report test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5</report>
+      <report test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">[ext-link-child-test-5] ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5</report>
     </rule>
   </pattern>
   <pattern id="fig-group-tests-pattern">
     <rule context="fig-group" id="fig-group-tests">
       
-      <assert test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
+      <assert test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">[fig-group-test-1] fig-group must have one and only one main figure.</assert>
       
-      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement, figure-level course data or code file, or a figure-level video, which must be incorrect.</report>
+      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">[fig-group-test-2] fig-group does not contain a figure supplement, figure-level course data or code file, or a figure-level video, which must be incorrect.</report>
       
     </rule>
   </pattern>
   <pattern id="fig-group-child-tests-pattern">
     <rule context="fig-group/*" id="fig-group-child-tests">
       
-      <assert test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">
-        <name/> is not allowed as a child of fig-group.</assert>
+      <assert test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">[fig-group-child-test-1] <name/> is not allowed as a child of fig-group.</assert>
       
-      <report test="(local-name() = 'media') and not(@mimetype='video')" role="error" id="fig-group-child-test-2">
-        <name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
+      <report test="(local-name() = 'media') and not(@mimetype='video')" role="error" id="fig-group-child-test-2">[fig-group-child-test-2] <name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
       
     </rule>
   </pattern>
@@ -1865,26 +1828,25 @@
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert test="@position" role="error" id="fig-test-2">fig must have a @position.</assert>
+      <assert test="@position" role="error" id="fig-test-2">[fig-test-2] fig must have a @position.</assert>
       
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label.</report>
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="fig-test-3">[fig-test-3] fig must have a label.</report>
       
-      <report test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
-      
-      
-      
-      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="error" id="final-fig-test-4">
-        <value-of select="label"/> has no title or caption (caption element).</report>
+      <report test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">[feat-fig-test-3] fig doesn't have a label. Is this correct?</report>
       
       
       
-      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="error" id="final-fig-test-5">fig caption must have a title.</report>
-      
-      <report test="if ($article-type = ('correction','retraction')) then ()          else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" role="warning" id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption)" role="error" id="final-fig-test-4">[final-fig-test-4] <value-of select="label"/> has no title or caption (caption element).</report>
       
       
       
-      <assert test="graphic" role="error" id="final-fig-test-7">fig must have a graphic.</assert>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(caption/title)" role="error" id="final-fig-test-5">[final-fig-test-5] fig caption must have a title.</report>
+      
+      <report test="if ($article-type = ('correction','retraction')) then ()          else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" role="warning" id="fig-test-6">[fig-test-6] Figure does not have a legend, which is very unorthadox. Is this correct?</report>
+      
+      
+      
+      <assert test="graphic" role="error" id="final-fig-test-7">[final-fig-test-7] fig must have a graphic.</assert>
     </rule>
   </pattern>
   <pattern id="ar-fig-tests-pattern">
@@ -1894,16 +1856,15 @@
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
       
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">Author Response fig must have a label.</report>
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="ar-fig-test-2">[ar-fig-test-2] Author Response fig must have a label.</report>
       
       
       
-      <assert test="graphic" role="error" id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
+      <assert test="graphic" role="error" id="final-ar-fig-test-3">[final-ar-fig-test-3] Author Response fig must have a graphic.</assert>
       
       
       
-      <assert test="$no = string($pos)" role="error" id="final-ar-fig-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
+      <assert test="$no = string($pos)" role="error" id="final-ar-fig-position-test">[final-ar-fig-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="graphic-tests-pattern">
@@ -1911,23 +1872,18 @@
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
       
-      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">
-        <name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">[graphic-test-1] <name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">
-        <name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">[graphic-test-2] <name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">
-        <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
+      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">[graphic-test-3] <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
-      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">
-        <name/> must have a @mimetype='image'.</assert>
+      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">[graphic-test-4] <name/> must have a @mimetype='image'.</assert>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
-        <name/> must have an @xlink:href which contains a file reference.</assert>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">[graphic-test-5] <name/> must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
+      <report test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">[graphic-test-6] Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
     </rule>
   </pattern>
   <pattern id="media-tests-pattern">
@@ -1935,26 +1891,25 @@
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
       
-      <assert test="@mimetype=('video','application','text','image', 'audio')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</assert>
+      <assert test="@mimetype=('video','application','text','image', 'audio')" role="error" id="media-test-1">[media-test-1] media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</assert>
       
-      <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
+      <assert test="@mime-subtype" role="error" id="media-test-2">[media-test-2] media must have @mime-subtype.</assert>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">[media-test-3] media must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()                     else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))                     else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))                     else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))                     else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))                     else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))                     else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))                     else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))                     else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))                     else if ($file='html') then not(matches(@xlink:href,'\.html$'))                     else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))                     else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">[media-test-4] media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
-      <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
-        <value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
+      <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">[media-test-5] <value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
       
-      <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
+      <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">[media-test-6] media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
-      <report test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
+      <report test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">[media-test-7] media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
       
-      <report test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
+      <report test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">[media-test-8] video does not contain a label, which is incorrect.</report>
       
-      <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
+      <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">[media-test-9] media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
       
-      <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')           else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+      <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')           else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
     </rule>
   </pattern>
   <pattern id="video-test-pattern">
@@ -1962,8 +1917,7 @@
       
       
       
-      <assert test="caption/title" role="error" id="final-video-title">
-        <value-of select="label"/> does not have a title, which is incorrect.</assert>
+      <assert test="caption/title" role="error" id="final-video-title">[final-video-title] <value-of select="label"/> does not have a title, which is incorrect.</assert>
       
     </rule>
   </pattern>
@@ -1973,15 +1927,13 @@
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       
-      <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
+      <assert test="label" role="error" id="supplementary-material-test-1">[supplementary-material-test-1] supplementary-material must have a label.</assert>
       
-      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="warning" id="supplementary-material-test-2">
-        <value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</report>
-      
+      <report test="if (contains(label,'Transparent reporting form')) then ()                      else not(caption)" role="warning" id="supplementary-material-test-2">[supplementary-material-test-2] <value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</report>
       
       
-      <report test="if (caption) then not(caption/title)         else ()" role="warning" id="final-supplementary-material-test-3">
-        <value-of select="label"/> doesn't have a title. Is this correct?</report>
+      
+      <report test="if (caption) then not(caption/title)         else ()" role="warning" id="final-supplementary-material-test-3">[final-supplementary-material-test-3] <value-of select="label"/> doesn't have a title. Is this correct?</report>
       
       <!-- Not included because in most instances this is the case
         <report test="if (label = 'Transparent reporting form') then () 
@@ -1991,33 +1943,27 @@
       
       		
       
-      <assert test="media" role="error" id="final-supplementary-material-test-5">
-        <value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
+      <assert test="media" role="error" id="final-supplementary-material-test-5">[final-supplementary-material-test-5] <value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
       
-      <assert test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
+      <assert test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" role="error" id="supplementary-material-test-6">[supplementary-material-test-6] supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
-      <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
+      <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">[supplementary-material-test-7] supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
-      <report test="matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
-        <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
+      <report test="matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">[supplementary-material-test-8] <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
       
-      <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">
-        <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
+      <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">[supplementary-material-test-9] <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
       
-      <report test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
+      <report test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">[supplementary-material-test-10] Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
       
-      <report test="($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">
-        <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
+      <report test="($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">[source-code-test-1] <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
     </rule>
   </pattern>
   <pattern id="source-data-specific-tests-pattern">
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
-      <report test="matches(label[1],'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">
-        <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
+      <report test="matches(label[1],'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">[fig-data-test-1] <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
       
-      <report test="matches(label[1],'^Figure \d{1,4}—source code \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source code \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-code-test-1">
-        <value-of select="label"/> is figure level source code, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source code?</report>
+      <report test="matches(label[1],'^Figure \d{1,4}—source code \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source code \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-code-test-1">[fig-code-test-1] <value-of select="label"/> is figure level source code, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source code?</report>
       
     </rule>
   </pattern>
@@ -2029,7 +1975,7 @@
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
       
-      <assert test="$number = $pos" role="error" id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      <assert test="$number = $pos" role="error" id="fig-data-test-2">[fig-data-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
     </rule>
   </pattern>
@@ -2041,7 +1987,7 @@
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>
       
-      <assert test="$number = $pos" role="error" id="fig-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      <assert test="$number = $pos" role="error" id="fig-code-test-2">[fig-code-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
     </rule>
   </pattern>
@@ -2053,7 +1999,7 @@
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' data ')])"/>
       
-      <assert test="$number = $pos" role="error" id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      <assert test="$number = $pos" role="error" id="vid-data-test-2">[vid-data-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
     </rule>
   </pattern>
@@ -2065,7 +2011,7 @@
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' code ')])"/>
       
-      <assert test="$number = $pos" role="error" id="vid-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      <assert test="$number = $pos" role="error" id="vid-code-test-2">[vid-code-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
     </rule>
   </pattern>
@@ -2077,7 +2023,7 @@
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
       
-      <assert test="$number = $pos" role="error" id="table-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-data-test-2</assert>
+      <assert test="$number = $pos" role="error" id="table-data-test-2">[table-data-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-data-test-2</assert>
       
     </rule>
   </pattern>
@@ -2089,16 +2035,16 @@
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' code ')])"/>
       
-      <assert test="$number = $pos" role="error" id="table-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-code-test-2</assert>
+      <assert test="$number = $pos" role="error" id="table-code-test-2">[table-code-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-code-test-2</assert>
       
     </rule>
   </pattern>
   <pattern id="disp-formula-tests-pattern">
     <rule context="disp-formula" id="disp-formula-tests">
       
-      <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      <assert test="mml:math" role="error" id="disp-formula-test-2">[disp-formula-test-2] disp-formula must contain an mml:math element.</assert>
       
-      <assert test="parent::p" role="error" id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>
+      <assert test="parent::p" role="error" id="disp-formula-test-3">[disp-formula-test-3] disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>
   </pattern>
@@ -2107,14 +2053,13 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert test="mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
+      <assert test="mml:math" role="error" id="inline-formula-test-1">[inline-formula-test-1] inline-formula must contain an mml:math element.</assert>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">[inline-formula-test-2] There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">[inline-formula-test-3] There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">
-        <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
+      <assert test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">[inline-formula-test-4] <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>
   </pattern>
@@ -2123,49 +2068,47 @@
       <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
-      <report test="$data = ''" role="error" id="math-test-1">mml:math must not be empty.</report>
+      <report test="$data = ''" role="error" id="math-test-1">[math-test-1] mml:math must not be empty.</report>
       
-      <report test="descendant::mml:merror" role="error" id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
+      <report test="descendant::mml:merror" role="error" id="math-test-2">[math-test-2] math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
       
-      <report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" role="warning" id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</report>
+      <report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" role="warning" id="math-test-14">[math-test-14] mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</report>
       
-      <report test="$data = '±'" role="error" id="math-test-3">mml:math only contains '±', which is unnecessary. Cature this as a normal text '±' instead.</report>
+      <report test="$data = '±'" role="error" id="math-test-3">[math-test-3] mml:math only contains '±', which is unnecessary. Cature this as a normal text '±' instead.</report>
       
-      <report test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" role="error" id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Cature this as a normal text instead.</report>
+      <report test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" role="error" id="math-test-4">[math-test-4] mml:math only contains '±' followed by digits, which is unnecessary. Cature this as a normal text instead.</report>
       
-      <report test="$data = '×'" role="error" id="math-test-5">mml:math only contains '×', which is unnecessary. Cature this as a normal text '×' instead.</report>
+      <report test="$data = '×'" role="error" id="math-test-5">[math-test-5] mml:math only contains '×', which is unnecessary. Cature this as a normal text '×' instead.</report>
       
-      <report test="$data = '~'" role="error" id="math-test-6">mml:math only contains '~', which is unnecessary. Cature this as a normal text '~' instead.</report>
+      <report test="$data = '~'" role="error" id="math-test-6">[math-test-6] mml:math only contains '~', which is unnecessary. Cature this as a normal text '~' instead.</report>
       
-      <report test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')" role="error" id="math-test-7">mml:math only contains '~' and digits, which is unnecessary. Cature this as a normal text instead.</report>
+      <report test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')" role="error" id="math-test-7">[math-test-7] mml:math only contains '~' and digits, which is unnecessary. Cature this as a normal text instead.</report>
       
-      <report test="$data = 'μ'" role="warning" id="math-test-8">mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
+      <report test="$data = 'μ'" role="warning" id="math-test-8">[math-test-8] mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
       
-      <report test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')" role="error" id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Cature this as a normal text instead.</report>
+      <report test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')" role="error" id="math-test-9">[math-test-9] mml:math only contains '%' and digits, which is unnecessary. Cature this as a normal text instead.</report>
       
-      <report test="matches($data,'^%$')" role="error" id="math-test-12">mml:math only contains '%', which is unnecessary. Cature this as a normal text instead.</report>
+      <report test="matches($data,'^%$')" role="error" id="math-test-12">[math-test-12] mml:math only contains '%', which is unnecessary. Cature this as a normal text instead.</report>
       
-      <report test="$data = '°'" role="error" id="math-test-10">mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
+      <report test="$data = '°'" role="error" id="math-test-10">[math-test-10] mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report test="matches($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
+      <report test="matches($data,'○')" role="warning" id="math-test-11">[math-test-11] mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
-      <report test="not(mml:msqrt) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report test="not(mml:msqrt) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">[math-test-13] mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')" role="warning" id="math-test-15">mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')" role="warning" id="math-test-15">[math-test-15] mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">[math-test-16] mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report test="child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-17">mml:math only contains number(s) and square root symbol(s) '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead? Such as <value-of select="concat('√',.)"/>?</report>
+      <report test="child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-17">[math-test-17] mml:math only contains number(s) and square root symbol(s) '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead? Such as <value-of select="concat('√',.)"/>?</report>
     </rule>
   </pattern>
   <pattern id="formula-child-tests-pattern">
     <rule context="disp-formula/*|inline-formula/*" id="formula-child-tests">
       
-      <report test="(parent::disp-formula) and not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
-        <name/> element is not allowed as a child of disp-formula.</report>
+      <report test="(parent::disp-formula) and not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>
       
-      <report test="(parent::inline-formula) and (local-name()!='math')" role="error" id="inline-formula-child-test-1">
-        <name/> element is not allowed as a child of inline-formula.</report>
+      <report test="(parent::inline-formula) and (local-name()!='math')" role="error" id="inline-formula-child-test-1">[inline-formula-child-test-1] <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -2174,63 +2117,60 @@
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert test="table" role="error" id="table-wrap-test-1">table-wrap must have one table. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-1</assert>
+      <assert test="table" role="error" id="table-wrap-test-1">[table-wrap-test-1] table-wrap must have one table. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-1</assert>
       
-      <report test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">table-wrap has more than one table - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-2</report>
+      <report test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">[table-wrap-test-2] table-wrap has more than one table - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-2</report>
       
-      <report test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-3</report>
+      <report test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">[table-wrap-test-3] table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-3</report>
       
-      <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-4</report>
+      <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">[table-wrap-test-4] table-wrap with id <value-of select="$id"/> has no label which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-4</report>
       
-      <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
+      <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">[kr-table-wrap-test-1] table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
       
       
       
-      <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-table-wrap-cite-1</report>
+      <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-table-wrap-cite-1">[final-table-wrap-cite-1] There is no citation to <value-of select="$lab"/> Ensure this is added. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-table-wrap-cite-1</report>
       
-      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
+      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">[feat-table-wrap-cite-1] There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
       
-      <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
-        <value-of select="$lab"/> has headings that are for the Key resources table, but it does not have an @id='keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
+      <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">[kr-table-not-tagged] <value-of select="$lab"/> has headings that are for the Key resources table, but it does not have an @id='keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
       
-      <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
-        <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged-2</report>
+      <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">[kr-table-not-tagged-2] <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged-2</report>
       
     </rule>
   </pattern>
   <pattern id="kr-table-heading-tests-pattern">
     <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
       
-      <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-1</report>
+      <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">[kr-table-header-1] Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-1</report>
       
-      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">Key resources table has more than 1 row in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-2</report>
+      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">[kr-table-header-2] Key resources table has more than 1 row in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-2</report>
       
-      <report test="count(tr) lt 1" role="warning" id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-3</report>
+      <report test="count(tr) lt 1" role="warning" id="kr-table-header-3">[kr-table-header-3] Key resources table has no rows in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-3</report>
       
-      <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-4</report>
+      <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">[kr-table-header-4] The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-4</report>
       
-      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-5</report>
+      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">[kr-table-header-5] The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-5</report>
       
-      <report test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-6</report>
+      <report test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">[kr-table-header-6] The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-6</report>
       
-      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-7</report>
+      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">[kr-table-header-7] The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-7</report>
       
-      <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" role="warning" id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-8</report>
+      <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" role="warning" id="kr-table-header-8">[kr-table-header-8] The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-8</report>
       
     </rule>
   </pattern>
   <pattern id="kr-table-body-tests-pattern">
     <rule context="table-wrap[@id='keyresource']/table/tbody/tr/*" id="kr-table-body-tests">
       
-      <assert test="local-name()='td'" role="error" id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-body-1</assert>
+      <assert test="local-name()='td'" role="error" id="kr-table-body-1">[kr-table-body-1] Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-body-1</assert>
       
     </rule>
   </pattern>
   <pattern id="body-table-label-tests-pattern">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
-      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
-        <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#body-table-label-test-1</assert>
+      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">[body-table-label-test-1] <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#body-table-label-test-1</assert>
       
     </rule>
   </pattern>
@@ -2238,65 +2178,63 @@
     <rule context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title[1]"/>
       
-      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')" role="error" id="app-table-label-test-1">
-        <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-1</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')" role="error" id="app-table-label-test-1">[app-table-label-test-1] <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-1</assert>
       
-      <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">
-        <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-2</assert>
+      <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">[app-table-label-test-2] <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-2</assert>
       
     </rule>
   </pattern>
   <pattern id="table-tests-pattern">
     <rule context="table" id="table-tests">
       
-      <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-1</report>
+      <report test="count(tbody) = 0" role="error" id="table-test-1">[table-test-1] table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-1</report>
       
-      <assert test="thead" role="warning" id="table-test-2">table doesn't have a header (thead). Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-2</assert>
+      <assert test="thead" role="warning" id="table-test-2">[table-test-2] table doesn't have a header (thead). Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-2</assert>
     </rule>
   </pattern>
   <pattern id="tbody-tests-pattern">
     <rule context="table/tbody" id="tbody-tests">
       
-      <report test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tbody-test-1</report>
+      <report test="count(tr) = 0" role="error" id="tbody-test-1">[tbody-test-1] tbody must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tbody-test-1</report>
     </rule>
   </pattern>
   <pattern id="thead-tests-pattern">
     <rule context="table/thead" id="thead-tests">
       
-      <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#thead-test-1</report>
+      <report test="count(tr) = 0" role="error" id="thead-test-1">[thead-test-1] thead must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#thead-test-1</report>
     </rule>
   </pattern>
   <pattern id="tr-tests-pattern">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       
-      <report test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-1</report>
+      <report test="$count = 0" role="error" id="tr-test-1">[tr-test-1] row (tr) must contain at least one heading cell (th) or data cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-1</report>
       
-      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header). Please check that this is correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-2</report>
+      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">[tr-test-2] table row in body contains a th element (a header). Please check that this is correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-2</report>
       
-      <report test="td and (parent::thead)" role="error" id="tr-test-3">table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-3</report>
+      <report test="td and (parent::thead)" role="error" id="tr-test-3">[tr-test-3] table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-3</report>
     </rule>
   </pattern>
   <pattern id="td-child-tests-pattern">
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/> 
       
-      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#td-child-test</assert>
+      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">[td-child-test] td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#td-child-test</assert>
     </rule>
   </pattern>
   <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/> 
       
-      <assert test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-child-test-1</assert>
+      <assert test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">[th-child-test-1] th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-child-test-1</assert>
       
-      <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-child-test-2</report>
+      <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">[th-child-test-2] th contains bold. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-child-test-2</report>
     </rule>
   </pattern>
   <pattern id="th-tests-pattern">
     <rule context="th" id="th-tests">
       
-      <report test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-row-test</report>
+      <report test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">[th-row-test] Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-row-test</report>
       
     </rule>
   </pattern>
@@ -2304,54 +2242,54 @@
     <rule context="table-wrap-foot//fn/p/*[1]" id="table-fn-label-tests"> 
       <let name="house-labels" value="('*', '†', '‡', '§', '¶','**', '††', '‡‡', '§§', '¶¶','***', '†††', '‡‡‡', '§§§', '¶¶¶','****', '††††', '‡‡‡‡', '§§§§', '¶¶¶¶')"/>
       
-      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
+      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
     </rule>
   </pattern>
   <pattern id="fn-tests-pattern">
     <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
       
-      <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
+      <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">[fn-xref-presence-test] fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
   </pattern>
   <pattern id="list-item-tests-pattern">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
       
-      <report test="($type='bullet') and matches(.,'^\s?•')" role="error" id="bullet-test-1">list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
+      <report test="($type='bullet') and matches(.,'^\s?•')" role="error" id="bullet-test-1">[bullet-test-1] list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
       
-      <report test="($type='simple') and matches(.,'^\s?•')" role="error" id="bullet-test-2">list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
+      <report test="($type='simple') and matches(.,'^\s?•')" role="error" id="bullet-test-2">[bullet-test-2] list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
       
-      <report test="($type='order') and matches(.,'^\s?\d+')" role="warning" id="order-test-1">list-item is part of an ordered list, but it begins with a number. Is this correct? <value-of select="."/>
+      <report test="($type='order') and matches(.,'^\s?\d+')" role="warning" id="order-test-1">[order-test-1] list-item is part of an ordered list, but it begins with a number. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='alpha-lower') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)]? ')" role="warning" id="alpha-lower-test-1">list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/>
+      <report test="($type='alpha-lower') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)]? ')" role="warning" id="alpha-lower-test-1">[alpha-lower-test-1] list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='alpha-upper') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
+      <report test="($type='alpha-upper') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">[alpha-upper-test-1] list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">[roman-lower-test-1] list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-upper') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-upper') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">[roman-upper-test-1] list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\s?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
+      <report test="($type='simple') and matches(.,'^\s?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">[simple-test-1] list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)] ')" role="warning" id="simple-test-2">list-item is part of a simple list, but it begins with a single lower-case letter. Should the list-type be updated to 'alpha-lower' and this first letter removed? <value-of select="."/>
+      <report test="($type='simple') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)] ')" role="warning" id="simple-test-2">[simple-test-2] list-item is part of a simple list, but it begins with a single lower-case letter. Should the list-type be updated to 'alpha-lower' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')" role="warning" id="simple-test-3">list-item is part of a simple list, but it begins with a single upper-case letter. Should the list-type be updated to 'alpha-upper' and this first letter removed? <value-of select="."/>
+      <report test="($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')" role="warning" id="simple-test-3">[simple-test-3] list-item is part of a simple list, but it begins with a single upper-case letter. Should the list-type be updated to 'alpha-upper' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="simple-test-4">list-item is part of a simple list, but it begins with a single roman-lower letter. Should the list-type be updated to 'roman-lower' and this first letter removed? <value-of select="."/>
+      <report test="($type='simple') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="simple-test-4">[simple-test-4] list-item is part of a simple list, but it begins with a single roman-lower letter. Should the list-type be updated to 'roman-lower' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
+      <report test="($type='simple') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">[simple-test-5] list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="matches(.,'^\s?\p{Ll}[\s\)\.]')" role="warning" id="list-item-test-1">list-item begins with a single lowercase letter, is this correct? - <value-of select="."/>
+      <report test="matches(.,'^\s?\p{Ll}[\s\)\.]')" role="warning" id="list-item-test-1">[list-item-test-1] list-item begins with a single lowercase letter, is this correct? - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -2367,23 +2305,21 @@
       
       
       
-      <assert test="$xrefs//*:match" role="warning" id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
+      <assert test="$xrefs//*:match" role="warning" id="final-video-cite">[final-video-cite] There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
       
-      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="video-placement-1">
-        <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect.</report>
+      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="video-placement-1">[video-placement-1] <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect.</report>
       
-      <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">
-        <value-of select="$label"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
+      <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">[video-placement-2] <value-of select="$label"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
       
     </rule>
   </pattern>
   <pattern id="code-tests-pattern">
     <rule context="code" id="code-tests">
       
-      <report test="child::*" role="error" id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
+      <report test="child::*" role="error" id="code-child-test">[code-child-test] code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
         <value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
       
-      <report test="preceding::*[1]/name()='code'" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <report test="preceding::*[1]/name()='code'" role="warning" id="code-sibling-test">[code-sibling-test] code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
@@ -2392,13 +2328,11 @@
       <let name="label" value="replace(.,'\.$','')"/>
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
-      <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']" role="error" id="label-fig-group-conformance-1">
-        <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']" role="error" id="label-fig-group-conformance-1">[label-fig-group-conformance-1] <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
       
-      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">
-        <value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">[label-fig-group-conformance-2] <value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
       
-      <report test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="distinct-label-conformance">Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
+      <report test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="distinct-label-conformance">[distinct-label-conformance] Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
       
     </rule>
   </pattern>
@@ -2407,9 +2341,9 @@
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       
-      <report test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
+      <report test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">[equation-label-conformance-1] Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
       
-      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
+      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">[equation-label-conformance-2] Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
       
     </rule>
   </pattern>
@@ -2417,17 +2351,17 @@
     <rule context="aff/label" id="aff-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
-      <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
+      <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">[aff-label-conformance-1] Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
     </rule>
   </pattern>
   <pattern id="disp-quote-tests-pattern">
     <rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
+      <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" id="disp-quote-test-1">[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
       </report>
       
-      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
+      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   
@@ -2441,17 +2375,13 @@
       
       
       
-      <report test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))" role="error" id="final-body-video-position-test-1">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
+      <report test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))" role="error" id="final-body-video-position-test-1">[final-body-video-position-test-1] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other videos it is placed in position <value-of select="$pos"/>.</report>
       
-      <assert test="starts-with(label[1],$fig-label)" role="error" id="fig-video-label-test">
-        <value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
+      <assert test="starts-with(label[1],$fig-label)" role="error" id="fig-video-label-test">[fig-video-label-test] <value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
       
-      <report test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
+      <report test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">[fig-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
       
-      <report test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">
-        <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
+      <report test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">[fig-video-check-1] <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
       
     </rule>
   </pattern>
@@ -2464,15 +2394,13 @@
       
       
       
-      <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">[final-app-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="fig-video-specific-pattern">
     <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
       
-      <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">
-        <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
+      <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">[fig-video-position-test-2] <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
       
     </rule>
   </pattern>
@@ -2484,8 +2412,7 @@
       
       
       
-      <assert test="$no = string($pos)" role="error" id="final-ar-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert test="$no = string($pos)" role="error" id="final-ar-video-position-test">[final-ar-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   
@@ -2497,8 +2424,7 @@
       
       
       
-      <assert test="($no = string($pos))" role="error" id="final-body-table-report">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-body-table-report</assert>
+      <assert test="($no = string($pos))" role="error" id="final-body-table-report">[final-body-table-report] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-body-table-report</assert>
       
     </rule>
   </pattern>
@@ -2513,8 +2439,7 @@
       
       
       
-      <assert test="($no = string($pos))" role="error" id="final-app-table-report">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-app-table-report</assert>
+      <assert test="($no = string($pos))" role="error" id="final-app-table-report">[final-app-table-report] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-app-table-report</assert>
       
     </rule>
   </pattern>
@@ -2532,34 +2457,30 @@
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="$first-cite/parent::p"/>
       
-      <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
+      <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">[fig-specific-test-1] fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
       
       
-      <report test="if ($article-type = ('correction','retraction')) then ()          else if ($count = 0) then ()         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="error" id="final-fig-specific-test-2">
-        <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else if ($count = 0) then ()         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="error" id="final-fig-specific-test-2">[final-fig-specific-test-2] <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <report test="if ($article-type = ('correction','retraction')) then ()          else not(                $first-cite-parent/following-sibling::*[1][@id=$id] or                ($first-cite-parent/following-sibling::*[1][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[1]/*[1][@id=$id])                or                (                ($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and  ($first-cite-parent/following-sibling::*[2][@id=$id] or                ($first-cite-parent/following-sibling::*[2][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[2]/*[1][@id=$id])))                or                (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[3][@id=$id] or                ($first-cite-parent/following-sibling::*[3][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[3]/*[1][@id=$id])))                or                (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and                ($first-cite-parent/following-sibling::*[3]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[4][@id=$id] or ($first-cite-parent/following-sibling::*[4][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[4]/*[1][@id=$id])))                 )" role="warning" id="fig-specific-test-3">
-        <value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()          else not(                $first-cite-parent/following-sibling::*[1][@id=$id] or                ($first-cite-parent/following-sibling::*[1][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[1]/*[1][@id=$id])                or                (                ($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and  ($first-cite-parent/following-sibling::*[2][@id=$id] or                ($first-cite-parent/following-sibling::*[2][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[2]/*[1][@id=$id])))                or                (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[3][@id=$id] or                ($first-cite-parent/following-sibling::*[3][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[3]/*[1][@id=$id])))                or                (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and                ($first-cite-parent/following-sibling::*[3]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[4][@id=$id] or ($first-cite-parent/following-sibling::*[4][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[4]/*[1][@id=$id])))                 )" role="warning" id="fig-specific-test-3">[fig-specific-test-3] <value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
       
       
       
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-fig-specific-test-4">[final-fig-specific-test-4] There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
-      <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
+      <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">[feat-fig-specific-test-4] There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
       
-      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-4">
-        <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
+      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-4">[fig-specific-test-4] <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
-      <report test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-5">
-        <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
+      <report test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-5">[fig-specific-test-5] <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
   
     </rule>
   </pattern>
   <pattern id="fig-label-tests-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" id="fig-label-tests">
       
-      <assert test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
+      <assert test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="fig-label-test-1">[fig-label-test-1] fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
     </rule>
   </pattern>
   <pattern id="fig-sup-tests-pattern">
@@ -2572,92 +2493,87 @@
       <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
       <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
       
-      <assert test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
+      <assert test="parent::fig-group" role="error" id="fig-sup-test-1">[fig-sup-test-1] fig supplement is not a child of fig-group. This cannot be correct.</assert>
       
-      <assert test="$label-conform = true()" role="error" id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure X—figure supplement X.' (where X is one or more digits).</assert>
+      <assert test="$label-conform = true()" role="error" id="fig-sup-test-2">[fig-sup-test-2] fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure X—figure supplement X.' (where X is one or more digits).</assert>
       
-      <assert test="starts-with(label[1],concat('Figure ',$parent-fig-no))" role="error" id="fig-sup-test-3">
-        <value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
+      <assert test="starts-with(label[1],concat('Figure ',$parent-fig-no))" role="error" id="fig-sup-test-3">[fig-sup-test-3] <value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
       
-      <report test="if ($article-type = ('correction','retraction')) then ()                      else $no != string($pos)" role="error" id="fig-sup-test-4">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
+      <report test="if ($article-type = ('correction','retraction')) then ()                      else $no != string($pos)" role="error" id="fig-sup-test-4">[fig-sup-test-4] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <report test="if ($article-type = ('correction', 'retraction')) then ()          else (($label-conform = true()) and ($label-no != string($pos)))" role="error" id="fig-sup-test-5">
-        <value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
+      <report test="if ($article-type = ('correction', 'retraction')) then ()          else (($label-conform = true()) and ($label-no != string($pos)))" role="error" id="fig-sup-test-5">[fig-sup-test-5] <value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
       
-      <report test="($label-conform = true()) and ($no != $label-no)" role="error" id="fig-sup-test-6">
-        <value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect.</report>
+      <report test="($label-conform = true()) and ($no != $label-no)" role="error" id="fig-sup-test-6">[fig-sup-test-6] <value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect.</report>
       
     </rule>
   </pattern>
   <pattern id="rep-fig-tests-pattern">
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       
-      <assert test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>
+      <assert test="label" role="error" id="resp-fig-test-2">[resp-fig-test-2] fig must have a label.</assert>
       
-      <assert test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
+      <assert test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="reply-fig-test-2">[reply-fig-test-2] fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
       
     </rule>
   </pattern>
   <pattern id="dec-fig-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
       
-      <assert test="label" role="error" id="dec-fig-test-1">fig must have a label.</assert>
+      <assert test="label" role="error" id="dec-fig-test-1">[dec-fig-test-1] fig must have a label.</assert>
       
-      <assert test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
+      <assert test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">[dec-fig-test-2] fig label in author response must be in the format 'Decision letter image 1.'.</assert>
       
     </rule>
   </pattern>
   <pattern id="box-fig-tests-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests"> 
       
-      <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+      <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">[box-fig-test-1] label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-tests-pattern">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">[app-fig-test-1] label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>
       
-      <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
+      <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">[app-fig-test-2] label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-tests-pattern">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
       
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">[app-fig-sup-test-1] label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
       
-      <assert test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
+      <assert test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">[app-fig-sup-test-2] label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="fig-permissions-pattern">
     <rule context="fig/permissions" id="fig-permissions">
       <let name="fig-label" value="if (parent::fig/label[1]) then replace(parent::fig/label[1],'\.$','') else 'figure'"/>
       
-      <report test="copyright-statement and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">permissions for <value-of select="$fig-label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
+      <report test="copyright-statement and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">[fig-permissions-test-1] permissions for <value-of select="$fig-label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
       
-      <report test="copyright-year and (not(copyright-statement) or not(copyright-holder))" role="error" id="fig-permissions-test-2">permissions for <value-of select="$fig-label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
+      <report test="copyright-year and (not(copyright-statement) or not(copyright-holder))" role="error" id="fig-permissions-test-2">[fig-permissions-test-2] permissions for <value-of select="$fig-label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
       
-      <report test="copyright-holder and (not(copyright-statement) or not(copyright-year))" role="error" id="fig-permissions-test-3">permissions for <value-of select="$fig-label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
+      <report test="copyright-holder and (not(copyright-statement) or not(copyright-year))" role="error" id="fig-permissions-test-3">[fig-permissions-test-3] permissions for <value-of select="$fig-label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
       
-      <assert test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$fig-label"/> must contain a license-p element.</assert>
+      <assert test="license/license-p" role="error" id="fig-permissions-test-4">[fig-permissions-test-4] permissions for <value-of select="$fig-label"/> must contain a license-p element.</assert>
       
-      <report test="count(copyright-statement) gt 1" role="error" id="fig-permissions-test-5">permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(copyright-statement) gt 1" role="error" id="fig-permissions-test-5">[fig-permissions-test-5] permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">[fig-permissions-test-6] permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(copyright-year) gt 1" role="error" id="fig-permissions-test-7">permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(copyright-year) gt 1" role="error" id="fig-permissions-test-7">[fig-permissions-test-7] permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(license) gt 1" role="error" id="fig-permissions-test-8">permissions for <value-of select="$fig-label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(license) gt 1" role="error" id="fig-permissions-test-8">[fig-permissions-test-8] permissions for <value-of select="$fig-label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="(count(license) = 1) and not(license/license-p)" role="error" id="fig-permissions-test-9">permissions for <value-of select="$fig-label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
+      <report test="(count(license) = 1) and not(license/license-p)" role="error" id="fig-permissions-test-9">[fig-permissions-test-9] permissions for <value-of select="$fig-label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
       
-      <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">permissions for <value-of select="$fig-label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">[fig-permissions-test-10] permissions for <value-of select="$fig-label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
       
-      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$fig-label"/> have neither.</assert>
+      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">[fig-permissions-test-11] figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$fig-label"/> have neither.</assert>
       
-      <report test="copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))" role="warning" id="fig-permissions-test-12">
-        <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
+      <report test="copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))" role="warning" id="fig-permissions-test-12">[fig-permissions-test-12] <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
       
     </rule>
   </pattern>
@@ -2667,9 +2583,9 @@
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return          if (string-length($x) lt 3) then ()          else if (matches($x,'^\s{1,3}?[a-z]')) then $x          else ()"/>
       
-      <assert test="count($text-tokens) = 0" role="warning" id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
+      <assert test="count($text-tokens) = 0" role="warning" id="fig-caption-test-1">[fig-caption-test-1] Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
       
-      <report test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>
+      <report test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">[fig-caption-test-2] Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -2680,14 +2596,13 @@
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
     
-      <report test="count(sec) = 0" role="error" id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>
+      <report test="count(sec) = 0" role="error" id="ra-sec-test-1">[ra-sec-test-1] At least one sec should be present in body for research-article content.</report>
       
-      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">
-        <value-of select="$type"/> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">[ra-sec-test-2] <value-of select="$type"/> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
       
-      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else $method-count != 1" role="warning" id="ra-sec-test-3">[ra-sec-test-3] main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
       
-      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">[ra-sec-test-4] main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
     
     </rule>
   </pattern>
@@ -2697,9 +2612,9 @@
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions', 'Model and methods')"/>
       
-      <assert test="@id = concat('s', $pos)" role="error" id="top-sec-id">top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
+      <assert test="@id = concat('s', $pos)" role="error" id="top-sec-id">[top-sec-id] top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
       
-      <report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
+      <report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">[sec-conformity] top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
     </rule>
   </pattern>
@@ -2708,7 +2623,7 @@
       <let name="parent-id" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
       
-      <assert test="@id = concat($parent-id,'-',$pos)" role="error" id="lower-sec-test-1">This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - <value-of select="concat($parent-id,'-',$pos)"/>.</assert>
+      <assert test="@id = concat($parent-id,'-',$pos)" role="error" id="lower-sec-test-1">[lower-sec-test-1] This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - <value-of select="concat($parent-id,'-',$pos)"/>.</assert>
       
     </rule>
   </pattern>
@@ -2718,20 +2633,20 @@
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
       
-      <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))                     else ()" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
+      <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))                     else ()" role="error" id="article-type-title-test-1">[article-type-title-test-1] title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
       
-      <report test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" role="error" id="article-type-title-test-2">title of a '<value-of select="$type"/>' must start with 'Comment on' or 'Response to comment on', but this starts with something else - <value-of select="."/>.</report>
+      <report test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" role="error" id="article-type-title-test-2">[article-type-title-test-2] title of a '<value-of select="$type"/>' must start with 'Comment on' or 'Response to comment on', but this starts with something else - <value-of select="."/>.</report>
       
-      <report test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" role="error" id="sc-title-test-1">title of a '<value-of select="$type"/>' contains a left double quotation mark. The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
+      <report test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" role="error" id="sc-title-test-1">[sc-title-test-1] title of a '<value-of select="$type"/>' contains a left double quotation mark. The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="($type = 'Scientific Correspondence') and matches(.,'”')" role="warning" id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
+      <report test="($type = 'Scientific Correspondence') and matches(.,'”')" role="warning" id="sc-title-test-2">[sc-title-test-2] title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="sec-title-tests-pattern">
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
       <let name="title" value="e:sec-type2title(parent::sec/@sec-type)"/>
       
-      <report test="if ($title = 'undefined') then ()          else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
+      <report test="if ($title = 'undefined') then ()          else . != $title" role="warning" id="sec-type-title-test">[sec-type-title-test] title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
       
     </rule>
   </pattern>
@@ -2739,54 +2654,54 @@
     <rule context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">[fig-title-test-1] '<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">[fig-title-test-2] title for <value-of select="$label"/> must end with a full stop.</assert>
       
-      <report test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      <report test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">[fig-title-test-3] title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
-      <report test="matches(.,'^\s')" role="error" id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+      <report test="matches(.,'^\s')" role="error" id="fig-title-test-4">[fig-title-test-4] title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
-      <report test="matches(.,'^\p{P}')" role="warning" id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/>
+      <report test="matches(.,'^\p{P}')" role="warning" id="fig-title-test-5">[fig-title-test-5] title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'^[Pp]anel ')" role="warning" id="fig-title-test-6">title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
+      <report test="matches(.,'^[Pp]anel ')" role="warning" id="fig-title-test-6">[fig-title-test-6] title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
     </rule>
   </pattern>
   <pattern id="supplementary-material-title-tests-pattern">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">[supplementary-material-title-test-1] '<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert test="matches(.,'\.$')" role="error" id="supplementary-material-title-test-2">[supplementary-material-title-test-2] title for <value-of select="$label"/> must end with a full stop.</assert>
       
-      <report test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      <report test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">[supplementary-material-title-test-3] title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
-      <report test="matches(.,'^\s')" role="error" id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+      <report test="matches(.,'^\s')" role="error" id="supplementary-material-title-test-4">[supplementary-material-title-test-4] title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
-      <report test="contains(lower-case(.),'key resource table')" role="warning" id="supplementary-material-title-test-5">title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
+      <report test="contains(lower-case(.),'key resource table')" role="warning" id="supplementary-material-title-test-5">[supplementary-material-title-test-5] title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
       
-      <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" role="warning" id="supplementary-material-title-test-6">title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
+      <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" role="warning" id="supplementary-material-title-test-6">[supplementary-material-title-test-6] title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
     </rule>
   </pattern>
   <pattern id="video-title-tests-pattern">
     <rule context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">[video-title-test-1] '<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$|\?$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="video-title-test-2">[video-title-test-2] title for <value-of select="$label"/> must end with a full stop.</assert>
       
-      <report test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      <report test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">[video-title-test-3] title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
-      <report test="matches(.,'^\s')" role="error" id="video-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+      <report test="matches(.,'^\s')" role="error" id="video-title-test-4">[video-title-test-4] title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="ack-title-tests-pattern">
     <rule context="ack" id="ack-title-tests">
       
-      <assert test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert test="title = 'Acknowledgements'" role="error" id="ack-title-test">[ack-title-test] ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
     </rule>
   </pattern>
@@ -2795,7 +2710,7 @@
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       
-      <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
+      <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">[ack-full-stop-intial-test] p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
       </report>
       
     </rule>
@@ -2805,48 +2720,48 @@
       <let name="cite-list" value="e:ref-cite-list(.)"/>
       <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>
       
-      <assert test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
+      <assert test="title = 'References'" role="warning" id="ref-list-title-test">[ref-list-title-test] reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
       
-      <report test="$non-distinct//*:item" role="error" id="ref-list-distinct-1">In the reference list, each reference must be unique in it's citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
+      <report test="$non-distinct//*:item" role="error" id="ref-list-distinct-1">[ref-list-distinct-1] In the reference list, each reference must be unique in it's citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
       
     </rule>
   </pattern>
   <pattern id="app-title-tests-pattern">
     <rule context="app/title" id="app-title-tests">
       
-      <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="error" id="app-title-test">app title must be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
+      <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="error" id="app-title-test">[app-title-test] app title must be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="comp-int-title-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
       
-      <assert test="title = 'Competing interests'" role="error" id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert test="title = 'Competing interests'" role="error" id="comp-int-title-test">[comp-int-title-test] fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="auth-cont-title-tests-pattern">
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-title-tests">
       
-      <assert test="title = 'Author contributions'" role="error" id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert test="title = 'Author contributions'" role="error" id="auth-cont-title-test">[auth-cont-title-test] fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="ethics-title-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
       
-      <assert test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert test="title = 'Ethics'" role="error" id="ethics-title-test">[ethics-title-test] fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">[ethics-broken-unicode-test] Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-title-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
-      <assert test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">[dec-letter-title-test] title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
   <pattern id="reply-title-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
-      <assert test="article-title = 'Author response'" role="error" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = 'Author response'" role="error" id="reply-title-test">[reply-title-test] title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
     </rule>
   </pattern>
@@ -2854,22 +2769,22 @@
   <pattern id="author-contrib-ids-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
       
-      <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string. <value-of select="@id"/> does not conform to this.</report>
+      <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">[author-id-1] contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="award-group-ids-pattern">
     <rule context="funding-group/award-group" id="award-group-ids">
       
-      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">[award-group-test-1] award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="fig-ids-pattern">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
       <!-- Needs updating once scheme/checmical structure ids have been updated -->
-      <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">[fig-id-test-1] fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
       
-      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>
+      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">[fig-id-test-2] fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>
       
       <!--<report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^chem[0-9]{1,3}$'))" 
         role="warning"
@@ -2883,69 +2798,69 @@
   <pattern id="fig-sup-ids-pattern">
     <rule context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
       
-      <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">[fig-sup-id-test] figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="box-fig-ids-pattern">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
-      <assert test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="box-fig-id-1">[box-fig-id-1] fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
+      <assert test="contains(@id,$box-id)" role="error" id="box-fig-id-2">[box-fig-id-2] fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-ids-pattern">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       
-      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
+      <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">[app-fig-id-test-1] figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0. <value-of select="@id"/> does not conform to this.</report>
+      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">[app-fig-id-test-2] Chemical structures must have an @id in the format app0chem0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0. <value-of select="@id"/> does not conform to this.</report>
+      <report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">[app-fig-id-test-3] Schemes must have an @id in the format app0scheme0. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="app-fig-sup-ids-pattern">
     <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
       
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">[app-fig-sup-id-test] figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="rep-fig-ids-pattern">
     <rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       
-      <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">fig in decision letter/author reponse must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">[resp-fig-id-test] fig in decision letter/author reponse must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="rep-fig-sup-ids-pattern">
     <rule context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
       
-      <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="resp-fig-sup-id-test">figure supplement in decision letter/author reponse must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="resp-fig-sup-id-test">[resp-fig-sup-id-test] figure supplement in decision letter/author reponse must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
       
     </rule>
   </pattern>
   <pattern id="video-ids-pattern">
     <rule context="article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
       
-      <assert test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">[video-id-test] main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="video-sup-ids-pattern">
     <rule context="article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" id="video-sup-ids">
       <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
       
-      <assert test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">[video-sup-id-test-1] video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="starts-with(@id,$id-prefix)" role="error" id="video-sup-id-test-2">video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
+      <assert test="starts-with(@id,$id-prefix)" role="error" id="video-sup-id-test-2">[video-sup-id-test-2] video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
     </rule>
   </pattern>
   <pattern id="app-video-ids-pattern">
     <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       
-      <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">[app-video-id-test-1] video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
+      <assert test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">[app-video-id-test-2] video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="app-video-sup-ids-pattern">
@@ -2953,32 +2868,32 @@
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">[app-video-sup-id-test-1] video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="starts-with(@id,concat('app',$id-prefix-1))" role="error" id="app-video-sup-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix-1)"/>.</assert>
+      <assert test="starts-with(@id,concat('app',$id-prefix-1))" role="error" id="app-video-sup-id-test-2">[app-video-sup-id-test-2] video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix-1)"/>.</assert>
       
-      <assert test="starts-with(@id,$id-prefix-2)" role="error" id="app-video-sup-id-test-3">video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
+      <assert test="starts-with(@id,$id-prefix-2)" role="error" id="app-video-sup-id-test-3">[app-video-sup-id-test-3] video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
     </rule>
   </pattern>
   <pattern id="box-vid-ids-pattern">
     <rule context="article/body//boxed-text//media[(@mimetype='video')]" id="box-vid-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
-      <assert test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">[box-vid-id-1] video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert test="starts-with(@id,$box-id)" role="error" id="box-vid-id-2">video id does not start with its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
+      <assert test="starts-with(@id,$box-id)" role="error" id="box-vid-id-2">[box-vid-id-2] video id does not start with its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="related-articles-ids-pattern">
     <rule context="related-article" id="related-articles-ids">
       
-      <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">related-article element must contain a @id, the value of which should be in the form ra0.</assert>
+      <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">[related-articles-test-7] related-article element must contain a @id, the value of which should be in the form ra0.</assert>
     </rule>
   </pattern>
   <pattern id="aff-ids-pattern">
     <rule context="aff[not(parent::contrib)]" id="aff-ids">
       
-      <assert test="if (label) then @id = concat('aff',label[1])                     else starts-with(@id,'aff')" role="error" id="aff-id-test">aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>
+      <assert test="if (label) then @id = concat('aff',label[1])                     else starts-with(@id,'aff')" role="error" id="aff-id-test">[aff-id-test] aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>
     </rule>
   </pattern>
   <pattern id="fn-ids-pattern">
@@ -2986,58 +2901,58 @@
       <let name="type" value="@fn-type"/>
       <let name="parent" value="self::*/parent::*/local-name()"/>
       
-      <report test="if ($parent = 'table-wrap-foot') then ()         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'con') then           if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))           else not(matches(@id,'^con[0-9]{1,3}$'))         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))         else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))         else ()" role="error" id="fn-id-test">fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
+      <report test="if ($parent = 'table-wrap-foot') then ()         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'con') then           if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))           else not(matches(@id,'^con[0-9]{1,3}$'))         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))         else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))         else ()" role="error" id="fn-id-test">[fn-id-test] fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
     </rule>
   </pattern>
   <pattern id="disp-formula-ids-pattern">
     <rule context="disp-formula" id="disp-formula-ids">
       
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
+      <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">[disp-formula-id-test] disp-formula @id must be in the format 'equ0'.</report>
       
-      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" id="sub-disp-formula-id-test">disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
+      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" id="sub-disp-formula-id-test">[sub-disp-formula-id-test] disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="mml-math-ids-pattern">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
+      <report test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">[mml-math-id-test] mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" id="sub-mml-math-id-test">mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
+      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" id="sub-mml-math-id-test">[sub-mml-math-id-test] mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="app-table-wrap-ids-pattern">
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">[app-table-wrap-id-test-1] table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
       
-      <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2</assert>
+      <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">[app-table-wrap-id-test-2] table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2</assert>
     </rule>
   </pattern>
   <pattern id="resp-table-wrap-ids-pattern">
     <rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
  
-      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#resp-table-wrap-id-test</assert>
+      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">[resp-table-wrap-id-test] table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#resp-table-wrap-id-test</assert>
     </rule>
   </pattern>
   <pattern id="table-wrap-ids-pattern">
     <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" id="table-wrap-ids">
       
-      <assert test="if (label = 'Key resources table') then @id='keyresource'                     else if (label) then matches(@id, '^table[0-9]{1,3}$')                     else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-id-test</assert>
+      <assert test="if (label = 'Key resources table') then @id='keyresource'                     else if (label) then matches(@id, '^table[0-9]{1,3}$')                     else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">[table-wrap-id-test] table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-id-test</assert>
     </rule>
   </pattern>
   <pattern id="body-top-level-sec-ids-pattern">
     <rule context="article/body/sec" id="body-top-level-sec-ids">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
     
-      <assert test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
+      <assert test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">[body-top-level-sec-id-test] This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
       </rule>
   </pattern>
   <pattern id="back-top-level-sec-ids-pattern">
     <rule context="article/back/sec" id="back-top-level-sec-ids">
       <let name="pos" value="count(ancestor::article/body/sec) + count(parent::back/sec) - count(following-sibling::sec)"/>
       
-      <assert test="@id = concat('s',$pos)" role="error" id="back-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be <value-of select="concat('s',$pos)"/>.</assert>
+      <assert test="@id = concat('s',$pos)" role="error" id="back-top-level-sec-id-test">[back-top-level-sec-id-test] This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="low-level-sec-ids-pattern">
@@ -3045,16 +2960,16 @@
       <let name="parent-sec" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
       
-      <assert test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
+      <assert test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">[low-level-sec-id-test] sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="app-ids-pattern">
     <rule context="app" id="app-ids">
       <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
       
-      <assert test="matches(@id,'^appendix-[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'appendix-0'. <value-of select="@id"/> is not in this format.</assert>
+      <assert test="matches(@id,'^appendix-[0-9]{1,3}$')" role="error" id="app-id-test-1">[app-id-test-1] app id must be in the format 'appendix-0'. <value-of select="@id"/> is not in this format.</assert>
       
-      <assert test="substring-after(@id,'appendix-') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
+      <assert test="substring-after(@id,'appendix-') = $pos" role="error" id="app-id-test-2">[app-id-test-2] app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   
@@ -3062,15 +2977,15 @@
     <rule context="sec" id="sec-tests">
       <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
       
-    <assert test="title" role="error" id="sec-test-1">sec must have a title</assert>
+    <assert test="title" role="error" id="sec-test-1">[sec-test-1] sec must have a title</assert>
       
-      <assert test="$child-count gt 0" role="error" id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
+      <assert test="$child-count gt 0" role="error" id="sec-test-2">[sec-test-2] sec appears to contain no content. This cannot be correct.</assert>
     </rule>
   </pattern>
   <pattern id="res-data-sec-pattern">
     <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
       
-      <report test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3</report>
+      <report test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">[sec-test-3] Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3</report>
       
     </rule>
   </pattern>
@@ -3081,57 +2996,56 @@
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
       
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
+      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">[back-test-1] One and only one sec[@sec-type="additional-information"] must be present in back.</report>
       
-      <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
+      <report test="count(sec[@sec-type='supplementary-material']) gt 1" role="error" id="back-test-2">[back-test-2] More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
       
-      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#back-test-3</report>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">[back-test-3] One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#back-test-3</report>
       
-      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)" role="warning" id="back-test-10">One and only one Data availability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for '<value-of select="$article-type"/>'. Is this a new version which was published first without one? If not, then it certainly needs adding.</report>
+      <report test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)" role="warning" id="back-test-10">[back-test-10] One and only one Data availability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for '<value-of select="$article-type"/>'. Is this a new version which was published first without one? If not, then it certainly needs adding.</report>
       
-      <report test="count(ack) gt 1" role="error" id="back-test-4">One and only one ack may be present in back.</report>
+      <report test="count(ack) gt 1" role="error" id="back-test-4">[back-test-4] One and only one ack may be present in back.</report>
       
-      <report test="if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1)                                           else ()" role="error" id="back-test-5">One and only one ref-list must be present in <value-of select="$article-type"/> content.</report>
+      <report test="if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1)                                           else ()" role="error" id="back-test-5">[back-test-5] One and only one ref-list must be present in <value-of select="$article-type"/> content.</report>
       
-      <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
+      <report test="count(app-group) gt 1" role="error" id="back-test-6">[back-test-6] One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
+      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">[back-test-8] '<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
       
-      <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present as a child of back <value-of select="$subj-type"/> content.</report>
+      <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">[back-test-7] An fn-group[@content-type='competing-interest'] must be present as a child of back <value-of select="$subj-type"/> content.</report>
       
-      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
+      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-9">[back-test-9] One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
       
-      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='author-contribution']) != 1)" role="error" id="back-test-12">One and only one fn-group[@content-type='author-contribution'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
+      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='author-contribution']) != 1)" role="error" id="back-test-12">[back-test-12] One and only one fn-group[@content-type='author-contribution'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
       
-      <report test="($article-type = ('article-commentary', 'editorial', 'book-review', 'discussion')) and sec[@sec-type='additional-information']" role="error" id="back-test-11">
-        <value-of select="$article-type"/> type articles cannot contain additional information sections (sec[@sec-type="additional-information"]).</report>
+      <report test="($article-type = ('article-commentary', 'editorial', 'book-review', 'discussion')) and sec[@sec-type='additional-information']" role="error" id="back-test-11">[back-test-11] <value-of select="$article-type"/> type articles cannot contain additional information sections (sec[@sec-type="additional-information"]).</report>
       
     </rule>
   </pattern>
   <pattern id="data-content-tests-pattern">
     <rule context="back/sec[@sec-type='data-availability']" id="data-content-tests">
       
-      <assert test="count(p) gt 0" role="error" id="data-p-presence">At least one p element must be present in sec[@sec-type='data=availability'].</assert>
+      <assert test="count(p) gt 0" role="error" id="data-p-presence">[data-p-presence] At least one p element must be present in sec[@sec-type='data=availability'].</assert>
     </rule>
   </pattern>
   <pattern id="ack-tests-pattern">
     <rule context="back/ack" id="ack-tests">
       
-      <assert test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
+      <assert test="count(title) = 1" role="error" id="ack-test-1">[ack-test-1] ack must have only 1 title.</assert>
     </rule>
   </pattern>
   <pattern id="ack-child-tests-pattern">
     <rule context="back/ack/*" id="ack-child-tests">
     
-      <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
+      <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">[ack-child-test-1] Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
   </pattern>
   <pattern id="app-tests-pattern">
     <rule context="back//app" id="app-tests">
       
-      <assert test="parent::app-group" role="error" id="app-test-1">app must be captured as a child of an app-group element.</assert>
+      <assert test="parent::app-group" role="error" id="app-test-1">[app-test-1] app must be captured as a child of an app-group element.</assert>
       
-      <assert test="count(title) = 1" role="error" id="app-test-2">app must have one title.</assert>
+      <assert test="count(title) = 1" role="error" id="app-test-2">[app-test-2] app must have one title.</assert>
     </rule>
   </pattern>
   <pattern id="additional-info-tests-pattern">
@@ -3140,56 +3054,55 @@
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', 'correction', 'retraction', 'review-article')"/>
       
-      <assert test="parent::back" role="error" id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
+      <assert test="parent::back" role="error" id="additional-info-test-1">[additional-info-test-1] sec[@sec-type='additional-information'] must be a child of back.</assert>
       
       <!-- Exception for article with no authors -->
-      <report test="if ($author-count = 0) then ()                     else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
+      <report test="if ($author-count = 0) then ()                     else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">[additional-info-test-2] This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
       
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="final-additional-info-test-3">Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
+      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="final-additional-info-test-3">[final-additional-info-test-3] Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
       
       
       
-      <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" role="error" id="additional-info-test-4">
-        <value-of select="$article-type"/> type articles should not contain author contributions.</report>
+      <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" role="error" id="additional-info-test-4">[additional-info-test-4] <value-of select="$article-type"/> type articles should not contain author contributions.</report>
       
     </rule>
   </pattern>
   <pattern id="comp-int-fn-group-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
       
-      <assert test="count(fn) gt 0" role="error" id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
+      <assert test="count(fn) gt 0" role="error" id="comp-int-fn-test-1">[comp-int-fn-test-1] At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
       
-      <assert test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
+      <assert test="ancestor::back" role="error" id="comp-int-fn-group-test-1">[comp-int-fn-group-test-1] This fn-group must be a descendant of back.</assert>
     </rule>
   </pattern>
   <pattern id="comp-int-fn-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
       
-      <assert test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
+      <assert test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">[comp-int-fn-test-2] fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
       
     </rule>
   </pattern>
   <pattern id="auth-cont-fn-tests-pattern">
     <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
       
-      <assert test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
+      <assert test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">[auth-cont-fn-test-1] This fn must have an @fn-type='con'.</assert>
     </rule>
   </pattern>
   <pattern id="ethics-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
       
       <!-- Exclusion included for Feature 5 -->
-      <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
+      <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">[ethics-test-1] Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
  
-      <report test="count(fn) gt 3" role="error" id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
+      <report test="count(fn) gt 3" role="error" id="ethics-test-2">[ethics-test-2] Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
       
-      <report test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
+      <report test="count(fn) = 0" role="error" id="ethics-test-3">[ethics-test-3] Ethics fn-group must have at least one fn element.</report>
     </rule>
   </pattern>
   <pattern id="ethics-fn-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
       
-      <assert test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
+      <assert test="@fn-type='other'" role="error" id="ethics-test-4">[ethics-test-4] This fn must have an @fn-type='other'</assert>
       
     </rule>
   </pattern>
@@ -3198,45 +3111,43 @@
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
       
-      <assert test="if ($pos = 1) then @article-type='decision-letter'                     else @article-type='reply'" role="error" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
+      <assert test="if ($pos = 1) then @article-type='decision-letter'                     else @article-type='reply'" role="error" id="dec-letter-reply-test-1">[dec-letter-reply-test-1] 1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
       
-      <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is it's position (1 or 2).</assert>
+      <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">[dec-letter-reply-test-2] sub-article id must be in the format 'sa0', where '0' is it's position (1 or 2).</assert>
       
-      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article contain one and only one front-stub.</assert>
+      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">[dec-letter-reply-test-3] sub-article contain one and only one front-stub.</assert>
       
-      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article contain one and only one body.</assert>
+      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">[dec-letter-reply-test-4] sub-article contain one and only one body.</assert>
       
     </rule>
   </pattern>
   <pattern id="dec-letter-reply-content-tests-pattern">
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
-      <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
+      <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">[dec-letter-reply-test-5] <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
       
-      <report test="matches(.,'&lt;\s?/?\s?[a-z]*\s?/?\s?&gt;')" role="warning" id="dec-letter-reply-test-6">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
+      <report test="matches(.,'&lt;\s?/?\s?[a-z]*\s?/?\s?&gt;')" role="warning" id="dec-letter-reply-test-6">[dec-letter-reply-test-6] <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="dec-letter-front-test-1">[dec-letter-front-test-1] sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert test="$count gt 0" role="error" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
+      <assert test="$count gt 0" role="error" id="dec-letter-front-test-2">[dec-letter-front-test-2] decision letter front-stub must contain at least 1 contrib-group element.</assert>
       
-      <report test="$count gt 2" role="error" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
+      <report test="$count gt 2" role="error" id="dec-letter-front-test-3">[dec-letter-front-test-3] decision letter front-stub contains more than 2 contrib-group elements.</report>
       
-      <report test="$count = 1" role="warning" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous?</report>
+      <report test="$count = 1" role="warning" id="dec-letter-front-test-4">[dec-letter-front-test-4] decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous?</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
-      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
+      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="dec-letter-editor-test-1">[dec-letter-editor-test-1] First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
       
-      <report test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
+      <report test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" id="dec-letter-editor-test-2">[dec-letter-editor-test-2] First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-2-pattern">
@@ -3246,7 +3157,7 @@
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
       <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
       
-      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">[dec-letter-editor-test-3] Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
       
       <!--<report test="($top-name!='') and ($top-name!=$name)"
         role="error"
@@ -3258,91 +3169,91 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       
-      <assert test="$role=('Senior Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-6">Senior Editor in decision letter front-stub must have the role 'Senior Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+      <assert test="$role=('Senior Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-6">[dec-letter-editor-test-6] Senior Editor in decision letter front-stub must have the role 'Senior Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
-      <assert test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
+      <assert test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" id="dec-letter-reviewer-test-1">[dec-letter-reviewer-test-1] Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
       
-      <report test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
+      <report test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" id="dec-letter-reviewer-test-2">[dec-letter-reviewer-test-2] Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
       
-      <report test="count(contrib[@contrib-type='reviewer']) gt 3" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than three reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+      <report test="count(contrib[@contrib-type='reviewer']) gt 3" role="warning" id="dec-letter-reviewer-test-6">[dec-letter-reviewer-test-6] Second contrib-group in decision letter contains more than three reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-2-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert test="role='Reviewer'" role="error" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
+      <assert test="role='Reviewer'" role="error" id="dec-letter-reviewer-test-3">[dec-letter-reviewer-test-3] Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-body-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
-      <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
+      <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">[dec-letter-body-test-1] First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="reply-front-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
       
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="reply-front-test-1">[reply-front-test-1] sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
   <pattern id="reply-body-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
       
-      <report test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" id="reply-body-test-1">author response doesn't contain a disp-quote. This has to be incorrect.</report>
+      <report test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" id="reply-body-test-1">[reply-body-test-1] author response doesn't contain a disp-quote. This has to be incorrect.</report>
       
-      <report test="count(p) = 0" role="error" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
+      <report test="count(p) = 0" role="error" id="reply-body-test-2">[reply-body-test-2] author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="reply-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
       
-      <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
+      <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">[reply-disp-quote-test-1] disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
-      <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
+      <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">[reply-missing-disp-quote-test-1] para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-2-pattern">
     <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
-      <report test="string-length(.) ge 50" role="warning" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
+      <report test="string-length(.) ge 50" role="warning" id="reply-missing-disp-quote-test-2">[reply-missing-disp-quote-test-2] A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
   
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
       
-      <assert test="count(related-article[@related-article-type='article-reference']) gt 0" role="error" id="related-articles-test-1">Research Advance must contain an article-reference link to the original article it is building upon.</assert>
+      <assert test="count(related-article[@related-article-type='article-reference']) gt 0" role="error" id="related-articles-test-1">[related-articles-test-1] Research Advance must contain an article-reference link to the original article it is building upon.</assert>
       
     </rule>
   </pattern>
   <pattern id="insight-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
       
-      <assert test="count(related-article) gt 0" role="error" id="related-articles-test-2">Insight must contain an article-reference link to the original article it is discussing.</assert>
+      <assert test="count(related-article) gt 0" role="error" id="related-articles-test-2">[related-articles-test-2] Insight must contain an article-reference link to the original article it is discussing.</assert>
       
     </rule>
   </pattern>
   <pattern id="correction-test-pattern">
     <rule context="article[@article-type='correction']//article-meta" id="correction-test">
       
-      <assert test="count(related-article[@related-article-type='corrected-article']) gt 0" role="error" id="related-articles-test-8">Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.</assert>
+      <assert test="count(related-article[@related-article-type='corrected-article']) gt 0" role="error" id="related-articles-test-8">[related-articles-test-8] Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.</assert>
       
     </rule>
   </pattern>
   <pattern id="retraction-test-pattern">
     <rule context="article[@article-type='retraction']//article-meta" id="retraction-test">
       
-      <assert test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
+      <assert test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">[related-articles-test-9] Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
       
     </rule>
   </pattern>
@@ -3351,17 +3262,17 @@
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article')"/>
       <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
       
-      <assert test="@related-article-type" role="error" id="related-articles-test-3">related-article element must contain a @related-article-type.</assert>
+      <assert test="@related-article-type" role="error" id="related-articles-test-3">[related-articles-test-3] related-article element must contain a @related-article-type.</assert>
       
-      <assert test="@related-article-type = $allowed-values" role="error" id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article').</assert>
+      <assert test="@related-article-type = $allowed-values" role="error" id="related-articles-test-4">[related-articles-test-4] @related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article').</assert>
       
-      <assert test="@ext-link-type='doi'" role="error" id="related-articles-test-5">related-article element must contain a @ext-link-type='doi'.</assert>
+      <assert test="@ext-link-type='doi'" role="error" id="related-articles-test-5">[related-articles-test-5] related-article element must contain a @ext-link-type='doi'.</assert>
       
-      <assert test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')" role="error" id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
+      <assert test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')" role="error" id="related-articles-test-6">[related-articles-test-6] related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
       
-      <report test="@xlink:href = preceding::related-article/@xlink:href" role="error" id="related-articles-test-10">related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
+      <report test="@xlink:href = preceding::related-article/@xlink:href" role="error" id="related-articles-test-10">[related-articles-test-10] related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
       
-      <report test="contains(@xlink:href,$article-doi)" role="error" id="related-articles-test-11">An article cannot contain a related-article link to itself - please delete the related article link to <value-of select="@xlink:href"/>.</report>
+      <report test="contains(@xlink:href,$article-doi)" role="error" id="related-articles-test-11">[related-articles-test-11] An article cannot contain a related-article link to itself - please delete the related article link to <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
   
@@ -3369,8 +3280,7 @@
     <rule context="media[@mimetype='video']" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
       
-      <assert test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
-        <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
+      <assert test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">[video-parent-test] <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
       
     </rule>
   </pattern>
@@ -3388,8 +3298,7 @@
         &lt;year&gt; elements.
       </report>
       
-      <report test="(fpage) and not(lpage)" role="warning" id="fpage-lpage-test-1">
-        <value-of select="e:citation-format1(year[1])"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
+      <report test="(fpage) and not(lpage)" role="warning" id="fpage-lpage-test-1">[fpage-lpage-test-1] <value-of select="e:citation-format1(year[1])"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
       
     </rule>
   </pattern>
@@ -3477,16 +3386,16 @@
   <pattern id="elem-citation-source-pattern">
     <rule context="ref/element-citation/source" id="elem-citation-source">
       
-      <assert test="string-length(normalize-space(.)) ge 2" role="error" id="elem-cit-source">A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>
+      <assert test="string-length(normalize-space(.)) ge 2" role="error" id="elem-cit-source">[elem-cit-source] A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-ext-link-pattern">
     <rule context="ref/element-citation/ext-link" id="elem-citation-ext-link">
       
-      <assert test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')" role="error" id="ext-link-attribute-content-match">&lt;ext-link&gt; must contain content and have an @xlink:href, the value of which must be the same as the content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
+      <assert test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')" role="error" id="ext-link-attribute-content-match">[ext-link-attribute-content-match] &lt;ext-link&gt; must contain content and have an @xlink:href, the value of which must be the same as the content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-      <assert test="matches(@xlink:href,'^https?://|^ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://",  or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
+      <assert test="matches(@xlink:href,'^https?://|^ftp://')" role="error" id="link-href-conformance">[link-href-conformance] @xlink:href must start with either "http://", "https://",  or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
       
     </rule>
   </pattern>
@@ -3617,8 +3526,7 @@
       
       
       
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="final-empty-elem-cit-des">
-        <name/> element is empty - this is not allowed. It must contain content.</report>
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="final-empty-elem-cit-des">[final-empty-elem-cit-des] <name/> element is empty - this is not allowed. It must contain content.</report>
     
     </rule>
   </pattern>
@@ -3788,7 +3696,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(source)=1" role="error" id="err-elem-cit-book-10-1">[err-elem-book-book-10-1]
+      <assert test="count(source)=1" role="error" id="err-elem-cit-book-10-1">[err-elem-cit-book-10-1] [err-elem-book-book-10-1]
         Each  &lt;element-citation&gt; of type 'book' must contain one and
         only one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
@@ -4230,10 +4138,10 @@
       
       
       
-      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">
+      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">[final-err-elem-cit-web-11-1] 
         Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
       
-      <report test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
+      <report test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">[err-elem-cit-web-11-1-1] Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
       
       <assert test="count(*) = count(person-group|article-title|source|year|ext-link|date-in-citation)" role="error" id="err-elem-cit-web-12">[err-elem-cit-web-12]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="web" are:
@@ -4301,11 +4209,11 @@
         The format of the element content must match month, space, day, comma, year.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>
       
-      <assert test="(matches(@iso-8601-date,replace($date-regex,'\s','')))" role="error" id="err-elem-cit-web-11-5">
+      <assert test="(matches(@iso-8601-date,replace($date-regex,'\s','')))" role="error" id="err-elem-cit-web-11-5">[err-elem-cit-web-11-5] 
         The @iso-8601-date value on accessed date must be a valid date value. <value-of select="@iso-8601-date"/> in reference '<value-of select="ancestor::ref/@id"/>' is not valid.</assert>
       
       <!-- issue 5 on the eLife lists -->
-      <report test="if (matches(@iso-8601-date,replace($date-regex,'\s',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else ()" role="error" id="err-elem-cit-web-11-4">
+      <report test="if (matches(@iso-8601-date,replace($date-regex,'\s',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else ()" role="error" id="err-elem-cit-web-11-4">[err-elem-cit-web-11-4] 
         The Accessed date value must match the @iso-8601-date value in the format 'January 1, 2020'.
         Reference '<value-of select="ancestor::ref/@id"/>' has element content of 
         <value-of select="."/> but an @iso-8601-date value of 
@@ -4323,7 +4231,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(source)=1" role="error" id="err-elem-cit-report-9-1">[err-elem-report-report-9-1]
+      <assert test="count(source)=1" role="error" id="err-elem-cit-report-9-1">[err-elem-cit-report-9-1] [err-elem-report-report-9-1]
         Each  &lt;element-citation&gt; of type 'report' must contain one and
         only one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
@@ -4405,7 +4313,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert test="count(source) le 1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
+      <assert test="count(source) le 1" role="error" id="err-elem-cit-confproc-9-1">[err-elem-cit-confproc-9-1] [err-elem-confproc-confproc-9-1]
         Each  &lt;element-citation&gt; of type 'confproc' must not contain more than one &lt;source&gt; element(s).
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
@@ -4768,7 +4676,7 @@
   <pattern id="elem-citation-periodical-fpage-pattern">
     <rule context="element-citation[@publication-type='periodical']/fpage" id="elem-citation-periodical-fpage">
       
-      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-periodical-11-5">[err-elem-cit-periodical-11-4]
+      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-periodical-11-5">[err-elem-cit-periodical-11-5] [err-elem-cit-periodical-11-4]
         If the content of &lt;fpage&gt; begins with a letter, then the content of  &lt;lpage&gt; must begin with 
         the same letter. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt;='<value-of select="."/>'
@@ -4856,50 +4764,50 @@
       
       
       
-      <assert test="count(person-group[@person-group-type='author'])=1" role="error" id="final-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1</assert>
+      <assert test="count(person-group[@person-group-type='author'])=1" role="error" id="final-das-elem-person-group-1">[final-das-elem-person-group-1] The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1</assert>
       
-      <report test="count(person-group) gt 1" role="error" id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-person-group-2</report>
-      
-      
-      
-      <report test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" role="error" id="final-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (person-group[@person-group-type='author']). Please ensure to add them in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-1</report>
+      <report test="count(person-group) gt 1" role="error" id="das-elem-person-group-2">[das-elem-person-group-2] The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-person-group-2</report>
       
       
       
-      <assert test="count(data-title)=1" role="error" id="final-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-data-title-1</assert>
+      <report test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" role="error" id="final-das-elem-person-1">[final-das-elem-person-1] The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (person-group[@person-group-type='author']). Please ensure to add them in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-1</report>
       
       
       
-      <assert test="count(source)=1" role="error" id="final-das-elem-source-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-source-1</assert>
+      <assert test="count(data-title)=1" role="error" id="final-das-elem-data-title-1">[final-das-elem-data-title-1] The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-data-title-1</assert>
       
       
       
-      <assert test="count(pub-id)=1" role="error" id="final-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-1</assert>
+      <assert test="count(source)=1" role="error" id="final-das-elem-source-1">[final-das-elem-source-1] The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-source-1</assert>
       
       
       
-      <report test="normalize-space(pub-id)=''" role="error" id="final-das-elem-pub-id-2">The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-2</report>
+      <assert test="count(pub-id)=1" role="error" id="final-das-elem-pub-id-1">[final-das-elem-pub-id-1] The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-1</assert>
       
       
       
-      <assert test="count(year)=1" role="error" id="final-das-elem-year-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-year-1</assert>
+      <report test="normalize-space(pub-id)=''" role="error" id="final-das-elem-pub-id-2">[final-das-elem-pub-id-2] The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-2</report>
       
-      <assert test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1</assert>
       
-      <report test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-2</report>
       
-      <report test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" role="error" id="das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-3</report>
+      <assert test="count(year)=1" role="error" id="final-das-elem-year-1">[final-das-elem-year-1] The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-year-1</assert>
       
-      <report test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" role="warning" id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4</report>
+      <assert test="@specific-use" role="error" id="das-elem-cit-1">[das-elem-cit-1] Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1</assert>
+      
+      <report test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" role="error" id="das-elem-cit-2">[das-elem-cit-2] The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-2</report>
+      
+      <report test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" role="error" id="das-elem-cit-3">[das-elem-cit-3] The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-3</report>
+      
+      <report test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" role="warning" id="das-elem-cit-4">[das-elem-cit-4] The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4</report>
       
     </rule>
   </pattern>
   <pattern id="das-elem-citation-data-pub-id-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
       
-      <report test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'archive', 'doi'))" role="error" id="das-pub-id-1">Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1</report>
+      <report test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'archive', 'doi'))" role="error" id="das-pub-id-1">[das-pub-id-1] Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1</report>
       
-      <report test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" role="error" id="das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-2</report>
+      <report test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" role="error" id="das-pub-id-2">[das-pub-id-2] Each pub-id element which is not a doi must have an @xlink-href (which is not empty). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-2</report>
       
     </rule>
   </pattern>
@@ -4907,30 +4815,30 @@
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
       <let name="allowed-elems" value="('sup','sub','italic')"/>
       
-      <assert test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-child-1</assert>
+      <assert test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">[das-elem-citation-child-1] Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-child-1</assert>
     </rule>
   </pattern>
   <pattern id="das-elem-citation-year-tests-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
       <let name="digits" value="replace(.,'[^\d]','')"/>
       
-      <report test="(.!='') and (@iso-8601-date!=$digits)" role="error" id="das-elem-citation-year-1">Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-year-1</report>
+      <report test="(.!='') and (@iso-8601-date!=$digits)" role="error" id="das-elem-citation-year-1">[das-elem-citation-year-1] Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-year-1</report>
       
       
       
-      <report test="normalize-space(.)=''" role="error" id="final-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-citation-year-2</report>
+      <report test="normalize-space(.)=''" role="error" id="final-das-elem-citation-year-2">[final-das-elem-citation-year-2] Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-citation-year-2</report>
     </rule>
   </pattern>
   
   <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="."/> does not.</report>
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">[pub-id-test-1] @xlink:href must start with an http:// or ftp:// protocol. - <value-of select="."/> does not.</report>
       
-      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
+      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">[pub-id-test-2] pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
       
-      <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
+      <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">[pub-id-test-3] pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
       </report>
       
     </rule>
@@ -4940,16 +4848,16 @@
     <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject[1]"/>
      
-     <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
+     <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">[feature-title-test-1] title starts with the sub-display-channel. This is certainly incorrect.</report>
      
    </rule>
   </pattern>
   <pattern id="feature-abstract-tests-pattern">
     <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
      
-     <assert test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
+     <assert test="count(title) = 1" role="error" id="feature-abstract-test-1">[feature-abstract-test-1] abstract must contain one and only one title.</assert>
      
-     <assert test="title = 'eLife digest'" role="error" id="feature-abstract-test-2">abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/>
+     <assert test="title = 'eLife digest'" role="error" id="feature-abstract-test-2">[feature-abstract-test-2] abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/>
       </assert>
      
    </rule>
@@ -4957,7 +4865,7 @@
   <pattern id="feature-subj-tests-1-pattern">
     <rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]" id="feature-subj-tests-1">		
 		
-     <assert test="subj-group[@subj-group-type='sub-display-channel']" role="error" id="feature-subj-test-1">Feature content must contain subj-group[@subj-group-type='sub-display-channel'].</assert>
+     <assert test="subj-group[@subj-group-type='sub-display-channel']" role="error" id="feature-subj-test-1">[feature-subj-test-1] Feature content must contain subj-group[@subj-group-type='sub-display-channel'].</assert>
      
    </rule>
   </pattern>
@@ -4966,12 +4874,12 @@
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
-     <report test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
+     <report test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">[feature-subj-test-2] The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
       </report>
      
-     <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
+     <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">[feature-subj-test-3] sub-display-channel ends with a colon. This is incorrect.</report>
      
-     <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">There is more than one sub-display-channel subjects. This is incorrect.</report>
+     <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">[feature-subj-test-4] There is more than one sub-display-channel subjects. This is incorrect.</report>
 		
 	</rule>
   </pattern>
@@ -4979,16 +4887,16 @@
     <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
-     <assert test="($count = 1) or ($count = 0)" role="error" id="feature-article-category-test-1">article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
+     <assert test="($count = 1) or ($count = 0)" role="error" id="feature-article-category-test-1">[feature-article-category-test-1] article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
      
-     <report test="$count = 0" role="warning" id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
+     <report test="$count = 0" role="warning" id="feature-article-category-test-2">[feature-article-category-test-2] article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
      
    </rule>
   </pattern>
   <pattern id="feature-author-tests-pattern">
     <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
-     <assert test="bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
+     <assert test="bio" role="error" id="feature-author-test-1">[feature-author-test-1] Author must contain child bio in feature content.</assert>
    </rule>
   </pattern>
   <pattern id="feature-bio-tests-pattern">
@@ -4997,18 +4905,17 @@
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
      
-     <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
+     <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">[feature-bio-test-1] bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
-     <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">bio does not contain top level insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+     <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">[feature-bio-test-2] bio does not contain top level insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
      
-     <report test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
+     <report test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">[feature-bio-test-3] bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
      
-     <assert test="(count(p) = 1)" role="error" id="feature-bio-test-4">One and only 1 &lt;p&gt; is allowed as a child of bio. <value-of select="."/>
+     <assert test="(count(p) = 1)" role="error" id="feature-bio-test-4">[feature-bio-test-4] One and only 1 &lt;p&gt; is allowed as a child of bio. <value-of select="."/>
       </assert>
      
-     <report test="*[local-name()!='p']" role="error" id="feature-bio-test-5">
-        <value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio&gt;. - <value-of select="."/>
+     <report test="*[local-name()!='p']" role="error" id="feature-bio-test-5">[feature-bio-test-5] <value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio&gt;. - <value-of select="."/>
       </report>
    </rule>
   </pattern>
@@ -5017,23 +4924,17 @@
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
-     <report test="($template = ('1','2')) and child::sub-article" role="error" id="feature-template-test-1">
-        <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
+     <report test="($template = ('1','2')) and child::sub-article" role="error" id="feature-template-test-1">[feature-template-test-1] <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
      
-     <report test="($template = '5') and not(@article-type='research-article')" role="error" id="feature-template-test-2">
-        <value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
+     <report test="($template = '5') and not(@article-type='research-article')" role="error" id="feature-template-test-2">[feature-template-test-2] <value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
      
-     <report test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" role="warning" id="feature-template-test-3">
-        <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
+     <report test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" role="warning" id="feature-template-test-3">[feature-template-test-3] <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
      
-     <report test="($template = '5') and not(child::sub-article[@article-type='reply'])" role="warning" id="feature-template-test-4">
-        <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
+     <report test="($template = '5') and not(child::sub-article[@article-type='reply'])" role="warning" id="feature-template-test-4">[feature-template-test-4] <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
      
-     <report test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" role="error" id="feature-templates-no-bre">
-        <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="          string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )          "/>. Please remove any senior/reviewing editors.</report>
+     <report test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" role="error" id="feature-templates-no-bre">[feature-templates-no-bre] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="          string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )          "/>. Please remove any senior/reviewing editors.</report>
      
-     <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" role="error" id="feature-templates-author-cont">
-        <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any Author contributions. This <value-of select="$type"/> has <value-of select="          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn          return concat('&quot;', $x,'&quot;')           ,          '; '          )          "/>. Please remove any author contributions.</report>
+     <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" role="error" id="feature-templates-author-cont">[feature-templates-author-cont] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any Author contributions. This <value-of select="$type"/> has <value-of select="          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn          return concat('&quot;', $x,'&quot;')           ,          '; '          )          "/>. Please remove any author contributions.</report>
    </rule>
   </pattern>
   <pattern id="insight-asbtract-tests-pattern">
@@ -5041,9 +4942,9 @@
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
+     <assert test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">[insight-asbtract-impact-test-1] In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>". More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1</assert>
      
-     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
+     <assert test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">[insight-asbtract-impact-test-2] In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2</assert>
      
    </rule>
   </pattern>
@@ -5053,51 +4954,51 @@
      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
      <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        $x/year,        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
-     <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
+     <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">[insight-box-test-1] A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
      
-     <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
+     <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">[insight-related-article-test-1] Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
    </rule>
   </pattern>
   
   <pattern id="correction-tests-pattern">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
       
-      <report test="descendant::article-meta//aff" role="error" id="corr-aff-presence">Correction notices should not contain affiliations.</report>
+      <report test="descendant::article-meta//aff" role="error" id="corr-aff-presence">[corr-aff-presence] Correction notices should not contain affiliations.</report>
       
-      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" role="error" id="corr-auth-kw-presence">Correction notices should not contain any author keywords.</report>
+      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" role="error" id="corr-auth-kw-presence">[corr-auth-kw-presence] Correction notices should not contain any author keywords.</report>
       
-      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">Correction notices should not contain competing interests.</report>
+      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">[corr-COI-presence] Correction notices should not contain competing interests.</report>
       
-      <report test="descendant::self-uri" role="error" id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
+      <report test="descendant::self-uri" role="error" id="corr-self-uri-presence">[corr-self-uri-presence] Correction notices should not contain a self-uri element (as the PDF is not published).</report>
       
-      <report test="descendant::abstract" role="error" id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
+      <report test="descendant::abstract" role="error" id="corr-abstract-presence">[corr-abstract-presence] Correction notices should not contain abstracts.</report>
       
-      <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
+      <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">[corr-back-sec] Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
       
-      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
+      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">[corr-impact-statement] Correction notices should not contain an impact statement.</report>
       
-      <report test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
+      <report test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">[corr-SE-BRE] Correction notices must not contain any Senior or Reviewing Editors.</report>
       
     </rule>
   </pattern>
   <pattern id="retraction-tests-pattern">
     <rule context="article[@article-type = 'retraction']" id="retraction-tests">
       
-      <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">Retractions should not contain affiliations.</report>
+      <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">[retr-aff-presence] Retractions should not contain affiliations.</report>
       
-      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" role="error" id="retr-auth-kw-presence">Retractions should not contain any author keywords.</report>
+      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" role="error" id="retr-auth-kw-presence">[retr-auth-kw-presence] Retractions should not contain any author keywords.</report>
       
-      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="retr-COI-presence">Retractions should not contain competing interests.</report>
+      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="retr-COI-presence">[retr-COI-presence] Retractions should not contain competing interests.</report>
       
-      <report test="descendant::self-uri" role="error" id="retr-self-uri-presence">Retractions should not contain a self-uri element (as the PDF is not published).</report>
+      <report test="descendant::self-uri" role="error" id="retr-self-uri-presence">[retr-self-uri-presence] Retractions should not contain a self-uri element (as the PDF is not published).</report>
       
-      <report test="descendant::abstract" role="error" id="retr-abstract-presence">Retractions should not contain abstracts.</report>
+      <report test="descendant::abstract" role="error" id="retr-abstract-presence">[retr-abstract-presence] Retractions should not contain abstracts.</report>
       
-      <report test="back/*" role="error" id="retr-back">Retractions should not contain any content in the back.</report>
+      <report test="back/*" role="error" id="retr-back">[retr-back] Retractions should not contain any content in the back.</report>
       
-      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="retr-impact-statement">Retractions should not contain an impact statement.</report>
+      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="retr-impact-statement">[retr-impact-statement] Retractions should not contain an impact statement.</report>
       
-      <report test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE">Retractions must not contain any Senior or Reviewing Editors.</report>
+      <report test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE">[retr-SE-BRE] Retractions must not contain any Senior or Reviewing Editors.</report>
        
     </rule>
   </pattern>
@@ -5108,7 +5009,7 @@
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
       
-      <assert test="(($text-count le $count) or ($text-count = $count))" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
+      <assert test="(($text-count le $count) or ($text-count = $count))" role="warning" id="gene-primer-sequence-test">[gene-primer-sequence-test] p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
   </pattern>
   
@@ -5123,32 +5024,28 @@
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')          return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
       
-      <report test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
+      <report test="($text-count gt $count)" role="warning" id="rrid-test">[rrid-test] '<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
-      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">
-        <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">[org-test] <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
-      <report test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">
-        <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
+      <report test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">[code-test] <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
       
-      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')]) and not(child::code) and not(child::monospace)" role="warning" id="cell-spacing-test">
-        <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
+      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')]) and not(child::code) and not(child::monospace)" role="warning" id="cell-spacing-test">[cell-spacing-test] <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
       </report>
       
-      <report test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" role="warning" id="equal-spacing-test">
-        <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
+      <report test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" role="warning" id="equal-spacing-test">[equal-spacing-test] <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">[ring-diacritic-symbol-test] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')])" role="error" id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
+      <report test="matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')])" role="error" id="diabetes-1-test">[diabetes-1-test] '<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
       
-      <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
+      <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">[diabetes-2-test] '<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      <report test="not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
       
-      <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
+      <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">[year-style-test] '<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
     </rule>
   </pattern>
   
@@ -5160,15 +5057,15 @@
       <let name="source" value="element-citation/source[1]"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
       
-      <report test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
+      <report test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">[duplicate-ref-test-1] ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
-      <report test="(element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.</report>
+      <report test="(element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="warning" id="duplicate-ref-test-2">[duplicate-ref-test-2] ref '<value-of select="@id"/>' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.</report>
       
-      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or          (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="warning" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
+      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or          (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="warning" id="duplicate-ref-test-3">[duplicate-ref-test-3] ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
       
-      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and not($x/source = $source))         or          (($x/chapter-title = $c-title) and not($x/source = $source))         )" role="warning" id="duplicate-ref-test-4">ref '<value-of select="@id"/>' has the same title as another reference, but a different source. Is this correct? - '<value-of select="$a-title"/>'</report>
+      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and not($x/source = $source))         or          (($x/chapter-title = $c-title) and not($x/source = $source))         )" role="warning" id="duplicate-ref-test-4">[duplicate-ref-test-4] ref '<value-of select="@id"/>' has the same title as another reference, but a different source. Is this correct? - '<value-of select="$a-title"/>'</report>
       
-      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
+      <report test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">[duplicate-ref-test-6] ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
   
@@ -5186,47 +5083,45 @@
       
       
       
-      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="final-ref-xref-test-1">
-        <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</assert>
+      <assert test="replace(.,' ',' ') = ($cite1,$cite2)" role="error" id="final-ref-xref-test-1">[final-ref-xref-test-1] <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</assert>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="ref-xref-test-2">[ref-xref-test-2] There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">[ref-xref-test-3] There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <assert test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 </assert>
+      <assert test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">[ref-xref-test-4] citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 </assert>
       
-      <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 </assert>
+      <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">[ref-xref-test-5] citation doesn't contain letters, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 </assert>
       
-      <report test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" role="warning" id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" role="warning" id="ref-xref-test-11">[ref-xref-test-11] '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-text,'^[\)]+\s*who|^[\)]+\s*have|^[\)]+\s*found|^[\)]+\s*used|^[\)]+\s*demonstrate|^[\)]+\s*follow[s]?|^[\)]+\s*followed')" role="warning" id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-text,'^[\)]+\s*who|^[\)]+\s*have|^[\)]+\s*found|^[\)]+\s*used|^[\)]+\s*demonstrate|^[\)]+\s*follow[s]?|^[\)]+\s*followed')" role="warning" id="ref-xref-test-12">[ref-xref-test-12] '<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">[ref-xref-test-14] citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">[ref-xref-test-15] citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-sentence,'\(\[\s?$')" role="warning" id="ref-xref-test-13">citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,'\(\[\s?$')" role="warning" id="ref-xref-test-13">[ref-xref-test-13] citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-sentence,'^\s?\)\)')" role="error" id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-sentence,'^\s?\)\)')" role="error" id="ref-xref-test-16">[ref-xref-test-16] citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-sentence,'\(\(\s?$')" role="error" id="ref-xref-test-17">citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,'\(\(\s?$')" role="error" id="ref-xref-test-17">[ref-xref-test-17] citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-sentence,'\(\s?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)" role="warning" id="ref-xref-test-10">citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,'\(\s?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)" role="warning" id="ref-xref-test-10">[ref-xref-test-10] citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')" role="warning" id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')" role="warning" id="ref-xref-test-18">[ref-xref-test-18] citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
-        <value-of select="."/> - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">[ref-xref-test-19] <value-of select="."/> - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-text,'^\);\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-text,'^\);\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">[ref-xref-test-20] citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-sentence,'[A-Za-z0-9]\($')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-sentence,'[A-Za-z0-9]\($')" role="warning" id="ref-xref-test-21">[ref-xref-test-21] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-sentence,'^\)[A-Za-z0-9]')" role="warning" id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-sentence,'^\)[A-Za-z0-9]')" role="warning" id="ref-xref-test-22">[ref-xref-test-22] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">[ref-xref-test-27] citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
-      <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+      <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">[ref-xref-test-28] citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
       
     </rule>
   </pattern>
@@ -5240,7 +5135,7 @@
       <let name="regex" value="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return          if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
-      <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
+      <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">[text-v-cite-test] ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
       
     </rule>
   </pattern>
@@ -5250,8 +5145,7 @@
       <let name="text" value="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
       
-      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">
-        <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(           tokenize(substring-before($text,' et al'),' ')[last()],           ' et al ',           tokenize(substring-after($text,' et al'),' ')[2]           )"/>
+      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(           tokenize(substring-before($text,' et al'),' ')[last()],           ' et al ',           tokenize(substring-after($text,' et al'),' ')[2]           )"/>
       </report>
       
     </rule>
@@ -5263,8 +5157,7 @@
       <let name="regex" value="replace($cite1,'—','[—–\\-]')"/>
       <let name="article-text" value="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*                  return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()                  else if ($x/ancestor::sec[@sec-type='additional-information']) then ()                  else if ($x/ancestor::ref-list) then ()                  else if ($x/local-name() = 'xref') then ()                  else $x/text(),'')"/>
       
-      <report test="matches($article-text,$regex)" role="warning" id="text-v-object-cite-test">
-        <value-of select="$cite1"/> has possible unlinked citations in the text.</report>
+      <report test="matches($article-text,$regex)" role="warning" id="text-v-object-cite-test">[text-v-object-cite-test] <value-of select="$cite1"/> has possible unlinked citations in the text.</report>
       
     </rule>
   </pattern>
@@ -5276,30 +5169,27 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
-        <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
+      <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">[vid-xref-conformity-1] <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
-      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</assert>
+      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">[vid-xref-conformity-2] video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</assert>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">[vid-xref-test-2] There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="vid-xref-test-3">[vid-xref-test-3] There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report test="(ancestor::media[@mimetype='video']/@id = $rid)" role="warning" id="vid-xref-test-4">
-        <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
+      <report test="(ancestor::media[@mimetype='video']/@id = $rid)" role="warning" id="vid-xref-test-4">[vid-xref-test-4] <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
-      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
-        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
+      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">[vid-xref-test-5] <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="vid-xref-test-6">[vid-xref-test-6] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="vid-xref-test-7">[vid-xref-test-7] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">[vid-xref-test-8] Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" role="error" id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" role="error" id="vid-xref-test-9">[vid-xref-test-9] Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="vid-xref-test-10">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="vid-xref-test-10">[vid-xref-test-10] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
     </rule>
   </pattern>
@@ -5313,51 +5203,45 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert test="matches(.,'\p{N}')" role="error" id="fig-xref-conformity-1">
-        <value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
+      <assert test="matches(.,'\p{N}')" role="error" id="fig-xref-conformity-1">[fig-xref-conformity-1] <value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="($type = 'Figure') and not(contains($no,$target-no))" role="error" id="fig-xref-conformity-2">
-        <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      <report test="($type = 'Figure') and not(contains($no,$target-no))" role="error" id="fig-xref-conformity-2">[fig-xref-conformity-2] <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report test="($type = 'Figure') and ($no != $target-no)" role="warning" id="fig-xref-conformity-3">
-        <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      <report test="($type = 'Figure') and ($no != $target-no)" role="warning" id="fig-xref-conformity-3">[fig-xref-conformity-3] <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">
-        <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
+      <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">[fig-xref-conformity-4] <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
-      <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" role="warning" id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
+      <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" role="warning" id="fig-xref-conformity-5">[fig-xref-conformity-5] figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
+      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" role="error" id="fig-xref-conformity-6">[fig-xref-conformity-6] figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="fig-xref-test-2">[fig-xref-test-2] There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">[fig-xref-test-3] There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">
-        <value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
+      <report test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" role="warning" id="fig-xref-test-4">[fig-xref-test-4] <value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
-      <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
-        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+      <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">[fig-xref-test-5] <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="fig-xref-test-6">[fig-xref-test-6] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="fig-xref-test-7">[fig-xref-test-7] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'their $')" role="warning" id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'their $')" role="warning" id="fig-xref-test-8">[fig-xref-test-8] Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">[fig-xref-test-9] Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" role="warning" id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" role="warning" id="fig-xref-test-10">[fig-xref-test-10] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="warning" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="warning" id="fig-xref-test-11">[fig-xref-test-11] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="warning" id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="warning" id="fig-xref-test-12">[fig-xref-test-12] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')" role="warning" id="fig-xref-test-13">Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
+      <report test="matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')" role="warning" id="fig-xref-test-13">[fig-xref-test-13] Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="fig-xref-test-14">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="fig-xref-test-14">[fig-xref-test-14] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report test="matches(.,' [Ff]ig[\.]? ')" role="error" id="fig-xref-test-15">Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
+      <report test="matches(.,' [Ff]ig[\.]? ')" role="error" id="fig-xref-test-15">[fig-xref-test-15] Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
     </rule>
   </pattern>
   
@@ -5369,28 +5253,23 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">
-        <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-1</report>
+      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">[table-xref-conformity-1] <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-1</report>
       
-      <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
-        <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-2</report>
+      <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">[table-xref-conformity-2] <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-2</report>
       
-      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
-        <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-3</report>
+      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">[table-xref-conformity-3] <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-3</report>
       
-      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">
-        <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-4</report>
+      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">[table-xref-conformity-4] <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-4</report>
       
-      <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">
-        <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-1</report>
+      <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">[table-xref-test-1] <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-1</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-2</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="table-xref-test-2">[table-xref-test-2] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-2</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-3</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">[table-xref-test-3] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-3</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="table-xref-test-4">Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-4</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="table-xref-test-4">[table-xref-test-4] Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-4</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="table-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-5</report>
+      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="table-xref-test-5">[table-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-5</report>
       
     </rule>
   </pattern>
@@ -5405,31 +5284,25 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-1">
-        <value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
+      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-1">[supp-file-xref-conformity-1] <value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
       
-      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-2">
-        <value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
+      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-2">[supp-file-xref-conformity-2] <value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
       
-      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-3">
-        <value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
+      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-3">[supp-file-xref-conformity-3] <value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
-      <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">
-        <value-of select="."/> - It looks like the citation content does not match what it directs to.</assert>
+      <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">[supp-file-xref-conformity-4] <value-of select="."/> - It looks like the citation content does not match what it directs to.</assert>
       
-      <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-5">
-        <value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
+      <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-5">[supp-file-xref-conformity-5] <value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
       
-      <report test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">
-        <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
+      <report test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">[supp-file-xref-test-1] <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="supp-xref-test-2">[supp-xref-test-2] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="supp-xref-test-3">[supp-xref-test-3] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" role="error" id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" role="error" id="supp-xref-test-4">[supp-xref-test-4] Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">[supp-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
     </rule>
   </pattern>
@@ -5441,15 +5314,13 @@
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">
-        <value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
+      <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">[equ-xref-conformity-1] <value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
-      <assert test="contains(.,$label)" role="warning" id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
+      <assert test="contains(.,$label)" role="warning" id="equ-xref-conformity-2">[equ-xref-conformity-2] equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
       
-      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="equ-xref-conformity-3">
-        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
+      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="equ-xref-conformity-3">[equ-xref-conformity-3] <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($prec-text,'cf[\.]?\s?[\(]?$')" role="warning" id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report test="matches($prec-text,'cf[\.]?\s?[\(]?$')" role="warning" id="equ-xref-conformity-4">[equ-xref-conformity-4] citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
   </pattern>
   
@@ -5457,237 +5328,203 @@
     <rule context="element-citation[@publication-type='journal']/article-title" id="org-ref-article-book-title">	
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="info" id="bssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="info" id="bssubtilis-ref-article-title-check">[bssubtilis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" role="info" id="bacillusssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" role="info" id="bacillusssubtilis-ref-article-title-check">[bacillusssubtilis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" role="info" id="dsmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" role="info" id="dsmelanogaster-ref-article-title-check">[dsmelanogaster-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" role="info" id="drosophilasmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" role="info" id="drosophilasmelanogaster-ref-article-title-check">[drosophilasmelanogaster-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])" role="info" id="escoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])" role="info" id="escoli-ref-article-title-check">[escoli-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])" role="info" id="escherichiascoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])" role="info" id="escherichiascoli-ref-article-title-check">[escherichiascoli-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])" role="info" id="sspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])" role="info" id="sspombe-ref-article-title-check">[sspombe-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" role="info" id="schizosaccharomycesspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" role="info" id="schizosaccharomycesspombe-ref-article-title-check">[schizosaccharomycesspombe-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" role="info" id="sscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" role="info" id="sscerevisiae-ref-article-title-check">[sscerevisiae-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" role="info" id="saccharomycesscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" role="info" id="saccharomycesscerevisiae-ref-article-title-check">[saccharomycesscerevisiae-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])" role="info" id="cselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])" role="info" id="cselegans-ref-article-title-check">[cselegans-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" role="info" id="caenorhabditisselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" role="info" id="caenorhabditisselegans-ref-article-title-check">[caenorhabditisselegans-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])" role="info" id="asthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])" role="info" id="asthaliana-ref-article-title-check">[asthaliana-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" role="info" id="arabidopsissthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" role="info" id="arabidopsissthaliana-ref-article-title-check">[arabidopsissthaliana-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])" role="info" id="msthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])" role="info" id="msthermophila-ref-article-title-check">[msthermophila-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" role="info" id="myceliophthorasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" role="info" id="myceliophthorasthermophila-ref-article-title-check">[myceliophthorasthermophila-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" role="info" id="dictyostelium-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" role="info" id="dictyostelium-ref-article-title-check">[dictyostelium-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])" role="info" id="psfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])" role="info" id="psfalciparum-ref-article-title-check">[psfalciparum-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" role="info" id="plasmodiumsfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" role="info" id="plasmodiumsfalciparum-ref-article-title-check">[plasmodiumsfalciparum-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])" role="info" id="ssenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])" role="info" id="ssenterica-ref-article-title-check">[ssenterica-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" role="info" id="salmonellasenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" role="info" id="salmonellasenterica-ref-article-title-check">[salmonellasenterica-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" role="info" id="sspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" role="info" id="sspyogenes-ref-article-title-check">[sspyogenes-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" role="info" id="streptococcusspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" role="info" id="streptococcusspyogenes-ref-article-title-check">[streptococcusspyogenes-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" role="info" id="psdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" role="info" id="psdumerilii-ref-article-title-check">[psdumerilii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" role="info" id="platynereissdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" role="info" id="platynereissdumerilii-ref-article-title-check">[platynereissdumerilii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" role="info" id="pscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" role="info" id="pscynocephalus-ref-article-title-check">[pscynocephalus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" role="info" id="papioscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" role="info" id="papioscynocephalus-ref-article-title-check">[papioscynocephalus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" role="info" id="osfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" role="info" id="osfasciatus-ref-article-title-check">[osfasciatus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" role="info" id="oncopeltussfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" role="info" id="oncopeltussfasciatus-ref-article-title-check">[oncopeltussfasciatus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])" role="info" id="nscrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])" role="info" id="nscrassa-ref-article-title-check">[nscrassa-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" role="info" id="neurosporascrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" role="info" id="neurosporascrassa-ref-article-title-check">[neurosporascrassa-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" role="info" id="csintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" role="info" id="csintestinalis-ref-article-title-check">[csintestinalis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" role="info" id="cionasintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" role="info" id="cionasintestinalis-ref-article-title-check">[cionasintestinalis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" role="info" id="escuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" role="info" id="escuniculi-ref-article-title-check">[escuniculi-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" role="info" id="encephalitozoonscuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" role="info" id="encephalitozoonscuniculi-ref-article-title-check">[encephalitozoonscuniculi-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])" role="info" id="hssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])" role="info" id="hssalinarum-ref-article-title-check">[hssalinarum-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" role="info" id="halobacteriumssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" role="info" id="halobacteriumssalinarum-ref-article-title-check">[halobacteriumssalinarum-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" role="info" id="sssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" role="info" id="sssolfataricus-ref-article-title-check">[sssolfataricus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" role="info" id="sulfolobusssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" role="info" id="sulfolobusssolfataricus-ref-article-title-check">[sulfolobusssolfataricus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" role="info" id="ssmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" role="info" id="ssmediterranea-ref-article-title-check">[ssmediterranea-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="info" id="schmidteasmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="info" id="schmidteasmediterranea-ref-article-title-check">[schmidteasmediterranea-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])" role="info" id="ssrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])" role="info" id="ssrosetta-ref-article-title-check">[ssrosetta-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" role="info" id="salpingoecasrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" role="info" id="salpingoecasrosetta-ref-article-title-check">[salpingoecasrosetta-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])" role="info" id="nsvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])" role="info" id="nsvectensis-ref-article-title-check">[nsvectensis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" role="info" id="nematostellasvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" role="info" id="nematostellasvectensis-ref-article-title-check">[nematostellasvectensis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])" role="info" id="ssaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])" role="info" id="ssaureus-ref-article-title-check">[ssaureus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" role="info" id="staphylococcussaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" role="info" id="staphylococcussaureus-ref-article-title-check">[staphylococcussaureus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])" role="info" id="vscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])" role="info" id="vscholerae-ref-article-title-check">[vscholerae-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" role="info" id="vibrioscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" role="info" id="vibrioscholerae-ref-article-title-check">[vibrioscholerae-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])" role="info" id="tsthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])" role="info" id="tsthermophila-ref-article-title-check">[tsthermophila-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" role="info" id="tetrahymenasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" role="info" id="tetrahymenasthermophila-ref-article-title-check">[tetrahymenasthermophila-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" role="info" id="csreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" role="info" id="csreinhardtii-ref-article-title-check">[csreinhardtii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" role="info" id="chlamydomonassreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" role="info" id="chlamydomonassreinhardtii-ref-article-title-check">[chlamydomonassreinhardtii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])" role="info" id="nsattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])" role="info" id="nsattenuata-ref-article-title-check">[nsattenuata-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" role="info" id="nicotianasattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" role="info" id="nicotianasattenuata-ref-article-title-check">[nicotianasattenuata-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])" role="info" id="escarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])" role="info" id="escarotovora-ref-article-title-check">[escarotovora-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="info" id="erwiniascarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="info" id="erwiniascarotovora-ref-article-title-check">[erwiniascarotovora-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="info" id="esfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="info" id="esfaecalis-ref-article-title-check">[esfaecalis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="info" id="hsapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="info" id="hsapiens-ref-article-title-check">[hsapiens-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="info" id="homosapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="info" id="homosapiens-ref-article-title-check">[homosapiens-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" role="info" id="ctrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" role="info" id="ctrachomatis-ref-article-title-check">[ctrachomatis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" role="info" id="chlamydiatrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" role="info" id="chlamydiatrachomatis-ref-article-title-check">[chlamydiatrachomatis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="info" id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="info" id="enterococcussfaecalis-ref-article-title-check">[enterococcussfaecalis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])" role="info" id="xlaevis-ref-article-title-check">
-        <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])" role="info" id="xlaevis-ref-article-title-check">[xlaevis-ref-article-title-check] <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" role="info" id="xenopuslaevis-ref-article-title-check">
-        <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" role="info" id="xenopuslaevis-ref-article-title-check">[xenopuslaevis-ref-article-title-check] <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" role="info" id="xtropicalis-ref-article-title-check">
-        <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" role="info" id="xtropicalis-ref-article-title-check">[xtropicalis-ref-article-title-check] <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="info" id="xenopustropicalis-ref-article-title-check">
-        <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="info" id="xenopustropicalis-ref-article-title-check">[xenopustropicalis-ref-article-title-check] <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])" role="info" id="mmusculus-ref-article-title-check">
-        <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])" role="info" id="mmusculus-ref-article-title-check">[mmusculus-ref-article-title-check] <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])" role="info" id="musmusculus-ref-article-title-check">
-        <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])" role="info" id="musmusculus-ref-article-title-check">[musmusculus-ref-article-title-check] <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])" role="info" id="dimmigrans-ref-article-title-check">
-        <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])" role="info" id="dimmigrans-ref-article-title-check">[dimmigrans-ref-article-title-check] <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" role="info" id="drosophilaimmigrans-ref-article-title-check">
-        <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" role="info" id="drosophilaimmigrans-ref-article-title-check">[drosophilaimmigrans-ref-article-title-check] <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])" role="info" id="dsubobscura-ref-article-title-check">
-        <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])" role="info" id="dsubobscura-ref-article-title-check">[dsubobscura-ref-article-title-check] <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="info" id="drosophilasubobscura-ref-article-title-check">
-        <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="info" id="drosophilasubobscura-ref-article-title-check">[drosophilasubobscura-ref-article-title-check] <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" role="info" id="daffinis-ref-article-title-check">
-        <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" role="info" id="daffinis-ref-article-title-check">[daffinis-ref-article-title-check] <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" role="info" id="drosophilaaffinis-ref-article-title-check">
-        <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" role="info" id="drosophilaaffinis-ref-article-title-check">[drosophilaaffinis-ref-article-title-check] <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])" role="info" id="dobscura-ref-article-title-check">
-        <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])" role="info" id="dobscura-ref-article-title-check">[dobscura-ref-article-title-check] <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" role="info" id="drosophilaobscura-ref-article-title-check">
-        <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" role="info" id="drosophilaobscura-ref-article-title-check">[drosophilaobscura-ref-article-title-check] <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])" role="info" id="ftularensis-ref-article-title-check">
-        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])" role="info" id="ftularensis-ref-article-title-check">[ftularensis-ref-article-title-check] <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="info" id="francisellatularensis-ref-article-title-check">
-        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="info" id="francisellatularensis-ref-article-title-check">[francisellatularensis-ref-article-title-check] <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="info" id="pplantaginis-ref-article-title-check">
-        <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="info" id="pplantaginis-ref-article-title-check">[pplantaginis-ref-article-title-check] <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="info" id="podosphaeraplantaginis-ref-article-title-check">
-        <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="info" id="podosphaeraplantaginis-ref-article-title-check">[podosphaeraplantaginis-ref-article-title-check] <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="info" id="planceolata-ref-article-title-check">
-        <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="info" id="planceolata-ref-article-title-check">[planceolata-ref-article-title-check] <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="info" id="plantagolanceolata-ref-article-title-check">
-        <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="info" id="plantagolanceolata-ref-article-title-check">[plantagolanceolata-ref-article-title-check] <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-ref-article-title-check">
-        <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-ref-article-title-check">[mtrossulus-ref-article-title-check] <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-ref-article-title-check">
-        <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-ref-article-title-check">[mytilustrossulus-ref-article-title-check] <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-ref-article-title-check">
-        <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-ref-article-title-check">[medulis-ref-article-title-check] <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-ref-article-title-check">
-        <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-ref-article-title-check">[mytilusedulis-ref-article-title-check] <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-ref-article-title-check">
-        <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-ref-article-title-check">[mchilensis-ref-article-title-check] <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-ref-article-title-check">
-        <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-ref-article-title-check">[mytiluschilensis-ref-article-title-check] <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-ref-article-title-check">
-        <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-ref-article-title-check">[umaydis-ref-article-title-check] <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-ref-article-title-check">
-        <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-ref-article-title-check">[ustilagomaydis-ref-article-title-check] <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" role="info" id="pknowlesi-ref-article-title-check">
-        <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" role="info" id="pknowlesi-ref-article-title-check">[pknowlesi-ref-article-title-check] <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" role="info" id="plasmodiumknowlesi-ref-article-title-check">
-        <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" role="info" id="plasmodiumknowlesi-ref-article-title-check">[plasmodiumknowlesi-ref-article-title-check] <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" role="info" id="paeruginosa-ref-article-title-check">
-        <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" role="info" id="paeruginosa-ref-article-title-check">[paeruginosa-ref-article-title-check] <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" role="info" id="pseudomonasaeruginosa-ref-article-title-check">
-        <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" role="info" id="pseudomonasaeruginosa-ref-article-title-check">[pseudomonasaeruginosa-ref-article-title-check] <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="info" id="drerio-ref-article-title-check">
-        <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="info" id="drerio-ref-article-title-check">[drerio-ref-article-title-check] <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])" role="info" id="daniorerio-ref-article-title-check">
-        <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])" role="info" id="daniorerio-ref-article-title-check">[daniorerio-ref-article-title-check] <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="info" id="drosophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="info" id="drosophila-ref-article-title-check">[drosophila-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="info" id="xenopus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="info" id="xenopus-ref-article-title-check">[xenopus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
   </pattern>
@@ -5695,302 +5532,203 @@
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">		
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="warning" id="bssubtilis-article-title-check">
-        <name/> contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="warning" id="bssubtilis-article-title-check">[bssubtilis-article-title-check] <name/> contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" role="warning" id="bacillusssubtilis-article-title-check">
-        <name/> contains an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" role="warning" id="bacillusssubtilis-article-title-check">[bacillusssubtilis-article-title-check] <name/> contains an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" role="warning" id="dsmelanogaster-article-title-check">
-        <name/> contains an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" role="warning" id="dsmelanogaster-article-title-check">[dsmelanogaster-article-title-check] <name/> contains an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" role="warning" id="drosophilasmelanogaster-article-title-check">
-        <name/> contains an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" role="warning" id="drosophilasmelanogaster-article-title-check">[drosophilasmelanogaster-article-title-check] <name/> contains an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])" role="warning" id="escoli-article-title-check">
-        <name/> contains an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])" role="warning" id="escoli-article-title-check">[escoli-article-title-check] <name/> contains an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])" role="warning" id="escherichiascoli-article-title-check">
-        <name/> contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])" role="warning" id="escherichiascoli-article-title-check">[escherichiascoli-article-title-check] <name/> contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])" role="warning" id="sspombe-article-title-check">
-        <name/> contains an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])" role="warning" id="sspombe-article-title-check">[sspombe-article-title-check] <name/> contains an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" role="warning" id="schizosaccharomycesspombe-article-title-check">
-        <name/> contains an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" role="warning" id="schizosaccharomycesspombe-article-title-check">[schizosaccharomycesspombe-article-title-check] <name/> contains an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" role="warning" id="sscerevisiae-article-title-check">
-        <name/> contains an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" role="warning" id="sscerevisiae-article-title-check">[sscerevisiae-article-title-check] <name/> contains an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" role="warning" id="saccharomycesscerevisiae-article-title-check">
-        <name/> contains an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" role="warning" id="saccharomycesscerevisiae-article-title-check">[saccharomycesscerevisiae-article-title-check] <name/> contains an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])" role="warning" id="cselegans-article-title-check">
-        <name/> contains an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])" role="warning" id="cselegans-article-title-check">[cselegans-article-title-check] <name/> contains an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" role="warning" id="caenorhabditisselegans-article-title-check">
-        <name/> contains an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" role="warning" id="caenorhabditisselegans-article-title-check">[caenorhabditisselegans-article-title-check] <name/> contains an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])" role="warning" id="asthaliana-article-title-check">
-        <name/> contains an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])" role="warning" id="asthaliana-article-title-check">[asthaliana-article-title-check] <name/> contains an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" role="warning" id="arabidopsissthaliana-article-title-check">
-        <name/> contains an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" role="warning" id="arabidopsissthaliana-article-title-check">[arabidopsissthaliana-article-title-check] <name/> contains an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])" role="warning" id="msthermophila-article-title-check">
-        <name/> contains an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])" role="warning" id="msthermophila-article-title-check">[msthermophila-article-title-check] <name/> contains an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" role="warning" id="myceliophthorasthermophila-article-title-check">
-        <name/> contains an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" role="warning" id="myceliophthorasthermophila-article-title-check">[myceliophthorasthermophila-article-title-check] <name/> contains an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" role="warning" id="dictyostelium-article-title-check">
-        <name/> contains an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" role="warning" id="dictyostelium-article-title-check">[dictyostelium-article-title-check] <name/> contains an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])" role="warning" id="psfalciparum-article-title-check">
-        <name/> contains an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])" role="warning" id="psfalciparum-article-title-check">[psfalciparum-article-title-check] <name/> contains an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" role="warning" id="plasmodiumsfalciparum-article-title-check">
-        <name/> contains an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" role="warning" id="plasmodiumsfalciparum-article-title-check">[plasmodiumsfalciparum-article-title-check] <name/> contains an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])" role="warning" id="ssenterica-article-title-check">
-        <name/> contains an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])" role="warning" id="ssenterica-article-title-check">[ssenterica-article-title-check] <name/> contains an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" role="warning" id="salmonellasenterica-article-title-check">
-        <name/> contains an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" role="warning" id="salmonellasenterica-article-title-check">[salmonellasenterica-article-title-check] <name/> contains an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" role="warning" id="sspyogenes-article-title-check">
-        <name/> contains an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" role="warning" id="sspyogenes-article-title-check">[sspyogenes-article-title-check] <name/> contains an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" role="warning" id="streptococcusspyogenes-article-title-check">
-        <name/> contains an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" role="warning" id="streptococcusspyogenes-article-title-check">[streptococcusspyogenes-article-title-check] <name/> contains an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" role="warning" id="psdumerilii-article-title-check">
-        <name/> contains an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" role="warning" id="psdumerilii-article-title-check">[psdumerilii-article-title-check] <name/> contains an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" role="warning" id="platynereissdumerilii-article-title-check">
-        <name/> contains an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" role="warning" id="platynereissdumerilii-article-title-check">[platynereissdumerilii-article-title-check] <name/> contains an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" role="warning" id="pscynocephalus-article-title-check">
-        <name/> contains an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" role="warning" id="pscynocephalus-article-title-check">[pscynocephalus-article-title-check] <name/> contains an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" role="warning" id="papioscynocephalus-article-title-check">
-        <name/> contains an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" role="warning" id="papioscynocephalus-article-title-check">[papioscynocephalus-article-title-check] <name/> contains an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" role="warning" id="osfasciatus-article-title-check">
-        <name/> contains an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" role="warning" id="osfasciatus-article-title-check">[osfasciatus-article-title-check] <name/> contains an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" role="warning" id="oncopeltussfasciatus-article-title-check">
-        <name/> contains an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" role="warning" id="oncopeltussfasciatus-article-title-check">[oncopeltussfasciatus-article-title-check] <name/> contains an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])" role="warning" id="nscrassa-article-title-check">
-        <name/> contains an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])" role="warning" id="nscrassa-article-title-check">[nscrassa-article-title-check] <name/> contains an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" role="warning" id="neurosporascrassa-article-title-check">
-        <name/> contains an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" role="warning" id="neurosporascrassa-article-title-check">[neurosporascrassa-article-title-check] <name/> contains an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" role="warning" id="csintestinalis-article-title-check">
-        <name/> contains an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" role="warning" id="csintestinalis-article-title-check">[csintestinalis-article-title-check] <name/> contains an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" role="warning" id="cionasintestinalis-article-title-check">
-        <name/> contains an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" role="warning" id="cionasintestinalis-article-title-check">[cionasintestinalis-article-title-check] <name/> contains an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" role="warning" id="escuniculi-article-title-check">
-        <name/> contains an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" role="warning" id="escuniculi-article-title-check">[escuniculi-article-title-check] <name/> contains an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" role="warning" id="encephalitozoonscuniculi-article-title-check">
-        <name/> contains an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" role="warning" id="encephalitozoonscuniculi-article-title-check">[encephalitozoonscuniculi-article-title-check] <name/> contains an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])" role="warning" id="hssalinarum-article-title-check">
-        <name/> contains an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])" role="warning" id="hssalinarum-article-title-check">[hssalinarum-article-title-check] <name/> contains an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" role="warning" id="halobacteriumssalinarum-article-title-check">
-        <name/> contains an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" role="warning" id="halobacteriumssalinarum-article-title-check">[halobacteriumssalinarum-article-title-check] <name/> contains an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" role="warning" id="sssolfataricus-article-title-check">
-        <name/> contains an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" role="warning" id="sssolfataricus-article-title-check">[sssolfataricus-article-title-check] <name/> contains an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" role="warning" id="sulfolobusssolfataricus-article-title-check">
-        <name/> contains an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" role="warning" id="sulfolobusssolfataricus-article-title-check">[sulfolobusssolfataricus-article-title-check] <name/> contains an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" role="warning" id="ssmediterranea-article-title-check">
-        <name/> contains an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" role="warning" id="ssmediterranea-article-title-check">[ssmediterranea-article-title-check] <name/> contains an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="warning" id="schmidteasmediterranea-article-title-check">
-        <name/> contains an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="warning" id="schmidteasmediterranea-article-title-check">[schmidteasmediterranea-article-title-check] <name/> contains an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])" role="warning" id="ssrosetta-article-title-check">
-        <name/> contains an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])" role="warning" id="ssrosetta-article-title-check">[ssrosetta-article-title-check] <name/> contains an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" role="warning" id="salpingoecasrosetta-article-title-check">
-        <name/> contains an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" role="warning" id="salpingoecasrosetta-article-title-check">[salpingoecasrosetta-article-title-check] <name/> contains an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])" role="warning" id="nsvectensis-article-title-check">
-        <name/> contains an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])" role="warning" id="nsvectensis-article-title-check">[nsvectensis-article-title-check] <name/> contains an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" role="warning" id="nematostellasvectensis-article-title-check">
-        <name/> contains an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" role="warning" id="nematostellasvectensis-article-title-check">[nematostellasvectensis-article-title-check] <name/> contains an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])" role="warning" id="ssaureus-article-title-check">
-        <name/> contains an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])" role="warning" id="ssaureus-article-title-check">[ssaureus-article-title-check] <name/> contains an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" role="warning" id="staphylococcussaureus-article-title-check">
-        <name/> contains an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" role="warning" id="staphylococcussaureus-article-title-check">[staphylococcussaureus-article-title-check] <name/> contains an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])" role="warning" id="vscholerae-article-title-check">
-        <name/> contains an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])" role="warning" id="vscholerae-article-title-check">[vscholerae-article-title-check] <name/> contains an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" role="warning" id="vibrioscholerae-article-title-check">
-        <name/> contains an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" role="warning" id="vibrioscholerae-article-title-check">[vibrioscholerae-article-title-check] <name/> contains an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])" role="warning" id="tsthermophila-article-title-check">
-        <name/> contains an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])" role="warning" id="tsthermophila-article-title-check">[tsthermophila-article-title-check] <name/> contains an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" role="warning" id="tetrahymenasthermophila-article-title-check">
-        <name/> contains an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" role="warning" id="tetrahymenasthermophila-article-title-check">[tetrahymenasthermophila-article-title-check] <name/> contains an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" role="warning" id="csreinhardtii-article-title-check">
-        <name/> contains an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" role="warning" id="csreinhardtii-article-title-check">[csreinhardtii-article-title-check] <name/> contains an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" role="warning" id="chlamydomonassreinhardtii-article-title-check">
-        <name/> contains an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" role="warning" id="chlamydomonassreinhardtii-article-title-check">[chlamydomonassreinhardtii-article-title-check] <name/> contains an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])" role="warning" id="nsattenuata-article-title-check">
-        <name/> contains an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])" role="warning" id="nsattenuata-article-title-check">[nsattenuata-article-title-check] <name/> contains an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" role="warning" id="nicotianasattenuata-article-title-check">
-        <name/> contains an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" role="warning" id="nicotianasattenuata-article-title-check">[nicotianasattenuata-article-title-check] <name/> contains an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])" role="warning" id="escarotovora-article-title-check">
-        <name/> contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])" role="warning" id="escarotovora-article-title-check">[escarotovora-article-title-check] <name/> contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="warning" id="erwiniascarotovora-article-title-check">
-        <name/> contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="warning" id="erwiniascarotovora-article-title-check">[erwiniascarotovora-article-title-check] <name/> contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="warning" id="hsapiens-article-title-check">
-        <name/> contains an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="warning" id="hsapiens-article-title-check">[hsapiens-article-title-check] <name/> contains an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="warning" id="homosapiens-article-title-check">
-        <name/> contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="warning" id="homosapiens-article-title-check">[homosapiens-article-title-check] <name/> contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" role="warning" id="ctrachomatis-article-title-check">
-        <name/> contains an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" role="warning" id="ctrachomatis-article-title-check">[ctrachomatis-article-title-check] <name/> contains an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" role="warning" id="chlamydiatrachomatis-article-title-check">
-        <name/> contains an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" role="warning" id="chlamydiatrachomatis-article-title-check">[chlamydiatrachomatis-article-title-check] <name/> contains an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="warning" id="esfaecalis-article-title-check">
-        <name/> contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="warning" id="esfaecalis-article-title-check">[esfaecalis-article-title-check] <name/> contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="warning" id="enterococcussfaecalis-article-title-check">
-        <name/> contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="warning" id="enterococcussfaecalis-article-title-check">[enterococcussfaecalis-article-title-check] <name/> contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])" role="warning" id="xlaevis-article-title-check">
-        <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])" role="warning" id="xlaevis-article-title-check">[xlaevis-article-title-check] <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" role="warning" id="xenopuslaevis-article-title-check">
-        <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" role="warning" id="xenopuslaevis-article-title-check">[xenopuslaevis-article-title-check] <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" role="warning" id="xtropicalis-article-title-check">
-        <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" role="warning" id="xtropicalis-article-title-check">[xtropicalis-article-title-check] <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="warning" id="xenopustropicalis-article-title-check">
-        <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="warning" id="xenopustropicalis-article-title-check">[xenopustropicalis-article-title-check] <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])" role="warning" id="mmusculus-article-title-check">
-        <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])" role="warning" id="mmusculus-article-title-check">[mmusculus-article-title-check] <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])" role="warning" id="musmusculus-article-title-check">
-        <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])" role="warning" id="musmusculus-article-title-check">[musmusculus-article-title-check] <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])" role="warning" id="dimmigrans-article-title-check">
-        <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])" role="warning" id="dimmigrans-article-title-check">[dimmigrans-article-title-check] <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" role="warning" id="drosophilaimmigrans-article-title-check">
-        <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" role="warning" id="drosophilaimmigrans-article-title-check">[drosophilaimmigrans-article-title-check] <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])" role="warning" id="dsubobscura-article-title-check">
-        <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])" role="warning" id="dsubobscura-article-title-check">[dsubobscura-article-title-check] <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="warning" id="drosophilasubobscura-article-title-check">
-        <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="warning" id="drosophilasubobscura-article-title-check">[drosophilasubobscura-article-title-check] <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" role="warning" id="daffinis-article-title-check">
-        <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" role="warning" id="daffinis-article-title-check">[daffinis-article-title-check] <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" role="warning" id="drosophilaaffinis-article-title-check">
-        <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" role="warning" id="drosophilaaffinis-article-title-check">[drosophilaaffinis-article-title-check] <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])" role="warning" id="dobscura-article-title-check">
-        <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])" role="warning" id="dobscura-article-title-check">[dobscura-article-title-check] <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" role="warning" id="drosophilaobscura-article-title-check">
-        <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" role="warning" id="drosophilaobscura-article-title-check">[drosophilaobscura-article-title-check] <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])" role="warning" id="ftularensis-article-title-check">
-        <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])" role="warning" id="ftularensis-article-title-check">[ftularensis-article-title-check] <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="warning" id="francisellatularensis-article-title-check">
-        <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="warning" id="francisellatularensis-article-title-check">[francisellatularensis-article-title-check] <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-article-title-check">
-        <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-article-title-check">[pplantaginis-article-title-check] <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-article-title-check">
-        <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-article-title-check">[podosphaeraplantaginis-article-title-check] <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">
-        <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">[planceolata-article-title-check] <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">
-        <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">[plantagolanceolata-article-title-check] <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-article-title-check">
-        <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-article-title-check">[mtrossulus-article-title-check] <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-article-title-check">
-        <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-article-title-check">[mytilustrossulus-article-title-check] <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-article-title-check">
-        <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-article-title-check">[medulis-article-title-check] <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-article-title-check">
-        <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-article-title-check">[mytilusedulis-article-title-check] <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-article-title-check">
-        <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-article-title-check">[mchilensis-article-title-check] <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-article-title-check">
-        <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-article-title-check">[mytiluschilensis-article-title-check] <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-article-title-check">
-        <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-article-title-check">[umaydis-article-title-check] <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-article-title-check">
-        <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-article-title-check">[ustilagomaydis-article-title-check] <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" role="info" id="pknowlesi-article-title-check">
-        <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" role="info" id="pknowlesi-article-title-check">[pknowlesi-article-title-check] <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" role="info" id="plasmodiumknowlesi-article-title-check">
-        <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" role="info" id="plasmodiumknowlesi-article-title-check">[plasmodiumknowlesi-article-title-check] <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" role="info" id="paeruginosa-article-title-check">
-        <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" role="info" id="paeruginosa-article-title-check">[paeruginosa-article-title-check] <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" role="info" id="pseudomonasaeruginosa-article-title-check">
-        <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" role="info" id="pseudomonasaeruginosa-article-title-check">[pseudomonasaeruginosa-article-title-check] <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">
-        <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">[drerio-article-title-check] <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])" role="warning" id="daniorerio-article-title-check">
-        <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])" role="warning" id="daniorerio-article-title-check">[daniorerio-article-title-check] <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="warning" id="drosophila-article-title-check">
-        <name/> contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="warning" id="drosophila-article-title-check">[drosophila-article-title-check] <name/> contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="warning" id="xenopus-article-title-check">
-        <name/> contains an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="warning" id="xenopus-article-title-check">[xenopus-article-title-check] <name/> contains an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
   </pattern>
@@ -5998,92 +5736,73 @@
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol">
-        <name/> element contains the copyright symbol, '©', which is not allowed.</report>
+      <report test="contains(.,'©')" role="error" id="copyright-symbol">[copyright-symbol] <name/> element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol">
-        <name/> element contains the trademark symbol, '™', which is not allowed.</report>
+      <report test="contains(.,'™')" role="error" id="trademark-symbol">[trademark-symbol] <name/> element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">
-        <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">[reg-trademark-symbol] <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">
-        <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
+      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">[Inc-presence] <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
       
-      <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">
-        <name/> element contains ' and and ' which is very likely to be incorrect.</report>
+      <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">[andand-presence] <name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
-      <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
-        <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
+      <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">[figurefigure-presence] <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">
-        <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
+      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">[plus-minus-presence] <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
       </report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">
-        <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
+      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">[supplementalfigure-presence] <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" role="warning" id="supplementalfile-presence">
-        <name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
+      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" role="warning" id="supplementalfile-presence">[supplementalfile-presence] <name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
       
-      <report test="not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
-        <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
+      <report test="not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">[ref-presence] <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
       
-      <report test="not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')" role="error" id="refs-presence">
-        <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
+      <report test="not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')" role="error" id="refs-presence">[refs-presence] <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
-      <report test="contains(.,'�')" role="error" id="replacement-character-presence">
-        <name/> element contains the replacement character '�' which is not allowed.</report>
+      <report test="contains(.,'�')" role="error" id="replacement-character-presence">[replacement-character-presence] <name/> element contains the replacement character '�' which is not allowed.</report>
       
-      <report test="contains(.,'')" role="error" id="junk-character-presence">
-        <name/> element contains a junk character '' which should be replaced.</report>
+      <report test="contains(.,'')" role="error" id="junk-character-presence">[junk-character-presence] <name/> element contains a junk character '' which should be replaced.</report>
       
-      <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">
-        <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
+      <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">[inverterted-question-presence] <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
-      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" role="warning" id="empty-parentheses-presence">
-        <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
+      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" role="warning" id="empty-parentheses-presence">[empty-parentheses-presence] <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">
-        <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">
-        <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
+      <report test="contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       
-      <report test="not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">
-        <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
+      <report test="not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
       
-      <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">
-        <name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/>
+      <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">[operating-system-command-presence] <name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/>
       </report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">
     <rule context="sup" id="unallowed-symbol-tests-sup">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">[copyright-symbol-sup] '<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">'<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">[trademark-symbol-1-sup] '<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
+      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">[trademark-symbol-2-sup] '<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">'<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">[reg-trademark-symbol-sup] '<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="contains(.,'°')" role="error" id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.</report>
+      <report test="contains(.,'°')" role="error" id="degree-symbol-sup">[degree-symbol-sup] '<name/>' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.</report>
       
-      <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">'<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">[white-circle-symbol-sup] '<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">'<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">[ring-op-symbol-sup] '<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">[ring-diacritic-symbol-sup] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   <pattern id="underline-tests-pattern">
     <rule context="underline" id="underline-tests">
       
-      <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">[underline-test-1] '<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
       
     </rule>
   </pattern>
@@ -6094,29 +5813,25 @@
       <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
-      <report test="$text = 'United States of America'" role="error" id="united-states-test-1">
-        <value-of select="."/> is not allowed it. This should be 'United States'.</report>
+      <report test="$text = 'United States of America'" role="error" id="united-states-test-1">[united-states-test-1] <value-of select="."/> is not allowed it. This should be 'United States'.</report>
       
-      <report test="$text = 'USA'" role="error" id="united-states-test-2">
-        <value-of select="."/> is not allowed it. This should be 'United States'</report>
+      <report test="$text = 'USA'" role="error" id="united-states-test-2">[united-states-test-2] <value-of select="."/> is not allowed it. This should be 'United States'</report>
       
-      <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">
-        <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
+      <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">[united-kingdom-test-2] <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
       
-      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
+      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">[gen-country-test] affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
       <!-- Commented out until this is implemented
       <report test="($text = document($countries)/countries/country) and not(@country = $valid-country/@country)" 
         role="warning" 
         id="gen-country-iso-3166-test">country does not have a 2 letter ISO 3166-1 @country value. It should be @country='<value-of select="$valid-country/@country"/>'.</report>-->
       
-      <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
-        <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
+      <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">[singapore-test-1] <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
       
-      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\s?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but it's country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
+      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\s?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">[taiwan-test] Affiliation has a Taiwanese city - <value-of select="$city"/> - but it's country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
       
-      <report test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))" role="warning" id="s-korea-test">Affiliation has a South Korean city - <value-of select="$city"/> - but it's country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
+      <report test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))" role="warning" id="s-korea-test">[s-korea-test] Affiliation has a South Korean city - <value-of select="$city"/> - but it's country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
       
-      <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as it's country which is very likely to be incorrect.</report>
+      <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">[n-korea-test] Affiliation has '<value-of select="."/>' as it's country which is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="city-tests-pattern">
@@ -6126,59 +5841,47 @@
       
       
       
-      <report test="matches($lc,$states-regex)" role="error" id="final-US-states-test">city contains a US state (or an abbreviation for it) - <value-of select="."/>.</report>
+      <report test="matches($lc,$states-regex)" role="error" id="final-US-states-test">[final-US-states-test] city contains a US state (or an abbreviation for it) - <value-of select="."/>.</report>
       
-      <report test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')" role="error" id="singapore-test-2">
-        <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
+      <report test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')" role="error" id="singapore-test-2">[singapore-test-2] <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
       
-      <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed.</report>
+      <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">[city-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
-      <report test="matches(.,'\d')" role="warning" id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
+      <report test="matches(.,'\d')" role="warning" id="city-number-presence">[city-number-presence] city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="city-street-presence">[city-street-presence] city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
-        <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">[UC-no-test1] <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="error" id="UC-no-test-2">
-        <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="error" id="UC-no-test-2">[UC-no-test-2] <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">
-        <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">[UC-no-test-3] <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
       
-      <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed.</report>
+      <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">[institution-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="institution-street-presence">[institution-street-presence] institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
   <pattern id="department-tests-pattern">
     <rule context="aff/institution[@content-type='dept']" id="department-tests">
       
-      <report test="matches(.,'[Dd]epartments')" role="error" id="plural-test-1">
-        <value-of select="ancestor::aff/@id"/> contains a department with the plural for department - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+      <report test="matches(.,'[Dd]epartments')" role="error" id="plural-test-1">[plural-test-1] <value-of select="ancestor::aff/@id"/> contains a department with the plural for department - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
       
-      <report test="matches(.,'^[Ii]nstitutes')" role="error" id="plural-test-2">
-        <value-of select="ancestor::aff/@id"/> contains a department with the plural for institute - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+      <report test="matches(.,'^[Ii]nstitutes')" role="error" id="plural-test-2">[plural-test-2] <value-of select="ancestor::aff/@id"/> contains a department with the plural for institute - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
       
-      <report test="matches(.,'^[Dd]epartment .* [Dd]epartment')" role="error" id="plural-test-3">
-        <value-of select="ancestor::aff/@id"/> contains a department which has two instances of the word 'department' - <value-of select="."/>. Should this be split out into two separate affiliations?</report>
+      <report test="matches(.,'^[Dd]epartment .* [Dd]epartment')" role="error" id="plural-test-3">[plural-test-3] <value-of select="ancestor::aff/@id"/> contains a department which has two instances of the word 'department' - <value-of select="."/>. Should this be split out into two separate affiliations?</report>
       
-      <report test="matches(.,'^[Ii]nstitute .* [Ii]nstitute')" role="error" id="plural-test-4">
-        <value-of select="ancestor::aff/@id"/> contains a department which has two instances of the word 'institution' - <value-of select="."/>. Should this be split out into two separate affiliations?</report>
+      <report test="matches(.,'^[Ii]nstitute .* [Ii]nstitute')" role="error" id="plural-test-4">[plural-test-4] <value-of select="ancestor::aff/@id"/> contains a department which has two instances of the word 'institution' - <value-of select="."/>. Should this be split out into two separate affiliations?</report>
       
-      <report test="matches(.,'�')" role="error" id="dept-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed.</report>
+      <report test="matches(.,'�')" role="error" id="dept-replacement-character-presence">[dept-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
-      <report test="matches(.,'^[a-z]')" role="warning" id="dept-test-1">
-        <value-of select="ancestor::aff/@id"/> contains a department which begins with a lowercase letter - <value-of select="."/>. Is this correct?</report>
+      <report test="matches(.,'^[a-z]')" role="warning" id="dept-test-1">[dept-test-1] <value-of select="ancestor::aff/@id"/> contains a department which begins with a lowercase letter - <value-of select="."/>. Is this correct?</report>
       
     </rule>
   </pattern>
@@ -6187,60 +5890,58 @@
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
         
-      <report test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains
+      <report test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">[PLOS-1] ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'PLOS' should be upper-case.</report>
         
-       <report test="($uc = 'PLOS ONE') and (. != 'PLOS ONE')" role="error" id="PLOS-2">ref '<value-of select="ancestor::ref/@id"/>' contains
+       <report test="($uc = 'PLOS ONE') and (. != 'PLOS ONE')" role="error" id="PLOS-2">[PLOS-2] ref '<value-of select="ancestor::ref/@id"/>' contains
           <value-of select="."/>. 'PLOS ONE' should be upper-case.</report>
       
-      <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the journal name is
+      <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">[PNAS] ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the journal name is
         <value-of select="."/>, which is incorrect.</report>
       
-      <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
+      <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">[RNA] ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'RNA' should be upper-case.</report>
       
-      <report test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" role="error" id="bmj">ref '<value-of select="ancestor::ref/@id"/>' contains
+      <report test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" role="error" id="bmj">[bmj] ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'BMJ' should be upper-case.</report>
       
-      <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
+      <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">[G3] ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
         <value-of select="."/> - it should be 'G3: Genes, Genomes, Genetics'.</report>
       
-      <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
+      <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">[ampersand-check] ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       
-      <report test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')" role="error" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
+      <report test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')" role="error" id="Research-gate-check">[Research-gate-check]  ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
-      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#zenodo-check</report>
+      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">[zenodo-check] Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#zenodo-check</report>
       
-      <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">[journal-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
+      <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">[journal-off-presence] ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
       
-      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">[handbook-presence] Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       
-      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="info" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="info" id="article-title-fullstop-check-1">[article-title-fullstop-check-1] ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
-      <report test="matches(.,'\.$') and not(matches(.,'\.\.$'))" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct - <value-of select="."/>
+      <report test="matches(.,'\.$') and not(matches(.,'\.\.$'))" role="error" id="article-title-fullstop-check-2">[article-title-fullstop-check-2] ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'\.$') and matches(.,'\.\.$')" role="warning" id="article-title-fullstop-check-3">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/>
+      <report test="matches(.,'\.$') and matches(.,'\.\.$')" role="warning" id="article-title-fullstop-check-3">[article-title-fullstop-check-3] ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article?</report>
+      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">[article-title-correction-check] ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article?</report>
       
-      <report test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '<value-of select="."/>'</report>
+      <report test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">[article-title-journal-check] ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '<value-of select="."/>'</report>
       
-      <report test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
+      <report test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">[article-title-child-1] ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">[a-title-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
     </rule>
@@ -6248,40 +5949,40 @@
   <pattern id="journal-tests-pattern">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
       
-      <report test="not(fpage) and not(elocation-id) and not(comment)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
+      <report test="not(fpage) and not(elocation-id) and not(comment)" role="warning" id="eloc-page-assert">[eloc-page-assert] ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
-      <assert test="volume" role="warning" id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</assert>
+      <assert test="volume" role="warning" id="volume-assert">[volume-assert] ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</assert>
       
-      <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
+      <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">[journal-preprint-check] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
-      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">[elife-ref-check] ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       
-      <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal name <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
+      <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">[journal-conference-ref-check-1] Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal name <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
       
-      <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" role="warning" id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name?</report>
+      <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" role="warning" id="journal-conference-ref-check-2">[journal-conference-ref-check-2] Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name?</report>
       
     </rule>
   </pattern>
   <pattern id="book-chapter-tests-pattern">
     <rule context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
       
-      <assert test="person-group[@person-group-type='editor']" role="warning" id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
+      <assert test="person-group[@person-group-type='editor']" role="warning" id="book-chapter-test-1">[book-chapter-test-1] ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
       
-      <assert test="fpage and lpage" role="warning" id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
+      <assert test="fpage and lpage" role="warning" id="book-chapter-test-2">[book-chapter-test-2] ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
       
     </rule>
   </pattern>
   <pattern id="ref-chapter-title-tests-pattern">
     <rule context="element-citation[@publication-type='book']/chapter-title" id="ref-chapter-title-tests">
       
-      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-chapter-title-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-chapter-title-test">[report-chapter-title-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
     </rule>
   </pattern>
   <pattern id="ref-book-source-tests-pattern">
     <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
       
-      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-book-source-test">[report-book-source-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
     </rule>
   </pattern>
@@ -6289,55 +5990,54 @@
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
+      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
-      <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
+      <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">[biorxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
-      <report test="matches($lc,'^arxiv$') and not(. = 'arXiv')" role="error" id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
+      <report test="matches($lc,'^arxiv$') and not(. = 'arXiv')" role="error" id="arxiv-test">[arxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
       
-      <report test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')" role="error" id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
+      <report test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')" role="error" id="chemrxiv-test">[chemrxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
       
-      <report test="matches($lc,'medrxiv') and not(. = 'medRxiv')" role="error" id="medrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
+      <report test="matches($lc,'medrxiv') and not(. = 'medRxiv')" role="error" id="medrxiv-test">[medrxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
       
-      <report test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')" role="error" id="peerjpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
+      <report test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')" role="error" id="peerjpreprints-test">[peerjpreprints-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
       
-      <report test="matches($lc,'psyarxiv') and not(. = 'PsyArXiv')" role="error" id="psyarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'.</report>
+      <report test="matches($lc,'psyarxiv') and not(. = 'PsyArXiv')" role="error" id="psyarxiv-test">[psyarxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'.</report>
       
-      <report test="matches($lc,'paleorxiv') and not(. = 'PaleorXiv')" role="error" id="paleorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'.</report>
+      <report test="matches($lc,'paleorxiv') and not(. = 'PaleorXiv')" role="error" id="paleorxiv-test">[paleorxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'.</report>
       
-      <report test="matches(.,'�')" role="error" id="preprint-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="preprint-replacement-character-presence">[preprint-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
       
-      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">[preprint-handbook-presence] Preprint ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
       
-      <report test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test</report>
+      <report test="contains($link,'github')" role="warning" id="github-web-test">[github-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test</report>
       
-      <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">[webreplacement-character-presence] web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
-      <report test="matches($link,'psyarxiv.org')" role="error" id="psyarxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PsyArXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'psyarxiv.org')" role="error" id="psyarxiv-web-test">[psyarxiv-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PsyArXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'/arxiv.org')" role="error" id="arxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, arXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'/arxiv.org')" role="error" id="arxiv-web-test">[arxiv-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, arXiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'biorxiv.org')" role="warning" id="biorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should almost certainly be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'biorxiv.org')" role="warning" id="biorxiv-web-test">[biorxiv-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should almost certainly be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'chemrxiv.org')" role="error" id="chemrxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'chemrxiv.org')" role="error" id="chemrxiv-web-test">[chemrxiv-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, ChemRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'peerj.com/preprints/')" role="error" id="peerj-preprints-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PeerJ Preprints, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'peerj.com/preprints/')" role="error" id="peerj-preprints-web-test">[peerj-preprints-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, PeerJ Preprints, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
       
-      <report test="matches($link,'paleorxiv.org')" role="error" id="paleorxiv-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
+      <report test="matches($link,'paleorxiv.org')" role="error" id="paleorxiv-web-test">[paleorxiv-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which points to a preprint server, bioRxiv, therefore it should be captured as a preprint type ref - <value-of select="ext-link"/>
       </report>
     </rule>
   </pattern>
@@ -6345,229 +6045,226 @@
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" role="error" id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-1</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" role="error" id="R-test-1">[R-test-1] software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-1</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" role="error" id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-2</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" role="error" id="R-test-2">[R-test-2] software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-2</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-3</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" role="error" id="R-test-3">[R-test-3] software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-3</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">[R-test-4] software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4</report>
       
-      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-5</report>
+      <report test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-5">[R-test-5] software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-5</report>
       
-      <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-6</report>
+      <report test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">[R-test-6] software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-6</report>
       
-      <report test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" role="error" id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7</report>
+      <report test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" role="error" id="R-test-7">[R-test-7] software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7</report>
       
-      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence</report>
+      <report test="matches(.,'�')" role="error" id="software-replacement-character-presence">[software-replacement-character-presence] software reference contains the replacement character '�' which is unallowed - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence</report>
       
-      <report test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source (Software name) - <value-of select="source[1]"/> - and a publisher-name (Software host) - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1</report>
+      <report test="source and publisher-name" role="error" id="ref-software-test-1">[ref-software-test-1] software ref '<value-of select="ancestor::ref/@id"/>' has both a source (Software name) - <value-of select="source[1]"/> - and a publisher-name (Software host) - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1</report>
       
-      <assert test="source or publisher-name" role="error" id="ref-software-test-2">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element (Software name) or one publisher-name element (Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2</assert>
+      <assert test="source or publisher-name" role="error" id="ref-software-test-2">[ref-software-test-2] software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element (Software name) or one publisher-name element (Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2</assert>
       
-      <report test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3</report>
+      <report test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">[ref-software-test-3] software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3</report>
       
-      <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4</report>
+      <report test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">[ref-software-test-4] software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4</report>
       
-      <report test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">
-        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-5</report>
+      <report test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">[ref-software-test-5] <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-5</report>
       
-      <report test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)" role="error" id="ref-software-test-6">
-        <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-6</report>
+      <report test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)" role="error" id="ref-software-test-6">[ref-software-test-6] <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-6</report>
     </rule>
   </pattern>
   <pattern id="data-ref-tests-pattern">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/geo') and not(source[1]='NCBI Gene Expression Omnibus')" role="warning" id="data-geo-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/geo' type link, but the database name is not 'NCBI Gene Expression Omnibus' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-geo-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/geo') and not(source[1]='NCBI Gene Expression Omnibus')" role="warning" id="data-geo-test">[data-geo-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/geo' type link, but the database name is not 'NCBI Gene Expression Omnibus' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-geo-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/nuccore') and not(source[1]='NCBI GenBank') and not(source[1]='NCBI Nucleotide')" role="warning" id="data-nucleotide-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/nuccore' type link, but the database name is not 'NCBI Nucleotide' or 'NCBI GenBank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-nucleotide-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/nuccore') and not(source[1]='NCBI GenBank') and not(source[1]='NCBI Nucleotide')" role="warning" id="data-nucleotide-test">[data-nucleotide-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/nuccore' type link, but the database name is not 'NCBI Nucleotide' or 'NCBI GenBank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-nucleotide-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/bioproject') and not(source[1]='NCBI BioProject')" role="warning" id="data-bioproject-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/bioproject' type link, but the database name is not 'NCBI BioProject' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bioproject-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/bioproject') and not(source[1]='NCBI BioProject')" role="warning" id="data-bioproject-test">[data-bioproject-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/bioproject' type link, but the database name is not 'NCBI BioProject' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bioproject-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/gap') and not(source[1]='NCBI dbGaP')" role="warning" id="data-dbgap-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/gap' type link, but the database name is not 'NCBI dbGaP' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dbgap-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/gap') and not(source[1]='NCBI dbGaP')" role="warning" id="data-dbgap-test">[data-dbgap-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/gap' type link, but the database name is not 'NCBI dbGaP' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dbgap-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/popset') and not(source[1]='NCBI PopSet')" role="warning" id="data-popset-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/popset' type link, but the database name is not 'NCBI PopSet' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-popset-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/popset') and not(source[1]='NCBI PopSet')" role="warning" id="data-popset-test">[data-popset-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/popset' type link, but the database name is not 'NCBI PopSet' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-popset-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/sra') and not(source[1]='NCBI Sequence Read Archive')" role="warning" id="data-sra-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/sra' type link, but the database name is not 'NCBI Sequence Read Archive' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sra-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/sra') and not(source[1]='NCBI Sequence Read Archive')" role="warning" id="data-sra-test">[data-sra-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/sra' type link, but the database name is not 'NCBI Sequence Read Archive' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sra-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/biosample') and not(source[1]='NCBI BioSample')" role="warning" id="data-biosample-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-biosample-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/biosample') and not(source[1]='NCBI BioSample')" role="warning" id="data-biosample-test">[data-biosample-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-biosample-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/protein') and not(source[1]='NCBI Protein')" role="warning" id="data-protein-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/protein' type link, but the database name is not 'NCBI Protein' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-protein-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/protein') and not(source[1]='NCBI Protein')" role="warning" id="data-protein-test">[data-protein-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/protein' type link, but the database name is not 'NCBI Protein' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-protein-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/assembly') and not(source[1]='NCBI Assembly')" role="warning" id="data-assembly-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/assembly' type link, but the database name is not 'NCBI Assembly' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-assembly-test</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/assembly') and not(source[1]='NCBI Assembly')" role="warning" id="data-assembly-test">[data-assembly-test] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/assembly' type link, but the database name is not 'NCBI Assembly' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-assembly-test</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-1">Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked as an accession number, which is likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-1">[data-ncbi-test-1] Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked as an accession number, which is likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-1</report>
       
-      <report test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-2">Data reference with the database source '<value-of select="source[1]"/>' is not marked as an accession number, which is very likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-2</report>
+      <report test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-2">[data-ncbi-test-2] Data reference with the database source '<value-of select="source[1]"/>' is not marked as an accession number, which is very likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" role="warning" id="data-ncbi-test-3">Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" role="warning" id="data-ncbi-test-3">[data-ncbi-test-3] Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-3</report>
       
-      <report test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" role="warning" id="data-ncbi-test-4">Data reference with the database source '<value-of select="source[1]"/>' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4</report>
+      <report test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" role="warning" id="data-ncbi-test-4">[data-ncbi-test-4] Data reference with the database source '<value-of select="source[1]"/>' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4</report>
       
-      <report test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')" role="warning" id="data-dryad-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the database name is not 'Dryad Digital Repository' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-1</report>
+      <report test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')" role="warning" id="data-dryad-test-1">[data-dryad-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the database name is not 'Dryad Digital Repository' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]='Dryad Digital Repository')" role="warning" id="data-dryad-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]='Dryad Digital Repository')" role="warning" id="data-dryad-test-2">[data-dryad-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-2</report>
       
-      <report test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (pub-id[1][@assigning-authority!='Dryad' or not(@assigning-authority)])" role="warning" id="data-dryad-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Dryad, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-3</report>
+      <report test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (pub-id[1][@assigning-authority!='Dryad' or not(@assigning-authority)])" role="warning" id="data-dryad-test-3">[data-dryad-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Dryad, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')" role="warning" id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')" role="warning" id="data-rcsbpbd-test-1">[data-rcsbpbd-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]" role="warning" id="data-rcsbpbd-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but is not marked with PDB as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]" role="warning" id="data-rcsbpbd-test-2">[data-rcsbpbd-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but is not marked with PDB as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-rcsbpbd-test-3">[data-rcsbpbd-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-3</report>
       
-      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and not(source[1]='Electron Microscopy Data Bank')" role="warning" id="data-emdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but the database name is not 'Electron Microscopy Data Bank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-1</report>
+      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and not(source[1]='Electron Microscopy Data Bank')" role="warning" id="data-emdb-test-1">[data-emdb-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but the database name is not 'Electron Microscopy Data Bank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-1</report>
       
-      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" role="warning" id="data-emdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-2</report>
+      <report test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" role="warning" id="data-emdb-test-2">[data-emdb-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-2</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-emdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a EMDB 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-3</report>
+      <report test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-emdb-test-3">[data-emdb-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a EMDB 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and not(source[1]='Electron Microscopy Public Image Archive')" role="warning" id="data-empiar-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <value-of select="source[1]"/>. Is that correct? https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and not(source[1]='Electron Microscopy Public Image Archive')" role="warning" id="data-empiar-test-1">[data-empiar-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <value-of select="source[1]"/>. Is that correct? https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-empiar-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but is not marked with EBI as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-empiar-test-2">[data-empiar-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but is not marked with EBI as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')" role="warning" id="data-arrayexpress-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but the database name is not 'ArrayExpress' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')" role="warning" id="data-arrayexpress-test-1">[data-arrayexpress-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but the database name is not 'ArrayExpress' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-arrayexpress-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but is not marked with EBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-arrayexpress-test-2">[data-arrayexpress-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but is not marked with EBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-arrayexpress-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an ArrayExpress 'www.ebi.ac.uk/arrayexpress' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-arrayexpress-test-3">[data-arrayexpress-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an ArrayExpress 'www.ebi.ac.uk/arrayexpress' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and not(source[1]='PRIDE')" role="warning" id="data-pride-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but the database name is not 'PRIDE' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and not(source[1]='PRIDE')" role="warning" id="data-pride-test-1">[data-pride-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but the database name is not 'PRIDE' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-pride-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but is not marked with EBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" role="warning" id="data-pride-test-2">[data-pride-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but is not marked with EBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-pride-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PRIDE 'www.ebi.ac.uk/pride' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-pride-test-3">[data-pride-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a PRIDE 'www.ebi.ac.uk/pride' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (source[1]!='Zenodo')" role="warning" id="data-zenodo-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5281/zenodo' but the database name is not 'Zenodo' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (source[1]!='Zenodo')" role="warning" id="data-zenodo-test-1">[data-zenodo-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5281/zenodo' but the database name is not 'Zenodo' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo')) and (source[1]='Zenodo')" role="warning" id="data-zenodo-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5281/zenodo', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo')) and (source[1]='Zenodo')" role="warning" id="data-zenodo-test-2">[data-zenodo-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5281/zenodo', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])" role="warning" id="data-zenodo-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Zenodo type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Zenodo, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])" role="warning" id="data-zenodo-test-3">[data-zenodo-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Zenodo type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Zenodo, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')" role="warning" id="data-osf-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-1</report>
+      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')" role="warning" id="data-osf-test-1">[data-osf-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-1</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]" role="warning" id="data-osf-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-2</report>
+      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]" role="warning" id="data-osf-test-2">[data-osf-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-2</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-osf-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an OSF 'https://osf.io' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3</report>
+      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-osf-test-3">[data-osf-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an OSF 'https://osf.io' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')" role="warning" id="data-osf-test-4">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')" role="warning" id="data-osf-test-4">[data-osf-test-4] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework'  or not(@assigning-authority)])" role="warning" id="data-osf-test-5">Data reference with the title '<value-of select="data-title[1]"/>' has a OSF type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Open Science Framework, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework'  or not(@assigning-authority)])" role="warning" id="data-osf-test-5">[data-osf-test-5] Data reference with the title '<value-of select="data-title[1]"/>' has a OSF type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Open Science Framework, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (source[1]!='figshare')" role="warning" id="data-figshare-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6084/m9.figshare' but the database name is not 'figshare' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (source[1]!='figshare')" role="warning" id="data-figshare-test-1">[data-figshare-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6084/m9.figshare' but the database name is not 'figshare' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" role="warning" id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" role="warning" id="data-figshare-test-2">[data-figshare-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])" role="warning" id="data-figshare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a figshare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not figshare, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])" role="warning" id="data-figshare-test-3">[data-figshare-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a figshare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not figshare, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')" role="warning" id="data-proteomexchange-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but the database name is not 'ProteomeXchange' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')" role="warning" id="data-proteomexchange-test-1">[data-proteomexchange-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but the database name is not 'ProteomeXchange' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-proteomexchange-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-proteomexchange-test-2">[data-proteomexchange-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-proteomexchange-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a ProteomeXchange 'http://proteomecentral.proteomexchange.org/' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-proteomexchange-test-3">[data-proteomexchange-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a ProteomeXchange 'http://proteomecentral.proteomexchange.org/' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (source[1]!='OpenNeuro')" role="warning" id="data-openneuro-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.18112/openneuro' but the database name is not 'OpenNeuro' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (source[1]!='OpenNeuro')" role="warning" id="data-openneuro-test-1">[data-openneuro-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.18112/openneuro' but the database name is not 'OpenNeuro' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro')) and not(contains(pub-id[1]/@xlink:href,'openneuro.org/datasets')) and (source[1]='OpenNeuro')" role="warning" id="data-openneuro-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.18112/openneuro' or 'openneuro.org/datasets' type link, which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro')) and not(contains(pub-id[1]/@xlink:href,'openneuro.org/datasets')) and (source[1]='OpenNeuro')" role="warning" id="data-openneuro-test-2">[data-openneuro-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.18112/openneuro' or 'openneuro.org/datasets' type link, which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-openneuro-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a OpenNeuro type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-openneuro-test-3">[data-openneuro-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a OpenNeuro type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')" role="warning" id="data-synapse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7303/syn' but the database name is not 'Synapse' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')" role="warning" id="data-synapse-test-1">[data-synapse-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7303/syn' but the database name is not 'Synapse' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" role="warning" id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" role="warning" id="data-synapse-test-2">[data-synapse-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-synapse-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Synapse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-synapse-test-3">[data-synapse-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Synapse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')" role="warning" id="data-bmrb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')" role="warning" id="data-bmrb-test-1">[data-bmrb-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-bmrb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-bmrb-test-2">[data-bmrb-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-bmrb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a BMRB 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-bmrb-test-3">[data-bmrb-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a BMRB 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and not(source[1]='Morph D Base')" role="warning" id="data-morphdbase-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but the database name is not 'Morph D Base' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and not(source[1]='Morph D Base')" role="warning" id="data-morphdbase-test-1">[data-morphdbase-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but the database name is not 'Morph D Base' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-morphdbase-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-morphdbase-test-2">[data-morphdbase-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-morphdbase-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Morph D Base 'www.morphdbase.de' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-morphdbase-test-3">[data-morphdbase-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Morph D Base 'www.morphdbase.de' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (source[1]!='Mendeley Data')" role="warning" id="data-mendeley-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17632' but the database name is not 'Mendeley Data' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (source[1]!='Mendeley Data')" role="warning" id="data-mendeley-test-1">[data-mendeley-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17632' but the database name is not 'Mendeley Data' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17632')) and (source[1]='Mendeley Data')" role="warning" id="data-mendeley-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17632', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17632')) and (source[1]='Mendeley Data')" role="warning" id="data-mendeley-test-2">[data-mendeley-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17632', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-mendeley-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Mendeley Data type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-mendeley-test-3">[data-mendeley-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Mendeley Data type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')" role="warning" id="data-edatashare-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7488' but the database name is not 'Edinburgh DataShare' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')" role="warning" id="data-edatashare-test-1">[data-edatashare-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7488' but the database name is not 'Edinburgh DataShare' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" role="warning" id="data-edatashare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" role="warning" id="data-edatashare-test-2">[data-edatashare-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])" role="warning" id="data-edatashare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an Edinburgh DataShare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'Edinburgh University', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])" role="warning" id="data-edatashare-test-3">[data-edatashare-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an Edinburgh DataShare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'Edinburgh University', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')" role="warning" id="data-eth-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.3929' but the database name is not 'ETH Library research collection' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')" role="warning" id="data-eth-test-1">[data-eth-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.3929' but the database name is not 'ETH Library research collection' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.3929')) and (source[1]='ETH Library research collection')" role="warning" id="data-eth-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.3929', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.3929')) and (source[1]='ETH Library research collection')" role="warning" id="data-eth-test-2">[data-eth-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.3929', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-eth-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a ETH Library research collection type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-eth-test-3">[data-eth-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a ETH Library research collection type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6080' but the database name is not 'Collaborative Research in Computational Neuroscience' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-1">[data-crcns-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6080' but the database name is not 'Collaborative Research in Computational Neuroscience' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6080')) and (source[1]='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6080', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6080')) and (source[1]='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-2">[data-crcns-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6080', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-crcns-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a CRCNS type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-crcns-test-3">[data-crcns-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a CRCNS type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (source[1]!='MorphoSource')" role="warning" id="data-morphosource-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17602' but the database name is not 'MorphoSource' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (source[1]!='MorphoSource')" role="warning" id="data-morphosource-test-1">[data-morphosource-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17602' but the database name is not 'MorphoSource' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17602')) and (source[1]='MorphoSource')" role="warning" id="data-morphosource-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17602', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17602')) and (source[1]='MorphoSource')" role="warning" id="data-morphosource-test-2">[data-morphosource-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17602', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-morphosource-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a MorphoSource type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-morphosource-test-3">[data-morphosource-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a MorphoSource type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and not(source[1]='NeuroVault')" role="warning" id="data-neurovault-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but the database name is not 'NeuroVault' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and not(source[1]='NeuroVault')" role="warning" id="data-neurovault-test-1">[data-neurovault-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but the database name is not 'NeuroVault' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-neurovault-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-neurovault-test-2">[data-neurovault-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-neurovault-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a NeuroVault 'neurovault.org/collections' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-neurovault-test-3">[data-neurovault-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a NeuroVault 'neurovault.org/collections' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-1">[data-wwpdb-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-2">[data-wwpdb-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB'  or not(@assigning-authority)])" role="warning" id="data-wwpdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Worldwide Protein Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'PDB', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB'  or not(@assigning-authority)])" role="warning" id="data-wwpdb-test-3">[data-wwpdb-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Worldwide Protein Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'PDB', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.15785/SBGRID' but the database name is not 'SBGrid Data Bank' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-1">[data-sbgdb-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.15785/SBGRID' but the database name is not 'SBGrid Data Bank' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID')) and (source[1]='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID')) and (source[1]='SBGrid Data Bank')" role="warning" id="data-sbgdb-test-2">[data-sbgdb-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-sbgdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a SBGrid Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-sbgdb-test-3">[data-sbgdb-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a SBGrid Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-3</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (source[1]!='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7910' but the database name is not 'Harvard Dataverse' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-1</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (source[1]!='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-1">[data-harvard-dataverse-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7910' but the database name is not 'Harvard Dataverse' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-1</report>
       
-      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7910')) and (source[1]='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7910', which is likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-2</report>
+      <report test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7910')) and (source[1]='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-2">[data-harvard-dataverse-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7910', which is likely incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-2</report>
       
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-harvard-dataverse-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Harvard Dataverse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-3</report>
+      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" role="warning" id="data-harvard-dataverse-test-3">[data-harvard-dataverse-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a Harvard Dataverse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and not(source[1]='ENCODE')" role="warning" id="data-encode-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but the database name is not 'ENCODE' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and not(source[1]='ENCODE')" role="warning" id="data-encode-test-1">[data-encode-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but the database name is not 'ENCODE' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-encode-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-encode-test-2">[data-encode-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-encode-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an ENCODE 'www.encodeproject.org' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-encode-test-3">[data-encode-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an ENCODE 'www.encodeproject.org' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-3</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and not(source[1]='EMDataResource')" role="warning" id="data-emdr-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but the database name is not 'EMDataResource' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-1</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and not(source[1]='EMDataResource')" role="warning" id="data-emdr-test-1">[data-emdr-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but the database name is not 'EMDataResource' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-1</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-emdr-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-2</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-emdr-test-2">[data-emdr-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-emdr-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an EMDataResource 'www.emdataresource.org' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-emdr-test-3">[data-emdr-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an EMDataResource 'www.emdataresource.org' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-3</report>
       
     </rule>
   </pattern>
   <pattern id="publisher-name-tests-pattern">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
       
-      <report test="matches(.,':')" role="warning" id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
+      <report test="matches(.,':')" role="warning" id="publisher-name-colon">[publisher-name-colon] ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
       
-      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed?</report>
+      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">[publisher-name-inc] ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed?</report>
       
-      <report test="matches(.,'�')" role="error" id="pub-name-replacement-character-presence">
-        <name/> contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report test="matches(.,'�')" role="error" id="pub-name-replacement-character-presence">[pub-name-replacement-character-presence] <name/> contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -6575,31 +6272,30 @@
     <rule context="element-citation//name" id="ref-name-tests">
       <let name="type" value="ancestor::person-group[1]/@person-group-type"/>
       
-      <report test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
+      <report test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">[author-test-1] name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
       
-      <report test="matches(.,'[Ed]itor')" role="warning" id="author-test-2">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Editor'. Is this correct?</report>
+      <report test="matches(.,'[Ed]itor')" role="warning" id="author-test-2">[author-test-2] name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Editor'. Is this correct?</report>
       
-      <report test="matches(.,'[Pp]ress')" role="warning" id="author-test-3">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Press'. Is this correct?</report>
+      <report test="matches(.,'[Pp]ress')" role="warning" id="author-test-3">[author-test-3] name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Press'. Is this correct?</report>
       
-      <report test="matches(surname[1],'^[A-Z]*$')" role="warning" id="all-caps-surname">surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname[1]"/>. Should this be captured as a collab? If not, Should it be - <value-of select="concat(substring(surname[1],1,1),lower-case(substring(surname[1],2)))"/>?</report>
+      <report test="matches(surname[1],'^[A-Z]*$')" role="warning" id="all-caps-surname">[all-caps-surname] surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname[1]"/>. Should this be captured as a collab? If not, Should it be - <value-of select="concat(substring(surname[1],1,1),lower-case(substring(surname[1],2)))"/>?</report>
       
-      <report test="matches(.,'[0-9]')" role="warning" id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
+      <report test="matches(.,'[0-9]')" role="warning" id="surname-number-check">[surname-number-check] name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
       
-      <report test="matches(surname[1],'^\s*?…|^\s*?\.\s?\.\s?\.')" role="error" id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding author missing from the list?</report>
+      <report test="matches(surname[1],'^\s*?…|^\s*?\.\s?\.\s?\.')" role="error" id="surname-ellipsis-check">[surname-ellipsis-check] surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding author missing from the list?</report>
       
-      <assert test="count(surname) = 1" role="error" id="surname-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(surname)"/> surnames - <value-of select="."/> - which is incorrect.</assert>
+      <assert test="count(surname) = 1" role="error" id="surname-count">[surname-count] ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(surname)"/> surnames - <value-of select="."/> - which is incorrect.</assert>
       
-      <report test="count(given-names) gt 1" role="error" id="given-names-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - which is incorrect.</report>
+      <report test="count(given-names) gt 1" role="error" id="given-names-count">[given-names-count] ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - which is incorrect.</report>
       
-      <report test="count(given-names) lt 1" role="warning" id="given-names-count-2">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - is this incorrect?</report>
+      <report test="count(given-names) lt 1" role="warning" id="given-names-count-2">[given-names-count-2] ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - is this incorrect?</report>
     </rule>
   </pattern>
   <pattern id="page-conformity-pattern">
     <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
       <let name="cite" value="e:citation-format1(year)"/>
       
-      <report test="matches(lower-case(source[1]),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">
-        <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
+      <report test="matches(lower-case(source[1]),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">[online-journal-w-page] <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
       
     </rule>
   </pattern>
@@ -6608,7 +6304,7 @@
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
-      <assert test="$sum = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+      <assert test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
   <pattern id="isbn-conformity-2-pattern">
@@ -6616,32 +6312,32 @@
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
-      <assert test="$sum = 0" role="error" id="isbn-conformity-test-2">isbn contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+      <assert test="$sum = 0" role="error" id="isbn-conformity-test-2">[isbn-conformity-test-2] isbn contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
   <pattern id="data-availability-statement-pattern">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
       
-      <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-sentence-conformity</assert>
+      <assert test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">[das-sentence-conformity] The Data Availability Statement must end with a full stop. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-sentence-conformity</assert>
       
       
       
-      <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="error" id="final-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-dryad-conformity</report>
+      <report test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" role="error" id="final-das-dryad-conformity">[final-das-dryad-conformity] Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-dryad-conformity</report>
       
-      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity</report>
+      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">[das-supplemental-conformity] Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity</report>
       
-      <report test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-request-conformity-1</report>
+      <report test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">[das-request-conformity-1] Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-request-conformity-1</report>
       
-      <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1</report>
+      <report test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">[das-doi-conformity-1] Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1</report>
       
     </rule>
   </pattern>
   <pattern id="ethics-info-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
-      <assert test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
+      <assert test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">[ethics-info-conformity] The ethics statement must end with a full stop.</assert>
       
-      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
+      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">[ethics-info-supplemental-conformity] Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
     </rule>
   </pattern>
@@ -6650,39 +6346,39 @@
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       
-      <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
+      <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">[sec-title-list-check] Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
-      <report test="matches(.,'^[Aa]ppendix')" role="warning" id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
+      <report test="matches(.,'^[Aa]ppendix')" role="warning" id="sec-title-appendix-check">[sec-title-appendix-check] Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
       
-      <report test="ancestor::body and matches(.,'^[Ss]upplementary [Mm]ethod|^[Ss]upplemental [Mm]ethod')" role="warning" id="sec-title-appendix-check-2">Shoudld the section titled '<value-of select="."/>' be captured as an appendix?</report>
+      <report test="ancestor::body and matches(.,'^[Ss]upplementary [Mm]ethod|^[Ss]upplemental [Mm]ethod')" role="warning" id="sec-title-appendix-check-2">[sec-title-appendix-check-2] Shoudld the section titled '<value-of select="."/>' be captured as an appendix?</report>
       
-      <report test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
+      <report test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">[sec-title-abbr-check] Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">Section title must not be empty.</report>
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">[sec-title-content-mandate] Section title must not be empty.</report>
       
-      <report test="matches(replace(.,' ',' '),'\.[\s]*$')" role="warning" id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/>
+      <report test="matches(replace(.,' ',' '),'\.[\s]*$')" role="warning" id="sec-title-full-stop">[sec-title-full-stop] Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/>
       </report>
       
-      <report test="(count(*) = 1) and child::bold and ($free-text='')" role="error" id="sec-title-bold">All section title content is captured in bold. This is incorrect - <value-of select="."/>
+      <report test="(count(*) = 1) and child::bold and ($free-text='')" role="error" id="sec-title-bold">[sec-title-bold] All section title content is captured in bold. This is incorrect - <value-of select="."/>
       </report>
       
-      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
+      <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">[sec-title-underline] All section title content is captured in underline. This is incorrect - <value-of select="."/>
       </report>
       
-      <report test="(count(*) = 1) and child::italic and ($free-text='')" role="warning" id="sec-title-italic">All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/>
+      <report test="(count(*) = 1) and child::italic and ($free-text='')" role="warning" id="sec-title-italic">[sec-title-italic] All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/>
       </report>
       
-      <report test="matches(upper-case($no-link-text),'^DNA | DNA | DNA$') and not(matches($no-link-text,'^DNA | DNA | DNA$'))" role="warning" id="sec-title-dna">Section title contains the phrase DNA, but it is not in all caps - <value-of select="."/>
+      <report test="matches(upper-case($no-link-text),'^DNA | DNA | DNA$') and not(matches($no-link-text,'^DNA | DNA | DNA$'))" role="warning" id="sec-title-dna">[sec-title-dna] Section title contains the phrase DNA, but it is not in all caps - <value-of select="."/>
       </report>
       
-      <report test="matches(upper-case($no-link-text),'^RNA | RNA | RNA$') and not(matches($no-link-text,'^RNA | RNA | RNA$'))" role="warning" id="sec-title-rna">Section title contains the phrase RNA, but it is not in all caps - <value-of select="."/>
+      <report test="matches(upper-case($no-link-text),'^RNA | RNA | RNA$') and not(matches($no-link-text,'^RNA | RNA | RNA$'))" role="warning" id="sec-title-rna">[sec-title-rna] Section title contains the phrase RNA, but it is not in all caps - <value-of select="."/>
       </report>
       
-      <report test="matches($no-link-text,'^[1-4]d | [1-4]d | [1-4]d$')" role="warning" id="sec-title-dimension">Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D' - <value-of select="."/>
+      <report test="matches($no-link-text,'^[1-4]d | [1-4]d | [1-4]d$')" role="warning" id="sec-title-dimension">[sec-title-dimension] Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D' - <value-of select="."/>
       </report>
       
       <!-- AIDS not included due to other meaning/use -->
-      <report test="matches(upper-case($no-link-text),'^HIV | HIV | HIV') and not(matches($no-link-text,'^HIV | HIV | HIV'))" role="warning" id="sec-title-hiv">Section title contains the word HIV, but it is not in all caps - <value-of select="."/>
+      <report test="matches(upper-case($no-link-text),'^HIV | HIV | HIV') and not(matches($no-link-text,'^HIV | HIV | HIV'))" role="warning" id="sec-title-hiv">[sec-title-hiv] Section title contains the word HIV, but it is not in all caps - <value-of select="."/>
       </report>
       
     </rule>
@@ -6691,19 +6387,19 @@
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
+      <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">[xref-bibr-presence] Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       
       
       
-      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="error" id="final-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
+      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="error" id="final-res-comm-test">[final-res-comm-test] '<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
      
-      <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
+      <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">[res-art-test] '<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>
   <pattern id="KRT-xref-tests-pattern">
     <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       
-      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#xref-column-test</report>
+      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">[xref-column-test] '<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#xref-column-test</report>
       
     </rule>
   </pattern>
@@ -6712,26 +6408,25 @@
       <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
       
-      <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
+      <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">[KRT-presence] '<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
       
     </rule>
   </pattern>
   <pattern id="KRT-td-checks-pattern">
     <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       
-      <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#doi-link-test</report>
+      <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">[doi-link-test] td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#doi-link-test</report>
       
-      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMID-link-test</report>
+      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" role="error" id="PMID-link-test">[PMID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMID-link-test</report>
       
-      <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMCID-link-test</report>
+      <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">[PMCID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMCID-link-test</report>
       
     </rule>
   </pattern>
   <pattern id="colour-table-pattern">
     <rule context="th|td" id="colour-table">
       
-      <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">
-        <name/> element has colour background. Is this correct? It contains <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#colour-check-table</report>
+      <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">[colour-check-table] <name/> element has colour background. Is this correct? It contains <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#colour-check-table</report>
     </rule>
   </pattern>
   <pattern id="colour-table-2-pattern">
@@ -6740,8 +6435,7 @@
       
       
       
-      <assert test="@style=$allowed-values" role="error" id="final-colour-check-table-2">
-        <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-colour-check-table-2</assert>
+      <assert test="@style=$allowed-values" role="error" id="final-colour-check-table-2">[final-colour-check-table-2] <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-colour-check-table-2</assert>
     </rule>
   </pattern>
   <pattern id="colour-named-content-pattern">
@@ -6749,12 +6443,10 @@
       <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
       
-      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">
-        <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/>
+      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">[colour-named-content-check] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/>
       </report>
       
-      <assert test="@content-type = $allowed-values" role="error" id="named-content-type-check">
-        <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="$allowed-values"/>.</assert>
+      <assert test="@content-type = $allowed-values" role="error" id="named-content-type-check">[named-content-type-check] <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="$allowed-values"/>.</assert>
       
     </rule>
   </pattern>
@@ -6764,7 +6456,7 @@
       
       
       
-      <report test="." role="error" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+      <report test="." role="error" id="final-colour-styled-content-check">[final-colour-styled-content-check] '<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
   <pattern id="math-colour-tests-pattern">
@@ -6773,9 +6465,9 @@
       
       
       
-      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">[final-mathcolor-test-1] math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
       
-      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">[mathcolor-test-2] math containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
       
     </rule>
   </pattern>
@@ -6783,9 +6475,9 @@
     <rule context="article/body//p[not(parent::list-item)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\p{P}\s*?$'))" role="warning" id="p-punctuation-test">[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</report>
       
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</report>
+      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
@@ -6793,99 +6485,80 @@
       
       
 
-      <report test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">
-        <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">[final-et-al-italic-test] <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ii]n [Vv]itro')" role="warning" id="final-in-vitro-italic-test">
-        <name/> element contains 'in vitro' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ii]n [Vv]itro')" role="warning" id="final-in-vitro-italic-test">[final-in-vitro-italic-test] <name/> element contains 'in vitro' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="final-in-vivo-italic-test">
-        <name/> element contains 'in vivo' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ii]n [Vv]ivo')" role="warning" id="final-in-vivo-italic-test">[final-in-vivo-italic-test] <name/> element contains 'in vivo' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="final-ex-vivo-italic-test">
-        <name/> element contains 'ex vivo' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="final-ex-vivo-italic-test">[final-ex-vivo-italic-test] <name/> element contains 'ex vivo' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="final-a-priori-italic-test">
-        <name/> element contains 'a priori' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="final-a-priori-italic-test">[final-a-priori-italic-test] <name/> element contains 'a priori' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="final-a-posteriori-italic-test">
-        <name/> element contains 'a posteriori' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="final-a-posteriori-italic-test">[final-a-posteriori-italic-test] <name/> element contains 'a posteriori' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Dd]e [Nn]ovo')" role="warning" id="final-de-novo-italic-test">
-        <name/> element contains 'de novo' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Dd]e [Nn]ovo')" role="warning" id="final-de-novo-italic-test">[final-de-novo-italic-test] <name/> element contains 'de novo' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ii]n [Uu]tero')" role="warning" id="final-in-utero-italic-test">
-        <name/> element contains 'in utero' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ii]n [Uu]tero')" role="warning" id="final-in-utero-italic-test">[final-in-utero-italic-test] <name/> element contains 'in utero' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ii]n [Nn]atura')" role="warning" id="final-in-natura-italic-test">
-        <name/> element contains 'in natura' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ii]n [Nn]atura')" role="warning" id="final-in-natura-italic-test">[final-in-natura-italic-test] <name/> element contains 'in natura' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ii]n [Ss]itu')" role="warning" id="final-in-situ-italic-test">
-        <name/> element contains 'in situ' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ii]n [Ss]itu')" role="warning" id="final-in-situ-italic-test">[final-in-situ-italic-test] <name/> element contains 'in situ' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ii]n [Pp]lanta')" role="warning" id="final-in-planta-italic-test">
-        <name/> element contains 'in planta' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ii]n [Pp]lanta')" role="warning" id="final-in-planta-italic-test">[final-in-planta-italic-test] <name/> element contains 'in planta' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="final-rete-mirabile-italic-test">
-        <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="final-rete-mirabile-italic-test">[final-rete-mirabile-italic-test] <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Nn]omen [Nn]ovum')" role="warning" id="final-nomen-novum-italic-test">
-        <name/> element contains 'nomen novum' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Nn]omen [Nn]ovum')" role="warning" id="final-nomen-novum-italic-test">[final-nomen-novum-italic-test] <name/> element contains 'nomen novum' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ss]ativum')" role="warning" id="final-sativum-italic-test">
-        <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ss]ativum')" role="warning" id="final-sativum-italic-test">[final-sativum-italic-test] <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Ss]ensu')" role="warning" id="final-sensu-italic-test">
-        <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>  
+      <report test="matches(.,'[Ss]ensu')" role="warning" id="final-sensu-italic-test">[final-sensu-italic-test] <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>  
       
       
 
-      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="final-ad-libitum-italic-test">
-        <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
+      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="final-ad-libitum-italic-test">[final-ad-libitum-italic-test] <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
       
       
       
-      <report test="matches(.,'[Ii]n [Oo]vo')" role="warning" id="final-in-ovo-italic-test">
-        <name/> element contains 'In Ovo' - this should not be in italics (eLife house style).</report>
+      <report test="matches(.,'[Ii]n [Oo]vo')" role="warning" id="final-in-ovo-italic-test">[final-in-ovo-italic-test] <name/> element contains 'In Ovo' - this should not be in italics (eLife house style).</report>
       
     </rule>
   </pattern>
   <pattern id="pubmed-link-pattern">
     <rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" id="pubmed-link">
       
-      <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')" role="warning" id="pubmed-presence">
-        <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PubMed article - <value-of select="."/> - should this be added a reference instead?</report>
+      <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')" role="warning" id="pubmed-presence">[pubmed-presence] <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PubMed article - <value-of select="."/> - should this be added a reference instead?</report>
       
-      <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pmc/articles/PMC[\d]*')" role="warning" id="pmc-presence">
-        <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PMC article - <value-of select="."/> - should this be added a reference instead?</report>
+      <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pmc/articles/PMC[\d]*')" role="warning" id="pmc-presence">[pmc-presence] <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PMC article - <value-of select="."/> - should this be added a reference instead?</report>
       
     </rule>
   </pattern>
@@ -6896,7 +6569,7 @@
       
       
       
-      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="warning" id="final-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-pmid-spacing-table</report>
+      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="warning" id="final-pmid-spacing-table">[final-pmid-spacing-table] PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-pmid-spacing-table</report>
     </rule>
   </pattern>
   <pattern id="rrid-link-pattern">
@@ -6906,7 +6579,7 @@
       
       
       
-      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">[final-rrid-spacing] RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
@@ -6915,28 +6588,28 @@
       
       
       
-      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
+      <assert test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">[final-ref-link-presence] '<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
     </rule>
   </pattern>
   <pattern id="fig-permissions-check-pattern">
     <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">[reproduce-test-2] The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">[reproduce-test-3] The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">[reproduce-test-4] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">[reproduce-test-5] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">[reproduce-test-6] The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">
@@ -6945,9 +6618,9 @@
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby')"/>
       
-      <report test="$parent = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
+      <report test="$parent = $formatting-elems" role="error" id="xref-parent-test">[xref-parent-test] xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report test="$child = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
+      <report test="$child = $formatting-elems" role="warning" id="xref-child-test">[xref-child-test] xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>
   </pattern>
   <pattern id="ref-xref-formatting-pattern">
@@ -6956,18 +6629,18 @@
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
       
-      <report test="$parent = ($formatting-elems,'italic')" role="error" id="ref-xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
+      <report test="$parent = ($formatting-elems,'italic')" role="error" id="ref-xref-parent-test">[ref-xref-parent-test] xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report test="$child = $formatting-elems" role="error" id="ref-xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
+      <report test="$child = $formatting-elems" role="error" id="ref-xref-child-test">[ref-xref-child-test] xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is not correct.</report>
       
-      <report test="italic" role="warning" id="ref-xref-italic-child-test">xref - <value-of select="."/> - contains italic formatting. Is this correct?</report>
+      <report test="italic" role="warning" id="ref-xref-italic-child-test">[ref-xref-italic-child-test] xref - <value-of select="."/> - contains italic formatting. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="code-fork-pattern">
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(.)"/>
       
-      <report test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info</report>
+      <report test="$test//*:match" role="warning" id="code-fork-info">[code-fork-info] Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info</report>
     </rule>
   </pattern>
   <pattern id="auth-kwd-style-pattern">
@@ -6976,28 +6649,28 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
       
-      <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
+      <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">[auth-kwd-check] Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
+      <report test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">[auth-kwd-check-2] Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="ref-given-names-pattern">
     <rule context="ref-list//element-citation/person-group[@person-group-type='author']//given-names" id="ref-given-names">
       
-      <report test="string-length(.) gt 4" role="warning" id="ref-given-names-test-1">Given names should always be initialised. Ref '<value-of select="ancestor::ref[1]/@id"/>' contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
+      <report test="string-length(.) gt 4" role="warning" id="ref-given-names-test-1">[ref-given-names-test-1] Given names should always be initialised. Ref '<value-of select="ancestor::ref[1]/@id"/>' contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
     </rule>
   </pattern>
   <pattern id="data-ref-given-names-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">      
       
-      <report test="string-length(.) gt 4" role="warning" id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ref-given-names-test-1</report>
+      <report test="string-length(.) gt 4" role="warning" id="data-ref-given-names-test-1">[data-ref-given-names-test-1] Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ref-given-names-test-1</report>
       
     </rule>
   </pattern>
   <pattern id="ar-fig-title-tests-pattern">
     <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">     
       
-      <report test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
+      <report test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">[ar-fig-title-test-1] Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -7005,8 +6678,7 @@
     <rule context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
       <let name="following-text" value="following-sibling::text()[1]"/>
       
-      <report test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" role="warning" id="section-title-test-1">
-        <name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
+      <report test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" role="warning" id="section-title-test-1">[section-title-test-1] <name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
       
     </rule>
   </pattern>
@@ -7018,8 +6690,7 @@
       <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
       <let name="journals" value="'journals.xml'"/>
       
-      <assert test="some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))" role="warning" id="journal-doi-test-1">
-        <value-of select="$cite"/> is a journal ref without a doi. Should it have one?</assert>
+      <assert test="some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))" role="warning" id="journal-doi-test-1">[journal-doi-test-1] <value-of select="$cite"/> is a journal ref without a doi. Should it have one?</assert>
       
     </rule>
   </pattern>
@@ -7030,8 +6701,7 @@
       <let name="publisher" value="lower-case(publisher-name[1])"/>
       <let name="publishers" value="'publishers.xml'"/>
       
-      <report test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" role="warning" id="book-doi-test-1">
-        <value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
+      <report test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" role="warning" id="book-doi-test-1">[book-doi-test-1] <value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
       
     </rule>
   </pattern>
@@ -7040,11 +6710,9 @@
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="host" value="lower-case(source[1])"/>
       
-      <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1</report>
+      <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">[software-doi-test-1] <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1</report>
       
-      <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))" role="warning" id="software-doi-test-2">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-2</report>
+      <report test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))" role="warning" id="software-doi-test-2">[software-doi-test-2] <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-2</report>
       
     </rule>
   </pattern>
@@ -7053,8 +6721,7 @@
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="name" value="lower-case(conf-name[1])"/>
       
-      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
-        <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">[conf-doi-test-1] <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
   </pattern>
@@ -7065,7 +6732,7 @@
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
       <let name="funders" value="'funders.xml'"/>
       
-      <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
+      <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">[fundref-test-1] Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
   </pattern>
   
@@ -7073,278 +6740,187 @@
     <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
     
     
-    <report test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">
-        <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">[unicode-test-1] <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã€')" role="warning" id="unicode-test-2">
-        <name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã€')" role="warning" id="unicode-test-2">[unicode-test-2] <name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-3">
-        <name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-3">[unicode-test-3] <name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€š')" role="warning" id="unicode-test-4">
-        <name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€š')" role="warning" id="unicode-test-4">[unicode-test-4] <name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã‚')" role="warning" id="unicode-test-5">
-        <name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã‚')" role="warning" id="unicode-test-5">[unicode-test-5] <name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Æ’')" role="warning" id="unicode-test-6">
-        <name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Æ’')" role="warning" id="unicode-test-6">[unicode-test-6] <name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãƒ')" role="warning" id="unicode-test-7">
-        <name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãƒ')" role="warning" id="unicode-test-7">[unicode-test-7] <name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€ž')" role="warning" id="unicode-test-8">
-        <name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€ž')" role="warning" id="unicode-test-8">[unicode-test-8] <name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã„')" role="warning" id="unicode-test-9">
-        <name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã„')" role="warning" id="unicode-test-9">[unicode-test-9] <name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€¦')" role="warning" id="unicode-test-10">
-        <name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€¦')" role="warning" id="unicode-test-10">[unicode-test-10] <name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã…')" role="warning" id="unicode-test-11">
-        <name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã…')" role="warning" id="unicode-test-11">[unicode-test-11] <name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã†')" role="warning" id="unicode-test-13">
-        <name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã†')" role="warning" id="unicode-test-13">[unicode-test-13] <name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€¡')" role="warning" id="unicode-test-14">
-        <name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€¡')" role="warning" id="unicode-test-14">[unicode-test-14] <name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã‡')" role="warning" id="unicode-test-15">
-        <name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã‡')" role="warning" id="unicode-test-15">[unicode-test-15] <name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ë†')" role="warning" id="unicode-test-16">
-        <name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ë†')" role="warning" id="unicode-test-16">[unicode-test-16] <name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">
-        <name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">[unicode-test-17] <name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€°')" role="warning" id="unicode-test-18">
-        <name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€°')" role="warning" id="unicode-test-18">[unicode-test-18] <name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã‰')" role="warning" id="unicode-test-19">
-        <name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã‰')" role="warning" id="unicode-test-19">[unicode-test-19] <name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'ÃŠ')" role="warning" id="unicode-test-21">
-        <name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>.</report>
+    <report test="contains(.,'ÃŠ')" role="warning" id="unicode-test-21">[unicode-test-21] <name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€¹')" role="warning" id="unicode-test-22">
-        <name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€¹')" role="warning" id="unicode-test-22">[unicode-test-22] <name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã‹')" role="warning" id="unicode-test-23">
-        <name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã‹')" role="warning" id="unicode-test-23">[unicode-test-23] <name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Å’')" role="warning" id="unicode-test-24">
-        <name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>.</report>
+    <report test="contains(.,'Å’')" role="warning" id="unicode-test-24">[unicode-test-24] <name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>.</report>
     
-    <report test="contains(.,'ÃŒ')" role="warning" id="unicode-test-25">
-        <name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>.</report>
+    <report test="contains(.,'ÃŒ')" role="warning" id="unicode-test-25">[unicode-test-25] <name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-26">
-        <name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-26">[unicode-test-26] <name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Å½')" role="warning" id="unicode-test-27">
-        <name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Å½')" role="warning" id="unicode-test-27">[unicode-test-27] <name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'ÃŽ')" role="warning" id="unicode-test-28">
-        <name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>.</report>
+    <report test="contains(.,'ÃŽ')" role="warning" id="unicode-test-28">[unicode-test-28] <name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-29">
-        <name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-29">[unicode-test-29] <name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-30">
-        <name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-30">[unicode-test-30] <name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€˜')" role="warning" id="unicode-test-31">
-        <name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€˜')" role="warning" id="unicode-test-31">[unicode-test-31] <name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã‘')" role="warning" id="unicode-test-32">
-        <name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã‘')" role="warning" id="unicode-test-32">[unicode-test-32] <name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€™')" role="warning" id="unicode-test-33">
-        <name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€™')" role="warning" id="unicode-test-33">[unicode-test-33] <name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã’')" role="warning" id="unicode-test-34">
-        <name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã’')" role="warning" id="unicode-test-34">[unicode-test-34] <name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€œ')" role="warning" id="unicode-test-35">
-        <name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€œ')" role="warning" id="unicode-test-35">[unicode-test-35] <name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã“')" role="warning" id="unicode-test-36">
-        <name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã“')" role="warning" id="unicode-test-36">[unicode-test-36] <name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€')" role="warning" id="unicode-test-37">
-        <name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€')" role="warning" id="unicode-test-37">[unicode-test-37] <name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã”')" role="warning" id="unicode-test-38">
-        <name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã”')" role="warning" id="unicode-test-38">[unicode-test-38] <name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã•')" role="warning" id="unicode-test-39">
-        <name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã•')" role="warning" id="unicode-test-39">[unicode-test-39] <name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€“')" role="warning" id="unicode-test-40">
-        <name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€“')" role="warning" id="unicode-test-40">[unicode-test-40] <name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã–')" role="warning" id="unicode-test-41">
-        <name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã–')" role="warning" id="unicode-test-41">[unicode-test-41] <name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€”')" role="warning" id="unicode-test-42">
-        <name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€”')" role="warning" id="unicode-test-42">[unicode-test-42] <name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã—')" role="warning" id="unicode-test-43">
-        <name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã—')" role="warning" id="unicode-test-43">[unicode-test-43] <name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ëœ')" role="warning" id="unicode-test-44">
-        <name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ëœ')" role="warning" id="unicode-test-44">[unicode-test-44] <name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã˜')" role="warning" id="unicode-test-45">
-        <name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã˜')" role="warning" id="unicode-test-45">[unicode-test-45] <name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã™')" role="warning" id="unicode-test-46">
-        <name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã™')" role="warning" id="unicode-test-46">[unicode-test-46] <name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Å¡')" role="warning" id="unicode-test-47">
-        <name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Å¡')" role="warning" id="unicode-test-47">[unicode-test-47] <name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãš')" role="warning" id="unicode-test-48">
-        <name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãš')" role="warning" id="unicode-test-48">[unicode-test-48] <name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'â€º')" role="warning" id="unicode-test-49">
-        <name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>.</report>
+    <report test="contains(.,'â€º')" role="warning" id="unicode-test-49">[unicode-test-49] <name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã›')" role="warning" id="unicode-test-50">
-        <name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã›')" role="warning" id="unicode-test-50">[unicode-test-50] <name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Å“')" role="warning" id="unicode-test-51">
-        <name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Å“')" role="warning" id="unicode-test-51">[unicode-test-51] <name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãœ')" role="warning" id="unicode-test-52">
-        <name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãœ')" role="warning" id="unicode-test-52">[unicode-test-52] <name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-53">
-        <name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã')" role="warning" id="unicode-test-53">[unicode-test-53] <name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Å¾')" role="warning" id="unicode-test-54">
-        <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Å¾')" role="warning" id="unicode-test-54">[unicode-test-54] <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãž')" role="warning" id="unicode-test-55">
-        <name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãž')" role="warning" id="unicode-test-55">[unicode-test-55] <name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Å¸')" role="warning" id="unicode-test-56">
-        <name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Å¸')" role="warning" id="unicode-test-56">[unicode-test-56] <name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'ÃŸ')" role="warning" id="unicode-test-57">
-        <name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>.</report>
+    <report test="contains(.,'ÃŸ')" role="warning" id="unicode-test-57">[unicode-test-57] <name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¡')" role="warning" id="unicode-test-58">
-        <name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¡')" role="warning" id="unicode-test-58">[unicode-test-58] <name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¡')" role="warning" id="unicode-test-59">
-        <name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¡')" role="warning" id="unicode-test-59">[unicode-test-59] <name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¢')" role="warning" id="unicode-test-60">
-        <name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¢')" role="warning" id="unicode-test-60">[unicode-test-60] <name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¢')" role="warning" id="unicode-test-61">
-        <name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¢')" role="warning" id="unicode-test-61">[unicode-test-61] <name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â£')" role="warning" id="unicode-test-62">
-        <name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â£')" role="warning" id="unicode-test-62">[unicode-test-62] <name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã£')" role="warning" id="unicode-test-63">
-        <name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã£')" role="warning" id="unicode-test-63">[unicode-test-63] <name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¤')" role="warning" id="unicode-test-64">
-        <name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¤')" role="warning" id="unicode-test-64">[unicode-test-64] <name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¤')" role="warning" id="unicode-test-65">
-        <name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¤')" role="warning" id="unicode-test-65">[unicode-test-65] <name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¥')" role="warning" id="unicode-test-66">
-        <name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¥')" role="warning" id="unicode-test-66">[unicode-test-66] <name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¨')" role="warning" id="unicode-test-67">
-        <name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¨')" role="warning" id="unicode-test-67">[unicode-test-67] <name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¨')" role="warning" id="unicode-test-68">
-        <name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¨')" role="warning" id="unicode-test-68">[unicode-test-68] <name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Âª')" role="warning" id="unicode-test-69">
-        <name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Âª')" role="warning" id="unicode-test-69">[unicode-test-69] <name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãª')" role="warning" id="unicode-test-70">
-        <name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãª')" role="warning" id="unicode-test-70">[unicode-test-70] <name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â­')" role="warning" id="unicode-test-71">
-        <name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â­')" role="warning" id="unicode-test-71">[unicode-test-71] <name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã­')" role="warning" id="unicode-test-72">
-        <name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã­')" role="warning" id="unicode-test-72">[unicode-test-72] <name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¯')" role="warning" id="unicode-test-73">
-        <name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¯')" role="warning" id="unicode-test-73">[unicode-test-73] <name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¯')" role="warning" id="unicode-test-74">
-        <name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¯')" role="warning" id="unicode-test-74">[unicode-test-74] <name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â°')" role="warning" id="unicode-test-75">
-        <name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â°')" role="warning" id="unicode-test-75">[unicode-test-75] <name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã°')" role="warning" id="unicode-test-76">
-        <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã°')" role="warning" id="unicode-test-76">[unicode-test-76] <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â±')" role="warning" id="unicode-test-77">
-        <name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â±')" role="warning" id="unicode-test-77">[unicode-test-77] <name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã±')" role="warning" id="unicode-test-78">
-        <name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã±')" role="warning" id="unicode-test-78">[unicode-test-78] <name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â´')" role="warning" id="unicode-test-79">
-        <name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â´')" role="warning" id="unicode-test-79">[unicode-test-79] <name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã´')" role="warning" id="unicode-test-80">
-        <name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã´')" role="warning" id="unicode-test-80">[unicode-test-80] <name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Âµ')" role="warning" id="unicode-test-81">
-        <name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Âµ')" role="warning" id="unicode-test-81">[unicode-test-81] <name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãµ')" role="warning" id="unicode-test-82">
-        <name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãµ')" role="warning" id="unicode-test-82">[unicode-test-82] <name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¶')" role="warning" id="unicode-test-83">
-        <name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¶')" role="warning" id="unicode-test-83">[unicode-test-83] <name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¶')" role="warning" id="unicode-test-84">
-        <name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¶')" role="warning" id="unicode-test-84">[unicode-test-84] <name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â·')" role="warning" id="unicode-test-85">
-        <name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â·')" role="warning" id="unicode-test-85">[unicode-test-85] <name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã·')" role="warning" id="unicode-test-86">
-        <name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã·')" role="warning" id="unicode-test-86">[unicode-test-86] <name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¸')" role="warning" id="unicode-test-87">
-        <name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¸')" role="warning" id="unicode-test-87">[unicode-test-87] <name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¸')" role="warning" id="unicode-test-88">
-        <name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¸')" role="warning" id="unicode-test-88">[unicode-test-88] <name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¹')" role="warning" id="unicode-test-89">
-        <name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¹')" role="warning" id="unicode-test-89">[unicode-test-89] <name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Âº')" role="warning" id="unicode-test-90">
-        <name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Âº')" role="warning" id="unicode-test-90">[unicode-test-90] <name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ãº')" role="warning" id="unicode-test-91">
-        <name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ãº')" role="warning" id="unicode-test-91">[unicode-test-91] <name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Â¿')" role="warning" id="unicode-test-92">
-        <name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Â¿')" role="warning" id="unicode-test-92">[unicode-test-92] <name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>.</report>
     
-    <report test="contains(.,'Ã¿')" role="warning" id="unicode-test-93">
-        <name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
+    <report test="contains(.,'Ã¿')" role="warning" id="unicode-test-93">[unicode-test-93] <name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
 </rule>
   </pattern>
   
@@ -7352,8 +6928,7 @@
     <rule context="article//*[not(ancestor::mml:math)]" id="element-whitelist">
       <let name="allowed-elements" value="('abstract', 'ack', 'addr-line', 'aff', 'ali:free_to_read', 'ali:license_ref', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'sc', 'sec', 'self-uri', 'source', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'version', 'volume', 'xref', 'year')"/>
       
-      <assert test="name()=$allowed-elements" role="error" id="element-conformity">
-        <value-of select="name()"/> element is not allowed.</assert>
+      <assert test="name()=$allowed-elements" role="error" id="element-conformity">[element-conformity] <value-of select="name()"/> element is not allowed.</assert>
       
     </rule>
   </pattern>
