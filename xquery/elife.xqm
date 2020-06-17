@@ -112,10 +112,12 @@ declare function elife:sch2pre($sch){
     copy $copy3 := $copy2
     modify(
       for $x in $copy3//(*:report|*:assert)
+      let $id := ("["||$x/@id||"] ")
       return 
       if (starts-with($x/@id,'final-')) then delete node $x
       else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
-      else (),
+      else if (starts-with($x/data(),('['||$x/@id))) then ()
+      else insert node $id as first into $x,
 
       for $x in $copy3//xsl:function[@name="java:file-exists"]
       return delete node $x,
@@ -146,10 +148,12 @@ declare function elife:sch2final($sch){
     copy $copy3 := $copy2
     modify(
       for $x in $copy3//(*:report|*:assert)
+      let $id := ("["||$x/@id||"] ")
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
       else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
-      else (),
+      else if (starts-with($x/data(),('['||$x/@id))) then ()
+      else insert node $id as first into $x,
 
       for $x in $copy3//xsl:function[@name="java:file-exists"]
       return delete node $x,
