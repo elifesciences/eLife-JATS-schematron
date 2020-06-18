@@ -1,0 +1,214 @@
+<?oxygen SCHSchema="table-cell-1.sch"?>
+<!--Context: table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]
+Test: assert    matches($stripped-text,'[\p{N}\p{L}]')
+Message: Table cell in  contains ''. Are the brackets around the citation(s) unnecessary?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource" position="anchor">
+      <label>Key resources table</label>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Reagent type <break/>(species) or resource</th>
+            <th>Designation</th>
+            <th>Source or reference</th>
+            <th>Identifiers</th>
+            <th>Additional information</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Strain, strain background (<italic>Staphylococus lugdunensis</italic>)</td>
+            <td>N940135</td>
+            <td>National Reference Center for Staphylococci, Lyon, France (<xref ref-type="bibr" rid="bib26">Heilbronner et al., 2011</xref>)</td>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Strain, strain background (<italic>S. lugdunensis</italic>)</td>
+            <td>N920143</td>
+            <td>National Reference Center for Staphylococci, Lyon, France <break/>(<xref ref-type="bibr" rid="bib26">Heilbronner et al., 2011</xref>)</td>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Strain, strain background (<italic>S. lugdunensis)</italic></td>
+            <td valign="top">N920143 Δ<italic>isdEFL</italic></td>
+            <td>This paper</td>
+            <td/>
+            <td>Markerless deletion mutant of <italic>isdEFL</italic></td>
+          </tr>
+          <tr>
+            <td>Strain, strain background (<italic>S. lugdunensis)</italic></td>
+            <td>N920143 Δ<italic>lhaSTA</italic></td>
+            <td>This paper</td>
+            <td/>
+            <td>Markerless deletion mutant of <italic>lhaSTA</italic></td>
+          </tr>
+          <tr>
+            <td>Strain, strain background (<italic>S. lugdunensis)</italic></td>
+            <td>N920143 Δ<italic>isdEFL</italic>Δ<italic>lhaSTA</italic></td>
+            <td>This paper</td>
+            <td/>
+            <td>Markerless double deletion mutant of <italic>isdEFL</italic> and
+                <italic>lhaSTA</italic></td>
+          </tr>
+          <tr>
+            <td>Cell line (Human)</td>
+            <td>Human cardiac myocytes (HCM)</td>
+            <td>PromoCell</td>
+            <td>C-12810</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pQE-30</td>
+            <td>Qiagen</td>
+            <td/>
+            <td>IPTG inducible expression plasmid</td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pQE30:lhaS</td>
+            <td>This paper</td>
+            <td/>
+            <td>LhaS expressing plasmid for protein purification</td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pRB473: lhaSTA</td>
+            <td>This paper</td>
+            <td/>
+            <td>LhaSTA expressing plasmid for complementation</td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pIMAY (plasmid)</td>
+            <td>
+              (<xref ref-type="bibr" rid="bib37">Monk et al., 2012</xref>)
+            </td>
+            <td>See Material and methods</td>
+            <td>Thermosensitive vector for allelic exchange</td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pIMAY:∆<italic>isd</italic></td>
+            <td>
+              [<xref ref-type="bibr" rid="bib66">Zapotoczna et al., 2012</xref>]
+            </td>
+            <td/>
+            <td>Plasmid for the deletion of the entire <italic>isd</italic> locus</td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pIMAY:∆<italic>isdEFL</italic></td>
+            <td>This study</td>
+            <td/>
+            <td valign="top">Plasmid for the deletion of conventional heme transporter
+                <italic>isdEFL</italic></td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pIMAY:∆<italic>lhaSTA</italic></td>
+            <td>This study</td>
+            <td/>
+            <td valign="top">Plasmid for the deletion of heme specific ECF-transporter</td>
+          </tr>
+          <tr>
+            <td>Recombinant DNA reagent</td>
+            <td>pRB473</td>
+            <td>
+              <xref ref-type="bibr" rid="bib5">Brückner, 1992</xref>
+            </td>
+            <td/>
+            <td valign="top">Expression plasmid without promotor region.</td>
+          </tr>
+          <tr>
+            <td>Biological sample (Human)</td>
+            <td>Human hemoglobin</td>
+            <td>Own preparation</td>
+            <td>See Material and methods</td>
+            <td>Sex male</td>
+          </tr>
+          <tr>
+            <td>Biological sample (Pork)</td>
+            <td>Porcine hemin</td>
+            <td>Sigma</td>
+            <td>51280</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Biological sample (Human)</td>
+            <td>Human Myoglobin</td>
+            <td>Sigma Aldrich</td>
+            <td>M6036</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Biological sample (Horse)</td>
+            <td>Equine Myoglobin</td>
+            <td>Sigma Alrich</td>
+            <td>M1882</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Biological sample (Human)</td>
+            <td>Human Haptoglobin (Phenotype 1–1)</td>
+            <td>Sigma Aldrich</td>
+            <td>SRP6507</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Biological sample (Human)</td>
+            <td>Human Hemopexin</td>
+            <td>Sigma Aldrich</td>
+            <td>H9291</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Chemical compound, drug</td>
+            <td>RPMI 1640 Medium</td>
+            <td>Sigma Aldrich</td>
+            <td>R6504-10L</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Chemical compound, drug</td>
+            <td>Casamino acids</td>
+            <td>BACTO</td>
+            <td>223050</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Chemical compound, drug</td>
+            <td>EDDHA</td>
+            <td>LGC Standarts</td>
+            <td>TRC-E335100-10MG</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Chemical compound, drug</td>
+            <td>Dodecyl-β-D-maltosid (DDM)</td>
+            <td>Carl Roth</td>
+            <td>CN26.1</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Chemical compound, drug</td>
+            <td>3,3',5,5'-tetramethylbenzidine (TMBZ)</td>
+            <td>Sigma Aldrich</td>
+            <td>860336</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>Chemical compound, drug</td>
+            <td>Profinity IMAC resin nickel chrged</td>
+            <td>BIO RAD</td>
+            <td>1560135</td>
+            <td/>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </article>
+</root>

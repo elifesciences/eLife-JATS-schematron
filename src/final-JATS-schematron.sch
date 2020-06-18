@@ -2167,6 +2167,14 @@
       
     </rule>
   </pattern>
+  <pattern id="table-cell-tests-pattern">
+    <rule context="table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]" id="table-cell-tests">
+      <let name="stripped-text" value="string-join(for $x in self::*/(text()|*)         return if (($x/local-name()='xref') and $x/@ref-type='bibr') then ()         else $x,'')"/>
+      
+      <assert test="matches($stripped-text,'[\p{N}\p{L}]')" role="warning" id="table-cell-1">[table-cell-1] Table cell in <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains '<value-of select="."/>'. Are the brackets around the citation(s) unnecessary?</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="body-table-label-tests-pattern">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
@@ -2319,7 +2327,7 @@
       <report test="child::*" role="error" id="code-child-test">[code-child-test] code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
         <value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
       
-      <report test="preceding::*[1]/name()='code'" role="warning" id="code-sibling-test">[code-sibling-test] code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <report test="(preceding::*[1]/name()='code') and (normalize-space(preceding-sibling::text()[1])='')" role="warning" id="code-sibling-test">[code-sibling-test] code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
@@ -2989,6 +2997,13 @@
       
     </rule>
   </pattern>
+  <pattern id="res-ethics-sec-pattern">
+    <rule context="article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" id="res-ethics-sec">
+      
+      <report test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" role="warning" id="sec-test-4">[sec-test-4] Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or '<value-of select="string-join(           ancestor::article//fn-group[@content-type='ethics-information']/fn           ,' '           )"/>'?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="back-tests-pattern">
     <rule context="back" id="back-tests">
@@ -3139,7 +3154,7 @@
       
       <report test="$count gt 2" role="error" id="dec-letter-front-test-3">[dec-letter-front-test-3] decision letter front-stub contains more than 2 contrib-group elements.</report>
       
-      <report test="$count = 1" role="warning" id="dec-letter-front-test-4">[dec-letter-front-test-4] decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous?</report>
+      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous'))" role="warning" id="dec-letter-front-test-4">[dec-letter-front-test-4] decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present in the decision letter.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-pattern">
@@ -3239,7 +3254,7 @@
   <pattern id="insight-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
       
-      <assert test="count(related-article) gt 0" role="error" id="related-articles-test-2">[related-articles-test-2] Insight must contain an article-reference link to the original article it is discussing.</assert>
+      <assert test="count(related-article[@related-article-type='commentary-article']) gt 0" role="error" id="related-articles-test-2">[related-articles-test-2] Insight must contain an article-reference link (related-article[@related-article-type='commentary-article']) to the original article it is discussing.</assert>
       
     </rule>
   </pattern>
@@ -3254,6 +3269,13 @@
     <rule context="article[@article-type='retraction']//article-meta" id="retraction-test">
       
       <assert test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">[related-articles-test-9] Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="research-article-ra-test-pattern">
+    <rule context="article[@article-type='research-article']//related-article" id="research-article-ra-test">
+      
+      <assert test="@related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')" role="error" id="related-articles-test-12">[related-articles-test-12] The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to <value-of select="@xlink:href"/> is a <value-of select="@related-article-type"/> type link.</assert>
       
     </rule>
   </pattern>
@@ -5042,7 +5064,7 @@
       
       <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">[diabetes-2-test] '<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
       
       <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">[year-style-test] '<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
@@ -5242,6 +5264,8 @@
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="fig-xref-test-14">[fig-xref-test-14] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
       <report test="matches(.,' [Ff]ig[\.]? ')" role="error" id="fig-xref-test-15">[fig-xref-test-15] Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
+      
+      <report test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" role="warning" id="fig-xref-test-16">[fig-xref-test-16] Figure citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a figure supplement citation instead?</report>
     </rule>
   </pattern>
   
@@ -5271,6 +5295,7 @@
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="table-xref-test-5">[table-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-5</report>
       
+      <report test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" role="warning" id="table-xref-test-6">[table-xref-test-6] Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead?</report>
     </rule>
   </pattern>
   
@@ -5757,9 +5782,9 @@
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" role="warning" id="supplementalfile-presence">[supplementalfile-presence] <name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
       
-      <report test="not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">[ref-presence] <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
+      <report test="not(local-name()='code') and not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">[ref-presence] <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
       
-      <report test="not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')" role="error" id="refs-presence">[refs-presence] <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
+      <report test="not(local-name()='code') and not(ancestor::sub-article) and matches(.,' [Rr]efs\. ')" role="error" id="refs-presence">[refs-presence] <name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
       <report test="contains(.,'�')" role="error" id="replacement-character-presence">[replacement-character-presence] <name/> element contains the replacement character '�' which is not allowed.</report>
       
@@ -5771,9 +5796,9 @@
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
+      <report test="not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       
-      <report test="not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
+      <report test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
       
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">[operating-system-command-presence] <name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/>
       </report>
@@ -6682,6 +6707,13 @@
       
     </rule>
   </pattern>
+  <pattern id="strike-tests-pattern">
+    <rule context="strike" id="strike-tests">     
+      
+      <report test="." role="warning" id="final-strike-flag">[final-strike-flag] <value-of select="parent::*/local-name()"/> element contains text with strikethrough formatting - <value-of select="."/> - Is this correct? Or have the authors added strikethrough formatting as an indication that the content should be removed?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="doi-journal-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
@@ -6924,8 +6956,8 @@
 </rule>
   </pattern>
   
-  <pattern id="element-whitelist-pattern">
-    <rule context="article//*[not(ancestor::mml:math)]" id="element-whitelist">
+  <pattern id="element-allowlist-pattern">
+    <rule context="article//*[not(ancestor::mml:math)]" id="element-allowlist">
       <let name="allowed-elements" value="('abstract', 'ack', 'addr-line', 'aff', 'ali:free_to_read', 'ali:license_ref', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'sc', 'sec', 'self-uri', 'source', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'version', 'volume', 'xref', 'year')"/>
       
       <assert test="name()=$allowed-elements" role="error" id="element-conformity">[element-conformity] <value-of select="name()"/> element is not allowed.</assert>

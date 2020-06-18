@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="sec-test-4.sch"?>
+<!--Context: article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]
+Test: report    matches(lower-case(title[1]),'^ethics| ethics$| ethics ')
+Message: Section has a title ''. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or ''?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <body>
+      <sec>
+        <title>Ethics</title>
+        <p>Human subjects: Human Erythrocytes were isolated from venous blood of healthy volunteers in accordance with protocols approved by the Institutional Review Board for Human Subjects at the University of Tübingen. Informed written consent was obtained from all volunteers.</p>
+        <p>Animal experimentation: Animal experiments were performed in strict accordance with the European Health Law of the Federation of Laboratory Animal Science Associations. The protocol was approved by the Regierungspräsidium Tübingen (IMIT1/17).</p>
+      </sec>
+    </body>
+    <back>
+      <fn-group content-type="ethics-information"><title>Ethics</title><fn fn-type="other" id="fn1"><p>Human subjects: Human Erythrocytes were isolated from venous blood of healthy volunteers in accordance with protocols approved by the Institutional Review Board for Human Subjects at the University of Tübingen. Informed written consent was obtained from all volunteers.</p></fn><fn fn-type="other" id="fn2"><p>Animal experimentation: Animal experiments were performed in strict accordance with the European Health Law of the Federation of Laboratory Animal Science Associations. The protocol was approved by the Regierungspräsidium Tübingen (IMIT1/17).</p></fn></fn-group>
+    </back>
+  </article>
+</root>
