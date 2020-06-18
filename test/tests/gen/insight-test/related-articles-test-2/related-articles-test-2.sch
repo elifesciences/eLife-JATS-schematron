@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="related-articles">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
-      <assert test="count(related-article) gt 0" role="error" id="related-articles-test-2">Insight must contain an article-reference link to the original article it is discussing.</assert>
+      <assert test="count(related-article[@related-article-type='commentary-article']) gt 0" role="error" id="related-articles-test-2">Insight must contain an article-reference link (related-article[@related-article-type='commentary-article']) to the original article it is discussing.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

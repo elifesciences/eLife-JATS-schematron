@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="code" id="code-tests">
-      <report test="preceding::*[1]/name()='code'" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <report test="(preceding::*[1]/name()='code') and (normalize-space(preceding-sibling::text()[1])='')" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

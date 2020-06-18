@@ -778,7 +778,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
+      <report test="not(local-name()='code') and not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">
         <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
     </rule>
   </pattern>

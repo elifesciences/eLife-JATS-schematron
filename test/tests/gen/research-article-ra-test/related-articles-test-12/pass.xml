@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="related-articles-test-12.sch"?>
+<!--Context: article[@article-type='research-article']//related-article
+Test: assert    @related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')
+Message: The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to  is a  type link.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <article-meta>
+      <related-article ext-link-type="doi" id="ra1" related-article-type="article-reference" xlink:href="10.7554/eLife.55614"/>
+      <related-article ext-link-type="doi" id="ra2" related-article-type="article-reference" xlink:href="10.7554/eLife.55624"/>
+      <related-article ext-link-type="doi" id="ra3" related-article-type="commentary" xlink:href="10.7554/eLife.55634"/>
+      <related-article ext-link-type="doi" id="ra4" related-article-type="corrected-article" xlink:href="10.7554/eLife.55644"/>
+      <related-article ext-link-type="doi" id="ra5" related-article-type="retracted-article" xlink:href="10.7554/eLife.55654"/>
+    </article-meta>
+  </article>
+</root>
