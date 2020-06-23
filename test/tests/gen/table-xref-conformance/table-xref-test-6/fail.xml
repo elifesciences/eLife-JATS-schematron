@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-xref-test-6.sch"?>
 <!--Context: xref[@ref-type='table']
 Test: report    matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')
-Message: Table citation - '' - is preceded by the text '' - should it be a Supplementary file citation instead?-->
+Message: Table citation - '' - is preceded by the text '' - should it be a Supplementary file citation instead? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-xref-test-6-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p> Supp. <xref ref-type="table" rid="table1">Table 1</xref></p>

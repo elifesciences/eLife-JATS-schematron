@@ -50,6 +50,9 @@
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
+          <xsl:when test="contains($token1,'-')">
+            <xsl:value-of select="string-join(for $x in tokenize($s,'\s') return e:titleCaseToken($x),' ')"/>
+          </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="concat(               concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:otherwise>
