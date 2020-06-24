@@ -780,13 +780,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[@id='keyresource']/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[@id='keyresource']/table/thead[1] must be present.</assert>
+      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

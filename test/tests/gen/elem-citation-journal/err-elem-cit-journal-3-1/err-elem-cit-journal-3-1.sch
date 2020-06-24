@@ -785,7 +785,7 @@
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        <value-of select="count(article-title)"/> &lt;article-title&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#err-elem-cit-journal-3-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

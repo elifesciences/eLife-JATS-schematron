@@ -784,7 +784,7 @@
       <assert test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">[err-elem-cit-journal-5-1-3]
         There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/>
-        &lt;volume&gt; elements.</assert>
+        &lt;volume&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-3</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

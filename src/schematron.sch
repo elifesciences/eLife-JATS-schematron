@@ -2929,14 +2929,18 @@
         role="error"
         id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
       
-      <report test="if ($id = 'keyresource') then ()
+      <report test="matches($id,'^app[0-9]{1,4}keyresource$') and not(matches($lab,'^Appendix [0-9]{1,4}—key resources table$'))"
+        role="error"
+        id="kr-table-wrap-test-2">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Appendix 0—key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-2</report>
+      
+      <report test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning"
         id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-table-wrap-cite-1</report>
       
-      <report test="if ($id = 'keyresource') then ()
+      <report test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else if (ancestor::app or ancestor::sub-article) then ()
@@ -2951,17 +2955,17 @@
         role="warning"
         id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
       
-      <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" 
+      <report test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" 
         role="error"
-        id="kr-table-not-tagged"><value-of select="$lab"/> has headings that are for the Key resources table, but it does not have an @id='keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
+        id="kr-table-not-tagged"><value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
       
-      <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" 
+      <report test="matches(caption/title[1],'[Kk]ey [Rr]esource')" 
         role="warning"
         id="kr-table-not-tagged-2"><value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged-2</report>
       
     </rule>
     
-    <rule context="table-wrap[@id='keyresource']/table/thead[1]" 
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" 
       id="kr-table-heading-tests">
       
       <report test="count(tr[1]/th) != 5" 
@@ -2998,7 +3002,7 @@
       
     </rule>
     
-    <rule context="table-wrap[@id='keyresource']/table/tbody/tr/*" 
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" 
       id="kr-table-body-tests">
       
       <assert test="local-name()='td'" 
@@ -3032,7 +3036,7 @@
       id="app-table-label-tests">
       <let name="app" value="ancestor::app/title[1]"/>
       
-      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')"
+      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$|^Appendix \d{1,4}—key resources table$')"
         role="error"
         id="app-table-label-test-1"><value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-1</assert>
       
@@ -4159,9 +4163,9 @@
     id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')"
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$')"
       role="error"
-      id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
+      id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
       
       <assert test="starts-with(@id, concat('app' , $app-no))"
         role="error"
@@ -4965,6 +4969,22 @@
         'periodical', 'report', 'confproc', or 'thesis'. 
         Reference '<value-of select="../@id"/>' has the publication-type 
         '<value-of select="@publication-type"/>'.</assert>
+      
+      <report test="(@publication-type!='periodical') and not(year)" 
+        role="warning" 
+        id="pre-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
+      
+      <report test="(@publication-type!='periodical') and not(year)" 
+        role="error" 
+        id="final-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.</report>
+      
+      <report test="(@publication-type='periodical') and not(string-date)" 
+        role="warning" 
+        id="pre-element-cite-string-date">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
+      
+      <report test="(@publication-type='periodical') and not(string-date)" 
+        role="error" 
+        id="final-element-cite-string-date">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.</report>
       
     </rule>
     

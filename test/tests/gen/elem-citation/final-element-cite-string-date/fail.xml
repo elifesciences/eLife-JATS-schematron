@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="final-element-cite-string-date.sch"?>
+<!--Context: element-citation
+Test: report    (@publication-type='periodical') and not(string-date)
+Message: '' type references must have a year. Reference '' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+      <article>
+        <ref id="bib1"><element-citation publication-type="periodical"><person-group person-group-type="author"><name><surname>Akimov</surname> <given-names>V</given-names></name><name><surname>Barrio-Hernandez</surname> <given-names>I</given-names></name><name><surname>Hansen</surname> <given-names>SVF</given-names></name><name><surname>Hallenborg</surname> <given-names>P</given-names></name><name><surname>Pedersen</surname> <given-names>AK</given-names></name><name><surname>Bekker-Jensen</surname> <given-names>DB</given-names></name><name><surname>Puglia</surname> <given-names>M</given-names></name><name><surname>Christensen</surname> <given-names>SDK</given-names></name><name><surname>Vanselow</surname> <given-names>JT</given-names></name><name><surname>Nielsen</surname> <given-names>MM</given-names></name><name><surname>Kratchmarova</surname> <given-names>I</given-names></name><name><surname>Kelstrup</surname> <given-names>CD</given-names></name><name><surname>Olsen</surname> <given-names>JV</given-names></name><name><surname>Blagoev</surname> <given-names>B</given-names></name></person-group><article-title>UbiSite approach for comprehensive mapping of lysine and N-terminal ubiquitination sites</article-title><source>Nature Structural &amp; Molecular Biology</source><volume>25</volume><fpage>631</fpage><lpage>640</lpage><pub-id pub-id-type="doi">10.1038/s41594-018-0084-y</pub-id><pub-id pub-id-type="pmid">29967540</pub-id></element-citation></ref>
+      </article>
+    </root>
+  </article>
+</root>
