@@ -780,13 +780,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[@id='keyresource']/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[@id='keyresource']/table/thead[1] must be present.</assert>
+      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

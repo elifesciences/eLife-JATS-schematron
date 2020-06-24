@@ -780,14 +780,14 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="p|td|th|monospace|code" id="latex-tests">
+    <rule context="p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code" id="latex-tests">
       <report test="matches(.,'\s*\\[a-z]*\p{Ps}')" role="warning" id="latex-test">
         <name/> element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - "<value-of select="."/>"</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th or descendant::monospace or descendant::code" role="error" id="latex-tests-xspec-assert">p|td|th|monospace|code must be present.</assert>
+      <assert test="descendant::p[not(descendant::mml:math)] or descendant::td[not(descendant::mml:math)] or descendant::th[not(descendant::mml:math)] or descendant::monospace or descendant::code" role="error" id="latex-tests-xspec-assert">p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -782,7 +782,7 @@
   <pattern id="id-conformance">
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

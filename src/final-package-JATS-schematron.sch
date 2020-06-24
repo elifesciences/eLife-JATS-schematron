@@ -2193,22 +2193,24 @@
       
       <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
       
+      <report test="matches($id,'^app[0-9]{1,4}keyresource$') and not(matches($lab,'^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-2">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Appendix 0—key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-2</report>
       
       
-      <report test="if ($id = 'keyresource') then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-table-wrap-cite-1</report>
+      
+      <report test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#final-table-wrap-cite-1</report>
       
       <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
       
-      <report test="($id != 'keyresource') and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
-        <value-of select="$lab"/> has headings that are for the Key resources table, but it does not have an @id='keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
+      <report test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">
+        <value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
       
-      <report test="matches(caption/title[1],'^[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
+      <report test="matches(caption/title[1],'[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">
         <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged-2</report>
       
     </rule>
   </pattern>
   <pattern id="kr-table-heading-tests-pattern">
-    <rule context="table-wrap[@id='keyresource']/table/thead[1]" id="kr-table-heading-tests">
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       
       <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-1</report>
       
@@ -2229,7 +2231,7 @@
     </rule>
   </pattern>
   <pattern id="kr-table-body-tests-pattern">
-    <rule context="table-wrap[@id='keyresource']/table/tbody/tr/*" id="kr-table-body-tests">
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" id="kr-table-body-tests">
       
       <assert test="local-name()='td'" role="error" id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-body-1</assert>
       
@@ -2255,7 +2257,7 @@
     <rule context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title[1]"/>
       
-      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$')" role="error" id="app-table-label-test-1">
+      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$|^Appendix \d{1,4}—key resources table$')" role="error" id="app-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-1</assert>
       
       <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">
@@ -3026,7 +3028,7 @@
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0'. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
       
       <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2</assert>
     </rule>
@@ -3641,6 +3643,14 @@
         Reference '<value-of select="../@id"/>' has the publication-type 
         '<value-of select="@publication-type"/>'.</assert>
       
+      
+      
+      <report test="(@publication-type!='periodical') and not(year)" role="error" id="final-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.</report>
+      
+      
+      
+      <report test="(@publication-type='periodical') and not(string-date)" role="error" id="final-element-cite-string-date">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.</report>
+      
     </rule>
   </pattern>
   <pattern id="element-citation-descendants-pattern">
@@ -3661,25 +3671,26 @@
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;person-group&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+        <value-of select="count(person-group)"/> &lt;person-group&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-1</assert>
+      
       
       <assert test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-journal-2-2">[err-elem-cit-journal-2-2]
         Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt; 
         with the attribute person-group-type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of 
-        '<value-of select="person-group/@person-group-type"/>'.</assert> 
+        '<value-of select="person-group/@person-group-type"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-2</assert> 
       
       <assert test="count(article-title)=1" role="error" id="err-elem-cit-journal-3-1">[err-elem-cit-journal-3-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        <value-of select="count(article-title)"/> &lt;article-title&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#err-elem-cit-journal-3-1</assert>
       
       <assert test="count(source)=1" role="error" id="err-elem-cit-journal-4-1">[err-elem-cit-journal-4-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+        <value-of select="count(source)"/> &lt;source&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-1</assert>
       
       <!-- Genericised across all publication types in elem-cit-source
       <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-journal-4-2-1">[err-elem-cit-journal-4-2-1]
@@ -3690,12 +3701,12 @@
       <report test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
         elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2</report>
       
       <assert test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">[err-elem-cit-journal-5-1-3]
         There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/>
-        &lt;volume&gt; elements.</assert>
+        &lt;volume&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-3</assert>
       
       <!-- This doesn't work and the check is covered by eloc-page-assert (with a more human readable error message)
         
@@ -3705,12 +3716,12 @@
       
       <report test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">[err-elem-cit-journal-6-5-1]
         &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1</report>
       
       <report test="lpage and (number(fpage[1]) &gt;= number(lpage[1]))" role="error" id="err-elem-cit-journal-6-5-2">[err-elem-cit-journal-6-5-2]
         &lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. 
         Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' 
-        but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
+        but last page &lt;lpage&gt; = '<value-of select="lpage"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2</report>
       
       <report test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" role="error" id="err-elem-cit-journal-6-7">[err-elem-cit-journal-6-7]
         The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, 
@@ -3718,13 +3729,13 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;,
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and 
-        <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
+        <value-of select="count(comment)"/> &lt;comment&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-7</report>
       
       <assert test="count(*) = count(person-group| year| article-title| source| volume| fpage| lpage| elocation-id| comment| pub-id)" role="error" id="err-elem-cit-journal-12">[err-elem-cit-journal-12]
         The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are:
         &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, 
         &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has other elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-12</assert>
       
     </rule>
   </pattern>
@@ -3734,7 +3745,7 @@
       <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">[err-elem-cit-journal-3-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-3-2</assert>
       
     </rule>
   </pattern>
@@ -3744,7 +3755,7 @@
         A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
         at least one character and may not contain child elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
-        child elements.</assert>
+        child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2</assert>
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-fpage-pattern">
@@ -3752,12 +3763,12 @@
       
       <assert test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">[err-elem-cit-journal-6-2]
         If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2</assert>
       
       <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1)) or count(../lpage) eq 0" role="error" id="err-elem-cit-journal-6-6">[err-elem-cit-journal-6-6]
         If the content of &lt;fpage&gt; begins with a letter, then the content of  &lt;lpage&gt; must begin with 
         the same letter. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6</assert>
       
     </rule>
   </pattern>

@@ -4,7 +4,7 @@ Test: report    count(source)=1 and count(source/*)!=0
 Message: [err-elem-cit-journal-4-2-2]
         A  <source> element within a <element-citation> of type 'journal' may not contain child 
         elements.
-        Reference '' has disallowed child elements.-->
+        Reference '' has disallowed child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>
