@@ -12676,6 +12676,18 @@
         <x:expect-not-assert id="underline-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="latex-tests">
+      <x:scenario label="latex-test-pass">
+        <x:context href="../tests/gen/latex-tests/latex-test/pass.xml"/>
+        <x:expect-not-report id="latex-test" role="warning"/>
+        <x:expect-not-assert id="latex-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="latex-test-fail">
+        <x:context href="../tests/gen/latex-tests/latex-test/fail.xml"/>
+        <x:expect-report id="latex-test" role="warning"/>
+        <x:expect-not-assert id="latex-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="country-tests">
       <x:scenario label="united-states-test-1-pass">
         <x:context href="../tests/gen/country-tests/united-states-test-1/pass.xml"/>

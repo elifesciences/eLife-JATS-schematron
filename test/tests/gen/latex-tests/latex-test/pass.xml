@@ -1,0 +1,81 @@
+<?oxygen SCHSchema="latex-test.sch"?>
+<!--Context: p|td|th|monospace|code
+Test: report    matches(.,'\s*\\[a-z]*\p{Ps}')
+Message:  element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - ""-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <code xml:space="preserve">IMECMassemle = imread('TOTALMATRIX.tif'); 
+IMECMassemle = im2bw(IMECMassemle); 
+IMECMunassemle = imread('UNASSEMBLEDMATRIX.tif'); 
+IMECMunassemle = im2bw(IMECMunassemle); 
+IMECMtot = imread('TOTALTISSUE.tif'); 
+IMECMtot = im2bw(IMECMtot); 
+[x1,y1]=size(IMECMassemle); 
+height = min(x1,y1); 
+width = max(x1,y1); 
+dx = 10*17.4; %round(width/Ntot); 
+Ntot = round(width/dx); 
+%k = 0; 
+xmin = 0; 
+%Distmin = 25; 
+for k = 1:Ntot 
+filename = strcat('Icrop', num2str(k), '.tif'); 
+jjassemble = imcrop(IMECMassemle,[xmin,0,dx,height]); 
+jjunassemble = imcrop(IMECMunassemle,[xmin,0,dx,height]); 
+jjtot = imcrop(IMECMtot,[xmin,0,dx,height]); 
+%imwrite(jj,filename) 
+[rowsas,colsas]=find(jjassemble == 0); %%%% cols = AP, rows = ML, NT position = max(rows) 
+[rowsunas,colsunas] =find(jjunassemble == 0); 
+[rowstot,colstot]=find(jjtot == 0); 
+NTposition = max(rowstot); 
+ML = max(rowstot)-min(rowstot);
+rowsas1{k}=abs(rowsas-NTposition)/ML; 
+rowsunas1{k}=abs(rowsunas-NTposition)/ML; 
+xmin = xmin + dx; 
+%Dist(k)=Distmin; 
+%Distmin = Distmin+50; 
+%%dist = 20 um 
+end 
+MLas = cell2mat(rowsas1'); 
+MLunas = cell2mat(rowsunas1'); 
+hist(MLas,30); hold on 
+hist(MLunas,30); 
+[fas,xas]=hist(MLas,30); 
+[funas,xunas]=hist(MLunas,30); 
+%output=[mode(MLas), mode(MLunas), mean(MLas), mean(MLunas), std(MLas), std(MLunas)]; 
+%xlswrite('Spatial-Segregation_WT-1_L1-PSML_6-22-17.xls',output) 
+output=[xas',fas',xunas',funas']; 
+%xlswrite('ML_Frequency_WT-1_L1-PSML_6-22-17.xls',output) 
+%save ML_Frequency_WT-1_L1-PSML_6-22-17.dat output -ascii 
+Anterior-posterior density of F-actin or matrix elements: 
+ImageECM = imread('ASSEMBLEDMATRIX.tif'); 
+BWECM = im2bw(ImageECM); 
+nBlack = sum(BWECM(:)==0); 
+[x1,y1]=size(BWECM); %%%%%% check if size is same for ALL FIGURES 
+height = min(x1,y1); 
+width = max(x1,y1); 
+dx = 50*17.4; %round(width/Ntot); 
+Ntot = round(width/dx); 
+k = 0; 
+xmin = 0; 
+Distmin = 25; 
+for k = 1:Ntot 
+filename = strcat('Icrop', num2str(k), '.tif'); 
+jj = imcrop(BWECM,[xmin,0,dx,height]); 
+imwrite(jj,filename) 
+xmin = xmin + dx; 
+Dist(k)=Distmin; 
+Distmin = Distmin+50; 
+%%dist = 20 um 
+end 
+for k = 1:Ntot 
+filename = strcat('Icrop', num2str(k), '.tif'); 
+IMcrop = imread(filename); 
+%BWcrop = im2bw(IMcrop); 
+nB(k)=sum(IMcrop(:)==0); 
+end 
+%Dist = 1:Ntot; 
+output=[Dist',nB']; 
+xlswrite('assembled.xls',output)</code>
+  </article>
+</root>

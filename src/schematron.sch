@@ -4509,9 +4509,9 @@
         role="error"
         id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
       
-      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous'))"
+      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])"
         role="warning"
-        id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present in the decision letter.</report>
+        id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]"
@@ -4989,25 +4989,26 @@
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;person-group&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+        <value-of select="count(person-group)"/> &lt;person-group&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-1</assert>
+      
       
       <assert test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-journal-2-2">[err-elem-cit-journal-2-2]
         Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt; 
         with the attribute person-group-type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of 
-        '<value-of select="person-group/@person-group-type"/>'.</assert> 
+        '<value-of select="person-group/@person-group-type"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-2</assert> 
       
       <assert test="count(article-title)=1" role="error" id="err-elem-cit-journal-3-1">[err-elem-cit-journal-3-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        <value-of select="count(article-title)"/> &lt;article-title&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#err-elem-cit-journal-3-1</assert>
       
       <assert test="count(source)=1" role="error" id="err-elem-cit-journal-4-1">[err-elem-cit-journal-4-1]
         Each  &lt;element-citation&gt; of type 'journal' must contain one and
         only one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+        <value-of select="count(source)"/> &lt;source&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-1</assert>
       
       <!-- Genericised across all publication types in elem-cit-source
       <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-journal-4-2-1">[err-elem-cit-journal-4-2-1]
@@ -5018,12 +5019,12 @@
       <report test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
         elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2</report>
       
       <assert test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">[err-elem-cit-journal-5-1-3]
         There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/>
-        &lt;volume&gt; elements.</assert>
+        &lt;volume&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-3</assert>
       
       <!-- This doesn't work and the check is covered by eloc-page-assert (with a more human readable error message)
         
@@ -5033,12 +5034,12 @@
       
       <report test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">[err-elem-cit-journal-6-5-1]
         &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1</report>
       
       <report test="lpage and (number(fpage[1]) &gt;= number(lpage[1]))" role="error" id="err-elem-cit-journal-6-5-2">[err-elem-cit-journal-6-5-2]
         &lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. 
         Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' 
-        but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
+        but last page &lt;lpage&gt; = '<value-of select="lpage"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2</report>
       
       <report test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" role="error" id="err-elem-cit-journal-6-7">[err-elem-cit-journal-6-7]
         The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, 
@@ -5046,13 +5047,13 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;,
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and 
-        <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
+        <value-of select="count(comment)"/> &lt;comment&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-7</report>
       
       <assert test="count(*) = count(person-group| year| article-title| source| volume| fpage| lpage| elocation-id| comment| pub-id)" role="error" id="err-elem-cit-journal-12">[err-elem-cit-journal-12]
         The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are:
         &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, 
         &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has other elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-12</assert>
       
     </rule>
     
@@ -5061,7 +5062,7 @@
       <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">[err-elem-cit-journal-3-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-3-2</assert>
       
     </rule>
     
@@ -5070,19 +5071,19 @@
         A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
         at least one character and may not contain child elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
-        child elements.</assert>
+        child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2</assert>
     </rule>
     
     <rule context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
       
       <assert test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">[err-elem-cit-journal-6-2]
         If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2</assert>
       
       <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1)) or count(../lpage) eq 0" role="error" id="err-elem-cit-journal-6-6">[err-elem-cit-journal-6-6]
         If the content of &lt;fpage&gt; begins with a letter, then the content of  &lt;lpage&gt; must begin with 
         the same letter. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6</assert>
       
     </rule>
     
@@ -8255,6 +8256,15 @@
       <report test="matches(.,'^\p{P}*$')"
         role="warning"
         id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      
+    </rule>
+    
+    <rule context="p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code"
+      id="latex-tests">
+      
+      <report test="matches(.,'\s*\\[a-z]*\p{Ps}')"
+        role="warning"
+        id="latex-test"><name/> element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - "<value-of select="."/>"</report>
       
     </rule>
     
