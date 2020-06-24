@@ -779,15 +779,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
-  <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
-      <let name="count" value="count(contrib-group)"/>
-      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])" role="warning" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter.</report>
+  <pattern id="house-style">
+    <rule context="p|td|th|monospace|code" id="latex-tests">
+      <report test="matches(.,'\s*\\[a-z]*\p{Ps}')" role="warning" id="latex-test">
+        <name/> element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - "<value-of select="."/>"</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::monospace or descendant::code" role="error" id="latex-tests-xspec-assert">p|td|th|monospace|code must be present.</assert>
     </rule>
   </pattern>
 </schema>

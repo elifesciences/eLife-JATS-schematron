@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="latex-test.sch"?>
+<!--Context: p|td|th|monospace|code
+Test: report    matches(.,'\s*\\[a-z]*\p{Ps}')
+Message:  element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - ""-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <code xml:space="preserve">\begin{gather*}
+   \mathop{
+     \bm{V}_{i,j} = \dfrac{
+                    \sum\limits_{k = 1}^{n}
+                    \left(\bm{M}_{i,j,k} \odot \bm{p}_{k} \right)
+                    }
+                    {
+                    \sum\limits_{k = 1}^{n} \bm{M}_{i,j,k}
+                    }
+}
+\end{gather*}
+\end{linenomath*}</code>
+  </article>
+</root>

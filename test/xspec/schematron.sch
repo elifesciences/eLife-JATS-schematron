@@ -3259,7 +3259,7 @@
       
       <report test="$count gt 2" role="error" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
       
-      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous'))" role="warning" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviwing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present in the decision letter.</report>
+      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])" role="warning" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-pattern">
@@ -6121,6 +6121,14 @@
       
     </rule>
   </pattern>
+  <pattern id="latex-tests-pattern">
+    <rule context="p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code" id="latex-tests">
+      
+      <report test="matches(.,'\s*\\[a-z]*\p{Ps}')" role="warning" id="latex-test">
+        <name/> element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - "<value-of select="."/>"</report>
+      
+    </rule>
+  </pattern>
   <pattern id="country-tests-pattern">
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
@@ -7730,6 +7738,7 @@
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-tests-xspec-assert">underline must be present.</assert>
+      <assert test="descendant::p[not(descendant::mml:math)] or descendant::td[not(descendant::mml:math)] or descendant::th[not(descendant::mml:math)] or descendant::monospace or descendant::code" role="error" id="latex-tests-xspec-assert">p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code must be present.</assert>
       <assert test="descendant::front//aff/country" role="error" id="country-tests-xspec-assert">front//aff/country must be present.</assert>
       <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
       <assert test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
