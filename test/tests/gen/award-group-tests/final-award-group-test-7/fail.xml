@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="award-group-test-7.sch"?>
+<?oxygen SCHSchema="final-award-group-test-7.sch"?>
 <!--Context: funding-group/award-group
 Test: assert    ancestor::article//article-meta//contrib//xref/@rid = $id
 Message: There is no author associated with the funding for , which is incorrect. (There is no xref from a contrib pointing to this <award-group id="">). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-7-->
@@ -8,7 +8,6 @@ Message: There is no author associated with the funding for , which is incorrect
       <contrib-group>
         <contrib>
           ...
-          <xref ref-type="other" rid="fund1"/>
         </contrib>
       </contrib-group>
       <funding-group>

@@ -1514,7 +1514,9 @@
 		
 		<assert test="funding-source" role="error" id="award-group-test-2">[award-group-test-2] award-group must contain a funding-source. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-2</assert>
 		
-		<assert test="principal-award-recipient" role="error" id="award-group-test-3">[award-group-test-3] award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-3</assert>
+		
+	  
+	  <assert test="principal-award-recipient" role="error" id="final-award-group-test-3">[final-award-group-test-3] award-group must contain a principal-award-recipient. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-3</assert>
 		
 		<report test="count(award-id) gt 1" role="error" id="award-group-test-4">[award-group-test-4] award-group may contain one and only one award-id. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4</report>
 		
@@ -1522,7 +1524,9 @@
 		
 		<report test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-6</report>
 	  
-	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="award-group-test-7">[award-group-test-7] There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-7</assert>
+	  
+	  
+	  <assert test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="error" id="final-award-group-test-7">[final-award-group-test-7] There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-7</assert>
 	  
 	  <report test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8</report>
 	</rule>
@@ -6733,6 +6737,13 @@
       
       <report test="." role="warning" id="final-strike-flag">[final-strike-flag] <value-of select="parent::*/local-name()"/> element contains text with strikethrough formatting - <value-of select="."/> - Is this correct? Or have the authors added strikethrough formatting as an indication that the content should be removed?</report>
       
+    </rule>
+  </pattern>
+  <pattern id="title-bold-tests-pattern">
+    <rule context="title[(count(*)=1) and (child::bold or child::italic)]" id="title-bold-tests">  
+    <let name="free-text" value="replace(       normalize-space(string-join(for $x in self::*/text() return $x,''))       ,' ','')"/>
+    
+    <report test="$free-text=''" role="warning" id="title-all-bold-test-1">[title-all-bold-test-1] Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
   
