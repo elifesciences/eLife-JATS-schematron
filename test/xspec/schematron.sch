@@ -400,7 +400,7 @@
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
-  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|a\.\s?thaliana|arabidopsis\s?thaliana|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|h\.\s?sapiens|homo\s?sapiens|e\.\s?faecalis|enterococcus\s?faecalis|c\.\s?trachomatis|chlamydia\s?trachomatis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?plantaginis|plantago\s?lanceolata|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
+  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|h\.\s?sapiens|homo\s?sapiens|c\.\s?trachomatis|chlamydia\s?trachomatis|enterococcus\s?faecalis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?lanceolata|plantago\s?lanceolata|m\.\s?trossulus|mytilus\s?trossulus|m\.\s?edulis|mytilus\s?edulis|m\.\s?chilensis|mytilus\s?chilensis|u\.\s?maydis|ustilago\s?maydis|p\.\s?knowlesi|plasmodium\s?knowlesi|p\.\s?aeruginosa|pseudomonas\s?aeruginosa|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   
@@ -2196,9 +2196,7 @@
       
       <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-4</report>
       
-      <report test="($id = 'keyresource') and ($lab != 'Key resources table')" role="error" id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not 'Key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
-      
-      <report test="matches($id,'^app[0-9]{1,4}keyresource$') and not(matches($lab,'^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-2">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Appendix 0—key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-2</report>
+      <report test="($id = 'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-1">table-wrap has an id 'keyresource' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
       
       <report test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-table-wrap-cite-1</report>
       
@@ -3039,9 +3037,9 @@
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^keyresource$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
       
-      <assert test="starts-with(@id, concat('app' , $app-no))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2</assert>
+      <report test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2</report>
     </rule>
   </pattern>
   <pattern id="resp-table-wrap-ids-pattern">
@@ -6367,7 +6365,7 @@
       </report>
       
       
-      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
@@ -6706,6 +6704,8 @@
     <rule context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
+      <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
+      
       
       <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
@@ -6726,7 +6726,7 @@
       <report test="(count(*) = 1) and child::underline and ($free-text='')" role="error" id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/>
       </report>
       
-      <report test="(count(*) = 1) and child::italic and ($free-text='')" role="warning" id="sec-title-italic">All section title content is captured in italics. This is very likely to be incorrect - <value-of select="."/>
+      <report test="(count(*) = 1) and child::italic and ($free-text='') and not(matches(normalize-space(lower-case(.)),$new-org-regex))" role="warning" id="sec-title-italic">All section title content is captured in italics. Is this incorrect? If it is just a species name, then this is likely to be fine - <value-of select="."/>
       </report>
       
       <report test="matches(upper-case($no-link-text),'^DNA | DNA | DNA$') and not(matches($no-link-text,'^DNA | DNA | DNA$'))" role="warning" id="sec-title-dna">Section title contains the phrase DNA, but it is not in all caps - <value-of select="."/>

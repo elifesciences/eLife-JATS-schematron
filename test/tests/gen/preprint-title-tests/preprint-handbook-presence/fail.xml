@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="preprint-handbook-presence.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/source
 Test: report    contains(.,'handbook')
-Message: Preprint ref '' has a journal name ''. Should it be captured as a book type reference instead?-->
+Message: Preprint ref '' has a source ''. Should it be captured as a book type reference instead?-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

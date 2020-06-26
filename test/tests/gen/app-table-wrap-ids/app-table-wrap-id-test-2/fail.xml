@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="app-table-wrap-id-test-2.sch"?>
 <!--Context: app//table-wrap[label]
-Test: assert    starts-with(@id, concat('app' , $app-no))
+Test: report    not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))
 Message: table-wrap @id must start with . More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
