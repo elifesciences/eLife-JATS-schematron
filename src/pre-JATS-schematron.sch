@@ -1961,6 +1961,8 @@
       <report test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">[supplementary-material-test-10] Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
       
       <report test="($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))" role="warning" id="source-code-test-1">[source-code-test-1] <value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
+      
+      <report test="contains(lower-case(caption[1]/title[1]),'key resource')" role="warning" id="supplementary-material-test-11">[supplementary-material-test-11] <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> has a title '<value-of select="caption[1]/title[1]"/>'. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article.</report>
     </rule>
   </pattern>
   <pattern id="source-data-specific-tests-pattern">
