@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="dec-letter-body-test-2.sch"?>
-<!--Context: sub-article[@article-type='decision-letter']/body
-Test: report    contains(lower-case(.),'this paper was reviewed by review commons') and not(descendant::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])
+<!--Context: sub-article[@article-type='decision-letter']/body//p
+Test: report    contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])
 Message: The text 'Review Commons' in '' must contain an embedded link pointing to https://www.reviewcommons.org/.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="decision-letter">
       <body>
         <boxed-text><p>In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.</p></boxed-text>
-        <p>[Editors' note: this paper was reviewed by Review Commons.]</p>
+        <p>[Editors' note: this paper was reviewed by <ext-link ext-link-type="uri" xlink:href="https://www.reviewcommons.org/">Review Commons</ext-link>.]</p>
       </body>
     </sub-article>
   </article>
