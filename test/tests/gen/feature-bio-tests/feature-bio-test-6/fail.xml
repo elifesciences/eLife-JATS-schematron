@@ -2,8 +2,7 @@
 <!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
 Test: report    (count($aff) > 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))
 Message: Some of the text from 's affiliations does not appear in their bio - . Is this correct?-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <journal-meta>
@@ -43,8 +42,7 @@ Message: Some of the text from 's affiliations does not appear in their bio - . 
               <surname>Bley</surname>
               <given-names>Nadine</given-names>
             </name>
-            <contrib-id authenticated="true" contrib-id-type="orcid"
-              >https://orcid.org/0000-0002-4531-7998</contrib-id>
+            <contrib-id authenticated="true" contrib-id-type="orcid">https://orcid.org/0000-0002-4531-7998</contrib-id>
             <email>nadine.stoehr@medizin.uni-halle.de</email>
             <xref ref-type="aff" rid="aff1">1</xref>
             <xref ref-type="aff" rid="aff2">2</xref>
@@ -101,15 +99,12 @@ Message: Some of the text from 's affiliations does not appear in their bio - . 
           <ali:free_to_read/>
           <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
             <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
-            <license-p>This article is distributed under the terms of the <ext-link
-              ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/"
-              >Creative Commons Attribution License</ext-link>, which permits unrestricted use and
+            <license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and
               redistribution provided that the original author and source are credited.</license-p>
           </license>
         </permissions>
         <self-uri content-type="pdf" xlink:href="elife-57678-v1.pdf"/>
-        <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article"
-          xlink:href="10.7554/eLife.55207"/>
+        <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article" xlink:href="10.7554/eLife.55207"/>
         <abstract>
           <p>Mutations that allow tumors to evolve and become resistant to treatment can be readily
             identified with a new sequencing approach.</p>

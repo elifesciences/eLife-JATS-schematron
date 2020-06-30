@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="clintrial-related-object-6.sch"?>
-<!--Context: abstract[not(@abstract-type)]/sec/p/related-object
+<!--Context: abstract[not(@abstract-type) and sec]//related-object
 Test: assert    @document-id
 Message:  must have an @document-id.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

@@ -782,8 +782,8 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">
-        <name/> must have an @document-id-type='clinical-trial-number'.</assert>
+      <assert test="parent::p" role="error" id="clintrial-related-object-10">
+        <name/> in abstract must be a child of a &lt;p&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
