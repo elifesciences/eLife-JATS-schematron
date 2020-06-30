@@ -9203,6 +9203,16 @@
         <x:expect-report id="feature-bio-test-2" role="warning"/>
         <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="feature-bio-test-6-pass">
+        <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-6/pass.xml"/>
+        <x:expect-not-report id="feature-bio-test-6" role="warning"/>
+        <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-bio-test-6-fail">
+        <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-6/fail.xml"/>
+        <x:expect-report id="feature-bio-test-6" role="warning"/>
+        <x:expect-not-assert id="feature-bio-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="feature-bio-test-3-pass">
         <x:context href="../tests/gen/feature-bio-tests/feature-bio-test-3/pass.xml"/>
         <x:expect-not-report id="feature-bio-test-3" role="error"/>

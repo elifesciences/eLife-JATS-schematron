@@ -5043,11 +5043,14 @@
      <let name="name" value="e:get-name(parent::contrib/name[1])"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
+     <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
      
      <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
-     <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">bio does not contain top level insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+     <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">bio does not contain the insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+     
+     <report test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))" role="warning" id="feature-bio-test-6">Some of the text from <value-of select="$name"/>'s affiliations does not appear in their bio - <value-of select="string-join(for $x in $aff-tokens return if (contains(.,$x)) then () else concat('&quot;',$x,'&quot;'),' and ')"/>. Is this correct?</report>
      
      <report test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
      
