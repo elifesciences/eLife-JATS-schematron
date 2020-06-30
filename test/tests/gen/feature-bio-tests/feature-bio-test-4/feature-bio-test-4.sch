@@ -784,6 +784,7 @@
       <let name="name" value="e:get-name(parent::contrib/name[1])"/>
       <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
       <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
+      <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
       <assert test="(count(p) = 1)" role="error" id="feature-bio-test-4">One and only 1 &lt;p&gt; is allowed as a child of bio. <value-of select="."/>
       </assert>
     </rule>

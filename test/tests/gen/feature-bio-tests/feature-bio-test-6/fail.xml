@@ -1,0 +1,140 @@
+<?oxygen SCHSchema="feature-bio-test-6.sch"?>
+<!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
+Test: report    (count($aff) > 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))
+Message: Some of the text from 's affiliations does not appear in their bio - . Is this correct?-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <journal-meta>
+        <journal-id journal-id-type="nlm-ta">elife</journal-id>
+        <journal-id journal-id-type="publisher-id">eLife</journal-id>
+        <journal-title-group>
+          <journal-title>eLife</journal-title>
+        </journal-title-group>
+        <issn pub-type="epub" publication-format="electronic">2050-084X</issn>
+        <publisher>
+          <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+        </publisher>
+      </journal-meta>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">57678</article-id>
+        <article-id pub-id-type="doi">10.7554/eLife.57678</article-id>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Insight</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Cancer Biology</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Genetics and Genomics</subject>
+          </subj-group>
+          <subj-group subj-group-type="sub-display-channel">
+            <subject>Tumor Evolution</subject>
+          </subj-group>
+        </article-categories>
+        <title-group>
+          <article-title>Finding the mutations that drive resistance</article-title>
+        </title-group>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes" id="author-172567">
+            <name>
+              <surname>Bley</surname>
+              <given-names>Nadine</given-names>
+            </name>
+            <contrib-id authenticated="true" contrib-id-type="orcid"
+              >https://orcid.org/0000-0002-4531-7998</contrib-id>
+            <email>nadine.stoehr@medizin.uni-halle.de</email>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="conf1"/>
+            <bio>
+              <p><bold>Nadine Bley</bold> is in the Department of mol Cell Biology and the Institute of Molecular Medicine, Martin Luther University Halle-Wittenberg, Halle, Germany</p>
+            </bio>
+          </contrib>
+          <aff id="aff1">
+            <label>1</label>
+            <institution>Department of Molecular Cell Biology, Martin Luther University
+              Halle-Wittenberg</institution>
+            <addr-line>
+              <named-content content-type="city">Halle</named-content>
+            </addr-line>
+            <country>Germany</country>
+          </aff>
+          <aff id="aff2">
+            <label>2</label>
+            <institution>Institute of Molecular Medicine, Martin Luther University
+              Halle-Wittenberg</institution>
+            <addr-line>
+              <named-content content-type="city">Halle</named-content>
+            </addr-line>
+            <country>Germany</country>
+          </aff>
+        </contrib-group>
+        <pub-date date-type="publication" publication-format="electronic">
+          <day>15</day>
+          <month>05</month>
+          <year>2020</year>
+        </pub-date>
+        <pub-date pub-type="collection">
+          <year>2020</year>
+        </pub-date>
+        <volume>9</volume>
+        <elocation-id>e57678</elocation-id>
+        <history>
+          <date date-type="received" iso-8601-date="2020-05-11">
+            <day>11</day>
+            <month>05</month>
+            <year>2020</year>
+          </date>
+          <date date-type="accepted" iso-8601-date="2020-05-11">
+            <day>11</day>
+            <month>05</month>
+            <year>2020</year>
+          </date>
+        </history>
+        <permissions>
+          <copyright-statement>© 2020, Bley</copyright-statement>
+          <copyright-year>2020</copyright-year>
+          <copyright-holder>Bley</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This article is distributed under the terms of the <ext-link
+              ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/"
+              >Creative Commons Attribution License</ext-link>, which permits unrestricted use and
+              redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+        <self-uri content-type="pdf" xlink:href="elife-57678-v1.pdf"/>
+        <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article"
+          xlink:href="10.7554/eLife.55207"/>
+        <abstract>
+          <p>Mutations that allow tumors to evolve and become resistant to treatment can be readily
+            identified with a new sequencing approach.</p>
+        </abstract>
+        <kwd-group kwd-group-type="author-keywords">
+          <kwd>variant calling</kwd>
+          <kwd>machine learning</kwd>
+          <kwd>tumor evolution</kwd>
+        </kwd-group>
+        <kwd-group kwd-group-type="research-organism">
+          <title>Research organism</title>
+          <kwd>Human</kwd>
+        </kwd-group>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>Mutations that allow tumors to evolve and become resistant to treatment can
+              be readily identified with a new sequencing approach.</meta-value>
+          </custom-meta>
+          <custom-meta specific-use="meta-only">
+            <meta-name>Template</meta-name>
+            <meta-value>1</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
