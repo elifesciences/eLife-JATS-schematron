@@ -780,14 +780,15 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="abstract[not(@abstract-type)]/sec/p/related-object" id="clintrial-related-object">
+    <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
+      <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
       <assert test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">
         <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[not(@abstract-type)]/sec/p/related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type)]/sec/p/related-object must be present.</assert>
+      <assert test="descendant::abstract[not(@abstract-type) and sec]//related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type) and sec]//related-object must be present.</assert>
     </rule>
   </pattern>
 </schema>

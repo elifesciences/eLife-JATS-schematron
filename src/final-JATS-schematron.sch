@@ -1413,7 +1413,8 @@
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-pattern">
-    <rule context="abstract[not(@abstract-type)]/sec/p/related-object" id="clintrial-related-object">
+    <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
+      <let name="registries" value="'clinical-trial-registries.xml'"/>
       
       <assert test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">[clintrial-related-object-1] <name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
       
@@ -1432,6 +1433,11 @@
       <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
       
       <assert test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">[clintrial-related-object-9] <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
+      
+      <assert test="parent::p" role="error" id="clintrial-related-object-10">[clintrial-related-object-10] <name/> in abstract must be a child of a &lt;p&gt; element.</assert>
+      
+      <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>
+      </assert>
       
     </rule>
   </pattern>

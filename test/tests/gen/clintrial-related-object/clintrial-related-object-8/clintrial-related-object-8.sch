@@ -780,14 +780,15 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="abstract[not(@abstract-type)]/sec/p/related-object" id="clintrial-related-object">
+    <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
+      <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
       <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">
         <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[not(@abstract-type)]/sec/p/related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type)]/sec/p/related-object must be present.</assert>
+      <assert test="descendant::abstract[not(@abstract-type) and sec]//related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type) and sec]//related-object must be present.</assert>
     </rule>
   </pattern>
 </schema>
