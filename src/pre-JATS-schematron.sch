@@ -3223,6 +3223,11 @@
       <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">[dec-letter-body-test-1] First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
+  <pattern id="dec-letter-body-p-tests-pattern">
+    <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">  
+      <report test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" id="dec-letter-body-test-2">[dec-letter-body-test-2] The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
+    </rule>
+  </pattern>
   <pattern id="reply-front-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
       
