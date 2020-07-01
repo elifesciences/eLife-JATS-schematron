@@ -6672,14 +6672,14 @@
          "/>. Please remove any senior/reviewing editors.</report>
      
      <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')"
-       role="error"
-       id="feature-templates-author-cont"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any Author contributions. This <value-of select="$type"/> has <value-of select="
+       role="warning"
+       id="feature-templates-author-cont"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should very likely not have any Author contributions. This <value-of select="$type"/> has <value-of select="
          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn
          return concat('&quot;', $x,'&quot;') 
          ,
          '; '
          )
-         "/>. Please remove any author contributions.</report>
+         "/>. Please check with eLife production whether author contributions should be present.</report>
    </rule>
    
    <rule context="article[@article-type='article-commentary']//article-meta/abstract"

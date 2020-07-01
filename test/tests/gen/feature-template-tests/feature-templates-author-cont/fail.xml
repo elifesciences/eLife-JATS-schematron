@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-templates-author-cont.sch"?>
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    back/fn-group[@content-type='author-contribution'] and ($template != '5')
-Message:  is a template , which means that it should not have any Author contributions. This  has . Please remove any author contributions.-->
+Message:  is a template , which means that it should very likely not have any Author contributions. This  has . Please check with eLife production whether author contributions should be present.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="discussion" dtd-version="1.1">
     <front>
