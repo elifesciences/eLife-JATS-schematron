@@ -889,12 +889,12 @@
       </x:scenario>
       <x:scenario label="surname-test-5-pass">
         <x:context href="../tests/gen/surname-tests/surname-test-5/pass.xml"/>
-        <x:expect-not-assert id="surname-test-5" role="warning"/>
+        <x:expect-not-report id="surname-test-5" role="warning"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="surname-test-5-fail">
         <x:context href="../tests/gen/surname-tests/surname-test-5/fail.xml"/>
-        <x:expect-assert id="surname-test-5" role="warning"/>
+        <x:expect-report id="surname-test-5" role="warning"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="surname-test-6-pass">
