@@ -781,7 +781,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <assert test="matches(.,'^\p{Lu}')" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</assert>
+      <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[rn]? |^van |^von |^el |^te[rn] '))" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
