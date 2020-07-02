@@ -876,7 +876,7 @@
         role="error" 
         id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/></report>
 		
-      <report test="not(descendant::code) and ($line-count != 1)"
+      <report test="not(descendant::code) and ($line-count gt 1)"
         role="error" 
         id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
  	</rule>

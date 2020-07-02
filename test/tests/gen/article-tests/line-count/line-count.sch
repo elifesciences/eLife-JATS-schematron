@@ -788,7 +788,7 @@
   <pattern id="article">
     <rule context="article" id="article-tests">
       <let name="line-count" value="e:line-count(.)"/>
-      <report test="not(descendant::code) and ($line-count != 1)" role="error" id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
+      <report test="not(descendant::code) and ($line-count gt 1)" role="error" id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
