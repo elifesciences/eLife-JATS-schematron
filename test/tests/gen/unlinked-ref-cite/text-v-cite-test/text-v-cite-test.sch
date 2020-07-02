@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>

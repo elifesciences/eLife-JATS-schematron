@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="journal-meta">
     <rule context="article/front/journal-meta" id="test-journal-meta">
       <assert test="issn = '2050-084X'" role="error" id="test-journal-pubid-3">ISSN must be 2050-084X. Currently it is <value-of select="issn"/>

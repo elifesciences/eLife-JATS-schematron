@@ -779,14 +779,20 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
-    <rule context="code" id="code-tests">
-      <report test="(preceding::*[1]/name()='code') and (normalize-space(preceding-sibling::text()[1])='')" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+    <rule context="p[count(code) gt 1]/code[2]" id="code-tests-2">
+      <report test="normalize-space(preceding-sibling::text()[preceding-sibling::*[1]/local-name()='code'][1])=''" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
+      <assert test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
     </rule>
   </pattern>
 </schema>

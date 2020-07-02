@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="date" id="date-tests">
       <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>

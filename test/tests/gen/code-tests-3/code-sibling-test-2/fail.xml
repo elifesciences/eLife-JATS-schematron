@@ -1,13 +1,10 @@
-<?oxygen SCHSchema="code-sibling-test.sch"?>
-<!--Context: code
-Test: report    (preceding::*[1]/name()='code') and (normalize-space(preceding-sibling::text()[1])='')
+<?oxygen SCHSchema="code-sibling-test-2.sch"?>
+<!--Context: p[count(code) = 1]/code
+Test: report    $previous-parent/*[last()][(local-name()='code') and normalize-space(following-sibling::text())='']
 Message: code element (containing the content ) is directly preceded by another code element (containing the content ). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <body>
-      <code xml:space="preserve">IMECM = im2bw(IMECM);
-        nwhite = nnz(IMECM);
-        [rows,cols]=find(IMECM == 1);</code>
-    </body>
+    <p><code/> test <code/></p>
+    <p><code/></p>
   </article>
 </root>

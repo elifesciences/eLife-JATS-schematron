@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests">
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>

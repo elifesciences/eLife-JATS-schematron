@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="aff[not(parent::contrib)]" id="aff-ids">
       <assert test="if (label) then @id = concat('aff',label[1])                     else starts-with(@id,'aff')" role="error" id="aff-id-test">aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>

@@ -779,8 +779,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article">
     <rule context="article" id="article-tests">
+      <let name="line-count" value="e:line-count(.)"/>
       <report test="@dtd-version" role="info" id="dtd-info">DTD version is <value-of select="@dtd-version"/>
       </report>
     </rule>

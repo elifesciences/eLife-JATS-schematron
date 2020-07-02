@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="day[not(parent::string-date)]" id="day-tests">
       <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>

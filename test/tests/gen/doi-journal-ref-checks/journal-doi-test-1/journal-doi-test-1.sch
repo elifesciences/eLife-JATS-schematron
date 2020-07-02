@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="doi-ref-checks">
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(year[1])"/>

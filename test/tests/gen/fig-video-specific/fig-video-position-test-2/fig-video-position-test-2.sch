@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="video-tests">
     <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
       <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">

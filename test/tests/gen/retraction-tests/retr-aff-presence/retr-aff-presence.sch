@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'retraction']" id="retraction-tests">
       <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">Retractions should not contain affiliations.</report>

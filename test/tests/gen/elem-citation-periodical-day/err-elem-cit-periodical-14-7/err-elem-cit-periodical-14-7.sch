@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date/day" id="elem-citation-periodical-day">
       <report test="if  (matches(normalize-space(../@iso-8601-date),'(^\d{4}-\d{2}-\d{2})|(^\d{4}-\d{2})')) then .!=format-date(xs:date(../@iso-8601-date), '[D]')                     else ." role="error" id="err-elem-cit-periodical-14-7">[err-elem-cit-periodical-14-7]

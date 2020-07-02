@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0. <value-of select="@id"/> does not conform to this.</report>

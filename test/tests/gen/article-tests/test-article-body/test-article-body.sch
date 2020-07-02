@@ -779,8 +779,15 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article">
     <rule context="article" id="article-tests">
+      <let name="line-count" value="e:line-count(.)"/>
       <assert test="count(body) = 1" role="error" id="test-article-body">Article must have one child body. Currently there are <value-of select="count(body)"/>
       </assert>
     </rule>

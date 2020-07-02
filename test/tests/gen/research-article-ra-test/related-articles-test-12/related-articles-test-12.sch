@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="related-articles">
     <rule context="article[@article-type='research-article']//related-article" id="research-article-ra-test">
       <assert test="@related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')" role="error" id="related-articles-test-12">The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to <value-of select="@xlink:href"/> is a <value-of select="@related-article-type"/> type link.</assert>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" id="kr-table-body-tests">
       <assert test="local-name()='td'" role="error" id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-body-1</assert>

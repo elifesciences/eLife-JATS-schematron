@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
       <report test="*/local-name() != 'year'" role="error" id="pub-date-test-5">pub-date[@pub-type='collection'] can only contain a year element.</report>

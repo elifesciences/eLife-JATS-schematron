@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
       <assert test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>

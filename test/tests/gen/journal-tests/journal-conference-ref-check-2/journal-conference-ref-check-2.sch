@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
       <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" role="warning" id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name?</report>

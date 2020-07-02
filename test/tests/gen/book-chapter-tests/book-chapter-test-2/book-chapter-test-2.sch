@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
       <assert test="fpage and lpage" role="warning" id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>

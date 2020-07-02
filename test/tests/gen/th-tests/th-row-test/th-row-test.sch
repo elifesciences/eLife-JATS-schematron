@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="th" id="th-tests">
       <report test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-row-test</report>
