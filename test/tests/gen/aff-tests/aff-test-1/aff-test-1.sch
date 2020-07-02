@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
       <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>

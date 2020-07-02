@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
       <report test="matches(.,'^[A-Z]{1,2}\s') and (string-length(.) gt 3)" role="warning" id="surname-test-8">surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">
       <report test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>

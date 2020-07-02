@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
       <report test="matches(.,'^\s')" role="error" id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>

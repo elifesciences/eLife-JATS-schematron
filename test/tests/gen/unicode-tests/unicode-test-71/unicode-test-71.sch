@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="unicode-checks">
     <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
       <report test="contains(.,'Â­')" role="warning" id="unicode-test-71">

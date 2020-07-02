@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
       <report test="*[local-name() != 'italic']" role="error" id="kwd-child-test">research-organism keywords cannot have child elements such as <value-of select="*/local-name()"/>.</report>

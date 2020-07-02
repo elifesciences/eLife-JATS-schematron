@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">
       <report test="string-length(.) gt 4" role="warning" id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ref-given-names-test-1</report>

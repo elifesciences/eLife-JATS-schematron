@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="underline" id="underline-tests">
       <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>

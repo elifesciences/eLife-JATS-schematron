@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>

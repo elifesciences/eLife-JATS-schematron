@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1]

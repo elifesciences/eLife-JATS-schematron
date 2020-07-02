@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="features">
     <rule context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">
       <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>

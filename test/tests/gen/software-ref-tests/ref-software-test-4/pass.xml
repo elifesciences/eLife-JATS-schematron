@@ -93,9 +93,21 @@ Message: software ref '' has a source (Software name) - . Since this is a softwa
 
 
 
+
+
+
+
+
+
 <!--Context: element-citation[@publication-type='software']
 Test: report    matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')
 Message: software ref '' has a source (Software name) - . Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4-->
+
+
+
+
+
+
 
 
 

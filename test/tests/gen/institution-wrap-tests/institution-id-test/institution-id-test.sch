@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       <assert test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test</assert>

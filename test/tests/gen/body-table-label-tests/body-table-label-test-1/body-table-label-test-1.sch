@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">

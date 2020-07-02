@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>

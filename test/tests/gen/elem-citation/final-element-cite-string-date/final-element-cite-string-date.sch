@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation" id="elem-citation">
       <report test="(@publication-type='periodical') and not(string-date)" role="error" id="final-element-cite-string-date">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.</report>

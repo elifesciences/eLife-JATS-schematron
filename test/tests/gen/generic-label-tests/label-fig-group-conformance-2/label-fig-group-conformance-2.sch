@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
       <let name="label" value="replace(.,'\.$','')"/>

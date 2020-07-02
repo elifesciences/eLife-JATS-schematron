@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']/pub-id" id="elem-citation-book-pub-id">
       <assert test="@pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'" role="error" id="err-elem-cit-book-17">[err-elem-cit-book-17]

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="fig/permissions" id="fig-permissions">
       <let name="fig-label" value="if (parent::fig/label[1]) then replace(parent::fig/label[1],'\.$','') else 'figure'"/>

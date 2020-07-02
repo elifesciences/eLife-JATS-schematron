@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" role="error" id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMID-link-test</report>

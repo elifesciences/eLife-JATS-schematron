@@ -812,12 +812,21 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  
+  <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
  
   <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
   
   
  <pattern id="article-tests-pattern">
     <rule context="article" id="article-tests">
+      <let name="line-count" value="e:line-count(.)"/>
       
 	  <report test="@dtd-version" role="info" id="dtd-info">DTD version is <value-of select="@dtd-version"/>
       </report>
@@ -831,9 +840,10 @@
 	  <assert test="count(body) = 1" role="error" id="test-article-body">Article must have one child body. Currently there are <value-of select="count(body)"/>
       </assert>
 		
-      <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" role="error" id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/>
+    <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" role="error" id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/>
       </report>
 		
+      <report test="not(descendant::code) and ($line-count gt 1)" role="error" id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
  	</rule>
   </pattern>
   <pattern id="research-article-pattern">
@@ -1159,7 +1169,7 @@
       
       <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" role="warning" id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]|^[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
+      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
 	</rule>
   </pattern>
@@ -2416,7 +2426,22 @@
       <report test="child::*" role="error" id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
         <value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
       
-      <report test="(preceding::*[1]/name()='code') and (normalize-space(preceding-sibling::text()[1])='')" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <assert test="parent::p" role="error" id="code-parent-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="code-tests-2-pattern">
+    <rule context="p[count(code) gt 1]/code[2]" id="code-tests-2">
+      
+      <report test="normalize-space(preceding-sibling::text()[preceding-sibling::*[1]/local-name()='code'][1])=''" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="code-tests-3-pattern">
+    <rule context="p[count(code) = 1]/code" id="code-tests-3">
+      <let name="previous-parent" value="parent::p/preceding-sibling::*[1]"/>
+      
+      <report test="$previous-parent/*[last()][(local-name()='code') and normalize-space(following-sibling::text())='']" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
@@ -7576,6 +7601,8 @@
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
       <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
       <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
+      <assert test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
+      <assert test="descendant::p[count(code) = 1]/code" role="error" id="code-tests-3-xspec-assert">p[count(code) = 1]/code must be present.</assert>
       <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
       <assert test="descendant::disp-formula/label" role="error" id="equation-label-tests-xspec-assert">disp-formula/label must be present.</assert>
       <assert test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>

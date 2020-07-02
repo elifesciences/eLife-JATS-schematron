@@ -93,9 +93,21 @@ Message: software ref '' with the title -  - must contain either one source elem
 
 
 
+
+
+
+
+
+
 <!--Context: element-citation[@publication-type='software']
 Test: assert    source or publisher-name
 Message: software ref '' with the title -  - must contain either one source element (Software name) or one publisher-name element (Software host). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2-->
+
+
+
+
+
+
 
 
 

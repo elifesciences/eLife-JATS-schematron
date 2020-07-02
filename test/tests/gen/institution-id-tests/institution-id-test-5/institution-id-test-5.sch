@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="institution-wrap/institution-id" id="institution-id-tests">
       <report test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">

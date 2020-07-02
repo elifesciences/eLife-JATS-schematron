@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="auth-cont-test-1">

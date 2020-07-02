@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="back">
     <rule context="back/ack/*" id="ack-child-tests">
       <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>

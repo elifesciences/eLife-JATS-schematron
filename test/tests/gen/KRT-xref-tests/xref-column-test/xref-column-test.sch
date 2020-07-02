@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#xref-column-test</report>

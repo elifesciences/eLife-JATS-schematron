@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>

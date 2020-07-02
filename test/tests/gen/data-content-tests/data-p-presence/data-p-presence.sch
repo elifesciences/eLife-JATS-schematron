@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="back">
     <rule context="back/sec[@sec-type='data-availability']" id="data-content-tests">
       <assert test="count(p) gt 0" role="error" id="data-p-presence">At least one p element must be present in sec[@sec-type='data=availability'].</assert>

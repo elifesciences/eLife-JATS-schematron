@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="related-article" id="related-articles-ids">
       <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">related-article element must contain a @id, the value of which should be in the form ra0.</assert>

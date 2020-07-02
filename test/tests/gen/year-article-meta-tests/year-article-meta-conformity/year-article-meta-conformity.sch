@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="year[ancestor::article-meta]" id="year-article-meta-tests">
       <assert test="matches(.,'^[2]0[0-2][0-9]$')" role="error" id="year-article-meta-conformity">year in article-meta must contain 4 digits which match the regular expression '^[2]0[0-2][0-9]$' - '<value-of select="."/>' doesn't meet this requirement.</assert>

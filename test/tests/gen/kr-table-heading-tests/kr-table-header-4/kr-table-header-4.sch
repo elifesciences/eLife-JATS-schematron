@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-4</report>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']/fpage" id="elem-citation-confproc-fpage">
       <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]

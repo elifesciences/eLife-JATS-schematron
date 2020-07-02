@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="institution-wrap/institution-id" id="institution-id-tests">
       <report test="*" role="error" id="institution-id-test-4">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>

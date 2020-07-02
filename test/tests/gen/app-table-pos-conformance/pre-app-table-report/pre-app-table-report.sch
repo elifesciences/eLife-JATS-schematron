@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="table-pos-tests">
     <rule context="article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" id="app-table-pos-conformance">
       <let name="app-id" value="ancestor::app/@id"/>

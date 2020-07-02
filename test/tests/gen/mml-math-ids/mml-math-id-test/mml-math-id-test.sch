@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       <report test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="features">
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">
       <let name="token1" value="substring-before(.,' ')"/>

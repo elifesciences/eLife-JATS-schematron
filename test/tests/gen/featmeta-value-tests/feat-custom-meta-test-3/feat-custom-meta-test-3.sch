@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>

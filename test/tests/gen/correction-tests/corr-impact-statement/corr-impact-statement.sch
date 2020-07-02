@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
       <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">Correction notices should not contain an impact statement.</report>

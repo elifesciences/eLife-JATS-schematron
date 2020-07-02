@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>

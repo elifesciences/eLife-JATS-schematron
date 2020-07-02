@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
       <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>

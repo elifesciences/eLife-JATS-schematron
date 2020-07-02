@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="ref/element-citation/source" id="elem-citation-source">
       <assert test="string-length(normalize-space(.)) ge 2" role="error" id="elem-cit-source">A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="org-pattern">
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       <let name="lc" value="lower-case(.)"/>

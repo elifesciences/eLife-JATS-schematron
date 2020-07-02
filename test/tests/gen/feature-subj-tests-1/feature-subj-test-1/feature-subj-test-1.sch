@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="features">
     <rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]" id="feature-subj-tests-1">
       <assert test="subj-group[@subj-group-type='sub-display-channel']" role="error" id="feature-subj-test-1">Feature content must contain subj-group[@subj-group-type='sub-display-channel'].</assert>

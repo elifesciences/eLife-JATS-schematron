@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>

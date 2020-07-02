@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']/source" id="elem-citation-confproc-source">
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-confproc-9-2-2">[err-elem-cit-confproc-9-2-2]

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="title-conformance">
     <rule context="app/title" id="app-title-tests">
       <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="error" id="app-title-test">app title must be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>

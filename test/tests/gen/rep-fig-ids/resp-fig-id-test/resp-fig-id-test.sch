@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" id="resp-fig-id-test">fig in decision letter/author reponse must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>

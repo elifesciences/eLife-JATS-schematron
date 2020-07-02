@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
       <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" role="warning" id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>

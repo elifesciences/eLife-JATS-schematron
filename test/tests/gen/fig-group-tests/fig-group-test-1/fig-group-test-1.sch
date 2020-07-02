@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="fig-group" id="fig-group-tests">
       <assert test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">fig-group must have one and only one main figure.</assert>

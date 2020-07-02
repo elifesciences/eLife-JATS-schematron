@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
       <assert test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters

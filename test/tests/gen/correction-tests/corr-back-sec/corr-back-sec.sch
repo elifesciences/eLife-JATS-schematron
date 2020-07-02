@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
       <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>

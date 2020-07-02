@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="body//xref" id="body-xref-tests">
       <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text.</report>

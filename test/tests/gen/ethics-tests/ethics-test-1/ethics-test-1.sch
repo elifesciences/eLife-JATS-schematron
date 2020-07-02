@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
       <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>

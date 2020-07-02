@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       <assert test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>

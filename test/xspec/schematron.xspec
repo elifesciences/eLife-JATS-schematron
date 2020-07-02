@@ -51,6 +51,16 @@
         <x:expect-report id="test-article-back" role="error"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="line-count-pass">
+        <x:context href="../tests/gen/article-tests/line-count/pass.xml"/>
+        <x:expect-not-report id="line-count" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="line-count-fail">
+        <x:context href="../tests/gen/article-tests/line-count/fail.xml"/>
+        <x:expect-report id="line-count" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="research-article">
       <x:scenario label="pre-test-r-article-d-letter-pass">
@@ -4399,15 +4409,39 @@
         <x:expect-report id="code-child-test" role="error"/>
         <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="code-sibling-test-pass">
-        <x:context href="../tests/gen/code-tests/code-sibling-test/pass.xml"/>
-        <x:expect-not-report id="code-sibling-test" role="warning"/>
+      <x:scenario label="code-parent-test-pass">
+        <x:context href="../tests/gen/code-tests/code-parent-test/pass.xml"/>
+        <x:expect-not-assert id="code-parent-test" role="error"/>
         <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="code-sibling-test-fail">
-        <x:context href="../tests/gen/code-tests/code-sibling-test/fail.xml"/>
-        <x:expect-report id="code-sibling-test" role="warning"/>
+      <x:scenario label="code-parent-test-fail">
+        <x:context href="../tests/gen/code-tests/code-parent-test/fail.xml"/>
+        <x:expect-assert id="code-parent-test" role="error"/>
         <x:expect-not-assert id="code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="code-tests-2">
+      <x:scenario label="code-sibling-test-pass">
+        <x:context href="../tests/gen/code-tests-2/code-sibling-test/pass.xml"/>
+        <x:expect-not-report id="code-sibling-test" role="warning"/>
+        <x:expect-not-assert id="code-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="code-sibling-test-fail">
+        <x:context href="../tests/gen/code-tests-2/code-sibling-test/fail.xml"/>
+        <x:expect-report id="code-sibling-test" role="warning"/>
+        <x:expect-not-assert id="code-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="code-tests-3">
+      <x:scenario label="code-sibling-test-2-pass">
+        <x:context href="../tests/gen/code-tests-3/code-sibling-test-2/pass.xml"/>
+        <x:expect-not-report id="code-sibling-test-2" role="warning"/>
+        <x:expect-not-assert id="code-tests-3-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="code-sibling-test-2-fail">
+        <x:context href="../tests/gen/code-tests-3/code-sibling-test-2/fail.xml"/>
+        <x:expect-report id="code-sibling-test-2" role="warning"/>
+        <x:expect-not-assert id="code-tests-3-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="generic-label-tests">

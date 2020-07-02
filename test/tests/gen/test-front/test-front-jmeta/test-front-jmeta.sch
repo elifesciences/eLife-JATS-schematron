@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="front">
     <rule context="article/front" id="test-front">
       <assert test="count(journal-meta) = 1" role="error" id="test-front-jmeta">There must be one journal-meta that is a child of front. Currently there are <value-of select="count(journal-meta)"/>

@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
       <assert test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>

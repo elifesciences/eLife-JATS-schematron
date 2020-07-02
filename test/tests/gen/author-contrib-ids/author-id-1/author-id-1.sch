@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
       <report test="if (collab) then ()         else if (ancestor::collab) then ()         else not(matches(@id,'^[a-z]+-[0-9]+$'))" role="error" id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string. <value-of select="@id"/> does not conform to this.</report>

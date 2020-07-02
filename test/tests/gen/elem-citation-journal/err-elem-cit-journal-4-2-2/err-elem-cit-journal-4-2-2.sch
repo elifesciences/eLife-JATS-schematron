@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
       <report test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]

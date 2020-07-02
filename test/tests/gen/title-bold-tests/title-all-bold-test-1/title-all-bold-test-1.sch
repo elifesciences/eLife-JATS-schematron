@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="house-style">
     <rule context="title[(count(*)=1) and (child::bold or child::italic)]" id="title-bold-tests">
       <let name="free-text" value="replace(       normalize-space(string-join(for $x in self::*/text() return $x,''))       ,' ','')"/>

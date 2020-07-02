@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="id-conformance">
     <rule context="disp-formula" id="disp-formula-ids">
       <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>

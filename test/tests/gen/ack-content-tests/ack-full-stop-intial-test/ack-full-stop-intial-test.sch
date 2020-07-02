@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="title-conformance">
     <rule context="ack//p" id="ack-content-tests">
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>

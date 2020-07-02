@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       <report test="matches(label[1],'^Figure \d{1,4}—source code \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source code \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-code-test-1">

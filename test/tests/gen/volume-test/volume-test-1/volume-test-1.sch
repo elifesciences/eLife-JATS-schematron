@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="journal-volume">
     <rule context="article-meta/volume" id="volume-test">
       <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]"/>

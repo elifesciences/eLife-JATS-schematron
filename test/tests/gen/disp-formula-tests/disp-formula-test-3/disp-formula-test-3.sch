@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="content-containers">
     <rule context="disp-formula" id="disp-formula-tests">
       <assert test="parent::p" role="error" id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>

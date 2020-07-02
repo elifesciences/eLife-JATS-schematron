@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent">
       <let name="countries" value="'../../../../../src/countries.xml'"/>

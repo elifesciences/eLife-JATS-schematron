@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
       <assert test="count(source) = 1" role="error" id="err-elem-cit-preprint-9-1">[err-elem-cit-preprint-9-1]

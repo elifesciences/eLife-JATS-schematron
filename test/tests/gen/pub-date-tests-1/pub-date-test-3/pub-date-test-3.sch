@@ -779,6 +779,12 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:line-count" as="xs:integer">
+    <xsl:param name="arg" as="xs:string?"/>
+    
+    <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
+    
+  </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
       <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
