@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="surname-ellipsis-check.sch"?>
 <!--Context: element-citation//name
 Test: report    matches(surname[1],'^\s*?…|^\s*?\.\s?\.\s?\.')
-Message: surname in ref '' begins with an ellipsis which is wrong - . Are there preceding author missing from the list?-->
+Message: surname in ref '' begins with an ellipsis which is wrong - . Are there preceding author missing from the list? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib12"><element-citation publication-type="preprint">

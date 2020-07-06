@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="app-id-test-2.sch"?>
 <!--Context: app
 Test: assert    substring-after(@id,'appendix-') = $pos
-Message: app id is , but relative to other appendices it is in position .-->
+Message: app id is , but relative to other appendices it is in position . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

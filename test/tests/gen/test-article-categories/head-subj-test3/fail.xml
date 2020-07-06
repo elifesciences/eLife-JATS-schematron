@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="head-subj-test3.sch"?>
 <!--Context: article-meta/article-categories
 Test: report    ($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1
-Message: article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?-->
+Message: article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="editorial">
     <front>

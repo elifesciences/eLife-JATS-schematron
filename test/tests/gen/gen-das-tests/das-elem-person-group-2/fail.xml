@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-elem-person-group-2.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: report    count(person-group) gt 1
-Message: The reference in position  of the data availability has  person-group elements, which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-person-group-2-->
+Message: The reference in position  of the data availability has  person-group elements, which is incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-person-group-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

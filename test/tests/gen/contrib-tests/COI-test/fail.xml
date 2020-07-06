@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="COI-test.sch"?>
 <!--Context: article-meta//contrib
 Test: report    (@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))
-Message:  is affiliated with what looks like a company, but contains no COI statement. Is this correct?-->
+Message:  is affiliated with what looks like a company, but contains no COI statement. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

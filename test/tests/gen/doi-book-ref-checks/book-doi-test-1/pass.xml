@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="book-doi-test-1.sch"?>
 <!--Context: element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]
 Test: report    some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)
-Message:  is a book ref without a doi, but its publisher () is known to register dois with some books/chapters. Should it have one?-->
+Message:  is a book ref without a doi, but its publisher () is known to register dois with some books/chapters. Should it have one? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="book">

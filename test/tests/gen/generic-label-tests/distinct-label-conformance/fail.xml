@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="distinct-label-conformance.sch"?>
 <!--Context: fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label
 Test: report    some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)
-Message: Duplicated labels -  is present more than once in the text.-->
+Message: Duplicated labels -  is present more than once in the text. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig id="fig1" position="float">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-xref-test-4.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
 Test: report    not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)
-Message:  - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?-->
+Message:  - Figure citation is in the caption of the figure that it links to. Is it correct or necessary? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>
         <p>... See <xref ref-type="fig" rid="fig1s1">Figure 1-figure supplement 1</xref> for ...</p>

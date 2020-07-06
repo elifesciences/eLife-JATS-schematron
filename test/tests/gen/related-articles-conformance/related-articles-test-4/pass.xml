@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-4.sch"?>
 <!--Context: related-article
 Test: assert    @related-article-type = $allowed-values
-Message: @related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article').-->
+Message: @related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article'). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

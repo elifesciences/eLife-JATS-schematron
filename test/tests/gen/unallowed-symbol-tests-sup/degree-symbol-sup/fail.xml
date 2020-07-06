@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="degree-symbol-sup.sch"?>
 <!--Context: sup
 Test: report    contains(.,'°')
-Message: '' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.-->
+Message: '' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article><sup>°</sup></article>
 </root>

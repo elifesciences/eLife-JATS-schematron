@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-title-test-4.sch"?>
 <!--Context: supplementary-material/caption/title
 Test: report    matches(.,'^\s')
-Message: title for  begins with a space, which is not allowed.-->
+Message: title for  begins with a space, which is not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <supplementary-material>

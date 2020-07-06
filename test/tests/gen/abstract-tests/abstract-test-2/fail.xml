@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="abstract-test-2.sch"?>
 <!--Context: front//abstract
 Test: report    (count(p) + count(sec[descendant::p])) lt 1
-Message: At least 1 p element or sec element (with descendant p) must be present in abstract.-->
+Message: At least 1 p element or sec element (with descendant p) must be present in abstract. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

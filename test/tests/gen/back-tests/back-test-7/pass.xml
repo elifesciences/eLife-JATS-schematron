@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="back-test-7.sch"?>
 <!--Context: back
 Test: report    ($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)
-Message: An fn-group[@content-type='competing-interest'] must be present as a child of back  content.-->
+Message: An fn-group[@content-type='competing-interest'] must be present as a child of back  content. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

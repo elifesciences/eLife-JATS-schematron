@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-data-test-2.sch"?>
 <!--Context: fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]
 Test: assert    $number = $pos
-Message: '' ends with , but it is placed . Either it is misnumbered or it should be moved to a different position.-->
+Message: '' ends with , but it is placed . Either it is misnumbered or it should be moved to a different position. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig id="fig2s2" position="float" specific-use="child-fig">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="contrib-test-5.sch"?>
 <!--Context: article-meta//contrib
 Test: report    if ($subj-type = ('Retraction','Correction')) then () else if ($type != 'author') then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else ()
-Message: Group author members should very likely have an affiliation.  does not. Is this OK?-->
+Message: Group author members should very likely have an affiliation.  does not. Is this OK? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

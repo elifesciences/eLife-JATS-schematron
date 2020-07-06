@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-xref-test-16.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
 Test: report    matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')
-Message: Figure citation - '' - is preceded by the text '' - should it be a figure supplement citation instead?-->
+Message: Figure citation - '' - is preceded by the text '' - should it be a figure supplement citation instead? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p> Supp. <xref ref-type="fig" rid="fig1">Figure 1</xref></p>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-editor-test-2.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]
 Test: report    contrib[not(@contrib-type) or @contrib-type!='editor']
-Message: First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).-->
+Message: First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

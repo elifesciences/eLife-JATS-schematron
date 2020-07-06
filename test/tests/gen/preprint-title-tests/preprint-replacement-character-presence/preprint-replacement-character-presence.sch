@@ -789,8 +789,7 @@
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       <report test="matches(.,'�')" role="error" id="preprint-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
-      </report>
+        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-replacement-character-presence</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

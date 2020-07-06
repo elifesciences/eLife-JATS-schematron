@@ -5,7 +5,7 @@ Message: [err-elem-cit-periodical-7-3]
         The @iso-8601-date value must include 4 digit year, 2 digit month, and (optionally) a 2 digit day.
         Reference '' does not meet this requirement as it contains
         the value ''.
-      -->
+       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

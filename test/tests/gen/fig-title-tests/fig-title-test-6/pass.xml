@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-title-test-6.sch"?>
 <!--Context: fig/caption/title
 Test: report    matches(.,'^[Pp]anel ')
-Message: title for  begins with '' - . It is very likely that this requires an overall title instead.-->
+Message: title for  begins with '' - . It is very likely that this requires an overall title instead. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig>

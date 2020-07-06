@@ -4,7 +4,7 @@ Test: assert    @pub-id-type='doi'
 Message: [err-elem-cit-preprint-10-2]
         If present, the <pub-id> element must contain @pub-id-type='doi'.
         The <pub-id> element in Reference ''
-        contains @pub-id-type=''.-->
+        contains @pub-id-type=''. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-bio-test-5.sch"?>
 <!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
 Test: report    *[local-name()!='p']
-Message:  is not allowed as a child of <bio>. - -->
+Message:  is not allowed as a child of <bio>. -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="discussion">
     <article-meta>

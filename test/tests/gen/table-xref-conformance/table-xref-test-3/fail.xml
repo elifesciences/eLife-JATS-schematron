@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-xref-test-3.sch"?>
 <!--Context: xref[@ref-type='table']
 Test: report    matches($post-text,'^[\)][A-Za-z0-9]')
-Message: citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-3-->
+Message: citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>test text <xref ref-type="table" rid="table2">Table 2</xref>)test text.</p>

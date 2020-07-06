@@ -3,7 +3,7 @@
 Test: assert    every $type in person-group/@person-group-type satisfies $type = ('assignee','inventor')
 Message: [err-elem-cit-patent-2-3]
         The only allowed types of person-group elements are "assignee" and "inventor".
-        Reference '' has <person-group> elements of other types.-->
+        Reference '' has <person-group> elements of other types. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

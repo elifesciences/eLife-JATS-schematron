@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="surname-test-5.sch"?>
 <!--Context: contrib-group//name/surname
 Test: report    matches(.,'^\p{Ll}') and not(matches(.,'^de[rn]? |^van |^von |^el |^te[rn] '))
-Message: surname doesn't begin with a capital letter - . Is this correct?-->
+Message: surname doesn't begin with a capital letter - . Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

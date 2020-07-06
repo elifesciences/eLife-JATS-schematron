@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="additional-info-test-4.sch"?>
 <!--Context: sec[@sec-type='additional-information']
 Test: report    $article-type=$non-contribs and fn-group[@content-type='author-contribution']
-Message:  type articles should not contain author contributions.-->
+Message:  type articles should not contain author contributions. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <back>

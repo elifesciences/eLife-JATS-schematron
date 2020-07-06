@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="disp-subj-value-test-1.sch"?>
 <!--Context: article-categories/subj-group[@subj-group-type='display-channel']/subject
 Test: assert    . = $allowed-disp-subj
-Message: Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is .-->
+Message: Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-categories>

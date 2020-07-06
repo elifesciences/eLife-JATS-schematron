@@ -6,7 +6,7 @@ Message: [err-elem-cit-high-3-3]
         (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
         Reference '' has the value 
         '', which does not fit this pattern.
-      -->
+       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feat-custom-meta-test-5.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value
 Test: report    ($type='Feature Article') and not(.=('3','4','5'))
-Message:  must be a template 3, 4, or 5. Currently it is a template .-->
+Message:  must be a template 3, 4, or 5. Currently it is a template . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <front>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="institution-id-test-3.sch"?>
 <!--Context: institution-wrap/institution-id
 Test: assert    normalize-space(.) != ''
-Message: The funding entry for  has an empty  element, which is not allowed.-->
+Message: The funding entry for  has an empty  element, which is not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <award-group id="fund6">

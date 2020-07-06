@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-test-9.sch"?>
 <!--Context: supplementary-material
 Test: report    count(media) gt 1
-Message:  has  media elements which is incorrect.-->
+Message:  has  media elements which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <supplementary-material id="fig7sdata3"><label>Figure 7—source data 3.</label><media xlink:href="/ecs/article/164152/resources/sd24_vir1_vs_VIRc_nanopore_differential_chimeras.xlsx" mimetype="application" mime-subtype="xlsx"/></supplementary-material>

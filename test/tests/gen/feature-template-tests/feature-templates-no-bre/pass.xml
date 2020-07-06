@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-templates-no-bre.sch"?>
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    front/article-meta/contrib-group[@content-type='section'] and ($template != '5')
-Message:  is a template , which means that it should not have any BREs. This  has . Please remove any senior/reviewing editors.-->
+Message:  is a template , which means that it should not have any BREs. This  has . Please remove any senior/reviewing editors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="discussion" dtd-version="1.1">
     <front>

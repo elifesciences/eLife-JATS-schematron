@@ -14643,6 +14643,16 @@
         <x:expect-report id="pub-name-replacement-character-presence" role="error"/>
         <x:expect-not-assert id="publisher-name-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-name-newspaper-pass">
+        <x:context href="../tests/gen/publisher-name-tests/pub-name-newspaper/pass.xml"/>
+        <x:expect-not-report id="pub-name-newspaper" role="warning"/>
+        <x:expect-not-assert id="publisher-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-name-newspaper-fail">
+        <x:context href="../tests/gen/publisher-name-tests/pub-name-newspaper/fail.xml"/>
+        <x:expect-report id="pub-name-newspaper" role="warning"/>
+        <x:expect-not-assert id="publisher-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-name-tests">
       <x:scenario label="author-test-1-pass">

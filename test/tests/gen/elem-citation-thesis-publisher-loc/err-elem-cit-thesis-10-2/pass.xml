@@ -4,7 +4,7 @@ Test: assert    count(*)=0
 Message: [err-elem-cit-thesis-10-2]
         No elements are allowed inside <publisher-loc>.
         Reference '' has child elements within the
-        <publisher-loc> element.-->
+        <publisher-loc> element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

@@ -3,7 +3,7 @@
 Test: assert    count(../elocation-id) eq 0 and count(../comment) eq 0
 Message: [err-elem-cit-journal-6-2]
         If <fpage> is present, neither <elocation-id> nor <comment>In press</comment> may be present. 
-        Reference '' has <fpage> and one of those elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2-->
+        Reference '' has <fpage> and one of those elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

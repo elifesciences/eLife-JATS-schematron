@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="trademark-symbol-2-sup.sch"?>
 <!--Context: sup
 Test: report    . = 'TM'
-Message: '' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.-->
+Message: '' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sup>TM</sup>

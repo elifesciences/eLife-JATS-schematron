@@ -5,7 +5,7 @@ Message: [err-elem-cit-journal-5-1-2]
         A  <volume> element within a <element-citation> of type 'journal' must contain 
         at least one character and may not contain child elements.
         Reference '' has too few characters and/or
-        child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2-->
+        child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

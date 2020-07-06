@@ -4,7 +4,7 @@ Test: report    .[not (name or collab)]
 Message: [err-elem-cit-gen-name-3-1]
         Each <person-group> element in a reference must contain at least one
         <name> or, if allowed, <collab> element. 
-        Reference '' does not.-->
+        Reference '' does not. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

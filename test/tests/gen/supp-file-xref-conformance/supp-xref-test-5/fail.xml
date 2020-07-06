@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supp-xref-test-5.sch"?>
 <!--Context: xref[@ref-type='supplementary-material']
 Test: report    matches($pre-text,'cf[\.]?\s?[\(]?$')
-Message: citation is preceded by ''. The 'cf.' is unnecessary and should be removed.-->
+Message: citation is preceded by ''. The 'cf.' is unnecessary and should be removed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>test cf. (<xref ref-type="supplementary-material">...</xref>) test</p>

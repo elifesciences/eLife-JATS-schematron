@@ -4,7 +4,7 @@ Test: assert    some $x in document($countries)/countries/country satisfies ($x=
 Message: [err-elem-cit-patent-10-2]
         The <patent> element must have a country attribute, the value of which must be an allowed value.
         Reference '' has a patent/@country attribute with the value 
-        '', which is not in the list.-->
+        '', which is not in the list. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-pub-id-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
 Test: report    normalize-space(.)!='' and not(@pub-id-type=('accession', 'archive', 'doi'))
-Message: Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1-->
+Message: Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

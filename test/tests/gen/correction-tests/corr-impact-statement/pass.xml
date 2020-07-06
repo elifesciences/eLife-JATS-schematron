@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="corr-impact-statement.sch"?>
 <!--Context: article[@article-type = 'correction']
 Test: report    descendant::meta-name[text() = 'Author impact statement']
-Message: Correction notices should not contain an impact statement.-->
+Message: Correction notices should not contain an impact statement. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">
     <front>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-subj-test-3.sch"?>
 <!--Context: subj-group[@subj-group-type='sub-display-channel']/subject
 Test: report    ends-with(.,':')
-Message: sub-display-channel ends with a colon. This is incorrect.-->
+Message: sub-display-channel ends with a colon. This is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <article-meta>

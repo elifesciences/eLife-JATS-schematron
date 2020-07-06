@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-title-test-5.sch"?>
 <!--Context: supplementary-material/caption/title
 Test: report    contains(lower-case(.),'key resource table')
-Message: title for  is '' - should 'resource' be plural, i.e. 'resources'?.-->
+Message: title for  is '' - should 'resource' be plural, i.e. 'resources'?. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <supplementary-material id="supp2">

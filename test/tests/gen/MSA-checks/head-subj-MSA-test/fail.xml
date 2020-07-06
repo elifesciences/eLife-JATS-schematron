@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="head-subj-MSA-test.sch"?>
 <!--Context: article-categories/subj-group[@subj-group-type='heading']/subject
 Test: assert    . = $MSAs
-Message: Content of the heading must match one of the MSAs.-->
+Message: Content of the heading must match one of the MSAs. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

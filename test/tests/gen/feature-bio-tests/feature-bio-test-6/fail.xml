@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-bio-test-6.sch"?>
 <!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
 Test: report    (count($aff) > 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))
-Message: Some of the text from 's affiliations does not appear in their bio - . Is this correct?-->
+Message: Some of the text from 's affiliations does not appear in their bio - . Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

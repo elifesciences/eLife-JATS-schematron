@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-doi-test-1.sch"?>
 <!--Context: element-citation[(@publication-type='software') and year and source]
 Test: report    $host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))
-Message:  is a software ref with a host () known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1-->
+Message:  is a software ref with a host () known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="software">

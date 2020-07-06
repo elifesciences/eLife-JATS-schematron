@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-15.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($post-sentence,$cite3)
-Message: citation is followed by text containing much of the citation text. Is this correct? - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1-->
+Message: citation is followed by text containing much of the citation text. Is this correct? - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>

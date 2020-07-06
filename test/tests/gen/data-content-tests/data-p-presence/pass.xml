@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="data-p-presence.sch"?>
 <!--Context: back/sec[@sec-type='data-availability']
 Test: assert    count(p) gt 0
-Message: At least one p element must be present in sec[@sec-type='data=availability'].-->
+Message: At least one p element must be present in sec[@sec-type='data=availability']. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

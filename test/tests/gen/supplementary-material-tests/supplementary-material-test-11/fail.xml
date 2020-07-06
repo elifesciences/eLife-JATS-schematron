@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-test-11.sch"?>
 <!--Context: supplementary-material
 Test: report    contains(lower-case(caption[1]/title[1]),'key resource')
-Message:  has a title ''. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article.-->
+Message:  has a title ''. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <supplementary-material>

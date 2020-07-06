@@ -4,7 +4,7 @@ Test: assert    count(pub-id)=1 or count(ext-link)=1
 Message: [err-elem-cit-preprint-10-3]
         Either one <pub-id> or one <ext-link> element is required in a preprint reference.
         Reference '' has  <pub-id> elements
-        and  <ext-link> elements.-->
+        and  <ext-link> elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

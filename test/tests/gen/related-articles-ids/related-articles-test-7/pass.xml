@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-7.sch"?>
 <!--Context: related-article
 Test: assert    matches(@id,'^ra\d$')
-Message: related-article element must contain a @id, the value of which should be in the form ra0.-->
+Message: related-article element must contain a @id, the value of which should be in the form ra0. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

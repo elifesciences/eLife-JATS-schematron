@@ -5,7 +5,7 @@ Message: [err-elem-cit-periodical-2-1]
         Each  <element-citation> of type 'periodical' must contain one and
         only one <person-group> element.
         Reference '' has 
-         <person-group> elements.-->
+         <person-group> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

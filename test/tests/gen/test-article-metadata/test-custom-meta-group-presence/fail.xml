@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-custom-meta-group-presence.sch"?>
 <!--Context: article/front/article-meta
 Test: report    if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1
-Message: One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.-->
+Message: One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

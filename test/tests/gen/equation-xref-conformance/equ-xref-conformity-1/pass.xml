@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="equ-xref-conformity-1.sch"?>
 <!--Context: xref[@ref-type='disp-formula']
 Test: report    not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')
-Message:  - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?-->
+Message:  - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <xref ref-type="disp-formula">Equations 1 and 2</xref>

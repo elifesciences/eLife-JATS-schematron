@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-editor-test-3.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']
 Test: assert    $role=('Reviewing Editor','Senior and Reviewing Editor')
-Message: Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'.  has ''.-->
+Message: Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'.  has ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

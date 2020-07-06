@@ -790,7 +790,7 @@
       <assert test="count(*) = count(person-group| article-title| source| year| pub-id| ext-link)" role="error" id="err-elem-cit-preprint-13">[err-elem-cit-preprint-13]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are:
         &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has other elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-13</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

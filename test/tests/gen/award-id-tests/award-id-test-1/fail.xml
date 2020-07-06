@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="award-id-test-1.sch"?>
 <!--Context: funding-group/award-group/award-id
 Test: report    matches(.,',|;')
-Message: Funding entry with id  has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - . More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-1-->
+Message: Funding entry with id  has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - . More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

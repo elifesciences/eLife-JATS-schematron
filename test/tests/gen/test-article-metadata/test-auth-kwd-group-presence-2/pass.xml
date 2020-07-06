@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-auth-kwd-group-presence-2.sch"?>
 <!--Context: article/front/article-meta
 Test: report    if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0) else ()
-Message:  articles must not have any author keywords-->
+Message:  articles must not have any author keywords -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

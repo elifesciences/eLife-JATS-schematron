@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-given-names-test-1.sch"?>
 <!--Context: ref-list//element-citation/person-group[@person-group-type='author']//given-names
 Test: report    string-length(.) gt 4
-Message: Given names should always be initialised. Ref '' contains a given names with a string longer than 4 characters - '' in . Is this a surname captured as given names? Or a fully spelt out given names?-->
+Message: Given names should always be initialised. Ref '' contains a given names with a string longer than 4 characters - '' in . Is this a surname captured as given names? Or a fully spelt out given names? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref-list>

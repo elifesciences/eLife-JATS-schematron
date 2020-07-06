@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-pub-collection-presence.sch"?>
 <!--Context: article/front/article-meta
 Test: assert    pub-date[@pub-type='collection']
-Message: There must be a child pub-date[@pub-type='collection'] in article-meta.-->
+Message: There must be a child pub-date[@pub-type='collection'] in article-meta. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

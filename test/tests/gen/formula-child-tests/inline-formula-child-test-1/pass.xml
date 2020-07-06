@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="inline-formula-child-test-1.sch"?>
 <!--Context: disp-formula/*|inline-formula/*
 Test: report    (parent::inline-formula) and (local-name()!='math')
-Message:  element is not allowed as a child of inline-formula.-->
+Message:  element is not allowed as a child of inline-formula. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <disp-formula>

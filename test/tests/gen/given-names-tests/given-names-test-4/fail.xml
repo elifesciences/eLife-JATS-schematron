@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="given-names-test-4.sch"?>
 <!--Context: contrib-group//name/given-names
 Test: report    descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc
-Message: given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - ''.-->
+Message: given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

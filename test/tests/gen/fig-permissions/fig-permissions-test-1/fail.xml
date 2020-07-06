@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-permissions-test-1.sch"?>
 <!--Context: fig/permissions
 Test: report    copyright-statement and (not(copyright-year) or not(copyright-holder))
-Message: permissions for  has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.-->
+Message: permissions for  has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <root>

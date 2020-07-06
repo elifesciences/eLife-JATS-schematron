@@ -3,7 +3,7 @@
 Test: assert    count(../person-group[@person-group-type='author'])=1
 Message: [err-elem-cit-book-22]
         If there is a <chapter-title> element there must be one and only one <person-group person-group-type="author">.
-        Reference '' does not meet this requirement.-->
+        Reference '' does not meet this requirement. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

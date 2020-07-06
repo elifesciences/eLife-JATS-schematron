@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sub-disp-formula-id-test.sch"?>
 <!--Context: disp-formula
 Test: report    (ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))
-Message: disp-formula @id must be in the format 'sa0equ0' when in a sub-article.   does not conform to this.-->
+Message: disp-formula @id must be in the format 'sa0equ0' when in a sub-article.   does not conform to this. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article>

@@ -5,7 +5,7 @@ Message: [err-elem-cit-web-9-2-2]
         A  <source> element within a <element-citation> of type 'web' may only contain the child 
         elements<italic>, <sub>, and <sup>. 
         No other elements are allowed.
-        Reference '' has disallowed child elements.-->
+        Reference '' has disallowed child elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

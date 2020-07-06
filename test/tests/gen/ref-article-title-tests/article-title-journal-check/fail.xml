@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-title-journal-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']/article-title
 Test: report    matches(.,' [Jj]ournal ')
-Message: ref '' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - ''-->
+Message: ref '' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '' -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-article-category-test-2.sch"?>
 <!--Context: article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    $count = 0
-Message: article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.-->
+Message: article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-categories>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-colour-styled-content-check.sch"?>
 <!--Context: styled-content
 Test: report    .
-Message: '' -  element contains a styled content element. If it is red, blue or purple then it should be tagged using <named-content>. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'-->
+Message: '' -  element contains a styled content element. If it is red, blue or purple then it should be tagged using <named-content>. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.' -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>test 1 <styled-content>Coloured text</styled-content> test 2</p>

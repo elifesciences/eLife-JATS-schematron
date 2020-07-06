@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="element-conformity.sch"?>
 <!--Context: article//*[not(ancestor::mml:math)]
 Test: assert    name()=$allowed-elements
-Message:  element is not allowed.-->
+Message:  element is not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <abstract/>

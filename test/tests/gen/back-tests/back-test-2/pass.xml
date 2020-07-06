@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="back-test-2.sch"?>
 <!--Context: back
 Test: report    count(sec[@sec-type='supplementary-material']) gt 1
-Message: More than one sec[@sec-type="supplementary-material"] cannot be present in back.-->
+Message: More than one sec[@sec-type="supplementary-material"] cannot be present in back. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

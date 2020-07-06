@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-self-uri-presence.sch"?>
 <!--Context: article/front/article-meta
 Test: report    (($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)
-Message: There must be a child self-uri in article-meta.-->
+Message: There must be a child self-uri in article-meta. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

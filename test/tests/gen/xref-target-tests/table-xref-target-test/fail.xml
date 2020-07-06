@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-xref-target-test.sch"?>
 <!--Context: xref
 Test: report    (@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')
-Message: xref with @ref-type='' points to . This is not correct.-->
+Message: xref with @ref-type='' points to . This is not correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <xref ref-type="table" rid="sec1"/>

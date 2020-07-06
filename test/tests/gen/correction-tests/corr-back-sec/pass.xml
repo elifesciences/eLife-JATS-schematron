@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="corr-back-sec.sch"?>
 <!--Context: article[@article-type = 'correction']
 Test: report    (back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)
-Message: Correction notices should not contain any sections in the backmatter which are not for supplementary files.-->
+Message: Correction notices should not contain any sections in the backmatter which are not for supplementary files. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">
     <front>

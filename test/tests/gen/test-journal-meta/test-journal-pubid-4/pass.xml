@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-journal-pubid-4.sch"?>
 <!--Context: article/front/journal-meta
 Test: assert    issn[@publication-format='electronic'][@pub-type='epub']
-Message: The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'.-->
+Message: The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
