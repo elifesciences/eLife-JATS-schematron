@@ -1,0 +1,34 @@
+<?oxygen SCHSchema="pub-id-doi-test-2.sch"?>
+<!--Context: element-citation/pub-id
+Test: report    matches(@xlink:href,'https?://doi.org/\d') and not(contains(.,substring-after(@xlink:href,'doi.org/')))
+Message: pub id has a doi link -  - but the identifier is not the doi - '', which is incorrect. If the dataset has a doi link, the identifier must be the the doi, which is the string after 'doi.org/' in the link - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="data" specific-use="isSupplementedBy" id="dataset1">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Keesey</surname>
+          <given-names>IW</given-names>
+        </name>
+        <name>
+          <surname>Grabe</surname>
+          <given-names>V</given-names>
+        </name>
+        <name>
+          <surname>Knaden</surname>
+          <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Hansson</surname>
+          <given-names>BS</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2020">2020</year>
+      <data-title>Divergent sensory investment mirrors potential speciation via niche partitioning
+        across Drosophila</data-title>
+      <source>EDMOND</source>
+      <pub-id assigning-authority="other" pub-id-type="accession" xlink:href="https://doi.org/10.17617/3.3v">the open access data repository of the Max Planck
+        Society</pub-id>
+    </element-citation>
+  </article>
+</root>

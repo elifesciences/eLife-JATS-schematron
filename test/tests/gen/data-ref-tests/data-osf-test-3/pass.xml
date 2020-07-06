@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="data-osf-test-3.sch"?>
 <!--Context: element-citation[@publication-type='data']
-Test: report    matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]
-Message: Data reference with the title '' has an OSF 'https://osf.io' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3 -->
+Test: report    matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]
+Message: Data reference with the title '' has an OSF 'https://osf.io' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
@@ -14,7 +14,7 @@ Message: Data reference with the title '' has an OSF 'https://osf.io' type link,
       <year iso-8601-date="2019">2019</year>
       <data-title>RealNoi</data-title>
       <source>Open Science Framework</source>
-      <pub-id assigning-authority="Open Science Framework" pub-id-type="archive" xlink:href="https://osf.io/f9kzs/">f9kzs</pub-id>
+      <pub-id assigning-authority="Open Science Framework" pub-id-type="accession" xlink:href="https://osf.io/f9kzs/">f9kzs</pub-id>
     </element-citation>
   </article>
 </root>
