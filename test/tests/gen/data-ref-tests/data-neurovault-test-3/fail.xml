@@ -8,7 +8,7 @@ Message: Data reference with the title '' has a NeuroVault 'neurovault.org/colle
       <year iso-8601-date="2019">2019</year>
       <data-title>Differential Fear Conditioning Paradigm at 7T with Cerebellar Focus</data-title>
       <source>NeuroVault</source>
-      <pub-id assigning-authority="other" pub-id-type="accession" xlink:href="https://neurovault.org/collections/OMLBHQAA/">OMLBHQAA</pub-id>
+      <pub-id assigning-authority="other" pub-id-type="other" xlink:href="https://neurovault.org/collections/OMLBHQAA/">OMLBHQAA</pub-id>
     </element-citation>
   </article>
 </root>

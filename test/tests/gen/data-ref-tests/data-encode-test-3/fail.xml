@@ -14,7 +14,7 @@ Message: Data reference with the title '' has an ENCODE 'www.encodeproject.org' 
       <year iso-8601-date="2012">2012</year>
       <data-title>DNase-seq and DGF on 8 week adult mouse heart</data-title>
       <source>ENCODE</source>
-      <pub-id assigning-authority="other" pub-id-type="accession" xlink:href="https://www.encodeproject.org/experiments/ENCSR000CNE/">ENCSR000CNE</pub-id>
+      <pub-id assigning-authority="other" pub-id-type="archive" xlink:href="https://www.encodeproject.org/experiments/ENCSR000CNE/">ENCSR000CNE</pub-id>
     </element-citation>
   </article>
 </root>
