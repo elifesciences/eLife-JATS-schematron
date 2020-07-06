@@ -2272,10 +2272,9 @@
     </rule>
   </pattern>
   <pattern id="table-fn-label-tests-pattern">
-    <rule context="table-wrap-foot//fn/p/*[1]" id="table-fn-label-tests"> 
-      <let name="house-labels" value="('*', '†', '‡', '§', '¶','**', '††', '‡‡', '§§', '¶¶','***', '†††', '‡‡‡', '§§§', '¶¶¶','****', '††††', '‡‡‡‡', '§§§§', '¶¶¶¶')"/>
+    <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests"> 
       
-      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
+      <report test="not(matches(.,'^\s?[*†‡§¶]')) and matches(.,'^\s?[\p{Ps}]?[\da-z][\p{Pe}]?\s+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
     </rule>
   </pattern>
   <pattern id="fn-tests-pattern">
@@ -2515,7 +2514,7 @@
       
       
       
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-fig-specific-test-4">[final-fig-specific-test-4] There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
+      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-fig-specific-test-4">[final-fig-specific-test-4] There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">[feat-fig-specific-test-4] There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
       
@@ -3961,9 +3960,9 @@
   <pattern id="elem-citation-data-pub-id-pattern">
     <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
-      <assert test="@pub-id-type=('accession', 'archive', 'ark', 'doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
-        Each pub-id element must have one of these types: accession, archive, ark, assigning-authority or doi. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with types 
+      <assert test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
+        Each pub-id element must have a pub-id-type which is either accession or doi. 
+        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type 
         '<value-of select="@pub-id-type"/>'.</assert>
       
       <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1]
@@ -4881,7 +4880,7 @@
   <pattern id="das-elem-citation-data-pub-id-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
       
-      <report test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'archive', 'doi'))" role="error" id="das-pub-id-1">[das-pub-id-1] Each pub-id element must have an @pub-id-type with one of these types: accession, archive, or doi. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1</report>
+      <report test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="das-pub-id-1">[das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1</report>
       
       <report test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" role="error" id="das-pub-id-2">[das-pub-id-2] Each pub-id element which is not a doi must have an @xlink-href (which is not empty). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-2</report>
       
@@ -4909,13 +4908,19 @@
   <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">[pub-id-test-1] @xlink:href must start with an http:// or ftp:// protocol. - <value-of select="."/> does not.</report>
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">[pub-id-test-1] @xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
       
       <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">[pub-id-test-2] pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
       
       <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">[pub-id-test-3] pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
       </report>
+      
+      <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://doi.org/\d')" role="error" id="pub-id-doi-test-1">[pub-id-doi-test-1] pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
+      
+      <report test="matches(@xlink:href,'https?://doi.org/\d') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" role="error" id="pub-id-doi-test-2">[pub-id-doi-test-2] pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. If the dataset has a doi link, the identifier must be the the doi, which is the string after 'doi.org/' in the link - <value-of select="substring-after(@xlink:href,'doi.org/')"/>.</report>
+      
+      <report test="contains(.,' ')" role="warning" id="pub-id-test-4">[pub-id-test-4] pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
       
     </rule>
   </pattern>
@@ -6235,7 +6240,7 @@
       
       <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]" role="warning" id="data-osf-test-2">[data-osf-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-2</report>
       
-      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-osf-test-3">[data-osf-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an OSF 'https://osf.io' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3</report>
+      <report test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-osf-test-3">[data-osf-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an OSF 'https://osf.io' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')" role="warning" id="data-osf-test-4">[data-osf-test-4] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4</report>
       
@@ -6311,7 +6316,7 @@
       
       <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-neurovault-test-2">[data-neurovault-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-neurovault-test-3">[data-neurovault-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a NeuroVault 'neurovault.org/collections' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-neurovault-test-3">[data-neurovault-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has a NeuroVault 'neurovault.org/collections' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-3</report>
       
       <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')" role="warning" id="data-wwpdb-test-1">[data-wwpdb-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-1</report>
       
@@ -6335,7 +6340,7 @@
       
       <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-encode-test-2">[data-encode-test-2] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-2</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@pub-id-type!='archive' or not(@pub-id-type)]" role="warning" id="data-encode-test-3">[data-encode-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an ENCODE 'www.encodeproject.org' type link, but is not marked as an archive type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-3</report>
+      <report test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" role="warning" id="data-encode-test-3">[data-encode-test-3] Data reference with the title '<value-of select="data-title[1]"/>' has an ENCODE 'www.encodeproject.org' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-3</report>
       
       <report test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and not(source[1]='EMDataResource')" role="warning" id="data-emdr-test-1">[data-emdr-test-1] Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but the database name is not 'EMDataResource' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-1</report>
       

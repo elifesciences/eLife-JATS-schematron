@@ -785,17 +785,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-data-tests">
-    <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
-      <assert test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
-        Each pub-id element must have a pub-id-type which is either accession or doi. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type 
-        '<value-of select="@pub-id-type"/>'.</assert>
+  <pattern id="pub-id-pattern">
+    <rule context="element-citation/pub-id" id="pub-id-tests">
+      <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://doi.org/\d')" role="error" id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id" role="error" id="elem-citation-data-pub-id-xspec-assert">ref/element-citation[@publication-type='data']/pub-id must be present.</assert>
+      <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

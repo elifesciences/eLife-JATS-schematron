@@ -786,14 +786,13 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="table-wrap-foot//fn/p/*[1]" id="table-fn-label-tests">
-      <let name="house-labels" value="('*', '†', '‡', '§', '¶','**', '††', '‡‡', '§§', '¶¶','***', '†††', '‡‡‡', '§§§', '¶¶¶','****', '††††', '‡‡‡‡', '§§§§', '¶¶¶¶')"/>
-      <report test="not(preceding-sibling::text()) and (name(.)='sup') and not(.=$house-labels)" role="warning" id="table-fn-label-test-1">Footnote starts with label which is not in line with house style - <value-of select="parent::p"/>. Footnote symbols should be in the order: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
+    <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests">
+      <report test="not(matches(.,'^\s?[*†‡§¶]')) and matches(.,'^\s?[\p{Ps}]?[\da-z][\p{Pe}]?\s+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap-foot//fn/p/*[1]" role="error" id="table-fn-label-tests-xspec-assert">table-wrap-foot//fn/p/*[1] must be present.</assert>
+      <assert test="descendant::table-wrap-foot//fn/p" role="error" id="table-fn-label-tests-xspec-assert">table-wrap-foot//fn/p must be present.</assert>
     </rule>
   </pattern>
 </schema>

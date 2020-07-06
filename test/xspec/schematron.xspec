@@ -9135,6 +9135,36 @@
         <x:expect-report id="pub-id-test-3" role="error"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-id-doi-test-1-pass">
+        <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-1/pass.xml"/>
+        <x:expect-not-report id="pub-id-doi-test-1" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-doi-test-1-fail">
+        <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-1/fail.xml"/>
+        <x:expect-report id="pub-id-doi-test-1" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-doi-test-2-pass">
+        <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-2/pass.xml"/>
+        <x:expect-not-report id="pub-id-doi-test-2" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-doi-test-2-fail">
+        <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-2/fail.xml"/>
+        <x:expect-report id="pub-id-doi-test-2" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-test-4-pass">
+        <x:context href="../tests/gen/pub-id-tests/pub-id-test-4/pass.xml"/>
+        <x:expect-not-report id="pub-id-test-4" role="warning"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-test-4-fail">
+        <x:context href="../tests/gen/pub-id-tests/pub-id-test-4/fail.xml"/>
+        <x:expect-report id="pub-id-test-4" role="warning"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="feature-title-tests">
       <x:scenario label="feature-title-test-1-pass">
