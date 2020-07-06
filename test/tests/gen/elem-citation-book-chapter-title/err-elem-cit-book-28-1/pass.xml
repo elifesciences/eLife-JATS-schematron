@@ -3,7 +3,7 @@
 Test: assert    count(../person-group[@person-group-type='editor']) le 1
 Message: [err-elem-cit-book-28-1]
         If there is a <chapter-title> element there may be a maximum of one <person-group person-group-type="editor">.
-        Reference '' does not meet this requirement.-->
+        Reference '' does not meet this requirement. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

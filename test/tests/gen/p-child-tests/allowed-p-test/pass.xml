@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="allowed-p-test.sch"?>
 <!--Context: p/*
 Test: assert    if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation') else self::*/local-name() = $allowed-p-blocks
-Message: p element cannot contain . only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.-->
+Message: p element cannot contain . only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p><bold/>, <sup/>, <sub/>, <sc/>, <italic/>, <xref/>, <inline-formula/>, <disp-formula/>, <supplementary-material/>, <code/>, <ext-link/>, <named-content/>, <inline-graphic/>, <monospace/>, <related-object/></p>

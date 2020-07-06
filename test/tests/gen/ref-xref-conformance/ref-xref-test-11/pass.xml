@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-11.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')
-Message: '' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1-->
+Message: '' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>Test test <xref ref-type="bibr" rid="bib12">DeLong et al., 2010</xref> test test.</p>

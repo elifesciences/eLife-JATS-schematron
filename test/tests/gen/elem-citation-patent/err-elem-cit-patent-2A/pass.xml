@@ -5,7 +5,7 @@ Message: [err-elem-cit-patent-2A]
         There may be zero or one person-group elements with @person-group-type="assignee" 
         Reference '' has 
          <person-group> elements of type
-        'assignee'.-->
+        'assignee'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

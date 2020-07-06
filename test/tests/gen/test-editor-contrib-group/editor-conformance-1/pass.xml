@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="editor-conformance-1.sch"?>
 <!--Context: article/front/article-meta/contrib-group[@content-type='section']
 Test: assert    count(contrib[@contrib-type='senior_editor']) = 1
-Message: contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).-->
+Message: contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

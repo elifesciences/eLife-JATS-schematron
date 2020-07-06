@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-5.sch"?>
 <!--Context: related-article
 Test: assert    @ext-link-type='doi'
-Message: related-article element must contain a @ext-link-type='doi'.-->
+Message: related-article element must contain a @ext-link-type='doi'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

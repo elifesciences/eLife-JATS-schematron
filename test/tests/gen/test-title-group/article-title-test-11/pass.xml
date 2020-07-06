@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-title-test-11.sch"?>
 <!--Context: article/front/article-meta/title-group
 Test: report    ($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')
-Message: Article title contains a capitalised word(s) which is not capitalised in the body of the article -  - is this correct? - -->
+Message: Article title contains a capitalised word(s) which is not capitalised in the body of the article -  - is this correct? -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

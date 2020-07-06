@@ -5,7 +5,7 @@ Message: [err-elem-cit-patent-2-1]
         There must be one person-group with @person-group-type="inventor". 
         Reference '' has
          <person-group> 
-        elements of type 'inventor'.-->
+        elements of type 'inventor'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

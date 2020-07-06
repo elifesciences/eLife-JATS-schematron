@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="source-code-test-1.sch"?>
 <!--Context: supplementary-material
 Test: report    ($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))
-Message:  has a file which looks like code - , but it's not labelled as code.-->
+Message:  has a file which looks like code - , but it's not labelled as code. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <supplementary-material id="fig1sdata1"><object-id pub-id-type="doi">10.7554/eLife.43620.004</object-id><label>Figure 1—source data 1.</label><caption><title>Simulations.</title></caption><media mime-subtype="x-m" mimetype="text" xlink:href="elife-43620-fig1-data1-v3.m"/></supplementary-material>

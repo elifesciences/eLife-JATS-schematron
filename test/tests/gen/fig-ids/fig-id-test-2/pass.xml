@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-id-test-2.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
 Test: report    matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))
-Message: fig must have an @id in the format fig0.  does not conform to this.-->
+Message: fig must have an @id in the format fig0.  does not conform to this. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

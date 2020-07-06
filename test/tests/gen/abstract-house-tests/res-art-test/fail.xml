@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="res-art-test.sch"?>
 <!--Context: abstract[not(@*)]
 Test: report    (count(p) > 1) and ($subj = 'Research Article')
-Message: '' has more than one paragraph in its abstract, is this correct?-->
+Message: '' has more than one paragraph in its abstract, is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

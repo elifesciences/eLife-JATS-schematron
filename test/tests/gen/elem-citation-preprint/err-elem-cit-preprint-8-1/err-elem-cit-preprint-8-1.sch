@@ -791,7 +791,7 @@
         Each  &lt;element-citation&gt; of type 'preprint' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        <value-of select="count(article-title)"/> &lt;article-title&gt; elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

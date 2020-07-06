@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="clintrial-conformance-7.sch"?>
 <!--Context: abstract[not(@abstract-type)]/sec
 Test: report    child::sec
-Message: Nested secs are not allowed in abstracts. Sec with the id  and title '' has child sections.-->
+Message: Nested secs are not allowed in abstracts. Sec with the id  and title '' has child sections. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

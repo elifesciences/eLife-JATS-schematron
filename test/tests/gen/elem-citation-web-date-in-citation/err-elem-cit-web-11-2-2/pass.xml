@@ -6,7 +6,7 @@ Message: [err-elem-cit-web-11-2-2]
         'YYYY-MM-DD'.
         Reference '' has '',
         which does not have that format.
-      -->
+       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

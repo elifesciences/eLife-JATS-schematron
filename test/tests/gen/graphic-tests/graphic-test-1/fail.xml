@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="graphic-test-1.sch"?>
 <!--Context: graphic|inline-graphic
 Test: report    contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))
-Message:  has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.-->
+Message:  has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <graphic mime-subtype="tiff" xlink:href="file.jpg"/>

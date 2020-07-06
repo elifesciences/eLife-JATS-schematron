@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="media-test-8.sch"?>
 <!--Context: media
 Test: report    if (ancestor::sec[@sec-type='supplementary-material']) then () else if (@mimetype='video') then (not(label)) else ()
-Message: video does not contain a label, which is incorrect.-->
+Message: video does not contain a label, which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <media mimetype="video" mime-subtype="mp4"/>

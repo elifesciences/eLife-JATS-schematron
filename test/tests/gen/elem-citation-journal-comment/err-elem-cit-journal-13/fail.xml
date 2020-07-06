@@ -3,7 +3,7 @@
 Test: assert    text() = 'In press'
 Message: [err-elem-cit-journal-13] 
         Comment elements with content other than 'In press' are not allowed.
-        Reference '' has such a <comment> element.-->
+        Reference '' has such a <comment> element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

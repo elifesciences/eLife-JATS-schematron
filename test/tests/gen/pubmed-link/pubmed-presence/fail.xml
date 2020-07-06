@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pubmed-presence.sch"?>
 <!--Context: p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]
 Test: report    matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')
-Message:  element contains what looks like a link to a PubMed article -  - should this be added a reference instead?-->
+Message:  element contains what looks like a link to a PubMed article -  - should this be added a reference instead? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p><ext-link xlink:href="https://www.ncbi.nlm.nih.gov/pubmed/0001">Smith et al., 1991</ext-link></p>

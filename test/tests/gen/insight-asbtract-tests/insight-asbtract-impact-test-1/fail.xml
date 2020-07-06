@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="insight-asbtract-impact-test-1.sch"?>
 <!--Context: article[@article-type='article-commentary']//article-meta/abstract
 Test: assert    . = $impact-statement
-Message: In insights, abstracts must be the same as impact statements. Here the abstract reads "", whereas the impact statement reads "". More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1-->
+Message: In insights, abstracts must be the same as impact statements. Here the abstract reads "", whereas the impact statement reads "". More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="article-commentary">
     <article-meta>

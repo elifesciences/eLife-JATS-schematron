@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="surname-test-1.sch"?>
 <!--Context: contrib-group//name
 Test: assert    count(surname) = 1
-Message: Each name must contain only one surname.-->
+Message: Each name must contain only one surname. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

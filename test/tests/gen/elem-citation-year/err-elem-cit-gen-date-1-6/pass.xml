@@ -4,7 +4,7 @@ Test: assert    not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and (some $y 
 Message: [err-elem-cit-gen-date-1-6]
         If the <year> element contains the letter 'a' after the digits, there must be another reference with 
         the same first author surname (or collab) with a letter "b" after the year. 
-        Reference '' does not fulfill this requirement.-->
+        Reference '' does not fulfill this requirement. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

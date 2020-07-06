@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="given-names-test-7.sch"?>
 <!--Context: contrib-group//name/given-names
 Test: report    matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')
-Message: given-names contains initialised full stop(s) which is incorrect - -->
+Message: given-names contains initialised full stop(s) which is incorrect -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

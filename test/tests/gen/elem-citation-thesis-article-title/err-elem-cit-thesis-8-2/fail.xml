@@ -4,7 +4,7 @@ Test: assert    count(*) = count(sub|sup|italic)
 Message: [err-elem-cit-thesis-8-2]
         An <article-title> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
         No other elements are allowed.
-        Reference '' does not meet this requirement.-->
+        Reference '' does not meet this requirement. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

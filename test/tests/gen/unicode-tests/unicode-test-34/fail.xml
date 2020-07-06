@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="unicode-test-34.sch"?>
 <!--Context: sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]
 Test: report    contains(.,'Ã’')
-Message:  element contains 'Ã’' - this should instead be the character 'Ò'. - .-->
+Message:  element contains 'Ã’' - this should instead be the character 'Ò'. - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article>

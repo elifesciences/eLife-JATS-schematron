@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="retr-abstract-presence.sch"?>
 <!--Context: article[@article-type = 'retraction']
 Test: report    descendant::abstract
-Message: Retractions should not contain abstracts.-->
+Message: Retractions should not contain abstracts. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="retraction">
     <front>

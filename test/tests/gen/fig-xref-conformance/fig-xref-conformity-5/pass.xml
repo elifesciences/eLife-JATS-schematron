@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-xref-conformity-5.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
 Test: report    ($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))
-Message: figure citation stands alone, contains the text , and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - ''-->
+Message: figure citation stands alone, contains the text , and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '' -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>
         <xref ref-type="fig" rid="fig1s1">Figure 1-figure supplement 1</xref>

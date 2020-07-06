@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="media-test-10.sch"?>
 <!--Context: media
 Test: report    preceding::media/@xlink:href = $link
-Message: Media file for  () is the same as the one used for .-->
+Message: Media file for  () is the same as the one used for . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

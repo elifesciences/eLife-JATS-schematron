@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="name-test.sch"?>
 <!--Context: article-meta//contrib
 Test: report    if (collab) then () else count(name) != 1
-Message: Contrib contains no collab but has  name(s). This is not correct.-->
+Message: Contrib contains no collab but has  name(s). This is not correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

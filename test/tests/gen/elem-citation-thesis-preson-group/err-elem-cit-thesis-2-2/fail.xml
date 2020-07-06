@@ -4,7 +4,7 @@ Test: assert    @person-group-type='author'
 Message: [err-elem-cit-thesis-2-2]
         Each <person-group> must have a @person-group-type attribute of type 'author'.
         Reference '' has a <person-group> 
-        element with @person-group-type attribute ''.-->
+        element with @person-group-type attribute ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

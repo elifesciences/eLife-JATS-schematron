@@ -4,7 +4,7 @@ Test: assert    count(*)=0
 Message: [err-elem-cit-report-11-2]
         No elements are allowed inside <publisher-name>.
         Reference '' has child elements within the
-        <publisher-name> element.-->
+        <publisher-name> element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="volume-test-1.sch"?>
 <!--Context: article-meta/volume
 Test: assert    . = number($pub-date) - 2011
-Message: Journal volume is incorrect. It should be .-->
+Message: Journal volume is incorrect. It should be . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

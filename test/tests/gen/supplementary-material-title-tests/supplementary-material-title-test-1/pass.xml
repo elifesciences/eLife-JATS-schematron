@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-title-test-1.sch"?>
 <!--Context: supplementary-material/caption/title
 Test: report    matches(.,'^\([A-Za-z]|^[A-Za-z]\)')
-Message: '' appears to have a title which is the begining of a caption. Is this correct?-->
+Message: '' appears to have a title which is the begining of a caption. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <supplementary-material>

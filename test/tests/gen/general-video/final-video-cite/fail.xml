@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-video-cite.sch"?>
 <!--Context: media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]
 Test: assert    $xrefs//*:match
-Message: There is no citation to . Ensure this is added.-->
+Message: There is no citation to . Ensure this is added. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <media id="video1" mimetype="video">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="title-all-bold-test-1.sch"?>
 <!--Context: title[(count(*)=1) and (child::bold or child::italic)]
 Test: report    $free-text=''
-Message: Title is entirely in  - ''. Is this correct?-->
+Message: Title is entirely in  - ''. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <title><italic>E. coli in hospitals</italic></title>

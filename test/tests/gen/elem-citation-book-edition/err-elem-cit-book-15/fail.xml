@@ -4,7 +4,7 @@ Test: assert    count(*)=0
 Message: [err-elem-cit-book-15]
         No elements are allowed inside <edition>.
         Reference '' has child elements within the
-        <edition> element.-->
+        <edition> element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-template-test-1.sch"?>
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    ($template = ('1','2')) and child::sub-article
-Message:  is a template  but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.-->
+Message:  is a template  but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="article-commentary">
     <front>

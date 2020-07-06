@@ -3,7 +3,7 @@
 Test: report    lpage and not(fpage)
 Message: [err-elem-cit-journal-6-5-1]
         <lpage> is only allowed if <fpage> is present. 
-        Reference '' has <lpage> but no <fpage>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1-->
+        Reference '' has <lpage> but no <fpage>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="editorial-editors-presence.sch"?>
 <!--Context: article[@article-type='editorial']/front/article-meta
 Test: report    contrib-group[@content-type='section']
-Message: Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing .-->
+Message: Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="editorial">
     <front>

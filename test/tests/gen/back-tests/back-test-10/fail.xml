@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="back-test-10.sch"?>
 <!--Context: back
 Test: report    ($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ($pub-date le '2018-05-31') and (count(sec[@sec-type='data-availability']) != 1)
-Message: One and only one Data availability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for ''. Is this a new version which was published first without one? If not, then it certainly needs adding.-->
+Message: One and only one Data availability section (sec[@sec-type="data-availability"]) should be present (as a child of back) for ''. Is this a new version which was published first without one? If not, then it certainly needs adding. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

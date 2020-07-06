@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="comp-int-fn-group-test-1.sch"?>
 <!--Context: fn-group[@content-type='competing-interest']
 Test: assert    ancestor::back
-Message: This fn-group must be a descendant of back.-->
+Message: This fn-group must be a descendant of back. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

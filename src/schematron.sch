@@ -5598,32 +5598,32 @@
         There must be one and only one person-group. 
         Reference '<value-of select="ancestor::ref/@id"/>' has
         <value-of select="count(person-group)"/> &lt;person-group&gt; 
-        elements.</assert>
+        elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1</assert>
       
       <assert test="count(article-title)=1" role="error" id="err-elem-cit-preprint-8-1">[err-elem-cit-preprint-8-1]
         Each  &lt;element-citation&gt; of type 'preprint' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        <value-of select="count(article-title)"/> &lt;article-title&gt; elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1</assert>
       
       <assert test="count(source) = 1" role="error" id="err-elem-cit-preprint-9-1">[err-elem-cit-preprint-9-1]
         Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+        <value-of select="count(source)"/> &lt;source&gt; elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-</assert>
       
       <assert test="count(pub-id) le 1" role="error" id="err-elem-cit-preprint-10-1">[err-elem-cit-preprint-10-1]
         One &lt;pub-id&gt; element is allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-</assert>
       
       <assert test="count(pub-id)=1 or count(ext-link)=1" role="error" id="err-elem-cit-preprint-10-3">[err-elem-cit-preprint-10-3]
         Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements
-        and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+        and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-3</assert>
       
       <assert test="count(*) = count(person-group| article-title| source| year| pub-id| ext-link)" role="error" id="err-elem-cit-preprint-13">[err-elem-cit-preprint-13]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are:
         &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has other elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-13</assert>
       
     </rule>
     
@@ -5631,7 +5631,7 @@
       
       <assert test="@person-group-type='author'" role="error" id="err-elem-cit-preprint-2-2">[err-elem-cit-preprint-2-2]
         The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in 
-        Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-2</assert>
       
     </rule>
     
@@ -5640,7 +5640,7 @@
       <assert test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">[err-elem-cit-preprint-10-2]
         If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'.
         The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>'
-        contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
+        contains @pub-id-type='<value-of select="@pub-id-type"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2</assert>
       
     </rule>
     
@@ -5667,12 +5667,12 @@
       <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">[err-elem-cit-preprint-8-2-1]
         A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1</assert>
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">[err-elem-cit-preprint-8-2-2]
         A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
         elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2</assert>
     </rule>
     
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
@@ -5685,7 +5685,7 @@
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-9-2-2">[err-elem-cit-preprint-9-2-2]
         A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
         elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2</assert>
       
     </rule>
   </pattern>
@@ -8636,44 +8636,44 @@
       
       <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')"
         role="warning" 
-        id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
+        id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test</assert>
       
       <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')"
         role="error" 
-        id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
+        id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test</report>
       
       <report test="matches($lc,'^arxiv$') and not(. = 'arXiv')"
         role="error" 
-        id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
+        id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#arxiv-test</report>
       
       <report test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')"
         role="error" 
-        id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
+        id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#chemrxiv-test</report>
       
       <report test="matches($lc,'medrxiv') and not(. = 'medRxiv')"
         role="error" 
-        id="medrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
+        id="medrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#medrxiv-test</report>
       
       <report test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')"
         role="error" 
-        id="peerjpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
+        id="peerjpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#peerjpreprints-test</report>
       
       <report test="matches($lc,'psyarxiv') and not(. = 'PsyArXiv')"
         role="error" 
-        id="psyarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'.</report>
+        id="psyarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#psyarxiv-tes</report>
       
       <report test="matches($lc,'paleorxiv') and not(. = 'PaleorXiv')"
         role="error" 
-        id="paleorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'.</report>
+        id="paleorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#paleorxiv-test</report>
       
       <report test="matches(.,'�')"
         role="error"
-        id="preprint-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed - <value-of select="."/></report>
+        id="preprint-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-replacement-character-presence</report>
       
       
       <report test="contains(.,'handbook')"
         role="error"
-        id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+        id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-handbook-presence</report>
     </rule>
     
     <rule context="element-citation[@publication-type='web']" 
@@ -9148,6 +9148,10 @@
       <report test="matches(.,'�')"
         role="error"
         id="pub-name-replacement-character-presence"><name/> contains the replacement character '�' which is unallowed - <value-of select="."/></report>
+      
+      <report test="matches(lower-case(.),'guardian|the independent|times|post|news')"
+        role="warning"
+        id="pub-name-newspaper"><name/> contains the text 'guardian', 'independent', 'times' or 'post' - <value-of select="."/> - is it a newspaper reference? If so, it should be captured as a web or a periodical reference.</report>
     </rule>
     
     <rule context="element-citation//name" 

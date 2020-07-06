@@ -4,7 +4,7 @@ Test: assert    count(*) = count(person-group| year| source| publisher-loc|publi
 Message: [err-elem-cit-report-15]
         The only tags that are allowed as children of <element-citation> with the publication-type="report" are:
         <person-group>, <year>, <source>, <publisher-loc>, <publisher-name>, <ext-link>, and <pub-id>.
-        Reference '' has other elements.-->
+        Reference '' has other elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

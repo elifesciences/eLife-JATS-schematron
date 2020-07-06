@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="elife-ref-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: report    (lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))
-Message: ref '' is an  article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.-->
+Message: ref '' is an  article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib1">

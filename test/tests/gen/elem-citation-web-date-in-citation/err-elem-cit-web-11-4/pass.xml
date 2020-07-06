@@ -5,7 +5,7 @@ Message:
         The Accessed date value must match the @iso-8601-date value in the format 'January 1, 2020'.
         Reference '' has element content of 
          but an @iso-8601-date value of 
-        .-->
+        . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

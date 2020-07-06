@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-orcid-test-3.sch"?>
 <!--Context: contrib-id[@contrib-id-type='orcid']
 Test: report    (preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)
-Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD -  - is associated with  authors. Please confirm which author this ORCiD belongs to.'.-->
+Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD -  - is associated with  authors. Please confirm which author this ORCiD belongs to.'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <contrib-group>

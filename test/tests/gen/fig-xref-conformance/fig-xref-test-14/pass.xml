@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-xref-test-14.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
 Test: report    matches($pre-text,'cf[\.]?\s?[\(]?$')
-Message: citation is preceded by ''. The 'cf.' is unnecessary and should be removed.-->
+Message: citation is preceded by ''. The 'cf.' is unnecessary and should be removed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>test <xref ref-type="fig" rid="fig1">...</xref> test</p>

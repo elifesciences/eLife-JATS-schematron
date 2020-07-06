@@ -4,7 +4,7 @@ Test: assert    count(source)=1 and count(source/*)=count(source/(italic | sub |
 Message: [err-elem-cit-book-10-2-2]
         A  <source> element within a <element-citation> of type 'book' may only contain the child 
         elements<italic>, <sub>, and <sup>. No other elements are allowed.
-        Reference '' has child elements that are not allowed.-->
+        Reference '' has child elements that are not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="math-test-15.sch"?>
 <!--Context: mml:math
 Test: report    matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')
-Message: mml:math seems to only contain the formula for a cation - '' - which is likely unnecessary. Should this be captured as normal text instead?-->
+Message: mml:math seems to only contain the formula for a cation - '' - which is likely unnecessary. Should this be captured as normal text instead? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <mml:math>

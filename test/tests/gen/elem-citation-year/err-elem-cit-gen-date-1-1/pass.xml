@@ -5,7 +5,7 @@ Message: [err-elem-cit-gen-date-1-1]
         The <year> element in a reference must contain 4 digits, possibly followed by one (and only one) lower-case letter.
         Reference '' does not meet this requirement as it contains
         the value ''.
-      -->
+       -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

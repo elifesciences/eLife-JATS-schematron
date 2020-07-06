@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-test-8.sch"?>
 <!--Context: supplementary-material
 Test: report    matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])
-Message:  has an article level label but it is not captured in the additional files section - This must be incorrect.-->
+Message:  has an article level label but it is not captured in the additional files section - This must be incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="supplementary-material">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fpage-lpage-test-1.sch"?>
 <!--Context: element-citation
 Test: report    (fpage) and not(lpage)
-Message:  has a first page , but no last page. Is this correct? Should it be an elocation-id instead?-->
+Message:  has a first page , but no last page. Is this correct? Should it be an elocation-id instead? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib27">

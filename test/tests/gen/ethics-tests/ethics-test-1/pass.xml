@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ethics-test-1.sch"?>
 <!--Context: fn-group[@content-type='ethics-information']
 Test: report    ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])
-Message: Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']-->
+Message: Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information'] -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="additional-information">

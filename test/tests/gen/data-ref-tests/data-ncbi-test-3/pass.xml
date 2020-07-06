@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="data-ncbi-test-3.sch"?>
 <!--Context: element-citation[@publication-type='data']
 Test: report    contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]
-Message: Data reference with an NCBI link '' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-3-->
+Message: Data reference with an NCBI link '' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset30" publication-type="data" specific-use="references">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="url-fullstop-report.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
 Test: report    matches(@xlink:href,'\.$')
-Message: '' - Link ends in a fullstop which is incorrect.-->
+Message: '' - Link ends in a fullstop which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org">elifesciences.org.</ext-link>

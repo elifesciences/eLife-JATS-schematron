@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="video-sup-id-test-2.sch"?>
 <!--Context: article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]
 Test: assert    starts-with(@id,$id-prefix)
-Message: video supplement must have an @id which begins with the id of its parent fig.  does not start with .-->
+Message: video supplement must have an @id which begins with the id of its parent fig.  does not start with . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

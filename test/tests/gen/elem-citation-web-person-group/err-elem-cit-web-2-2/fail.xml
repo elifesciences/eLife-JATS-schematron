@@ -3,7 +3,7 @@
 Test: assert    @person-group-type='author'
 Message: [err-elem-cit-web-2-2]
         The <person-group> element must contain @person-group-type='author'. The <person-group> element in 
-        Reference '' contains @person-group-type=''.-->
+        Reference '' contains @person-group-type=''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

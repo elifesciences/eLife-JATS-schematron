@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-caption-test-2.sch"?>
 <!--Context: fig/caption/p
 Test: report    contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)
-Message: Caption for  contains what looks like an image credit. It's quite likely that this should be captured in an <attrib> element instead - -->
+Message: Caption for  contains what looks like an image credit. It's quite likely that this should be captured in an <attrib> element instead -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <fig>

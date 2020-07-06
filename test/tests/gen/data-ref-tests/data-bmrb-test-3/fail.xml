@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="data-bmrb-test-3.sch"?>
 <!--Context: element-citation[@publication-type='data']
 Test: report    contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]
-Message: Data reference with the title '' has a BMRB 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-3-->
+Message: Data reference with the title '' has a BMRB 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked as an accession type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset9" publication-type="data" specific-use="references">

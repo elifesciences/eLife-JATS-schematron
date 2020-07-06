@@ -3,7 +3,7 @@
 Test: assert    count(*)=0
 Message: [err-elem-cit-patent-10-1-2]
         The  <patent> element may not have child elements.
-        Reference '' has child elements.-->
+        Reference '' has child elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

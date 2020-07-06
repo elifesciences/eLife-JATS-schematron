@@ -4,7 +4,7 @@ Test: assert    count(fpage/*)=0 and count(lpage/*)=0
 Message: [err-elem-cit-confproc-12-4]
         The content of the <fpage> and <lpage> elements can contain any alpha numeric value but no child elements are allowed.
         Reference '' has  child elements in
-        <fpage> and   child elements in <lpage>.-->
+        <fpage> and   child elements in <lpage>. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

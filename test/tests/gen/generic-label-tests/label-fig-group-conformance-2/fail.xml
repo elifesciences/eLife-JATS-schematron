@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="label-fig-group-conformance-2.sch"?>
 <!--Context: fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label
 Test: report    not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')
-Message:  contains the string 'Figure' but it's not placed in a <fig-group> element, which is incorrect. Either the label needs updating, or it needs moving into the <fig-group>.-->
+Message:  contains the string 'Figure' but it's not placed in a <fig-group> element, which is incorrect. Either the label needs updating, or it needs moving into the <fig-group>. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <media id="app8fig1video1" xlink:href="elife-0000-app8-fig1-video1.mp4" mimetype="video" mime-subtype="mp4">

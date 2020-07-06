@@ -3,7 +3,7 @@
 Test: report    lpage and not (fpage)
 Message: [err-elem-cit-book-36-2]
         If <lpage> is present, <fpage> must also be present. 
-        Reference '' has <lpage> but not <fpage>.-->
+        Reference '' has <lpage> but not <fpage>. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

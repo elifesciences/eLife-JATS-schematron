@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-title-test-2.sch"?>
 <!--Context: supplementary-material/caption/title
 Test: assert    matches(.,'\.$')
-Message: title for  must end with a full stop.-->
+Message: title for  must end with a full stop. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <supplementary-material>

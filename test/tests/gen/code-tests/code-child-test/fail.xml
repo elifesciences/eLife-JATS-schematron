@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="code-child-test.sch"?>
 <!--Context: code
 Test: report    child::*
-Message: code contains a child element, which will display in HTML with its tagging, i.e. '<></>'. Strip any child elements.-->
+Message: code contains a child element, which will display in HTML with its tagging, i.e. '<></>'. Strip any child elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <code xml:space="preserve">macro ‘Stack profile Plot’ {

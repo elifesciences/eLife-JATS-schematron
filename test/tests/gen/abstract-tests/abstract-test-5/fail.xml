@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="abstract-test-5.sch"?>
 <!--Context: front//abstract
 Test: report    child::sec and count(sec) != 6
-Message: If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts.-->
+Message: If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

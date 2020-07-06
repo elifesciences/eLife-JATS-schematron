@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-strike-flag.sch"?>
 <!--Context: strike
 Test: report    .
-Message:  element contains text with strikethrough formatting -  - Is this correct? Or have the authors added strikethrough formatting as an indication that the content should be removed?-->
+Message:  element contains text with strikethrough formatting -  - Is this correct? Or have the authors added strikethrough formatting as an indication that the content should be removed? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>text text <strike>should this be removed?</strike> text text</p>

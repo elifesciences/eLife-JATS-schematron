@@ -3,7 +3,7 @@
 Test: assert    patent
 Message: [err-elem-cit-patent-10-1-1]
         The  <patent> element is required. 
-        Reference '' has no <patent> elements.-->
+        Reference '' has no <patent> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

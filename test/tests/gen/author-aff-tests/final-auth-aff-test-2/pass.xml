@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-auth-aff-test-2.sch"?>
 <!--Context: article-meta/contrib-group[not(@*)]/aff
 Test: assert    addr-line[named-content[@content-type='city']]
-Message: Author affiliations must have a city. This one does not - -->
+Message: Author affiliations must have a city. This one does not -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

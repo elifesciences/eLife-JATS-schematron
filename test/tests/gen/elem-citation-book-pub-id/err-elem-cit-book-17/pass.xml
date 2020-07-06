@@ -4,7 +4,7 @@ Test: assert    @pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'
 Message: [err-elem-cit-book-17]
         Each <pub-id>, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. 
         The pub-id-type attribute on <pub-id> in Reference '' 
-        is .-->
+        is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

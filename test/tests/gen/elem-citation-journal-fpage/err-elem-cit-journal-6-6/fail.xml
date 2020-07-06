@@ -4,7 +4,7 @@ Test: assert    matches(normalize-space(.),'^\d.*') or (substring(normalize-spac
 Message: [err-elem-cit-journal-6-6]
         If the content of <fpage> begins with a letter, then the content of  <lpage> must begin with 
         the same letter. 
-        Reference '' does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6-->
+        Reference '' does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

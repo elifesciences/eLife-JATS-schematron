@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="github-web-test.sch"?>
 <!--Context: element-citation[@publication-type='web']
 Test: report    contains($link,'github')
-Message: web ref '' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test-->
+Message: web ref '' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="web">

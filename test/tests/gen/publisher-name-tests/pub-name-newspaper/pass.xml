@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="pub-name-newspaper.sch"?>
+<!--Context: element-citation/publisher-name
+Test: report    matches(lower-case(.),'guardian|the independent|times|post|news')
+Message:  contains the text 'guardian', 'independent', 'times' or 'post' -  - is it a newspaper reference? If so, it should be captured as a web or a periodical reference. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="report">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Haag</surname> <given-names>M</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <source>FamilyTreeDNA admits to sharing genetic data with FBI</source>
+      <publisher-name>Something</publisher-name>
+      <ext-link ext-link-type="uri" xlink:href="https://www.nytimes.com/2019/02/04/business/family-tree-dna-fbi.html">https://www.nytimes.com/2019/02/04/business/family-tree-dna-fbi.html</ext-link>
+    </element-citation>
+  </article>
+</root>

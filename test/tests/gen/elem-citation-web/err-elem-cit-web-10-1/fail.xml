@@ -4,7 +4,7 @@ Test: assert    count(ext-link)=1
 Message: [err-elem-cit-web-10-1]
         One and only one <ext-link> element is required.
         Reference '' has  
-        <ext-link> elements.-->
+        <ext-link> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

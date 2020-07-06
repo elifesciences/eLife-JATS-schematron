@@ -23,7 +23,7 @@ return
   let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"') 
   let $comment := comment{concat('Context: ',$test/parent::*:rule/@context/string(),'
 Test: ',$test/local-name(),'    ',replace(normalize-space($test/@test/string()),'[-—–][-—–]',''),'
-Message: ',replace($test/data(),'[-—–][-—–]',''))}
+Message: ',replace($test/data(),'[-—–][-—–]',''),' ')}
 
   let $node := 
   (processing-instruction {'oxygen'}{$pi-content},

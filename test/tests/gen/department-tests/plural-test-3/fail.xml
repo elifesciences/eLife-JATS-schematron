@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="plural-test-3.sch"?>
 <!--Context: aff/institution[@content-type='dept']
 Test: report    matches(.,'^[Dd]epartment .* [Dd]epartment')
-Message:  contains a department which has two instances of the word 'department' - . Should this be split out into two separate affiliations?-->
+Message:  contains a department which has two instances of the word 'department' - . Should this be split out into two separate affiliations? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <aff>

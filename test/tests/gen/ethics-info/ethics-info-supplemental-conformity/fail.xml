@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ethics-info-supplemental-conformity.sch"?>
 <!--Context: fn-group[@content-type='ethics-information']/fn
 Test: report    matches(.,'[Ss]upplemental [Ffigure]')
-Message: Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.-->
+Message: Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <fn-group content-type="ethics-information">

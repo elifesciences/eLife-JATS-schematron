@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="surname-number-check.sch"?>
 <!--Context: element-citation//name
 Test: report    matches(.,'[0-9]')
-Message: name in ref '' contains numbers - . Should this be captured as a collab?-->
+Message: name in ref '' contains numbers - . Should this be captured as a collab? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation>

@@ -3,7 +3,7 @@
 Test: report    (lpage or fpage) and not(chapter-title)
 Message: [err-elem-cit-book-16]
         In a book reference, <lpage> and <fpage> are allowed only if <chapter-title> is present. 
-        Reference '' has <lpage> or <fpage> but no <chapter-title>.-->
+        Reference '' has <lpage> or <fpage> but no <chapter-title>. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

@@ -791,7 +791,7 @@
         There must be one and only one person-group. 
         Reference '<value-of select="ancestor::ref/@id"/>' has
         <value-of select="count(person-group)"/> &lt;person-group&gt; 
-        elements.</assert>
+        elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

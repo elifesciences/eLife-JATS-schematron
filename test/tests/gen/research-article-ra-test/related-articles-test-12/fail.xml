@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-12.sch"?>
 <!--Context: article[@article-type='research-article']//related-article
 Test: assert    @related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')
-Message: The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to  is a  type link.-->
+Message: The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to  is a  type link. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <article-meta>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="clintrial-related-object-10.sch"?>
 <!--Context: abstract[not(@abstract-type) and sec]//related-object
 Test: assert    parent::p
-Message:  in abstract must be a child of a <p> element.-->
+Message:  in abstract must be a child of a <p> element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

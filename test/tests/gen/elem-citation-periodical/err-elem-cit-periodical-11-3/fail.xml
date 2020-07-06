@@ -4,7 +4,7 @@ Test: report    (lpage and fpage) and (fpage[1] ge lpage[1])
 Message: [err-elem-cit-periodical-11-3]
         If both <lpage> and <fpage> are present, the value of <fpage> must be less than the value of <lpage>. 
         Reference '' has <lpage> , which is 
-        less than or equal to <fpage> .-->
+        less than or equal to <fpage> . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

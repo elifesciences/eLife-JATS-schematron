@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sec-title-appendix-check.sch"?>
 <!--Context: sec/title
 Test: report    matches(.,'^[Aa]ppendix')
-Message: Section title contains the word appendix - ''. Should it be captured as an appendix?-->
+Message: Section title contains the word appendix - ''. Should it be captured as an appendix? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec>

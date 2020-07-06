@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-template-test-2.sch"?>
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    ($template = '5') and not(@article-type='research-article')
-Message:  is a template  so the article element must have a @article-type="research-article". Instead the @article-type="".-->
+Message:  is a template  so the article element must have a @article-type="research-article". Instead the @article-type="". -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="discussion">
     <front>

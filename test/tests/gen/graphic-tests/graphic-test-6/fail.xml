@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="graphic-test-6.sch"?>
 <!--Context: graphic|inline-graphic
 Test: report    preceding::graphic/@xlink:href = $link
-Message: Image file for  () is the same as the one used for .-->
+Message: Image file for  () is the same as the one used for . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

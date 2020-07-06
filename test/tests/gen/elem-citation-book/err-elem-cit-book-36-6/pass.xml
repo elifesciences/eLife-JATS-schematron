@@ -4,7 +4,7 @@ Test: report    count(lpage) > 1 or count(fpage) > 1
 Message: [err-elem-cit-book-36-6]
         At most one <lpage> and one <fpage> are allowed. 
         Reference '' has  <lpage> 
-        elements and  <fpage> elements.-->
+        elements and  <fpage> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

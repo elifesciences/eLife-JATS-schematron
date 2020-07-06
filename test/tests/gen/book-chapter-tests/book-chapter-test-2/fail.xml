@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="book-chapter-test-2.sch"?>
 <!--Context: element-citation[(@publication-type='book') and chapter-title]
 Test: assert    fpage and lpage
-Message: ref '' () is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?-->
+Message: ref '' () is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="book">

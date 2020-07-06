@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="related-articles-test-11.sch"?>
 <!--Context: related-article
 Test: report    contains(@xlink:href,$article-doi)
-Message: An article cannot contain a related-article link to itself - please delete the related article link to .-->
+Message: An article cannot contain a related-article link to itself - please delete the related article link to . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>

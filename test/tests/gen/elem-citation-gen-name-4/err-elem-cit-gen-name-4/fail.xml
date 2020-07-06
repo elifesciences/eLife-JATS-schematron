@@ -5,7 +5,7 @@ Message: [err-elem-cit-gen-name-4]
         The <suffix> element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '' does not meet this requirement
-        as it contains the value ''.-->
+        as it contains the value ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>
