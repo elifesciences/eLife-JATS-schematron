@@ -9200,48 +9200,36 @@
         <x:expect-not-assert id="feature-abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="feature-subj-tests-1">
-      <x:scenario label="feature-subj-test-1-pass">
-        <x:context href="../tests/gen/feature-subj-tests-1/feature-subj-test-1/pass.xml"/>
-        <x:expect-not-assert id="feature-subj-test-1" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-1-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="feature-subj-test-1-fail">
-        <x:context href="../tests/gen/feature-subj-tests-1/feature-subj-test-1/fail.xml"/>
-        <x:expect-assert id="feature-subj-test-1" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-1-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="feature-subj-tests-2">
+    <x:scenario label="feature-subj-tests">
       <x:scenario label="feature-subj-test-2-pass">
-        <x:context href="../tests/gen/feature-subj-tests-2/feature-subj-test-2/pass.xml"/>
+        <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-2/pass.xml"/>
         <x:expect-not-report id="feature-subj-test-2" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-2-xspec-assert" role="error"/>
+        <x:expect-not-assert id="feature-subj-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feature-subj-test-2-fail">
-        <x:context href="../tests/gen/feature-subj-tests-2/feature-subj-test-2/fail.xml"/>
+        <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-2/fail.xml"/>
         <x:expect-report id="feature-subj-test-2" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-2-xspec-assert" role="error"/>
+        <x:expect-not-assert id="feature-subj-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feature-subj-test-3-pass">
-        <x:context href="../tests/gen/feature-subj-tests-2/feature-subj-test-3/pass.xml"/>
+        <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-3/pass.xml"/>
         <x:expect-not-report id="feature-subj-test-3" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-2-xspec-assert" role="error"/>
+        <x:expect-not-assert id="feature-subj-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feature-subj-test-3-fail">
-        <x:context href="../tests/gen/feature-subj-tests-2/feature-subj-test-3/fail.xml"/>
+        <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-3/fail.xml"/>
         <x:expect-report id="feature-subj-test-3" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-2-xspec-assert" role="error"/>
+        <x:expect-not-assert id="feature-subj-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feature-subj-test-4-pass">
-        <x:context href="../tests/gen/feature-subj-tests-2/feature-subj-test-4/pass.xml"/>
+        <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-4/pass.xml"/>
         <x:expect-not-report id="feature-subj-test-4" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-2-xspec-assert" role="error"/>
+        <x:expect-not-assert id="feature-subj-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feature-subj-test-4-fail">
-        <x:context href="../tests/gen/feature-subj-tests-2/feature-subj-test-4/fail.xml"/>
+        <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-4/fail.xml"/>
         <x:expect-report id="feature-subj-test-4" role="error"/>
-        <x:expect-not-assert id="feature-subj-tests-2-xspec-assert" role="error"/>
+        <x:expect-not-assert id="feature-subj-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="feature-article-category-tests">
@@ -9253,16 +9241,6 @@
       <x:scenario label="feature-article-category-test-1-fail">
         <x:context href="../tests/gen/feature-article-category-tests/feature-article-category-test-1/fail.xml"/>
         <x:expect-assert id="feature-article-category-test-1" role="error"/>
-        <x:expect-not-assert id="feature-article-category-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="feature-article-category-test-2-pass">
-        <x:context href="../tests/gen/feature-article-category-tests/feature-article-category-test-2/pass.xml"/>
-        <x:expect-not-report id="feature-article-category-test-2" role="warning"/>
-        <x:expect-not-assert id="feature-article-category-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="feature-article-category-test-2-fail">
-        <x:context href="../tests/gen/feature-article-category-tests/feature-article-category-test-2/fail.xml"/>
-        <x:expect-report id="feature-article-category-test-2" role="warning"/>
         <x:expect-not-assert id="feature-article-category-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

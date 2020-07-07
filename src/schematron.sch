@@ -6599,18 +6599,9 @@
        id="feature-abstract-test-2">abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/></assert>
      
    </rule>
-	
-   <rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]"
-		id="feature-subj-tests-1">		
-		
-     <assert test="subj-group[@subj-group-type='sub-display-channel']"
-	  	role="error"
-	  	id="feature-subj-test-1">Feature content must contain subj-group[@subj-group-type='sub-display-channel'].</assert>
-     
-   </rule>
    
    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject"
-     id="feature-subj-tests-2">		
+     id="feature-subj-tests">		
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
@@ -6632,13 +6623,9 @@
      id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
-     <assert test="($count = 1) or ($count = 0)"
+     <assert test="$count = 1"
        role="error"
-       id="feature-article-category-test-1">article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
-     
-     <report test="$count = 0"
-       role="warning"
-       id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
+       id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
      
    </rule>
    
@@ -6666,7 +6653,7 @@
      <report test="if (count($aff) > 1) then ()
                    else not(contains(.,$aff))"
        role="warning"
-       id="feature-bio-test-2">bio does not contain the insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+       id="feature-bio-test-2">bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
      
      <report test="(count($aff) > 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))"
        role="warning"

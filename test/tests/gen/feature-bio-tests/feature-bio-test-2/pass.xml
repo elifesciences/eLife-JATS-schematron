@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feature-bio-test-2.sch"?>
 <!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
 Test: report    if (count($aff) > 1) then () else not(contains(.,$aff))
-Message: bio does not contain the insutution text as it appears in their affiliation (''). Is this correct? -->
+Message: bio does not contain the institution text as it appears in their affiliation (''). Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <article-meta>

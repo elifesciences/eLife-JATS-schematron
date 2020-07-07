@@ -786,15 +786,16 @@
     
   </xsl:function>
   <pattern id="features">
-    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">
+    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">
       <let name="token1" value="substring-before(.,' ')"/>
       <let name="token2" value="substring-after(.,$token1)"/>
-      <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
+      <report test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-2-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
+      <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
     </rule>
   </pattern>
 </schema>
