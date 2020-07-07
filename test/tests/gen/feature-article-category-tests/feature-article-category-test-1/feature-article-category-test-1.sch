@@ -788,7 +788,7 @@
   <pattern id="features">
     <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
       <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
-      <assert test="($count = 1) or ($count = 0)" role="error" id="feature-article-category-test-1">article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
+      <assert test="$count = 1" role="error" id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

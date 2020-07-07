@@ -786,14 +786,15 @@
     
   </xsl:function>
   <pattern id="features">
-    <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
-      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
-      <report test="$count = 0" role="warning" id="feature-article-category-test-2">article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
+    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">
+      <let name="token1" value="substring-before(.,' ')"/>
+      <let name="token2" value="substring-after(.,$token1)"/>
+      <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">There is more than one sub-display-channel subjects. This is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-article-category-tests-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
+      <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
     </rule>
   </pattern>
 </schema>

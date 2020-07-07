@@ -4943,15 +4943,8 @@
      
    </rule>
   </pattern>
-  <pattern id="feature-subj-tests-1-pattern">
-    <rule context="article-categories[subj-group[@subj-group-type='display-channel'][subject = $features-subj]]" id="feature-subj-tests-1">		
-		
-     <assert test="subj-group[@subj-group-type='sub-display-channel']" role="error" id="feature-subj-test-1">[feature-subj-test-1] Feature content must contain subj-group[@subj-group-type='sub-display-channel'].</assert>
-     
-   </rule>
-  </pattern>
-  <pattern id="feature-subj-tests-2-pattern">
-    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests-2">		
+  <pattern id="feature-subj-tests-pattern">
+    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">		
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
@@ -4968,9 +4961,7 @@
     <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
-     <assert test="($count = 1) or ($count = 0)" role="error" id="feature-article-category-test-1">[feature-article-category-test-1] article categories contains more than one subj-group[@subj-group-type='sub-display-channel'], which must be incorrect.</assert>
-     
-     <report test="$count = 0" role="warning" id="feature-article-category-test-2">[feature-article-category-test-2] article categories doesn't contain a subj-group[@subj-group-type='sub-display-channel']. This is almost certainly not right.</report>
+     <assert test="$count = 1" role="error" id="feature-article-category-test-1">[feature-article-category-test-1] article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
      
    </rule>
   </pattern>
@@ -4990,7 +4981,7 @@
      <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">[feature-bio-test-1] bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
-     <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">[feature-bio-test-2] bio does not contain the insutution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+     <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">[feature-bio-test-2] bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
      
      <report test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))" role="warning" id="feature-bio-test-6">[feature-bio-test-6] Some of the text from <value-of select="$name"/>'s affiliations does not appear in their bio - <value-of select="string-join(for $x in $aff-tokens return if (contains(.,$x)) then () else concat('&quot;',$x,'&quot;'),' and ')"/>. Is this correct?</report>
      
