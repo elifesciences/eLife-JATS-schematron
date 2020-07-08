@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="source-code-test-2.sch"?>
+<!--Context: supplementary-material
+Test: report    contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))
+Message: Source code files should always be zipped. The file type for  is ''. Please zip this file, and replace it with the zipped version. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <supplementary-material id="scode1"><label>Source code 1.</label><caption><title>OPL area quantification script.</title></caption><media mime-subtype="octet-stream" mimetype="application" xlink:href="elife-56931-code1-v2.zip"/></supplementary-material>
+  </article>
+</root>

@@ -1385,6 +1385,9 @@
       </report>
 	  
 	  <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
+	  
+	  <report test="license" role="info" id="permissions-info">This article is licensed under a<value-of select="        if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'         else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'         else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'         else 'n unknown'"/> license. <value-of select="$license-type"/>
+      </report>
 	
 	</rule>
   </pattern>
@@ -2042,6 +2045,8 @@
       
       <report test="contains(lower-case(caption[1]/title[1]),'key resource')" role="warning" id="supplementary-material-test-11">
         <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> has a title '<value-of select="caption[1]/title[1]"/>'. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article.</report>
+      
+      <report test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" role="warning" id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
     </rule>
   </pattern>
   <pattern id="source-data-specific-tests-pattern">
