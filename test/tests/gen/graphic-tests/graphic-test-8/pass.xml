@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="graphic-test-8.sch"?>
+<!--Context: graphic|inline-graphic
+Test: report    contains($link,'&')
+Message: Image file-name for  contains an ampersand - . Please rename the file so that this ampersand is removed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <graphic mime-subtype="tif" mimetype="image" xlink:href="Figure4FGH-I.tiff"/>
+  </article>
+</root>

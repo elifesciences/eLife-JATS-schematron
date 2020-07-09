@@ -785,14 +785,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="fig-group" id="fig-group-tests">
-      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
+  <pattern id="house-style">
+    <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
+      <let name="lc" value="lower-case(.)"/>
+      <report test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))" role="error" id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig-group" role="error" id="fig-group-tests-xspec-assert">fig-group must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']/source" role="error" id="preprint-title-tests-xspec-assert">element-citation[@publication-type='preprint']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

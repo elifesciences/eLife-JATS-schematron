@@ -1480,6 +1480,14 @@
       
     </rule>
   </pattern>
+  <pattern id="abstract-word-count-pattern">
+    <rule context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
+      <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
+	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
+	     
+      <report test="($count gt 150)" role="warning" id="abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the limit is 150. Please either ensure that the abstract is made up of 150 or fewer words, or add an author query asking the authors to do so.</report>
+	   </rule>
+  </pattern>
   <pattern id="aff-tests-pattern">
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
       
@@ -1875,7 +1883,7 @@
       
       <assert test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
       
-      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement, figure-level course data or code file, or a figure-level video, which must be incorrect.</report>
+      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
       
     </rule>
   </pattern>
@@ -1960,6 +1968,8 @@
         <name/> must have an @xlink:href which contains a file reference.</assert>
       
       <report test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
+      
+      <report test="contains($link,'&amp;')" role="error" id="graphic-test-8">Image file-name for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
   </pattern>
   <pattern id="media-tests-pattern">
@@ -1987,6 +1997,8 @@
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
       
       <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')           else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+      
+      <report test="contains($link,'&amp;')" role="error" id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
   </pattern>
   <pattern id="video-test-pattern">
@@ -6393,6 +6405,8 @@
       
       <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test</report>
       
+      <report test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))" role="error" id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test-2</report>
+      
       <report test="matches($lc,'^arxiv$') and not(. = 'arXiv')" role="error" id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#arxiv-test</report>
       
       <report test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')" role="error" id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#chemrxiv-test</report>
@@ -7539,6 +7553,7 @@
       <assert test="descendant::front//abstract/*" role="error" id="abstract-children-tests-xspec-assert">front//abstract/* must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type) and sec]//related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type) and sec]//related-object must be present.</assert>
+      <assert test="descendant::front//abstract[not(@abstract-type) and not(sec)]" role="error" id="abstract-word-count-xspec-assert">front//abstract[not(@abstract-type) and not(sec)] must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/aff" role="error" id="aff-tests-xspec-assert">article-meta/contrib-group/aff must be present.</assert>
       <assert test="descendant::article-meta/contrib-group[not(@*)]/aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]/aff must be present.</assert>
       <assert test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>

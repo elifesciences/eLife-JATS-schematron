@@ -1850,6 +1850,18 @@
         <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="abstract-word-count">
+      <x:scenario label="abstract-word-count-restriction-pass">
+        <x:context href="../tests/gen/abstract-word-count/abstract-word-count-restriction/pass.xml"/>
+        <x:expect-not-report id="abstract-word-count-restriction" role="warning"/>
+        <x:expect-not-assert id="abstract-word-count-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-word-count-restriction-fail">
+        <x:context href="../tests/gen/abstract-word-count/abstract-word-count-restriction/fail.xml"/>
+        <x:expect-report id="abstract-word-count-restriction" role="warning"/>
+        <x:expect-not-assert id="abstract-word-count-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="aff-tests">
       <x:scenario label="aff-test-1-pass">
         <x:context href="../tests/gen/aff-tests/aff-test-1/pass.xml"/>
@@ -3235,6 +3247,16 @@
         <x:expect-report id="graphic-test-6" role="error"/>
         <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="graphic-test-8-pass">
+        <x:context href="../tests/gen/graphic-tests/graphic-test-8/pass.xml"/>
+        <x:expect-not-report id="graphic-test-8" role="error"/>
+        <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-8-fail">
+        <x:context href="../tests/gen/graphic-tests/graphic-test-8/fail.xml"/>
+        <x:expect-report id="graphic-test-8" role="error"/>
+        <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="media-tests">
       <x:scenario label="media-test-1-pass">
@@ -3335,6 +3357,16 @@
       <x:scenario label="media-test-10-fail">
         <x:context href="../tests/gen/media-tests/media-test-10/fail.xml"/>
         <x:expect-report id="media-test-10" role="error"/>
+        <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-11-pass">
+        <x:context href="../tests/gen/media-tests/media-test-11/pass.xml"/>
+        <x:expect-not-report id="media-test-11" role="error"/>
+        <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-11-fail">
+        <x:context href="../tests/gen/media-tests/media-test-11/fail.xml"/>
+        <x:expect-report id="media-test-11" role="error"/>
         <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -13441,6 +13473,16 @@
       <x:scenario label="biorxiv-test-fail">
         <x:context href="../tests/gen/preprint-title-tests/biorxiv-test/fail.xml"/>
         <x:expect-report id="biorxiv-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorxiv-test-2-pass">
+        <x:context href="../tests/gen/preprint-title-tests/biorxiv-test-2/pass.xml"/>
+        <x:expect-not-report id="biorxiv-test-2" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorxiv-test-2-fail">
+        <x:context href="../tests/gen/preprint-title-tests/biorxiv-test-2/fail.xml"/>
+        <x:expect-report id="biorxiv-test-2" role="error"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="arxiv-test-pass">

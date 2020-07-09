@@ -786,13 +786,15 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig-group" id="fig-group-tests">
-      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
+    <rule context="media" id="media-tests">
+      <let name="file" value="@mime-subtype"/>
+      <let name="link" value="@xlink:href"/>
+      <report test="contains($link,'&amp;')" role="error" id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig-group" role="error" id="fig-group-tests-xspec-assert">fig-group must be present.</assert>
+      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>
