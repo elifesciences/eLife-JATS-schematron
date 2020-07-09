@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="media-test-11.sch"?>
+<!--Context: media
+Test: report    contains($link,'&')
+Message: Media filename for  contains an ampersand - . Please rename the file so that this ampersand is removed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <media mime-subtype="xlsx" mimetype="application" xlink:href="sourcedataFigure4FGH&amp;I.xlsx"/>
+  </article>
+</root>

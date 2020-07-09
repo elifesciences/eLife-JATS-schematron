@@ -785,14 +785,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="fig-group" id="fig-group-tests">
-      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
+  <pattern id="article-metadata">
+    <rule context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
+      <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
+      <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
+      <report test="($count gt 150)" role="warning" id="abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the limit is 150. Please either ensure that the abstract is made up of 150 or fewer words, or add an author query asking the authors to do so.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig-group" role="error" id="fig-group-tests-xspec-assert">fig-group must be present.</assert>
+      <assert test="descendant::front//abstract[not(@abstract-type) and not(sec)]" role="error" id="abstract-word-count-xspec-assert">front//abstract[not(@abstract-type) and not(sec)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

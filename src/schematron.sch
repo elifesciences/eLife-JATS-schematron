@@ -1725,7 +1725,6 @@
 	
 	</rule>
 	
-	<!-- Test needs to be added for clinical trials, which mandates the correct number of secs. This number needs confirming -->
 	<rule context="front//abstract" 
 		id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
@@ -1843,6 +1842,17 @@
         id="clintrial-related-object-11"><name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/></assert>
       
     </rule>
+	
+    <!-- Exclusion for structured abstracts (clinical trials) -->
+    <rule context="front//abstract[not(@abstract-type) and not(sec)]"
+      id="abstract-word-count">
+      <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
+	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
+	     
+      <report test="($count gt 150)"
+        role="warning"
+        id="abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the limit is 150. Please either ensure that the abstract is made up of 150 or fewer words, or add an author query asking the authors to do so.</report>
+	   </rule>
 	
     <rule context="article-meta/contrib-group/aff" 
       id="aff-tests">
@@ -2455,9 +2465,9 @@
         role="error"
         id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
       
-      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::supplementary-material) and not(descendant::media[@mimetype='video'])" 
+      <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" 
         role="error"
-        id="fig-group-test-2">fig-group does not contain a figure supplement, figure-level course data or code file, or a figure-level video, which must be incorrect.</report>
+        id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
       
     </rule>
     
@@ -2583,6 +2593,10 @@
       <report test="preceding::graphic/@xlink:href = $link" 
         role="error"
         id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
+      
+      <report test="contains($link,'&amp;')" 
+        role="error"
+        id="graphic-test-8">Image file-name for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
     
     <rule context="media" 
@@ -2644,6 +2658,10 @@
         role="error"
         id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')
           else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+      
+      <report test="contains($link,'&amp;')" 
+        role="error"
+        id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
     
     <rule context="media[child::label]" 
@@ -8655,6 +8673,10 @@
       <report test="matches($lc,'biorxiv') and not(. = 'bioRxiv')"
         role="error" 
         id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test</report>
+      
+      <report test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))"
+        role="error" 
+        id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test-2</report>
       
       <report test="matches($lc,'^arxiv$') and not(. = 'arXiv')"
         role="error" 
