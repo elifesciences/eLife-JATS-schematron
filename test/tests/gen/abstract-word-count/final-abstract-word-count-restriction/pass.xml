@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="final-abstract-word-count-restriction.sch"?>
+<!--Context: front//abstract[not(@abstract-type) and not(sec)]
+Test: report    ($count gt 180)
+Message: The abstract contains  words, when the usual upper limit is 180. Abstracts with more than 180 words should be checked with the eLife Editorial team. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <abstract>
+        <p>erat vel vitae scelerisque volutpat ullamcorper dis nec morbi viverra voluptatum posuere phasellus felis donec sed conubia pharetra fames ullamcorper pellentesque rutrum nec suspendisse donec id mi malesuada quis vulputate mi integer vivamus a dolor distinctio hendrerit ut suspendisse mi lacus at leo lacus nunc sociis ut quis aliquet placerat vel magnis vitae luctus sed praesent commodo eget luctus integer suspendisse eros lorem quam vivamus fusce erat hendrerit mauris ornare sed ut lacinia suspendisse nulla sem tincidunt nunc consequat morbi in nibh magna dui nam luctus sit eget inceptos mi tincidunt omnis a adipiscing et ac posuere class nec turpis lacus vivamus metus tellus purus proin donec nam vel amet posuere diamlorem vitae beatae sed tortor laoreet purus in pretium proin auctor diam volutpat pulvinar in nec cras mattis ipsum volutpat blandit ac nullam sagittis magna inceptos purus vitae nisl sed pretium magna dolor eget nibh integer eros vel in.</p>
+        <p><bold>Editorial note:</bold> This article has been through an editorial process in which the authors decide how to respond to the issues raised during peer review. The Reviewing Editor's assessment is that all the issues have been addressed (<xref ref-type="decision-letter" rid="SA1">see decision letter</xref>).</p>
+      </abstract>
+    </front>
+  </article>
+</root>

@@ -785,15 +785,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="aff/institution[@content-type='dept']" id="department-tests">
-      <report test="matches(.,'^[Ii]nstitutes')" role="error" id="plural-test-2">
-        <value-of select="ancestor::aff/@id"/> contains a department with the plural for institute - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
+  <pattern id="article-metadata">
+    <rule context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
+      <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
+      <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
+      <report test="($count gt 180)" role="warning" id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff/institution[@content-type='dept']" role="error" id="department-tests-xspec-assert">aff/institution[@content-type='dept'] must be present.</assert>
+      <assert test="descendant::front//abstract[not(@abstract-type) and not(sec)]" role="error" id="abstract-word-count-xspec-assert">front//abstract[not(@abstract-type) and not(sec)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
