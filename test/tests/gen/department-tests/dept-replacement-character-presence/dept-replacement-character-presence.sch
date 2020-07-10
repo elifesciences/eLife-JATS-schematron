@@ -787,7 +787,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="aff/institution[@content-type='dept']" id="department-tests">
-      <report test="matches(.,'�')" role="error" id="dept-replacement-character-presence">
+      <report test="contains(.,'�')" role="error" id="dept-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
   </pattern>

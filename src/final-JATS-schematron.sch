@@ -1459,7 +1459,9 @@
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
-      <report test="($count gt 150)" role="warning" id="abstract-word-count-restriction">[abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the limit is 150. Please either ensure that the abstract is made up of 150 or fewer words, or add an author query asking the authors to do so.</report>
+      
+	     
+      <report test="($count gt 180)" role="warning" id="final-abstract-word-count-restriction">[final-abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Abstracts with more than 180 words should be checked with the eLife Editorial team.</report>
 	   </rule>
   </pattern>
   <pattern id="aff-tests-pattern">
@@ -2678,7 +2680,7 @@
       
       <assert test="@id = concat('s', $pos)" role="error" id="top-sec-id">[top-sec-id] top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
       
-      <report test="not($type = ($features-subj,'Review Article')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">[sec-conformity] top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
+      <report test="not($type = ($features-subj,'Review Article','Correction','Retraction')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">[sec-conformity] top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
     </rule>
   </pattern>
@@ -5973,17 +5975,7 @@
   <pattern id="department-tests-pattern">
     <rule context="aff/institution[@content-type='dept']" id="department-tests">
       
-      <report test="matches(.,'[Dd]epartments')" role="error" id="plural-test-1">[plural-test-1] <value-of select="ancestor::aff/@id"/> contains a department with the plural for department - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
-      
-      <report test="matches(.,'^[Ii]nstitutes')" role="error" id="plural-test-2">[plural-test-2] <value-of select="ancestor::aff/@id"/> contains a department with the plural for institute - <value-of select="."/>. Should this be split out inot two separate affiliations?</report>
-      
-      <report test="matches(.,'^[Dd]epartment .* [Dd]epartment')" role="error" id="plural-test-3">[plural-test-3] <value-of select="ancestor::aff/@id"/> contains a department which has two instances of the word 'department' - <value-of select="."/>. Should this be split out into two separate affiliations?</report>
-      
-      <report test="matches(.,'^[Ii]nstitute .* [Ii]nstitute')" role="error" id="plural-test-4">[plural-test-4] <value-of select="ancestor::aff/@id"/> contains a department which has two instances of the word 'institution' - <value-of select="."/>. Should this be split out into two separate affiliations?</report>
-      
-      <report test="matches(.,'�')" role="error" id="dept-replacement-character-presence">[dept-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
-      
-      <report test="matches(.,'^[a-z]')" role="warning" id="dept-test-1">[dept-test-1] <value-of select="ancestor::aff/@id"/> contains a department which begins with a lowercase letter - <value-of select="."/>. Is this correct?</report>
+      <report test="contains(.,'�')" role="error" id="dept-replacement-character-presence">[dept-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
     </rule>
   </pattern>
