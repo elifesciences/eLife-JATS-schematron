@@ -740,7 +740,7 @@
             </xsl:element>
           </xsl:when>
           <xsl:when test="contains(./@rid,'app')"/>
-          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','') gt $object-no)">
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (number(replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','')) gt number($object-no))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -790,7 +790,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else if (ancestor::app) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
+      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
