@@ -15236,6 +15236,60 @@
         <x:expect-not-assert id="math-colour-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="mathbackground-tests">
+      <x:scenario label="pre-mathbackground-test-1-pass">
+        <x:context href="../tests/gen/mathbackground-tests/pre-mathbackground-test-1/pass.xml"/>
+        <x:expect-not-report id="pre-mathbackground-test-1" role="warning"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-mathbackground-test-1-fail">
+        <x:context href="../tests/gen/mathbackground-tests/pre-mathbackground-test-1/fail.xml"/>
+        <x:expect-report id="pre-mathbackground-test-1" role="warning"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-mathbackground-test-2-pass">
+        <x:context href="../tests/gen/mathbackground-tests/pre-mathbackground-test-2/pass.xml"/>
+        <x:expect-not-report id="pre-mathbackground-test-2" role="warning"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-mathbackground-test-2-fail">
+        <x:context href="../tests/gen/mathbackground-tests/pre-mathbackground-test-2/fail.xml"/>
+        <x:expect-report id="pre-mathbackground-test-2" role="warning"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mathbackground-test-1-pass">
+        <x:context href="../tests/gen/mathbackground-tests/final-mathbackground-test-1/pass.xml"/>
+        <x:expect-not-report id="final-mathbackground-test-1" role="error"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mathbackground-test-1-fail">
+        <x:context href="../tests/gen/mathbackground-tests/final-mathbackground-test-1/fail.xml"/>
+        <x:expect-report id="final-mathbackground-test-1" role="error"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mathbackground-test-2-pass">
+        <x:context href="../tests/gen/mathbackground-tests/final-mathbackground-test-2/pass.xml"/>
+        <x:expect-not-report id="final-mathbackground-test-2" role="error"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mathbackground-test-2-fail">
+        <x:context href="../tests/gen/mathbackground-tests/final-mathbackground-test-2/fail.xml"/>
+        <x:expect-report id="final-mathbackground-test-2" role="error"/>
+        <x:expect-not-assert id="mathbackground-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="mtext-tests">
+      <x:scenario label="mtext-test-1-pass">
+        <x:context href="../tests/gen/mtext-tests/mtext-test-1/pass.xml"/>
+        <x:expect-not-report id="mtext-test-1" role="warning"/>
+        <x:expect-not-assert id="mtext-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtext-test-1-fail">
+        <x:context href="../tests/gen/mtext-tests/mtext-test-1/fail.xml"/>
+        <x:expect-report id="mtext-test-1" role="warning"/>
+        <x:expect-not-assert id="mtext-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="p-punctuation">
       <x:scenario label="p-punctuation-test-pass">
         <x:context href="../tests/gen/p-punctuation/p-punctuation-test/pass.xml"/>

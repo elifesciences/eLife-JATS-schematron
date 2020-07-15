@@ -786,14 +786,13 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="mml:*[@mathcolor]" id="math-colour-tests">
-      <let name="allowed-values" value="('red','blue','purple')"/>
-      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+    <rule context="mml:*" id="mathbackground-tests">
+      <report test="@mathbackground and ancestor::table-wrap" role="error" id="final-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then either the background colour will need to added to the table cell (rather than the maths), or it needs to be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
+      <assert test="descendant::mml:*" role="error" id="mathbackground-tests-xspec-assert">mml:* must be present.</assert>
     </rule>
   </pattern>
 </schema>

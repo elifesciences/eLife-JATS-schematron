@@ -9458,21 +9458,51 @@
         id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content> is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
     
-    <rule context="mml:mstyle[@mathcolor]" 
+    <rule context="mml:*[@mathcolor]" 
       id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
       
       <assert test="@mathcolor = $allowed-values"
         role="warning"
-        id="pre-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
+        id="pre-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
       
       <assert test="@mathcolor = $allowed-values"
         role="error"
-        id="final-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+        id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
       
       <report test="@mathcolor = $allowed-values"
         role="warning"
-        id="mathcolor-test-2">math containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+        id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      
+    </rule>
+    
+    <rule context="mml:*" 
+      id="mathbackground-tests">
+      
+      <report test="@mathbackground and not(ancestor::table-wrap)"
+        role="warning"
+        id="pre-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -> 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they will not display in downstream HTML (for example in PMC). eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
+      
+      <report test="@mathbackground and ancestor::table-wrap"
+        role="warning"
+        id="pre-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
+      
+      <report test="@mathbackground and not(ancestor::table-wrap)"
+        role="error"
+        id="final-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then this will need to removed.</report>
+      
+      <report test="@mathbackground and ancestor::table-wrap"
+        role="error"
+        id="final-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then either the background colour will need to added to the table cell (rather than the maths), or it needs to be removed.</report>
+      
+    </rule>
+    
+    <rule context="mml:mtext" 
+      id="mtext-tests">
+      
+      <report test="matches(.,'^\s*\\')"
+        role="warning"
+        id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
       
     </rule>
     

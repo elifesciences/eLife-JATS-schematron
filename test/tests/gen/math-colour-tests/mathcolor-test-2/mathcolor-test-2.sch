@@ -786,14 +786,14 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="mml:mstyle[@mathcolor]" id="math-colour-tests">
+    <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
-      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:mstyle[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:mstyle[@mathcolor] must be present.</assert>
+      <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -786,14 +786,13 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="mml:*[@mathcolor]" id="math-colour-tests">
-      <let name="allowed-values" value="('red','blue','purple')"/>
-      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+    <rule context="mml:mtext" id="mtext-tests">
+      <report test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
+      <assert test="descendant::mml:mtext" role="error" id="mtext-tests-xspec-assert">mml:mtext must be present.</assert>
     </rule>
   </pattern>
 </schema>
