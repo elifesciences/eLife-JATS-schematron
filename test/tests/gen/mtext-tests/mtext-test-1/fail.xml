@@ -2,8 +2,7 @@
 <!--Context: mml:mtext
 Test: report    matches(.,'^\s*\\')
 Message: math ( element) contains '' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely? -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <inline-formula id="equ27">
       <mml:math id="m27">
