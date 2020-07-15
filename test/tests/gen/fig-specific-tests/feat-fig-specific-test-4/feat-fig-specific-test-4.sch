@@ -796,7 +796,7 @@
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label[1],'\.','')"/>
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
-      <let name="first-cite-parent" value="$first-cite/parent::p"/>
+      <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
     </rule>
   </pattern>
