@@ -786,14 +786,14 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="mml:mstyle[@mathcolor]" id="math-colour-tests">
+    <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
-      <assert test="@mathcolor = $allowed-values" role="warning" id="pre-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
+      <assert test="@mathcolor = $allowed-values" role="warning" id="pre-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:mstyle[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:mstyle[@mathcolor] must be present.</assert>
+      <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
     </rule>
   </pattern>
 </schema>

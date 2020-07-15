@@ -752,7 +752,6 @@
     </xsl:element>
   </xsl:function>
   
-  <!-- Need to account for double digit numbers, i.e. vid9 is currently gt than vid 15 -->
   <xsl:function name="e:get-xrefs">
     <xsl:param name="article"/>
     <xsl:param name="object-id"/>
@@ -6873,14 +6872,34 @@
     </rule>
   </pattern>
   <pattern id="math-colour-tests-pattern">
-    <rule context="mml:mstyle[@mathcolor]" id="math-colour-tests">
+    <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
       
       
       
-      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>', which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+      <assert test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
       
-      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="mathbackground-tests-pattern">
+    <rule context="mml:*" id="mathbackground-tests">
+      
+      
+      
+      
+      
+      <report test="@mathbackground and not(ancestor::table-wrap)" role="error" id="final-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then this will need to removed.</report>
+      
+      <report test="@mathbackground and ancestor::table-wrap" role="error" id="final-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then either the background colour will need to added to the table cell (rather than the maths), or it needs to be removed.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="mtext-tests-pattern">
+    <rule context="mml:mtext" id="mtext-tests">
+      
+      <report test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
       
     </rule>
   </pattern>
