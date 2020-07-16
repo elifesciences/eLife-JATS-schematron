@@ -787,7 +787,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://doi.org/\d')" role="error" id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
+      <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="error" id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

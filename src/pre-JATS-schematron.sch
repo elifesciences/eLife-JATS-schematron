@@ -1088,7 +1088,7 @@
       
       <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" role="error" id="editor-conformance-3">[editor-conformance-3] <value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
       
-      <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">[editor-conformance-4] <value-of select="$name"/> has a @contrib-type='editor_editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
+      <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">[editor-conformance-4] <value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
       
     </rule>
   </pattern>
@@ -1717,7 +1717,8 @@
   
   <pattern id="volume-test-pattern">
     <rule context="article-meta/volume" id="volume-test">
-      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]"/>
+      <!-- @date-type='pub' included for legacy content -->
+      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
       
       <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">[volume-test-1] Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
@@ -4932,9 +4933,9 @@
       <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">[pub-id-test-3] pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
       </report>
       
-      <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://doi.org/\d')" role="error" id="pub-id-doi-test-1">[pub-id-doi-test-1] pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
+      <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="error" id="pub-id-doi-test-1">[pub-id-doi-test-1] pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
       
-      <report test="matches(@xlink:href,'https?://doi.org/\d') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" role="error" id="pub-id-doi-test-2">[pub-id-doi-test-2] pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. If the dataset has a doi link, the identifier must be the the doi, which is the string after 'doi.org/' in the link - <value-of select="substring-after(@xlink:href,'doi.org/')"/>.</report>
+      <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" role="error" id="pub-id-doi-test-2">[pub-id-doi-test-2] pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. Either the doi link is correct, and the identifier needs changing, or the identifier is correct and needs adding after 'https://doi.org/' in order to create the real doi link.</report>
       
       <report test="contains(.,' ')" role="warning" id="pub-id-test-4">[pub-id-test-4] pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
       
