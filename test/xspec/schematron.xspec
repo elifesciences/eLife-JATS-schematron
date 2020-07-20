@@ -3893,6 +3893,16 @@
         <x:expect-report id="math-test-17" role="warning"/>
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="math-test-18-pass">
+        <x:context href="../tests/gen/math-tests/math-test-18/pass.xml"/>
+        <x:expect-not-report id="math-test-18" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-18-fail">
+        <x:context href="../tests/gen/math-tests/math-test-18/fail.xml"/>
+        <x:expect-report id="math-test-18" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
