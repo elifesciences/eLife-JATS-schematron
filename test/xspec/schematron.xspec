@@ -83,6 +83,16 @@
         <x:expect-report id="final-test-r-article-d-letter" role="error"/>
         <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="final-test-r-article-d-letter-feat-pass">
+        <x:context href="../tests/gen/research-article/final-test-r-article-d-letter-feat/pass.xml"/>
+        <x:expect-not-report id="final-test-r-article-d-letter-feat" role="warning"/>
+        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-test-r-article-d-letter-feat-fail">
+        <x:context href="../tests/gen/research-article/final-test-r-article-d-letter-feat/fail.xml"/>
+        <x:expect-report id="final-test-r-article-d-letter-feat" role="warning"/>
+        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="test-r-article-a-reply-pass">
         <x:context href="../tests/gen/research-article/test-r-article-a-reply/pass.xml"/>
         <x:expect-not-report id="test-r-article-a-reply" role="warning"/>
@@ -2533,6 +2543,16 @@
       <x:scenario label="final-rep-study-custom-meta-test-fail">
         <x:context href="../tests/gen/meta-value-tests/final-rep-study-custom-meta-test/fail.xml"/>
         <x:expect-report id="final-rep-study-custom-meta-test" role="error"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-16-pass">
+        <x:context href="../tests/gen/meta-value-tests/custom-meta-test-16/pass.xml"/>
+        <x:expect-not-report id="custom-meta-test-16" role="warning"/>
+        <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="custom-meta-test-16-fail">
+        <x:context href="../tests/gen/meta-value-tests/custom-meta-test-16/fail.xml"/>
+        <x:expect-report id="custom-meta-test-16" role="warning"/>
         <x:expect-not-assert id="meta-value-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -12695,6 +12715,26 @@
       <x:scenario label="supplementalfile-presence-fail">
         <x:context href="../tests/gen/unallowed-symbol-tests/supplementalfile-presence/fail.xml"/>
         <x:expect-report id="supplementalfile-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementaryfigure-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/supplementaryfigure-presence/pass.xml"/>
+        <x:expect-not-report id="supplementaryfigure-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementaryfigure-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/supplementaryfigure-presence/fail.xml"/>
+        <x:expect-report id="supplementaryfigure-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplement-table-presence-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/supplement-table-presence/pass.xml"/>
+        <x:expect-not-report id="supplement-table-presence" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplement-table-presence-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/supplement-table-presence/fail.xml"/>
+        <x:expect-report id="supplement-table-presence" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ref-presence-pass">

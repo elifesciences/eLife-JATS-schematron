@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="custom-meta-test-16.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
+Test: report    $we-token = $verbs
+Message: Impact statement contains 'we' followed by a verb - '' in ''. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-16 -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <custom-meta-group><custom-meta specific-use="meta-only"><meta-name>Author impact statement</meta-name><meta-value>The widespread ribonuclease Csx3 is shown to be a CRISPR-associated ring nuclease (Crn3) with a highly unusual cooperative mechanism involving tetramerisation of the enzyme.</meta-value></custom-meta></custom-meta-group>
+    </article-meta>
+  </article>
+</root>

@@ -851,7 +851,9 @@
 	
 	  
 	  
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="error" id="final-test-r-article-d-letter">[final-test-r-article-d-letter] A decision letter must be present for research articles.</report>
+	  <report test="not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])" role="error" id="final-test-r-article-d-letter">[final-test-r-article-d-letter] A decision letter must be present for research articles.</report>
+	  
+	  <report test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])" role="warning" id="final-test-r-article-d-letter-feat">[final-test-r-article-d-letter-feat] A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
 	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" id="test-r-article-a-reply">[test-r-article-a-reply] Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
 	
@@ -1650,6 +1652,9 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
+      <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
+      <let name="verbs" value="('name', 'named', 'can', 'progress', 'progressed', 'explain', 'explained', 'found', 'founded', 'present', 'presented', 'have', 'describe', 'described', 'showed', 'report', 'reported', 'miss', 'missed', 'identify', 'identified', 'better', 'bettered', 'validate', 'validated', 'use', 'used', 'listen', 'listened', 'demonstrate', 'demonstrated', 'argue', 'argued', 'will', 'assess', 'assessed', 'are', 'may', 'observe', 'observed', 'find', 'found', 'previously', 'should', 'rely', 'relied', 'reflect', 'reflected', 'recognise', 'recognised', 'attend', 'attended', 'first', 'define', 'defined', 'here', 'need', 'needed')"/>
+      
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">[custom-meta-test-4] The value of meta-value cannot be empty</report>
       
       <report test="($count gt 30)" role="warning" id="custom-meta-test-5">[custom-meta-test-5] Impact statement contains more than 30 words. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
@@ -1675,6 +1680,8 @@
       
       
       <report test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">[final-rep-study-custom-meta-test] Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-rep-study-custom-meta-test</report>
+      
+      <report test="$we-token = $verbs" role="warning" id="custom-meta-test-16">[custom-meta-test-16] Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-16</report>
     </rule>
   </pattern>
   <pattern id="meta-value-child-tests-pattern">
@@ -5852,6 +5859,12 @@
       </report>
       
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" role="warning" id="supplementalfile-presence">[supplementalfile-presence] <name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
+      </report>
+      
+      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementary [Ff]igure')" role="warning" id="supplementaryfigure-presence">[supplementaryfigure-presence] <name/> element contains the phrase ' Supplementary figure ' which almost certainly needs updating. If it's unclear which figure/figure supplement should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/>
+      </report>
+      
+      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')" role="warning" id="supplement-table-presence">[supplement-table-presence] <name/> element contains the phrase 'Supplementary table' or 'Suuplemental table' which almost certainly needs updating. If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
       
       <report test="not(local-name()='code') and not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')" role="error" id="ref-presence">[ref-presence] <name/> element contains 'Ref.' which is either incorrect or unnecessary.</report>
