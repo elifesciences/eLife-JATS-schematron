@@ -790,7 +790,7 @@
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
-      <report test="ancestor::body and matches(.,'^[Ss]upplementary [Mm]ethod|^[Ss]upplemental [Mm]ethod')" role="warning" id="sec-title-appendix-check-2">Shoudld the section titled '<value-of select="."/>' be captured as an appendix?</report>
+      <report test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" role="warning" id="sec-title-appendix-check-2">Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

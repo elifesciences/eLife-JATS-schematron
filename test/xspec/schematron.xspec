@@ -10405,6 +10405,26 @@
         <x:expect-report id="fig-xref-test-16" role="warning"/>
         <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-xref-test-17-pass">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-17/pass.xml"/>
+        <x:expect-not-report id="fig-xref-test-17" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-17-fail">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-17/fail.xml"/>
+        <x:expect-report id="fig-xref-test-17" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-18-pass">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-18/pass.xml"/>
+        <x:expect-not-report id="fig-xref-test-18" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-18-fail">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-18/fail.xml"/>
+        <x:expect-report id="fig-xref-test-18" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="table-xref-conformance">
       <x:scenario label="table-xref-conformity-1-pass">
@@ -16032,6 +16052,28 @@
         <x:context href="../tests/gen/title-bold-tests/title-all-bold-test-1/fail.xml"/>
         <x:expect-report id="title-all-bold-test-1" role="warning"/>
         <x:expect-not-assert id="title-bold-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="italic-org-tests">
+      <x:scenario label="italic-org-test-1-pass">
+        <x:context href="../tests/gen/italic-org-tests/italic-org-test-1/pass.xml"/>
+        <x:expect-not-assert id="italic-org-test-1" role="warning"/>
+        <x:expect-not-assert id="italic-org-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="italic-org-test-1-fail">
+        <x:context href="../tests/gen/italic-org-tests/italic-org-test-1/fail.xml"/>
+        <x:expect-assert id="italic-org-test-1" role="warning"/>
+        <x:expect-not-assert id="italic-org-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="italic-org-test-2-pass">
+        <x:context href="../tests/gen/italic-org-tests/italic-org-test-2/pass.xml"/>
+        <x:expect-not-assert id="italic-org-test-2" role="warning"/>
+        <x:expect-not-assert id="italic-org-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="italic-org-test-2-fail">
+        <x:context href="../tests/gen/italic-org-tests/italic-org-test-2/fail.xml"/>
+        <x:expect-assert id="italic-org-test-2" role="warning"/>
+        <x:expect-not-assert id="italic-org-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="doi-journal-ref-checks">

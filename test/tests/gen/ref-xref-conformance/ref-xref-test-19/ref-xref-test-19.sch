@@ -797,7 +797,7 @@
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <report test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
-        <value-of select="."/> - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</report>
+        <value-of select="."/> - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-19</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

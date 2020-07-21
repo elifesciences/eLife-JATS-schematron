@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="italic-org-test-2.sch"?>
+<!--Context: italic[matches(lower-case(.),$org-regex)]
+Test: assert    ($post-token='') or matches($post-token,'[\s\p{P}]')
+Message: There is no space between the organism name '' and its following text - ''. Is this correct or is there a missing space? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>To further elucidate the nucleolus-nucleoplasm interactions <italic>E. coli</italic>, we investigate the dynamics</p>
+  </article>
+</root>
