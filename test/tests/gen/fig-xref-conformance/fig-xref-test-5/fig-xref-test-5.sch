@@ -791,8 +791,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
     </rule>

@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="fig-xref-test-18.sch"?>
+<!--Context: xref[@ref-type='fig' and @rid]
+Test: report    matches($post-text,'^\-[A-Za-z0-9]')
+Message: Figure citation - '' - is followed by the text '' - should some or all of that text be included in the citation text? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p><xref ref-type="fig" rid="fig1">Figure 1C-F</xref></p>
+    <fig id="fig1"/>
+  </article>
+</root>

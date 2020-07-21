@@ -791,8 +791,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
       <report test="matches(.,' [Ff]ig[\.]? ')" role="error" id="fig-xref-test-15">Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
     </rule>
   </pattern>

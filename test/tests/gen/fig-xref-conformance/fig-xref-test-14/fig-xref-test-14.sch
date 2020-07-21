@@ -791,8 +791,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="fig-xref-test-14">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
   </pattern>
