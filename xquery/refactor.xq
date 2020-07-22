@@ -23,6 +23,8 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
 
 (
   for $sch in $sch/sch:schema
+  (: Permitted role values :)
+  let $roles := ('error','warning','info')
   (: schematron for pre-author :)
   let $pre-sch := elife:sch2pre($sch)
   (: schematron for post-author :)
@@ -36,6 +38,8 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
 
 
   return (
+    (: error if file contains unallowed role values :)
+    elife:unallowed-roles($sch,$roles),
     file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
     file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
     

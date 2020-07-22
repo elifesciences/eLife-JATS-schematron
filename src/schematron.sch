@@ -3518,6 +3518,10 @@
       <let name="lab" value="replace(label[1],'\.','')"/>
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
+      <!-- The names of elements in between the first citation parent, and the fig -->
+      <let name="in-between-elements" value="distinct-values(
+        $first-cite-parent/following-sibling::*[@id=$id or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()
+        )"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" 
         role="error"
@@ -3537,21 +3541,7 @@
         role="error"
         id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <report test="if ($article-type = ('correction','retraction')) then () 
-        else not(
-               $first-cite-parent/following-sibling::*[1][@id=$id] 
-               or
-               ($first-cite-parent/following-sibling::*[1][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[1]/*[1][@id=$id])
-               or
-               (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and  ($first-cite-parent/following-sibling::*[2][@id=$id] or
-               ($first-cite-parent/following-sibling::*[2][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[2]/*[1][@id=$id])))
-               or
-               (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[3][@id=$id] or
-               ($first-cite-parent/following-sibling::*[3][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[3]/*[1][@id=$id])))
-               or
-               (($first-cite-parent/following-sibling::*[1]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[2]/local-name()=('fig-group','fig','media','table-wrap')) and
-               ($first-cite-parent/following-sibling::*[3]/local-name()=('fig-group','fig','media','table-wrap')) and ($first-cite-parent/following-sibling::*[4][@id=$id] or ($first-cite-parent/following-sibling::*[4][local-name()='fig-group'] and $first-cite-parent/following-sibling::*[4]/*[1][@id=$id])))
-               )" 
+      <report test="not($article-type = ('correction','retraction')) and (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
         role="warning"
         id="fig-specific-test-3"><value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
       
@@ -8317,7 +8307,7 @@
       
       <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')"
         role="warning"
-        id="supplement-table-presence"><name/> element contains the phrase 'Supplementary table' or 'Suuplemental table' which almost certainly needs updating. If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
+        id="supplement-table-presence"><name/> element contains the phrase 'Supplementary table' or 'Supplemental table'. Does it need updating? If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
       <report test="not(local-name()='code') and not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')"
         role="error"

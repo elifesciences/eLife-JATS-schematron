@@ -427,3 +427,18 @@ return copy $copy3 := $copy2
   return $copy3
   
 };
+
+(: Return error for unallowed roles in input :)
+declare function elife:unallowed-roles($sch as node(),$allowed-roles as item()*){
+let $unallowed-roles := distinct-values(
+  $sch//*[not(@role=$allowed-roles)]/@role
+)
+return if (empty($unallowed-roles)) then ()
+else 
+let $problem-tests := string-join(
+                        $sch//(*:report[@role=$unallowed-roles]/@id|*:assert[@role=$unallowed-roles]/@id)
+                        ,', ')
+return error(
+        xs:QName("elife:error"),
+        (string-join($unallowed-roles,', ')||' is not allowed as value of @role in src/schematron.sch. See test(s) with id(s) '||$problem-tests))
+};
