@@ -797,7 +797,7 @@
       <let name="lab" value="replace(label[1],'\.','')"/>
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
-      <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
+      <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
     </rule>
   </pattern>

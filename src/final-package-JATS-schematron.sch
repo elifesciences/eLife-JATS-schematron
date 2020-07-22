@@ -2616,7 +2616,7 @@
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
       <!-- The names of elements in between the first citation parent, and the fig -->
-      <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
+      <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
       
       <report test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
@@ -2625,8 +2625,8 @@
       <report test="if ($article-type = ('correction','retraction')) then ()          else if ($count = 0) then ()         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="error" id="final-fig-specific-test-2">
         <value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <report test="not($article-type = ('correction','retraction')) and (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" role="warning" id="fig-specific-test-3">
-        <value-of select="$lab"/> does not appear directly after a paragraph citing it. Is that correct?</report>
+      <report test="not($article-type = ('correction','retraction')) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" role="warning" id="fig-specific-test-3">
+        <value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct?</report>
       
       
       
@@ -2634,7 +2634,7 @@
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
       
-      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-4">
+      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-6">
         <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
       <report test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-5">
