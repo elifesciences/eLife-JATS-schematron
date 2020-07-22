@@ -4847,14 +4847,14 @@
         <x:expect-report id="feat-fig-specific-test-4" role="warning"/>
         <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="fig-specific-test-4-pass">
-        <x:context href="../tests/gen/fig-specific-tests/fig-specific-test-4/pass.xml"/>
-        <x:expect-not-report id="fig-specific-test-4" role="warning"/>
+      <x:scenario label="fig-specific-test-6-pass">
+        <x:context href="../tests/gen/fig-specific-tests/fig-specific-test-6/pass.xml"/>
+        <x:expect-not-report id="fig-specific-test-6" role="warning"/>
         <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="fig-specific-test-4-fail">
-        <x:context href="../tests/gen/fig-specific-tests/fig-specific-test-4/fail.xml"/>
-        <x:expect-report id="fig-specific-test-4" role="warning"/>
+      <x:scenario label="fig-specific-test-6-fail">
+        <x:context href="../tests/gen/fig-specific-tests/fig-specific-test-6/fail.xml"/>
+        <x:expect-report id="fig-specific-test-6" role="warning"/>
         <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-specific-test-5-pass">

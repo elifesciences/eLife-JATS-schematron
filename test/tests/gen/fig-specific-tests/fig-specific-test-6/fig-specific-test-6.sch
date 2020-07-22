@@ -797,7 +797,8 @@
       <let name="lab" value="replace(label[1],'\.','')"/>
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
-      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-4">
+      <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
+      <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-6">
         <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
     </rule>
   </pattern>

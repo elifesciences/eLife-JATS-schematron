@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplement-table-presence.sch"?>
 <!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
 Test: report    not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')
-Message:  element contains the phrase 'Supplementary table' or 'Suuplemental table' which almost certainly needs updating. If it's unclear what should be cited, please query the authors.  starts with -  -->
+Message:  element contains the phrase 'Supplementary table' or 'Supplemental table'. Does it need updating? If it's unclear what should be cited, please query the authors.  starts with -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article><p/></article>
 </root>

@@ -797,6 +797,7 @@
       <let name="lab" value="replace(label[1],'\.','')"/>
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
+      <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
       <report test="if ($article-type = ('correction','retraction')) then ()                      else if ($count = 0) then ()                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()                     else $no != string($pos)" role="warning" id="pre-fig-specific-test-2">
         <value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
     </rule>
