@@ -13,7 +13,7 @@ let $messages := schematron:messages($svrl)
 return
 (
   schematron:is-valid($svrl),
-  for $message in schematron:messages($svrl)
+  for $message in $messages
   return concat(schematron:message-level($message), ': ', schematron:message-description($message))
 )
 

@@ -5226,6 +5226,7 @@
       
       <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">[ref-xref-test-28] citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-28</report>
       
+      <report test="matches($post-text,'^\);\s?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))" role="warning" id="ref-xref-test-29">[ref-xref-test-29] citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - '<value-of select="concat(.,$post-text,following-sibling::*[1],tokenize(following-sibling::*[1]/following-sibling::text()[1],'\. ')[position() = 1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-29</report>
     </rule>
   </pattern>
   
