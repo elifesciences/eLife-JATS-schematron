@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="math-test-13.sch"?>
 <!--Context: mml:math
-Test: report    not(mml:msqrt) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')
+Test: report    not(descendant::mml:msqrt) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')
 Message: mml:math only contains '', which is likely unnecessary. Should this be captured as normal text instead? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

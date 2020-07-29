@@ -790,7 +790,7 @@
       <assert test="count(*) = count(italic | sub | sup)" role="error" id="err-elem-cit-gen-name-3-2">[err-elem-cit-gen-name-3-2]
         A &lt;collab&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' contains addiitonal elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' contains additional elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

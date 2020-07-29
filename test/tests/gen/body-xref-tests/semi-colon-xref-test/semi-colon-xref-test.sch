@@ -787,7 +787,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="body//xref" id="body-xref-tests">
-      <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text.</report>
+      <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
