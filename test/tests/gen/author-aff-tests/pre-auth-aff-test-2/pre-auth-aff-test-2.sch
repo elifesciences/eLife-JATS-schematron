@@ -788,7 +788,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group[not(@*)]/aff" id="author-aff-tests">
       <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
-      <assert test="addr-line[named-content[@content-type='city']]" role="warning" id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Pleasde query the authors.</assert>
+      <assert test="addr-line[named-content[@content-type='city']]" role="warning" id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Please query the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

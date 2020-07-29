@@ -1239,7 +1239,7 @@
 		  
     <report test="count(contrib[@equal-contrib='yes']) = 1"
         	role="error" 
-        	id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'.This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/></report>
+        	id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'. This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/></report>
 	
 	</rule>
     
@@ -1883,7 +1883,7 @@
       
       <assert test="addr-line[named-content[@content-type='city']]"
         role="warning"
-        id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Pleasde query the authors.</assert>
+        id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Please query the authors.</assert>
       
       <assert test="addr-line[named-content[@content-type='city']]"
         role="error"
@@ -2203,7 +2203,7 @@
       
       <report test="$we-token = $verbs"
         role="warning"
-        id="custom-meta-test-16">Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive langauge relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-16</report>
+        id="custom-meta-test-16">Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive language relating to the article or research itself (which should be removed)? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-16</report>
     </rule>
     
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" 
@@ -2356,7 +2356,7 @@
       
       <report test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))"
         role="error" 
-        id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect locaiton or the xref/@ref-type is incorrect.</report>
+        id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
       
       <report test="(@ref-type='bibr') and ($target/local-name() != 'ref')"
         role="error" 
@@ -2416,7 +2416,7 @@
       
       <report test="ends-with(.,';') or ends-with(.,'; ')"
         role="warning" 
-        id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text.</report>
+        id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text.</report>
       
     </rule>
     
@@ -2446,7 +2446,7 @@
       
       <report test="matches(@xlink:href,'\.$')" 
         role="error"
-        id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a fullstop which is incorrect.</report>
+        id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
       <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)"
         role="warning" 
@@ -2466,7 +2466,7 @@
       
       <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')"
         role="warning" 
-        id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary.</report>
+        id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
       
       <report test="contains(@xlink:href,'datadryad.org/review?')" 
         role="warning" 
@@ -2539,7 +2539,7 @@
       <report test="if ($article-type = ('correction','retraction')) then () 
         else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
         role="warning"
-        id="fig-test-6">Figure does not have a legend, which is very unorthadox. Is this correct?</report>
+        id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct?</report>
       
       <assert test="graphic"
         role="warning"
@@ -2648,7 +2648,7 @@
       
       <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" 
         role="error"
-        id="media-test-5"><value-of select="label"/> media wwith animation type lable must have a @mime-subtype='gif'.</report>    
+        id="media-test-5"><value-of select="label"/> media with animation type label must have a @mime-subtype='gif'.</report>    
       
       <report test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" 
         role="warning"
@@ -2667,7 +2667,7 @@
       
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')"
         role="error"
-        id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroenously overwritten before publication).</report>
+        id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroneously overwritten before publication).</report>
       
       <report test="preceding::media/@xlink:href = $link" 
         role="error"
@@ -2914,23 +2914,23 @@
       
       <report test="$data = '±'"
         role="error"
-        id="math-test-3">mml:math only contains '±', which is unnecessary. Cature this as a normal text '±' instead.</report>
+        id="math-test-3">mml:math only contains '±', which is unnecessary. Capture this as a normal text '±' instead.</report>
       
       <report test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')"
         role="error"
-        id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Cature this as a normal text instead.</report>
+        id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Capture this as a normal text instead.</report>
       
       <report test="$data = '×'"
         role="error"
-        id="math-test-5">mml:math only contains '×', which is unnecessary. Cature this as a normal text '×' instead.</report>
+        id="math-test-5">mml:math only contains '×', which is unnecessary. Capture this as a normal text '×' instead.</report>
       
       <report test="$data = '~'"
         role="error"
-        id="math-test-6">mml:math only contains '~', which is unnecessary. Cature this as a normal text '~' instead.</report>
+        id="math-test-6">mml:math only contains '~', which is unnecessary. Capture this as a normal text '~' instead.</report>
       
       <report test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')"
         role="error"
-        id="math-test-7">mml:math only contains '~' and digits, which is unnecessary. Cature this as a normal text instead.</report>
+        id="math-test-7">mml:math only contains '~' and digits, which is unnecessary. Capture this as a normal text instead.</report>
       
       <report test="$data = 'μ'"
         role="warning"
@@ -2938,11 +2938,11 @@
       
       <report test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')"
         role="error"
-        id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Cature this as a normal text instead.</report>
+        id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Capture this as a normal text instead.</report>
       
       <report test="matches($data,'^%$')"
         role="error"
-        id="math-test-12">mml:math only contains '%', which is unnecessary. Cature this as a normal text instead.</report>
+        id="math-test-12">mml:math only contains '%', which is unnecessary. Capture this as a normal text instead.</report>
       
       <report test="$data = '°'"
         role="error"
@@ -2952,7 +2952,7 @@
         role="warning"
         id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
-      <report test="not(mml:msqrt) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')"
+      <report test="not(descendant::mml:msqrt) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')"
         role="warning"
         id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
@@ -2970,7 +2970,7 @@
       
       <report test="ancestor::abstract"
         role="warning"
-        id="math-test-18">abtsract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
+        id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
     </rule>
     
     <rule context="disp-formula/*|inline-formula/*" 
@@ -3851,7 +3851,7 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning"
-        id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+        id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
       <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" 
         role="error"
@@ -3880,7 +3880,7 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning"
-        id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+        id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
       <assert test="matches(.,'\.$')" 
         role="error"
@@ -3909,7 +3909,7 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning"
-        id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the begining of a caption. Is this correct?</report>
+        id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
       <assert test="matches(.,'\.$|\?$')" 
         role="error"
@@ -3944,7 +3944,7 @@
       
       <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')"
         role="warning"
-        id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> intial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
+        id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
       
     </rule>
     
@@ -4109,7 +4109,7 @@
       
       <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" 
         role="error"
-        id="resp-fig-id-test">fig in decision letter/author reponse must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
+        id="resp-fig-id-test">fig in decision letter/author response must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
     
     <rule context="sub-article//fig[@specific-use='child-fig']" 
@@ -4117,7 +4117,7 @@
       
       <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error"
-        id="resp-fig-sup-id-test">figure supplement in decision letter/author reponse must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+        id="resp-fig-sup-id-test">figure supplement in decision letter/author response must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
       
     </rule>
     
@@ -4860,7 +4860,7 @@
       <assert test="count(*) = count(italic | sub | sup)" role="error" id="err-elem-cit-gen-name-3-2">[err-elem-cit-gen-name-3-2]
         A &lt;collab&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' contains addiitonal elements.</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' contains additional elements.</assert>
       
     </rule>
     
@@ -5591,7 +5591,7 @@
       
       <assert test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type
         'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to
-        'author'or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a
+        'author' or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a
         &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2</assert>
       
       <report test="count(data-title) &gt; 1" role="error" id="err-elem-cit-software-10-1">[err-elem-cit-software-10-1] Each &lt;element-citation&gt; of type 'software' may contain one
@@ -6951,7 +6951,7 @@
       
       <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)"
         role="warning"
-        id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
+        id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
     </rule>
     
   </pattern>

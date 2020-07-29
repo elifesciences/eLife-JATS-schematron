@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ext-link-child-test-4.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
 Test: report    matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')
-Message: ext-link text -  - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary. -->
+Message: ext-link text -  - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ext-link ext-link-type="uri" xlink:href="http://doi.org/10.1111/2041-210X.12584">10.1111/2041-210X.12584</ext-link>

@@ -791,7 +791,7 @@
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
       <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
-      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unncessary.</report>
+      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

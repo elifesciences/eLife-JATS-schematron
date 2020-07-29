@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="semi-colon-xref-test.sch"?>
 <!--Context: body//xref
 Test: report    ends-with(.,';') or ends-with(.,'; ')
-Message: xref ends with semi-colon - '' - which is almost definitely incorrect. The semi-colon should very likely be palced after the link as 'normal' text. -->
+Message: xref ends with semi-colon - '' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>
