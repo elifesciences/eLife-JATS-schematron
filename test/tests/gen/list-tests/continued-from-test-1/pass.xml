@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="continued-from-test-1.sch"?>
+<!--Context: list
+Test: report    @continued-from
+Message: The continued-from attribute is not allowed, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <list/>
+  </article>
+</root>

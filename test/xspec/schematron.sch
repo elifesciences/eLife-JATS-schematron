@@ -2014,10 +2014,10 @@
     <rule context="media[child::label]" id="video-test">
       
       <assert test="caption/title" role="warning" id="pre-video-title">
-        <value-of select="label"/> does not have a title.</assert>
+        <value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
       
       <assert test="caption/title" role="error" id="final-video-title">
-        <value-of select="label"/> does not have a title, which is incorrect.</assert>
+        <value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</assert>
       
     </rule>
   </pattern>
@@ -2210,7 +2210,7 @@
       
       <report test="matches($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
-      <report test="not(descendant::mml:msqrt) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
       <report test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')" role="warning" id="math-test-15">mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
@@ -2323,6 +2323,9 @@
       <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-1</report>
       
       <assert test="thead" role="warning" id="table-test-2">table doesn't have a header (thead). Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-2</assert>
+      
+      <report test="thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45" role="warning" id="table-test-3">
+        <value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-3</report>
     </rule>
   </pattern>
   <pattern id="tbody-tests-pattern">
@@ -2381,6 +2384,13 @@
     <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
       
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
+    </rule>
+  </pattern>
+  <pattern id="list-tests-pattern">
+    <rule context="list" id="list-tests">
+      
+      <report test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
+      
     </rule>
   </pattern>
   <pattern id="list-item-tests-pattern">
@@ -5394,7 +5404,8 @@
       <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
         <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
-      <assert test="contains(.,$target-no)" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</assert>
+      <!-- Workaround for animations -->
+      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -7097,7 +7108,7 @@
       
       <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
       <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
@@ -7659,6 +7670,7 @@
       <assert test="descendant::th" role="error" id="th-tests-xspec-assert">th must be present.</assert>
       <assert test="descendant::table-wrap-foot//fn/p" role="error" id="table-fn-label-tests-xspec-assert">table-wrap-foot//fn/p must be present.</assert>
       <assert test="descendant::fn[@id][not(@fn-type='other')]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other')] must be present.</assert>
+      <assert test="descendant::list" role="error" id="list-tests-xspec-assert">list must be present.</assert>
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
       <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
       <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
