@@ -2684,11 +2684,11 @@
       
       <assert test="caption/title"
         role="warning"
-        id="pre-video-title"><value-of select="label"/> does not have a title.</assert>
+        id="pre-video-title"><value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
       
       <assert test="caption/title"
         role="error"
-        id="final-video-title"><value-of select="label"/> does not have a title, which is incorrect.</assert>
+        id="final-video-title"><value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</assert>
       
     </rule>
     
@@ -2952,7 +2952,7 @@
         role="warning"
         id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
-      <report test="not(descendant::mml:msqrt) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')"
+      <report test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')"
         role="warning"
         id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
@@ -3133,6 +3133,10 @@
       <assert test="thead"
         role="warning"
         id="table-test-2">table doesn't have a header (thead). Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-2</assert>
+      
+      <report test="thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45"
+        role="warning"
+        id="table-test-3"><value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th> instead of &lt;td>) so that this header does not appear on the subsequent pages? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-3</report>
     </rule>
     
     <rule context="table/tbody" 
@@ -3213,6 +3217,15 @@
       <assert test="ancestor::article//xref/@rid = @id"
         role="error"
         id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
+    </rule>
+    
+    <rule context="list" 
+      id="list-tests">
+      
+      <report test="@continued-from"
+        role="error"
+        id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
+      
     </rule>
     
     <rule context="list-item" 
@@ -7174,9 +7187,10 @@
         role="error" 
         id="vid-xref-conformity-1"><value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
-      <assert test="contains(.,$target-no)"
+      <!-- Workaround for animations -->
+      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))"
         role="error" 
-        id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</assert>
+        id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')"
         role="warning"
@@ -9761,7 +9775,7 @@
       
       <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')"
         role="warning" 
-        id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+        id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
       <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')"
         role="warning" 

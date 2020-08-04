@@ -785,18 +785,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="video-xref-pattern">
-    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="target-no" value="substring-after($rid,'video')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
+  <pattern id="content-containers">
+    <rule context="table" id="table-tests">
+      <report test="thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45" role="warning" id="table-test-3">
+        <value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
+      <assert test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
     </rule>
   </pattern>
 </schema>

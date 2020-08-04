@@ -788,7 +788,7 @@
   <pattern id="content-containers">
     <rule context="media[child::label]" id="video-test">
       <assert test="caption/title" role="warning" id="pre-video-title">
-        <value-of select="label"/> does not have a title.</assert>
+        <value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

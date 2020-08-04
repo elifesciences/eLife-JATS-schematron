@@ -785,18 +785,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="video-xref-pattern">
-    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="target-no" value="substring-after($rid,'video')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
+  <pattern id="content-containers">
+    <rule context="list" id="list-tests">
+      <report test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
+      <assert test="descendant::list" role="error" id="list-tests-xspec-assert">list must be present.</assert>
     </rule>
   </pattern>
 </schema>
