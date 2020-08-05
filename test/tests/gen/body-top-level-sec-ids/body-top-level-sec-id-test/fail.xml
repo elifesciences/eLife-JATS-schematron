@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="body-top-level-sec-id-test.sch"?>
 <!--Context: article/body/sec
 Test: assert    @id = concat('s',$pos)
-Message: This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be . -->
+Message: This sec id must be a concatenation of 's' and this element's position relative to its siblings. It must be . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>
