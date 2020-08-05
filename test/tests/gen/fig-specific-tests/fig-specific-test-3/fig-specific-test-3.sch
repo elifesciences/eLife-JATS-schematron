@@ -795,7 +795,7 @@
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label[1],'\.','')"/>
-      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
+      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and not(ancestor::table-wrap) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
       <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
       <report test="not($article-type = ('correction','retraction')) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" role="warning" id="fig-specific-test-3">
