@@ -5251,16 +5251,6 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="top-level-sec-tests">
-      <x:scenario label="top-sec-id-pass">
-        <x:context href="../tests/gen/top-level-sec-tests/top-sec-id/pass.xml"/>
-        <x:expect-not-assert id="top-sec-id" role="error"/>
-        <x:expect-not-assert id="top-level-sec-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="top-sec-id-fail">
-        <x:context href="../tests/gen/top-level-sec-tests/top-sec-id/fail.xml"/>
-        <x:expect-assert id="top-sec-id" role="error"/>
-        <x:expect-not-assert id="top-level-sec-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="sec-conformity-pass">
         <x:context href="../tests/gen/top-level-sec-tests/sec-conformity/pass.xml"/>
         <x:expect-not-report id="sec-conformity" role="warning"/>
@@ -5270,18 +5260,6 @@
         <x:context href="../tests/gen/top-level-sec-tests/sec-conformity/fail.xml"/>
         <x:expect-report id="sec-conformity" role="warning"/>
         <x:expect-not-assert id="top-level-sec-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="lower-level-sec-tests">
-      <x:scenario label="lower-sec-test-1-pass">
-        <x:context href="../tests/gen/lower-level-sec-tests/lower-sec-test-1/pass.xml"/>
-        <x:expect-not-assert id="lower-sec-test-1" role="error"/>
-        <x:expect-not-assert id="lower-level-sec-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="lower-sec-test-1-fail">
-        <x:context href="../tests/gen/lower-level-sec-tests/lower-sec-test-1/fail.xml"/>
-        <x:expect-assert id="lower-sec-test-1" role="error"/>
-        <x:expect-not-assert id="lower-level-sec-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="article-title-tests">

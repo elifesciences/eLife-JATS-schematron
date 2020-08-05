@@ -2389,7 +2389,7 @@
   <pattern id="list-tests-pattern">
     <rule context="list" id="list-tests">
       
-      <report test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
+      <report test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
       
     </rule>
   </pattern>
@@ -2629,7 +2629,7 @@
       <let name="pre-sib" value="preceding-sibling::*[1]"/>
       <let name="fol-sib" value="following-sibling::*[1]"/>
       <let name="lab" value="replace(label[1],'\.','')"/>
-      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and (@rid = $id)][1]"/>
+      <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and not(ancestor::table-wrap) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
       <!-- The names of elements in between the first citation parent, and the fig -->
       <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
@@ -2656,6 +2656,10 @@
       
       <report test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-5">
         <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
+      
+      <!--<report test="not($article-type = ('correction','retraction')) and not(ancestor::article//xref[not(ancestor::caption) and not(ancestor::table-wrap) and (@rid = $id)]) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id]" 
+        role="warning"
+        id="fig-specific-test-7"><value-of select="$lab"/> is only cited in a table or the caption of an object.</report>-->
   
     </rule>
   </pattern>
@@ -2800,18 +2804,7 @@
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions', 'Model and methods')"/>
       
-      <assert test="@id = concat('s', $pos)" role="error" id="top-sec-id">top-level must have @id in the format 's0', where 0 relates to the position of the sec. It should be <value-of select="concat('s', $pos)"/>.</assert>
-      
       <report test="not($type = ($features-subj,'Review Article','Correction','Retraction')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
-      
-    </rule>
-  </pattern>
-  <pattern id="lower-level-sec-tests-pattern">
-    <rule context="body/sec//sec" id="lower-level-sec-tests">
-      <let name="parent-id" value="parent::sec/@id"/>
-      <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
-      
-      <assert test="@id = concat($parent-id,'-',$pos)" role="error" id="lower-sec-test-1">This sec @id must be a concatenation of the parent sec @id, '-', and the position of this sec relative to other sibling secs - <value-of select="concat($parent-id,'-',$pos)"/>.</assert>
       
     </rule>
   </pattern>
@@ -7698,7 +7691,6 @@
       <assert test="descendant::fig/caption/p" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
       <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
-      <assert test="descendant::body/sec//sec" role="error" id="lower-level-sec-tests-xspec-assert">body/sec//sec must be present.</assert>
       <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>
       <assert test="descendant::sec[@sec-type]/title" role="error" id="sec-title-tests-xspec-assert">sec[@sec-type]/title must be present.</assert>
       <assert test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
