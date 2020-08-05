@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="low-level-sec-id-test.sch"?>
 <!--Context: article/body/sec//sec|article/back/sec//sec
 Test: assert    @id = concat($parent-sec,'-',$pos)
-Message: sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be . -->
+Message: sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

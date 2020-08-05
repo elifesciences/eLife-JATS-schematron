@@ -788,7 +788,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
-      <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is it's position (1 or 2).</assert>
+      <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

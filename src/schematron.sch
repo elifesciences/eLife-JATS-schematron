@@ -2252,7 +2252,7 @@
       
       <assert test=". = concat('e' , $article-id)"
         role="error" 
-        id="test-elocation-conformance">elocation-id is incorrect. It's value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
+        id="test-elocation-conformance">elocation-id is incorrect. Its value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
     </rule>
     
     <rule context="related-object" 
@@ -2412,7 +2412,7 @@
       
       <report test="not(child::*) and normalize-space(.)=''"
         role="error" 
-        id="empty-xref-test">Empty xref in the body is not allowed. It's position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+        id="empty-xref-test">Empty xref in the body is not allowed. Its position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
       <report test="ends-with(.,';') or ends-with(.,'; ')"
         role="warning" 
@@ -3309,7 +3309,7 @@
       
       <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" 
         role="warning"
-        id="video-placement-2"><value-of select="$label"/> appears after it's first citation but not directly after it's first citation. Is this correct?</report>
+        id="video-placement-2"><value-of select="$label"/> appears after its first citation but not directly after its first citation. Is this correct?</report>
       
     </rule>
     
@@ -3613,7 +3613,7 @@
       
       <assert test="$label-conform = true()" 
         role="error"
-        id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure X—figure supplement X.' (where X is one or more digits).</assert>
+        id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure 0—figure supplement 0.' (where 0 is one or more digits).</assert>
       
       <assert test="starts-with(label[1],concat('Figure ',$parent-fig-no))" 
         role="error"
@@ -3961,7 +3961,7 @@
       
       <report test="$non-distinct//*:item"
         role="error"
-        id="ref-list-distinct-1">In the reference list, each reference must be unique in it's citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
+        id="ref-list-distinct-1">In the reference list, each reference must be unique in its citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
       
     </rule>
     
@@ -4286,7 +4286,7 @@
     
       <assert test="@id = concat('s',$pos)"
         role="error"
-        id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
+        id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to its siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
       </rule>
     
     <rule context="article/back/sec" 
@@ -4305,7 +4305,7 @@
       
       <assert test="@id = concat($parent-sec,'-',$pos)"
         role="error"
-        id="low-level-sec-id-test">sec id must be a concatenation of it's parent sec id and this element's position relative to it's sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
+        id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
     </rule>
     
     <rule context="app" 
@@ -4561,15 +4561,15 @@
       
       <assert test="@id = concat('sa',$pos)"
         role="error"
-        id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is it's position (1 or 2).</assert>
+        id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2).</assert>
       
       <assert test="count(front-stub) = 1"
         role="error"
-        id="dec-letter-reply-test-3">sub-article contain one and only one front-stub.</assert>
+        id="dec-letter-reply-test-3">sub-article contains one and only one front-stub.</assert>
       
       <assert test="count(body) = 1"
         role="error"
-        id="dec-letter-reply-test-4">sub-article contain one and only one body.</assert>
+        id="dec-letter-reply-test-4">sub-article contains one and only one body.</assert>
       
     </rule>
     
@@ -6600,7 +6600,7 @@
       
       <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" 
         role="error" 
-        id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but it's pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
+        id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but its pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
       
       <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" 
         role="error" 
@@ -8443,15 +8443,15 @@
       
       <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\s?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))"
         role="warning"
-        id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but it's country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
+        id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
       
       <report test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))"
         role="warning"
-        id="s-korea-test">Affiliation has a South Korean city - <value-of select="$city"/> - but it's country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
+        id="s-korea-test">Affiliation has a South Korean city - <value-of select="$city"/> - but its country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
       
       <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'"
         role="warning"
-        id="n-korea-test">Affiliation has '<value-of select="."/>' as it's country which is very likely to be incorrect.</report>
+        id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule>
     
     <rule context="front//aff//named-content[@content-type='city']"

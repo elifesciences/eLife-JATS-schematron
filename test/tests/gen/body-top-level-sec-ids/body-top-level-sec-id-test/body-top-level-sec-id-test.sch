@@ -788,7 +788,7 @@
   <pattern id="id-conformance">
     <rule context="article/body/sec" id="body-top-level-sec-ids">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <assert test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to it's siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
+      <assert test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to its siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
