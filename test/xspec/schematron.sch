@@ -3305,9 +3305,9 @@
       
       <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2).</assert>
       
-      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article contains one and only one front-stub.</assert>
+      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
       
-      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article contains one and only one body.</assert>
+      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article must contain one and only one body.</assert>
       
     </rule>
   </pattern>
