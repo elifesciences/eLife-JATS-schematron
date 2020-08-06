@@ -113,9 +113,7 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      <xsl:when test="$s = 'model'">
-        <xsl:value-of select="'Model'"/>
-      </xsl:when>
+      
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
@@ -787,7 +785,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
-      <report test="count(contrib[@contrib-type='reviewer']) gt 3" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than three reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+      <report test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

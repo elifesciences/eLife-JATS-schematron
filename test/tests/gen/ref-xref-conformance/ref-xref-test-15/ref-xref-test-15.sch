@@ -113,9 +113,7 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      <xsl:when test="$s = 'model'">
-        <xsl:value-of select="'Model'"/>
-      </xsl:when>
+      
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
