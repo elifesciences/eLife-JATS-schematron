@@ -127,9 +127,10 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      <xsl:when test="$s = 'model'">
+      <!-- Requires Vendor development work
+        <xsl:when test="$s = 'model'">
         <xsl:value-of select="'Model'"/>
-      </xsl:when>
+      </xsl:when>-->
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
@@ -2802,7 +2803,7 @@
     <rule context="body/sec" id="top-level-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion', 'Conclusion', 'Introduction and results', 'Results and conclusions', 'Discussion and conclusions', 'Model and methods')"/>
+      <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion','Methods', 'Model')"/>
       
       <report test="not($type = ($features-subj,'Review Article','Correction','Retraction')) and not(replace(title,' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
@@ -3356,14 +3357,6 @@
         id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
     </rule>
   </pattern>
-  <pattern id="dec-letter-editor-tests-3-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" id="dec-letter-editor-tests-3">
-      <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role[1]"/>
-      
-      <assert test="$role=('Senior Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-6">Senior Editor in decision letter front-stub must have the role 'Senior Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
-    </rule>
-  </pattern>
   <pattern id="dec-letter-reviewer-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
@@ -3371,7 +3364,7 @@
       
       <report test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
       
-      <report test="count(contrib[@contrib-type='reviewer']) gt 3" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than three reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+      <report test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-2-pattern">
@@ -7750,7 +7743,6 @@
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" role="error" id="dec-letter-editor-tests-2-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor'] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor']" role="error" id="dec-letter-editor-tests-3-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='senior_editor'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" role="error" id="dec-letter-reviewer-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" role="error" id="dec-letter-reviewer-tests-2-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/body" role="error" id="dec-letter-body-tests-xspec-assert">sub-article[@article-type='decision-letter']/body must be present.</assert>
