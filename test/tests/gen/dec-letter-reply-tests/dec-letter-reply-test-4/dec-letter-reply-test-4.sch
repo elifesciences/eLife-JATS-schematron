@@ -788,7 +788,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
-      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article contains one and only one body.</assert>
+      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article must contain one and only one body.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

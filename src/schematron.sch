@@ -4565,11 +4565,11 @@
       
       <assert test="count(front-stub) = 1"
         role="error"
-        id="dec-letter-reply-test-3">sub-article contains one and only one front-stub.</assert>
+        id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
       
       <assert test="count(body) = 1"
         role="error"
-        id="dec-letter-reply-test-4">sub-article contains one and only one body.</assert>
+        id="dec-letter-reply-test-4">sub-article must contain one and only one body.</assert>
       
     </rule>
     
