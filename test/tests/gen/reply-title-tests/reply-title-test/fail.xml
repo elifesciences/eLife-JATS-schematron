@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="reply-title-test.sch"?>
 <!--Context: sub-article[@article-type='reply']/front-stub/title-group
 Test: assert    article-title = 'Author response'
-Message: title-group must contain article-title which contains 'Author response'. Currently it is . -->
+Message: title-group must contain article-title which contains 'Author response'. Currently it is . More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-title-test -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="reply">

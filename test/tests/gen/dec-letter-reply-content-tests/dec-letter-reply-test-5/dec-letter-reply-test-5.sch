@@ -786,7 +786,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-5</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

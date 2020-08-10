@@ -786,7 +786,7 @@
   <pattern id="unicode-checks">
     <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
       <report test="contains(.,'Å¾')" role="warning" id="unicode-test-54">
-        <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
+        <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-54</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

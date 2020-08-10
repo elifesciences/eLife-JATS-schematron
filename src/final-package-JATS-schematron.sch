@@ -1030,7 +1030,7 @@
     <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert test="count(subject) le 3" role="error" id="head-subj-test-1">There cannot be more than two MSAs.</assert>
+      <assert test="count(subject) lt 3" role="error" id="head-subj-test-1">There cannot be more than two MSAs.</assert>
       
       <report test="if ($article-type = 'editorial') then ()         else count(subject) = 0" role="error" id="head-subj-test-2">There must be at least one MSA.</report>
     </rule>
@@ -2931,12 +2931,12 @@
   <pattern id="dec-letter-title-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
-      <assert test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-title-test</assert>
     </rule>
   </pattern>
   <pattern id="reply-title-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
-      <assert test="article-title = 'Author response'" role="error" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = 'Author response'" role="error" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-title-test</assert>
       
     </rule>
   </pattern>
@@ -3295,13 +3295,13 @@
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
       
-      <assert test="if ($pos = 1) then @article-type='decision-letter'                     else @article-type='reply'" role="error" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
+      <assert test="if ($pos = 1) then @article-type='decision-letter'                     else @article-type='reply'" role="error" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1</assert>
       
-      <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2).</assert>
+      <assert test="@id = concat('sa',$pos)" role="error" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2</assert>
       
-      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
+      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-3</assert>
       
-      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article must contain one and only one body.</assert>
+      <assert test="count(body) = 1" role="error" id="dec-letter-reply-test-4">sub-article must contain one and only one body. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-4</assert>
       
     </rule>
   </pattern>
@@ -3309,31 +3309,31 @@
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
       <report test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" id="dec-letter-reply-test-5">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-5</report>
       
       <report test="matches(.,'&lt;\s?/?\s?[a-z]*\s?/?\s?&gt;')" role="warning" id="dec-letter-reply-test-6">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-6</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi']. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1</assert>
       
-      <assert test="$count gt 0" role="error" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
+      <assert test="$count gt 0" role="error" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2</assert>
       
-      <report test="$count gt 2" role="error" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
+      <report test="$count gt 2" role="error" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3</report>
       
-      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])" role="warning" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter.</report>
+      <report test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])" role="warning" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-4</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
-      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
+      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1</assert>
       
-      <report test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
+      <report test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-2</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-2-pattern">
@@ -3343,7 +3343,7 @@
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
       <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
       
-      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+      <assert test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-3</assert>
       
       <!--<report test="($top-name!='') and ($top-name!=$name)"
         role="error"
@@ -3353,62 +3353,62 @@
   <pattern id="dec-letter-reviewer-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
-      <assert test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
+      <assert test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1</assert>
       
-      <report test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
+      <report test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-2</report>
       
-      <report test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+      <report test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-6</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-2-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert test="role='Reviewer'" role="error" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
+      <assert test="role='Reviewer'" role="error" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-3</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-body-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
-      <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
+      <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-body-p-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">  
-      <report test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
+      <report test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2</report>
     </rule>
   </pattern>
   <pattern id="reply-front-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
       
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi']. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-front-test-1</assert>
     </rule>
   </pattern>
   <pattern id="reply-body-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
       
-      <report test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" id="reply-body-test-1">author response doesn't contain a disp-quote. This has to be incorrect.</report>
+      <report test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" id="reply-body-test-1">author response doesn't contain a disp-quote. This has to be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1</report>
       
-      <report test="count(p) = 0" role="error" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
+      <report test="count(p) = 0" role="error" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-2</report>
     </rule>
   </pattern>
   <pattern id="reply-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
       
-      <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
+      <assert test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-disp-quote-test-1</assert>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
-      <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
+      <report test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-1</report>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-2-pattern">
     <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
-      <report test="string-length(.) ge 50" role="warning" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
+      <report test="string-length(.) ge 50" role="warning" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>' More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2</report>
     </rule>
   </pattern>
   
@@ -5218,7 +5218,7 @@
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
       
-      <assert test="(($text-count le $count) or ($text-count = $count))" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
+      <assert test="($text-count le $count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
   </pattern>
   
@@ -7244,281 +7244,281 @@
   
   <pattern id="unicode-tests-pattern">
     <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
-    
-    
-    <report test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">
-        <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã€')" role="warning" id="unicode-test-2">
-        <name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-3">
-        <name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€š')" role="warning" id="unicode-test-4">
-        <name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã‚')" role="warning" id="unicode-test-5">
-        <name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Æ’')" role="warning" id="unicode-test-6">
-        <name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãƒ')" role="warning" id="unicode-test-7">
-        <name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€ž')" role="warning" id="unicode-test-8">
-        <name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã„')" role="warning" id="unicode-test-9">
-        <name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€¦')" role="warning" id="unicode-test-10">
-        <name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã…')" role="warning" id="unicode-test-11">
-        <name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã†')" role="warning" id="unicode-test-13">
-        <name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€¡')" role="warning" id="unicode-test-14">
-        <name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã‡')" role="warning" id="unicode-test-15">
-        <name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ë†')" role="warning" id="unicode-test-16">
-        <name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">
-        <name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€°')" role="warning" id="unicode-test-18">
-        <name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã‰')" role="warning" id="unicode-test-19">
-        <name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'ÃŠ')" role="warning" id="unicode-test-21">
-        <name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€¹')" role="warning" id="unicode-test-22">
-        <name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã‹')" role="warning" id="unicode-test-23">
-        <name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Å’')" role="warning" id="unicode-test-24">
-        <name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'ÃŒ')" role="warning" id="unicode-test-25">
-        <name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-26">
-        <name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Å½')" role="warning" id="unicode-test-27">
-        <name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'ÃŽ')" role="warning" id="unicode-test-28">
-        <name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-29">
-        <name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-30">
-        <name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€˜')" role="warning" id="unicode-test-31">
-        <name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã‘')" role="warning" id="unicode-test-32">
-        <name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€™')" role="warning" id="unicode-test-33">
-        <name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã’')" role="warning" id="unicode-test-34">
-        <name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€œ')" role="warning" id="unicode-test-35">
-        <name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã“')" role="warning" id="unicode-test-36">
-        <name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€')" role="warning" id="unicode-test-37">
-        <name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã”')" role="warning" id="unicode-test-38">
-        <name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã•')" role="warning" id="unicode-test-39">
-        <name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€“')" role="warning" id="unicode-test-40">
-        <name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã–')" role="warning" id="unicode-test-41">
-        <name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€”')" role="warning" id="unicode-test-42">
-        <name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã—')" role="warning" id="unicode-test-43">
-        <name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ëœ')" role="warning" id="unicode-test-44">
-        <name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã˜')" role="warning" id="unicode-test-45">
-        <name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã™')" role="warning" id="unicode-test-46">
-        <name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Å¡')" role="warning" id="unicode-test-47">
-        <name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãš')" role="warning" id="unicode-test-48">
-        <name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'â€º')" role="warning" id="unicode-test-49">
-        <name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã›')" role="warning" id="unicode-test-50">
-        <name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Å“')" role="warning" id="unicode-test-51">
-        <name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãœ')" role="warning" id="unicode-test-52">
-        <name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã')" role="warning" id="unicode-test-53">
-        <name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Å¾')" role="warning" id="unicode-test-54">
-        <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãž')" role="warning" id="unicode-test-55">
-        <name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Å¸')" role="warning" id="unicode-test-56">
-        <name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'ÃŸ')" role="warning" id="unicode-test-57">
-        <name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¡')" role="warning" id="unicode-test-58">
-        <name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¡')" role="warning" id="unicode-test-59">
-        <name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¢')" role="warning" id="unicode-test-60">
-        <name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¢')" role="warning" id="unicode-test-61">
-        <name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â£')" role="warning" id="unicode-test-62">
-        <name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã£')" role="warning" id="unicode-test-63">
-        <name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¤')" role="warning" id="unicode-test-64">
-        <name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¤')" role="warning" id="unicode-test-65">
-        <name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¥')" role="warning" id="unicode-test-66">
-        <name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¨')" role="warning" id="unicode-test-67">
-        <name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¨')" role="warning" id="unicode-test-68">
-        <name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Âª')" role="warning" id="unicode-test-69">
-        <name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãª')" role="warning" id="unicode-test-70">
-        <name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â­')" role="warning" id="unicode-test-71">
-        <name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã­')" role="warning" id="unicode-test-72">
-        <name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¯')" role="warning" id="unicode-test-73">
-        <name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¯')" role="warning" id="unicode-test-74">
-        <name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â°')" role="warning" id="unicode-test-75">
-        <name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã°')" role="warning" id="unicode-test-76">
-        <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â±')" role="warning" id="unicode-test-77">
-        <name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã±')" role="warning" id="unicode-test-78">
-        <name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â´')" role="warning" id="unicode-test-79">
-        <name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã´')" role="warning" id="unicode-test-80">
-        <name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Âµ')" role="warning" id="unicode-test-81">
-        <name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãµ')" role="warning" id="unicode-test-82">
-        <name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¶')" role="warning" id="unicode-test-83">
-        <name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¶')" role="warning" id="unicode-test-84">
-        <name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â·')" role="warning" id="unicode-test-85">
-        <name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã·')" role="warning" id="unicode-test-86">
-        <name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¸')" role="warning" id="unicode-test-87">
-        <name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¸')" role="warning" id="unicode-test-88">
-        <name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¹')" role="warning" id="unicode-test-89">
-        <name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Âº')" role="warning" id="unicode-test-90">
-        <name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ãº')" role="warning" id="unicode-test-91">
-        <name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Â¿')" role="warning" id="unicode-test-92">
-        <name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>.</report>
-    
-    <report test="contains(.,'Ã¿')" role="warning" id="unicode-test-93">
-        <name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
-</rule>
+      
+        <report test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">
+        <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-1</report>
+
+        <report test="contains(.,'Ã€')" role="warning" id="unicode-test-2">
+        <name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-2</report>
+
+        <report test="contains(.,'Ã')" role="warning" id="unicode-test-3">
+        <name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-3</report>
+
+        <report test="contains(.,'â€š')" role="warning" id="unicode-test-4">
+        <name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-4</report>
+
+        <report test="contains(.,'Ã‚')" role="warning" id="unicode-test-5">
+        <name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-5</report>
+
+        <report test="contains(.,'Æ’')" role="warning" id="unicode-test-6">
+        <name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-6</report>
+
+        <report test="contains(.,'Ãƒ')" role="warning" id="unicode-test-7">
+        <name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-7</report>
+
+        <report test="contains(.,'â€ž')" role="warning" id="unicode-test-8">
+        <name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-8</report>
+
+        <report test="contains(.,'Ã„')" role="warning" id="unicode-test-9">
+        <name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-9</report>
+
+        <report test="contains(.,'â€¦')" role="warning" id="unicode-test-10">
+        <name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-10</report>
+
+        <report test="contains(.,'Ã…')" role="warning" id="unicode-test-11">
+        <name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-11</report>
+
+        <report test="contains(.,'Ã†')" role="warning" id="unicode-test-13">
+        <name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-13</report>
+
+        <report test="contains(.,'â€¡')" role="warning" id="unicode-test-14">
+        <name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-14</report>
+
+        <report test="contains(.,'Ã‡')" role="warning" id="unicode-test-15">
+        <name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-15</report>
+
+        <report test="contains(.,'Ë†')" role="warning" id="unicode-test-16">
+        <name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-16</report>
+
+        <report test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">
+        <name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-17</report>
+
+        <report test="contains(.,'â€°')" role="warning" id="unicode-test-18">
+        <name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-18</report>
+
+        <report test="contains(.,'Ã‰')" role="warning" id="unicode-test-19">
+        <name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-19</report>
+
+        <report test="contains(.,'ÃŠ')" role="warning" id="unicode-test-21">
+        <name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-21</report>
+
+        <report test="contains(.,'â€¹')" role="warning" id="unicode-test-22">
+        <name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-22</report>
+
+        <report test="contains(.,'Ã‹')" role="warning" id="unicode-test-23">
+        <name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-23</report>
+
+        <report test="contains(.,'Å’')" role="warning" id="unicode-test-24">
+        <name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-24</report>
+
+        <report test="contains(.,'ÃŒ')" role="warning" id="unicode-test-25">
+        <name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-25</report>
+
+        <report test="contains(.,'Ã')" role="warning" id="unicode-test-26">
+        <name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-26</report>
+
+        <report test="contains(.,'Å½')" role="warning" id="unicode-test-27">
+        <name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-27</report>
+
+        <report test="contains(.,'ÃŽ')" role="warning" id="unicode-test-28">
+        <name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-28</report>
+
+        <report test="contains(.,'Ã')" role="warning" id="unicode-test-29">
+        <name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-29</report>
+
+        <report test="contains(.,'Ã')" role="warning" id="unicode-test-30">
+        <name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-30</report>
+
+        <report test="contains(.,'â€˜')" role="warning" id="unicode-test-31">
+        <name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-31</report>
+
+        <report test="contains(.,'Ã‘')" role="warning" id="unicode-test-32">
+        <name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-32</report>
+
+        <report test="contains(.,'â€™')" role="warning" id="unicode-test-33">
+        <name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-33</report>
+
+        <report test="contains(.,'Ã’')" role="warning" id="unicode-test-34">
+        <name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-34</report>
+
+        <report test="contains(.,'â€œ')" role="warning" id="unicode-test-35">
+        <name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-35</report>
+
+        <report test="contains(.,'Ã“')" role="warning" id="unicode-test-36">
+        <name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-36</report>
+
+        <report test="contains(.,'â€')" role="warning" id="unicode-test-37">
+        <name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-37</report>
+
+        <report test="contains(.,'Ã”')" role="warning" id="unicode-test-38">
+        <name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-38</report>
+
+        <report test="contains(.,'Ã•')" role="warning" id="unicode-test-39">
+        <name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-39</report>
+
+        <report test="contains(.,'â€“')" role="warning" id="unicode-test-40">
+        <name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-40</report>
+
+        <report test="contains(.,'Ã–')" role="warning" id="unicode-test-41">
+        <name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-41</report>
+
+        <report test="contains(.,'â€”')" role="warning" id="unicode-test-42">
+        <name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-42</report>
+
+        <report test="contains(.,'Ã—')" role="warning" id="unicode-test-43">
+        <name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-43</report>
+
+        <report test="contains(.,'Ëœ')" role="warning" id="unicode-test-44">
+        <name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-44</report>
+
+        <report test="contains(.,'Ã˜')" role="warning" id="unicode-test-45">
+        <name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-45</report>
+
+        <report test="contains(.,'Ã™')" role="warning" id="unicode-test-46">
+        <name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-46</report>
+
+        <report test="contains(.,'Å¡')" role="warning" id="unicode-test-47">
+        <name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-47</report>
+
+        <report test="contains(.,'Ãš')" role="warning" id="unicode-test-48">
+        <name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-48</report>
+
+        <report test="contains(.,'â€º')" role="warning" id="unicode-test-49">
+        <name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-49</report>
+
+        <report test="contains(.,'Ã›')" role="warning" id="unicode-test-50">
+        <name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-50</report>
+
+        <report test="contains(.,'Å“')" role="warning" id="unicode-test-51">
+        <name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-51</report>
+
+        <report test="contains(.,'Ãœ')" role="warning" id="unicode-test-52">
+        <name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-52</report>
+
+        <report test="contains(.,'Ã')" role="warning" id="unicode-test-53">
+        <name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-53</report>
+
+        <report test="contains(.,'Å¾')" role="warning" id="unicode-test-54">
+        <name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-54</report>
+
+        <report test="contains(.,'Ãž')" role="warning" id="unicode-test-55">
+        <name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-55</report>
+
+        <report test="contains(.,'Å¸')" role="warning" id="unicode-test-56">
+        <name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-56</report>
+
+        <report test="contains(.,'ÃŸ')" role="warning" id="unicode-test-57">
+        <name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-57</report>
+
+        <report test="contains(.,'Â¡')" role="warning" id="unicode-test-58">
+        <name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-58</report>
+
+        <report test="contains(.,'Ã¡')" role="warning" id="unicode-test-59">
+        <name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-59</report>
+
+        <report test="contains(.,'Â¢')" role="warning" id="unicode-test-60">
+        <name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-60</report>
+
+        <report test="contains(.,'Ã¢')" role="warning" id="unicode-test-61">
+        <name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-61</report>
+
+        <report test="contains(.,'Â£')" role="warning" id="unicode-test-62">
+        <name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-62</report>
+
+        <report test="contains(.,'Ã£')" role="warning" id="unicode-test-63">
+        <name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-63</report>
+
+        <report test="contains(.,'Â¤')" role="warning" id="unicode-test-64">
+        <name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-64</report>
+
+        <report test="contains(.,'Ã¤')" role="warning" id="unicode-test-65">
+        <name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-65</report>
+
+        <report test="contains(.,'Ã¥')" role="warning" id="unicode-test-66">
+        <name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-66</report>
+
+        <report test="contains(.,'Â¨')" role="warning" id="unicode-test-67">
+        <name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-67</report>
+
+        <report test="contains(.,'Ã¨')" role="warning" id="unicode-test-68">
+        <name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-68</report>
+
+        <report test="contains(.,'Âª')" role="warning" id="unicode-test-69">
+        <name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-69</report>
+
+        <report test="contains(.,'Ãª')" role="warning" id="unicode-test-70">
+        <name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-70</report>
+
+        <report test="contains(.,'Â­')" role="warning" id="unicode-test-71">
+        <name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-71</report>
+
+        <report test="contains(.,'Ã­')" role="warning" id="unicode-test-72">
+        <name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-72</report>
+
+        <report test="contains(.,'Â¯')" role="warning" id="unicode-test-73">
+        <name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-73</report>
+
+        <report test="contains(.,'Ã¯')" role="warning" id="unicode-test-74">
+        <name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-74</report>
+
+        <report test="contains(.,'Â°')" role="warning" id="unicode-test-75">
+        <name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-75</report>
+
+        <report test="contains(.,'Ã°')" role="warning" id="unicode-test-76">
+        <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-76</report>
+
+        <report test="contains(.,'Â±')" role="warning" id="unicode-test-77">
+        <name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-77</report>
+
+        <report test="contains(.,'Ã±')" role="warning" id="unicode-test-78">
+        <name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-78</report>
+
+        <report test="contains(.,'Â´')" role="warning" id="unicode-test-79">
+        <name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-79</report>
+
+        <report test="contains(.,'Ã´')" role="warning" id="unicode-test-80">
+        <name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-80</report>
+
+        <report test="contains(.,'Âµ')" role="warning" id="unicode-test-81">
+        <name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-81</report>
+
+        <report test="contains(.,'Ãµ')" role="warning" id="unicode-test-82">
+        <name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-82</report>
+
+        <report test="contains(.,'Â¶')" role="warning" id="unicode-test-83">
+        <name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-83</report>
+
+        <report test="contains(.,'Ã¶')" role="warning" id="unicode-test-84">
+        <name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-84</report>
+
+        <report test="contains(.,'Â·')" role="warning" id="unicode-test-85">
+        <name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-85</report>
+
+        <report test="contains(.,'Ã·')" role="warning" id="unicode-test-86">
+        <name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-86</report>
+
+        <report test="contains(.,'Â¸')" role="warning" id="unicode-test-87">
+        <name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-87</report>
+
+        <report test="contains(.,'Ã¸')" role="warning" id="unicode-test-88">
+        <name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-88</report>
+
+        <report test="contains(.,'Ã¹')" role="warning" id="unicode-test-89">
+        <name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-89</report>
+
+        <report test="contains(.,'Âº')" role="warning" id="unicode-test-90">
+        <name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-90</report>
+
+        <report test="contains(.,'Ãº')" role="warning" id="unicode-test-91">
+        <name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-91</report>
+
+        <report test="contains(.,'Â¿')" role="warning" id="unicode-test-92">
+        <name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-92</report>
+
+        <report test="contains(.,'Ã¿')" role="warning" id="unicode-test-93">
+        <name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-93</report>
+
+        </rule>
   </pattern>
   
   <pattern id="element-allowlist-pattern">

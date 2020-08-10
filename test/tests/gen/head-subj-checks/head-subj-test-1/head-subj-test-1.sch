@@ -786,7 +786,7 @@
   <pattern id="article-metadata">
     <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <assert test="count(subject) le 3" role="error" id="head-subj-test-1">There cannot be more than two MSAs.</assert>
+      <assert test="count(subject) lt 3" role="error" id="head-subj-test-1">There cannot be more than two MSAs.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

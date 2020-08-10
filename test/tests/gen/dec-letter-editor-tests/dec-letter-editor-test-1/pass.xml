@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-editor-test-1.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]
 Test: assert    count(contrib[@contrib-type='editor']) = 1
-Message: First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']). -->
+Message: First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
