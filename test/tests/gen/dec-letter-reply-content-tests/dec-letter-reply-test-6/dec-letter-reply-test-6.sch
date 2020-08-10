@@ -786,7 +786,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       <report test="matches(.,'&lt;\s?/?\s?[a-z]*\s?/?\s?&gt;')" role="warning" id="dec-letter-reply-test-6">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-6</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

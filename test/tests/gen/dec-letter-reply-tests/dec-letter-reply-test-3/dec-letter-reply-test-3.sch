@@ -786,7 +786,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
-      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
+      <assert test="count(front-stub) = 1" role="error" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-3</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

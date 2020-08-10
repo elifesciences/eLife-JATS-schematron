@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-front-test-2.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub
 Test: assert    $count gt 0
-Message: decision letter front-stub must contain at least 1 contrib-group element. -->
+Message: decision letter front-stub must contain at least 1 contrib-group element. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="decision-letter">

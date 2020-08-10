@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="reply-missing-disp-quote-test-2.sch"?>
 <!--Context: sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]
 Test: report    string-length(.) ge 50
-Message: A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '' in '' -->
+Message: A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '' in '' More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="reply">
