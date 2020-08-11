@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="supplementary-material-child-conformance.sch"?>
+<!--Context: supplementary-material/*
+Test: assert    local-name() = $allowed-children
+Message:  is not allowed as a child of supplementary-material. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <supplementary-material>
+      <label/>
+      <caption/>
+      <media/>
+      <permissions/>
+      <abstract/>
+    </supplementary-material>
+  </article>
+</root>

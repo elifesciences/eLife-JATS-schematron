@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="media-child-conformance.sch"?>
+<!--Context: media/*
+Test: assert    local-name() = $allowed-children
+Message:  is not allowed as a child of media. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <media>
+      <label/>
+      <caption/>
+      <permissions/>
+      <abstract/>
+    </media>
+  </article>
+</root>

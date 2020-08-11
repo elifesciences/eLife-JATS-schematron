@@ -776,6 +776,18 @@
         <x:expect-not-assert id="test-contrib-group-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="auth-contrib-group">
+      <x:scenario label="corresp-presence-test-pass">
+        <x:context href="../tests/gen/auth-contrib-group/corresp-presence-test/pass.xml"/>
+        <x:expect-not-assert id="corresp-presence-test" role="error"/>
+        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="corresp-presence-test-fail">
+        <x:context href="../tests/gen/auth-contrib-group/corresp-presence-test/fail.xml"/>
+        <x:expect-assert id="corresp-presence-test" role="error"/>
+        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="test-editor-contrib-group">
       <x:scenario label="editor-conformance-1-pass">
         <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-1/pass.xml"/>
@@ -6050,6 +6062,78 @@
         <x:context href="../tests/gen/app-ids/app-id-test-2/fail.xml"/>
         <x:expect-assert id="app-id-test-2" role="error"/>
         <x:expect-not-assert id="app-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="fig-children">
+      <x:scenario label="fig-child-conformance-pass">
+        <x:context href="../tests/gen/fig-children/fig-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="fig-child-conformance" role="error"/>
+        <x:expect-not-assert id="fig-children-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-child-conformance-fail">
+        <x:context href="../tests/gen/fig-children/fig-child-conformance/fail.xml"/>
+        <x:expect-assert id="fig-child-conformance" role="error"/>
+        <x:expect-not-assert id="fig-children-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="table-wrap-children">
+      <x:scenario label="table-wrap-child-conformance-pass">
+        <x:context href="../tests/gen/table-wrap-children/table-wrap-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="table-wrap-child-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-children-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-child-conformance-fail">
+        <x:context href="../tests/gen/table-wrap-children/table-wrap-child-conformance/fail.xml"/>
+        <x:expect-assert id="table-wrap-child-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-children-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="media-children">
+      <x:scenario label="media-child-conformance-pass">
+        <x:context href="../tests/gen/media-children/media-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="media-child-conformance" role="error"/>
+        <x:expect-not-assert id="media-children-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-child-conformance-fail">
+        <x:context href="../tests/gen/media-children/media-child-conformance/fail.xml"/>
+        <x:expect-assert id="media-child-conformance" role="error"/>
+        <x:expect-not-assert id="media-children-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="supplementary-material-children">
+      <x:scenario label="supplementary-material-child-conformance-pass">
+        <x:context href="../tests/gen/supplementary-material-children/supplementary-material-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="supplementary-material-child-conformance" role="error"/>
+        <x:expect-not-assert id="supplementary-material-children-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementary-material-child-conformance-fail">
+        <x:context href="../tests/gen/supplementary-material-children/supplementary-material-child-conformance/fail.xml"/>
+        <x:expect-assert id="supplementary-material-child-conformance" role="error"/>
+        <x:expect-not-assert id="supplementary-material-children-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="article-meta-children">
+      <x:scenario label="article-meta-child-conformance-pass">
+        <x:context href="../tests/gen/article-meta-children/article-meta-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="article-meta-child-conformance" role="error"/>
+        <x:expect-not-assert id="article-meta-children-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-meta-child-conformance-fail">
+        <x:context href="../tests/gen/article-meta-children/article-meta-child-conformance/fail.xml"/>
+        <x:expect-assert id="article-meta-child-conformance" role="error"/>
+        <x:expect-not-assert id="article-meta-children-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="author-notes-children">
+      <x:scenario label="author-notes-child-conformance-pass">
+        <x:context href="../tests/gen/author-notes-children/author-notes-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="author-notes-child-conformance" role="error"/>
+        <x:expect-not-assert id="author-notes-children-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-notes-child-conformance-fail">
+        <x:context href="../tests/gen/author-notes-children/author-notes-child-conformance/fail.xml"/>
+        <x:expect-assert id="author-notes-child-conformance" role="error"/>
+        <x:expect-not-assert id="author-notes-children-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="sec-tests">
@@ -11621,6 +11705,26 @@
         <x:expect-report id="pseudomonasaeruginosa-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="tbrucei-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/tbrucei-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="tbrucei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tbrucei-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/tbrucei-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="tbrucei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="trypanosomabrucei-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/trypanosomabrucei-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="trypanosomabrucei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="trypanosomabrucei-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/trypanosomabrucei-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="trypanosomabrucei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="drerio-ref-article-title-check-pass">
         <x:context href="../tests/gen/org-ref-article-book-title/drerio-ref-article-title-check/pass.xml"/>
         <x:expect-not-report id="drerio-ref-article-title-check" role="info"/>
@@ -12611,6 +12715,26 @@
       <x:scenario label="pseudomonasaeruginosa-article-title-check-fail">
         <x:context href="../tests/gen/org-title-kwd/pseudomonasaeruginosa-article-title-check/fail.xml"/>
         <x:expect-report id="pseudomonasaeruginosa-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tbrucei-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/tbrucei-article-title-check/pass.xml"/>
+        <x:expect-not-report id="tbrucei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tbrucei-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/tbrucei-article-title-check/fail.xml"/>
+        <x:expect-report id="tbrucei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="trypanosomabrucei-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/trypanosomabrucei-article-title-check/pass.xml"/>
+        <x:expect-not-report id="trypanosomabrucei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="trypanosomabrucei-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/trypanosomabrucei-article-title-check/fail.xml"/>
+        <x:expect-report id="trypanosomabrucei-article-title-check" role="warning"/>
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drerio-article-title-check-pass">
