@@ -1,0 +1,29 @@
+<?oxygen SCHSchema="article-meta-child-conformance.sch"?>
+<!--Context: article-meta/*
+Test: assert    local-name() = $allowed-children
+Message:  is not allowed as a child of article-meta. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-id/>
+      <article-categories/>
+      <title-group/>
+      <contrib-group/>
+      <pub-date/>
+      <volume/>
+      <elocation-id/>
+      <history/>
+      <permissions/>
+      <self-uri/>
+      <related-article/>
+      <abstract/>
+      <kwd-group/>
+      <funding-group/>
+      <custom-meta-group/>
+      <author-notes/>
+      <related-object/>
+      <counts/>
+      <fig/>
+    </article-meta>
+  </article>
+</root>

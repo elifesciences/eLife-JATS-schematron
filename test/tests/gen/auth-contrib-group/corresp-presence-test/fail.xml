@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="corresp-presence-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: assert    contrib[@contrib-type='author' and @corresp='yes']
+Message: There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author"/>
+          <contrib contrib-type="author"/>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

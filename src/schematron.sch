@@ -32,7 +32,7 @@
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   
-  <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Human Biology and Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
+  <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
   <!--=== Custom functions ===-->
   
@@ -418,7 +418,7 @@
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
-  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|h\.\s?sapiens|homo\s?sapiens|c\.\s?trachomatis|chlamydia\s?trachomatis|enterococcus\s?faecalis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?lanceolata|plantago\s?lanceolata|m\.\s?trossulus|mytilus\s?trossulus|m\.\s?edulis|mytilus\s?edulis|m\.\s?chilensis|mytilus\s?chilensis|u\.\s?maydis|ustilago\s?maydis|p\.\s?knowlesi|plasmodium\s?knowlesi|p\.\s?aeruginosa|pseudomonas\s?aeruginosa|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
+  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|h\.\s?sapiens|homo\s?sapiens|c\.\s?trachomatis|chlamydia\s?trachomatis|enterococcus\s?faecalis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?lanceolata|plantago\s?lanceolata|m\.\s?trossulus|mytilus\s?trossulus|m\.\s?edulis|mytilus\s?edulis|m\.\s?chilensis|mytilus\s?chilensis|u\.\s?maydis|ustilago\s?maydis|p\.\s?knowlesi|plasmodium\s?knowlesi|p\.\s?aeruginosa|pseudomonas\s?aeruginosa|t\.\s?brucei|trypanosoma\s?brucei|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   
   <let name="sec-title-regex" value="string-join(
     for $x in tokenize($org-regex,'\|')
@@ -718,6 +718,12 @@
       </xsl:when>
       <xsl:when test="matches($s,'pseudomonas\s?aeruginosa')">
         <xsl:value-of select="'Pseudomonas aeruginosa'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'t\.\s?brucei')">
+        <xsl:value-of select="'T. brucei'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'trypanosoma\s?brucei')">
+        <xsl:value-of select="'Trypanosoma brucei'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
@@ -1243,6 +1249,15 @@
         	id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'. This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/></report>
 	
 	</rule>
+    
+    <rule context="article/front/article-meta/contrib-group[1]" 
+      id="auth-contrib-group">
+      
+      <assert test="contrib[@contrib-type='author' and @corresp='yes']"
+        role="error" 
+        id="corresp-presence-test">There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group).</assert>
+      
+    </rule>
     
     <rule context="article/front/article-meta/contrib-group[@content-type='section']" 
       id="test-editor-contrib-group">
@@ -4321,6 +4336,64 @@
         role="error"
         id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
+  </pattern>
+  
+  <pattern
+    id="child-conformance">
+    
+    <rule context="fig/*"
+      id="fig-children">
+      <let name="allowed-children" value="('label', 'caption', 'graphic', 'permissions', 'attrib')"/>
+      
+      <assert test="local-name() = $allowed-children"
+        role="error"
+        id="fig-child-conformance"><name/> is not allowed as a child of fig.</assert>
+    </rule>
+    
+    <rule context="table-wrap/*"
+      id="table-wrap-children">
+      <let name="allowed-children" value="('label', 'caption', 'table', 'permissions', 'table-wrap-foot')"/>
+      
+      <assert test="local-name() = $allowed-children"
+        role="error"
+        id="table-wrap-child-conformance"><name/> is not allowed as a child of table-wrap.</assert>
+    </rule>
+    
+    <rule context="media/*"
+      id="media-children">
+      <let name="allowed-children" value="('label', 'caption', 'permissions', 'attrib')"/>
+      
+      <assert test="local-name() = $allowed-children"
+        role="error"
+        id="media-child-conformance"><name/> is not allowed as a child of media.</assert>
+    </rule>
+    
+    <rule context="supplementary-material/*"
+      id="supplementary-material-children">
+      <let name="allowed-children" value="('label', 'caption', 'media', 'permissions')"/>
+      
+      <assert test="local-name() = $allowed-children"
+        role="error"
+        id="supplementary-material-child-conformance"><name/> is not allowed as a child of supplementary-material.</assert>
+    </rule>
+    
+    <rule context="article-meta/*"
+      id="article-meta-children">
+      <let name="allowed-children" value="('article-id', 'article-categories', 'title-group', 'contrib-group', 'pub-date', 'volume', 'elocation-id', 'history', 'permissions', 'self-uri', 'related-article', 'abstract', 'kwd-group', 'funding-group', 'custom-meta-group', 'author-notes', 'related-object')"/>
+      
+      <assert test="local-name() = $allowed-children"
+        role="error"
+        id="article-meta-child-conformance"><name/> is not allowed as a child of article-meta.</assert>
+    </rule>
+    
+    <rule context="author-notes/*"
+      id="author-notes-children">
+      
+      <assert test="local-name() = 'fn'"
+        role="error"
+        id="author-notes-child-conformance"><name/> is not allowed as a child of author-notes.</assert>
+    </rule>
+    
   </pattern>
   
   <pattern
@@ -7834,6 +7907,14 @@
         role="info" 
         id="pseudomonasaeruginosa-ref-article-title-check"><name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
+      <report test="matches($lc,'t\.\s?brucei') and not(italic[contains(text() ,'T. brucei')])"
+        role="info" 
+        id="tbrucei-ref-article-title-check"><name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'trypanosoma\s?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])"
+        role="info" 
+        id="trypanosomabrucei-ref-article-title-check"><name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="info" 
         id="drerio-ref-article-title-check"><name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -8235,6 +8316,14 @@
       <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])"
         role="info" 
         id="pseudomonasaeruginosa-article-title-check"><name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'t\.\s?brucei') and not(italic[contains(text() ,'T. brucei')])"
+        role="warning" 
+        id="tbrucei-article-title-check"><name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'trypanosoma\s?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])"
+        role="warning" 
+        id="trypanosomabrucei-article-title-check"><name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])"
         role="warning" 
@@ -9315,7 +9404,7 @@
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
       
       
-      <report test="matches(.,'^[A-Za-z]{1,3}\)|^\([A-Za-z]{1,3}')"
+      <report test="matches(.,'^\s?[A-Za-z]{1,3}\)|^\s?\([A-Za-z]{1,3}')"
         role="warning" 
         id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
