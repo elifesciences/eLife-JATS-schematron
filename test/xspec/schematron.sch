@@ -2492,7 +2492,7 @@
     <rule context="p[count(code) = 1]/code" id="code-tests-3">
       <let name="previous-parent" value="parent::p/preceding-sibling::*[1]"/>
       
-      <report test="$previous-parent/*[last()][(local-name()='code') and normalize-space(following-sibling::text())='']" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <report test="$previous-parent/*[last()][(local-name()='code') and not(following-sibling::text())] and not(preceding-sibling::*) and not(preceding-sibling::text())" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
@@ -3204,14 +3204,6 @@
       
       <assert test="local-name() = $allowed-children" role="error" id="supplementary-material-child-conformance">
         <name/> is not allowed as a child of supplementary-material.</assert>
-    </rule>
-  </pattern>
-  <pattern id="article-meta-children-pattern">
-    <rule context="article-meta/*" id="article-meta-children">
-      <let name="allowed-children" value="('article-id', 'article-categories', 'title-group', 'contrib-group', 'pub-date', 'volume', 'elocation-id', 'history', 'permissions', 'self-uri', 'related-article', 'abstract', 'kwd-group', 'funding-group', 'custom-meta-group', 'author-notes', 'related-object')"/>
-      
-      <assert test="local-name() = $allowed-children" role="error" id="article-meta-child-conformance">
-        <name/> is not allowed as a child of article-meta.</assert>
     </rule>
   </pattern>
   <pattern id="author-notes-children-pattern">
@@ -7808,7 +7800,6 @@
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-children-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::media/*" role="error" id="media-children-xspec-assert">media/* must be present.</assert>
       <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-children-xspec-assert">supplementary-material/* must be present.</assert>
-      <assert test="descendant::article-meta/*" role="error" id="article-meta-children-xspec-assert">article-meta/* must be present.</assert>
       <assert test="descendant::author-notes/*" role="error" id="author-notes-children-xspec-assert">author-notes/* must be present.</assert>
       <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub or descendant::[Gg]itlab or descendant::[Cc]ode[Pp]lex or descendant::[Ss]ource[Ff]orge or descendant::[Bb]it[Bb]ucket'))]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))] must be present.</assert>

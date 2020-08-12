@@ -2491,7 +2491,7 @@
     <rule context="p[count(code) = 1]/code" id="code-tests-3">
       <let name="previous-parent" value="parent::p/preceding-sibling::*[1]"/>
       
-      <report test="$previous-parent/*[last()][(local-name()='code') and normalize-space(following-sibling::text())='']" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <report test="$previous-parent/*[last()][(local-name()='code') and not(following-sibling::text())] and not(preceding-sibling::*) and not(preceding-sibling::text())" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
@@ -3197,14 +3197,6 @@
       
       <assert test="local-name() = $allowed-children" role="error" id="supplementary-material-child-conformance">
         <name/> is not allowed as a child of supplementary-material.</assert>
-    </rule>
-  </pattern>
-  <pattern id="article-meta-children-pattern">
-    <rule context="article-meta/*" id="article-meta-children">
-      <let name="allowed-children" value="('article-id', 'article-categories', 'title-group', 'contrib-group', 'pub-date', 'volume', 'elocation-id', 'history', 'permissions', 'self-uri', 'related-article', 'abstract', 'kwd-group', 'funding-group', 'custom-meta-group', 'author-notes', 'related-object')"/>
-      
-      <assert test="local-name() = $allowed-children" role="error" id="article-meta-child-conformance">
-        <name/> is not allowed as a child of article-meta.</assert>
     </rule>
   </pattern>
   <pattern id="author-notes-children-pattern">

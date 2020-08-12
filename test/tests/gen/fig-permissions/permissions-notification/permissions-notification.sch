@@ -796,9 +796,4 @@
         <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
-    <rule context="root" id="root-rule">
-      <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
-    </rule>
-  </pattern>
 </schema>

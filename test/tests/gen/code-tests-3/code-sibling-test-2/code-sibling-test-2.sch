@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="p[count(code) = 1]/code" id="code-tests-3">
       <let name="previous-parent" value="parent::p/preceding-sibling::*[1]"/>
-      <report test="$previous-parent/*[last()][(local-name()='code') and normalize-space(following-sibling::text())='']" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
+      <report test="$previous-parent/*[last()][(local-name()='code') and not(following-sibling::text())] and not(preceding-sibling::*) and not(preceding-sibling::text())" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

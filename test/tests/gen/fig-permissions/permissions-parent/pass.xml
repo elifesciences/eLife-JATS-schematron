@@ -3,5 +3,21 @@
 Test: assert    parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')
 Message: permissions  is not allowd as a child of  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <table-wrap>
+      <permissions/>
+    </table-wrap>
+    <fig>
+      <permissions/>
+    </fig>
+    <media>
+      <permissions/>
+    </media>
+    <boxed-text>
+      <permissions/>
+    </boxed-text>
+    <supplementary-material>
+      <permissions/>
+    </supplementary-material>
+  </article>
 </root>
