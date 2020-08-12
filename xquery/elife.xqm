@@ -57,7 +57,7 @@ return delete node $x,
             else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
     
     return 
-    if ($id=('pre-colour-styled-content-check','final-colour-styled-content-check','final-strike-flag')) then ()
+    if ($id=('pre-colour-styled-content-check','final-colour-styled-content-check','final-strike-flag','permissions-notification')) then ()
     else insert node 
         <pattern id="root-pattern">
         <rule context="root" id="root-rule">
@@ -231,7 +231,7 @@ declare function elife:sch2xspec-sch($sch){
          let $r := 
              <pattern id="root-pattern">
                 <rule context="root" id="root-rule">{
-                for $z in $t//sch:rule[not(@id="missing-ref-cited") and not(@id="colour-styled-content") and not(@id="strike-tests")]
+                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content"))]
                 let $test := $z/@context/string()
                 return
                 if (matches($test,'\|')) then (
@@ -273,7 +273,8 @@ declare function elife:sch2xspec($xspec-sch){
        let $folder := concat('../tests/gen/',$id,'/',$id-2,'/') 
        let $e-pass := element {concat('x:expect-not-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-fail := element {concat('x:expect-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
-       let $e-present := element {'x:expect-not-assert'} {attribute {'id'} {concat($x/@id,'-xspec-assert')}, attribute {'role'} {'error'}}
+       let $e-present := if ($y[@id="permissions-notification"]) then () 
+                         else element {'x:expect-not-assert'} {attribute {'id'} {concat($x/@id,'-xspec-assert')}, attribute {'role'} {'error'}}
        return (
        <x:scenario label="{concat($id-2,'-pass')}">
          <x:context href="{concat($folder,'pass.xml')}"/>

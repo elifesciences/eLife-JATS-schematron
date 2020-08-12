@@ -790,14 +790,14 @@
     
   </xsl:function>
   <pattern id="further-fig-tests">
-    <rule context="fig/permissions" id="fig-permissions">
-      <let name="fig-label" value="if (parent::fig/label[1]) then replace(parent::fig/label[1],'\.$','') else 'figure'"/>
-      <assert test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$fig-label"/> must contain a license-p element.</assert>
+    <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
+      <assert test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$label"/> must contain a license-p element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/permissions" role="error" id="fig-permissions-xspec-assert">fig/permissions must be present.</assert>
+      <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

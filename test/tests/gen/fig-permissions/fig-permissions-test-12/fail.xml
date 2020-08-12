@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="fig-permissions-test-12.sch"?>
-<!--Context: fig/permissions
+<!--Context: permissions[not(parent::article-meta)]
 Test: report    copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))
 Message:  permissions - the <license-p> for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but 's doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.) -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

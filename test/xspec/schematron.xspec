@@ -5197,6 +5197,24 @@
         <x:expect-report id="fig-permissions-test-12" role="warning"/>
         <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="permissions-notification-pass">
+        <x:context href="../tests/gen/fig-permissions/permissions-notification/pass.xml"/>
+        <x:expect-not-report id="permissions-notification" role="info"/>
+      </x:scenario>
+      <x:scenario label="permissions-notification-fail">
+        <x:context href="../tests/gen/fig-permissions/permissions-notification/fail.xml"/>
+        <x:expect-report id="permissions-notification" role="info"/>
+      </x:scenario>
+      <x:scenario label="permissions-parent-pass">
+        <x:context href="../tests/gen/fig-permissions/permissions-parent/pass.xml"/>
+        <x:expect-not-assert id="permissions-parent" role="error"/>
+        <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-parent-fail">
+        <x:context href="../tests/gen/fig-permissions/permissions-parent/fail.xml"/>
+        <x:expect-assert id="permissions-parent" role="error"/>
+        <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-caption-tests">
       <x:scenario label="fig-caption-test-1-pass">
@@ -6110,18 +6128,6 @@
         <x:context href="../tests/gen/supplementary-material-children/supplementary-material-child-conformance/fail.xml"/>
         <x:expect-assert id="supplementary-material-child-conformance" role="error"/>
         <x:expect-not-assert id="supplementary-material-children-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="article-meta-children">
-      <x:scenario label="article-meta-child-conformance-pass">
-        <x:context href="../tests/gen/article-meta-children/article-meta-child-conformance/pass.xml"/>
-        <x:expect-not-assert id="article-meta-child-conformance" role="error"/>
-        <x:expect-not-assert id="article-meta-children-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="article-meta-child-conformance-fail">
-        <x:context href="../tests/gen/article-meta-children/article-meta-child-conformance/fail.xml"/>
-        <x:expect-assert id="article-meta-child-conformance" role="error"/>
-        <x:expect-not-assert id="article-meta-children-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="author-notes-children">
