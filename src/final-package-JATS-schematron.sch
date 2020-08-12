@@ -2745,33 +2745,39 @@
     </rule>
   </pattern>
   <pattern id="fig-permissions-pattern">
-    <rule context="fig/permissions" id="fig-permissions">
-      <let name="fig-label" value="if (parent::fig/label[1]) then replace(parent::fig/label[1],'\.$','') else 'figure'"/>
+    <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
-      <report test="copyright-statement and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">permissions for <value-of select="$fig-label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
+      <report test="copyright-statement and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">permissions for <value-of select="$label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
       
-      <report test="copyright-year and (not(copyright-statement) or not(copyright-holder))" role="error" id="fig-permissions-test-2">permissions for <value-of select="$fig-label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
+      <report test="copyright-year and (not(copyright-statement) or not(copyright-holder))" role="error" id="fig-permissions-test-2">permissions for <value-of select="$label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
       
-      <report test="copyright-holder and (not(copyright-statement) or not(copyright-year))" role="error" id="fig-permissions-test-3">permissions for <value-of select="$fig-label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
+      <report test="copyright-holder and (not(copyright-statement) or not(copyright-year))" role="error" id="fig-permissions-test-3">permissions for <value-of select="$label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
       
-      <assert test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$fig-label"/> must contain a license-p element.</assert>
+      <assert test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$label"/> must contain a license-p element.</assert>
       
-      <report test="count(copyright-statement) gt 1" role="error" id="fig-permissions-test-5">permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(copyright-statement) gt 1" role="error" id="fig-permissions-test-5">permissions for <value-of select="$label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">permissions for <value-of select="$label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(copyright-year) gt 1" role="error" id="fig-permissions-test-7">permissions for <value-of select="$fig-label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(copyright-year) gt 1" role="error" id="fig-permissions-test-7">permissions for <value-of select="$label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(license) gt 1" role="error" id="fig-permissions-test-8">permissions for <value-of select="$fig-label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(license) gt 1" role="error" id="fig-permissions-test-8">permissions for <value-of select="$label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="(count(license) = 1) and not(license/license-p)" role="error" id="fig-permissions-test-9">permissions for <value-of select="$fig-label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
+      <report test="(count(license) = 1) and not(license/license-p)" role="error" id="fig-permissions-test-9">permissions for <value-of select="$label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
       
-      <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">permissions for <value-of select="$fig-label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
+      <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
       
-      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$fig-label"/> have neither.</assert>
+      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
       <report test="copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))" role="warning" id="fig-permissions-test-12">
-        <value-of select="$fig-label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$fig-label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
+        <value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
+      
+      <report test="." role="info" id="permissions-notification">
+        <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
+      
+      <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">permissions  is not allowd as a child of <value-of select="parent::*/local-name()"/>
+      </assert>
       
     </rule>
   </pattern>

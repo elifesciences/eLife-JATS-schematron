@@ -6,5 +6,9 @@ Message: code element (containing the content ) is directly preceded by another 
   <article>
     <p><code/> test</p>
     <p><code/></p>
+    <p>test</p>
+    <p>test</p>
+    <p>test <xref>Figure 2</xref> (<xref>Equation 13</xref>):<code xml:space="preserve">class x</code></p>
+    <p>test <xref>Figure 2</xref> (<xref>Equation 13</xref>):<code xml:space="preserve">m=Model</code></p>
   </article>
 </root>

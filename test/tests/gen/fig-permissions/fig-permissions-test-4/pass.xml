@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="fig-permissions-test-4.sch"?>
-<!--Context: fig/permissions
+<!--Context: permissions[not(parent::article-meta)]
 Test: assert    license/license-p
 Message: permissions for  must contain a license-p element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
