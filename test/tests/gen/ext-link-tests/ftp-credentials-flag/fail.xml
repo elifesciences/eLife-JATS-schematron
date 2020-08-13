@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ftp-credentials-flag.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')
+Message: @xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - ''. If the link without credentials works (), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ext-link ext-link-type="uri" xlink:href="ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Homo_sapiens/UCSC/hg19/Homo_sapiens_UCSC_hg19.tar.gz">ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Homo_sapiens/UCSC/hg19/Homo_sapiens_UCSC_hg19.tar.gz</ext-link>
+  </article>
+</root>

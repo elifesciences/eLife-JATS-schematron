@@ -2959,6 +2959,16 @@
         <x:expect-assert id="url-conformance-test" role="warning"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ftp-credentials-flag-pass">
+        <x:context href="../tests/gen/ext-link-tests/ftp-credentials-flag/pass.xml"/>
+        <x:expect-not-report id="ftp-credentials-flag" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ftp-credentials-flag-fail">
+        <x:context href="../tests/gen/ext-link-tests/ftp-credentials-flag/fail.xml"/>
+        <x:expect-report id="ftp-credentials-flag" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="url-fullstop-report-pass">
         <x:context href="../tests/gen/ext-link-tests/url-fullstop-report/pass.xml"/>
         <x:expect-not-report id="url-fullstop-report" role="error"/>
