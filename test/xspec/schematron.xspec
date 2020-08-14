@@ -5248,6 +5248,18 @@
         <x:expect-not-assert id="fig-caption-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-panel-tests">
+      <x:scenario label="fig-panel-test-1-pass">
+        <x:context href="../tests/gen/fig-panel-tests/fig-panel-test-1/pass.xml"/>
+        <x:expect-not-report id="fig-panel-test-1" role="warning"/>
+        <x:expect-not-assert id="fig-panel-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-panel-test-1-fail">
+        <x:context href="../tests/gen/fig-panel-tests/fig-panel-test-1/fail.xml"/>
+        <x:expect-report id="fig-panel-test-1" role="warning"/>
+        <x:expect-not-assert id="fig-panel-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ra-body-tests">
       <x:scenario label="ra-sec-test-1-pass">
         <x:context href="../tests/gen/ra-body-tests/ra-sec-test-1/pass.xml"/>

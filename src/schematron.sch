@@ -3792,6 +3792,17 @@
         role="warning"
         id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib> element instead - <value-of select="."/></report>
     </rule>
+    
+    <rule context="fig/caption/p/bold" 
+      id="fig-panel-tests">
+      <let name="first-character" value="substring(.,1, 1)"/>
+      <let name="last-character" value="substring(., string-length(.), 1)"/>
+      
+      <report test="($first-character= ('(', ')', '.', ',')) or ($last-character = ('(', ')', '.', ','))"
+        role="warning"
+        id="fig-panel-test-1">Bold text in the caption for <value-of select="replace(ancestor::fig[1]/label,'\.$','')"/> starts and/or ends with punctuation - <value-of select="."/> - is that correct? Or should the punctuation be unbolded?</report>
+      
+    </rule>
   </pattern>
   
   <pattern
