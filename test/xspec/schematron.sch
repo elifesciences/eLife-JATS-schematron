@@ -2802,6 +2802,15 @@
       </report>
     </rule>
   </pattern>
+  <pattern id="fig-panel-tests-pattern">
+    <rule context="fig/caption/p/bold" id="fig-panel-tests">
+      <let name="first-character" value="substring(.,1, 1)"/>
+      <let name="last-character" value="substring(., string-length(.), 1)"/>
+      
+      <report test="($first-character= ('(', ')', '.', ',')) or ($last-character = ('(', ')', '.', ','))" role="warning" id="fig-panel-test-1">Bold text in the caption for <value-of select="replace(ancestor::fig[1]/label,'\.$','')"/> starts and/or ends with punctuation - <value-of select="."/> - is that correct? Or should the punctuation be unbolded?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="ra-body-tests-pattern">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
@@ -7756,6 +7765,7 @@
       <assert test="descendant::article//app//fig[@specific-use='child-fig']/label" role="error" id="app-fig-sup-tests-xspec-assert">article//app//fig[@specific-use='child-fig']/label must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
       <assert test="descendant::fig/caption/p" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p must be present.</assert>
+      <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
       <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
       <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>

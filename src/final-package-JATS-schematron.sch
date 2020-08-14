@@ -2795,6 +2795,15 @@
       </report>
     </rule>
   </pattern>
+  <pattern id="fig-panel-tests-pattern">
+    <rule context="fig/caption/p/bold" id="fig-panel-tests">
+      <let name="first-character" value="substring(.,1, 1)"/>
+      <let name="last-character" value="substring(., string-length(.), 1)"/>
+      
+      <report test="($first-character= ('(', ')', '.', ',')) or ($last-character = ('(', ')', '.', ','))" role="warning" id="fig-panel-test-1">Bold text in the caption for <value-of select="replace(ancestor::fig[1]/label,'\.$','')"/> starts and/or ends with punctuation - <value-of select="."/> - is that correct? Or should the punctuation be unbolded?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="ra-body-tests-pattern">
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
