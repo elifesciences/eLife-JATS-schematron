@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="author-xref-test-1.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/xref
+Test: report    (@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]
+Message: Affiliation footnote links (xrefs) from authors must be the first type of link. For , their affiliation link -  - appears after another non-affiliation link, when it should appear before it. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author" id="author-85867">
+        <name>
+          <surname>Kallappagoudar</surname>
+          <given-names>Satish</given-names>
+        </name>
+        <xref ref-type="fn" rid="con3"/>
+        <xref ref-type="aff" rid="aff1">1</xref>
+        <xref ref-type="fn" rid="equal-contrib2">†</xref>
+        <xref ref-type="fn" rid="pa1">‡</xref>
+        
+        <xref ref-type="fn" rid="conf1"/>
+        <xref ref-type="other" rid="dataset1"/>
+      </contrib>
+    </article-meta>
+  </article>
+</root>

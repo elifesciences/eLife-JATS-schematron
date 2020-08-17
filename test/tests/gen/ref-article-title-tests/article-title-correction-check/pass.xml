@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-title-correction-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']/article-title
 Test: report    matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')
-Message: ref '' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article? -->
+Message: ref '' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-correction-check -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">

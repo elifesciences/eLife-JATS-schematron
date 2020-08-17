@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="author-xref-test-3.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/xref
+Test: report    (@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]
+Message: Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For , their present address link (to ) appears before an affiliation link or equal contribution link. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author" id="author-85867">
+        <name>
+          <surname>Kallappagoudar</surname>
+          <given-names>Satish</given-names>
+        </name>
+        <xref ref-type="aff" rid="aff1">1</xref>
+        <xref ref-type="fn" rid="equal-contrib2">†</xref>
+        <xref ref-type="fn" rid="pa1">‡</xref>
+        <xref ref-type="fn" rid="con3"/>
+        <xref ref-type="fn" rid="conf1"/>
+        <xref ref-type="other" rid="dataset1"/>
+      </contrib>
+    </article-meta>
+  </article>
+</root>
