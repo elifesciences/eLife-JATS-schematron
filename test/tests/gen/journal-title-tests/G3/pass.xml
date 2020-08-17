@@ -2,7 +2,7 @@
 <!--Context: element-citation[@publication-type='journal']/source
 Test: report    starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')
 Message: ref '' has the doi for 'G3' but the journal name is
-         - it should be 'G3: Genes, Genomes, Genetics'. -->
+         - it should be 'G3: Genes, Genomes, Genetics'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#G3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">

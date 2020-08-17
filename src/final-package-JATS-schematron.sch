@@ -995,7 +995,7 @@
 	   
      <assert test="count(subj-group[@subj-group-type='display-channel']/subject) = 1" role="error" id="disp-subj-test2">subj-group[@subj-group-type='display-channel'] must contain only one subject. Currently there are <value-of select="count(subj-group[@subj-group-type='display-channel']/subject)"/>.</assert>
     
-     <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">article-categories must contain 0-2 subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
 	   
      <report test="($article-type = ('correction','research-article','retraction','review-article')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
      
@@ -1036,9 +1036,7 @@
     <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert test="count(subject) lt 3" role="error" id="head-subj-test-1">There cannot be more than two MSAs.</assert>
-      
-      <report test="if ($article-type = 'editorial') then ()         else count(subject) = 0" role="error" id="head-subj-test-2">There must be at least one MSA.</report>
+      <assert test="count(subject) = 1" role="error" id="head-subj-test-1">Each subj-group[@subj-group-type='heading'] must contain one and only one subject. This one contains <value-of select="count(subject)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="test-title-group-pattern">
@@ -1130,6 +1128,18 @@
       
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="collab-cont-test-1">
         <value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+    </rule>
+  </pattern>
+  <pattern id="author-xref-tests-pattern">
+    <rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
+      
+      <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
+      
+      <report test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-2">Equal contribution links from authors must appear after affiliation footnote links. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their equal contribution link (to <value-of select="idref(@rid)"/>) appears after another non-affiliation link, when it should appear before it.</report>
+      
+      <report test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" role="error" id="author-xref-test-3">Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
+      
+      <report test="contains(@rid,'dataset')" role="error" id="author-xref-test-4">Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
     </rule>
   </pattern>
   <pattern id="name-tests-pattern">
@@ -1548,6 +1558,8 @@
       <report test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
       
       <report test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
+      
+      <report test="text()" role="error" id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
     </rule>
   </pattern>
   <pattern id="aff-child-tests-pattern">
@@ -3685,13 +3697,7 @@
       <!-- else:
        -->
       
-      <assert test="if (count(element-citation/person-group[1]/*) != 2)       then (count(preceding-sibling::ref) = 0 or        ($name &gt; $preceding-name) or       ($name = $preceding-name and       element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year))       else (count(preceding-sibling::ref) = 0        or ($name &gt; $preceding-name) or       ($name = $preceding-name and $name2 &gt; $preceding-name2)        or        ($name = $preceding-name and $name2 = $preceding-name2 and       element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year)       or       ($name = $preceding-name and       count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2)       )" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2]
-        The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically 
-        by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of
-        two authors, the sequence should be arranged by both authors' surnames, then date. For
-        three or more authors, the sequence should be the first author's surname, then date.
-        Reference '<value-of select="@id"/>' appears to be in a different order.
-      </assert>
+      <assert test="if (count(element-citation/person-group[1]/*) != 2)            then (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year))                else (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and $name2 &gt; $preceding-name2)        or ($name = $preceding-name and $name2 = $preceding-name2 and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year)       or ($name = $preceding-name and count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2))" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
       
       <assert test="@id" role="error" id="err-elem-cit-high-3-1">[err-elem-cit-high-3-1]
         Each &lt;ref&gt; element must have an @id attribute. 
@@ -6392,77 +6398,74 @@
       <let name="uc" value="upper-case(.)"/>
         
       <report test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains
-        <value-of select="."/>. 'PLOS' should be upper-case.</report>
+        <value-of select="."/>. 'PLOS' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-1</report>
         
        <report test="($uc = 'PLOS ONE') and (. != 'PLOS ONE')" role="error" id="PLOS-2">ref '<value-of select="ancestor::ref/@id"/>' contains
-          <value-of select="."/>. 'PLOS ONE' should be upper-case.</report>
+         <value-of select="."/>. 'PLOS ONE' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-2</report>
       
       <report test="if (starts-with($doi,'10.1073')) then . != 'PNAS'         else()" role="error" id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the journal name is
-        <value-of select="."/>, which is incorrect.</report>
+        <value-of select="."/>, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PNAS</report>
       
       <report test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
-        <value-of select="."/>. 'RNA' should be upper-case.</report>
+        <value-of select="."/>. 'RNA' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#RNA</report>
       
       <report test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" role="error" id="bmj">ref '<value-of select="ancestor::ref/@id"/>' contains
-        <value-of select="."/>. 'BMJ' should be upper-case.</report>
+        <value-of select="."/>. 'BMJ' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#bmj</report>
       
       <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
-        <value-of select="."/> - it should be 'G3: Genes, Genomes, Genetics'.</report>
+        <value-of select="."/> - it should be 'G3: Genes, Genomes, Genetics'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#G3</report>
       
-      <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
+      <report test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" role="warning" id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#ampersand-check</report>
       
-      <report test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')" role="error" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
+      <report test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')" role="error" id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#Research-gate-check</report>
       
-      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#zenodo-check</report>
+      <report test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check</report>
       
       <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
-      </report>
+        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-replacement-character-presence</report>
       
-      <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
+      <report test="matches(.,'[Oo]fficial [Jj]ournal')" role="warning" id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-off-presence</report>
       
-      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      <report test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#handbook-presence</report>
+      
+      <report test="starts-with($doi,'10.7554/eLife.') and (. != 'eLife')" role="error" id="elife-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has an eLife doi <value-of select="$doi"/>, but the journal name is '<value-of select="."/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#elife-check</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       
-      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="info" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
+      <report test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="info" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-1</report>
       
-      <report test="matches(.,'\.$') and not(matches(.,'\.\.$'))" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct - <value-of select="."/>
-      </report>
+      <report test="matches(.,'\.$') and not(matches(.,'\.\.$'))" role="error" id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct - <value-of select="."/> More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-2</report>
       
-      <report test="matches(.,'\.$') and matches(.,'\.\.$')" role="warning" id="article-title-fullstop-check-3">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/>
-      </report>
+      <report test="matches(.,'\.$') and matches(.,'\.\.$')" role="warning" id="article-title-fullstop-check-3">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/> More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-3</report>
       
-      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article?</report>
+      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-correction-check</report>
       
-      <report test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '<value-of select="."/>'</report>
+      <report test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '<value-of select="."/>' More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-journal-check</report>
       
-      <report test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
-      </report>
+      <report test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/> More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-child-1</report>
       
       <report test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">
-        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
-      </report>
+        <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/> More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#a-title-replacement-character-presence</report>
       
     </rule>
   </pattern>
   <pattern id="journal-tests-pattern">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
       
-      <report test="not(fpage) and not(elocation-id) and not(comment)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
+      <report test="not(fpage) and not(elocation-id) and not(comment)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#eloc-page-assert</report>
       
-      <assert test="volume" role="warning" id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</assert>
+      <assert test="volume" role="warning" id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#volume-assert</assert>
       
-      <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
+      <report test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check</report>
       
-      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
+      <report test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#elife-ref-check</report>
       
-      <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal name <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
+      <report test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" role="warning" id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal name <value-of select="source[1]"/>. Should it be a conference type reference instead? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-conference-ref-check-1</report>
       
-      <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" role="warning" id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name?</report>
+      <report test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" role="warning" id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-conference-ref-check-2</report>
       
     </rule>
   </pattern>

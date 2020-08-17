@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
-      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article?</report>
+      <report test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-correction-check</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
