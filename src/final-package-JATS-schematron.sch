@@ -3237,6 +3237,8 @@
     <assert test="title" role="error" id="sec-test-1">sec must have a title</assert>
       
       <assert test="$child-count gt 0" role="error" id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
+      
+      <report test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
   </pattern>
   <pattern id="res-data-sec-pattern">
@@ -5651,7 +5653,7 @@
   </pattern>
   
   <pattern id="org-ref-article-book-title-pattern">
-    <rule context="element-citation[@publication-type='journal']/article-title" id="org-ref-article-book-title">	
+    <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">	
       <let name="lc" value="lower-case(.)"/>
       
       <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="info" id="bssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>

@@ -790,7 +790,7 @@
     
   </xsl:function>
   <pattern id="org-pattern">
-    <rule context="element-citation[@publication-type='journal']/article-title" id="org-ref-article-book-title">
+    <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">
       <let name="lc" value="lower-case(.)"/>
       <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="info" id="xenopustropicalis-ref-article-title-check">
         <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -798,7 +798,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert test="descendant::element-citation/article-title or descendant::element-citation/chapter-title or descendant::element-citation/source or descendant::element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

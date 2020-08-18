@@ -3244,6 +3244,8 @@
     <assert test="title" role="error" id="sec-test-1">sec must have a title</assert>
       
       <assert test="$child-count gt 0" role="error" id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
+      
+      <report test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
   </pattern>
   <pattern id="res-data-sec-pattern">
@@ -5651,7 +5653,7 @@
   </pattern>
   
   <pattern id="org-ref-article-book-title-pattern">
-    <rule context="element-citation[@publication-type='journal']/article-title" id="org-ref-article-book-title">	
+    <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">	
       <let name="lc" value="lower-case(.)"/>
       
       <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="info" id="bssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -7953,7 +7955,7 @@
       <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
-      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert test="descendant::element-citation/article-title or descendant::element-citation/chapter-title or descendant::element-citation/source or descendant::element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title must be present.</assert>
       <assert test="descendant::article//article-meta/title-group/article-title  or descendant:: article/body//sec/title  or descendant:: article//article-meta//kwd" role="error" id="org-title-kwd-xspec-assert">article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
