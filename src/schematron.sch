@@ -4444,6 +4444,10 @@
       <assert test="$child-count gt 0"
         role="error"
         id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
+      
+      <report test="count(ancestor::sec) ge 5"
+        role="error"
+        id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
     
     <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]"
@@ -7559,7 +7563,7 @@
   <pattern
     id="org-pattern">
     
-    <rule context="element-citation[@publication-type='journal']/article-title"
+    <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title"
       id="org-ref-article-book-title">	
       <let name="lc" value="lower-case(.)"/>
       

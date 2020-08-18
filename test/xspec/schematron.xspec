@@ -6227,6 +6227,16 @@
         <x:expect-assert id="sec-test-2" role="error"/>
         <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-test-5-pass">
+        <x:context href="../tests/gen/sec-tests/sec-test-5/pass.xml"/>
+        <x:expect-not-report id="sec-test-5" role="error"/>
+        <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-test-5-fail">
+        <x:context href="../tests/gen/sec-tests/sec-test-5/fail.xml"/>
+        <x:expect-report id="sec-test-5" role="error"/>
+        <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="res-data-sec">
       <x:scenario label="sec-test-3-pass">
