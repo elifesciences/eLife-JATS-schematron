@@ -3770,17 +3770,6 @@
       
     </rule>
   </pattern>
-  <pattern id="xref-pattern">
-    <rule context="xref[@ref-type='bibr']" id="xref">
-      
-      <assert test="not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or        (some $x in preceding::xref       satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))" role="error" id="err-xref-high-2-1">[err-xref-high-2-1]
-        Citations in the text to references with the same author(s) in the same year must be arranged in the same 
-        order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the 
-        text. Check all the references to citations for the same authors to determine which need to be changed.
-      </assert>
-      
-    </rule>
-  </pattern>
   <pattern id="elem-citation-pattern">
     <rule context="element-citation" id="elem-citation">
       
@@ -7864,7 +7853,6 @@
       <assert test="descendant::ref/element-citation/source" role="error" id="elem-citation-source-xspec-assert">ref/element-citation/source must be present.</assert>
       <assert test="descendant::ref/element-citation/ext-link" role="error" id="elem-citation-ext-link-xspec-assert">ref/element-citation/ext-link must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="xref-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
       <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
       <assert test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>

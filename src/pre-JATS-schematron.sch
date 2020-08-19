@@ -3654,17 +3654,6 @@
       
     </rule>
   </pattern>
-  <pattern id="xref-pattern">
-    <rule context="xref[@ref-type='bibr']" id="xref">
-      
-      <assert test="not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or        (some $x in preceding::xref       satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))" role="error" id="err-xref-high-2-1">[err-xref-high-2-1]
-        Citations in the text to references with the same author(s) in the same year must be arranged in the same 
-        order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the 
-        text. Check all the references to citations for the same authors to determine which need to be changed.
-      </assert>
-      
-    </rule>
-  </pattern>
   <pattern id="elem-citation-pattern">
     <rule context="element-citation" id="elem-citation">
       
