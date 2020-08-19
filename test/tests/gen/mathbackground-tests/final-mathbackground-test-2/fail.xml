@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-mathbackground-test-2.sch"?>
-<!--Context: mml:*
-Test: report    @mathbackground and ancestor::table-wrap
+<!--Context: mml:*[@mathbackground]
+Test: report    ancestor::table-wrap
 Message: math ( element) containing '' has '' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then either the background colour will need to added to the table cell (rather than the maths), or it needs to be removed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

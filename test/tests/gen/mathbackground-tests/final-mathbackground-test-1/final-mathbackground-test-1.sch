@@ -790,13 +790,13 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="mml:*" id="mathbackground-tests">
-      <report test="@mathbackground and not(ancestor::table-wrap)" role="error" id="final-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then this will need to removed.</report>
+    <rule context="mml:*[@mathbackground]" id="mathbackground-tests">
+      <report test="not(ancestor::table-wrap)" role="error" id="final-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then this will need to removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:*" role="error" id="mathbackground-tests-xspec-assert">mml:* must be present.</assert>
+      <assert test="descendant::mml:*[@mathbackground]" role="error" id="mathbackground-tests-xspec-assert">mml:*[@mathbackground] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -3135,7 +3135,7 @@
       
       <assert test="$child-count gt 0" role="error" id="sec-test-2">[sec-test-2] sec appears to contain no content. This cannot be correct.</assert>
       
-      <report test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">[sec-test-5] Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
+      <report test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">[sec-test-5] Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-5</report>
     </rule>
   </pattern>
   <pattern id="res-data-sec-pattern">
@@ -6666,11 +6666,11 @@
     </rule>
   </pattern>
   <pattern id="mathbackground-tests-pattern">
-    <rule context="mml:*" id="mathbackground-tests">
+    <rule context="mml:*[@mathbackground]" id="mathbackground-tests">
       
-      <report test="@mathbackground and not(ancestor::table-wrap)" role="warning" id="pre-mathbackground-test-1">[pre-mathbackground-test-1] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they will not display in downstream HTML (for example in PMC). eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
+      <report test="not(ancestor::table-wrap)" role="warning" id="pre-mathbackground-test-1">[pre-mathbackground-test-1] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they will not display in downstream HTML (for example in PMC). eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
       
-      <report test="@mathbackground and ancestor::table-wrap" role="warning" id="pre-mathbackground-test-2">[pre-mathbackground-test-2] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
+      <report test="ancestor::table-wrap" role="warning" id="pre-mathbackground-test-2">[pre-mathbackground-test-2] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
       
       
       
