@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-4.sch"?>
-<!--Context: element-citation/person-group/name
-Test: assert    not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')]
+<!--Context: element-citation/person-group/name/suffix
+Test: assert    .=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')
 Message: [err-elem-cit-gen-name-4]
         The <suffix> element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.

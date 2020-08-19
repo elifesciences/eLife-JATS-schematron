@@ -3603,9 +3603,9 @@
     </rule>
   </pattern>
   <pattern id="elem-citation-gen-name-4-pattern">
-    <rule context="element-citation/person-group/name" id="elem-citation-gen-name-4">
+    <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
-      <assert test="not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')] " role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement
@@ -5365,7 +5365,7 @@
   <pattern id="ref-xref-conformance-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid][1]"/>
+      <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
       <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
       <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>

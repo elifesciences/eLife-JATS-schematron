@@ -790,8 +790,8 @@
     
   </xsl:function>
   <pattern id="element-citation-general-tests">
-    <rule context="element-citation/person-group/name" id="elem-citation-gen-name-4">
-      <assert test="not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')] " role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
+    <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement
@@ -800,7 +800,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/person-group/name" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name must be present.</assert>
+      <assert test="descendant::element-citation/person-group/name/suffix" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name/suffix must be present.</assert>
     </rule>
   </pattern>
 </schema>
