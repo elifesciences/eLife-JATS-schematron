@@ -2236,7 +2236,7 @@
       
       <report test="$data = '°'" role="error" id="math-test-10">mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report test="matches($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
+      <report test="contains($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
       <report test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
@@ -2249,13 +2249,17 @@
       <report test="ancestor::abstract" role="warning" id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
     </rule>
   </pattern>
-  <pattern id="formula-child-tests-pattern">
-    <rule context="disp-formula/*|inline-formula/*" id="formula-child-tests">
+  <pattern id="disp-formula-child-tests-pattern">
+    <rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report test="(parent::disp-formula) and not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
+      <report test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
         <name/> element is not allowed as a child of disp-formula.</report>
+    </rule>
+  </pattern>
+  <pattern id="inline-formula-child-tests-pattern">
+    <rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report test="(parent::inline-formula) and (local-name()!='math')" role="error" id="inline-formula-child-test-1">
+      <report test="local-name()!='math'" role="error" id="inline-formula-child-test-1">
         <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>
@@ -3606,9 +3610,9 @@
     </rule>
   </pattern>
   <pattern id="elem-citation-gen-name-4-pattern">
-    <rule context="element-citation/person-group/name" id="elem-citation-gen-name-4">
+    <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
-      <assert test="not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')] " role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement
@@ -3771,13 +3775,9 @@
     </rule>
   </pattern>
   <pattern id="xref-pattern">
-    <rule context="xref[@ref-type='bibr']" id="xref">
+    <rule context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" id="xref">
       
-      <assert test="not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or        (some $x in preceding::xref       satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))" role="error" id="err-xref-high-2-1">[err-xref-high-2-1]
-        Citations in the text to references with the same author(s) in the same year must be arranged in the same 
-        order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the 
-        text. Check all the references to citations for the same authors to determine which need to be changed.
-      </assert>
+      <assert test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" role="error" id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same  order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
       
     </rule>
   </pattern>
@@ -5374,7 +5374,7 @@
   <pattern id="ref-xref-conformance-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid][1]"/>
+      <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
       <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
       <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
@@ -5531,17 +5531,17 @@
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'their $')" role="warning" id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" role="warning" id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" role="error" id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="warning" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="error" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="warning" id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
@@ -7731,7 +7731,8 @@
       <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
-      <assert test="descendant::disp-formula/* or descendant::inline-formula/*" role="error" id="formula-child-tests-xspec-assert">disp-formula/*|inline-formula/* must be present.</assert>
+      <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
+      <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" role="error" id="kr-table-body-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/* must be present.</assert>
@@ -7859,12 +7860,12 @@
       <assert test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
       <assert test="descendant::element-citation/person-group" role="error" id="elem-citation-gen-name-3-1-xspec-assert">element-citation/person-group must be present.</assert>
       <assert test="descendant::element-citation/person-group/collab" role="error" id="elem-citation-gen-name-3-2-xspec-assert">element-citation/person-group/collab must be present.</assert>
-      <assert test="descendant::element-citation/person-group/name" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name must be present.</assert>
+      <assert test="descendant::element-citation/person-group/name/suffix" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name/suffix must be present.</assert>
       <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
       <assert test="descendant::ref/element-citation/source" role="error" id="elem-citation-source-xspec-assert">ref/element-citation/source must be present.</assert>
       <assert test="descendant::ref/element-citation/ext-link" role="error" id="elem-citation-ext-link-xspec-assert">ref/element-citation/ext-link must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="xref-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" role="error" id="xref-xspec-assert">xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')] must be present.</assert>
       <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
       <assert test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>

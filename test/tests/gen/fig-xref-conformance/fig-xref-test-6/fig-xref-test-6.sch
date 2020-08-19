@@ -797,7 +797,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

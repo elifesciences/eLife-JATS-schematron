@@ -2988,7 +2988,7 @@
         role="error"
         id="math-test-10">mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report test="matches($data,'○')"
+      <report test="contains($data,'○')"
         role="warning"
         id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
@@ -3013,14 +3013,18 @@
         id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
     </rule>
     
-    <rule context="disp-formula/*|inline-formula/*" 
-      id="formula-child-tests">
+    <rule context="disp-formula/*" 
+      id="disp-formula-child-tests">
       
-      <report test="(parent::disp-formula) and not(local-name()=('label','math'))"
+      <report test="not(local-name()=('label','math'))"
         role="error"
         id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
+    </rule>
+    
+    <rule context="inline-formula/*" 
+      id="inline-formula-child-tests">
       
-      <report test="(parent::inline-formula) and (local-name()!='math')"
+      <report test="local-name()!='math'"
         role="error"
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
     </rule>
@@ -4968,9 +4972,9 @@
       
     </rule>
     
-    <rule context="element-citation/person-group/name" id="elem-citation-gen-name-4">
+    <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
-      <assert test="not(suffix) or .[suffix=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')] " role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
+      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement
@@ -5142,13 +5146,12 @@
       
     </rule>
     
-    <rule context="xref[@ref-type='bibr']" id="xref">
+      <rule context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" 
+        id="xref">
       
-      <assert test="not(matches(substring(normalize-space(.),string-length(.)),'[b-z]')) or        (some $x in preceding::xref       satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.))))" role="error" id="err-xref-high-2-1">[err-xref-high-2-1]
-        Citations in the text to references with the same author(s) in the same year must be arranged in the same 
-        order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the 
-        text. Check all the references to citations for the same authors to determine which need to be changed.
-      </assert>
+      <assert test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" 
+        role="error" 
+        id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same  order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
       
     </rule>
     
@@ -7108,7 +7111,7 @@
     
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article//descendant::ref-list//ref[@id = $rid][1]"/>
+      <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
       <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
       <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
@@ -7375,11 +7378,11 @@
         id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')"
-        role="warning"
+        role="error"
         id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')"
-        role="warning"
+        role="error"
         id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'their $')"
@@ -7391,11 +7394,11 @@
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" 
-        role="warning" 
+        role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" 
-        role="warning" 
+        role="error" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 

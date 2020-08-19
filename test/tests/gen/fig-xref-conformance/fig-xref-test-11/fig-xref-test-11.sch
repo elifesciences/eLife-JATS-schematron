@@ -797,7 +797,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="warning" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" role="error" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

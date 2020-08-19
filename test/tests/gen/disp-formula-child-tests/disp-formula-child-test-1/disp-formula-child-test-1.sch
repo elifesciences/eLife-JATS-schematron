@@ -790,14 +790,14 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="disp-formula/*|inline-formula/*" id="formula-child-tests">
-      <report test="(parent::disp-formula) and not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
+    <rule context="disp-formula/*" id="disp-formula-child-tests">
+      <report test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
         <name/> element is not allowed as a child of disp-formula.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula/* or descendant::inline-formula/*" role="error" id="formula-child-tests-xspec-assert">disp-formula/*|inline-formula/* must be present.</assert>
+      <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
     </rule>
   </pattern>
 </schema>
