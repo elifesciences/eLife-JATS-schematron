@@ -7375,11 +7375,11 @@
         id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')"
-        role="warning"
+        role="error"
         id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')"
-        role="warning"
+        role="error"
         id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'their $')"
@@ -7391,11 +7391,11 @@
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" 
-        role="warning" 
+        role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" 
-        role="warning" 
+        role="error" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
