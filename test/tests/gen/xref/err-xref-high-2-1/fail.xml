@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="err-xref-high-2-1.sch"?>
+<!--Context: xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]
+Test: assert    some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))
+Message: Citations in the text to references with the same author(s) in the same year must be arranged in the same  order as the reference list. The xref with the value '' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <body>
+      <p><xref ref-type="bibr" rid="bib1">Smith et al., 1999b</xref>; <xref ref-type="bibr" rid="bib1">Smith et al., 1999a</xref></p>
+    </body>
+  </article>
+</root>

@@ -7222,6 +7222,18 @@
         <x:expect-not-assert id="ref-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="xref">
+      <x:scenario label="err-xref-high-2-1-pass">
+        <x:context href="../tests/gen/xref/err-xref-high-2-1/pass.xml"/>
+        <x:expect-not-assert id="err-xref-high-2-1" role="error"/>
+        <x:expect-not-assert id="xref-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-xref-high-2-1-fail">
+        <x:context href="../tests/gen/xref/err-xref-high-2-1/fail.xml"/>
+        <x:expect-assert id="err-xref-high-2-1" role="error"/>
+        <x:expect-not-assert id="xref-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="elem-citation">
       <x:scenario label="err-elem-cit-high-6-1-pass">
         <x:context href="../tests/gen/elem-citation/err-elem-cit-high-6-1/pass.xml"/>
