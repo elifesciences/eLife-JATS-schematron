@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="sec-test-5.sch"?>
 <!--Context: sec
 Test: report    count(ancestor::sec) ge 5
-Message: Level  sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section. -->
+Message: Level  sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-5 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec id="s1-1">
@@ -10,89 +10,89 @@ Message: Level  sections are not allowed. Please either make this a level 5 head
         mutually exclusive exons, are the key for the choice to synthesize RQ or UQ. We find that
         one of the mutually exclusive exons is only found in the genomes of animals that synthesize
         RQ and that its inclusion remodels the core of the COQ-2 enzyme. We show that the removal
-        of&#x00A0;this exon abolishes almost all RQ biosynthesis in <italic>C. elegans</italic>.
+        of this exon abolishes almost all RQ biosynthesis in <italic>C. elegans</italic>.
         Finally, we find that inclusion of this RQ-specific exon expression is increased in the
-        stages of the parasite&#x00A0;life cycle where they encounter hypoxic conditions and
+        stages of the parasite life cycle where they encounter hypoxic conditions and
         increase RQ production, while the alternative exon is increased in normoxic life stages. We
         thus conclude that alternative splicing of COQ-2 is the key mechanism that causes the switch
-        from UQ to RQ synthesis in the parasite life&#x00A0;cycle.</p>
+        from UQ to RQ synthesis in the parasite life cycle.</p>
       <sec id="s1-1-1">
         <title>Test 2</title>
         <p>In this study, we reveal that two variants of COQ-2, derived from alternative splicing of
           mutually exclusive exons, are the key for the choice to synthesize RQ or UQ. We find that
           one of the mutually exclusive exons is only found in the genomes of animals that
           synthesize RQ and that its inclusion remodels the core of the COQ-2 enzyme. We show that
-          the removal of&#x00A0;this exon abolishes almost all RQ biosynthesis in <italic>C.
+          the removal of this exon abolishes almost all RQ biosynthesis in <italic>C.
             elegans</italic>. Finally, we find that inclusion of this RQ-specific exon expression is
-          increased in the stages of the parasite&#x00A0;life cycle where they encounter hypoxic
+          increased in the stages of the parasite life cycle where they encounter hypoxic
           conditions and increase RQ production, while the alternative exon is increased in normoxic
           life stages. We thus conclude that alternative splicing of COQ-2 is the key mechanism that
-          causes the switch from UQ to RQ synthesis in the parasite life&#x00A0;cycle.</p>
+          causes the switch from UQ to RQ synthesis in the parasite life cycle.</p>
         <sec id="s1-1-1-1">
           <title>Test 3</title>
           <p>In this study, we reveal that two variants of COQ-2, derived from alternative splicing
             of mutually exclusive exons, are the key for the choice to synthesize RQ or UQ. We find
             that one of the mutually exclusive exons is only found in the genomes of animals that
             synthesize RQ and that its inclusion remodels the core of the COQ-2 enzyme. We show that
-            the removal of&#x00A0;this exon abolishes almost all RQ biosynthesis in <italic>C.
+            the removal of this exon abolishes almost all RQ biosynthesis in <italic>C.
               elegans</italic>. Finally, we find that inclusion of this RQ-specific exon expression
-            is increased in the stages of the parasite&#x00A0;life cycle where they encounter
+            is increased in the stages of the parasite life cycle where they encounter
             hypoxic conditions and increase RQ production, while the alternative exon is increased
             in normoxic life stages. We thus conclude that alternative splicing of COQ-2 is the key
             mechanism that causes the switch from UQ to RQ synthesis in the parasite
-            life&#x00A0;cycle.</p>
+            life cycle.</p>
           <sec id="s1-1-1-1-1">
             <title>Test 4</title>
             <p>In this study, we reveal that two variants of COQ-2, derived from alternative
               splicing of mutually exclusive exons, are the key for the choice to synthesize RQ or
               UQ. We find that one of the mutually exclusive exons is only found in the genomes of
               animals that synthesize RQ and that its inclusion remodels the core of the COQ-2
-              enzyme. We show that the removal of&#x00A0;this exon abolishes almost all RQ
+              enzyme. We show that the removal of this exon abolishes almost all RQ
               biosynthesis in <italic>C. elegans</italic>. Finally, we find that inclusion of this
-              RQ-specific exon expression is increased in the stages of the parasite&#x00A0;life
+              RQ-specific exon expression is increased in the stages of the parasite life
               cycle where they encounter hypoxic conditions and increase RQ production, while the
               alternative exon is increased in normoxic life stages. We thus conclude that
               alternative splicing of COQ-2 is the key mechanism that causes the switch from UQ to
-              RQ synthesis in the parasite life&#x00A0;cycle.</p>
+              RQ synthesis in the parasite life cycle.</p>
             <sec id="s1-1-1-1-1-1">
               <title>Test 5</title>
               <p>In this study, we reveal that two variants of COQ-2, derived from alternative
                 splicing of mutually exclusive exons, are the key for the choice to synthesize RQ or
                 UQ. We find that one of the mutually exclusive exons is only found in the genomes of
                 animals that synthesize RQ and that its inclusion remodels the core of the COQ-2
-                enzyme. We show that the removal of&#x00A0;this exon abolishes almost all RQ
+                enzyme. We show that the removal of this exon abolishes almost all RQ
                 biosynthesis in <italic>C. elegans</italic>. Finally, we find that inclusion of this
-                RQ-specific exon expression is increased in the stages of the parasite&#x00A0;life
+                RQ-specific exon expression is increased in the stages of the parasite life
                 cycle where they encounter hypoxic conditions and increase RQ production, while the
                 alternative exon is increased in normoxic life stages. We thus conclude that
                 alternative splicing of COQ-2 is the key mechanism that causes the switch from UQ to
-                RQ synthesis in the parasite life&#x00A0;cycle.</p>
+                RQ synthesis in the parasite life cycle.</p>
               <sec id="s1-1-1-1-1-1-1">
                 <title>Test 6</title>
                 <p>In this study, we reveal that two variants of COQ-2, derived from alternative
                   splicing of mutually exclusive exons, are the key for the choice to synthesize RQ
                   or UQ. We find that one of the mutually exclusive exons is only found in the
                   genomes of animals that synthesize RQ and that its inclusion remodels the core of
-                  the COQ-2 enzyme. We show that the removal of&#x00A0;this exon abolishes almost
+                  the COQ-2 enzyme. We show that the removal of this exon abolishes almost
                   all RQ biosynthesis in <italic>C. elegans</italic>. Finally, we find that
                   inclusion of this RQ-specific exon expression is increased in the stages of the
-                  parasite&#x00A0;life cycle where they encounter hypoxic conditions and increase RQ
+                  parasite life cycle where they encounter hypoxic conditions and increase RQ
                   production, while the alternative exon is increased in normoxic life stages. We
                   thus conclude that alternative splicing of COQ-2 is the key mechanism that causes
-                  the switch from UQ to RQ synthesis in the parasite life&#x00A0;cycle.</p>
+                  the switch from UQ to RQ synthesis in the parasite life cycle.</p>
                 <sec id="s1-1-1-1-1-1-1-1">
                   <title>Test 7</title>
                   <p>In this study, we reveal that two variants of COQ-2, derived from alternative
                     splicing of mutually exclusive exons, are the key for the choice to synthesize
                     RQ or UQ. We find that one of the mutually exclusive exons is only found in the
                     genomes of animals that synthesize RQ and that its inclusion remodels the core
-                    of the COQ-2 enzyme. We show that the removal of&#x00A0;this exon abolishes
+                    of the COQ-2 enzyme. We show that the removal of this exon abolishes
                     almost all RQ biosynthesis in <italic>C. elegans</italic>. Finally, we find that
                     inclusion of this RQ-specific exon expression is increased in the stages of the
-                    parasite&#x00A0;life cycle where they encounter hypoxic conditions and increase
+                    parasite life cycle where they encounter hypoxic conditions and increase
                     RQ production, while the alternative exon is increased in normoxic life stages.
                     We thus conclude that alternative splicing of COQ-2 is the key mechanism that
-                    causes the switch from UQ to RQ synthesis in the parasite life&#x00A0;cycle.</p>
+                    causes the switch from UQ to RQ synthesis in the parasite life cycle.</p>
                 </sec>
               </sec>
             </sec>
