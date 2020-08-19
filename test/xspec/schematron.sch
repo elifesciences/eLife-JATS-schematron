@@ -2236,7 +2236,7 @@
       
       <report test="$data = '°'" role="error" id="math-test-10">mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report test="matches($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
+      <report test="contains($data,'○')" role="warning" id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
       <report test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
@@ -2249,13 +2249,17 @@
       <report test="ancestor::abstract" role="warning" id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
     </rule>
   </pattern>
-  <pattern id="formula-child-tests-pattern">
-    <rule context="disp-formula/*|inline-formula/*" id="formula-child-tests">
+  <pattern id="disp-formula-child-tests-pattern">
+    <rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report test="(parent::disp-formula) and not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
+      <report test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
         <name/> element is not allowed as a child of disp-formula.</report>
+    </rule>
+  </pattern>
+  <pattern id="inline-formula-child-tests-pattern">
+    <rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report test="(parent::inline-formula) and (local-name()!='math')" role="error" id="inline-formula-child-test-1">
+      <report test="local-name()!='math'" role="error" id="inline-formula-child-test-1">
         <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>
@@ -7727,7 +7731,8 @@
       <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
-      <assert test="descendant::disp-formula/* or descendant::inline-formula/*" role="error" id="formula-child-tests-xspec-assert">disp-formula/*|inline-formula/* must be present.</assert>
+      <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
+      <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" role="error" id="kr-table-body-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/* must be present.</assert>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="math-test-11.sch"?>
 <!--Context: mml:math
-Test: report    matches($data,'○')
+Test: report    contains($data,'○')
 Message: mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

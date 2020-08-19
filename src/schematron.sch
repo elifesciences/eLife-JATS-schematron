@@ -2988,7 +2988,7 @@
         role="error"
         id="math-test-10">mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report test="matches($data,'○')"
+      <report test="contains($data,'○')"
         role="warning"
         id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
@@ -3013,14 +3013,18 @@
         id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
     </rule>
     
-    <rule context="disp-formula/*|inline-formula/*" 
-      id="formula-child-tests">
+    <rule context="disp-formula/*" 
+      id="disp-formula-child-tests">
       
-      <report test="(parent::disp-formula) and not(local-name()=('label','math'))"
+      <report test="not(local-name()=('label','math'))"
         role="error"
         id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
+    </rule>
+    
+    <rule context="inline-formula/*" 
+      id="inline-formula-child-tests">
       
-      <report test="(parent::inline-formula) and (local-name()!='math')"
+      <report test="local-name()!='math'"
         role="error"
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
     </rule>
