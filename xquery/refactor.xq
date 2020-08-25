@@ -1,5 +1,5 @@
 (:
- ~ This query generate the pre, final, and final-package Schematron files from the base schematron.sch.
+ ~ This query generates the pre, final, and final-package Schematron files from the base schematron.sch.
  ~ It also generates the xspec and manipulated version of schematron.sch, as well as updating any schemalet files and writing new test files at the same time, for the purposes of testing. 
  
  :)
