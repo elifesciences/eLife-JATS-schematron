@@ -10071,6 +10071,16 @@
         <x:expect-assert id="ref-xref-test-5" role="error"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-xref-test-6-pass">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-6/pass.xml"/>
+        <x:expect-not-report id="ref-xref-test-6" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-6-fail">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-6/fail.xml"/>
+        <x:expect-report id="ref-xref-test-6" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="ref-xref-test-11-pass">
         <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-11/pass.xml"/>
         <x:expect-not-report id="ref-xref-test-11" role="warning"/>

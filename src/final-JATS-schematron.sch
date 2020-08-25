@@ -5254,6 +5254,9 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(\[]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)\]]',''))"/>
+      <let name="post-close" value="string-length(replace($post-sentence,'[^\)\]]',''))"/>
       
       
       
@@ -5265,7 +5268,9 @@
       
       <assert test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">[ref-xref-test-4] citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-4</assert>
       
-      <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">[ref-xref-test-5] citation doesn't contain letters, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5 </assert>
+      <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">[ref-xref-test-5] citation doesn't contain letters, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5</assert>
+      
+      <report test="not($post-text = ('; ',', ')) and (($open - $close) gt $post-close)" role="warning" id="ref-xref-test-6">[ref-xref-test-6] citation is preceded by text containing more brackets than the text that follows it. Are there missing brackets after the citation? - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
       
       <report test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" role="warning" id="ref-xref-test-11">[ref-xref-test-11] '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-11</report>
       
