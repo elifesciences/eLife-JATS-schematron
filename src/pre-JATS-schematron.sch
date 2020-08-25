@@ -2478,6 +2478,18 @@
       <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
+  <pattern id="bracket-tests-pattern">
+    <rule context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
+      <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
+      <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
+      
+      <report test="$open gt $close" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? - <value-of select="."/>
+      </report>
+      
+      <report test="not(matches(.,'^\s?\d+[\)\]]')) and ($open lt $close)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more closed brackets (<value-of select="$close"/>) than open (<value-of select="$open"/>) brackets. Is that correct? - <value-of select="."/>
+      </report>
+    </rule>
+  </pattern>
   
   <pattern id="body-video-specific-pattern">
     <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
@@ -5252,9 +5264,8 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(\[]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)\]]',''))"/>
-      <let name="post-close" value="string-length(replace($post-sentence,'[^\)\]]',''))"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
       <assert test="replace(.,' ',' ') = $cite1" role="error" id="pre-ref-xref-test-1">[pre-ref-xref-test-1] <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1</assert>
       
@@ -5268,7 +5279,7 @@
       
       <assert test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">[ref-xref-test-5] citation doesn't contain letters, which must be incorrect - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5</assert>
       
-      <report test="not($post-text = ('; ',', ')) and (($open - $close) gt $post-close)" role="warning" id="ref-xref-test-6">[ref-xref-test-6] citation is preceded by text containing more brackets than the text that follows it. Are there missing brackets after the citation? - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
+      <report test="($open - $close) gt 1" role="warning" id="ref-xref-test-7">[ref-xref-test-7] citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
       
       <report test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" role="warning" id="ref-xref-test-11">[ref-xref-test-11] '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-11</report>
       

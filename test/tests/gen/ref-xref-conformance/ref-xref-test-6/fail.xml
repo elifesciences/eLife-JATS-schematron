@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="ref-xref-test-6.sch"?>
-<!--Context: xref[@ref-type='bibr']
-Test: report    not($post-text = ('; ',', ')) and (($open - $close) gt $post-close)
-Message: citation is preceded by text containing more brackets than the text that follows it. Are there missing brackets after the citation? - . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article>
-    <p>One way to obtain the constitutive values is to exploit the property of the LacI to become less active when bound to small molecules like IPTG. Previous studies indicate that even with the use of IPTG, expression from a stronger binding site (like Oid) cannot be fully rescued when the repressor copy number is high (<xref ref-type="bibr" rid="bib60">Razo-Mejia et al., 2018</xref>. In our experiments, we observed this phenomenon as well. As shown in <xref ref-type="fig" rid="app4fig1">Appendix 4&#x2014;figure 1C-E</xref>, for most strains expressing the TF, the expression of the target could not be fully rescued with 2.5 mM IPTG and decoys. Further increase in IPTG concentration (to up to 10 mM) did not help in increasing the target expression. Hence, allosteric induction with IPTG could not serve as a right constitutive value for our system.</p>
-  </article>
-</root>
