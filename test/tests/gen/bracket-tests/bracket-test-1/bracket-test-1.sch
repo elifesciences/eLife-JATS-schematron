@@ -789,26 +789,18 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="ref-xref-pattern">
-    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
-      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
-      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
-      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
-      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
-      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
-      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
-      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(\[]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)\]]',''))"/>
-      <let name="post-close" value="string-length(replace($post-sentence,'[^\)\]]',''))"/>
-      <report test="not($post-text = ('; ',', ')) and (($open - $close) gt $post-close)" role="warning" id="ref-xref-test-6">citation is preceded by text containing more brackets than the text that follows it. Are there missing brackets after the citation? - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
+  <pattern id="content-containers">
+    <rule context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
+      <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
+      <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
+      <report test="$open gt $close" role="warning" id="bracket-test-1">
+        <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

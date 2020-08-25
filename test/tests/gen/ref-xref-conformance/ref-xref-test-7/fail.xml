@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-xref-test-7.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    ($open - $close) gt 1
+Message: citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>Test (here is a piece of text (<xref ref-type="bibr">Amith et al., 1992</xref>)).</p>
+  </article>
+</root>

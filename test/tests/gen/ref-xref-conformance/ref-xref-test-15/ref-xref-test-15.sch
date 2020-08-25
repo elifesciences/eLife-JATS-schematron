@@ -800,9 +800,8 @@
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(\[]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)\]]',''))"/>
-      <let name="post-close" value="string-length(replace($post-sentence,'[^\)\]]',''))"/>
+      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
+      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       <report test="matches($post-sentence,$cite3)" role="warning" id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-15</report>
     </rule>
   </pattern>
