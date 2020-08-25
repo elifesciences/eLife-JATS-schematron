@@ -693,32 +693,32 @@
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
-      <xsl:if test="matches($s,'[Gg]ithub')">
+      <xsl:if test="contains($s,'github')">
         <xsl:element name="match">
         <xsl:value-of select="'github '"/>
         </xsl:element>
       </xsl:if>
-      <xsl:if test="matches($s,'[Gg]itlab')">
+      <xsl:if test="contains($s,'gitlab')">
         <xsl:element name="match">
         <xsl:value-of select="'gitlab '"/>
         </xsl:element>
       </xsl:if>
-      <xsl:if test="matches($s,'[Cc]ode[Pp]lex')">
+      <xsl:if test="contains($s,'codeplex')">
         <xsl:element name="match">
         <xsl:value-of select="'codeplex '"/>
         </xsl:element>
       </xsl:if>
-      <xsl:if test="matches($s,'[Ss]ource[Ff]orge')">
+      <xsl:if test="contains($s,'sourceforge')">
         <xsl:element name="match">
         <xsl:value-of select="'sourceforge '"/>
         </xsl:element>
       </xsl:if>
-      <xsl:if test="matches($s,'[Bb]it[Bb]ucket')">
+      <xsl:if test="contains($s,'bitbucket')">
         <xsl:element name="match">
         <xsl:value-of select="'bitbucket '"/>
         </xsl:element>
       </xsl:if>
-      <xsl:if test="matches($s,'[Aa]ssembla ')">
+      <xsl:if test="contains($s,'assembla ')">
         <xsl:element name="match">
         <xsl:value-of select="'assembla '"/>
         </xsl:element>
