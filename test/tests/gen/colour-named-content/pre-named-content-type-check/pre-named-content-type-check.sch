@@ -791,10 +791,9 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="named-content" id="colour-named-content">
-      <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
-      <assert test="@content-type = $allowed-values" role="error" id="named-content-type-check">
-        <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="$allowed-values"/>.</assert>
+      <assert test="@content-type = $allowed-values" role="warning" id="pre-named-content-type-check">
+        <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>. Only blue, purple, and red text is permitted (author-callout-style-a1, author-callout-style-a2, and author-callout-style-a3 respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

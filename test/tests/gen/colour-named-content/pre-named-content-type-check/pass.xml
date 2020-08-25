@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="pre-named-content-type-check.sch"?>
+<!--Context: named-content
+Test: assert    @content-type = $allowed-values
+Message:  - text in  element is captured in a <named-content content-type="">. The only allowed values for the @content-type are . Only blue, purple, and red text is permitted (author-callout-style-a1, author-callout-style-a2, and author-callout-style-a3 respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.' -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p><named-content content-type="sequence">test</named-content></p>
+  </article>
+</root>

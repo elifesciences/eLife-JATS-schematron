@@ -795,7 +795,7 @@
       <let name="post-text" value="following-sibling::text()[1]"/>
       <let name="pre-token" value="substring($pre-text, string-length($pre-text), 1)"/>
       <let name="post-token" value="substring($post-text, 1, 1)"/>
-      <assert test="($pre-token='') or matches($pre-token,'[\s\p{P}]')" role="warning" id="italic-org-test-1">There is no space between the organism name '<value-of select="."/>' and its preceeding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
+      <assert test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\s\p{P}]')" role="warning" id="italic-org-test-1">There is no space between the organism name '<value-of select="."/>' and its preceeding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

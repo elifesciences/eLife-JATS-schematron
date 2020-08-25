@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="ack-content-test.sch"?>
+<!--Context: ack
+Test: assert    p[* or not(normalize-space(.)='')]
+Message: An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ack>
+      <title/>
+      <p/>
+    </ack>
+  </article>
+</root>

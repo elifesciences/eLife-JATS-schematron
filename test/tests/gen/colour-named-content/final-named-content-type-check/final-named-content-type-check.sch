@@ -792,9 +792,8 @@
   <pattern id="house-style">
     <rule context="named-content" id="colour-named-content">
       <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
-      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">
-        <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
-      </report>
+      <assert test="@content-type = $allowed-values" role="error" id="final-named-content-type-check">
+        <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

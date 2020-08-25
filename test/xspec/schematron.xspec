@@ -5611,6 +5611,16 @@
         <x:expect-assert id="ack-title-test" role="error"/>
         <x:expect-not-assert id="ack-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ack-content-test-pass">
+        <x:context href="../tests/gen/ack-title-tests/ack-content-test/pass.xml"/>
+        <x:expect-not-assert id="ack-content-test" role="error"/>
+        <x:expect-not-assert id="ack-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-content-test-fail">
+        <x:context href="../tests/gen/ack-title-tests/ack-content-test/fail.xml"/>
+        <x:expect-assert id="ack-content-test" role="error"/>
+        <x:expect-not-assert id="ack-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ack-content-tests">
       <x:scenario label="ack-full-stop-intial-test-pass">
@@ -15497,14 +15507,24 @@
         <x:expect-report id="colour-named-content-check" role="warning"/>
         <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="named-content-type-check-pass">
-        <x:context href="../tests/gen/colour-named-content/named-content-type-check/pass.xml"/>
-        <x:expect-not-assert id="named-content-type-check" role="error"/>
+      <x:scenario label="pre-named-content-type-check-pass">
+        <x:context href="../tests/gen/colour-named-content/pre-named-content-type-check/pass.xml"/>
+        <x:expect-not-assert id="pre-named-content-type-check" role="warning"/>
         <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="named-content-type-check-fail">
-        <x:context href="../tests/gen/colour-named-content/named-content-type-check/fail.xml"/>
-        <x:expect-assert id="named-content-type-check" role="error"/>
+      <x:scenario label="pre-named-content-type-check-fail">
+        <x:context href="../tests/gen/colour-named-content/pre-named-content-type-check/fail.xml"/>
+        <x:expect-assert id="pre-named-content-type-check" role="warning"/>
+        <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-named-content-type-check-pass">
+        <x:context href="../tests/gen/colour-named-content/final-named-content-type-check/pass.xml"/>
+        <x:expect-not-assert id="final-named-content-type-check" role="error"/>
+        <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-named-content-type-check-fail">
+        <x:context href="../tests/gen/colour-named-content/final-named-content-type-check/fail.xml"/>
+        <x:expect-assert id="final-named-content-type-check" role="error"/>
         <x:expect-not-assert id="colour-named-content-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

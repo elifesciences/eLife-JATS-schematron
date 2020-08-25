@@ -789,17 +789,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="named-content" id="colour-named-content">
-      <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
-      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">
-        <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
-      </report>
+  <pattern id="title-conformance">
+    <rule context="ack" id="ack-title-tests">
+      <assert test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::named-content" role="error" id="colour-named-content-xspec-assert">named-content must be present.</assert>
+      <assert test="descendant::ack" role="error" id="ack-title-tests-xspec-assert">ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

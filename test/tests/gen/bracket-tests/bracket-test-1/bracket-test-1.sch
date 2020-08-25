@@ -794,7 +794,7 @@
       <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
       <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
       <report test="$open gt $close" role="warning" id="bracket-test-1">
-        <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? - <value-of select="."/>
+        <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? Troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) gt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>
