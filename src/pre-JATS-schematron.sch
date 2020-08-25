@@ -2483,10 +2483,10 @@
       <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
       <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
       
-      <report test="$open gt $close" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? - <value-of select="."/>
+      <report test="$open gt $close" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? Troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) gt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="not(matches(.,'^\s?\d+[\)\]]')) and ($open lt $close)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more closed brackets (<value-of select="$close"/>) than open (<value-of select="$open"/>) brackets. Is that correct? - <value-of select="."/>
+      <report test="not(matches(.,'^\s?\d+[\)\]]')) and ($open lt $close)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more closed brackets (<value-of select="$close"/>) than open (<value-of select="$open"/>) brackets. Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) lt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>
@@ -2837,6 +2837,8 @@
     <rule context="ack" id="ack-title-tests">
       
       <assert test="title = 'Acknowledgements'" role="error" id="ack-title-test">[ack-title-test] ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
+      
+      <assert test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">[ack-content-test] An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
       
     </rule>
   </pattern>
@@ -5316,7 +5318,7 @@
   </pattern>
   
   <pattern id="unlinked-ref-cite-pattern">
-    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
+    <rule context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
       <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
@@ -6650,13 +6652,14 @@
   </pattern>
   <pattern id="colour-named-content-pattern">
     <rule context="named-content" id="colour-named-content">
-      <let name="prec-text" value="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
       
-      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">[colour-named-content-check] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="$prec-text"/>
+      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">[colour-named-content-check] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       </report>
       
-      <assert test="@content-type = $allowed-values" role="error" id="named-content-type-check">[named-content-type-check] <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="$allowed-values"/>.</assert>
+      <assert test="@content-type = $allowed-values" role="warning" id="pre-named-content-type-check">[pre-named-content-type-check] <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>. Only blue, purple, and red text is permitted (author-callout-style-a1, author-callout-style-a2, and author-callout-style-a3 respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
+      
+      
       
     </rule>
   </pattern>
@@ -6933,9 +6936,9 @@
       <let name="pre-token" value="substring($pre-text, string-length($pre-text), 1)"/>
       <let name="post-token" value="substring($post-text, 1, 1)"/>
       
-      <assert test="($pre-token='') or matches($pre-token,'[\s\p{P}]')" role="warning" id="italic-org-test-1">[italic-org-test-1] There is no space between the organism name '<value-of select="."/>' and its preceeding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
+      <assert test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\s\p{P}]')" role="warning" id="italic-org-test-1">[italic-org-test-1] There is no space between the organism name '<value-of select="."/>' and its preceeding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
       
-      <assert test="($post-token='') or matches($post-token,'[\s\p{P}]')" role="warning" id="italic-org-test-2">[italic-org-test-2] There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
+      <assert test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\s\p{P}]')" role="warning" id="italic-org-test-2">[italic-org-test-2] There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
     </rule>
   </pattern>
   

@@ -790,7 +790,7 @@
     
   </xsl:function>
   <pattern id="unlinked-ref-cite-pattern">
-    <rule context="ref-list/ref/element-citation" id="unlinked-ref-cite">
+    <rule context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
       <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
@@ -802,7 +802,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list/ref/element-citation" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation must be present.</assert>
+      <assert test="descendant::ref-list/ref/element-citation[year]" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation[year] must be present.</assert>
     </rule>
   </pattern>
 </schema>
