@@ -790,14 +790,15 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="institution-wrap/institution-id" id="institution-id-tests">
-      <report test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">
-        <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-5</report>
+    <rule context="front//abstract" id="abstract-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">institution-wrap/institution-id must be present.</assert>
+      <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
     </rule>
   </pattern>
 </schema>

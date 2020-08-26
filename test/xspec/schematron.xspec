@@ -1697,6 +1697,16 @@
         <x:expect-report id="abstract-test-6" role="warning"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="abstract-test-7-pass">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-7/pass.xml"/>
+        <x:expect-not-report id="abstract-test-7" role="warning"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-7-fail">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-7/fail.xml"/>
+        <x:expect-report id="abstract-test-7" role="warning"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-children-tests">
       <x:scenario label="abstract-child-test-1-pass">
@@ -2326,6 +2336,18 @@
         <x:context href="../tests/gen/institution-id-tests/institution-id-test-5/fail.xml"/>
         <x:expect-report id="institution-id-test-5" role="error"/>
         <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="par-name-tests">
+      <x:scenario label="par-name-test-1-pass">
+        <x:context href="../tests/gen/par-name-tests/par-name-test-1/pass.xml"/>
+        <x:expect-not-report id="par-name-test-1" role="error"/>
+        <x:expect-not-assert id="par-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="par-name-test-1-fail">
+        <x:context href="../tests/gen/par-name-tests/par-name-test-1/fail.xml"/>
+        <x:expect-report id="par-name-test-1" role="error"/>
+        <x:expect-not-assert id="par-name-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="kwd-group-tests">
