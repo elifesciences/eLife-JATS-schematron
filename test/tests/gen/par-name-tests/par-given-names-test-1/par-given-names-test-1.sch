@@ -790,14 +790,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="institution-wrap/institution-id" id="institution-id-tests">
-      <report test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">
-        <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-5</report>
+    <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
+      <report test="contains(given-names[1],'.')" role="error" id="par-given-names-test-1">
+        <name/> in funding entry contains a full stop - <value-of select="given-names[1]"/>. Please remove the full stop</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">institution-wrap/institution-id must be present.</assert>
+      <assert test="descendant::funding-group//principal-award-recipient/name" role="error" id="par-name-tests-xspec-assert">funding-group//principal-award-recipient/name must be present.</assert>
     </rule>
   </pattern>
 </schema>
