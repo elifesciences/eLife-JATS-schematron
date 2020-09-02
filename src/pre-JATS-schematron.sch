@@ -1691,7 +1691,7 @@
       
       <report test="not(child::*) and normalize-space(.)=''" role="error" id="custom-meta-test-4">[custom-meta-test-4] The value of meta-value cannot be empty</report>
       
-      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">[custom-meta-test-5] Impact statement contains more than 30 words. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
+      <report test="($count gt 30)" role="warning" id="custom-meta-test-5">[custom-meta-test-5] Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
       
       <assert test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">[pre-custom-meta-test-6] Impact statement must end with a full stop or question mark. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-6</assert>
       
@@ -2110,7 +2110,7 @@
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
       
-      <assert test="$number = $pos" role="error" id="table-data-test-2">[table-data-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-data-test-2</assert>
+      <assert test="$number = $pos" role="error" id="table-data-test-2">[table-data-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-data-test-2</assert>
       
     </rule>
   </pattern>
@@ -2122,7 +2122,7 @@
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' code ')])"/>
       
-      <assert test="$number = $pos" role="error" id="table-code-test-2">[table-code-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-code-test-2</assert>
+      <assert test="$number = $pos" role="error" id="table-code-test-2">[table-code-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-code-test-2</assert>
       
     </rule>
   </pattern>
@@ -2210,53 +2210,71 @@
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert test="table" role="error" id="table-wrap-test-1">[table-wrap-test-1] table-wrap must have one table. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-1</assert>
+      <assert test="table" role="error" id="table-wrap-test-1">[table-wrap-test-1] table-wrap must have one table. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-1</assert>
       
-      <report test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">[table-wrap-test-2] table-wrap has more than one table - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-2</report>
+      <report test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">[table-wrap-test-2] table-wrap has more than one table - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-2</report>
       
-      <report test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">[table-wrap-test-3] table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-3</report>
+      <report test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">[table-wrap-test-3] table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-3</report>
       
-      <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">[table-wrap-test-4] table-wrap with id <value-of select="$id"/> has no label which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-test-4</report>
+      <report test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">[table-wrap-test-4] table-wrap with id <value-of select="$id"/> has no label which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-4</report>
       
-      <report test="($id = 'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-1">[kr-table-wrap-test-1] table-wrap has an id 'keyresource' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-wrap-test-1</report>
+      <report test="($id = 'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-1">[kr-table-wrap-test-1] table-wrap has an id 'keyresource' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-wrap-test-1</report>
       
-      <report test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-table-wrap-cite-1">[pre-table-wrap-cite-1] There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-table-wrap-cite-1</report>
+      <report test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="pre-table-wrap-cite-1">[pre-table-wrap-cite-1] There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-table-wrap-cite-1</report>
       
       
       
-      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">[feat-table-wrap-cite-1] There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#feat-table-wrap-cite-1</report>
+      <report test="if (contains($id,'inline')) then ()          else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()" role="warning" id="feat-table-wrap-cite-1">[feat-table-wrap-cite-1] There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#feat-table-wrap-cite-1</report>
       
-      <report test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">[kr-table-not-tagged] <value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged</report>
+      <report test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="error" id="kr-table-not-tagged">[kr-table-not-tagged] <value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged</report>
       
-      <report test="matches(caption/title[1],'[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">[kr-table-not-tagged-2] <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged-2</report>
+      <report test="matches(caption/title[1],'[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">[kr-table-not-tagged-2] <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged-2</report>
       
+    </rule>
+  </pattern>
+  <pattern id="table-title-tests-pattern">
+    <rule context="table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" id="table-title-tests">
+      
+      <assert test="caption/title" role="warning" id="pre-table-title-test-1">[pre-table-title-test-1] <value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-table-title-test-1</assert>
+      
+      
+    </rule>
+  </pattern>
+  <pattern id="table-title-tests-2-pattern">
+    <rule context="table-wrap/caption/title" id="table-title-tests-2">
+      
+      <report test="not(*) and normalize-space(.)=''" role="error" id="table-title-test-2">[table-title-test-2] The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2</report>
+      
+      <assert test="ends-with(.,'.') or ends-with(.,'?')" role="error" id="table-title-test-3">[table-title-test-3] The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> does not end with a full stop which is incorrect - '<value-of select="."/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-3</assert>
+      
+      <report test="ends-with(.,' vs.')" role="warning" id="table-title-test-4">[table-title-test-4] title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-4</report>
     </rule>
   </pattern>
   <pattern id="kr-table-heading-tests-pattern">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       
-      <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">[kr-table-header-1] Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-1</report>
+      <report test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">[kr-table-header-1] Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-1</report>
       
-      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">[kr-table-header-2] Key resources table has more than 1 row in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-2</report>
+      <report test="count(tr) gt 1" role="warning" id="kr-table-header-2">[kr-table-header-2] Key resources table has more than 1 row in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-2</report>
       
-      <report test="count(tr) lt 1" role="warning" id="kr-table-header-3">[kr-table-header-3] Key resources table has no rows in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-3</report>
+      <report test="count(tr) lt 1" role="warning" id="kr-table-header-3">[kr-table-header-3] Key resources table has no rows in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-3</report>
       
-      <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">[kr-table-header-4] The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-4</report>
+      <report test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" role="warning" id="kr-table-header-4">[kr-table-header-4] The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-4</report>
       
-      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">[kr-table-header-5] The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-5</report>
+      <report test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">[kr-table-header-5] The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-5</report>
       
-      <report test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">[kr-table-header-6] The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-6</report>
+      <report test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">[kr-table-header-6] The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-6</report>
       
-      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">[kr-table-header-7] The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-7</report>
+      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">[kr-table-header-7] The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-7</report>
       
-      <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" role="warning" id="kr-table-header-8">[kr-table-header-8] The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-8</report>
+      <report test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" role="warning" id="kr-table-header-8">[kr-table-header-8] The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-8</report>
       
     </rule>
   </pattern>
   <pattern id="kr-table-body-tests-pattern">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" id="kr-table-body-tests">
       
-      <assert test="local-name()='td'" role="error" id="kr-table-body-1">[kr-table-body-1] Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-body-1</assert>
+      <assert test="local-name()='td'" role="error" id="kr-table-body-1">[kr-table-body-1] Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-body-1</assert>
       
     </rule>
   </pattern>
@@ -2271,7 +2289,7 @@
   <pattern id="body-table-label-tests-pattern">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
-      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">[body-table-label-test-1] <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#body-table-label-test-1</assert>
+      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">[body-table-label-test-1] <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#body-table-label-test-1</assert>
       
     </rule>
   </pattern>
@@ -2279,72 +2297,72 @@
     <rule context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title[1]"/>
       
-      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$|^Appendix \d{1,4}—key resources table$')" role="error" id="app-table-label-test-1">[app-table-label-test-1] <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-1</assert>
+      <assert test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$|^Appendix \d{1,4}—key resources table$')" role="error" id="app-table-label-test-1">[app-table-label-test-1] <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-label-test-1</assert>
       
-      <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">[app-table-label-test-2] <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-label-test-2</assert>
+      <assert test="starts-with(.,$app)" role="error" id="app-table-label-test-2">[app-table-label-test-2] <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-label-test-2</assert>
       
     </rule>
   </pattern>
   <pattern id="table-tests-pattern">
     <rule context="table" id="table-tests">
       
-      <report test="count(tbody) = 0" role="error" id="table-test-1">[table-test-1] table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-1</report>
+      <report test="count(tbody) = 0" role="error" id="table-test-1">[table-test-1] table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-1</report>
       
-      <assert test="thead" role="warning" id="table-test-2">[table-test-2] table doesn't have a header (thead). Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-2</assert>
+      <assert test="thead" role="warning" id="table-test-2">[table-test-2] table doesn't have a header (thead). Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-2</assert>
       
-      <report test="thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45" role="warning" id="table-test-3">[table-test-3] <value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-3</report>
+      <report test="thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45" role="warning" id="table-test-3">[table-test-3] <value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-3</report>
     </rule>
   </pattern>
   <pattern id="tbody-tests-pattern">
     <rule context="table/tbody" id="tbody-tests">
       
-      <report test="count(tr) = 0" role="error" id="tbody-test-1">[tbody-test-1] tbody must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tbody-test-1</report>
+      <report test="count(tr) = 0" role="error" id="tbody-test-1">[tbody-test-1] tbody must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tbody-test-1</report>
     </rule>
   </pattern>
   <pattern id="thead-tests-pattern">
     <rule context="table/thead" id="thead-tests">
       
-      <report test="count(tr) = 0" role="error" id="thead-test-1">[thead-test-1] thead must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#thead-test-1</report>
+      <report test="count(tr) = 0" role="error" id="thead-test-1">[thead-test-1] thead must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#thead-test-1</report>
     </rule>
   </pattern>
   <pattern id="tr-tests-pattern">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       
-      <report test="$count = 0" role="error" id="tr-test-1">[tr-test-1] row (tr) must contain at least one heading cell (th) or data cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-1</report>
+      <report test="$count = 0" role="error" id="tr-test-1">[tr-test-1] row (tr) must contain at least one heading cell (th) or data cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-1</report>
       
-      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">[tr-test-2] table row in body contains a th element (a header). Please check that this is correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-2</report>
+      <report test="th and (parent::tbody)" role="warning" id="tr-test-2">[tr-test-2] table row in body contains a th element (a header). Please check that this is correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-2</report>
       
-      <report test="td and (parent::thead)" role="error" id="tr-test-3">[tr-test-3] table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#tr-test-3</report>
+      <report test="td and (parent::thead)" role="error" id="tr-test-3">[tr-test-3] table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-3</report>
     </rule>
   </pattern>
   <pattern id="td-child-tests-pattern">
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/> 
       
-      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">[td-child-test] td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#td-child-test</assert>
+      <assert test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">[td-child-test] td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#td-child-test</assert>
     </rule>
   </pattern>
   <pattern id="th-child-tests-pattern">
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/> 
       
-      <assert test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">[th-child-test-1] th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-child-test-1</assert>
+      <assert test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">[th-child-test-1] th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1</assert>
       
-      <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">[th-child-test-2] th contains bold. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-child-test-2</report>
+      <report test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">[th-child-test-2] th contains bold. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-2</report>
     </rule>
   </pattern>
   <pattern id="th-tests-pattern">
     <rule context="th" id="th-tests">
       
-      <report test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">[th-row-test] Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#th-row-test</report>
+      <report test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">[th-row-test] Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-row-test</report>
       
     </rule>
   </pattern>
   <pattern id="table-fn-label-tests-pattern">
     <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests"> 
       
-      <report test="not(matches(.,'^\s?[*†‡§¶]')) and matches(.,'^\s?[\p{Ps}]?[\da-z][\p{Pe}]?\s+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-fn-label-test-1</report>
+      <report test="not(matches(.,'^\s?[*†‡§¶]')) and matches(.,'^\s?[\p{Ps}]?[\da-z][\p{Pe}]?\s+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-label-test-1</report>
     </rule>
   </pattern>
   <pattern id="fn-tests-pattern">
@@ -2490,13 +2508,21 @@
   </pattern>
   <pattern id="bracket-tests-pattern">
     <rule context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
-      <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
-      <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
+      <let name="open-curly" value="string-length(replace(.,'[^\(]',''))"/>
+      <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
+      <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
+      <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
       
-      <report test="$open gt $close" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? Troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) gt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
+      <report test="$open-curly gt $close-curly" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="not(matches(.,'^\s?\d+[\)\]]')) and ($open lt $close)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more closed brackets (<value-of select="$close"/>) than open (<value-of select="$open"/>) brackets. Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) lt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
+      <report test="not(matches(.,'^\s?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
+      </report>
+      
+      <report test="$open-square gt $close-square" role="warning" id="bracket-test-3">[bracket-test-3] <name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
+      </report>
+      
+      <report test="not(matches(.,'^\s?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4">[bracket-test-4] <name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>
@@ -2558,7 +2584,7 @@
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
       <let name="no" value="substring-after(@id,'table')"/>
       
-      <assert test="($no = string($pos))" role="warning" id="pre-body-table-report">[pre-body-table-report] <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-body-table-report</assert>
+      <assert test="($no = string($pos))" role="warning" id="pre-body-table-report">[pre-body-table-report] <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-body-table-report</assert>
       
       
       
@@ -2573,7 +2599,7 @@
       <let name="pos" value="$count - count(following::table-wrap[matches(@id,$id-regex)])"/>
       <let name="no" value="substring-after(@id,concat($app-no,'table'))"/>
       
-      <assert test="($no = string($pos))" role="warning" id="pre-app-table-report">[pre-app-table-report] <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-app-table-report</assert>
+      <assert test="($no = string($pos))" role="warning" id="pre-app-table-report">[pre-app-table-report] <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-app-table-report</assert>
       
       
       
@@ -3071,21 +3097,21 @@
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^keyresource$')" role="error" id="app-table-wrap-id-test-1">[app-table-wrap-id-test-1] table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-1</assert>
+      <assert test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^keyresource$')" role="error" id="app-table-wrap-id-test-1">[app-table-wrap-id-test-1] table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-1</assert>
       
-      <report test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">[app-table-wrap-id-test-2] table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#app-table-wrap-id-test-2</report>
+      <report test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">[app-table-wrap-id-test-2] table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-2</report>
     </rule>
   </pattern>
   <pattern id="resp-table-wrap-ids-pattern">
     <rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
  
-      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">[resp-table-wrap-id-test] table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#resp-table-wrap-id-test</assert>
+      <assert test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" id="resp-table-wrap-id-test">[resp-table-wrap-id-test] table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#resp-table-wrap-id-test</assert>
     </rule>
   </pattern>
   <pattern id="table-wrap-ids-pattern">
     <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" id="table-wrap-ids">
       
-      <assert test="if (label = 'Key resources table') then @id='keyresource'                     else if (label) then matches(@id, '^table[0-9]{1,3}$')                     else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">[table-wrap-id-test] table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-wrap-id-test</assert>
+      <assert test="if (label = 'Key resources table') then @id='keyresource'                     else if (label) then matches(@id, '^table[0-9]{1,3}$')                     else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">[table-wrap-id-test] table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-id-test</assert>
     </rule>
   </pattern>
   <pattern id="body-top-level-sec-ids-pattern">
@@ -5148,7 +5174,7 @@
     <rule context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
      <let name="doi" value="@xlink:href"/>
      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
-     <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        $x/year,        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+     <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(           string-join(             for $y in $x/person-group[@person-group-type='author']/*             return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)             else $y           ,', '),        '. ',        replace($x/year,'[^\d]',''),        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
      <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">[insight-box-test-1] A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
      
@@ -5319,6 +5345,8 @@
       
       <report test="matches($post-sentence,'^\)[A-Za-z0-9]')" role="warning" id="ref-xref-test-22">[ref-xref-test-22] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-22</report>
       
+      <report test="matches($pre-text,'; \[$')" role="warning" id="ref-xref-test-26">[ref-xref-test-26] citation is prededed by '; [' - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,1))"/>' - Are the square bracket(s) surrounding the citation required? If this citation is already in a bracketed sentence, then it's very likely they can be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-26</report>
+      
       <report test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-27">[ref-xref-test-27] citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-27</report>
       
       <report test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">[ref-xref-test-28] citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-28</report>
@@ -5353,7 +5381,7 @@
   </pattern>
   
   <pattern id="unlinked-object-cite-pattern">
-    <rule context="fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
+    <rule context="fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
       <let name="cite1" value="replace(label[1],'\.','')"/>
       <let name="regex" value="replace($cite1,'—','[—–\\-]')"/>
       <let name="article-text" value="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*                  return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()                  else if ($x/ancestor::sec[@sec-type='additional-information']) then ()                  else if ($x/ancestor::ref-list) then ()                  else if ($x/local-name() = 'xref') then ()                  else $x/text(),'')"/>
@@ -5461,23 +5489,23 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">[table-xref-conformity-1] <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-1</report>
+      <report test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">[table-xref-conformity-1] <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-1</report>
       
-      <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">[table-xref-conformity-2] <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-2</report>
+      <report test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">[table-xref-conformity-2] <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-2</report>
       
-      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">[table-xref-conformity-3] <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-3</report>
+      <report test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">[table-xref-conformity-3] <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-3</report>
       
-      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">[table-xref-conformity-4] <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-conformity-4</report>
+      <report test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">[table-xref-conformity-4] <value-of select="."/> - Citation content does not match what it directs to. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-4</report>
       
-      <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">[table-xref-test-1] <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-1</report>
+      <report test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">[table-xref-test-1] <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-1</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="table-xref-test-2">[table-xref-test-2] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-2</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="table-xref-test-2">[table-xref-test-2] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-2</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">[table-xref-test-3] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-3</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">[table-xref-test-3] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-3</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="table-xref-test-4">[table-xref-test-4] Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-4</report>
+      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="table-xref-test-4">[table-xref-test-4] Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-4</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="table-xref-test-5">[table-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-xref-test-5</report>
+      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="table-xref-test-5">[table-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-5</report>
       
       <report test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" role="warning" id="table-xref-test-6">[table-xref-test-6] Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-xref-test-6</report>
     </rule>
@@ -6544,7 +6572,7 @@
       
       
       
-      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="das-supplemental-conformity">[das-supplemental-conformity] Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity</report>
+      <report test="matches(.,'[Ss]upplemental [Ff]igure')" role="warning" id="das-supplemental-conformity">[das-supplemental-conformity] Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity</report>
       
       <report test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">[das-request-conformity-1] Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-request-conformity-1</report>
       
@@ -6621,7 +6649,7 @@
   <pattern id="KRT-xref-tests-pattern">
     <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       
-      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">[xref-column-test] '<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#xref-column-test</report>
+      <report test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">[xref-column-test] '<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#xref-column-test</report>
       
     </rule>
   </pattern>
@@ -6637,25 +6665,25 @@
   <pattern id="KRT-td-checks-pattern">
     <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       
-      <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">[doi-link-test] td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#doi-link-test</report>
+      <report test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">[doi-link-test] td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#doi-link-test</report>
       
-      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" role="error" id="PMID-link-test">[PMID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMID-link-test</report>
+      <report test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" role="error" id="PMID-link-test">[PMID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#PMID-link-test</report>
       
-      <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">[PMCID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#PMCID-link-test</report>
+      <report test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">[PMCID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#PMCID-link-test</report>
       
     </rule>
   </pattern>
   <pattern id="colour-table-pattern">
     <rule context="th|td" id="colour-table">
       
-      <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">[colour-check-table] <name/> element has colour background. Is this correct? It contains <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#colour-check-table</report>
+      <report test="starts-with(@style,'author-callout')" role="warning" id="colour-check-table">[colour-check-table] <name/> element has colour background. Is this correct? It contains <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#colour-check-table</report>
     </rule>
   </pattern>
   <pattern id="colour-table-2-pattern">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
       <let name="allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
       
-      <assert test="@style=$allowed-values" role="warning" id="pre-colour-check-table-2">[pre-colour-check-table-2] <name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-colour-check-table-2</assert>
+      <assert test="@style=$allowed-values" role="warning" id="pre-colour-check-table-2">[pre-colour-check-table-2] <name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-colour-check-table-2</assert>
       
       
     </rule>
@@ -6810,7 +6838,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
-      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="error" id="pre-pmid-spacing-table">[pre-pmid-spacing-table] PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#pre-pmid-spacing-table</report>
+      <report test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="error" id="pre-pmid-spacing-table">[pre-pmid-spacing-table] PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-pmid-spacing-table</report>
       
       
     </rule>

@@ -791,10 +791,12 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
-      <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
-      <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
-      <report test="$open gt $close" role="warning" id="bracket-test-1">
-        <name/> element contains more open brackets (<value-of select="$open"/>) than closed (<value-of select="$close"/>) brackets. Is that correct? Troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) gt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
+      <let name="open-curly" value="string-length(replace(.,'[^\(]',''))"/>
+      <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
+      <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
+      <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
+      <report test="$open-curly gt $close-curly" role="warning" id="bracket-test-1">
+        <name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>

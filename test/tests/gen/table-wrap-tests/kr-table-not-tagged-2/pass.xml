@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-not-tagged-2.sch"?>
 <!--Context: table-wrap
 Test: report    matches(caption/title[1],'[Kk]ey [Rr]esource')
-Message:  has the title  but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged-2 -->
+Message:  has the title  but it is not tagged as a key resources table. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <table-wrap id="keyresource" position="anchor">

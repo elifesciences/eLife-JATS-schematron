@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="final-table-title-test-1.sch"?>
+<!--Context: table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]
+Test: assert    caption/title
+Message:  does not have a title. Please ensure to query the authors for one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-title-test-1 -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <table-wrap id="table1">
+        <label>Table 1.</label>
+        <caption>
+        </caption>
+      </table-wrap>
+    </body>
+  </article>
+</root>

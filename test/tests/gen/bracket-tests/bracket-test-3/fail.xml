@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="bracket-test-3.sch"?>
+<!--Context: p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]
+Test: report    $open-square gt $close-square
+Message:  element contains more left '[' than right ']' square brackets ( and  respectively). Is that correct? Possibly troublesome section(s) are  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>Test [test</p>
+  </article>
+</root>

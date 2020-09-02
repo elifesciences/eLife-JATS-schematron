@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-header-1.sch"?>
 <!--Context: table-wrap[contains(@id,'keyresource')]/table/thead[1]
 Test: report    count(tr[1]/th) != 5
-Message: Key resources tables should have 5 column headings (th elements) but this one has . Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-1 -->
+Message: Key resources tables should have 5 column headings (th elements) but this one has . Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap id="keyresource" position="anchor">

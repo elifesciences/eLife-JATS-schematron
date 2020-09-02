@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table" id="table-tests">
-      <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#table-test-1</report>
+      <report test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one body (tbody). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
