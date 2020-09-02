@@ -4116,6 +4116,60 @@
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="table-title-tests">
+      <x:scenario label="pre-table-title-test-1-pass">
+        <x:context href="../tests/gen/table-title-tests/pre-table-title-test-1/pass.xml"/>
+        <x:expect-not-assert id="pre-table-title-test-1" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-table-title-test-1-fail">
+        <x:context href="../tests/gen/table-title-tests/pre-table-title-test-1/fail.xml"/>
+        <x:expect-assert id="pre-table-title-test-1" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-table-title-test-1-pass">
+        <x:context href="../tests/gen/table-title-tests/final-table-title-test-1/pass.xml"/>
+        <x:expect-not-assert id="final-table-title-test-1" role="error"/>
+        <x:expect-not-assert id="table-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-table-title-test-1-fail">
+        <x:context href="../tests/gen/table-title-tests/final-table-title-test-1/fail.xml"/>
+        <x:expect-assert id="final-table-title-test-1" role="error"/>
+        <x:expect-not-assert id="table-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="table-title-tests-2">
+      <x:scenario label="table-title-test-2-pass">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-2/pass.xml"/>
+        <x:expect-not-report id="table-title-test-2" role="error"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-2-fail">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-2/fail.xml"/>
+        <x:expect-report id="table-title-test-2" role="error"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-3-pass">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-3/pass.xml"/>
+        <x:expect-not-assert id="table-title-test-3" role="error"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-3-fail">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-3/fail.xml"/>
+        <x:expect-assert id="table-title-test-3" role="error"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-4-pass">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-4/pass.xml"/>
+        <x:expect-not-report id="table-title-test-4" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-4-fail">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-4/fail.xml"/>
+        <x:expect-report id="table-title-test-4" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="kr-table-heading-tests">
       <x:scenario label="kr-table-header-1-pass">
         <x:context href="../tests/gen/kr-table-heading-tests/kr-table-header-1/pass.xml"/>
@@ -4753,6 +4807,26 @@
       <x:scenario label="bracket-test-2-fail">
         <x:context href="../tests/gen/bracket-tests/bracket-test-2/fail.xml"/>
         <x:expect-report id="bracket-test-2" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-3-pass">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-3/pass.xml"/>
+        <x:expect-not-report id="bracket-test-3" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-3-fail">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-3/fail.xml"/>
+        <x:expect-report id="bracket-test-3" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-4-pass">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-4/pass.xml"/>
+        <x:expect-not-report id="bracket-test-4" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-4-fail">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-4/fail.xml"/>
+        <x:expect-report id="bracket-test-4" role="warning"/>
         <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -10263,6 +10337,16 @@
       <x:scenario label="ref-xref-test-22-fail">
         <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-22/fail.xml"/>
         <x:expect-report id="ref-xref-test-22" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-26-pass">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-26/pass.xml"/>
+        <x:expect-not-report id="ref-xref-test-26" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-xref-test-26-fail">
+        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-26/fail.xml"/>
+        <x:expect-report id="ref-xref-test-26" role="warning"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ref-xref-test-27-pass">

@@ -791,10 +791,12 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
-      <let name="open" value="string-length(replace(.,'[^\(\[]',''))"/>
-      <let name="close" value="string-length(replace(.,'[^\)\]]',''))"/>
-      <report test="not(matches(.,'^\s?\d+[\)\]]')) and ($open lt $close)" role="warning" id="bracket-test-2">
-        <name/> element contains more closed brackets (<value-of select="$close"/>) than open (<value-of select="$open"/>) brackets. Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(\[]','')) lt string-length(replace($sentence,'[^\)\]]',''))) then $sentence else (),' ---- ')"/>
+      <let name="open-curly" value="string-length(replace(.,'[^\(]',''))"/>
+      <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
+      <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
+      <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
+      <report test="not(matches(.,'^\s?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">
+        <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="das-supplemental-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
-Test: report    matches(.,'[Ss]upplemental [Ffigure]')
+Test: report    matches(.,'[Ss]upplemental [Ff]igure')
 Message: Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

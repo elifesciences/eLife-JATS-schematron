@@ -790,7 +790,7 @@
     
   </xsl:function>
   <pattern id="unlinked-object-cite-pattern">
-    <rule context="fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
+    <rule context="fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
       <let name="cite1" value="replace(label[1],'\.','')"/>
       <let name="regex" value="replace($cite1,'—','[—–\\-]')"/>
       <let name="article-text" value="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*                  return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()                  else if ($x/ancestor::sec[@sec-type='additional-information']) then ()                  else if ($x/ancestor::ref-list) then ()                  else if ($x/local-name() = 'xref') then ()                  else $x/text(),'')"/>
@@ -800,7 +800,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[not(ancestor::sub-article) and label] or descendant::                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']] or descendant::                    media[not(ancestor::sub-article) and label] or descendant::                    supplementary-material[not(ancestor::sub-article) and label]" role="error" id="unlinked-object-cite-xspec-assert">fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[.!='Key resources table']]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label] must be present.</assert>
+      <assert test="descendant::fig[not(ancestor::sub-article) and label] or descendant::                    table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]] or descendant::                    media[not(ancestor::sub-article) and label] or descendant::                    supplementary-material[not(ancestor::sub-article) and label]" role="error" id="unlinked-object-cite-xspec-assert">fig[not(ancestor::sub-article) and label]|                    table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|                    media[not(ancestor::sub-article) and label]|                    supplementary-material[not(ancestor::sub-article) and label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

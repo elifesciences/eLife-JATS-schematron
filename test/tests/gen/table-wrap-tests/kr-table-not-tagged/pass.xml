@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-not-tagged.sch"?>
 <!--Context: table-wrap
 Test: report    not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')
-Message:  has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-not-tagged -->
+Message:  has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <table-wrap id="keyresource" position="anchor">

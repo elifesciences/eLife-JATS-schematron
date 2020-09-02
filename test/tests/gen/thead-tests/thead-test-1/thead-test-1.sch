@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table/thead" id="thead-tests">
-      <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#thead-test-1</report>
+      <report test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#thead-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

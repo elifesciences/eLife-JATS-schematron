@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="table-title-test-3.sch"?>
+<!--Context: table-wrap/caption/title
+Test: assert    ends-with(.,'.') or ends-with(.,'?')
+Message: The title for  does not end with a full stop which is incorrect - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-3 -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap>
+      <caption>
+        <title>Title</title>
+      </caption>
+    </table-wrap>
+  </article>
+</root>

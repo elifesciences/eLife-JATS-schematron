@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-header-3.sch"?>
 <!--Context: table-wrap[contains(@id,'keyresource')]/table/thead[1]
 Test: report    count(tr) lt 1
-Message: Key resources table has no rows in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/tables#kr-table-header-3 -->
+Message: Key resources table has no rows in its header, which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap id="keyresource" position="anchor">
