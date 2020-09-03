@@ -792,7 +792,7 @@
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-2</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

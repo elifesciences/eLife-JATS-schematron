@@ -2531,11 +2531,11 @@
       
       <assert test="count(child::fig[not(@specific-use='child-fig')]) = 1" 
         role="error"
-        id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
+        id="fig-group-test-1">fig-group must have one and only one main figure. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-test-1</assert>
       
       <report test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" 
         role="error"
-        id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
+        id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-test-2</report>
       
     </rule>
     
@@ -2544,11 +2544,11 @@
       
       <assert test="local-name() = ('fig','media')" 
         role="error"
-        id="fig-group-child-test-1"><name/> is not allowed as a child of fig-group.</assert>
+        id="fig-group-child-test-1"><name/> is not allowed as a child of fig-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-1</assert>
       
       <report test="(local-name() = 'media') and not(@mimetype='video')" 
         role="error"
-        id="fig-group-child-test-2"><name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
+        id="fig-group-child-test-2"><name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-2</report>
       
     </rule>
     
@@ -2558,49 +2558,49 @@
       
       <assert test="@position" 
         role="error"
-        id="fig-test-2">fig must have a @position.</assert>
+        id="fig-test-2">fig must have a @position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-2</assert>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(label)" 
         role="error"
-        id="fig-test-3">fig must have a label.</report>
+        id="fig-test-3">fig must have a label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3</report>
       
       <report test="($article-type = $features-article-types) and not(label)" 
         role="warning"
-        id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
+        id="feat-fig-test-3">fig doesn't have a label. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-test-3</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else not(caption)" 
         role="warning"
-        id="pre-fig-test-4"><value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
+        id="pre-fig-test-4"><value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-4</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else not(caption)" 
         role="error"
-        id="final-fig-test-4"><value-of select="label"/> has no title or caption (caption element).</report>
+        id="final-fig-test-4"><value-of select="label"/> has no title or caption (caption element). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else not(caption/title)" 
         role="warning"
-        id="pre-fig-test-5"><value-of select="label"/> does not have a title.</report>
+        id="pre-fig-test-5"><value-of select="label"/> does not have a title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-5</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else not(caption/title)" 
         role="error"
-        id="final-fig-test-5">fig caption must have a title.</report>
+        id="final-fig-test-5">fig caption must have a title. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
         role="warning"
-        id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct?</report>
+        id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6</report>
       
       <assert test="graphic"
         role="warning"
-        id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file.</assert>
+        id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-7</assert>
       
       <assert test="graphic"
         role="error"
-        id="final-fig-test-7">fig must have a graphic.</assert>
+        id="final-fig-test-7">fig must have a graphic. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-7</assert>
     </rule>
     
     <rule context="fig[ancestor::sub-article[@article-type='reply']]" 
@@ -2613,23 +2613,23 @@
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else not(label)" 
         role="error"
-        id="ar-fig-test-2">Author Response fig must have a label.</report>
+        id="ar-fig-test-2">Author Response fig must have a label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-test-2</report>
       
       <assert test="graphic"
         role="warning"
-        id="pre-ar-fig-test-3">Author Response fig does not have graphic. Ensure author query is added asking for file.</assert>
+        id="pre-ar-fig-test-3">Author Response fig does not have graphic. Ensure author query is added asking for file. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-test-3</assert>
       
       <assert test="graphic"
         role="error"
-        id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
+        id="final-ar-fig-test-3">Author Response fig must have a graphic. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-ar-fig-test-3</assert>
       
       <assert test="$no = string($pos)" 
         role="warning"
-        id="pre-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
+        id="pre-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-position-test</assert>
       
       <assert test="$no = string($pos)" 
         role="error"
-        id="final-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
+        id="final-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-ar-fig-position-test</assert>
     </rule>
     
     <rule context="graphic|inline-graphic" 
@@ -3437,7 +3437,7 @@
       
       <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']"
         role="error"
-        id="label-fig-group-conformance-1"><value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+        id="label-fig-group-conformance-1"><value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#label-fig-group-conformance-1</report>
       
       <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')"
         role="error"
@@ -3647,50 +3647,50 @@
       
       <report test="label[contains(lower-case(.),'supplement')]" 
         role="error"
-        id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
+        id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-1</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
                     else if ($count = 0) then ()
                     else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
                     else $no != string($pos)" 
         role="warning"
-        id="pre-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
+        id="pre-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-2</report>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
         else $no != string($pos)" 
         role="error"
-        id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
+        id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-2</report>
       
       <report test="not($article-type = ('correction','retraction')) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
         role="warning"
-        id="fig-specific-test-3"><value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct?</report>
+        id="fig-specific-test-3"><value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-3</report>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning"
-        id="pre-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
+        id="pre-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-4</report>
       
       <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning"
-        id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
+        id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-4</report>
       
       <report test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
         else ()" 
         role="warning"
-        id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
+        id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-specific-test-4</report>
       
       <report test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" 
         role="warning"
-        id="fig-specific-test-6"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
+        id="fig-specific-test-6"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-6</report>
       
       <report test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" 
         role="warning"
-        id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
+        id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-5</report>
       
       <!--<report test="not($article-type = ('correction','retraction')) and not(ancestor::article//xref[not(ancestor::caption) and not(ancestor::table-wrap) and (@rid = $id)]) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id]" 
         role="warning"
@@ -3703,7 +3703,7 @@
       
       <assert test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" 
         role="error"
-        id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
+        id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-label-test-1</assert>
     </rule>
     
     <rule context="article/body//fig[@specific-use='child-fig']" 
@@ -3718,29 +3718,29 @@
       
       <assert test="parent::fig-group" 
         role="error"
-        id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
+        id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-1</assert>
       
       <assert test="$label-conform = true()" 
         role="error"
-        id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure 0—figure supplement 0.' (where 0 is one or more digits).</assert>
+        id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure 0—figure supplement 0.' (where 0 is one or more digits). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-2</assert>
       
       <assert test="starts-with(label[1],concat('Figure ',$parent-fig-no))" 
         role="error"
-        id="fig-sup-test-3"><value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
+        id="fig-sup-test-3"><value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-3</assert>
       
       <report test="if ($article-type = ('correction','retraction')) then () 
                     else $no != string($pos)"
         role="error"
-        id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
+        id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-4</report>
       
       <report test="if ($article-type = ('correction', 'retraction')) then () 
         else (($label-conform = true()) and ($label-no != string($pos)))"
         role="error"
-        id="fig-sup-test-5"><value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
+        id="fig-sup-test-5"><value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-5</report>
       
       <report test="($label-conform = true()) and ($no != $label-no)"
         role="error"
-        id="fig-sup-test-6"><value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect.</report>
+        id="fig-sup-test-6"><value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-6</report>
       
     </rule>
     
@@ -3749,11 +3749,11 @@
       
       <assert test="label" 
         role="error"
-        id="resp-fig-test-2">fig must have a label.</assert>
+        id="resp-fig-test-2">fig must have a label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-test-2</assert>
       
       <assert test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')"
         role="error"
-        id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
+        id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#reply-fig-test-2</assert>
       
     </rule>
     
@@ -3762,11 +3762,11 @@
       
       <assert test="label" 
         role="error"
-        id="dec-fig-test-1">fig must have a label.</assert>
+        id="dec-fig-test-1">fig must have a label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-1</assert>
       
       <assert test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')"
         role="error"
-        id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
+        id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-2</assert>
       
     </rule>
     
@@ -3775,7 +3775,7 @@
       
       <assert test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" 
         role="error"
-        id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+        id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-test-1</assert>
     </rule>
     
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" 
@@ -3783,11 +3783,11 @@
       
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" 
         role="error"
-        id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>
+        id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-test-1</assert>
       
       <report test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" 
         role="error"
-        id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
+        id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-test-2</report>
     </rule>
     
     <rule context="article//app//fig[@specific-use='child-fig']/label" 
@@ -3795,11 +3795,11 @@
       
       <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" 
         role="error"
-        id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
+        id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-1</assert>
       
       <assert test="starts-with(.,ancestor::app/title)" 
         role="error"
-        id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
+        id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-2</assert>
     </rule>
     
     <rule context="permissions[not(parent::article-meta)]" 
@@ -3875,11 +3875,11 @@
       
       <assert test="count($text-tokens) = 0"
         role="warning"
-        id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
+        id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-1</assert>
       
       <report test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)"
         role="warning"
-        id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib> element instead - <value-of select="."/></report>
+        id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib> element instead - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-2</report>
     </rule>
     
     <rule context="fig/caption/p/bold" 
@@ -3981,27 +3981,27 @@
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning"
-        id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
+        id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1</report>
       
       <assert test="matches(replace(.,'&quot;',''),'\.$|\?$')" 
         role="error"
-        id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+        id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-2</assert>
       
       <report test="matches(.,' vs\.$')" 
         role="warning"
-        id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+        id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-3</report>
       
       <report test="matches(.,'^\s')" 
         role="error"
-        id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+        id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-4</report>
       
       <report test="matches(.,'^\p{P}')" 
         role="warning"
-        id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/></report>
+        id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/> More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-5</report>
       
       <report test="matches(.,'^[Pp]anel ')" 
         role="warning"
-        id="fig-title-test-6">title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
+        id="fig-title-test-6">title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-6</report>
     </rule>
     
     <rule context="supplementary-material/caption/title" 
@@ -4178,11 +4178,11 @@
       <!-- Needs updating once scheme/checmical structure ids have been updated -->
       <assert test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" 
         role="error"
-        id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
+        id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-1</assert>
       
       <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" 
         role="error"
-        id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>
+        id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-2</report>
       
       <!--<report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^chem[0-9]{1,3}$'))" 
         role="warning"
@@ -4198,7 +4198,7 @@
       
       <assert test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error"
-        id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+        id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-id-test</assert>
     </rule>
     
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" 
@@ -4207,11 +4207,11 @@
       
       <assert test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" 
         role="error"
-        id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
+        id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-1</assert>
       
       <assert test="contains(@id,$box-id)" 
         role="error"
-        id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
+        id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-2</assert>
     </rule>
     
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" 
@@ -4219,7 +4219,7 @@
       
       <report test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" 
         role="error"
-        id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
+        id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-id-test-1</report>
       
       <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" 
         role="warning"
@@ -4235,7 +4235,7 @@
       
       <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error"
-        id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+        id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-id-test</assert>
     </rule>
     
     <rule context="sub-article//fig[not(@specific-use='child-fig')]" 
@@ -4243,7 +4243,7 @@
       
       <assert test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" 
         role="error"
-        id="resp-fig-id-test">fig in decision letter/author response must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
+        id="resp-fig-id-test">fig in decision letter/author response must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-id-test</assert>
     </rule>
     
     <rule context="sub-article//fig[@specific-use='child-fig']" 
@@ -4251,7 +4251,7 @@
       
       <assert test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error"
-        id="resp-fig-sup-id-test">figure supplement in decision letter/author response must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
+        id="resp-fig-sup-id-test">figure supplement in decision letter/author response must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-sup-id-test</assert>
       
     </rule>
     
@@ -10074,7 +10074,7 @@
       
       <report test="lower-case(normalize-space(.))=('title','title.')"
         role="warning"
-        id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
+        id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-title-test-1</report>
       
     </rule>
     

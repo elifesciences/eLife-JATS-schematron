@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-group-child-test-1.sch"?>
 <!--Context: fig-group/*
 Test: assert    local-name() = ('fig','media')
-Message:  is not allowed as a child of fig-group. -->
+Message:  is not allowed as a child of fig-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <fig-group>

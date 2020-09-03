@@ -794,7 +794,7 @@
       <let name="label" value="replace(.,'\.$','')"/>
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <report test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']" role="error" id="label-fig-group-conformance-1">
-        <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
+        <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#label-fig-group-conformance-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
-      <assert test="label" role="error" id="dec-fig-test-1">fig must have a label.</assert>
+      <assert test="label" role="error" id="dec-fig-test-1">fig must have a label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
