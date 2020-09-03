@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4" test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" role="error" id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

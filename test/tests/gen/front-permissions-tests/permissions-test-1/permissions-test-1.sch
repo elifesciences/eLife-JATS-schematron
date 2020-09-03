@@ -793,7 +793,7 @@
     <rule context="front//permissions" id="front-permissions-tests">
       <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
+      <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

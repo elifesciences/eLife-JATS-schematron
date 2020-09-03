@@ -791,8 +791,8 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="ack//p" id="ack-content-tests">
-      <let name="hit" value="string-join(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
-      <let name="hit-count" value="count(for $x in tokenize(.,' ') return          if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
+      <let name="hit" value="string-join(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
+      <let name="hit-count" value="count(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
       </report>
     </rule>

@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')" role="warning" id="data-osf-test-4">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')" role="warning" id="data-osf-test-4">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

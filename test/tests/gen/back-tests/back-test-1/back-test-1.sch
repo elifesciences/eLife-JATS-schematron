@@ -794,7 +794,7 @@
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()                     else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
+      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()         else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

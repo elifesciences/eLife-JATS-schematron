@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
-      <assert test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#body-table-label-test-1" test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#body-table-label-test-1</assert>
     </rule>
   </pattern>

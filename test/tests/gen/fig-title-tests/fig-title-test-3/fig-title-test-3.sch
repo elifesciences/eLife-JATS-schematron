@@ -792,7 +792,7 @@
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <report test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-3" test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

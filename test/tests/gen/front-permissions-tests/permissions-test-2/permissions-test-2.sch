@@ -793,7 +793,7 @@
     <rule context="front//permissions" id="front-permissions-tests">
       <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+      <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
     </rule>
   </pattern>

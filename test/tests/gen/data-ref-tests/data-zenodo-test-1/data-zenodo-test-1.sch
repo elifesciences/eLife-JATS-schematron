@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (source[1]!='Zenodo')" role="warning" id="data-zenodo-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5281/zenodo' but the database name is not 'Zenodo' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-1</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-1" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (source[1]!='Zenodo')" role="warning" id="data-zenodo-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5281/zenodo' but the database name is not 'Zenodo' - <value-of select="source[1]"/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

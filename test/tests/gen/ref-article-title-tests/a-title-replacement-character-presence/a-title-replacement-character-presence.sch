@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
-      <report test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#a-title-replacement-character-presence" test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/> More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#a-title-replacement-character-presence</report>
     </rule>
   </pattern>

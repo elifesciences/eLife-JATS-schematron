@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
-      <report test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-handbook-presence</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-handbook-presence" test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-handbook-presence</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

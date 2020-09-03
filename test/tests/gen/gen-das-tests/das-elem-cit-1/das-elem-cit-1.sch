@@ -792,7 +792,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
-      <assert test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1" test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

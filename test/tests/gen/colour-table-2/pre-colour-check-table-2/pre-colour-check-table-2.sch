@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
       <let name="allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
-      <assert test="@style=$allowed-values" role="warning" id="pre-colour-check-table-2">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-colour-check-table-2" test="@style=$allowed-values" role="warning" id="pre-colour-check-table-2">
         <name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-colour-check-table-2</assert>
     </rule>
   </pattern>

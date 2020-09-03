@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests">
-      <assert test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-1" test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

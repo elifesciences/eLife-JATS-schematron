@@ -793,7 +793,7 @@
     <rule context="element-citation[@publication-type='periodical']/string-date/year" id="elem-citation-periodical-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
-      <assert test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or       (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',       'abcdefghijklmnopqrstuvwxy')))        and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])       " role="error" id="err-elem-cit-periodical-7-7">[err-elem-cit-periodical-7-7]
+      <assert test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',         'abcdefghijklmnopqrstuvwxy')))         and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])" role="error" id="err-elem-cit-periodical-7-7">[err-elem-cit-periodical-7-7]
         If the &lt;year&gt; element contains any letter other than 'a' after the digits, there must be another 
         reference with the same first author surname with the preceding letter after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>

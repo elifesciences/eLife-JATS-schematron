@@ -794,7 +794,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', 'correction', 'retraction', 'review-article')"/>
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))                     else ()" role="error" id="final-additional-info-test-3">Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
+      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))         else ()" role="error" id="final-additional-info-test-3">Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

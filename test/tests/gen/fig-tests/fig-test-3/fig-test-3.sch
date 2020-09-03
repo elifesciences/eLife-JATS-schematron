@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" id="fig-test-3">fig must have a label. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

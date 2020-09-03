@@ -802,7 +802,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-19" test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-19</report>
     </rule>
   </pattern>

@@ -792,7 +792,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
-      <report test="$count gt 2" role="error" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3" test="$count gt 2" role="error" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

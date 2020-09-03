@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/>
-      <assert test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1" test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

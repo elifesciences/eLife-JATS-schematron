@@ -793,7 +793,7 @@
     <rule context="fn" id="fn-ids">
       <let name="type" value="@fn-type"/>
       <let name="parent" value="self::*/parent::*/local-name()"/>
-      <report test="if ($parent = 'table-wrap-foot') then ()         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'con') then           if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))           else not(matches(@id,'^con[0-9]{1,3}$'))         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))         else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))         else ()" role="error" id="fn-id-test">fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
+      <report test="if ($parent = 'table-wrap-foot') then ()         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'con') then         if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))         else not(matches(@id,'^con[0-9]{1,3}$'))         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))         else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))         else ()" role="error" id="fn-id-test">fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

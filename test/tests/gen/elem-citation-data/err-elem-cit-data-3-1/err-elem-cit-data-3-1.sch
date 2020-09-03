@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="count(person-group[@person-group-type='author']) le 1 and       count(person-group[@person-group-type='compiler']) le 1 and       count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1]
+      <assert test="count(person-group[@person-group-type='author']) le 1 and         count(person-group[@person-group-type='compiler']) le 1 and         count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1]
         Only one person-group of each type (author, compiler, curator) is allowed. 
         Reference 
         '<value-of select="ancestor::ref/@id"/>' has 

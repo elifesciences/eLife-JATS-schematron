@@ -794,7 +794,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
-      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and        (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,'b'))        and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname       or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]       )))" role="error" id="err-elem-cit-gen-date-1-6">[err-elem-cit-gen-date-1-6]
+      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">[err-elem-cit-gen-date-1-6]
         If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
         the same first author surname (or collab) with a letter "b" after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>

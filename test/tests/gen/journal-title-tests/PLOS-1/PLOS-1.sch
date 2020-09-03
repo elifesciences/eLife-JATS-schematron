@@ -793,7 +793,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-1" test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" role="error" id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'PLOS' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-1</report>
     </rule>
   </pattern>

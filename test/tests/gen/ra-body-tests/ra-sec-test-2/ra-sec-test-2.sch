@@ -794,7 +794,7 @@
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
-      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()                     else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">
+      <report test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else count(sec[@sec-type='intro']) != 1" role="warning" id="ra-sec-test-2">
         <value-of select="$type"/> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
     </rule>
   </pattern>

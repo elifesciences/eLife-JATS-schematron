@@ -793,7 +793,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#G3" test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')" role="error" id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
         <value-of select="."/> - it should be 'G3: Genes, Genomes, Genetics'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#G3</report>
     </rule>
   </pattern>

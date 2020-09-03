@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-bmrb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2" test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" role="warning" id="data-bmrb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

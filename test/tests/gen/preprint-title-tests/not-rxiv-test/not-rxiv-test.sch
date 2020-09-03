@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
-      <assert test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

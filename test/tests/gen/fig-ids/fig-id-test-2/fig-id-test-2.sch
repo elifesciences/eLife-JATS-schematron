@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
-      <report test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-2" test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" role="error" id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

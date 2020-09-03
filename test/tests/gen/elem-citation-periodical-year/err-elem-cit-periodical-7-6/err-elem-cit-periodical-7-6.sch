@@ -793,7 +793,7 @@
     <rule context="element-citation[@publication-type='periodical']/string-date/year" id="elem-citation-periodical-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
-      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and        (some $y in //element-citation/descendant::year        satisfies (normalize-space($y) = concat($YYYY,'b'))        and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])       )" role="error" id="err-elem-cit-periodical-7-6">[err-elem-cit-periodical-7-6]
+      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and ancestor::element-citation/person-group[1]/name[1]/surname[1] = $y/ancestor::element-citation/person-group[1]/name[1]/surname[1])         )" role="error" id="err-elem-cit-periodical-7-6">[err-elem-cit-periodical-7-6]
         If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
         the same first author surname with a letter "b" after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>

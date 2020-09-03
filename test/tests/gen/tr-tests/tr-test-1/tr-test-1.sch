@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/>
-      <report test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-1</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-1" test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

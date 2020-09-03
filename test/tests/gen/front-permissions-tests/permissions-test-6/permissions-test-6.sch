@@ -793,7 +793,7 @@
     <rule context="front//permissions" id="front-permissions-tests">
       <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()       else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
+      <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
