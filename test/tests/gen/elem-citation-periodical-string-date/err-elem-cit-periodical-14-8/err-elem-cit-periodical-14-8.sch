@@ -792,7 +792,7 @@
   <pattern id="element-citation-periodical-tests">
     <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
       <let name="YYYY" value="substring(normalize-space(year[1]), 1, 4)"/>
-      <assert test="(name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=' ' and        name(child::node()[3])='day' and replace(child::node()[4],'\s+',' ')=', ' and name(*[position()=last()])='year') or       (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=', ' and name(*[position()=last()])='year')" role="error" id="err-elem-cit-periodical-14-8">[err-elem-cit-periodical-14-8]
+      <assert test="(name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=' ' and         name(child::node()[3])='day' and replace(child::node()[4],'\s+',' ')=', ' and name(*[position()=last()])='year') or         (name(child::node()[1])='month' and replace(child::node()[2],'\s+',' ')=', ' and name(*[position()=last()])='year')" role="error" id="err-elem-cit-periodical-14-8">[err-elem-cit-periodical-14-8]
         The format of the element content must match &lt;month&gt;, space, &lt;day&gt;, comma, &lt;year&gt;, or &lt;month&gt;, comma, &lt;year&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>
     </rule>

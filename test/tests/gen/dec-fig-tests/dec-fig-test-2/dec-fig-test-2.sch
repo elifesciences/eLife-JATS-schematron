@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
-      <assert test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-2</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-2" test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-2</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

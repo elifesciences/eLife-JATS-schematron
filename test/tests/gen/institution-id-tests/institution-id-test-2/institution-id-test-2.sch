@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="institution-wrap/institution-id" id="institution-id-tests">
-      <assert test="@institution-id-type='FundRef'" role="error" id="institution-id-test-2">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-2" test="@institution-id-type='FundRef'" role="error" id="institution-id-test-2">
         <name/> element must have the attribute institution-id-type="FundRef". More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-2</assert>
     </rule>
   </pattern>

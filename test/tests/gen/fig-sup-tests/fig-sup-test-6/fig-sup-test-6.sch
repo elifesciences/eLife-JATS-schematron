@@ -798,7 +798,7 @@
       <let name="no" value="substring-after(@id,'s')"/>
       <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
       <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
-      <report test="($label-conform = true()) and ($no != $label-no)" role="error" id="fig-sup-test-6">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-6" test="($label-conform = true()) and ($no != $label-no)" role="error" id="fig-sup-test-6">
         <value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-6</report>
     </rule>
   </pattern>

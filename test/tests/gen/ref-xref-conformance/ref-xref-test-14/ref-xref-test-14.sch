@@ -802,7 +802,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-14</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-14" test="matches($pre-sentence,$cite3)" role="warning" id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-14</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

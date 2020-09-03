@@ -793,7 +793,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-replacement-character-presence" test="matches(.,'�')" role="error" id="journal-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-replacement-character-presence</report>
     </rule>
   </pattern>

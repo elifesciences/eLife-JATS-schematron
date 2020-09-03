@@ -793,7 +793,7 @@
     <rule context="front//permissions" id="front-permissions-tests">
       <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <report test="license" role="info" id="permissions-info">This article is licensed under a<value-of select="        if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'         else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'         else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'         else 'n unknown'"/> license. <value-of select="$license-type"/>
+      <report test="license" role="info" id="permissions-info">This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
       </report>
     </rule>
   </pattern>

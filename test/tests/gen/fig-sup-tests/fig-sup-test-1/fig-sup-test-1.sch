@@ -798,7 +798,7 @@
       <let name="no" value="substring-after(@id,'s')"/>
       <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
       <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
-      <assert test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-1</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-1" test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

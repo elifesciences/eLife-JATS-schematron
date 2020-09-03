@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="fig-group/*" id="fig-group-child-tests">
-      <assert test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-1" test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">
         <name/> is not allowed as a child of fig-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-1</assert>
     </rule>
   </pattern>

@@ -794,7 +794,7 @@
       <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <report test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" role="error" id="feature-templates-no-bre">
-        <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="          string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )          "/>. Please remove any senior/reviewing editors.</report>
+        <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="           string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )           "/>. Please remove any senior/reviewing editors.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

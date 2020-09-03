@@ -792,7 +792,7 @@
   <pattern id="title-conformance">
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
       <let name="title" value="e:sec-type2title(parent::sec/@sec-type)"/>
-      <report test="if ($title = 'undefined') then ()          else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
+      <report test="if ($title = 'undefined') then ()         else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

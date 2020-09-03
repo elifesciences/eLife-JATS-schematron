@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" role="warning" id="data-ncbi-test-4">Data reference with the database source '<value-of select="source[1]"/>' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4" test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" role="warning" id="data-ncbi-test-4">Data reference with the database source '<value-of select="source[1]"/>' is not marked with NCBI as its assigning authority, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

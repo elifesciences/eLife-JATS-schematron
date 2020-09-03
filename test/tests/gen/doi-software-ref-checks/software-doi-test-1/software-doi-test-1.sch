@@ -793,7 +793,7 @@
     <rule context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
       <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="host" value="lower-case(source[1])"/>
-      <report test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
+      <report see="https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1" test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
         <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1</report>
     </rule>
   </pattern>

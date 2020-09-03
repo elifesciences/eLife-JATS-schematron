@@ -795,7 +795,7 @@
       <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
       <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
       <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
-      <report test="if (count($aff) &gt; 1) then ()                    else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+      <report test="if (count($aff) &gt; 1) then ()        else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

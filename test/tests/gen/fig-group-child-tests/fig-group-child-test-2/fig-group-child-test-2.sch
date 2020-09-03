@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="fig-group/*" id="fig-group-child-tests">
-      <report test="(local-name() = 'media') and not(@mimetype='video')" role="error" id="fig-group-child-test-2">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-2" test="(local-name() = 'media') and not(@mimetype='video')" role="error" id="fig-group-child-test-2">
         <name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-2</report>
     </rule>
   </pattern>

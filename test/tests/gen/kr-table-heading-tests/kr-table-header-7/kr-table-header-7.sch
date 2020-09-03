@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
-      <report test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-7</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-7" test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" role="warning" id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-7</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

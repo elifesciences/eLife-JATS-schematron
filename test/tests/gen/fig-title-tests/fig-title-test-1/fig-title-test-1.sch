@@ -792,7 +792,7 @@
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1" test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

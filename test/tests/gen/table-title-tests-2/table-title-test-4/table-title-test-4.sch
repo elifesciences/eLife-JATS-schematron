@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
-      <report test="ends-with(.,' vs.')" role="warning" id="table-title-test-4">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-4</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-4" test="ends-with(.,' vs.')" role="warning" id="table-title-test-4">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

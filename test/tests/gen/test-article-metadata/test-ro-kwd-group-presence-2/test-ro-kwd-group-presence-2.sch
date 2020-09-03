@@ -796,7 +796,7 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight','Retraction','Correction')"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
-      <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))        then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
+      <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))       then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
         <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
     </rule>
   </pattern>

@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
-      <assert test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

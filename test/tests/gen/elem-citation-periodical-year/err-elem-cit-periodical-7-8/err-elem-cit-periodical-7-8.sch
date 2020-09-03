@@ -793,7 +793,7 @@
     <rule context="element-citation[@publication-type='periodical']/string-date/year" id="elem-citation-periodical-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
-      <report test=". = preceding::year and        ancestor::element-citation/person-group[1]/name[1]/surname[1] = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname[1]" role="error" id="err-elem-cit-periodical-7-8">[err-elem-cit-periodical-7-8]
+      <report test=". = preceding::year and         ancestor::element-citation/person-group[1]/name[1]/surname[1] = preceding::year/ancestor::element-citation/person-group[1]/name[1]/surname[1]" role="error" id="err-elem-cit-periodical-7-8">[err-elem-cit-periodical-7-8]
         Letter suffixes must be unique for the combination of year and first author surname. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement as it 
         contains the &lt;year&gt; '<value-of select="."/>' more than once for the same first author surname

@@ -796,7 +796,7 @@
       <let name="c-title" value="element-citation/chapter-title[1]"/>
       <let name="source" value="element-citation/source[1]"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
-      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or          (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="warning" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
+      <report test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or         (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="warning" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
