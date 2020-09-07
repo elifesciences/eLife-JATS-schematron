@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-group-child-test-2.sch"?>
 <!--Context: fig-group/*
 Test: report    (local-name() = 'media') and not(@mimetype='video')
-Message:  which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-2 -->
+Message:  which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <fig-group>

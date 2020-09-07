@@ -795,7 +795,7 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
       <let name="verbs" value="('name', 'named', 'can', 'progress', 'progressed', 'explain', 'explained', 'found', 'founded', 'present', 'presented', 'have', 'describe', 'described', 'showed', 'report', 'reported', 'miss', 'missed', 'identify', 'identified', 'better', 'bettered', 'validate', 'validated', 'use', 'used', 'listen', 'listened', 'demonstrate', 'demonstrated', 'argue', 'argued', 'will', 'assess', 'assessed', 'are', 'may', 'observe', 'observed', 'find', 'found', 'previously', 'should', 'rely', 'relied', 'reflect', 'reflected', 'recognise', 'recognised', 'attend', 'attended', 'first', 'define', 'defined', 'here', 'need', 'needed')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5" test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5" test="($count gt 30)" role="warning" id="custom-meta-test-5">Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

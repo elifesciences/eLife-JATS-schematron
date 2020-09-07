@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="xref-column-test.sch"?>
 <!--Context: table-wrap[@id='keyresource']//xref[@ref-type='bibr']
 Test: report    (count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)
-Message: '' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#xref-column-test -->
+Message: '' citation is in a column in the Key Resources Table which usually does not include references. Is it correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>

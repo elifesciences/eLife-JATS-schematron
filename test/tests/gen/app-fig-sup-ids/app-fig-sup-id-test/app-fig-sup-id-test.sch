@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-id-test" test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-id-test</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-id-test" test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

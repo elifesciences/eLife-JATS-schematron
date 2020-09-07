@@ -3,7 +3,7 @@
 Test: assert    count(*) = count(sub | sup | italic)
 Message: [err-elem-cit-software-10-2] An <data-title> element in a reference may contain characters
         and <italic>, <sub>, and <sup>. No other elements are allowed. Reference
-        '' does not meet this requirement.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2 -->
+        '' does not meet this requirement.  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

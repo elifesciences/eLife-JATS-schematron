@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-6" test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-6</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-6" test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" role="warning" id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -796,7 +796,7 @@
         &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
         author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
         &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/>
-        &lt;person-group&gt; elements.   More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1</assert>
+        &lt;person-group&gt; elements.  </assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
