@@ -798,7 +798,7 @@
       <let name="pos" value="$count - count(following::table-wrap[matches(@id,$id-regex)])"/>
       <let name="no" value="substring-after(@id,concat($app-no,'table'))"/>
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-app-table-report" test="($no = string($pos))" role="warning" id="pre-app-table-report">
-        <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-app-table-report</assert>
+        <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

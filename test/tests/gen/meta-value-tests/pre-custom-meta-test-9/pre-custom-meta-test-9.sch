@@ -795,7 +795,7 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
       <let name="verbs" value="('name', 'named', 'can', 'progress', 'progressed', 'explain', 'explained', 'found', 'founded', 'present', 'presented', 'have', 'describe', 'described', 'showed', 'report', 'reported', 'miss', 'missed', 'identify', 'identified', 'better', 'bettered', 'validate', 'validated', 'use', 'used', 'listen', 'listened', 'demonstrate', 'demonstrated', 'argue', 'argued', 'will', 'assess', 'assessed', 'are', 'may', 'observe', 'observed', 'find', 'found', 'previously', 'should', 'rely', 'relied', 'reflect', 'reflected', 'recognise', 'recognised', 'attend', 'attended', 'first', 'define', 'defined', 'here', 'need', 'needed')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-9" test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="warning" id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-9</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-9" test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="warning" id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

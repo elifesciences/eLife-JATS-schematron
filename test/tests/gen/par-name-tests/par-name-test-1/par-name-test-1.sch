@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-1" test="contains(.,'.')" role="error" id="par-name-test-1">Author name in funding entry contains a full stop - <value-of select="e:get-name(.)"/>. Please remove the full stop.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-1</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-1" test="contains(.,'.')" role="error" id="par-name-test-1">Author name in funding entry contains a full stop - <value-of select="e:get-name(.)"/>. Please remove the full stop.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

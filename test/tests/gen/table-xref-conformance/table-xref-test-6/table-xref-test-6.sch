@@ -796,7 +796,7 @@
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-xref-test-6" test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" role="warning" id="table-xref-test-6">Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-xref-test-6</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-xref-test-6" test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" role="warning" id="table-xref-test-6">Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

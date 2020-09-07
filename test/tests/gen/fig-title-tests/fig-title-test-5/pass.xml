@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-title-test-5.sch"?>
 <!--Context: fig/caption/title
 Test: report    matches(.,'^\p{P}')
-Message: title for  begins with punctuation. Is this correct? -  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-5 -->
+Message: title for  begins with punctuation. Is this correct? -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article article-type="research-article">
         <fig id="fig1">

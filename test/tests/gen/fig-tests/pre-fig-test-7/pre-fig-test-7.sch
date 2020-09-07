@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-7" test="graphic" role="warning" id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-7</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-7" test="graphic" role="warning" id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

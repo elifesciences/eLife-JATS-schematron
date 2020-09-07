@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="colour-check-table.sch"?>
 <!--Context: th|td
 Test: report    starts-with(@style,'author-callout')
-Message:  element has colour background. Is this correct? It contains . More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#colour-check-table -->
+Message:  element has colour background. Is this correct? It contains . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <td>test</td>

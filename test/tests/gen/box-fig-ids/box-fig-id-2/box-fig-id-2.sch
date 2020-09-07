@@ -792,7 +792,7 @@
   <pattern id="id-conformance">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-2" test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-2</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-2" test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

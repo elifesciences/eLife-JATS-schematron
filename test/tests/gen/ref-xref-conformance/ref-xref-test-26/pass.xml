@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-26.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($pre-text,'; \[$')
-Message: citation is preceded by '; [' - '' - Are the square bracket(s) surrounding the citation required? If this citation is already in a bracketed sentence, then it's very likely they can be removed. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-26 -->
+Message: citation is preceded by '; [' - '' - Are the square bracket(s) surrounding the citation required? If this citation is already in a bracketed sentence, then it's very likely they can be removed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>(here is some text; <xref ref-type="bibr" rid="bib1">Smith et al., 2020</xref>)</p>

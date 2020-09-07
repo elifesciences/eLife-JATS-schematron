@@ -5,7 +5,7 @@ Message: [err-elem-cit-software-16] The only tags that are
         allowed as children of <element-citation> with the publication-type="software" are:
         <person-group>, <year>, <data-title>, <source>, <version>, <publisher-name>,
         <publisher-loc>, and <ext-link> Reference ''
-        has other elements.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16 -->
+        has other elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

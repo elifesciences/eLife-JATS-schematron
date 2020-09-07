@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" id="table-wrap-ids">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-id-test" test="if (label = 'Key resources table') then @id='keyresource'         else if (label) then matches(@id, '^table[0-9]{1,3}$')         else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-id-test</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-id-test" test="if (label = 'Key resources table') then @id='keyresource'         else if (label) then matches(@id, '^table[0-9]{1,3}$')         else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

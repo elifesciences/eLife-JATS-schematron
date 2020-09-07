@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-19.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches(.,'^et al|^ and|^\(\d|^,')
-Message:  - citation doesn't start with an author's name which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-19 -->
+Message:  - citation doesn't start with an author's name which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
