@@ -789,15 +789,11 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation[@publication-type='web']" id="website-tests">
-      <let name="link" value="lower-case(ext-link[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test" test="contains($link,'github') and not(contains($link,'github.io'))" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
-    </rule>
-  </pattern>
-  <pattern id="root-pattern">
-    <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="website-tests-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
+  <pattern id="empty-attribute-pattern">
+    <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
+      <report test="." role="error" id="empty-attribute-conformance">
+        <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
+        <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
     </rule>
   </pattern>
 </schema>

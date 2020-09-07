@@ -6593,7 +6593,7 @@
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test" test="contains($link,'github')" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test" test="contains($link,'github') and not(contains($link,'github.io'))" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
       
       <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
@@ -7702,6 +7702,16 @@
       
       <assert test="name()=$allowed-elements" role="error" id="element-conformity">
         <value-of select="name()"/> element is not allowed.</assert>
+      
+    </rule>
+  </pattern>
+  
+  <pattern id="empty-attribute-test-pattern">
+    <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
+      
+      <report test="." role="error" id="empty-attribute-conformance">
+        <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
+        <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
       
     </rule>
   </pattern>

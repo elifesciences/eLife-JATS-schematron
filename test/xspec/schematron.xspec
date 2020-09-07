@@ -17452,5 +17452,17 @@
         <x:expect-not-assert id="element-allowlist-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="empty-attribute-test">
+      <x:scenario label="empty-attribute-conformance-pass">
+        <x:context href="../tests/gen/empty-attribute-test/empty-attribute-conformance/pass.xml"/>
+        <x:expect-not-report id="empty-attribute-conformance" role="error"/>
+        <x:expect-not-assert id="empty-attribute-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="empty-attribute-conformance-fail">
+        <x:context href="../tests/gen/empty-attribute-test/empty-attribute-conformance/fail.xml"/>
+        <x:expect-report id="empty-attribute-conformance" role="error"/>
+        <x:expect-not-assert id="empty-attribute-test-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>

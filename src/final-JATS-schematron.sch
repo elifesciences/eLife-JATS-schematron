@@ -6269,7 +6269,7 @@
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test" test="contains($link,'github')" role="warning" id="github-web-test">[github-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test" test="contains($link,'github') and not(contains($link,'github.io'))" role="warning" id="github-web-test">[github-web-test] web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
       
       <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">[webreplacement-character-presence] web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
@@ -7232,6 +7232,15 @@
       <let name="allowed-elements" value="('abstract', 'ack', 'addr-line', 'aff', 'ali:free_to_read', 'ali:license_ref', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'sc', 'sec', 'self-uri', 'source', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'version', 'volume', 'xref', 'year')"/>
       
       <assert test="name()=$allowed-elements" role="error" id="element-conformity">[element-conformity] <value-of select="name()"/> element is not allowed.</assert>
+      
+    </rule>
+  </pattern>
+  
+  <pattern id="empty-attribute-test-pattern">
+    <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
+      
+      <report test="." role="error" id="empty-attribute-conformance">[empty-attribute-conformance] <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
+        <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
       
     </rule>
   </pattern>
