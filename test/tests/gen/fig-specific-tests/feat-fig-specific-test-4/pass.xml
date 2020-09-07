@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feat-fig-specific-test-4.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
 Test: report    if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else ()
-Message: There is no citation to  Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-specific-test-4 -->
+Message: There is no citation to  Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <body>

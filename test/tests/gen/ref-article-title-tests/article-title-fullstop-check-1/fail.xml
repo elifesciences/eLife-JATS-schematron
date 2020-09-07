@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="article-title-fullstop-check-1.sch"?>
 <!--Context: element-citation[@publication-type='journal']/article-title
 Test: report    (matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))
-Message: ref '' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-1 -->
+Message: ref '' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">

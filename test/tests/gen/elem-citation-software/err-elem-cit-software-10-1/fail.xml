@@ -3,7 +3,7 @@
 Test: report    count(data-title) > 1
 Message: [err-elem-cit-software-10-1] Each <element-citation> of type 'software' may contain one
         and only one <data-title> element. Reference ''
-        has  <data-title> elements.   More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1 -->
+        has  <data-title> elements.   -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

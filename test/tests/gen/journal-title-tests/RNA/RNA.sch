@@ -794,7 +794,7 @@
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#RNA" test="($uc = 'RNA') and (. != 'RNA')" role="error" id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
-        <value-of select="."/>. 'RNA' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#RNA</report>
+        <value-of select="."/>. 'RNA' should be upper-case.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

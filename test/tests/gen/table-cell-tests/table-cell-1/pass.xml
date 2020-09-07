@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-cell-1.sch"?>
 <!--Context: table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]
 Test: assert    matches($stripped-text,'[\p{N}\p{L}]')
-Message: Table cell in  contains ''. Are the brackets around the citation(s) unnecessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-cell-1 -->
+Message: Table cell in  contains ''. Are the brackets around the citation(s) unnecessary? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap id="keyresource" position="anchor">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="tr-test-2.sch"?>
 <!--Context: tr
 Test: report    th and (parent::tbody)
-Message: table row in body contains a th element (a header). Please check that this is correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-2 -->
+Message: table row in body contains a th element (a header). Please check that this is correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <tbody>

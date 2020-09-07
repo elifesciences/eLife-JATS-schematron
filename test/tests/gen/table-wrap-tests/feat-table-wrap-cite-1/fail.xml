@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feat-table-wrap-cite-1.sch"?>
 <!--Context: table-wrap
 Test: report    if (contains($id,'inline')) then () else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else ()
-Message: There is no citation to  Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#feat-table-wrap-cite-1 -->
+Message: There is no citation to  Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="article-commentary">
     

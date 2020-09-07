@@ -797,7 +797,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-2" test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
-        <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-2</report>
+        <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

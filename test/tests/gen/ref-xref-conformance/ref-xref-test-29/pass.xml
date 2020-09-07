@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-29.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($post-text,'^\);\s?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))
-Message: citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-29 -->
+Message: citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>The implication of this tiered model is that the ratio of GIGYF2 to ZNF598 effectively sets the persistence threshold at which collisions trigger quality control. This key ratio may vary across cell types as evidenced by the lack of ZNF598 in reticulocytes (<xref ref-type="bibr" rid="bib28">Juszkiewicz et al., 2018</xref>; <xref ref-type="bibr" rid="bib39">Mills et al., 2016</xref>) and its particularly high expression in oocytes (<xref ref-type="bibr" rid="bib17">Grennan, 2006</xref>; <ext-link ext-link-type="uri" xlink:href="http://www.genevisible.com">www.genevisible.com</ext-link>). Reticulocytes may forego quality control in order to translate at maximal levels, while other cell types might show particularly sensitive quality control to minimise aberrant proteins. The regulatory aspect of how cells respond to collisions remains to be explored.</p>
