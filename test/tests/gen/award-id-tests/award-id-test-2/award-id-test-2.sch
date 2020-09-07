@@ -792,7 +792,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2" test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2" test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" role="error" id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

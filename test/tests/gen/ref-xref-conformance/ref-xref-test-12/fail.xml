@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-12.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($post-text,'^[\)]+\s*who|^[\)]+\s*have|^[\)]+\s*found|^[\)]+\s*used|^[\)]+\s*demonstrate|^[\)]+\s*follow[s]?|^[\)]+\s*followed')
-Message: '' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary. -->
+Message: '' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-12 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <p>Test test <xref ref-type="bibr" rid="bib12">DeLong et al., 2010</xref>)have.</p>

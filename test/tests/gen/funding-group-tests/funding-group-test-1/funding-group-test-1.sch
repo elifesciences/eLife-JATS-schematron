@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1" test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1" test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

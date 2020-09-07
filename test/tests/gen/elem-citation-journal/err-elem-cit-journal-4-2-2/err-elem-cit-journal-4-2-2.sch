@@ -794,7 +794,7 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
         elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
+        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" id="table-title-tests">
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-title-test-1" test="caption/title" role="error" id="final-table-title-test-1">
-        <value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one.</assert>
+        <value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-title-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

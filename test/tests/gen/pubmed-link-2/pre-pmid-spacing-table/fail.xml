@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-pmid-spacing-table.sch"?>
 <!--Context: table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)]
 Test: report    ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')
-Message: PMID link should be preceding by 'PMID:' with no space but instead it is preceded by ''. -->
+Message: PMID link should be preceding by 'PMID:' with no space but instead it is preceded by ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-pmid-spacing-table -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap>

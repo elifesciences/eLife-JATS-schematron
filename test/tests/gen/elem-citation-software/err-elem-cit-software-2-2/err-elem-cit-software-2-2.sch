@@ -795,7 +795,7 @@
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type
         'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to
         'author' or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a
-        &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'. </assert>
+        &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

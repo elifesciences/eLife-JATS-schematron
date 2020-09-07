@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-test-3.sch"?>
 <!--Context: table
 Test: report    thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45
-Message:  has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with <th> instead of <td>) so that this header does not appear on the subsequent pages? -->
+Message:  has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with <th> instead of <td>) so that this header does not appear on the subsequent pages? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table/>

@@ -793,7 +793,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1" test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
-        <name/> is not allowed in impact statement.</assert>
+        <name/> is not allowed in impact statement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

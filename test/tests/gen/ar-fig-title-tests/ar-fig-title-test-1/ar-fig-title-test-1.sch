@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-title-test-1" test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-title-test-1" test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-title-test-1</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

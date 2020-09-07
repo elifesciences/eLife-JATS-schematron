@@ -795,7 +795,7 @@
         A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
         at least one character and may not contain child elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
-        child elements.</assert>
+        child elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

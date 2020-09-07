@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]" id="table-cell-tests">
       <let name="stripped-text" value="string-join(for $x in self::*/(text()|*)         return if (($x/local-name()='xref') and $x/@ref-type='bibr') then ()         else $x,'')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-cell-1" test="matches($stripped-text,'[\p{N}\p{L}]')" role="warning" id="table-cell-1">Table cell in <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains '<value-of select="."/>'. Are the brackets around the citation(s) unnecessary?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-cell-1" test="matches($stripped-text,'[\p{N}\p{L}]')" role="warning" id="table-cell-1">Table cell in <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains '<value-of select="."/>'. Are the brackets around the citation(s) unnecessary? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-cell-1</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

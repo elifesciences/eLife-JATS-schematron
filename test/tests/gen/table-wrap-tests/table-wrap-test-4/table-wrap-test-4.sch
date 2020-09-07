@@ -794,7 +794,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-4" test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-4" test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" role="error" id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

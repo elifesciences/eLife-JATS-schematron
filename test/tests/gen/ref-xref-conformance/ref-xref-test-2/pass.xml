@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-2.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')
-Message: There is no space between citation and the preceding text -  - Is this correct? -->
+Message: There is no space between citation and the preceding text -  - Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
       <sec>

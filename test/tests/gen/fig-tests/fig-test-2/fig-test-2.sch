@@ -792,7 +792,7 @@
   <pattern id="content-containers">
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-2" test="@position" role="error" id="fig-test-2">fig must have a @position.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-2" test="@position" role="error" id="fig-test-2">fig must have a @position. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-2</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

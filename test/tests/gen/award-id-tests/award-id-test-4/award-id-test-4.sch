@@ -792,7 +792,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4" test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4" test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

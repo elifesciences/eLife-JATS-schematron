@@ -4,7 +4,7 @@ Test: assert    person-group[@person-group-type = ('author', 'curator')]
 Message: [err-elem-cit-software-2-2] Each <element-citation> of type
         'software' must contain one <person-group> with the attribute person-group-type set to
         'author' or 'curator'. Reference '' has a
-        <person-group> type of ''.  -->
+        <person-group> type of ''.  More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

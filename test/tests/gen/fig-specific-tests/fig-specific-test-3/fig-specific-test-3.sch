@@ -803,7 +803,7 @@
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
       <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-3" test="not($article-type = ('correction','retraction')) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" role="warning" id="fig-specific-test-3">
-        <value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct?</report>
+        <value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-3</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

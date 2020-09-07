@@ -2,7 +2,7 @@
 <!--Context: element-citation[@publication-type='journal']/source
 Test: report    ($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')
 Message: ref '' contains
-        . 'PLOS' should be upper-case. -->
+        . 'PLOS' should be upper-case. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">

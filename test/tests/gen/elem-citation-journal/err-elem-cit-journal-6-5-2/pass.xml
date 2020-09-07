@@ -4,7 +4,7 @@ Test: report    lpage and (number(fpage[1]) >= number(lpage[1]))
 Message: [err-elem-cit-journal-6-5-2]
         <lpage> must be larger than <fpage>, if present. 
         Reference '' has first page <fpage> = '' 
-        but last page <lpage> = ''. -->
+        but last page <lpage> = ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

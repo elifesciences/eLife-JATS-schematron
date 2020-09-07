@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="table-wrap-test-3.sch"?>
 <!--Context: table-wrap
 Test: report    (contains($id,'inline')) and (normalize-space($lab) != '')
-Message: table-wrap has an inline id  but it has a label - , which is not correct. -->
+Message: table-wrap has an inline id  but it has a label - , which is not correct. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-3 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <xref ref-type="table" rid="table1"/>

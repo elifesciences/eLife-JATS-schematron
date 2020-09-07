@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-child-test-1.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta/meta-value/*
 Test: assert    local-name() = $allowed-elements
-Message:  is not allowed in impact statement. -->
+Message:  is not allowed in impact statement. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>

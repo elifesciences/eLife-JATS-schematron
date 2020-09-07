@@ -793,7 +793,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-7" test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="warning" id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-7" test="ancestor::article//article-meta//contrib//xref/@rid = $id" role="warning" id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-7</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

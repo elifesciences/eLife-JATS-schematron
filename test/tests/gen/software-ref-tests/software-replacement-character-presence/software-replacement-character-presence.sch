@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence" test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence" test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

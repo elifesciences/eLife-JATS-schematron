@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="zenodo-check.sch"?>
 <!--Context: element-citation[@publication-type='journal']/source
 Test: report    $uc = 'ZENODO'
-Message: Journal ref '' has a source title '' which must be incorrect. It should be a data or software type reference. -->
+Message: Journal ref '' has a source title '' which must be incorrect. It should be a data or software type reference. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib89">

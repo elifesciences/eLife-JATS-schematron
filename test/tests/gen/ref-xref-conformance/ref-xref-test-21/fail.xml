@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-21.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($pre-sentence,'[A-Za-z0-9]\($')
-Message: citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - ''. -->
+Message: citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - ''. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-21 -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
