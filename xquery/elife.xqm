@@ -57,7 +57,7 @@ return delete node $x,
             else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
     
     return 
-    if ($id=('pre-colour-styled-content-check','final-colour-styled-content-check','final-strike-flag','permissions-notification')) then ()
+    if ($id=('pre-colour-styled-content-check','final-colour-styled-content-check','final-strike-flag','permissions-notification','empty-attribute-conformance')) then ()
     else insert node 
         <pattern id="root-pattern">
         <rule context="root" id="root-rule">
@@ -231,7 +231,7 @@ declare function elife:sch2xspec-sch($sch){
          let $r := 
              <pattern id="root-pattern">
                 <rule context="root" id="root-rule">{
-                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content"))]
+                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test"))]
                 let $test := $z/@context/string()
                 return
                 if (matches($test,'\|')) then (
