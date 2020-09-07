@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-group-test-1.sch"?>
 <!--Context: fig-group
 Test: assert    count(child::fig[not(@specific-use='child-fig')]) = 1
-Message: fig-group must have one and only one main figure. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-test-1 -->
+Message: fig-group must have one and only one main figure. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <fig-group>

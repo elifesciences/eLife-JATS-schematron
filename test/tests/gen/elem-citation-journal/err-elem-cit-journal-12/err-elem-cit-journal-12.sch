@@ -795,7 +795,7 @@
         The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are:
         &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, 
         &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-12</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

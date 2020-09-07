@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="feat-fig-test-3.sch"?>
 <!--Context: fig[not(ancestor::sub-article)]
 Test: report    ($article-type = $features-article-types) and not(label)
-Message: fig doesn't have a label. Is this correct? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-test-3 -->
+Message: fig doesn't have a label. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article article-type="discussion">
         <fig/>

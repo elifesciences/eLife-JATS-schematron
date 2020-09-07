@@ -792,7 +792,7 @@
   <pattern id="house-style">
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(lower-case(.))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info" test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info" test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

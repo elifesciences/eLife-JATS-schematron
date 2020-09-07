@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="tbody-test-1.sch"?>
 <!--Context: table/tbody
 Test: report    count(tr) = 0
-Message: tbody must have at least one row (tr). More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tbody-test-1 -->
+Message: tbody must have at least one row (tr). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <table>

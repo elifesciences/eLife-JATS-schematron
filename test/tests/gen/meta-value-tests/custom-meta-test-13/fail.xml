@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-test-13.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    matches(.,' study ') and not(matches(.,'[Tt]his study'))
-Message: Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-13 -->
+Message: Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

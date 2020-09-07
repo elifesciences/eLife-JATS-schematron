@@ -797,7 +797,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;,
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and 
-        <value-of select="count(comment)"/> &lt;comment&gt; elements. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-7</report>
+        <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

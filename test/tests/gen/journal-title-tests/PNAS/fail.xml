@@ -2,7 +2,7 @@
 <!--Context: element-citation[@publication-type='journal']/source
 Test: report    if (starts-with($doi,'10.1073')) then . != 'PNAS' else()
 Message: ref '' has the doi for 'PNAS' but the journal name is
-        , which is incorrect. More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PNAS -->
+        , which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal">
