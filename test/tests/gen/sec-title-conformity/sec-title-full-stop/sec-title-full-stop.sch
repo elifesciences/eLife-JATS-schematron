@@ -794,7 +794,7 @@
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
-      <report test="matches(replace(.,' ',' '),'\.[\s]*$')" role="warning" id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-full-stop" test="matches(replace(.,' ',' '),'\.[\s]*$')" role="warning" id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/>
       </report>
     </rule>
   </pattern>
