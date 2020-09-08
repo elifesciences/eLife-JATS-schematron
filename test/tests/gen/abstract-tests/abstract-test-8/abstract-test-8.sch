@@ -789,25 +789,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="ref-xref-pattern">
-    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
-      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
-      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
-      <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
-      <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
-      <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
-      <let name="pre-sentence" value="tokenize($pre-text,'\. ')[position() = last()]"/>
-      <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
-      <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
-      <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-7" test="($open - $close) gt 1" role="warning" id="ref-xref-test-7">citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
+  <pattern id="article-metadata">
+    <rule context="front//abstract" id="abstract-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <report test="sec" role="error" id="abstract-test-8">eLife cannot currently support structured abstracts. Please capture any clincal trial abstracts using a paragraph.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
     </rule>
   </pattern>
 </schema>

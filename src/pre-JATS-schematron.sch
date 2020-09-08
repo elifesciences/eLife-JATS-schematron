@@ -1420,8 +1420,13 @@
 	  <report test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">[abstract-test-6] Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
       </report>
 	  
-	  <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">[abstract-test-7] Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
-      </report>
+	  <!-- escaped while this is not yet fully supported
+	    <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" 
+        role="warning" 
+        id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/></report>-->
+	  
+	  <!-- temporary -->
+	  <report test="sec" role="error" id="abstract-test-8">[abstract-test-8] eLife cannot currently support structured abstracts. Please capture any clincal trial abstracts using a paragraph.</report>
 		
     </rule>
   </pattern>
@@ -5316,7 +5321,7 @@
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5" test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">[ref-xref-test-5] citation doesn't contain letters, which must be incorrect - <value-of select="."/>.</assert>
       
-      <report test="($open - $close) gt 1" role="warning" id="ref-xref-test-7">[ref-xref-test-7] citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-7" test="($open - $close) gt 1" role="warning" id="ref-xref-test-7">[ref-xref-test-7] citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-11" test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" role="warning" id="ref-xref-test-11">[ref-xref-test-11] '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
       

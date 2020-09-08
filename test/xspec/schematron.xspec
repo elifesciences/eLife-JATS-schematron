@@ -1697,14 +1697,14 @@
         <x:expect-report id="abstract-test-6" role="warning"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="abstract-test-7-pass">
-        <x:context href="../tests/gen/abstract-tests/abstract-test-7/pass.xml"/>
-        <x:expect-not-report id="abstract-test-7" role="warning"/>
+      <x:scenario label="abstract-test-8-pass">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-8/pass.xml"/>
+        <x:expect-not-report id="abstract-test-8" role="error"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="abstract-test-7-fail">
-        <x:context href="../tests/gen/abstract-tests/abstract-test-7/fail.xml"/>
-        <x:expect-report id="abstract-test-7" role="warning"/>
+      <x:scenario label="abstract-test-8-fail">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-8/fail.xml"/>
+        <x:expect-report id="abstract-test-8" role="error"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
