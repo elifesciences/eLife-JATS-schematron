@@ -792,6 +792,7 @@
   <pattern id="title-conformance">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" role="warning" id="supplementary-material-title-test-6">title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
     </rule>
   </pattern>

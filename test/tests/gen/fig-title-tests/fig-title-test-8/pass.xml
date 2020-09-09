@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-title-test-8.sch"?>
+<!--Context: fig/caption/title
+Test: report    $sentence-count gt 1
+Message: title for  contains  sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>
+        <title>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</title>
+      </caption>
+    </fig>
+  </article>
+</root>

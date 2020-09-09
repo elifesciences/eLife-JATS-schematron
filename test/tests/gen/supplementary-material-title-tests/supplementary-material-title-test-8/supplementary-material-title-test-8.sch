@@ -793,7 +793,7 @@
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
+      <report test="$sentence-count gt 1" role="warning" id="supplementary-material-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -792,6 +792,7 @@
   <pattern id="title-conformance">
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-4" test="matches(.,'^\s')" role="error" id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
   </pattern>

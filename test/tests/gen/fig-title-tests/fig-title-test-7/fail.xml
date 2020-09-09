@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-title-test-7.sch"?>
+<!--Context: fig/caption/title
+Test: report    string-length(.) gt 250
+Message: title for  is longer than 250 characters. Is it a caption instead? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>
+        <title>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo lectus, condimentum non est vitae, dictum porta metus. Nunc eget placerat nisl. Cras at velit sed urna vulputate dictum nec porta ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla varius est massa, id lacinia massa ultricies nec. Morbi varius blandit consectetur. Aenean eros velit, facilisis mollis auctor sit amet, ultrices quis mauris. Cras viverra arcu eu arcu interdum, at consequat dui malesuada. In ac tincidunt dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel porta sem.</title>
+      </caption>
+    </fig>
+  </article>
+</root>

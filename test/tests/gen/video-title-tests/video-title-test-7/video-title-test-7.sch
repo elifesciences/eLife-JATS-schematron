@@ -790,15 +790,15 @@
     
   </xsl:function>
   <pattern id="title-conformance">
-    <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
+    <rule context="media/caption/title" id="video-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
+      <report test="string-length(.) gt 250" role="warning" id="video-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
+      <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

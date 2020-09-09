@@ -792,6 +792,7 @@
   <pattern id="title-conformance">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       <report test="matches(.,'^\s')" role="error" id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
   </pattern>

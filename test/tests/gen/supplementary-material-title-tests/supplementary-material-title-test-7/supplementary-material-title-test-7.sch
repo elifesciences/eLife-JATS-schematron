@@ -793,7 +793,7 @@
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
+      <report test="string-length(.) gt 250" role="warning" id="supplementary-material-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
