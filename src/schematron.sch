@@ -10486,14 +10486,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="final-nomen-novum-italic-test"><name/> element contains 'nomen novum' - this should not be in italics (eLife house style).</report>  
       
-      <report test="matches(.,'[Ss]ativum')" 
-        role="error" 
-        id="pre-sativum-italic-test"><name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>
-
-      <report test="matches(.,'[Ss]ativum')" 
-        role="warning" 
-        id="final-sativum-italic-test"><name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>  
-      
       <report test="matches(.,'[Ss]ensu')" 
         role="error" 
         id="pre-sensu-italic-test"><name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>

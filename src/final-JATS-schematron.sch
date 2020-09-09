@@ -6839,10 +6839,6 @@
       
       
 
-      <report test="matches(.,'[Ss]ativum')" role="warning" id="final-sativum-italic-test">[final-sativum-italic-test] <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>  
-      
-      
-
       <report test="matches(.,'[Ss]ensu')" role="warning" id="final-sensu-italic-test">[final-sensu-italic-test] <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>  
       
       

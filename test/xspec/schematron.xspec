@@ -16105,26 +16105,6 @@
         <x:expect-report id="final-nomen-novum-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-sativum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/pre-sativum-italic-test/pass.xml"/>
-        <x:expect-not-report id="pre-sativum-italic-test" role="error"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pre-sativum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/pre-sativum-italic-test/fail.xml"/>
-        <x:expect-report id="pre-sativum-italic-test" role="error"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-sativum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/final-sativum-italic-test/pass.xml"/>
-        <x:expect-not-report id="final-sativum-italic-test" role="warning"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-sativum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/final-sativum-italic-test/fail.xml"/>
-        <x:expect-report id="final-sativum-italic-test" role="warning"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="pre-sensu-italic-test-pass">
         <x:context href="../tests/gen/italic-house-style/pre-sensu-italic-test/pass.xml"/>
         <x:expect-not-report id="pre-sensu-italic-test" role="error"/>
