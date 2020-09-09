@@ -792,6 +792,7 @@
   <pattern id="title-conformance">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       <report test="contains(lower-case(.),'key resource table')" role="warning" id="supplementary-material-title-test-5">title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
     </rule>
   </pattern>

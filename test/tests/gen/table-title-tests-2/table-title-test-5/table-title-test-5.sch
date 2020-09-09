@@ -789,15 +789,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">
-      <report test="matches(.,'[Ss]ativum')" role="warning" id="final-sativum-italic-test">
-        <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>
+  <pattern id="content-containers">
+    <rule context="table-wrap/caption/title" id="table-title-tests-2">
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-5" test="string-length(.) gt 250" role="warning" id="table-title-test-5">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
+      <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

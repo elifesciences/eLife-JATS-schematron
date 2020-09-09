@@ -2247,12 +2247,17 @@
   </pattern>
   <pattern id="table-title-tests-2-pattern">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2" test="not(*) and normalize-space(.)=''" role="error" id="table-title-test-2">[table-title-test-2] The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed.</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-3" test="ends-with(.,'.') or ends-with(.,'?')" role="error" id="table-title-test-3">[table-title-test-3] The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> does not end with a full stop which is incorrect - '<value-of select="."/>'.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-4" test="ends-with(.,' vs.')" role="warning" id="table-title-test-4">[table-title-test-4] title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption - <value-of select="."/>.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-5" test="string-length(.) gt 250" role="warning" id="table-title-test-5">[table-title-test-5] title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-6" test="$sentence-count gt 1" role="warning" id="table-title-test-6">[table-title-test-6] title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
   <pattern id="kr-table-heading-tests-pattern">
@@ -2828,6 +2833,7 @@
   <pattern id="fig-title-tests-pattern">
     <rule context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1" test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">[fig-title-test-1] '<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
@@ -2841,11 +2847,16 @@
       </report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-6" test="matches(.,'^[Pp]anel ')" role="warning" id="fig-title-test-6">[fig-title-test-6] title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-7" test="string-length(.) gt 250" role="warning" id="fig-title-test-7">[fig-title-test-7] title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-8" test="$sentence-count gt 1" role="warning" id="fig-title-test-8">[fig-title-test-8] title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
   <pattern id="supplementary-material-title-tests-pattern">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">[supplementary-material-title-test-1] '<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
@@ -2858,11 +2869,16 @@
       <report test="contains(lower-case(.),'key resource table')" role="warning" id="supplementary-material-title-test-5">[supplementary-material-title-test-5] title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
       
       <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" role="warning" id="supplementary-material-title-test-6">[supplementary-material-title-test-6] title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
+      
+      <report test="string-length(.) gt 250" role="warning" id="supplementary-material-title-test-7">[supplementary-material-title-test-7] title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
+      
+      <report test="$sentence-count gt 1" role="warning" id="supplementary-material-title-test-8">[supplementary-material-title-test-8] title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
   <pattern id="video-title-tests-pattern">
     <rule context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
+      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">[video-title-test-1] '<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
@@ -2871,6 +2887,10 @@
       <report test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">[video-title-test-3] title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
       <report test="matches(.,'^\s')" role="error" id="video-title-test-4">[video-title-test-4] title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
+      
+      <report test="string-length(.) gt 250" role="warning" id="video-title-test-7">[video-title-test-7] title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
+      
+      <report test="$sentence-count gt 1" role="warning" id="video-title-test-8">[video-title-test-8] title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
   <pattern id="ack-title-tests-pattern">
@@ -6812,10 +6832,6 @@
         
       
       <report test="matches(.,'[Nn]omen [Nn]ovum')" role="error" id="pre-nomen-novum-italic-test">[pre-nomen-novum-italic-test] <name/> element contains 'nomen novum' - this should not be in italics (eLife house style).</report>
-
-        
-      
-      <report test="matches(.,'[Ss]ativum')" role="error" id="pre-sativum-italic-test">[pre-sativum-italic-test] <name/> element contains 'sativum' - this should not be in italics (eLife house style).</report>
 
         
       

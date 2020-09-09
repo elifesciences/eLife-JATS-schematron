@@ -4169,6 +4169,26 @@
         <x:expect-report id="table-title-test-4" role="warning"/>
         <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="table-title-test-5-pass">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-5/pass.xml"/>
+        <x:expect-not-report id="table-title-test-5" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-5-fail">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-5/fail.xml"/>
+        <x:expect-report id="table-title-test-5" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-6-pass">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-6/pass.xml"/>
+        <x:expect-not-report id="table-title-test-6" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-title-test-6-fail">
+        <x:context href="../tests/gen/table-title-tests-2/table-title-test-6/fail.xml"/>
+        <x:expect-report id="table-title-test-6" role="warning"/>
+        <x:expect-not-assert id="table-title-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="kr-table-heading-tests">
       <x:scenario label="kr-table-header-1-pass">
@@ -5591,6 +5611,26 @@
         <x:expect-report id="fig-title-test-6" role="warning"/>
         <x:expect-not-assert id="fig-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-title-test-7-pass">
+        <x:context href="../tests/gen/fig-title-tests/fig-title-test-7/pass.xml"/>
+        <x:expect-not-report id="fig-title-test-7" role="warning"/>
+        <x:expect-not-assert id="fig-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-title-test-7-fail">
+        <x:context href="../tests/gen/fig-title-tests/fig-title-test-7/fail.xml"/>
+        <x:expect-report id="fig-title-test-7" role="warning"/>
+        <x:expect-not-assert id="fig-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-title-test-8-pass">
+        <x:context href="../tests/gen/fig-title-tests/fig-title-test-8/pass.xml"/>
+        <x:expect-not-report id="fig-title-test-8" role="warning"/>
+        <x:expect-not-assert id="fig-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-title-test-8-fail">
+        <x:context href="../tests/gen/fig-title-tests/fig-title-test-8/fail.xml"/>
+        <x:expect-report id="fig-title-test-8" role="warning"/>
+        <x:expect-not-assert id="fig-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="supplementary-material-title-tests">
       <x:scenario label="supplementary-material-title-test-1-pass">
@@ -5653,6 +5693,26 @@
         <x:expect-report id="supplementary-material-title-test-6" role="warning"/>
         <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="supplementary-material-title-test-7-pass">
+        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-7/pass.xml"/>
+        <x:expect-not-report id="supplementary-material-title-test-7" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementary-material-title-test-7-fail">
+        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-7/fail.xml"/>
+        <x:expect-report id="supplementary-material-title-test-7" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementary-material-title-test-8-pass">
+        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-8/pass.xml"/>
+        <x:expect-not-report id="supplementary-material-title-test-8" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supplementary-material-title-test-8-fail">
+        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-8/fail.xml"/>
+        <x:expect-report id="supplementary-material-title-test-8" role="warning"/>
+        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="video-title-tests">
       <x:scenario label="video-title-test-1-pass">
@@ -5693,6 +5753,26 @@
       <x:scenario label="video-title-test-4-fail">
         <x:context href="../tests/gen/video-title-tests/video-title-test-4/fail.xml"/>
         <x:expect-report id="video-title-test-4" role="error"/>
+        <x:expect-not-assert id="video-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-title-test-7-pass">
+        <x:context href="../tests/gen/video-title-tests/video-title-test-7/pass.xml"/>
+        <x:expect-not-report id="video-title-test-7" role="warning"/>
+        <x:expect-not-assert id="video-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-title-test-7-fail">
+        <x:context href="../tests/gen/video-title-tests/video-title-test-7/fail.xml"/>
+        <x:expect-report id="video-title-test-7" role="warning"/>
+        <x:expect-not-assert id="video-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-title-test-8-pass">
+        <x:context href="../tests/gen/video-title-tests/video-title-test-8/pass.xml"/>
+        <x:expect-not-report id="video-title-test-8" role="warning"/>
+        <x:expect-not-assert id="video-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-title-test-8-fail">
+        <x:context href="../tests/gen/video-title-tests/video-title-test-8/fail.xml"/>
+        <x:expect-report id="video-title-test-8" role="warning"/>
         <x:expect-not-assert id="video-title-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -16023,26 +16103,6 @@
       <x:scenario label="final-nomen-novum-italic-test-fail">
         <x:context href="../tests/gen/italic-house-style/final-nomen-novum-italic-test/fail.xml"/>
         <x:expect-report id="final-nomen-novum-italic-test" role="warning"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pre-sativum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/pre-sativum-italic-test/pass.xml"/>
-        <x:expect-not-report id="pre-sativum-italic-test" role="error"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pre-sativum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/pre-sativum-italic-test/fail.xml"/>
-        <x:expect-report id="pre-sativum-italic-test" role="error"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-sativum-italic-test-pass">
-        <x:context href="../tests/gen/italic-house-style/final-sativum-italic-test/pass.xml"/>
-        <x:expect-not-report id="final-sativum-italic-test" role="warning"/>
-        <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-sativum-italic-test-fail">
-        <x:context href="../tests/gen/italic-house-style/final-sativum-italic-test/fail.xml"/>
-        <x:expect-report id="final-sativum-italic-test" role="warning"/>
         <x:expect-not-assert id="italic-house-style-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-sensu-italic-test-pass">
