@@ -2679,13 +2679,15 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="if ($file='octet-stream') then ()
         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))
         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))
-        else if ($file='x-m') then not(matches(@xlink:href,'\.m$'))
-        else if ($file='tab-separated-values') then not(matches(@xlink:href,'\.tsv$'))
+        else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))
+        else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))
         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))
-        else if ($file='x-tex') then not(matches(@xlink:href,'\.tex$'))
-        else if ($file='x-gzip') then not(matches(@xlink:href,'\.gz$'))
-        else if ($file='html') then not(matches(@xlink:href,'\.html$'))
+        else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))
+        else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))
+        else if ($file='html') then not(ends-with(@xlink:href,'.html'))
+        else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))
+        else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))
         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))
         else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="warning" 
@@ -2774,7 +2776,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="final-supplementary-material-test-5"><value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
       
-      <assert test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$')" 
+      <assert test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$')" 
         role="error" 
         id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
@@ -3905,7 +3907,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="first-character" value="substring(.,1, 1)"/>
       <let name="last-character" value="substring(., string-length(.), 1)"/>
       
-      <report test="($first-character= ('(', ')', '.', ',')) or ($last-character = ('(', ')', '.', ','))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-panel-test-1"  
+        test="($first-character= ('(', ')', '.', ',')) or ($last-character = ('(', ')', '.', ','))" 
         role="warning" 
         id="fig-panel-test-1">Bold text in the caption for <value-of select="replace(ancestor::fig[1]/label,'\.$','')"/> starts and/or ends with punctuation - <value-of select="."/> - is that correct? Or should the punctuation be unbolded?</report>
       
@@ -4263,11 +4266,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-id-test-2" 
+        test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" 
         role="warning" 
         id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-id-test-3"
+        test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" 
         role="warning" 
         id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0. <value-of select="@id"/> does not conform to this.</report>
     </rule>
