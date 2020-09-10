@@ -5379,16 +5379,6 @@
         <x:expect-assert id="fig-permissions-test-11" role="error"/>
         <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="fig-permissions-test-12-pass">
-        <x:context href="../tests/gen/fig-permissions/fig-permissions-test-12/pass.xml"/>
-        <x:expect-not-report id="fig-permissions-test-12" role="warning"/>
-        <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="fig-permissions-test-12-fail">
-        <x:context href="../tests/gen/fig-permissions/fig-permissions-test-12/fail.xml"/>
-        <x:expect-report id="fig-permissions-test-12" role="warning"/>
-        <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="permissions-notification-pass">
         <x:context href="../tests/gen/fig-permissions/permissions-notification/pass.xml"/>
         <x:expect-not-report id="permissions-notification" role="info"/>
@@ -5406,6 +5396,28 @@
         <x:context href="../tests/gen/fig-permissions/permissions-parent/fail.xml"/>
         <x:expect-assert id="permissions-parent" role="error"/>
         <x:expect-not-assert id="fig-permissions-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="permissions-2">
+      <x:scenario label="fig-permissions-test-12-pass">
+        <x:context href="../tests/gen/permissions-2/fig-permissions-test-12/pass.xml"/>
+        <x:expect-not-assert id="fig-permissions-test-12" role="warning"/>
+        <x:expect-not-assert id="permissions-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-permissions-test-12-fail">
+        <x:context href="../tests/gen/permissions-2/fig-permissions-test-12/fail.xml"/>
+        <x:expect-assert id="fig-permissions-test-12" role="warning"/>
+        <x:expect-not-assert id="permissions-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-permissions-test-13-pass">
+        <x:context href="../tests/gen/permissions-2/fig-permissions-test-13/pass.xml"/>
+        <x:expect-not-report id="fig-permissions-test-13" role="warning"/>
+        <x:expect-not-assert id="permissions-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-permissions-test-13-fail">
+        <x:context href="../tests/gen/permissions-2/fig-permissions-test-13/fail.xml"/>
+        <x:expect-report id="fig-permissions-test-13" role="warning"/>
+        <x:expect-not-assert id="permissions-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fig-caption-tests">

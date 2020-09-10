@@ -2851,14 +2851,23 @@
       
       <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
-      <report test="copyright-statement and not(license[1]/license-p[1]//ext-link[matches(.,'creativecommons\.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org')) and not(matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$'))" role="warning" id="fig-permissions-test-12">
-        <value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link so presumed ARR.)</report>
-      
       <report test="." role="info" id="permissions-notification">
         <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
       
       <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">permissions  is not allowd as a child of <value-of select="parent::*/local-name()"/>
       </assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="permissions-2-pattern">
+    <rule context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
+      
+      <assert test="matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')" role="warning" id="fig-permissions-test-12">
+        <value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link on the license element or in an ali:license_ref so presumed ARR.)</assert>
+      
+      <report test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" role="warning" id="fig-permissions-test-13">
+        <value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:licens_ref element, which is very likely incorrect.</report>
       
     </rule>
   </pattern>
