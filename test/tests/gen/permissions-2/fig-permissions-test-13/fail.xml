@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="fig-permissions-test-13.sch"?>
+<!--Context: permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]
+Test: report    license//ext-link[contains(@xlink:href,'creativecommons.org')]
+Message:  permissions - the <license-p> contains a CC link, but the license does not have an ali:licens_ref element, which is very likely incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <label>Figure 2.</label>
+      <permissions>
+        <copyright-statement>© Berger, 2007</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>Lee Berger</copyright-holder>
+        <license>
+          <license-p>Chambered nautilus image courtesy of Lee Berger. Published under a <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0 unported license</ext-link>.</license-p>
+        </license>
+      </permissions>
+    </fig>
+  </article>
+</root>
