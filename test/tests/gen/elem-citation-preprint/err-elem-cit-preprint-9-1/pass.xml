@@ -4,7 +4,7 @@ Test: assert    count(source) = 1
 Message: [err-elem-cit-preprint-9-1]
         Each  <element-citation> of type 'preprint' must contain one and only one <source> element.
         Reference '' has 
-         <source> elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-1 -->
+         <source> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

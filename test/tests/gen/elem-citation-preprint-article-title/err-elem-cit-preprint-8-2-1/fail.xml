@@ -4,7 +4,7 @@ Test: assert    ./string-length() + sum(*/string-length()) ge 2
 Message: [err-elem-cit-preprint-8-2-1]
         A <article-title> element within a <element-citation> of type 'preprint' must contain 
         at least two characters.
-        Reference '' has too few characters. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1 -->
+        Reference '' has too few characters. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-request-conformity-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
 Test: report    matches(.,'[Rr]equest')
-Message: Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-request-conformity-1 -->
+Message: Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="data-availability">

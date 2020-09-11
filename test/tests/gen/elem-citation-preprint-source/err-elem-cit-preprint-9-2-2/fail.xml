@@ -4,7 +4,7 @@ Test: assert    count(*)=count(italic | sub | sup)
 Message: [err-elem-cit-preprint-9-2-2]
         A <source> element within a <element-citation> of type 'preprint' may only contain the child 
         elements<italic>, <sub>, and <sup>. No other elements are allowed.
-        Reference '' has disallowed child elements. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2 -->
+        Reference '' has disallowed child elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

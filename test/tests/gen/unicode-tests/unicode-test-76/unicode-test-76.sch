@@ -792,7 +792,7 @@
   <pattern id="unicode-checks">
     <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-76" test="contains(.,'Ã°')" role="warning" id="unicode-test-76">
-        <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-76</report>
+        <name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

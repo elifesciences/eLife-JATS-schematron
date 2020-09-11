@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="back-test-3.sch"?>
 <!--Context: back
 Test: report    ($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)
-Message: One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for ''. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#back-test-3 -->
+Message: One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>
