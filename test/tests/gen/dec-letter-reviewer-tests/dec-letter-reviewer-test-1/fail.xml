@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reviewer-test-1.sch"?>
 <!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]
 Test: assert    count(contrib[@contrib-type='reviewer']) gt 0
-Message: Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1 -->
+Message: Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

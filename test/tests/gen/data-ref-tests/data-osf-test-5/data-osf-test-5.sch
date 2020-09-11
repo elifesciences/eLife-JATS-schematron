@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework'  or not(@assigning-authority)])" role="warning" id="data-osf-test-5">Data reference with the title '<value-of select="data-title[1]"/>' has a OSF type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Open Science Framework, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework'  or not(@assigning-authority)])" role="warning" id="data-osf-test-5">Data reference with the title '<value-of select="data-title[1]"/>' has a OSF type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Open Science Framework, which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

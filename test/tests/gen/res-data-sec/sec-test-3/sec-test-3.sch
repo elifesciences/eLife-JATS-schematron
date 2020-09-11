@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="sec-specific">
     <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3" test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3" test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

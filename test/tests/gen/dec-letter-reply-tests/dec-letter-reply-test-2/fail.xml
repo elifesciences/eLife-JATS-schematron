@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reply-test-2.sch"?>
 <!--Context: article/sub-article
 Test: assert    @id = concat('sa',$pos)
-Message: sub-article id must be in the format 'sa0', where '0' is its position (1 or 2). More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2 -->
+Message: sub-article id must be in the format 'sa0', where '0' is its position (1 or 2). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="reply" id="sa2">

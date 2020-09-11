@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])" role="warning" id="data-zenodo-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Zenodo type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Zenodo, which must be incorrect. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])" role="warning" id="data-zenodo-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Zenodo type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Zenodo, which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

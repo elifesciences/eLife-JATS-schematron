@@ -794,7 +794,7 @@
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1" test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">[err-elem-cit-preprint-8-2-1]
         A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
         at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1</assert>
+        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="medrxiv-test.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/source
 Test: report    matches($lc,'medrxiv') and not(. = 'medRxiv')
-Message: ref '' has a source , which is not the correct proprietary capitalisation - 'medRxiv'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#medrxiv-test -->
+Message: ref '' has a source , which is not the correct proprietary capitalisation - 'medRxiv'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

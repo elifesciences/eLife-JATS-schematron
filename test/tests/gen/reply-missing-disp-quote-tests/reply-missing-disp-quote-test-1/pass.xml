@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="reply-missing-disp-quote-test-1.sch"?>
 <!--Context: sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]
 Test: report    (count(*)=1) and (child::italic) and ($free-text='')
-Message: para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-1 -->
+Message: para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="reply" id="SA2">

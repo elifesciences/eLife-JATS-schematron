@@ -792,7 +792,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" test="if ($pos = 1) then @article-type='decision-letter'         else @article-type='reply'" role="error" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" test="if ($pos = 1) then @article-type='decision-letter'         else @article-type='reply'" role="error" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

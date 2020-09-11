@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - . Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-biosample-test" test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/biosample') and not(source[1]='NCBI BioSample')" role="warning" id="data-biosample-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - <value-of select="source[1]"/>. Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-biosample-test</report>
+      <report see="https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - . Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-biosample-test" test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/biosample') and not(source[1]='NCBI BioSample')" role="warning" id="data-biosample-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - <value-of select="source[1]"/>. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

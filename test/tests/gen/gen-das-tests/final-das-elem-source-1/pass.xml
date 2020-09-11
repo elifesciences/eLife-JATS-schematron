@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-das-elem-source-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: assert    count(source)=1
-Message: The reference in position  of the data availability section does not have a database name (no source). Please ensure to add it in. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-source-1 -->
+Message: The reference in position  of the data availability section does not have a database name (no source). Please ensure to add it in. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>

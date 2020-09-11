@@ -794,7 +794,7 @@
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">[err-elem-cit-preprint-10-2]
         If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'.
         The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>'
-        contains @pub-id-type='<value-of select="@pub-id-type"/>'. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2</assert>
+        contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

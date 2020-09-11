@@ -792,7 +792,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1" test="count(person-group[@person-group-type='author'])=1" role="error" id="final-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1" test="count(person-group[@person-group-type='author'])=1" role="error" id="final-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
