@@ -794,13 +794,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
-      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="err-elem-cit-gen-date-1-5">[err-elem-cit-gen-date-1-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
-        &lt;year&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
-        the value '<value-of select="."/>' and the attribute contains the value 
-        '<value-of select="./@iso-8601-date"/>'.
-      </assert>
+      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="warning" id="pre-err-elem-cit-gen-date-1-5">The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the  &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

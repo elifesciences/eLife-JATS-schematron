@@ -789,16 +789,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="lc" value="lower-case($pre-text)"/>
-      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="error" id="pre-rrid-spacing">RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+  <pattern id="empty-attribute-pattern">
+    <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
+      <report test="." role="error" id="final-empty-attribute-conformance">
+        <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
+        <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::*[@*/normalize-space(.)='']" role="error" id="empty-attribute-test-xspec-assert">*[@*/normalize-space(.)=''] must be present.</assert>
     </rule>
   </pattern>
 </schema>

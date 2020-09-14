@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-rrid-spacing.sch"?>
 <!--Context: ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]
 Test: report    ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')
-Message: RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by ''. -->
+Message: RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <td valign="top">RRID: <ext-link ext-link-type="uri" xlink:href="https://scicrunch.org/resolver/IMSR_JAX:006410">IMSR_JAX:006410</ext-link></td>

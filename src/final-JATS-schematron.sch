@@ -1337,7 +1337,9 @@
   <pattern id="year-element-citation-tests-pattern">
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       
-      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">[year-element-citation-conformity] year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      
+      
+      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="final-year-element-citation-conformity">[final-year-element-citation-conformity] year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
     </rule>
   </pattern>
@@ -3596,12 +3598,6 @@
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
       
-      <assert test="matches(normalize-space(.),'(^\d{4}[a-z]?)')" role="error" id="err-elem-cit-gen-date-1-1">[err-elem-cit-gen-date-1-1]
-        The &lt;year&gt; element in a reference must contain 4 digits, possibly followed by one (and only one) lower-case letter.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value '<value-of select="."/>'.
-      </assert>
-      
       <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
         The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive).
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
@@ -3620,13 +3616,9 @@
         '<value-of select="./@iso-8601-date"/>'.
       </assert>
       
-      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="err-elem-cit-gen-date-1-5">[err-elem-cit-gen-date-1-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
-        &lt;year&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
-        the value '<value-of select="."/>' and the attribute contains the value 
-        '<value-of select="./@iso-8601-date"/>'.
-      </assert>
+      
+      
+      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="final-err-elem-cit-gen-date-1-5">[final-err-elem-cit-gen-date-1-5] The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
       
       <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">[err-elem-cit-gen-date-1-6]
         If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
@@ -4385,11 +4377,9 @@
         <value-of select="count(person-group)"/> &lt;person-group&gt; 
         elements.</assert>
       
-      <assert test="count(article-title)=1" role="error" id="err-elem-cit-web-8-1">[err-elem-cit-web-8-1]
-        Each  &lt;element-citation&gt; of type 'web' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      
+      
+      <assert test="count(article-title)=1" role="error" id="final-err-elem-cit-web-8-1">[final-err-elem-cit-web-8-1] Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
       <report test="count(source) &gt; 1" role="error" id="err-elem-cit-web-9-1">[err-elem-cit-web-9-1]
         Each  &lt;element-citation&gt; of type 'web' may contain one and only one &lt;source&gt; element.
@@ -5358,7 +5348,9 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">[ref-xref-test-3] There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">[ref-xref-test-4] citation doesn't contain numbers, which must be incorrect - <value-of select="."/>.</assert>
+      
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="error" id="final-ref-xref-test-4">[final-ref-xref-test-4] citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5" test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">[ref-xref-test-5] citation doesn't contain letters, which must be incorrect - <value-of select="."/>.</assert>
       
@@ -6896,7 +6888,7 @@
       
       
       
-      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">[final-rrid-spacing] RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">[final-rrid-spacing] RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
@@ -7279,7 +7271,9 @@
   <pattern id="empty-attribute-test-pattern">
     <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
       
-      <report test="." role="error" id="empty-attribute-conformance">[empty-attribute-conformance] <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
+      
+      
+      <report test="." role="error" id="final-empty-attribute-conformance">[final-empty-attribute-conformance] <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
         <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
       
     </rule>

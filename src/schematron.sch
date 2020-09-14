@@ -1611,8 +1611,12 @@
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       
       <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" 
+        role="warning" 
+        id="pre-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
+      
+      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" 
         role="error" 
-        id="year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+        id="final-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
     </rule>
     
@@ -5101,14 +5105,6 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
       
-      <assert test="matches(normalize-space(.),'(^\d{4}[a-z]?)')" 
-        role="error" 
-        id="err-elem-cit-gen-date-1-1">[err-elem-cit-gen-date-1-1]
-        The &lt;year&gt; element in a reference must contain 4 digits, possibly followed by one (and only one) lower-case letter.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value '<value-of select="."/>'.
-      </assert>
-      
       <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" 
         role="warning" 
         id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
@@ -5134,14 +5130,12 @@ else self::*/local-name() = $allowed-p-blocks"
       </assert>
       
       <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" 
+        role="warning" 
+        id="pre-err-elem-cit-gen-date-1-5">The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the  &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
+      
+      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" 
         role="error" 
-        id="err-elem-cit-gen-date-1-5">[err-elem-cit-gen-date-1-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
-        &lt;year&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
-        the value '<value-of select="."/>' and the attribute contains the value 
-        '<value-of select="./@iso-8601-date"/>'.
-      </assert>
+        id="final-err-elem-cit-gen-date-1-5">The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
       
       <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and
         (some $y in //element-citation/descendant::year
@@ -6219,12 +6213,12 @@ else self::*/local-name() = $allowed-p-blocks"
         elements.</assert>
       
       <assert test="count(article-title)=1" 
+        role="warning" 
+        id="pre-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements. If you are unable to determine this yourself, please query the authors for this information.</assert>
+      
+      <assert test="count(article-title)=1" 
         role="error" 
-        id="err-elem-cit-web-8-1">[err-elem-cit-web-8-1]
-        Each  &lt;element-citation&gt; of type 'web' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        id="final-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
       <report test="count(source) &gt; 1" 
         role="error" 
@@ -7266,8 +7260,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
       <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" 
+        role="warning" 
+        id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
+      
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" 
         role="error" 
-        id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
+        id="final-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
       
       <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" 
         role="error" 
@@ -7697,10 +7695,15 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-4" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-4" 
+        test="matches(normalize-space(.),'\p{N}')" 
+        role="warning" 
+        id="pre-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-4" 
         test="matches(normalize-space(.),'\p{N}')" 
         role="error" 
-        id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>.</assert>
+        id="final-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5" 
         test="matches(normalize-space(.),'\p{L}')" 
@@ -10576,11 +10579,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="error" 
-        id="pre-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+        id="pre-rrid-spacing">RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
       
       <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="warning" 
-        id="final-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+        id="final-rrid-spacing">RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
     
     <rule context="ref-list/ref" id="ref-link-mandate">
@@ -11306,8 +11309,12 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
       
       <report test="." 
+        role="warning" 
+        id="pre-empty-attribute-conformance"><value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/><value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>>. If this cannot be filled out yet (due to missing or incomplete information), please ensure that the authors are queried, as appropriate.</report>
+      
+      <report test="." 
         role="error" 
-        id="empty-attribute-conformance"><value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/><value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>></report>
+        id="final-empty-attribute-conformance"><value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/><value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>></report>
       
     </rule>
   </pattern>

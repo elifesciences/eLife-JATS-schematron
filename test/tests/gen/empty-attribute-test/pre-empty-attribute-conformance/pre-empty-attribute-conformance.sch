@@ -791,9 +791,14 @@
   </xsl:function>
   <pattern id="empty-attribute-pattern">
     <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
-      <report test="." role="error" id="empty-attribute-conformance">
+      <report test="." role="warning" id="pre-empty-attribute-conformance">
         <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
-        <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
+        <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;. If this cannot be filled out yet (due to missing or incomplete information), please ensure that the authors are queried, as appropriate.</report>
+    </rule>
+  </pattern>
+  <pattern id="root-pattern">
+    <rule context="root" id="root-rule">
+      <assert test="descendant::*[@*/normalize-space(.)='']" role="error" id="empty-attribute-test-xspec-assert">*[@*/normalize-space(.)=''] must be present.</assert>
     </rule>
   </pattern>
 </schema>

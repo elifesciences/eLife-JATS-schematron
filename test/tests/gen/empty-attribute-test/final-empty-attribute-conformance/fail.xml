@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="empty-attribute-conformance.sch"?>
+<?oxygen SCHSchema="final-empty-attribute-conformance.sch"?>
 <!--Context: *[@*/normalize-space(.)='']
 Test: report    .
 Message:  element has attribute(s) with an empty value. <> -->
