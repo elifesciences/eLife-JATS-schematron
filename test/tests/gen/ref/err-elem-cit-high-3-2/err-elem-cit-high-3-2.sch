@@ -805,8 +805,6 @@
         Reference '<value-of select="@id"/>' has the value 
         '<value-of select="@id"/>', which is incorrect.
       </assert>
-      <let name="year-comma" value="', \d{4}\w?$'"/>
-      <let name="year-paren" value="' \(\d{4}\w?\)$'"/>
     </rule>
   </pattern>
   <pattern id="root-pattern">
