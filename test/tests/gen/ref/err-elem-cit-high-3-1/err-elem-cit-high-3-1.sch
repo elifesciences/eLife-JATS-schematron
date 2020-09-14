@@ -802,8 +802,6 @@
       <assert test="@id" role="error" id="err-elem-cit-high-3-1">[err-elem-cit-high-3-1]
         Each &lt;ref&gt; element must have an @id attribute. 
       </assert>
-      <let name="year-comma" value="', \d{4}\w?$'"/>
-      <let name="year-paren" value="' \(\d{4}\w?\)$'"/>
     </rule>
   </pattern>
   <pattern id="root-pattern">

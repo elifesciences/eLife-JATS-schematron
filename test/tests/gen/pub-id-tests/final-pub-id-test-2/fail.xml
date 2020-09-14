@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="final-pub-id-test-2.sch"?>
+<!--Context: element-citation/pub-id
+Test: report    (@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9<>\[\]]+$'))
+Message: pub-id is tagged as a doi, but it is not one -  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <element-citation>
+      ...
+      <pub-id pub-id-type="doi">elifesciences.org/</pub-id>
+    </element-citation>
+  </article>
+</root>

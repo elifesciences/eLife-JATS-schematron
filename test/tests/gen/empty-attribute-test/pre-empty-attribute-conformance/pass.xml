@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="pre-empty-attribute-conformance.sch"?>
+<!--Context: *[@*/normalize-space(.)='']
+Test: report    .
+Message:  element has attribute(s) with an empty value. <>. If this cannot be filled out yet (due to missing or incomplete information), please ensure that the authors are queried, as appropriate. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="test"/>
+</root>

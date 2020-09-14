@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="final-err-elem-cit-web-8-1.sch"?>
+<!--Context: element-citation[@publication-type='web']
+Test: assert    count(article-title)=1
+Message: Each  <element-citation> of type 'web' must contain one and only one <article-title> element. Reference '' has  <article-title> elements. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="web">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walker</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="1994">1994</year>
+          
+          <ext-link ext-link-type="uri" xlink:href="https://www.fourmilab.ch/solar/">https://www.fourmilab.ch/solar/</ext-link>
+          <date-in-citation iso-8601-date="1995-09-10">September 10, 1995</date-in-citation>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>

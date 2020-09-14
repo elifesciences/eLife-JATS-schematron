@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="broken-uri-test.sch"?>
-<!--Context: ext-link[@ext-link-type='uri']
-Test: assert    @xlink:href castable as xs:anyURI
-Message: Broken URI in @xlink:href-->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <ext-link ext-link-type="uri"/>
-  </article>
-</root>

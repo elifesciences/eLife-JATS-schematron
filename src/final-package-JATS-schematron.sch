@@ -1355,7 +1355,9 @@
   <pattern id="year-element-citation-tests-pattern">
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       
-      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
+      
+      
+      <assert test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="final-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
     </rule>
   </pattern>
@@ -2083,12 +2085,6 @@
       <report test="if (caption) then not(caption/title)         else ()" role="warning" id="final-supplementary-material-test-3">
         <value-of select="label"/> doesn't have a title. Is this correct?</report>
       
-      <!-- Not included because in most instances this is the case
-        <report test="if (label = 'Transparent reporting form') then () 
-                    else not(caption/p)" 
-        role="warning"
-        id="supplementary-material-test-4">supplementary-material caption does not have a p. Is this correct?</report>-->
-      
       		
       
       <assert test="media" role="error" id="final-supplementary-material-test-5">
@@ -2747,9 +2743,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-5" test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" role="warning" id="fig-specific-test-5">
         <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
-      <!--<report test="not($article-type = ('correction','retraction')) and not(ancestor::article//xref[not(ancestor::caption) and not(ancestor::table-wrap) and (@rid = $id)]) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id]" 
-        role="warning"
-        id="fig-specific-test-7"><value-of select="$lab"/> is only cited in a table or the caption of an object.</report>-->
+      <report test="not($article-type = ('correction','retraction')) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id] and not(ancestor::article//xref[(@rid = $id) and not(ancestor::caption) and not(ancestor::table-wrap)])" role="warning" id="fig-specific-test-7">
+        <value-of select="$lab"/> is only cited in a table or the caption of an object. Please ask the authors for citation in the main text.</report>
   
     </rule>
   </pattern>
@@ -3709,12 +3704,6 @@
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
       
-      <assert test="matches(normalize-space(.),'(^\d{4}[a-z]?)')" role="error" id="err-elem-cit-gen-date-1-1">[err-elem-cit-gen-date-1-1]
-        The &lt;year&gt; element in a reference must contain 4 digits, possibly followed by one (and only one) lower-case letter.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value '<value-of select="."/>'.
-      </assert>
-      
       <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
         The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive).
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
@@ -3733,13 +3722,9 @@
         '<value-of select="./@iso-8601-date"/>'.
       </assert>
       
-      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="err-elem-cit-gen-date-1-5">[err-elem-cit-gen-date-1-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
-        &lt;year&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
-        the value '<value-of select="."/>' and the attribute contains the value 
-        '<value-of select="./@iso-8601-date"/>'.
-      </assert>
+      
+      
+      <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="final-err-elem-cit-gen-date-1-5">The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
       
       <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">[err-elem-cit-gen-date-1-6]
         If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
@@ -3790,9 +3775,6 @@
         Reference '<value-of select="@id"/>' has other elements.
       </assert>
       
-      <!-- else:
-       -->
-      
       <assert test="if (count(element-citation/person-group[1]/*) != 2)         then (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year))         else (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and $name2 &gt; $preceding-name2)         or ($name = $preceding-name and $name2 = $preceding-name2 and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year)         or ($name = $preceding-name and count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2))" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
       
       <assert test="@id" role="error" id="err-elem-cit-high-3-1">[err-elem-cit-high-3-1]
@@ -3812,48 +3794,6 @@
         Reference '<value-of select="@id"/>' has the value 
         '<value-of select="@id"/>', which does not fit this pattern.
       </assert>
-      
-      <let name="year-comma" value="', \d{4}\w?$'"/>
-      <let name="year-paren" value="' \(\d{4}\w?\)$'"/>
-      
-      <!-- The following is dealt with in test ref-xref-conformity
-        <assert test="every $x in //xref[@rid=current()/@id]       satisfies (       if (count(current()/element-citation/person-group[1]/(name | collab))=1)        then (       matches(normalize-space($x), concat('^', current()/element-citation/person-group[1]/name/surname, $year-comma))       or       matches(normalize-space($x), concat('^', current()/element-citation/person-group[1]/name/surname, $year-paren))       or       matches(normalize-space($x), concat('^', current()/element-citation/person-group[1]/collab, $year-comma))       or       matches(normalize-space($x), concat('^', current()/element-citation/person-group[1]/collab, $year-paren))       )       else        if (count(current()/element-citation/person-group[1]/(name|collab))=2)        then (       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/name[1]/surname,       ' and ', current()/element-citation/person-group[1]/name[2]/surname, $year-comma))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/name[1]/surname,       ' and ', current()/element-citation/person-group[1]/name[2]/surname, $year-paren))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/name[1]/surname,       ' and ', current()/element-citation/person-group[1]/collab[1], $year-comma))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/name[1]/surname,       ' and ', current()/element-citation/person-group[1]/collab[1], $year-paren))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/collab[1],       ' and ', current()/element-citation/person-group[1]/name[1]/surname, $year-comma))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/collab[1],       ' and ', current()/element-citation/person-group[1]/name[1]/surname, $year-paren))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/collab[1],       ' and ', current()/element-citation/person-group[1]/collab[2], $year-comma))       or       matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/collab[1],       ' and ', current()/element-citation/person-group[1]/collab[2], $year-paren))       )       else        if (count(current()/element-citation/person-group[1]/(name|collab))&gt;2)        then (if (local-name(current()/element-citation/person-group[1]/*[1])='name')             then (matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/name[1]/surname,             ' et al.', $year-comma))             or             matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/name[1]/surname,             ' et al.', $year-paren)))             else (matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/collab[1],             ' et al.', $year-comma))             or             matches(replace($x,'\p{Zs}',' '), concat('^', current()/element-citation/person-group[1]/collab[1],             ' et al.', $year-paren)))       )          else ()       )" role="error" id="err-elem-cit-high-4">
-        <value-of select="$name"/> and  <value-of select="$name2"/> 
-        [err-elem-cit-high-4]
-             <let name="name" value="lower-case(if (local-name(element-citation/person-group[1]/*[1])='name')
-      then (element-citation/person-group[1]/name[1]/surname)
-      else (element-citation/person-group[1]/*[1]))"/>
-    <let name="name2" value="lower-case(if (local-name(element-citation/person-group[1]/*[2])='name')
-      then (element-citation/person-group[1]/*[2]/surname)
-      else (element-citation/person-group[1]/*[2]))"/> 
-        If an element-citation/person-group contains one &lt;name&gt;, 
-        the content of the &lt;surname&gt; inside that name must appear in the 
-        content of all &lt;xref&gt;s that point to the &lt;element-citation&gt;. 
-        If an element-citation/person-group contains 2 &lt;name&gt;s, the content 
-        of the first &lt;surname&gt; of the first &lt;name&gt;, followed by the string “ and “, 
-        followed by the content of the &lt;surname&gt; of the second &lt;name&gt; must appear 
-        in the content of all &lt;xref&gt;s that point to the &lt;element-citation&gt;. 
-        If there are more than 2 &lt;name&gt;s in the &lt;person-group&gt;, all &lt;xref&gt;s that 
-        point to that reference must contain the content of only the first 
-        of the &lt;surname&gt;s, followed by the text "et al."
-        All of these are followed by ', ' and the year, or by the year in parentheses.
-        There are <value-of select="count(//xref[@rid=current()/@id]/@rid)"/> &lt;xref&gt; references 
-        with @rid = <value-of select="@id"/> to be checked. The first name should be 
-        '<value-of select="element-citation/person-group[1]/(name[1]/surname | collab[1])[1]"/>'.
-      </assert>-->
-      
-      <!-- The following is dealt with in test ref-xref-conformity
-        
-        If there is more than one year (caught by a different test), use the first year to compare. 
-      <assert test="every $x in //xref[@rid=current()/@id]       satisfies (matches(replace($x,'\p{Zs}',' '), concat(', ',current()/element-citation/year[1]),'s') or       matches(replace($x,'\p{Zs}',' '), concat('\(',current()/element-citation/year[1],'\)')))" role="error" id="err-elem-cit-high-5">[err-elem-cit-high-5]
-        All xrefs to &lt;ref&gt;s, which contain &lt;element-citation&gt;s, should contain, as the last part 
-        of their content, the string ", " followed by the content of the year element in the 
-        &lt;element-citation&gt;, or the year in parentheses. 
-        There is an incorrect &lt;xref&gt; with @rid <value-of select="@id"/>. It should contain the string 
-        ', <value-of select="element-citation/year"/>' or the string 
-        '(<value-of select="element-citation/year"/>)' but does not.
-        There are <value-of select="count(//xref[@rid=current()/@id]/@rid)"/> references to be checked.
-      </assert> -->
       
     </rule>
   </pattern>
@@ -3928,12 +3868,6 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-journal-4-2-1">[err-elem-cit-journal-4-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
         elements.
@@ -3943,12 +3877,6 @@
         There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/>
         &lt;volume&gt; elements.</assert>
-      
-      <!-- This doesn't work and the check is covered by eloc-page-assert (with a more human readable error message)
-        
-        <assert test="(count(fpage) eq 1) or (count(elocation-id) eq 1) or (count(comment/text()='In press') eq 1)" role="warning" id="warning-elem-cit-journal-6-1">[warning-elem-cit-journal-6-1]
-        One of &lt;fpage&gt;, &lt;elocation-id&gt;, or &lt;comment&gt;In press&lt;/comment&gt; should be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has missing page or elocation information.</assert>-->
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1" test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">[err-elem-cit-journal-6-5-1]
         &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
@@ -4072,21 +4000,14 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-book-10-2-1">[err-elem-cit-book-10-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
-      
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-book-10-2-2">[err-elem-cit-book-10-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child 
         elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
-      <assert test="count(publisher-name)=1" role="error" id="err-elem-cit-book-13-1">[err-elem-cit-book-13-1]
-        One and only one &lt;publisher-name&gt; is required in a book reference.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
-        &lt;publisher-name&gt; elements.</assert>
+      
+      
+      <assert test="count(publisher-name)=1" role="error" id="final-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements.</assert>
       
       <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">[warning-elem-cit-book-13-3]
         The content of &lt;publisher-name&gt; may not end with a publisher location. 
@@ -4223,12 +4144,6 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-data-11-3-1">[err-elem-cit-data-11-3-1]
-        A &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
-      
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-data-11-3-2">[err-elem-cit-data-11-3-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child 
         elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
@@ -4338,12 +4253,6 @@
   </pattern>
   <pattern id="elem-citation-patent-source-pattern">
     <rule context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
-      
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-9-2-1">[err-elem-cit-patent-9-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-9-2-2">[err-elem-cit-patent-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child 
@@ -4476,11 +4385,6 @@
   </pattern>
   <pattern id="elem-citation-preprint-source-pattern">
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-9-2-1">[err-elem-cit-preprint-9-2-1]
-        A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-9-2-2">[err-elem-cit-preprint-9-2-2]
         A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
@@ -4499,11 +4403,9 @@
         <value-of select="count(person-group)"/> &lt;person-group&gt; 
         elements.</assert>
       
-      <assert test="count(article-title)=1" role="error" id="err-elem-cit-web-8-1">[err-elem-cit-web-8-1]
-        Each  &lt;element-citation&gt; of type 'web' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      
+      
+      <assert test="count(article-title)=1" role="error" id="final-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
       <report test="count(source) &gt; 1" role="error" id="err-elem-cit-web-9-1">[err-elem-cit-web-9-1]
         Each  &lt;element-citation&gt; of type 'web' may contain one and only one &lt;source&gt; element.
@@ -4554,11 +4456,6 @@
   </pattern>
   <pattern id="elem-citation-web-source-pattern">
     <rule context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-9-2-1">[err-elem-cit-web-9-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-9-2-2">[err-elem-cit-web-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
@@ -4591,7 +4488,6 @@
       <assert test="(matches(@iso-8601-date,replace($date-regex,'\s','')))" role="error" id="err-elem-cit-web-11-5">
         The @iso-8601-date value on accessed date must be a valid date value. <value-of select="@iso-8601-date"/> in reference '<value-of select="ancestor::ref/@id"/>' is not valid.</assert>
       
-      <!-- issue 5 on the eLife lists -->
       <report test="if (matches(@iso-8601-date,replace($date-regex,'\s',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else ()" role="error" id="err-elem-cit-web-11-4">
         The Accessed date value must match the @iso-8601-date value in the format 'January 1, 2020'.
         Reference '<value-of select="ancestor::ref/@id"/>' has element content of 
@@ -4643,12 +4539,6 @@
   </pattern>
   <pattern id="elem-citation-report-source-pattern">
     <rule context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
-      
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="(./string-length() + sum(*/string-length()) ge 2)" role="error" id="err-elem-cit-report-9-2-1">[err-elem-cit-report-9-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-report-9-2-2">[err-elem-cit-report-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' may only contain the child 
@@ -4747,11 +4637,6 @@
   </pattern>
   <pattern id="elem-citation-confproc-source-pattern">
     <rule context="element-citation[@publication-type='confproc']/source" id="elem-citation-confproc-source">
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="(./string-length() + sum(*/string-length()) ge 2)" role="error" id="err-elem-cit-confproc-9-2-1">[err-elem-cit-confproc-9-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-confproc-9-2-2">[err-elem-cit-confproc-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' may only contain the child 
@@ -4941,12 +4826,6 @@
         only one &lt;source&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
-      
-      <!-- Genericised across all publication types in elem-cit-source
-      <assert test="count(source)=1 and (source/string-length() + sum(descendant::source/*/string-length()) ge 2)" role="error" id="err-elem-cit-periodical-9-2-1">[err-elem-cit-periodical-9-2-1]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'periodical' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>-->
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-periodical-9-2-2">[err-elem-cit-periodical-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'periodical' may only contain the child 
@@ -5214,9 +5093,13 @@
   <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
       
-      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
+      
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="final-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
+      
+      
+      
+      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
       
       <report test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
@@ -5484,7 +5367,9 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="error" id="ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>.</assert>
+      
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="error" id="final-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5" test="matches(normalize-space(.),'\p{L}')" role="error" id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/>.</assert>
       
@@ -6478,7 +6363,7 @@
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
         <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="error" id="UC-no-test-2">
+      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="warning" id="UC-no-test-2">
         <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">
@@ -7135,7 +7020,7 @@
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
-    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">  
+    <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">  
       
       
 
@@ -7247,7 +7132,7 @@
       
       
       
-      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">RRID (scicrunch) link should be preceding by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
@@ -7729,7 +7614,9 @@
   <pattern id="empty-attribute-test-pattern">
     <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
       
-      <report test="." role="error" id="empty-attribute-conformance">
+      
+      
+      <report test="." role="error" id="final-empty-attribute-conformance">
         <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
         <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
       

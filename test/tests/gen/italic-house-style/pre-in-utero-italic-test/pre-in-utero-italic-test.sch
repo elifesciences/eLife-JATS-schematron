@@ -790,14 +790,14 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="italic[not(ancestor::ref)]" id="italic-house-style">
+    <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
       <report test="matches(.,'[Ii]n [Uu]tero')" role="error" id="pre-in-utero-italic-test">
         <name/> element contains 'in utero' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[not(ancestor::ref)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref)] must be present.</assert>
+      <assert test="descendant::italic[not(ancestor::ref) and not(ancestor::sub-article)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref) and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

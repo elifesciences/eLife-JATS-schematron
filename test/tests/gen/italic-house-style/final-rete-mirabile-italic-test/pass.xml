@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="rete-mirabile-italic-test.sch"?>
-<!--Context: italic[not(ancestor::ref)]
+<!--Context: italic[not(ancestor::ref) and not(ancestor::sub-article)]
 Test: report    matches(.,'[Rr]ete [Mm]irabile')
 Message:  element contains 'rete mirabile' - this should not be in italics (eLife house style). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

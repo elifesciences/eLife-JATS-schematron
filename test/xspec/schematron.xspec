@@ -1437,14 +1437,24 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="year-element-citation-tests">
-      <x:scenario label="year-element-citation-conformity-pass">
-        <x:context href="../tests/gen/year-element-citation-tests/year-element-citation-conformity/pass.xml"/>
-        <x:expect-not-assert id="year-element-citation-conformity" role="error"/>
+      <x:scenario label="pre-year-element-citation-conformity-pass">
+        <x:context href="../tests/gen/year-element-citation-tests/pre-year-element-citation-conformity/pass.xml"/>
+        <x:expect-not-assert id="pre-year-element-citation-conformity" role="warning"/>
         <x:expect-not-assert id="year-element-citation-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="year-element-citation-conformity-fail">
-        <x:context href="../tests/gen/year-element-citation-tests/year-element-citation-conformity/fail.xml"/>
-        <x:expect-assert id="year-element-citation-conformity" role="error"/>
+      <x:scenario label="pre-year-element-citation-conformity-fail">
+        <x:context href="../tests/gen/year-element-citation-tests/pre-year-element-citation-conformity/fail.xml"/>
+        <x:expect-assert id="pre-year-element-citation-conformity" role="warning"/>
+        <x:expect-not-assert id="year-element-citation-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-year-element-citation-conformity-pass">
+        <x:context href="../tests/gen/year-element-citation-tests/final-year-element-citation-conformity/pass.xml"/>
+        <x:expect-not-assert id="final-year-element-citation-conformity" role="error"/>
+        <x:expect-not-assert id="year-element-citation-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-year-element-citation-conformity-fail">
+        <x:context href="../tests/gen/year-element-citation-tests/final-year-element-citation-conformity/fail.xml"/>
+        <x:expect-assert id="final-year-element-citation-conformity" role="error"/>
         <x:expect-not-assert id="year-element-citation-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -5103,6 +5113,16 @@
         <x:expect-report id="fig-specific-test-5" role="warning"/>
         <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-specific-test-7-pass">
+        <x:context href="../tests/gen/fig-specific-tests/fig-specific-test-7/pass.xml"/>
+        <x:expect-not-report id="fig-specific-test-7" role="warning"/>
+        <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-specific-test-7-fail">
+        <x:context href="../tests/gen/fig-specific-tests/fig-specific-test-7/fail.xml"/>
+        <x:expect-report id="fig-specific-test-7" role="warning"/>
+        <x:expect-not-assert id="fig-specific-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-label-tests">
       <x:scenario label="fig-label-test-1-pass">
@@ -7297,16 +7317,6 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-year">
-      <x:scenario label="err-elem-cit-gen-date-1-1-pass">
-        <x:context href="../tests/gen/elem-citation-year/err-elem-cit-gen-date-1-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-gen-date-1-1" role="error"/>
-        <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-gen-date-1-1-fail">
-        <x:context href="../tests/gen/elem-citation-year/err-elem-cit-gen-date-1-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-gen-date-1-1" role="error"/>
-        <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="err-elem-cit-gen-date-1-2-pass">
         <x:context href="../tests/gen/elem-citation-year/err-elem-cit-gen-date-1-2/pass.xml"/>
         <x:expect-not-assert id="err-elem-cit-gen-date-1-2" role="warning"/>
@@ -7337,14 +7347,24 @@
         <x:expect-assert id="err-elem-cit-gen-date-1-4" role="warning"/>
         <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-gen-date-1-5-pass">
-        <x:context href="../tests/gen/elem-citation-year/err-elem-cit-gen-date-1-5/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-gen-date-1-5" role="error"/>
+      <x:scenario label="pre-err-elem-cit-gen-date-1-5-pass">
+        <x:context href="../tests/gen/elem-citation-year/pre-err-elem-cit-gen-date-1-5/pass.xml"/>
+        <x:expect-not-assert id="pre-err-elem-cit-gen-date-1-5" role="warning"/>
         <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-gen-date-1-5-fail">
-        <x:context href="../tests/gen/elem-citation-year/err-elem-cit-gen-date-1-5/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-gen-date-1-5" role="error"/>
+      <x:scenario label="pre-err-elem-cit-gen-date-1-5-fail">
+        <x:context href="../tests/gen/elem-citation-year/pre-err-elem-cit-gen-date-1-5/fail.xml"/>
+        <x:expect-assert id="pre-err-elem-cit-gen-date-1-5" role="warning"/>
+        <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-gen-date-1-5-pass">
+        <x:context href="../tests/gen/elem-citation-year/final-err-elem-cit-gen-date-1-5/pass.xml"/>
+        <x:expect-not-assert id="final-err-elem-cit-gen-date-1-5" role="error"/>
+        <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-gen-date-1-5-fail">
+        <x:context href="../tests/gen/elem-citation-year/final-err-elem-cit-gen-date-1-5/fail.xml"/>
+        <x:expect-assert id="final-err-elem-cit-gen-date-1-5" role="error"/>
         <x:expect-not-assert id="elem-citation-year-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-gen-date-1-6-pass">
@@ -7797,14 +7817,24 @@
         <x:expect-assert id="err-elem-cit-book-10-2-2" role="error"/>
         <x:expect-not-assert id="elem-citation-book-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-book-13-1-pass">
-        <x:context href="../tests/gen/elem-citation-book/err-elem-cit-book-13-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-book-13-1" role="error"/>
+      <x:scenario label="pre-err-elem-cit-book-13-1-pass">
+        <x:context href="../tests/gen/elem-citation-book/pre-err-elem-cit-book-13-1/pass.xml"/>
+        <x:expect-not-assert id="pre-err-elem-cit-book-13-1" role="warning"/>
         <x:expect-not-assert id="elem-citation-book-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-book-13-1-fail">
-        <x:context href="../tests/gen/elem-citation-book/err-elem-cit-book-13-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-book-13-1" role="error"/>
+      <x:scenario label="pre-err-elem-cit-book-13-1-fail">
+        <x:context href="../tests/gen/elem-citation-book/pre-err-elem-cit-book-13-1/fail.xml"/>
+        <x:expect-assert id="pre-err-elem-cit-book-13-1" role="warning"/>
+        <x:expect-not-assert id="elem-citation-book-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-book-13-1-pass">
+        <x:context href="../tests/gen/elem-citation-book/final-err-elem-cit-book-13-1/pass.xml"/>
+        <x:expect-not-assert id="final-err-elem-cit-book-13-1" role="error"/>
+        <x:expect-not-assert id="elem-citation-book-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-book-13-1-fail">
+        <x:context href="../tests/gen/elem-citation-book/final-err-elem-cit-book-13-1/fail.xml"/>
+        <x:expect-assert id="final-err-elem-cit-book-13-1" role="error"/>
         <x:expect-not-assert id="elem-citation-book-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="warning-elem-cit-book-13-3-pass">
@@ -8421,14 +8451,24 @@
         <x:expect-assert id="err-elem-cit-web-2-1" role="error"/>
         <x:expect-not-assert id="elem-citation-web-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-web-8-1-pass">
-        <x:context href="../tests/gen/elem-citation-web/err-elem-cit-web-8-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-web-8-1" role="error"/>
+      <x:scenario label="pre-err-elem-cit-web-8-1-pass">
+        <x:context href="../tests/gen/elem-citation-web/pre-err-elem-cit-web-8-1/pass.xml"/>
+        <x:expect-not-assert id="pre-err-elem-cit-web-8-1" role="warning"/>
         <x:expect-not-assert id="elem-citation-web-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-web-8-1-fail">
-        <x:context href="../tests/gen/elem-citation-web/err-elem-cit-web-8-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-web-8-1" role="error"/>
+      <x:scenario label="pre-err-elem-cit-web-8-1-fail">
+        <x:context href="../tests/gen/elem-citation-web/pre-err-elem-cit-web-8-1/fail.xml"/>
+        <x:expect-assert id="pre-err-elem-cit-web-8-1" role="warning"/>
+        <x:expect-not-assert id="elem-citation-web-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-web-8-1-pass">
+        <x:context href="../tests/gen/elem-citation-web/final-err-elem-cit-web-8-1/pass.xml"/>
+        <x:expect-not-assert id="final-err-elem-cit-web-8-1" role="error"/>
+        <x:expect-not-assert id="elem-citation-web-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-web-8-1-fail">
+        <x:context href="../tests/gen/elem-citation-web/final-err-elem-cit-web-8-1/fail.xml"/>
+        <x:expect-assert id="final-err-elem-cit-web-8-1" role="error"/>
         <x:expect-not-assert id="elem-citation-web-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-web-9-1-pass">
@@ -9613,24 +9653,44 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="pub-id-tests">
-      <x:scenario label="pub-id-test-1-pass">
-        <x:context href="../tests/gen/pub-id-tests/pub-id-test-1/pass.xml"/>
-        <x:expect-not-report id="pub-id-test-1" role="error"/>
+      <x:scenario label="pre-pub-id-test-1-pass">
+        <x:context href="../tests/gen/pub-id-tests/pre-pub-id-test-1/pass.xml"/>
+        <x:expect-not-report id="pre-pub-id-test-1" role="warning"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pub-id-test-1-fail">
-        <x:context href="../tests/gen/pub-id-tests/pub-id-test-1/fail.xml"/>
-        <x:expect-report id="pub-id-test-1" role="error"/>
+      <x:scenario label="pre-pub-id-test-1-fail">
+        <x:context href="../tests/gen/pub-id-tests/pre-pub-id-test-1/fail.xml"/>
+        <x:expect-report id="pre-pub-id-test-1" role="warning"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pub-id-test-2-pass">
-        <x:context href="../tests/gen/pub-id-tests/pub-id-test-2/pass.xml"/>
-        <x:expect-not-report id="pub-id-test-2" role="error"/>
+      <x:scenario label="final-pub-id-test-1-pass">
+        <x:context href="../tests/gen/pub-id-tests/final-pub-id-test-1/pass.xml"/>
+        <x:expect-not-report id="final-pub-id-test-1" role="error"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pub-id-test-2-fail">
-        <x:context href="../tests/gen/pub-id-tests/pub-id-test-2/fail.xml"/>
-        <x:expect-report id="pub-id-test-2" role="error"/>
+      <x:scenario label="final-pub-id-test-1-fail">
+        <x:context href="../tests/gen/pub-id-tests/final-pub-id-test-1/fail.xml"/>
+        <x:expect-report id="final-pub-id-test-1" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-pub-id-test-2-pass">
+        <x:context href="../tests/gen/pub-id-tests/pre-pub-id-test-2/pass.xml"/>
+        <x:expect-not-report id="pre-pub-id-test-2" role="warning"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-pub-id-test-2-fail">
+        <x:context href="../tests/gen/pub-id-tests/pre-pub-id-test-2/fail.xml"/>
+        <x:expect-report id="pre-pub-id-test-2" role="warning"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-id-test-2-pass">
+        <x:context href="../tests/gen/pub-id-tests/final-pub-id-test-2/pass.xml"/>
+        <x:expect-not-report id="final-pub-id-test-2" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-id-test-2-fail">
+        <x:context href="../tests/gen/pub-id-tests/final-pub-id-test-2/fail.xml"/>
+        <x:expect-report id="final-pub-id-test-2" role="error"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pub-id-test-3-pass">
@@ -10303,14 +10363,24 @@
         <x:expect-report id="ref-xref-test-3" role="warning"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ref-xref-test-4-pass">
-        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-4/pass.xml"/>
-        <x:expect-not-assert id="ref-xref-test-4" role="error"/>
+      <x:scenario label="pre-ref-xref-test-4-pass">
+        <x:context href="../tests/gen/ref-xref-conformance/pre-ref-xref-test-4/pass.xml"/>
+        <x:expect-not-assert id="pre-ref-xref-test-4" role="warning"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ref-xref-test-4-fail">
-        <x:context href="../tests/gen/ref-xref-conformance/ref-xref-test-4/fail.xml"/>
-        <x:expect-assert id="ref-xref-test-4" role="error"/>
+      <x:scenario label="pre-ref-xref-test-4-fail">
+        <x:context href="../tests/gen/ref-xref-conformance/pre-ref-xref-test-4/fail.xml"/>
+        <x:expect-assert id="pre-ref-xref-test-4" role="warning"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ref-xref-test-4-pass">
+        <x:context href="../tests/gen/ref-xref-conformance/final-ref-xref-test-4/pass.xml"/>
+        <x:expect-not-assert id="final-ref-xref-test-4" role="error"/>
+        <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-ref-xref-test-4-fail">
+        <x:context href="../tests/gen/ref-xref-conformance/final-ref-xref-test-4/fail.xml"/>
+        <x:expect-assert id="final-ref-xref-test-4" role="error"/>
         <x:expect-not-assert id="ref-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ref-xref-test-5-pass">
@@ -13617,12 +13687,12 @@
       </x:scenario>
       <x:scenario label="UC-no-test-2-pass">
         <x:context href="../tests/gen/institution-tests/UC-no-test-2/pass.xml"/>
-        <x:expect-not-report id="UC-no-test-2" role="error"/>
+        <x:expect-not-report id="UC-no-test-2" role="warning"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="UC-no-test-2-fail">
         <x:context href="../tests/gen/institution-tests/UC-no-test-2/fail.xml"/>
-        <x:expect-report id="UC-no-test-2" role="error"/>
+        <x:expect-report id="UC-no-test-2" role="warning"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="UC-no-test-3-pass">
@@ -17557,14 +17627,24 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="empty-attribute-test">
-      <x:scenario label="empty-attribute-conformance-pass">
-        <x:context href="../tests/gen/empty-attribute-test/empty-attribute-conformance/pass.xml"/>
-        <x:expect-not-report id="empty-attribute-conformance" role="error"/>
+      <x:scenario label="pre-empty-attribute-conformance-pass">
+        <x:context href="../tests/gen/empty-attribute-test/pre-empty-attribute-conformance/pass.xml"/>
+        <x:expect-not-report id="pre-empty-attribute-conformance" role="warning"/>
         <x:expect-not-assert id="empty-attribute-test-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="empty-attribute-conformance-fail">
-        <x:context href="../tests/gen/empty-attribute-test/empty-attribute-conformance/fail.xml"/>
-        <x:expect-report id="empty-attribute-conformance" role="error"/>
+      <x:scenario label="pre-empty-attribute-conformance-fail">
+        <x:context href="../tests/gen/empty-attribute-test/pre-empty-attribute-conformance/fail.xml"/>
+        <x:expect-report id="pre-empty-attribute-conformance" role="warning"/>
+        <x:expect-not-assert id="empty-attribute-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-empty-attribute-conformance-pass">
+        <x:context href="../tests/gen/empty-attribute-test/final-empty-attribute-conformance/pass.xml"/>
+        <x:expect-not-report id="final-empty-attribute-conformance" role="error"/>
+        <x:expect-not-assert id="empty-attribute-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-empty-attribute-conformance-fail">
+        <x:context href="../tests/gen/empty-attribute-test/final-empty-attribute-conformance/fail.xml"/>
+        <x:expect-report id="final-empty-attribute-conformance" role="error"/>
         <x:expect-not-assert id="empty-attribute-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
