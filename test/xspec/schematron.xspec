@@ -2149,6 +2149,16 @@
         <x:expect-report id="funding-group-test-3" role="warning"/>
         <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="funding-group-test-4-pass">
+        <x:context href="../tests/gen/funding-group-tests/funding-group-test-4/pass.xml"/>
+        <x:expect-not-report id="funding-group-test-4" role="warning"/>
+        <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-group-test-4-fail">
+        <x:context href="../tests/gen/funding-group-tests/funding-group-test-4/fail.xml"/>
+        <x:expect-report id="funding-group-test-4" role="warning"/>
+        <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="award-group-tests">
       <x:scenario label="award-group-test-2-pass">
@@ -7948,6 +7958,28 @@
         <x:context href="../tests/gen/elem-citation-book-pub-id/err-elem-cit-book-17/fail.xml"/>
         <x:expect-assert id="err-elem-cit-book-17" role="error"/>
         <x:expect-not-assert id="elem-citation-book-pub-id-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="elem-citation-book-comment">
+      <x:scenario label="err-elem-cit-book-6-4-pass">
+        <x:context href="../tests/gen/elem-citation-book-comment/err-elem-cit-book-6-4/pass.xml"/>
+        <x:expect-not-assert id="err-elem-cit-book-6-4" role="error"/>
+        <x:expect-not-assert id="elem-citation-book-comment-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-6-4-fail">
+        <x:context href="../tests/gen/elem-citation-book-comment/err-elem-cit-book-6-4/fail.xml"/>
+        <x:expect-assert id="err-elem-cit-book-6-4" role="error"/>
+        <x:expect-not-assert id="elem-citation-book-comment-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-13-pass">
+        <x:context href="../tests/gen/elem-citation-book-comment/err-elem-cit-book-13/pass.xml"/>
+        <x:expect-not-assert id="err-elem-cit-book-13" role="error"/>
+        <x:expect-not-assert id="elem-citation-book-comment-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-13-fail">
+        <x:context href="../tests/gen/elem-citation-book-comment/err-elem-cit-book-13/fail.xml"/>
+        <x:expect-assert id="err-elem-cit-book-13" role="error"/>
+        <x:expect-not-assert id="elem-citation-book-comment-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-data">
