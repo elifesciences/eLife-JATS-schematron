@@ -3107,7 +3107,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2" 
         test="not(*) and normalize-space(.)=''" 
@@ -4010,7 +4010,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1" 
         test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
@@ -4055,7 +4055,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning" 
@@ -4092,7 +4092,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning" 
