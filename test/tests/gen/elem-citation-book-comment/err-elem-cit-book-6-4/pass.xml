@@ -1,0 +1,34 @@
+<?oxygen SCHSchema="err-elem-cit-book-6-4.sch"?>
+<!--Context: element-citation[@publication-type='book']/comment
+Test: assert    count(../fpage) eq 0 and count(../elocation-id) eq 0
+Message: If <comment>In press</comment> is present, neither <fpage> nor <elocation-id> may be present. Reference '' has one of those elements. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" publication-type="book">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Strauss</surname> <given-names>S</given-names>
+        </name>
+        <name>
+          <surname>Sapala</surname> <given-names>A</given-names>
+        </name>
+        <name>
+          <surname>Kierzkowski</surname> <given-names>D</given-names>
+        </name>
+        <name>
+          <surname>Smith</surname> <given-names>RS</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <chapter-title>Quantifying plant growth and cell proliferation with morphographx</chapter-title>
+      <person-group person-group-type="editor">
+        <name>
+          <surname>Cvrčková</surname> <given-names>F</given-names>
+        </name>
+      </person-group>
+      <source>Plant Cell Morphogenesis</source>
+      <publisher-name>Springer</publisher-name>
+      <comment>In press</comment>
+    </element-citation>
+  </article>
+</root>

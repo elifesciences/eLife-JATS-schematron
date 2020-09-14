@@ -1569,6 +1569,8 @@
 		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-2" test="count(award-group) = 0" role="warning" id="funding-group-test-2">[funding-group-test-2] There is no funding for this article. Is this correct?</report>
 		
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-3" test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">[funding-group-test-3] Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.'</report>
+	  
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection and interpretation, or the decision to submit the work for publication\.$'))" role="warning" id="funding-group-test-4">[funding-group-test-4] Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
     </rule>
   </pattern>
   <pattern id="award-group-tests-pattern">
@@ -3995,10 +3997,10 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(lpage)"/> &lt;lpage&gt; 
         elements and <value-of select="count(fpage)"/> &lt;fpage&gt; elements.</report>
       
-      <assert test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|         edition| fpage| lpage| pub-id)" role="error" id="err-elem-cit-book-40">[err-elem-cit-book-40]
+      <assert test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|         edition| fpage| lpage| pub-id | comment)" role="error" id="err-elem-cit-book-40">[err-elem-cit-book-40]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are:
         &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, 
-        &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, and &lt;pub-id&gt;.
+        &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
@@ -4066,6 +4068,15 @@
         Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. 
         The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' 
         is <value-of select="@pub-id-type"/>.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="elem-citation-book-comment-pattern">
+    <rule context="element-citation[@publication-type='book']/comment" id="elem-citation-book-comment">
+      
+      <assert test="count(../fpage) eq 0 and count(../elocation-id) eq 0" role="error" id="err-elem-cit-book-6-4">[err-elem-cit-book-6-4] If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
+      
+      <assert test="text() = 'In press'" role="error" id="err-elem-cit-book-13">[err-elem-cit-book-13] Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
       
     </rule>
   </pattern>

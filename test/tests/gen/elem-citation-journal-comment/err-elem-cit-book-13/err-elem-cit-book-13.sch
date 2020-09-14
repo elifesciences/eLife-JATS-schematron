@@ -790,18 +790,13 @@
     
   </xsl:function>
   <pattern id="element-citation-book-tests">
-    <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|         edition| fpage| lpage| pub-id | comment)" role="error" id="err-elem-cit-book-40">[err-elem-cit-book-40]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, 
-        &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+    <rule context="element-citation[@publication-type='book']/comment" id="elem-citation-journal-comment">
+      <assert test="text() = 'In press'" role="error" id="err-elem-cit-book-13">Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='book']/comment must be present.</assert>
     </rule>
   </pattern>
 </schema>
