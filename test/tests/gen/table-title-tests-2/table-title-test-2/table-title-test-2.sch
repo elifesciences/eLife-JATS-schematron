@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2" test="not(*) and normalize-space(.)=''" role="error" id="table-title-test-2">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed.</report>
     </rule>
   </pattern>

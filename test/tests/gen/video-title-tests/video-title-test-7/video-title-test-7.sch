@@ -792,7 +792,7 @@
   <pattern id="title-conformance">
     <rule context="media/caption/title" id="video-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       <report test="string-length(.) gt 250" role="warning" id="video-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>

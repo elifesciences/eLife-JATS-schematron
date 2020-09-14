@@ -2247,7 +2247,7 @@
   </pattern>
   <pattern id="table-title-tests-2-pattern">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2" test="not(*) and normalize-space(.)=''" role="error" id="table-title-test-2">[table-title-test-2] The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed.</report>
       
@@ -2839,7 +2839,7 @@
   <pattern id="fig-title-tests-pattern">
     <rule context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1" test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="fig-title-test-1">[fig-title-test-1] '<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
@@ -2862,7 +2862,7 @@
   <pattern id="supplementary-material-title-tests-pattern">
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">[supplementary-material-title-test-1] '<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
@@ -2884,7 +2884,7 @@
   <pattern id="video-title-tests-pattern">
     <rule context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(.,'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">[video-title-test-1] '<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       

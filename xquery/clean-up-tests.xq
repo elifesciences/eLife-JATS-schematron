@@ -14,4 +14,4 @@ return
 for $x in $dirs//*:dir[not(@id=('abstract-test-7','p-test-1','gen-country-iso-3166-test'))]
 let $id := $x/@id
 return if ($base//*[@id = $id]) then ()
-else $x
+else file:delete($x/text(),true())
