@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="pub-id-test-2.sch"?>
+<?oxygen SCHSchema="final-pub-id-test-2.sch"?>
 <!--Context: element-citation/pub-id
 Test: report    (@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9<>\[\]]+$'))
 Message: pub-id is tagged as a doi, but it is not one -  -->
@@ -6,7 +6,7 @@ Message: pub-id is tagged as a doi, but it is not one -  -->
   <article>
     <element-citation>
       ...
-      <pub-id pub-id-type="doi">elifesciences.org/</pub-id>
+      <pub-id pub-id-type="doi">10.7554/eLife.00001</pub-id>
     </element-citation>
   </article>
 </root>

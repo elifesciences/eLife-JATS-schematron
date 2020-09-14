@@ -792,10 +792,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="count(publisher-name)=1" role="error" id="err-elem-cit-book-13-1">[err-elem-cit-book-13-1]
-        One and only one &lt;publisher-name&gt; is required in a book reference.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
-        &lt;publisher-name&gt; elements.</assert>
+      <assert test="count(publisher-name)=1" role="error" id="final-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

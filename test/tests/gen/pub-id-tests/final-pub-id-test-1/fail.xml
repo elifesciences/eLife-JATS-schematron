@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="pub-id-test-1.sch"?>
+<?oxygen SCHSchema="final-pub-id-test-1.sch"?>
 <!--Context: element-citation/pub-id
 Test: report    (@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))
 Message: @xlink:href must start with an http:// or ftp:// protocol. -  does not. -->

@@ -789,15 +789,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="pub-id-pattern">
-    <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
-      </report>
+  <pattern id="element-citation-book-tests">
+    <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
+      <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
+      <assert test="count(publisher-name)=1" role="warning" id="pre-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
