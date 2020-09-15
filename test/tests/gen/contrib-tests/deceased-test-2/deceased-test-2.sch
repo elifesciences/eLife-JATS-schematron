@@ -810,7 +810,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-2" test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
         <value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
     </rule>
   </pattern>

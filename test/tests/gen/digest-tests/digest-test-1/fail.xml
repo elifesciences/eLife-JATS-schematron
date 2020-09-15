@@ -1,0 +1,43 @@
+<?oxygen SCHSchema="digest-test-1.sch"?>
+<!--Context: front//abstract[@abstract-type='executive-summary']/p
+Test: report    matches(.,'^\p{Ll}')
+Message: digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <abstract abstract-type="executive-summary">
+        <title>eLife digest</title>
+        <p>In most environments, organisms compete for limited resources. The number and relative
+          abundance of species that an ecosystem can host is referred to as &#x2018;species
+          diversity&#x2019;. The competitive-exclusion principle is a hypothesis which proposes
+          that, in an ecosystem, competition for resources results in decreased diversity: only
+          species best equipped to consume the available resources thrive, while their less
+          successful competitors die off. However, many natural ecosystems foster a wide array of
+          species despite offering relatively few resources.</p>
+        <p>Researchers have proposed many competing theories to explain how this paradox can emerge,
+          but they have mainly focused on ecosystems where nutrients are steadily supplied. By
+          contrast, less is known about the way species diversity is maintained when nutrients are
+          only intermittently available, for example in ecosystems that have seasons.</p>
+        <p>To address this question, Erez, Lopez et al. modeled communities of bacteria</p>
+        <p>in which nutrients were repeatedly added and then used up. Depending on conditions, a
+          variety of relationships between the amount of nutrient supplied and community diversity
+          could emerge, suggesting that ecosystems do not follow a simple, universal rule that
+          dictates species diversity. In particular, the resulting communities displayed a higher
+          diversity of microbes than the limit imposed by the competitive-exclusion principle.</p>
+        <p>Further observations allowed Erez, Lopez et al. to suggest guiding principles for when
+          diversity in ecosystems will be maintained or lost. In this framework,
+          &#x2018;early-bird&#x2019; species, which rapidly use a subset of the available nutrients,
+          grow to dominate the ecosystem. Even though &#x2018;late-bird&#x2019; species are more
+          effective at consuming the remaining resources, they cannot compete with the increased
+          sheer numbers of the &#x2018;early-birds&#x2019;, leading to a
+          &#x2018;rich-get-richer&#x2019; phenomenon.</p>
+        <p>Oceanic plankton, arctic permafrost and many other threatened, resource-poor ecosystems
+          across the world can dramatically influence our daily lives. Closer to home, shifts in the
+          microbe communities that live on the surface of the human body and in the digestive system
+          are linked to poor health. Understanding how species diversity emerges and changes will
+          help to protect our external and internal environments.</p>
+      </abstract>
+    </front>
+  </article>
+</root>
