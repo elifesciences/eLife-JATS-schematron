@@ -1258,10 +1258,10 @@
 	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" role="warning" id="COI-test">
         <value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
 	  
-	  <report test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-1" test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
         <value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
 	  
-	  <report test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-2" test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" role="error" id="deceased-test-2">
         <value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
 		
 		</rule>
@@ -5142,6 +5142,13 @@
      
    </rule>
   </pattern>
+  <pattern id="digest-tests-pattern">
+    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+     
+     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+     
+   </rule>
+  </pattern>
   <pattern id="feature-subj-tests-pattern">
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">		
      <let name="token1" value="substring-before(.,' ')"/>
@@ -7948,6 +7955,7 @@
       <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
       <assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" role="error" id="feature-title-tests-xspec-assert">article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title must be present.</assert>
       <assert test="descendant::front//abstract[@abstract-type='executive-summary']" role="error" id="feature-abstract-tests-xspec-assert">front//abstract[@abstract-type='executive-summary'] must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
       <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
       <assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-article-category-tests-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
       <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author'] must be present.</assert>

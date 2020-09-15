@@ -789,34 +789,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-meta//contrib" id="contrib-tests">
-      <let name="type" value="@contrib-type"/>
-      <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
-      <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
-      <let name="inst2" value="ancestor::contrib-group//aff[@id = $aff-rid2]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid3" value="xref[@ref-type='aff'][3]/@rid"/>
-      <let name="inst3" value="ancestor::contrib-group//aff[@id = $aff-rid3]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid4" value="xref[@ref-type='aff'][4]/@rid"/>
-      <let name="inst4" value="ancestor::contrib-group//aff[@id = $aff-rid4]/institution[not(@content-type)][1]"/>
-      <let name="aff-rid5" value="xref[@ref-type='aff'][5]/@rid"/>
-      <let name="inst5" value="ancestor::contrib-group//aff[@id = $aff-rid5]/institution[not(@content-type)][1]"/>
-      <let name="inst" value="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
-      <let name="coi-rid" value="xref[starts-with(@rid,'conf')]/@rid"/>
-      <let name="coi" value="ancestor::article//fn[@id = $coi-rid]/p[1]"/>
-      <let name="comp-regex" value="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
-      <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
-      <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
-      <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-1" test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
-        <value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
+  <pattern id="features">
+    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+      <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
     </rule>
   </pattern>
 </schema>

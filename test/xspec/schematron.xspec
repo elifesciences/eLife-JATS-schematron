@@ -9768,6 +9768,18 @@
         <x:expect-not-assert id="feature-abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="digest-tests">
+      <x:scenario label="digest-test-1-pass">
+        <x:context href="../tests/gen/digest-tests/digest-test-1/pass.xml"/>
+        <x:expect-not-report id="digest-test-1" role="warning"/>
+        <x:expect-not-assert id="digest-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="digest-test-1-fail">
+        <x:context href="../tests/gen/digest-tests/digest-test-1/fail.xml"/>
+        <x:expect-report id="digest-test-1" role="warning"/>
+        <x:expect-not-assert id="digest-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="feature-subj-tests">
       <x:scenario label="feature-subj-test-2-pass">
         <x:context href="../tests/gen/feature-subj-tests/feature-subj-test-2/pass.xml"/>
