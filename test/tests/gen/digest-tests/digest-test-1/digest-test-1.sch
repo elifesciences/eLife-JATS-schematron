@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
-      <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+      <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two? If the latter is the case, the features team will have to be notified so that they can update the word doc for the digest channel.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
