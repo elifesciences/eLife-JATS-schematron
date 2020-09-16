@@ -7085,7 +7085,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
      <report test="matches(.,'^\p{Ll}')" 
        role="warning" 
-       id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+       id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two? If the latter is the case, the features team will have to be notified so that they can update the word doc for the digest channel.</report>
      
    </rule>
    
@@ -7352,7 +7352,8 @@ else self::*/local-name() = $allowed-p-blocks"
         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x
         else (),'; ')"/>
       
-      <report test="($text-count gt $count)" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#rrid-test" 
+        test="($text-count gt $count)" 
         role="warning" 
         id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
@@ -10352,11 +10353,13 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
-      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#pre-rrid-spacing" 
+        test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="error" 
         id="pre-rrid-spacing">RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
       
-      <report test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#final-rrid-spacing" 
+        test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="warning" 
         id="final-rrid-spacing">RRID (scicrunch) link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
