@@ -1506,6 +1506,17 @@
         id="deceased-test-2"><value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
 		
 		</rule>
+    
+    <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" 
+      id="corresp-author-initial-tests">
+      <let name="name" value="e:get-name(name[1])"/>
+      <let name="normalized-name" value="e:stripDiacritics($name)"/>
+      
+      <report test="$normalized-name != $name" 
+        role="warning" 
+        id="corresp-author-initial-test"><value-of select="$name"/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</report>
+      
+    </rule>
 		
 		<rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
@@ -7085,7 +7096,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
      <report test="matches(.,'^\p{Ll}')" 
        role="warning" 
-       id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two? If the latter is the case, the features team will have to be notified so that they can update the word doc for the digest channel.</report>
+       id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
      
    </rule>
    
