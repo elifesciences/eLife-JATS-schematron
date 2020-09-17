@@ -789,14 +789,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="features">
-    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
-      <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+  <pattern id="article-metadata">
+    <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" id="corresp-author-initial-tests">
+      <let name="name" value="e:get-name(name)"/>
+      <let name="normalized-name" value="e:stripDiacritics($name)"/>
+      <report test="$normalized-name != $name" role="warning" id="corresp-author-initial-test">
+        <value-of select="$name"/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
+      <assert test="descendant::article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" role="error" id="corresp-author-initial-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name] must be present.</assert>
     </rule>
   </pattern>
 </schema>

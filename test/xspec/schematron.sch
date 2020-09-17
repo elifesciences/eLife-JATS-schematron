@@ -1266,6 +1266,16 @@
 		
 		</rule>
   </pattern>
+  <pattern id="corresp-author-initial-tests-pattern">
+    <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" id="corresp-author-initial-tests">
+      <let name="name" value="e:get-name(name)"/>
+      <let name="normalized-name" value="e:stripDiacritics($name)"/>
+      
+      <report test="$normalized-name != $name" role="warning" id="corresp-author-initial-test">
+        <value-of select="$name"/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="author-children-tests-pattern">
     <rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
@@ -5145,7 +5155,7 @@
   <pattern id="digest-tests-pattern">
     <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
      
-     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two? If the latter is the case, the features team will have to be notified so that they can update the word doc for the digest channel.</report>
+     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
      
    </rule>
   </pattern>
@@ -7680,6 +7690,7 @@
       <assert test="descendant::contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">contrib-group//name/suffix must be present.</assert>
       <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert test="descendant::article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" role="error" id="corresp-author-initial-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name] must be present.</assert>
       <assert test="descendant::article-meta//contrib[@contrib-type='author']/*" role="error" id="author-children-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/* must be present.</assert>
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
       <assert test="descendant::article-meta//email" role="error" id="email-tests-xspec-assert">article-meta//email must be present.</assert>
