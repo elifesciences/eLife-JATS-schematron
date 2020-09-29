@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" id="corresp-author-initial-tests">
-      <let name="name" value="e:get-name(name)"/>
+      <let name="name" value="e:get-name(name[1])"/>
       <let name="normalized-name" value="e:stripDiacritics($name)"/>
       <report test="$normalized-name != $name" role="warning" id="corresp-author-initial-test">
         <value-of select="$name"/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</report>
