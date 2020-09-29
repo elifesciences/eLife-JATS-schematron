@@ -2488,7 +2488,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
         role="warning" 
         id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
@@ -2924,8 +2924,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
       <assert test="parent::p" 
+        role="warning" 
+        id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
+      
+      <report test="parent::p and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='')"
         role="error" 
-        id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/></assert>
+        id="disp-formula-test-4">disp-formula cannot be placed as the first child of a p element with no content before it (ie. &gt;p>&gt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/></report>
     </rule>
     
     <rule context="inline-formula" id="inline-formula-tests">
@@ -4579,10 +4583,11 @@ else self::*/local-name() = $allowed-p-blocks"
         id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
     
-    <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
+    <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
+      <let name="title" value="lower-case(title[1])"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3" 
-        test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" 
+        test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" 
         role="warning" 
         id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
       
@@ -5834,10 +5839,12 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements.</assert>
       
       <assert test="ext-link" 
+        role="warning" 
+        id="pre-err-elem-cit-patent-11-1">The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
+      
+      <assert test="ext-link" 
         role="error" 
-        id="err-elem-cit-patent-11-1">[err-elem-cit-patent-11-1]
-        The &lt;ext-link&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements.</assert>
+        id="final-err-elem-cit-patent-11-1">The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements.</assert>
       
       <assert test="count(*) = count(person-group| article-title| source| year| patent| ext-link)" 
         role="error" 
@@ -6983,6 +6990,11 @@ else self::*/local-name() = $allowed-p-blocks"
         test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" 
         role="warning" 
         id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-5" 
+        test="pub-id[1] = following::element-citation[ancestor::ref-list]/pub-id[1]" 
+        role="warning" 
+        id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
       
     </rule>
     

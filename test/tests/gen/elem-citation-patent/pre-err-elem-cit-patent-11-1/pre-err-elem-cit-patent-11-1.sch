@@ -791,9 +791,7 @@
   </xsl:function>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
-      <assert test="ext-link" role="error" id="err-elem-cit-patent-11-1">[err-elem-cit-patent-11-1]
-        The &lt;ext-link&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements.</assert>
+      <assert test="ext-link" role="warning" id="pre-err-elem-cit-patent-11-1">The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

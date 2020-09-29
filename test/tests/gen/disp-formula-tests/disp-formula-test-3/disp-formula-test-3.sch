@@ -791,8 +791,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="disp-formula" id="disp-formula-tests">
-      <assert test="parent::p" role="error" id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>
-      </assert>
+      <assert test="parent::p" role="warning" id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

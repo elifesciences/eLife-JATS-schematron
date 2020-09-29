@@ -1268,7 +1268,7 @@
   </pattern>
   <pattern id="corresp-author-initial-tests-pattern">
     <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" id="corresp-author-initial-tests">
-      <let name="name" value="e:get-name(name)"/>
+      <let name="name" value="e:get-name(name[1])"/>
       <let name="normalized-name" value="e:stripDiacritics($name)"/>
       
       <report test="$normalized-name != $name" role="warning" id="corresp-author-initial-test">
@@ -1925,7 +1925,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
       
@@ -2210,8 +2210,10 @@
       
       <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
-      <assert test="parent::p" role="error" id="disp-formula-test-3">disp-formula must be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>
-      </assert>
+      <assert test="parent::p" role="warning" id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
+      
+      <report test="parent::p and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='')" role="error" id="disp-formula-test-4">disp-formula cannot be placed as the first child of a p element with no content before it (ie. &gt;p&gt;&gt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/>
+      </report>
     </rule>
   </pattern>
   <pattern id="inline-formula-tests-pattern">
@@ -3349,9 +3351,10 @@
     </rule>
   </pattern>
   <pattern id="res-data-sec-pattern">
-    <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
+    <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
+      <let name="title" value="lower-case(title[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3" test="matches(title[1],'[Dd]ata') and (matches(title[1],'[Aa]vailability') or matches(title[1],'[Cc]ode') or matches(title[1],'[Aa]ccessib') or matches(title[1],'[Ss]atement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3" test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
       
     </rule>
   </pattern>
@@ -4245,9 +4248,9 @@
         The  &lt;patent&gt; element is required. 
         Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements.</assert>
       
-      <assert test="ext-link" role="error" id="err-elem-cit-patent-11-1">[err-elem-cit-patent-11-1]
-        The &lt;ext-link&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements.</assert>
+      <assert test="ext-link" role="warning" id="pre-err-elem-cit-patent-11-1">The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
+      
+      <assert test="ext-link" role="error" id="final-err-elem-cit-patent-11-1">The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements.</assert>
       
       <assert test="count(*) = count(person-group| article-title| source| year| patent| ext-link)" role="error" id="err-elem-cit-patent-18">[err-elem-cit-patent-18]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="patent" are:
@@ -5079,6 +5082,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-cit-3" test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" role="error" id="final-das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4" test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" role="warning" id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-5" test="pub-id[1] = following::element-citation[ancestor::ref-list]/pub-id[1]" role="warning" id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
       
     </rule>
   </pattern>
@@ -7852,7 +7857,7 @@
       <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-children-xspec-assert">supplementary-material/* must be present.</assert>
       <assert test="descendant::author-notes/*" role="error" id="author-notes-children-xspec-assert">author-notes/* must be present.</assert>
       <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
-      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub or descendant::[Gg]itlab or descendant::[Cc]ode[Pp]lex or descendant::[Ss]ource[Ff]orge or descendant::[Bb]it[Bb]ucket'))]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type) and not(descendant::xref[@ref-type='bibr']) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub or descendant::[Gg]itlab or descendant::[Cc]ode[Pp]lex or descendant::[Ss]ource[Ff]orge or descendant::[Bb]it[Bb]ucket'))]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))] must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" role="error" id="res-ethics-sec-xspec-assert">article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])] must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
       <assert test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>

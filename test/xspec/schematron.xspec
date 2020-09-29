@@ -3789,12 +3789,22 @@
       </x:scenario>
       <x:scenario label="disp-formula-test-3-pass">
         <x:context href="../tests/gen/disp-formula-tests/disp-formula-test-3/pass.xml"/>
-        <x:expect-not-assert id="disp-formula-test-3" role="error"/>
+        <x:expect-not-assert id="disp-formula-test-3" role="warning"/>
         <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="disp-formula-test-3-fail">
         <x:context href="../tests/gen/disp-formula-tests/disp-formula-test-3/fail.xml"/>
-        <x:expect-assert id="disp-formula-test-3" role="error"/>
+        <x:expect-assert id="disp-formula-test-3" role="warning"/>
+        <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-test-4-pass">
+        <x:context href="../tests/gen/disp-formula-tests/disp-formula-test-4/pass.xml"/>
+        <x:expect-not-report id="disp-formula-test-4" role="error"/>
+        <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-test-4-fail">
+        <x:context href="../tests/gen/disp-formula-tests/disp-formula-test-4/fail.xml"/>
+        <x:expect-report id="disp-formula-test-4" role="error"/>
         <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -8201,14 +8211,24 @@
         <x:expect-assert id="err-elem-cit-patent-10-1-1" role="error"/>
         <x:expect-not-assert id="elem-citation-patent-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-patent-11-1-pass">
-        <x:context href="../tests/gen/elem-citation-patent/err-elem-cit-patent-11-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-patent-11-1" role="error"/>
+      <x:scenario label="pre-err-elem-cit-patent-11-1-pass">
+        <x:context href="../tests/gen/elem-citation-patent/pre-err-elem-cit-patent-11-1/pass.xml"/>
+        <x:expect-not-assert id="pre-err-elem-cit-patent-11-1" role="warning"/>
         <x:expect-not-assert id="elem-citation-patent-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-patent-11-1-fail">
-        <x:context href="../tests/gen/elem-citation-patent/err-elem-cit-patent-11-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-patent-11-1" role="error"/>
+      <x:scenario label="pre-err-elem-cit-patent-11-1-fail">
+        <x:context href="../tests/gen/elem-citation-patent/pre-err-elem-cit-patent-11-1/fail.xml"/>
+        <x:expect-assert id="pre-err-elem-cit-patent-11-1" role="warning"/>
+        <x:expect-not-assert id="elem-citation-patent-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-patent-11-1-pass">
+        <x:context href="../tests/gen/elem-citation-patent/final-err-elem-cit-patent-11-1/pass.xml"/>
+        <x:expect-not-assert id="final-err-elem-cit-patent-11-1" role="error"/>
+        <x:expect-not-assert id="elem-citation-patent-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-patent-11-1-fail">
+        <x:context href="../tests/gen/elem-citation-patent/final-err-elem-cit-patent-11-1/fail.xml"/>
+        <x:expect-assert id="final-err-elem-cit-patent-11-1" role="error"/>
         <x:expect-not-assert id="elem-citation-patent-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-patent-18-pass">
@@ -9595,6 +9615,16 @@
       <x:scenario label="das-elem-cit-4-fail">
         <x:context href="../tests/gen/gen-das-tests/das-elem-cit-4/fail.xml"/>
         <x:expect-report id="das-elem-cit-4" role="warning"/>
+        <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-elem-cit-5-pass">
+        <x:context href="../tests/gen/gen-das-tests/das-elem-cit-5/pass.xml"/>
+        <x:expect-not-report id="das-elem-cit-5" role="warning"/>
+        <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-elem-cit-5-fail">
+        <x:context href="../tests/gen/gen-das-tests/das-elem-cit-5/fail.xml"/>
+        <x:expect-report id="das-elem-cit-5" role="warning"/>
         <x:expect-not-assert id="gen-das-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
