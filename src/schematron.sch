@@ -7279,10 +7279,6 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="corr-aff-presence">Correction notices should not contain affiliations.</report>
       
-      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" 
-        role="error" 
-        id="corr-auth-kw-presence">Correction notices should not contain any author keywords.</report>
-      
       <report test="descendant::fn-group[@content-type='competing-interest']" 
         role="error" 
         id="corr-COI-presence">Correction notices should not contain competing interests.</report>
@@ -7314,10 +7310,6 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="descendant::article-meta//aff" 
         role="error" 
         id="retr-aff-presence">Retractions should not contain affiliations.</report>
-      
-      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" 
-        role="error" 
-        id="retr-auth-kw-presence">Retractions should not contain any author keywords.</report>
       
       <report test="descendant::fn-group[@content-type='competing-interest']" 
         role="error" 

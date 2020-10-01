@@ -10077,16 +10077,6 @@
         <x:expect-report id="corr-aff-presence" role="error"/>
         <x:expect-not-assert id="correction-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="corr-auth-kw-presence-pass">
-        <x:context href="../tests/gen/correction-tests/corr-auth-kw-presence/pass.xml"/>
-        <x:expect-not-report id="corr-auth-kw-presence" role="error"/>
-        <x:expect-not-assert id="correction-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="corr-auth-kw-presence-fail">
-        <x:context href="../tests/gen/correction-tests/corr-auth-kw-presence/fail.xml"/>
-        <x:expect-report id="corr-auth-kw-presence" role="error"/>
-        <x:expect-not-assert id="correction-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="corr-COI-presence-pass">
         <x:context href="../tests/gen/correction-tests/corr-COI-presence/pass.xml"/>
         <x:expect-not-report id="corr-COI-presence" role="error"/>
@@ -10157,16 +10147,6 @@
       <x:scenario label="retr-aff-presence-fail">
         <x:context href="../tests/gen/retraction-tests/retr-aff-presence/fail.xml"/>
         <x:expect-report id="retr-aff-presence" role="error"/>
-        <x:expect-not-assert id="retraction-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="retr-auth-kw-presence-pass">
-        <x:context href="../tests/gen/retraction-tests/retr-auth-kw-presence/pass.xml"/>
-        <x:expect-not-report id="retr-auth-kw-presence" role="error"/>
-        <x:expect-not-assert id="retraction-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="retr-auth-kw-presence-fail">
-        <x:context href="../tests/gen/retraction-tests/retr-auth-kw-presence/fail.xml"/>
-        <x:expect-report id="retr-auth-kw-presence" role="error"/>
         <x:expect-not-assert id="retraction-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="retr-COI-presence-pass">
