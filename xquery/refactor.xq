@@ -29,6 +29,9 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
   let $pre-sch := elife:sch2pre($sch)
   (: schematron for post-author :)
   let $final-sch := elife:sch2final($sch)
+  (:xsl files for validator:)
+  let $pre-xsl := schematron:compile($pre-sch)
+  let $final-xsl := schematron:compile($final-sch)
   (: schematron for final-package - niche use :)
   let $final-package-sch :=  elife:sch2final-package($sch)
   (: Generate xspec specific sch :)
@@ -42,6 +45,8 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
     elife:unallowed-roles($sch,$roles),
     file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
     file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
+    file:write(($outputDir||'/pre-JATS-schematron.xsl'),$pre-xsl),
+    file:write(($outputDir||'/final-JATS-schematron.xsl'),$final-xsl),
     
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
     file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch),

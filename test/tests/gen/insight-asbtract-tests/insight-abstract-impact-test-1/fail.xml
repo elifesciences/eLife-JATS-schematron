@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="insight-asbtract-impact-test-1.sch"?>
+<?oxygen SCHSchema="insight-abstract-impact-test-1.sch"?>
 <!--Context: article[@article-type='article-commentary']//article-meta/abstract
 Test: assert    . = $impact-statement
 Message: In insights, abstracts must be the same as impact statements. Here the abstract reads "", whereas the impact statement reads "". -->

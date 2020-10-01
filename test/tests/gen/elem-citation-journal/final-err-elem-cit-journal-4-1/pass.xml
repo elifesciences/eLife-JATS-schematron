@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="final-err-elem-cit-journal-4-1.sch"?>
+<!--Context: element-citation[@publication-type='journal']
+Test: assert    count(source)=1
+Message: Each  <element-citation> of type 'journal' must contain one and only one <source> element. Reference '' has  <source> elements. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <back>
+      <ref-list>
+        <title>References</title>
+        <ref id="bib1"><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Arnold</surname> <given-names>JS</given-names></name><name><surname>Werling</surname> <given-names>U</given-names></name><name><surname>Braunstein</surname> <given-names>EM</given-names></name><name><surname>Liao</surname> <given-names>J</given-names></name><name><surname>Nowotschin</surname> <given-names>S</given-names></name><name><surname>Edelmann</surname> <given-names>W</given-names></name><name><surname>Hebert</surname> <given-names>JM</given-names></name><name><surname>Morrow</surname> <given-names>BE</given-names></name></person-group><year iso-8601-date="2006">2006</year><article-title>Inactivation of Tbx1 in the pharyngeal endoderm results in 22q11ds malformations</article-title><source>Development</source><volume>133</volume><fpage>977</fpage><lpage>987</lpage><pub-id pub-id-type="doi">10.1242/dev.02264</pub-id><pub-id pub-id-type="pmid">16452092</pub-id></element-citation></ref>
+        <ref id="bib2"><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Birchmeier</surname> <given-names>C</given-names></name><name><surname>Gherardi</surname> <given-names>E</given-names></name></person-group><year iso-8601-date="1998">1998</year><article-title>Developmental roles of HGF/SF and its receptor, the c-Met tyrosine kinase</article-title><source>Trends in Cell Biology</source><volume>8</volume><fpage>404</fpage><lpage>410</lpage><pub-id pub-id-type="doi">10.1016/S0962-8924(98)01359-2</pub-id><pub-id pub-id-type="pmid">9789329</pub-id></element-citation></ref>
+      </ref-list>
+    </back>
+  </article>
+</root>

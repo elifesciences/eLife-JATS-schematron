@@ -1,11 +1,11 @@
-<?oxygen SCHSchema="insight-asbtract-impact-test-1.sch"?>
+<?oxygen SCHSchema="insight-abstract-impact-test-2.sch"?>
 <!--Context: article[@article-type='article-commentary']//article-meta/abstract
-Test: assert    . = $impact-statement
-Message: In insights, abstracts must be the same as impact statements. Here the abstract reads "", whereas the impact statement reads "". -->
+Test: assert    count(p/*) = $impact-statement-element-count
+Message: In insights, abstracts must be the same as impact statements. Here the abstract has  child element(s), whereas the impact statement has  child element(s). Check for possible missing formatting. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="article-commentary">
     <article-meta>
-      <abstract><p>Two studies suggest that a determined adversary may be able to obtain genetic information without permission from some genealogy databases.</p></abstract>
+      <abstract><p>Two studies suggest that a <italic>determined</italic> adversary may be able to obtain genetic information without permission from some genealogy databases.</p></abstract>
       <custom-meta-group><custom-meta specific-use="meta-only"><meta-name>Author impact statement</meta-name><meta-value>Two studies suggest that a determined adversary may be able to obtain genetic information without permission from some genealogy databases.</meta-value></custom-meta></custom-meta-group>
     </article-meta>
   </article>

@@ -3896,7 +3896,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" 
         role="error" 
-        id="permissions-parent">permissions  is not allowd as a child of <value-of select="parent::*/local-name()"/></assert>
+        id="permissions-parent">permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/></assert>
       
     </rule>
     
@@ -3909,7 +3909,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" 
         role="warning" 
-        id="fig-permissions-test-13"><value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:licens_ref element, which is very likely incorrect.</report>
+        id="fig-permissions-test-13"><value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:license_ref element, which is very likely incorrect.</report>
       
     </rule>
     
@@ -5354,23 +5354,25 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of 
         '<value-of select="person-group/@person-group-type"/>'.</assert> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#err-elem-cit-journal-3-1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#pre-err-elem-cit-journal-3-1" 
+        test="count(article-title)=1" 
+        role="warning" 
+        id="pre-err-elem-cit-journal-3-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#final-err-elem-cit-journal-3-1" 
         test="count(article-title)=1" 
         role="error" 
-        id="err-elem-cit-journal-3-1">[err-elem-cit-journal-3-1]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+        id="final-err-elem-cit-journal-3-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-4-1" 
+        test="count(source)=1" 
+        role="warning" 
+        id="pre-err-elem-cit-journal-4-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-4-1" 
         test="count(source)=1" 
         role="error" 
-        id="err-elem-cit-journal-4-1">[err-elem-cit-journal-4-1]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one and
-        only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+        id="final-err-elem-cit-journal-4-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" 
         test="count(source)=1 and count(source/*)!=0" 
@@ -7155,7 +7157,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
      <assert test="p[1]/bold = $name" 
         role="error" 
-        id="feature-bio-test-1">bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
+        id="feature-bio-test-1">bio must contain a bold element that contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
      <report test="if (count($aff) &gt; 1) then ()
@@ -7184,7 +7186,7 @@ else self::*/local-name() = $allowed-p-blocks"
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
-     <report test="($template = ('1','2')) and child::sub-article" 
+     <report test="($template = ('1','2','3')) and child::sub-article" 
         role="error" 
         id="feature-template-test-1"><value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
      
@@ -7229,12 +7231,12 @@ else self::*/local-name() = $allowed-p-blocks"
      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1" 
         test=". = $impact-statement" 
         role="warning" 
-        id="insight-asbtract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
+        id="insight-abstract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
      
      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2" 
         test="count(p/*) = $impact-statement-element-count" 
         role="warning" 
-        id="insight-asbtract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
+        id="insight-abstract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
      
    </rule>
    
@@ -7474,10 +7476,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1" 
-        test="replace(.,' ',' ') = $cite1" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1" 
+        test="$ref/*/year and (replace(.,' ',' ') != $cite1)" 
         role="error" 
-        id="pre-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
+        id="pre-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-1" 
         test="replace(.,' ',' ') = ($cite1,$cite2)" 
