@@ -2760,7 +2760,7 @@
       
       <report test="." role="info" id="permissions-notification">[permissions-notification] <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
       
-      <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions  is not allowd as a child of <value-of select="parent::*/local-name()"/>
+      <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/>
       </assert>
       
     </rule>
@@ -2771,7 +2771,7 @@
       
       <assert test="matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')" role="warning" id="fig-permissions-test-12">[fig-permissions-test-12] <value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link on the license element or in an ali:license_ref so presumed ARR.)</assert>
       
-      <report test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" role="warning" id="fig-permissions-test-13">[fig-permissions-test-13] <value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:licens_ref element, which is very likely incorrect.</report>
+      <report test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" role="warning" id="fig-permissions-test-13">[fig-permissions-test-13] <value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:license_ref element, which is very likely incorrect.</report>
       
     </rule>
   </pattern>
@@ -3751,17 +3751,13 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of 
         '<value-of select="person-group/@person-group-type"/>'.</assert> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#err-elem-cit-journal-3-1" test="count(article-title)=1" role="error" id="err-elem-cit-journal-3-1">[err-elem-cit-journal-3-1]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#pre-err-elem-cit-journal-3-1" test="count(article-title)=1" role="warning" id="pre-err-elem-cit-journal-3-1">[pre-err-elem-cit-journal-3-1] Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-1" test="count(source)=1" role="error" id="err-elem-cit-journal-4-1">[err-elem-cit-journal-4-1]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one and
-        only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-4-1" test="count(source)=1" role="warning" id="pre-err-elem-cit-journal-4-1">[pre-err-elem-cit-journal-4-1] Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
+      
+      
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
@@ -5070,7 +5066,7 @@
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
      <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
      
-     <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">[feature-bio-test-1] bio must contain a bold element which contains the name of the author - <value-of select="$name"/>.</assert>
+     <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">[feature-bio-test-1] bio must contain a bold element that contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
      <report test="if (count($aff) &gt; 1) then ()        else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">[feature-bio-test-2] bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
@@ -5091,7 +5087,7 @@
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
-     <report test="($template = ('1','2')) and child::sub-article" role="error" id="feature-template-test-1">[feature-template-test-1] <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
+     <report test="($template = ('1','2','3')) and child::sub-article" role="error" id="feature-template-test-1">[feature-template-test-1] <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
      
      <report test="($template = '5') and not(@article-type='research-article')" role="error" id="feature-template-test-2">[feature-template-test-2] <value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
      
@@ -5109,9 +5105,9 @@
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1" test=". = $impact-statement" role="warning" id="insight-asbtract-impact-test-1">[insight-asbtract-impact-test-1] In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1" test=". = $impact-statement" role="warning" id="insight-abstract-impact-test-1">[insight-abstract-impact-test-1] In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2" test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-asbtract-impact-test-2">[insight-asbtract-impact-test-2] In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2" test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-abstract-impact-test-2">[insight-abstract-impact-test-2] In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
      
    </rule>
   </pattern>
@@ -5250,7 +5246,7 @@
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1" test="replace(.,' ',' ') = $cite1" role="error" id="pre-ref-xref-test-1">[pre-ref-xref-test-1] <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1" test="$ref/*/year and (replace(.,' ',' ') != $cite1)" role="error" id="pre-ref-xref-test-1">[pre-ref-xref-test-1] <value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</report>
       
       
       

@@ -789,16 +789,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="further-fig-tests">
-    <rule context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
-      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <report test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" role="warning" id="fig-permissions-test-13">
-        <value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:license_ref element, which is very likely incorrect.</report>
+  <pattern id="features">
+    <rule context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">
+      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
+      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2" test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-abstract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" role="error" id="permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))] must be present.</assert>
+      <assert test="descendant::article[@article-type='article-commentary']//article-meta/abstract" role="error" id="insight-asbtract-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/abstract must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="insight-asbtract-impact-test-2.sch"?>
+<?oxygen SCHSchema="insight-abstract-impact-test-2.sch"?>
 <!--Context: article[@article-type='article-commentary']//article-meta/abstract
 Test: assert    count(p/*) = $impact-statement-element-count
 Message: In insights, abstracts must be the same as impact statements. Here the abstract has  child element(s), whereas the impact statement has  child element(s). Check for possible missing formatting. -->
