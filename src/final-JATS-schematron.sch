@@ -5131,8 +5131,6 @@
       
       <report test="descendant::article-meta//aff" role="error" id="corr-aff-presence">[corr-aff-presence] Correction notices should not contain affiliations.</report>
       
-      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" role="error" id="corr-auth-kw-presence">[corr-auth-kw-presence] Correction notices should not contain any author keywords.</report>
-      
       <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">[corr-COI-presence] Correction notices should not contain competing interests.</report>
       
       <report test="descendant::self-uri" role="error" id="corr-self-uri-presence">[corr-self-uri-presence] Correction notices should not contain a self-uri element (as the PDF is not published).</report>
@@ -5151,8 +5149,6 @@
     <rule context="article[@article-type = 'retraction']" id="retraction-tests">
       
       <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">[retr-aff-presence] Retractions should not contain affiliations.</report>
-      
-      <report test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']" role="error" id="retr-auth-kw-presence">[retr-auth-kw-presence] Retractions should not contain any author keywords.</report>
       
       <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="retr-COI-presence">[retr-COI-presence] Retractions should not contain competing interests.</report>
       

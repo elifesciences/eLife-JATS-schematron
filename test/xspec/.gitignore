@@ -1,2 +1,4 @@
-# ignore all xspec xml files
+# ignore all xspec xml and xml files
 /xspec/
+*.xsl
+*preprocessed.xspec

@@ -23398,18 +23398,6 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']">
-            <xsl:attribute name="id">corr-auth-kw-presence</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[corr-auth-kw-presence] Correction notices should not contain any author keywords.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT error-->
       <xsl:if test="descendant::fn-group[@content-type='competing-interest']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::fn-group[@content-type='competing-interest']">
             <xsl:attribute name="id">corr-COI-presence</xsl:attribute>
@@ -23502,18 +23490,6 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[retr-aff-presence] Retractions should not contain affiliations.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT error-->
-      <xsl:if test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::article-meta//kwd-group[@kwd-group-type='author-keywords']">
-            <xsl:attribute name="id">retr-auth-kw-presence</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[retr-auth-kw-presence] Retractions should not contain any author keywords.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
