@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" id="reply-body-test-1">author response doesn't contain a disp-quote. This has to be incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="error" flag="dl-ar" id="reply-body-test-1">author response doesn't contain a disp-quote. This has to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -135,7 +135,10 @@ declare function elife:sch2dl($sch){
    copy $copy1 := $sch
     modify(
       for $x in $copy1//*:pattern
-      return replace node $x with $x/*
+      return replace node $x with $x/*,
+      
+      for $x in $copy1//xsl:function[@name="java:file-exists"]
+      return delete node $x
     )
     return
     copy $copy2 := $copy1

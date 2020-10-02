@@ -792,7 +792,7 @@
   <pattern id="article">
     <rule context="article[@article-type='research-article']" id="research-article">
       <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])" role="error" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
+      <report test="not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])" role="error" flag="dl-ar" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
