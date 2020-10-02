@@ -129,6 +129,33 @@ declare function elife:sch2pre($sch){
 };
 
 (:~ 
+ : Generate decision letter version of schematron
+ :)
+declare function elife:sch2dl($sch){
+   copy $copy1 := $sch
+    modify(
+      for $x in $copy1//*:pattern
+      return replace node $x with $x/*
+    )
+    return
+    copy $copy2 := $copy1
+    modify(
+      for $x in $copy2//*:rule
+      let $id := ($x/@id || '-pattern')
+      return 
+      if ($x/*[@flag="dl-ar"]) then replace node $x with <pattern id="{$id}">{$x}</pattern>
+      else delete node $x
+    )
+    return 
+    copy $copy3 := $copy2
+    modify(
+      for $x in $copy3//(*:report[not(@flag="dl-ar")]|*:assert[not(@flag="dl-ar")])
+      return delete node $x
+    )
+    return $copy3
+};
+
+(:~ 
  : Generate 'final' version of schematron
  :)
 declare function elife:sch2final($sch){
