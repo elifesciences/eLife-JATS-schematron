@@ -6863,6 +6863,16 @@
       <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">[auth-kwd-check] Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">[auth-kwd-check-2] Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
+      
+      <report test="contains(.,'&lt;') or contains(.,'&gt;')" role="error" id="auth-kwd-check-3">[auth-kwd-check-3] Keyword contains markup captured as text - <value-of select="."/>. Please remove it and ensure that it is marked up properly (if necessary).</report>
+      
+      <report test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')" role="warning" id="auth-kwd-check-4">[auth-kwd-check-4] Keyword contains brackets - <value-of select="."/>. These should either simply be removed, or added as two keywords (with the brackets still removed).</report>
+      
+      <report test="contains($lower,' and ')" role="warning" id="auth-kwd-check-5">[auth-kwd-check-5] Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
+      
+      <report test="count(tokenize(.,'\s')) gt 3" role="warning" id="auth-kwd-check-6">[auth-kwd-check-6] Keyword contains more than 3 words - <value-of select="."/>. These should be split out into separate keywords.</report>
+      
+      <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">[auth-kwd-check-7] Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
     </rule>
   </pattern>
   <pattern id="ref-given-names-pattern">

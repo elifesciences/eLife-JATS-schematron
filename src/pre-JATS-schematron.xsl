@@ -33540,6 +33540,76 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains(.,'&lt;') or contains(.,'&gt;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'&lt;') or contains(.,'&gt;')">
+            <xsl:attribute name="id">auth-kwd-check-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-3] Keyword contains markup captured as text - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Please remove it and ensure that it is marked up properly (if necessary).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')">
+            <xsl:attribute name="id">auth-kwd-check-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-4] Keyword contains brackets - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. These should either simply be removed, or added as two keywords (with the brackets still removed).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains($lower,' and ')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains($lower,' and ')">
+            <xsl:attribute name="id">auth-kwd-check-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-5] Keyword contains 'and' - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. These should be split out into two keywords.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="count(tokenize(.,'\s')) gt 3">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\s')) gt 3">
+            <xsl:attribute name="id">auth-kwd-check-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-6] Keyword contains more than 3 words - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. These should be split out into separate keywords.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="not(italic) and matches($lower,$org-regex)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(italic) and matches($lower,$org-regex)">
+            <xsl:attribute name="id">auth-kwd-check-7</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-7] Keyword contains an organism name which is not in italics - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Please italicise the organism name in the keyword.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M412"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M412"/>
