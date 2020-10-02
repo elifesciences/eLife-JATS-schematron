@@ -7157,6 +7157,10 @@ else self::*/local-name() = $allowed-p-blocks"
        role="warning" 
        id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
      
+     <report test="matches(.,'\[[Oo][Kk]\??\]')" 
+       role="error" 
+       id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/></report>
+     
    </rule>
    
    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">		
@@ -7315,6 +7319,17 @@ else self::*/local-name() = $allowed-p-blocks"
      <assert test="@related-article-type='commentary-article'" 
         role="error" 
         id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
+   </rule>
+   
+   <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|
+     article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|
+     article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" 
+     id="feature-comment-tests">
+     
+     <report test="matches(.,'\[[Oo][Kk]\??\]')" 
+       role="error" 
+       id="final-feat-ok-test"><value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/></report>
+     
    </rule>
   </pattern>
   

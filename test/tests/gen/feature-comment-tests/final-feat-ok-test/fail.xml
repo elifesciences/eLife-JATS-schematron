@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="final-feat-ok-test.sch"?>
+<!--Context: article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th
+Test: report    matches(.,'\[[Oo][Kk]\??\]')
+Message:  element contains [OK] or [OK?] which should be removed -  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article article-type="discussion">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Feature Article</subject>
+          </subj-group>
+          <subj-group subj-group-type="sub-display-channel">
+            <subject>DNA</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+    <body>
+      <p>Mitochondria are compartments in the cell that produce energy, and they play an important role in supporting the rapid growth of cancer cells. The levels of calcium ions in mitochondria control how they produce energy <bold>[OK?]</bold>, a process that is altered in cancer cells. To better understand how calcium ions influence colorectal cancer growth, Pathak, Gueguinou et al. studied a protein called NCLX, which controls calcium levels by pumping them out of the mitochondria.</p>
+    </body>
+  </article>
+</root>

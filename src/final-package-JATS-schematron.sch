@@ -5148,6 +5148,9 @@
      
      <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
      
+     <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
+      </report>
+     
    </rule>
   </pattern>
   <pattern id="feature-subj-tests-pattern">
@@ -5246,6 +5249,15 @@
      <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
      
      <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
+   </rule>
+  </pattern>
+  <pattern id="feature-comment-tests-pattern">
+    <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">
+     
+     <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">
+        <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
+      </report>
+     
    </rule>
   </pattern>
   

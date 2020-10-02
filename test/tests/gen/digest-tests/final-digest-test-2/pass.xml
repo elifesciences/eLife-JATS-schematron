@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="final-digest-test-2.sch"?>
+<!--Context: front//abstract[@abstract-type='executive-summary']/p
+Test: report    matches(.,'\[[Oo][Kk]\??\]')
+Message: digest paragraph contains [OK] or [OK?] which should be removed -  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <abstract abstract-type="executive-summary">
+          <title>eLife digest</title>
+          <p>Colorectal cancer is the second largest cause of cancer deaths worldwide. Even in cases where the cancer is diagnosed and treated early, cells can sometimes survive treatment and spread to other organs. Once the cancer has spread, the survival rate is less than 15%.</p>
+          <p>Mitochondria are compartments in the cell that produce energy, and they play an important role in supporting the rapid growth of cancer cells. The levels of calcium ions in mitochondria control how they produce energy, a process that is altered in cancer cells. To better understand how calcium ions influence colorectal cancer growth, Pathak, Gueguinou et al. studied a protein called NCLX, which controls calcium levels by pumping them out of the mitochondria.</p>
+          <p>Two mouse strains that were used to study what happens if NCLX is missing. The first strain was genetically modified to disable the gene for NCLX and then exposed to carcinogens. The second strain was injected with colorectal cancer cells from a human tumor that were lacking NCLX. In both strains, the tumors that formed were smaller than in mice with NCLX. However, the human cancer cells in the second model were more likely to spread to other organs. This is likely because the build-up of calcium ions in the mitochondria of mice lacking NCLX led to an increase in the production of hypoxia-inducible factor-1a, a protein that is a common driver of cancer spread.</p>
+          <p>Pathak, Gueguinou et al. demonstrated how NCLX can affect colorectal cancer progression. It suggests that it may have opposing effects during early and late-stage colorectal cancer, encouraging tumor growth but also decreasing the spread to other organs. Further research could help refine treatments at different stages of the disease.</p>
+        </abstract>
+      </article-meta>
+    </front>
+  </article>
+</root>
