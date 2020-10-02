@@ -16591,6 +16591,56 @@
         <x:expect-report id="auth-kwd-check-2" role="warning"/>
         <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="auth-kwd-check-3-pass">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-3/pass.xml"/>
+        <x:expect-not-report id="auth-kwd-check-3" role="error"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-3-fail">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-3/fail.xml"/>
+        <x:expect-report id="auth-kwd-check-3" role="error"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-4-pass">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-4/pass.xml"/>
+        <x:expect-not-report id="auth-kwd-check-4" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-4-fail">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-4/fail.xml"/>
+        <x:expect-report id="auth-kwd-check-4" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-5-pass">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-5/pass.xml"/>
+        <x:expect-not-report id="auth-kwd-check-5" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-5-fail">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-5/fail.xml"/>
+        <x:expect-report id="auth-kwd-check-5" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-6-pass">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-6/pass.xml"/>
+        <x:expect-not-report id="auth-kwd-check-6" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-6-fail">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-6/fail.xml"/>
+        <x:expect-report id="auth-kwd-check-6" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-7-pass">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-7/pass.xml"/>
+        <x:expect-not-report id="auth-kwd-check-7" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-kwd-check-7-fail">
+        <x:context href="../tests/gen/auth-kwd-style/auth-kwd-check-7/fail.xml"/>
+        <x:expect-report id="auth-kwd-check-7" role="warning"/>
+        <x:expect-not-assert id="auth-kwd-style-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-given-names">
       <x:scenario label="ref-given-names-test-1-pass">

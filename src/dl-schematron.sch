@@ -828,13 +828,7 @@
   </xsl:function>
  
   <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
-  <xsl:function name="java:file-exists" as="xs:boolean">
-    <xsl:param name="file" as="xs:string"/>
-    <xsl:param name="base-uri" as="xs:string"/>
-    
-    <xsl:variable name="absolute-uri" select="resolve-uri($file, $base-uri)" as="xs:anyURI"/>
-    <xsl:sequence select="file:exists(file:new($absolute-uri))"/>
-  </xsl:function>
+  
   
  <pattern id="research-article-pattern">
     <rule context="article[@article-type='research-article']" id="research-article">

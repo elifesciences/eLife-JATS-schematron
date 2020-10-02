@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="auth-kwd-check-6.sch"?>
+<!--Context: kwd-group[@kwd-group-type='author-keywords']/kwd
+Test: report    count(tokenize(.,'\s')) gt 3
+Message: Keyword contains more than 3 words - . These should be split out into separate keywords. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <kwd-group kwd-group-type="author-keywords">
+          <kwd>inflammation</kwd>
+          <kwd>macrophageΔ</kwd>
+          <kwd>type I IFN test</kwd>
+          <kwd>negative feedback</kwd>
+          <kwd>signal integration</kwd>
+        </kwd-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

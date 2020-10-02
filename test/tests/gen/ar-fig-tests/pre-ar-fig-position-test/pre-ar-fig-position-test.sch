@@ -795,7 +795,7 @@
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-position-test" test="$no = string($pos)" role="warning" id="pre-ar-fig-position-test">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-position-test" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-ar-fig-position-test">
         <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
