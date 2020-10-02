@@ -9841,6 +9841,16 @@
         <x:expect-report id="digest-test-1" role="warning"/>
         <x:expect-not-assert id="digest-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="final-digest-test-2-pass">
+        <x:context href="../tests/gen/digest-tests/final-digest-test-2/pass.xml"/>
+        <x:expect-not-report id="final-digest-test-2" role="error"/>
+        <x:expect-not-assert id="digest-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-digest-test-2-fail">
+        <x:context href="../tests/gen/digest-tests/final-digest-test-2/fail.xml"/>
+        <x:expect-report id="final-digest-test-2" role="error"/>
+        <x:expect-not-assert id="digest-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="feature-subj-tests">
       <x:scenario label="feature-subj-test-2-pass">
@@ -10064,6 +10074,18 @@
         <x:context href="../tests/gen/insight-related-article-tests/insight-related-article-test-1/fail.xml"/>
         <x:expect-assert id="insight-related-article-test-1" role="error"/>
         <x:expect-not-assert id="insight-related-article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="feature-comment-tests">
+      <x:scenario label="final-feat-ok-test-pass">
+        <x:context href="../tests/gen/feature-comment-tests/final-feat-ok-test/pass.xml"/>
+        <x:expect-not-report id="final-feat-ok-test" role="error"/>
+        <x:expect-not-assert id="feature-comment-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-feat-ok-test-fail">
+        <x:context href="../tests/gen/feature-comment-tests/final-feat-ok-test/fail.xml"/>
+        <x:expect-report id="final-feat-ok-test" role="error"/>
+        <x:expect-not-assert id="feature-comment-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="correction-tests">
