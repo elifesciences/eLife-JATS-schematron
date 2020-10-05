@@ -777,6 +777,26 @@
         <x:expect-assert id="corresp-presence-test" role="error"/>
         <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="duplicate-author-test-pass">
+        <x:context href="../tests/gen/auth-contrib-group/duplicate-author-test/pass.xml"/>
+        <x:expect-not-assert id="duplicate-author-test" role="warning"/>
+        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="duplicate-author-test-fail">
+        <x:context href="../tests/gen/auth-contrib-group/duplicate-author-test/fail.xml"/>
+        <x:expect-assert id="duplicate-author-test" role="warning"/>
+        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="duplicate-orcid-test-pass">
+        <x:context href="../tests/gen/auth-contrib-group/duplicate-orcid-test/pass.xml"/>
+        <x:expect-not-assert id="duplicate-orcid-test" role="error"/>
+        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="duplicate-orcid-test-fail">
+        <x:context href="../tests/gen/auth-contrib-group/duplicate-orcid-test/fail.xml"/>
+        <x:expect-assert id="duplicate-orcid-test" role="error"/>
+        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="test-editor-contrib-group">
       <x:scenario label="editor-conformance-1-pass">
@@ -844,6 +864,40 @@
         <x:context href="../tests/gen/collab-cont-tests/collab-cont-test-1/fail.xml"/>
         <x:expect-assert id="collab-cont-test-1" role="warning"/>
         <x:expect-not-assert id="collab-cont-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="collab-tests">
+      <x:scenario label="duplicate-member-test-pass">
+        <x:context href="../tests/gen/collab-tests/duplicate-member-test/pass.xml"/>
+        <x:expect-not-assert id="duplicate-member-test" role="warning"/>
+        <x:expect-not-assert id="collab-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="duplicate-member-test-fail">
+        <x:context href="../tests/gen/collab-tests/duplicate-member-test/fail.xml"/>
+        <x:expect-assert id="duplicate-member-test" role="warning"/>
+        <x:expect-not-assert id="collab-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="duplicate-member-orcid-test-pass">
+        <x:context href="../tests/gen/collab-tests/duplicate-member-orcid-test/pass.xml"/>
+        <x:expect-not-assert id="duplicate-member-orcid-test" role="error"/>
+        <x:expect-not-assert id="collab-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="duplicate-member-orcid-test-fail">
+        <x:context href="../tests/gen/collab-tests/duplicate-member-orcid-test/fail.xml"/>
+        <x:expect-assert id="duplicate-member-orcid-test" role="error"/>
+        <x:expect-not-assert id="collab-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="collab-tests-2">
+      <x:scenario label="auth-and-member-test-pass">
+        <x:context href="../tests/gen/collab-tests-2/auth-and-member-test/pass.xml"/>
+        <x:expect-not-assert id="auth-and-member-test" role="warning"/>
+        <x:expect-not-assert id="collab-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-and-member-test-fail">
+        <x:context href="../tests/gen/collab-tests-2/auth-and-member-test/fail.xml"/>
+        <x:expect-assert id="auth-and-member-test" role="warning"/>
+        <x:expect-not-assert id="collab-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="author-xref-tests">

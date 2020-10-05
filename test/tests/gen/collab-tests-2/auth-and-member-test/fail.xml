@@ -1,0 +1,38 @@
+<?oxygen SCHSchema="auth-and-member-test.sch"?>
+<!--Context: article//article-meta/contrib-group[1][contrib[@contrib-type='author']/collab/contrib-group]
+Test: assert    empty($auth-and-member)
+Message: Top level author(s)  are also a member of a group author. Is this correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Watson</surname>
+            <given-names>Test A</given-names>
+          </name>
+          <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-0000-0001</contrib-id>
+        </contrib>
+        <contrib contrib-type="author">
+          <collab>Oxford University Hospitals Staff Testing Group<contrib-group>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Watson</surname>
+                <given-names>Test A</given-names>
+              </name>
+              <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-0000-0001</contrib-id>
+            </contrib>
+            <contrib contrib-type="author">
+              <name>
+                <surname>Watson</surname>
+                <given-names>Test B</given-names>
+              </name>
+              <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-0000-0002</contrib-id>
+            </contrib>
+          </contrib-group></collab>
+        </contrib>
+      </contrib-group>
+    </article-meta>
+  </article>
+</root>
