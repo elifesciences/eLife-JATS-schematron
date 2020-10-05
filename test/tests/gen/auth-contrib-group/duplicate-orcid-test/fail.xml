@@ -1,0 +1,31 @@
+<?oxygen SCHSchema="duplicate-orcid-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: assert    empty($indistinct-orcids)
+Message: There is more than one author with the following ORCiD(s) -  - which must be incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author" corresp="yes" id="author-31137">
+            <name>
+              <surname>Weis</surname>
+              <given-names>William I</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true"
+              >https://orcid.org/0000-0000-5583-6150</contrib-id>
+          </contrib>
+          <contrib contrib-type="author" corresp="yes" id="author-31137">
+            <name>
+              <surname>Teis</surname>
+              <given-names>William I</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true"
+              >https://orcid.org/0000-0000-5583-6150</contrib-id>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
