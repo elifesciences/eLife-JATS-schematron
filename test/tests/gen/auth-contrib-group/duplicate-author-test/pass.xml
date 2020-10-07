@@ -2,8 +2,7 @@
 <!--Context: article/front/article-meta/contrib-group[1]
 Test: assert    empty($indistinct-names)
 Message: There is more than one author with the following name(s) -  - which is very likely be incorrect. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <article-meta>
@@ -13,16 +12,14 @@ Message: There is more than one author with the following name(s) -  - which is 
               <surname>Weis</surname>
               <given-names>William I</given-names>
             </name>
-            <contrib-id contrib-id-type="orcid" authenticated="true"
-              >https://orcid.org/0000-0000-5583-6150</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-5583-6150</contrib-id>
           </contrib>
           <contrib contrib-type="author" corresp="yes" id="author-31137">
             <name>
               <surname>Teis</surname>
               <given-names>William I</given-names>
             </name>
-            <contrib-id contrib-id-type="orcid" authenticated="true"
-              >https://orcid.org/0000-0000-5583-6159</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-5583-6159</contrib-id>
           </contrib>
         </contrib-group>
       </article-meta>

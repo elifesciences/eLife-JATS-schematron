@@ -789,15 +789,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation/publisher-name" id="publisher-name-tests">
-      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed? <value-of select="."/>
-      </report>
+  <pattern id="content-containers">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" id="back-supplementary-file-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'upplementary file')]) - count(following::supplementary-material[contains(label[1],'upplementary file')])"/>
+      <let name="no" value="substring-after(@id,'supp')"/>
+      <assert test="string($pos) = $no" role="error" id="back-supplementary-file-position">
+        <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/publisher-name" role="error" id="publisher-name-tests-xspec-assert">element-citation/publisher-name must be present.</assert>
+      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

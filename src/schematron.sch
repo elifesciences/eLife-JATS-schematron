@@ -2532,7 +2532,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
         role="warning" 
         id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
@@ -2870,6 +2870,39 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" 
         role="warning" 
         id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
+    </rule>
+    
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" 
+      id="back-supplementary-file-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'upplementary file')]) - count(following::supplementary-material[contains(label[1],'upplementary file')])"/>
+      <let name="no" value="substring-after(@id,'supp')"/>
+      
+      <assert test="string($pos) = $no" 
+        role="error" 
+        id="back-supplementary-file-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+    </rule>
+    
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" 
+      id="back-source-data-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following::supplementary-material[contains(label[1],'ource data')])"/>
+      <let name="no" value="substring-after(@id,'sdata')"/>
+      
+      <assert test="string($pos) = $no" 
+        role="error" 
+        id="back-source-data-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+    </rule>
+    
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" 
+      id="back-source-code-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <let name="no" value="substring-after(@id,'scode')"/>
+      
+      <assert test="string($pos) = $no" 
+        role="error" 
+        id="back-source-code-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
     </rule>
     
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
@@ -7217,7 +7250,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
      <report test="preceding-sibling::subject" 
         role="error" 
-        id="feature-subj-test-4">There is more than one sub-display-channel subjects. This is incorrect.</report>
+        id="feature-subj-test-4">There is more than one sub-display-channel subject. This is incorrect.</report>
 		
 	</rule>
    
@@ -9937,11 +9970,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches(.,':')" 
         role="warning" 
-        id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
+        id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon - <value-of select="."/>. Should the text preceding the colon instead be captured as publisher-loc?</report>
       
       <report test="matches(.,'[Ii]nc\.')" 
         role="warning" 
-        id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed?</report>
+        id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed? <value-of select="."/></report>
       
       <report test="matches(.,'�')" 
         role="error" 

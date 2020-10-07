@@ -1915,7 +1915,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">[url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">[url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">[ftp-credentials-flag] @xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
       
@@ -2086,6 +2086,33 @@
       <report test="contains(lower-case(caption[1]/title[1]),'key resource')" role="warning" id="supplementary-material-test-11">[supplementary-material-test-11] <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> has a title '<value-of select="caption[1]/title[1]"/>'. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article.</report>
       
       <report test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" role="warning" id="source-code-test-2">[source-code-test-2] Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
+    </rule>
+  </pattern>
+  <pattern id="back-supplementary-file-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" id="back-supplementary-file-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'upplementary file')]) - count(following::supplementary-material[contains(label[1],'upplementary file')])"/>
+      <let name="no" value="substring-after(@id,'supp')"/>
+      
+      <assert test="string($pos) = $no" role="error" id="back-supplementary-file-position">[back-supplementary-file-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="back-source-data-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" id="back-source-data-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following::supplementary-material[contains(label[1],'ource data')])"/>
+      <let name="no" value="substring-after(@id,'sdata')"/>
+      
+      <assert test="string($pos) = $no" role="error" id="back-source-data-position">[back-source-data-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="back-source-code-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" id="back-source-code-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <let name="no" value="substring-after(@id,'scode')"/>
+      
+      <assert test="string($pos) = $no" role="error" id="back-source-code-position">[back-source-code-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
     </rule>
   </pattern>
   <pattern id="source-data-specific-tests-pattern">
@@ -5076,7 +5103,7 @@
      
      <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">[feature-subj-test-3] sub-display-channel ends with a colon. This is incorrect.</report>
      
-     <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">[feature-subj-test-4] There is more than one sub-display-channel subjects. This is incorrect.</report>
+     <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">[feature-subj-test-4] There is more than one sub-display-channel subject. This is incorrect.</report>
 		
 	</rule>
   </pattern>
@@ -6493,9 +6520,10 @@
   <pattern id="publisher-name-tests-pattern">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
       
-      <report test="matches(.,':')" role="warning" id="publisher-name-colon">[publisher-name-colon] ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc?</report>
+      <report test="matches(.,':')" role="warning" id="publisher-name-colon">[publisher-name-colon] ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon - <value-of select="."/>. Should the text preceding the colon instead be captured as publisher-loc?</report>
       
-      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">[publisher-name-inc] ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed?</report>
+      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">[publisher-name-inc] ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed? <value-of select="."/>
+      </report>
       
       <report test="matches(.,'�')" role="error" id="pub-name-replacement-character-presence">[pub-name-replacement-character-presence] <name/> contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>

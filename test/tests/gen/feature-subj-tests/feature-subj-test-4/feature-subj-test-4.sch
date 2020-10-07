@@ -793,7 +793,7 @@
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">
       <let name="token1" value="substring-before(.,' ')"/>
       <let name="token2" value="substring-after(.,$token1)"/>
-      <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">There is more than one sub-display-channel subjects. This is incorrect.</report>
+      <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">There is more than one sub-display-channel subject. This is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
