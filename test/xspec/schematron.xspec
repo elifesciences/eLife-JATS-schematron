@@ -3736,6 +3736,42 @@
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="back-supplementary-file-tests">
+      <x:scenario label="back-supplementary-file-position-pass">
+        <x:context href="../tests/gen/back-supplementary-file-tests/back-supplementary-file-position/pass.xml"/>
+        <x:expect-not-assert id="back-supplementary-file-position" role="error"/>
+        <x:expect-not-assert id="back-supplementary-file-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-supplementary-file-position-fail">
+        <x:context href="../tests/gen/back-supplementary-file-tests/back-supplementary-file-position/fail.xml"/>
+        <x:expect-assert id="back-supplementary-file-position" role="error"/>
+        <x:expect-not-assert id="back-supplementary-file-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="back-source-data-tests">
+      <x:scenario label="back-source-data-position-pass">
+        <x:context href="../tests/gen/back-source-data-tests/back-source-data-position/pass.xml"/>
+        <x:expect-not-assert id="back-source-data-position" role="error"/>
+        <x:expect-not-assert id="back-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-source-data-position-fail">
+        <x:context href="../tests/gen/back-source-data-tests/back-source-data-position/fail.xml"/>
+        <x:expect-assert id="back-source-data-position" role="error"/>
+        <x:expect-not-assert id="back-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="back-source-code-tests">
+      <x:scenario label="back-source-code-position-pass">
+        <x:context href="../tests/gen/back-source-code-tests/back-source-code-position/pass.xml"/>
+        <x:expect-not-assert id="back-source-code-position" role="error"/>
+        <x:expect-not-assert id="back-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-source-code-position-fail">
+        <x:context href="../tests/gen/back-source-code-tests/back-source-code-position/fail.xml"/>
+        <x:expect-assert id="back-source-code-position" role="error"/>
+        <x:expect-not-assert id="back-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="source-data-specific-tests">
       <x:scenario label="fig-data-test-1-pass">
         <x:context href="../tests/gen/source-data-specific-tests/fig-data-test-1/pass.xml"/>

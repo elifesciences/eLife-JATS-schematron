@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="publisher-name-colon.sch"?>
 <!--Context: element-citation/publisher-name
 Test: report    matches(.,':')
-Message: ref '' has a publisher-name containing a colon. Should the text preceding the colon instead be captured as publisher-loc? -->
+Message: ref '' has a publisher-name containing a colon - . Should the text preceding the colon instead be captured as publisher-loc? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation>
