@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="final-err-elem-cit-data-10.sch"?>
+<!--Context: ref/element-citation[@publication-type='data']
+Test: assert    count(data-title)=1
+Message: Data reference '' has  data-title elements. It must contain one (and only one). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <ref-list>
+      <ref id="bib14">
+        <element-citation publication-type="data">
+          <person-group person-group-type="author">
+            <name><surname>Du</surname><given-names>J</given-names></name>
+            <name><surname>Johnson</surname><given-names>LM</given-names></name>
+            <name><surname>Groth</surname><given-names>M</given-names></name>
+            <name><surname>Feng</surname><given-names>S</given-names></name>
+            <name><surname>Hale</surname><given-names>CJ</given-names></name>
+            <name><surname>Li</surname><given-names>S</given-names></name>
+            <name><surname>Vashisht</surname><given-names>AA</given-names></name>
+            <name><surname>Gallego-Bartolome</surname><given-names>J</given-names></name>
+            <name><surname>Wohlschlegel</surname><given-names>JA</given-names></name>
+            <name><surname>Patel</surname><given-names>DJ</given-names></name>
+            <name><surname>Jacobsen</surname><given-names>SE</given-names></name>
+          </person-group>
+          <year iso-8601-date="2014">2014</year>
+          <data-title>Crystal structure of KRYPTONITE in complex with mCHH DNA and
+            SAH</data-title>
+          <source>RCSB Protein Data Bank</source>
+          <pub-id pub-id-type="doi" assigning-authority="RCSB Protein Data Bank">10.2210/pdb4qen/pdb</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>

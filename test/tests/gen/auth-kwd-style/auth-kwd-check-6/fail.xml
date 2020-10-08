@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="auth-kwd-check-6.sch"?>
 <!--Context: kwd-group[@kwd-group-type='author-keywords']/kwd
-Test: report    count(tokenize(.,'\s')) gt 3
-Message: Keyword contains more than 3 words - . These should be split out into separate keywords. -->
+Test: report    not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3
+Message: Keyword contains more than 3 words - . Should these should be split out into separate keywords? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

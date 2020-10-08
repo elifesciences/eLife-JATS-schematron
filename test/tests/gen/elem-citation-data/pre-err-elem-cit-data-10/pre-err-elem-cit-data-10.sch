@@ -789,19 +789,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-book-tests">
-    <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="count(source)=1" role="error" id="err-elem-cit-book-10-1">[err-elem-book-book-10-1]
-        Each  &lt;element-citation&gt; of type 'book' must contain one and
-        only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+  <pattern id="element-citation-data-tests">
+    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
+      <assert test="count(data-title)=1" role="warning" id="pre-err-elem-cit-data-10">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> data-title elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
+      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

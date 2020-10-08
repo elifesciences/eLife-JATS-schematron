@@ -792,10 +792,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">[warning-elem-cit-book-13-3]
-        The content of &lt;publisher-name&gt; may not end with a publisher location. 
-        Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>,
-        which ends with a publisher location.</report>
+      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">The content of &lt;publisher-name&gt; may not end with a publisher location. Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>, which ends with a publisher location.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,9 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-book-16.sch"?>
 <!--Context: element-citation[@publication-type='book']
 Test: report    (lpage or fpage) and not(chapter-title)
-Message: [err-elem-cit-book-16]
-        In a book reference, <lpage> and <fpage> are allowed only if <chapter-title> is present. 
-        Reference '' has <lpage> or <fpage> but no <chapter-title>. -->
+Message: Book reference '' has first and/or last pages, but no chapter title. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

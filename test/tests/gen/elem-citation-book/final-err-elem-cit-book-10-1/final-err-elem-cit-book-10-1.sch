@@ -792,7 +792,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="lpage and not (fpage)" role="error" id="err-elem-cit-book-36-2">If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
+      <assert test="count(source)=1" role="error" id="final-err-elem-cit-book-10-1">Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

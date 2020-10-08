@@ -2025,7 +2025,7 @@
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">[media-test-3] media must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">[media-test-4] media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">[media-test-4] media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">[media-test-5] <value-of select="label"/> media with animation type label must have a @mime-subtype='gif'.</report>    
       
@@ -3941,11 +3941,9 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(source)=1" role="error" id="err-elem-cit-book-10-1">[err-elem-cit-book-10-1] [err-elem-book-book-10-1]
-        Each  &lt;element-citation&gt; of type 'book' must contain one and
-        only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      <assert test="count(source)=1" role="warning" id="pre-err-elem-cit-book-10-1">[pre-err-elem-cit-book-10-1] Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If this information is missing, please query it with the authors.</assert>
+      
+      
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-book-10-2-2">[err-elem-cit-book-10-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child 
@@ -3956,34 +3954,17 @@
       
       
       
-      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">[warning-elem-cit-book-13-3]
-        The content of &lt;publisher-name&gt; may not end with a publisher location. 
-        Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>,
-        which ends with a publisher location.</report>
+      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">[warning-elem-cit-book-13-3] The content of &lt;publisher-name&gt; may not end with a publisher location. Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>, which ends with a publisher location.</report>
       
-      <report test="(lpage or fpage) and not(chapter-title)" role="error" id="err-elem-cit-book-16">[err-elem-cit-book-16]
-        In a book reference, &lt;lpage&gt; and &lt;fpage&gt; are allowed only if &lt;chapter-title&gt; is present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; or &lt;fpage&gt; but no &lt;chapter-title&gt;.</report>
+      <report test="(lpage or fpage) and not(chapter-title)" role="warning" id="err-elem-cit-book-16">[err-elem-cit-book-16] Book reference '<value-of select="ancestor::ref/@id"/>' has first and/or last pages, but no chapter title. Is this correct?</report>
       
-      <report test="(lpage and fpage) and (number(fpage[1]) &gt;= number(lpage[1]))" role="error" id="err-elem-cit-book-36">[err-elem-cit-book-36-1]
-        If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
-        less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
+      <report test="(lpage and fpage) and (number(fpage[1]) &gt;= number(lpage[1]))" role="error" id="err-elem-cit-book-36">[err-elem-cit-book-36] If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
       
-      <report test="lpage and not (fpage)" role="error" id="err-elem-cit-book-36-2">[err-elem-cit-book-36-2]
-        If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
+      <report test="lpage and not (fpage)" role="error" id="err-elem-cit-book-36-2">[err-elem-cit-book-36-2] If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
       
-      <report test="count(lpage) &gt; 1 or count(fpage) &gt; 1" role="error" id="err-elem-cit-book-36-6">[err-elem-cit-book-36-6]
-        At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(lpage)"/> &lt;lpage&gt; 
-        elements and <value-of select="count(fpage)"/> &lt;fpage&gt; elements.</report>
+      <report test="count(lpage) &gt; 1 or count(fpage) &gt; 1" role="error" id="err-elem-cit-book-36-6">[err-elem-cit-book-36-6] At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(lpage)"/> &lt;lpage&gt; elements and <value-of select="count(fpage)"/> &lt;fpage&gt; elements.</report>
       
-      <assert test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|         edition| fpage| lpage| pub-id | comment)" role="error" id="err-elem-cit-book-40">[err-elem-cit-book-40]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, 
-        &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|         edition| fpage| lpage| pub-id | comment)" role="error" id="err-elem-cit-book-40">[err-elem-cit-book-40] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are: &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
@@ -4081,15 +4062,13 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(data-title)=1" role="error" id="err-elem-cit-data-10">[err-elem-cit-data-10]
-        Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;data-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</assert>
+      <assert test="count(data-title)=1" role="warning" id="pre-err-elem-cit-data-10">[pre-err-elem-cit-data-10] Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> data-title elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="count(source)=1" role="error" id="err-elem-cit-data-11-2">[err-elem-cit-data-11-2]
-        Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      
+      
+      <assert test="count(source)=1" role="warning" id="pre-err-elem-cit-data-11-2">[pre-err-elem-cit-data-11-2] Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
+      
+      
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-data-11-3-2">[err-elem-cit-data-11-3-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child 
@@ -4169,9 +4148,9 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert test="patent" role="error" id="err-elem-cit-patent-10-1-1">[err-elem-cit-patent-10-1-1]
-        The  &lt;patent&gt; element is required. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements.</assert>
+      <assert test="patent" role="warning" id="pre-err-elem-cit-patent-10-1-1">[pre-err-elem-cit-patent-10-1-1] The  &lt;patent&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
+      
+      
       
       <assert test="ext-link" role="warning" id="pre-err-elem-cit-patent-11-1">[pre-err-elem-cit-patent-11-1] The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
       
@@ -6936,7 +6915,7 @@
       
       <report test="contains($lower,' and ')" role="warning" id="auth-kwd-check-5">[auth-kwd-check-5] Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
       
-      <report test="count(tokenize(.,'\s')) gt 3" role="warning" id="auth-kwd-check-6">[auth-kwd-check-6] Keyword contains more than 3 words - <value-of select="."/>. These should be split out into separate keywords.</report>
+      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3" role="warning" id="auth-kwd-check-6">[auth-kwd-check-6] Keyword contains more than 3 words - <value-of select="."/>. Should these should be split out into separate keywords?</report>
       
       <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">[auth-kwd-check-7] Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
     </rule>

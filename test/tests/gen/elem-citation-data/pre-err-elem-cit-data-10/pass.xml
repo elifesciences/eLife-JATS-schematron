@@ -1,10 +1,7 @@
-<?oxygen SCHSchema="err-elem-cit-data-11-2.sch"?>
+<?oxygen SCHSchema="pre-err-elem-cit-data-10.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
-Test: assert    count(source)=1
-Message: [err-elem-cit-data-11-2]
-        Each  <element-citation> of type 'data' must contain one and only one <source> element.
-        Reference '' has 
-         <source> elements. -->
+Test: assert    count(data-title)=1
+Message: Data reference '' has  data-title elements, when it should contain one. If this information is missing, please query it with the authors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
@@ -26,6 +23,7 @@ Message: [err-elem-cit-data-11-2]
           <year iso-8601-date="2014">2014</year>
           <data-title>Crystal structure of KRYPTONITE in complex with mCHH DNA and
             SAH</data-title>
+          <source>RCSB Protein Data Bank</source>
           <pub-id pub-id-type="doi" assigning-authority="RCSB Protein Data Bank">10.2210/pdb4qen/pdb</pub-id>
         </element-citation>
       </ref>
