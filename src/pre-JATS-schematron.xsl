@@ -7523,15 +7523,18 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
-      <xsl:if test="sec">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="sec">
-            <xsl:attribute name="id">abstract-test-8</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+		    <!--REPORT warning-->
+      <xsl:if test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))">
+            <xsl:attribute name="id">abstract-test-7</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[abstract-test-8] eLife cannot currently support structured abstracts. Please capture any clincal trial abstracts using a paragraph.</svrl:text>
+            <svrl:text>[abstract-test-7] Abstract looks like it should instead be captured as a structured abstract (using sections) - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M81"/>

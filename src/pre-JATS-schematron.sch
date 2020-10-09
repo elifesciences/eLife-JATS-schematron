@@ -1460,13 +1460,8 @@
 	  <report test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">[abstract-test-6] Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
       </report>
 	  
-	  <!-- escaped while this is not yet fully supported
-	    <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" 
-        role="warning" 
-        id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/></report>-->
-	  
-	  <!-- temporary -->
-	  <report test="sec" role="error" id="abstract-test-8">[abstract-test-8] eLife cannot currently support structured abstracts. Please capture any clincal trial abstracts using a paragraph.</report>
+	    <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">[abstract-test-7] Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
+      </report>
 		
     </rule>
   </pattern>
