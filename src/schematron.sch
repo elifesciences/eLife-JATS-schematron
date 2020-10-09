@@ -3563,7 +3563,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
       
-      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))" 
+      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" 
         role="error" 
         id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
       
@@ -7833,6 +7833,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="vid-xref-test-10">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
+      <report test="contains(lower-case(.),'figure') and contains(.,'Video')" 
+        role="warning" 
+        id="vid-xref-test-11">Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <value-of select="."/>.</report>
+      
     </rule>
   </pattern>
   
@@ -8051,6 +8055,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
         id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      
+      <report test="contains(.,'—Source')" 
+        role="warning" 
+        id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
       
     </rule>
   </pattern>

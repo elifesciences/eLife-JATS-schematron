@@ -789,16 +789,21 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="disp-formula/label" id="equation-label-tests">
-      <let name="label-2" value="replace(.,'\p{P}','')"/>
-      <let name="app-id" value="ancestor::app/@id"/>
-      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
+  <pattern id="supp-xref-pattern">
+    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      <report test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula/label" role="error" id="equation-label-tests-xspec-assert">disp-formula/label must be present.</assert>
+      <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

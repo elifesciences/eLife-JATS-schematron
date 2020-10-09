@@ -2555,7 +2555,7 @@
       
       <report test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">[equation-label-conformance-1] Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
       
-      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">[equation-label-conformance-2] Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
+      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">[equation-label-conformance-2] Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
       
     </rule>
   </pattern>
@@ -5399,6 +5399,8 @@
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="vid-xref-test-10">[vid-xref-test-10] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
+      <report test="contains(lower-case(.),'figure') and contains(.,'Video')" role="warning" id="vid-xref-test-11">[vid-xref-test-11] Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <value-of select="."/>.</report>
+      
     </rule>
   </pattern>
   
@@ -5518,6 +5520,8 @@
       <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" role="error" id="supp-xref-test-4">[supp-xref-test-4] Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">[supp-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      
+      <report test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">[supp-xref-test-6] citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
       
     </rule>
   </pattern>

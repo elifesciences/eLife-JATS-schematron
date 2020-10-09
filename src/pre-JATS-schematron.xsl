@@ -12884,8 +12884,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))">
+      <xsl:if test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))">
             <xsl:attribute name="id">equation-label-conformance-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -24831,6 +24831,20 @@
                <xsl:text/>'. The 'cf.' is unnecessary and should be removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(.),'figure') and contains(.,'Video')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'figure') and contains(.,'Video')">
+            <xsl:attribute name="id">vid-xref-test-11</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[vid-xref-test-11] Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M364"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M364"/>
@@ -25520,6 +25534,20 @@
             <svrl:text>[supp-xref-test-5] citation is preceded by '<xsl:text/>
                <xsl:value-of select="substring($pre-text,string-length($pre-text)-10)"/>
                <xsl:text/>'. The 'cf.' is unnecessary and should be removed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(.,'—Source')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'—Source')">
+            <xsl:attribute name="id">supp-xref-test-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[supp-xref-test-6] citation contains '—Source' (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M367"/>
