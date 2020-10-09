@@ -789,17 +789,18 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-data-tests">
-    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="count(source)=1" role="error" id="err-elem-cit-data-11-2">[err-elem-cit-data-11-2]
-        Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+  <pattern id="video-xref-pattern">
+    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="target-no" value="substring-after($rid,'video')"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      <report test="contains(lower-case(.),'figure') and contains(.,'Video')" role="warning" id="vid-xref-test-11">Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

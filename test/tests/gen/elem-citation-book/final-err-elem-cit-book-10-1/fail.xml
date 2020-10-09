@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="err-elem-cit-book-40.sch"?>
+<?oxygen SCHSchema="final-err-elem-cit-book-10-1.sch"?>
 <!--Context: element-citation[@publication-type='book']
-Test: assert    count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume| edition| fpage| lpage| pub-id | comment)
-Message: The only tags that are allowed as children of <element-citation> with the publication-type="book" are: <person-group>, <year>, <source>, <chapter-title>, <publisher-loc>, <publisher-name>, <volume>, <edition>, <fpage>, <lpage>, <pub-id>, and <comment>. Reference '' has other elements. -->
+Test: assert    count(source)=1
+Message: Each  <element-citation> of type 'book' must contain one and only one <source> element. Reference '' has  <source> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>
@@ -20,6 +20,7 @@ Message: The only tags that are allowed as children of <element-citation> with t
             <year iso-8601-date="1989">1989</year>
             <chapter-title>Two rules of speciation</chapter-title>
             <source>Speciation and its consequences</source>
+            <source/>
             <fpage>1</fpage>
             <lpage>2</lpage>
             <publisher-loc>Sunderland, MA</publisher-loc>

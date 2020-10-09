@@ -789,15 +789,21 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-book-tests">
-    <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="lpage and not (fpage)" role="error" id="err-elem-cit-book-36-2">If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
+  <pattern id="supp-xref-pattern">
+    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      <report test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

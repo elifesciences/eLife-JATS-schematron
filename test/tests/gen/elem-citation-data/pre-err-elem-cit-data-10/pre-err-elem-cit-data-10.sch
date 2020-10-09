@@ -789,15 +789,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="front//abstract" id="abstract-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="sec" role="error" id="abstract-test-8">eLife cannot currently support structured abstracts. Please capture any clincal trial abstracts using a paragraph.</report>
+  <pattern id="element-citation-data-tests">
+    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
+      <assert test="count(data-title)=1" role="warning" id="pre-err-elem-cit-data-10">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> data-title elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
+      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

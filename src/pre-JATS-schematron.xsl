@@ -7523,15 +7523,18 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
-      <xsl:if test="sec">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="sec">
-            <xsl:attribute name="id">abstract-test-8</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+		    <!--REPORT warning-->
+      <xsl:if test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))">
+            <xsl:attribute name="id">abstract-test-7</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[abstract-test-8] eLife cannot currently support structured abstracts. Please capture any clincal trial abstracts using a paragraph.</svrl:text>
+            <svrl:text>[abstract-test-7] Abstract looks like it should instead be captured as a structured abstract (using sections) - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M81"/>
@@ -10383,8 +10386,8 @@
       </xsl:choose>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(ends-with(@xlink:href,'.m')) else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex')) else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz')) else if ($file='html') then not(ends-with(@xlink:href,'.html')) else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav')) else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$')) else not(ends-with(@xlink:href,concat('.',$file)))">
+      <xsl:if test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(ends-with(@xlink:href,'.m')) else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex')) else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz')) else if ($file='html') then not(ends-with(@xlink:href,'.html')) else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav')) else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff')) else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$')) else not(ends-with(@xlink:href,concat('.',$file)))">
             <xsl:attribute name="id">media-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -12881,8 +12884,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article]] satisfies (replace($x,'\p{P}','') = $label-2))">
+      <xsl:if test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))">
             <xsl:attribute name="id">equation-label-conformance-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -18939,25 +18942,21 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(source)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(source)=1">
-               <xsl:attribute name="id">err-elem-cit-book-10-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-book-10-1</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-10-1] [err-elem-book-book-10-1]
-        Each  &lt;element-citation&gt; of type 'book' must contain one and
-        only one &lt;source&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-book-10-1] Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(source)"/>
-                  <xsl:text/> &lt;source&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;source&gt; elements. If this information is missing, please query it with the authors.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19009,30 +19008,25 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[warning-elem-cit-book-13-3]
-        The content of &lt;publisher-name&gt; may not end with a publisher location. 
-        Reference '<xsl:text/>
+            <svrl:text>[warning-elem-cit-book-13-3] The content of &lt;publisher-name&gt; may not end with a publisher location. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' contains the string <xsl:text/>
                <xsl:value-of select="publisher-name"/>
-               <xsl:text/>,
-        which ends with a publisher location.</svrl:text>
+               <xsl:text/>, which ends with a publisher location.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="(lpage or fpage) and not(chapter-title)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lpage or fpage) and not(chapter-title)">
             <xsl:attribute name="id">err-elem-cit-book-16</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-book-16]
-        In a book reference, &lt;lpage&gt; and &lt;fpage&gt; are allowed only if &lt;chapter-title&gt; is present. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-book-16] Book reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has &lt;lpage&gt; or &lt;fpage&gt; but no &lt;chapter-title&gt;.</svrl:text>
+               <xsl:text/>' has first and/or last pages, but no chapter title. Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -19044,14 +19038,11 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-book-36-1]
-        If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-book-36] If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has &lt;lpage&gt; <xsl:text/>
                <xsl:value-of select="lpage"/>
-               <xsl:text/>, which is 
-        less than or equal to &lt;fpage&gt; <xsl:text/>
+               <xsl:text/>, which is less than or equal to &lt;fpage&gt; <xsl:text/>
                <xsl:value-of select="fpage"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
@@ -19065,9 +19056,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-book-36-2]
-        If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-book-36-2] If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</svrl:text>
          </svrl:successful-report>
@@ -19081,14 +19070,11 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-book-36-6]
-        At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-book-36-6] At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has <xsl:text/>
                <xsl:value-of select="count(lpage)"/>
-               <xsl:text/> &lt;lpage&gt; 
-        elements and <xsl:text/>
+               <xsl:text/> &lt;lpage&gt; elements and <xsl:text/>
                <xsl:value-of select="count(fpage)"/>
                <xsl:text/> &lt;fpage&gt; elements.</svrl:text>
          </svrl:successful-report>
@@ -19104,11 +19090,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-40]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, 
-        &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-40] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are: &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
@@ -19459,46 +19441,40 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(data-title)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(data-title)=1">
-               <xsl:attribute name="id">err-elem-cit-data-10</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-data-10</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-10]
-        Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;data-title&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-data-10] Data reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(data-title)"/>
-                  <xsl:text/> &lt;data-title&gt; elements.</svrl:text>
+                  <xsl:text/> data-title elements, when it should contain one. If this information is missing, please query it with the authors.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(source)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(source)=1">
-               <xsl:attribute name="id">err-elem-cit-data-11-2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-data-11-2</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-11-2]
-        Each  &lt;element-citation&gt; of type 'data' must contain one and only one &lt;source&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-data-11-2] Data reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(source)"/>
-                  <xsl:text/> &lt;source&gt; elements.</svrl:text>
+                  <xsl:text/> source elements, when it should contain one. If this information is missing, please query it with the authors.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19800,21 +19776,19 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="patent"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="patent">
-               <xsl:attribute name="id">err-elem-cit-patent-10-1-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-patent-10-1-1</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-10-1-1]
-        The  &lt;patent&gt; element is required. 
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-patent-10-1-1] The  &lt;patent&gt; element is required. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has no &lt;patent&gt; elements.</svrl:text>
+                  <xsl:text/>' has no &lt;patent&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -24857,6 +24831,20 @@
                <xsl:text/>'. The 'cf.' is unnecessary and should be removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(.),'figure') and contains(.,'Video')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'figure') and contains(.,'Video')">
+            <xsl:attribute name="id">vid-xref-test-11</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[vid-xref-test-11] Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M364"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M364"/>
@@ -25546,6 +25534,20 @@
             <svrl:text>[supp-xref-test-5] citation is preceded by '<xsl:text/>
                <xsl:value-of select="substring($pre-text,string-length($pre-text)-10)"/>
                <xsl:text/>'. The 'cf.' is unnecessary and should be removed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(.,'—Source')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'—Source')">
+            <xsl:attribute name="id">supp-xref-test-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[supp-xref-test-6] citation contains '—Source' (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M367"/>
@@ -33884,8 +33886,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="count(tokenize(.,'\s')) gt 3">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\s')) gt 3">
+      <xsl:if test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3">
             <xsl:attribute name="id">auth-kwd-check-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -33893,7 +33895,7 @@
             </xsl:attribute>
             <svrl:text>[auth-kwd-check-6] Keyword contains more than 3 words - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. These should be split out into separate keywords.</svrl:text>
+               <xsl:text/>. Should these should be split out into separate keywords?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

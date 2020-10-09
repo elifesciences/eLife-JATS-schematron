@@ -789,19 +789,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-book-tests">
-    <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
-      <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="count(source)=1" role="error" id="err-elem-cit-book-10-1">[err-elem-book-book-10-1]
-        Each  &lt;element-citation&gt; of type 'book' must contain one and
-        only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+  <pattern id="element-citation-patent-tests">
+    <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
+      <assert test="patent" role="error" id="final-err-elem-cit-patent-10-1-1">The  &lt;patent&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='patent']" role="error" id="elem-citation-patent-xspec-assert">element-citation[@publication-type='patent'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
