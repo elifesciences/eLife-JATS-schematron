@@ -4,6 +4,6 @@ Test: report    contains(lower-case(.),'figure') and contains(.,'Video')
 Message: Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <xref ref-type="video">Figure 1&#x2014;Video 1</xref>
+    <xref ref-type="video">Figure 1—Video 1</xref>
   </article>
 </root>

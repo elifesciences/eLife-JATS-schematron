@@ -7171,12 +7171,12 @@
     <x:scenario label="reply-body-tests">
       <x:scenario label="reply-body-test-1-pass">
         <x:context href="../tests/gen/reply-body-tests/reply-body-test-1/pass.xml"/>
-        <x:expect-not-report id="reply-body-test-1" role="error"/>
+        <x:expect-not-report id="reply-body-test-1" role="warning"/>
         <x:expect-not-assert id="reply-body-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="reply-body-test-1-fail">
         <x:context href="../tests/gen/reply-body-tests/reply-body-test-1/fail.xml"/>
-        <x:expect-report id="reply-body-test-1" role="error"/>
+        <x:expect-report id="reply-body-test-1" role="warning"/>
         <x:expect-not-assert id="reply-body-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="reply-body-test-2-pass">

@@ -4,6 +4,6 @@ Test: report    contains(.,'—Source')
 Message: citation contains '—Source' (). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <xref ref-type="supplementary-material">Figure 1&#x2014;Source data 1</xref>
+    <xref ref-type="supplementary-material">Figure 1—Source data 1</xref>
   </article>
 </root>
