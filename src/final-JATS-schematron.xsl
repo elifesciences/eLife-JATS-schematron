@@ -17356,17 +17356,17 @@
 	  <!--RULE reply-body-tests-->
    <xsl:template match="sub-article[@article-type='reply']/body" priority="1000" mode="M255">
 
-		<!--REPORT error-->
+		<!--REPORT warning-->
       <xsl:if test="count(disp-quote[@content-type='editor-comment']) = 0">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(disp-quote[@content-type='editor-comment']) = 0">
             <xsl:attribute name="id">reply-body-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[reply-body-test-1] author response doesn't contain a disp-quote. This has to be incorrect.</svrl:text>
+            <svrl:text>[reply-body-test-1] author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
