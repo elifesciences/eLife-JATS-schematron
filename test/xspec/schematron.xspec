@@ -1045,6 +1045,16 @@
         <x:expect-report id="surname-test-8" role="warning"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="surname-test-9-pass">
+        <x:context href="../tests/gen/surname-tests/surname-test-9/pass.xml"/>
+        <x:expect-not-report id="surname-test-9" role="warning"/>
+        <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="surname-test-9-fail">
+        <x:context href="../tests/gen/surname-tests/surname-test-9/fail.xml"/>
+        <x:expect-report id="surname-test-9" role="warning"/>
+        <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="given-names-tests">
       <x:scenario label="given-names-test-3-pass">
@@ -1175,6 +1185,26 @@
       <x:scenario label="given-names-test-15-fail">
         <x:context href="../tests/gen/given-names-tests/given-names-test-15/fail.xml"/>
         <x:expect-report id="given-names-test-15" role="error"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-given-names-test-16-pass">
+        <x:context href="../tests/gen/given-names-tests/pre-given-names-test-16/pass.xml"/>
+        <x:expect-not-report id="pre-given-names-test-16" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-given-names-test-16-fail">
+        <x:context href="../tests/gen/given-names-tests/pre-given-names-test-16/fail.xml"/>
+        <x:expect-report id="pre-given-names-test-16" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-given-names-test-16-pass">
+        <x:context href="../tests/gen/given-names-tests/final-given-names-test-16/pass.xml"/>
+        <x:expect-not-report id="final-given-names-test-16" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-given-names-test-16-fail">
+        <x:context href="../tests/gen/given-names-tests/final-given-names-test-16/fail.xml"/>
+        <x:expect-report id="final-given-names-test-16" role="warning"/>
         <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
