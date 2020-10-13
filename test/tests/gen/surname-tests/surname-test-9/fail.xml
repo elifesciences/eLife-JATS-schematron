@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="surname-test-9.sch"?>
+<!--Context: contrib-group//name/surname
+Test: report    matches(.,'[\(\)\[\]]')
+Message: surname contains brackets - ''. Should the brakceted text be placed in the given-names field instead? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <contrib-group>
+      <contrib contrib-type="author" corresp="yes" id="author-179737">
+        <name>
+          <surname>(Karl) Huang</surname>
+          <given-names>Chun-Kai</given-names>
+        </name>
+      </contrib>
+    </contrib-group>
+  </article>
+</root>
