@@ -16017,6 +16017,16 @@
         <x:expect-report id="PMCID-link-test" role="error"/>
         <x:expect-not-assert id="KRT-td-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="addgene-test-pass">
+        <x:context href="../tests/gen/KRT-td-checks/addgene-test/pass.xml"/>
+        <x:expect-not-report id="addgene-test" role="warning"/>
+        <x:expect-not-assert id="KRT-td-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="addgene-test-fail">
+        <x:context href="../tests/gen/KRT-td-checks/addgene-test/fail.xml"/>
+        <x:expect-report id="addgene-test" role="warning"/>
+        <x:expect-not-assert id="KRT-td-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="colour-table">
       <x:scenario label="colour-check-table-pass">

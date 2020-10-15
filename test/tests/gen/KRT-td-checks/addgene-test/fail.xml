@@ -1,0 +1,33 @@
+<?oxygen SCHSchema="addgene-test.sch"?>
+<!--Context: table-wrap[@id='keyresource']//td
+Test: report    matches(lower-case(.),'addgene\s?#?\s?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])
+Message: td element containing - '' - looks like it contains an addgene number. Should this be changed to an RRID with a https://scicrunch.org/resolver/RRID:addgene_{number} link? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource" position="anchor">
+      <label>Key resources table</label>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Reagent type (species) <break/>or resource</th>
+            <th>Designation</th>
+            <th>Source or reference</th>
+            <th>Identifiers</th>
+            <th>Additional information</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Transfected construct <break/>(<italic>Homo sapiens</italic>)</td>
+            <td>pBABE-blast Aurora <break/>B FRET sensor <break/>(mTurquoise2/YPet)</td>
+            <td>this paper</td>
+            <td/>
+            <td>modified from Addgene #45215; <break/>
+              <xref ref-type="bibr" rid="bib21">Fuller et al. (2008)</xref>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </article>
+</root>

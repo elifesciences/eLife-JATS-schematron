@@ -32887,6 +32887,20 @@
                <xsl:text/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'addgene\s?#?\s?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'addgene\s?#?\s?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])">
+            <xsl:attribute name="id">addgene-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[addgene-test] td element containing - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://scicrunch.org/resolver/RRID:addgene_{number} link?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M400"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M400"/>
