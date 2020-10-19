@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="decision-missing-table-test.sch"?>
+<!--Context: sub-article[@article-type='decision-letter']
+Test: report    contains(.,'letter table') and not(descendant::table-wrap[label])
+Message: A decision letter table is referred to in the text, but there is no table in the decision letter with a label. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="decision-letter">
+      <p>This is demonstrated in the following table:</p>
+      <table-wrap/>
+    </sub-article>
+  </article>
+</root>
