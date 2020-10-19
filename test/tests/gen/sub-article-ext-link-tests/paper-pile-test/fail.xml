@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="paper-pile-test.sch"?>
+<!--Context: sub-article//ext-link
+Test: report    contains(@xlink:href,'paperpile.com')
+Message: In the  the text '' has an embedded hyperlink to . The hyperlink should be removed (but the text retained). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="decision-letter">
+      <p>This is demonstrated in <ext-link link-type="uri" xlink:href="https://paperpile.com/c/soS0Uo/jdjE">Smith et al. 2020</ext-link>.</p>
+    </sub-article>
+    <sub-article article-type="reply">
+      <p>This is demonstrated in <ext-link link-type="uri" xlink:href="https://paperpile.com/c/soS0Uo/jdjE">Smith et al. 2020</ext-link>.</p>
+    </sub-article>
+  </article>
+</root>

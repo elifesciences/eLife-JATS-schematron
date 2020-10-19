@@ -7186,6 +7186,18 @@
         <x:expect-not-assert id="dec-letter-body-p-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="decision-missing-table-tests">
+      <x:scenario label="decision-missing-table-test-pass">
+        <x:context href="../tests/gen/decision-missing-table-tests/decision-missing-table-test/pass.xml"/>
+        <x:expect-not-report id="decision-missing-table-test" role="warning"/>
+        <x:expect-not-assert id="decision-missing-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="decision-missing-table-test-fail">
+        <x:context href="../tests/gen/decision-missing-table-tests/decision-missing-table-test/fail.xml"/>
+        <x:expect-report id="decision-missing-table-test" role="warning"/>
+        <x:expect-not-assert id="decision-missing-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="reply-front-tests">
       <x:scenario label="reply-front-test-1-pass">
         <x:context href="../tests/gen/reply-front-tests/reply-front-test-1/pass.xml"/>
@@ -7254,6 +7266,30 @@
         <x:context href="../tests/gen/reply-missing-disp-quote-tests-2/reply-missing-disp-quote-test-2/fail.xml"/>
         <x:expect-report id="reply-missing-disp-quote-test-2" role="warning"/>
         <x:expect-not-assert id="reply-missing-disp-quote-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="reply-missing-table-tests">
+      <x:scenario label="reply-missing-table-test-pass">
+        <x:context href="../tests/gen/reply-missing-table-tests/reply-missing-table-test/pass.xml"/>
+        <x:expect-not-report id="reply-missing-table-test" role="warning"/>
+        <x:expect-not-assert id="reply-missing-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="reply-missing-table-test-fail">
+        <x:context href="../tests/gen/reply-missing-table-tests/reply-missing-table-test/fail.xml"/>
+        <x:expect-report id="reply-missing-table-test" role="warning"/>
+        <x:expect-not-assert id="reply-missing-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-ext-link-tests">
+      <x:scenario label="paper-pile-test-pass">
+        <x:context href="../tests/gen/sub-article-ext-link-tests/paper-pile-test/pass.xml"/>
+        <x:expect-not-report id="paper-pile-test" role="error"/>
+        <x:expect-not-assert id="sub-article-ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="paper-pile-test-fail">
+        <x:context href="../tests/gen/sub-article-ext-link-tests/paper-pile-test/fail.xml"/>
+        <x:expect-report id="paper-pile-test" role="error"/>
+        <x:expect-not-assert id="sub-article-ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="research-advance-test">

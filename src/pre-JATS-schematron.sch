@@ -2576,10 +2576,10 @@
     <rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" id="disp-quote-test-1">[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
+      <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" flag="dl-ar" id="disp-quote-test-1">[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
       </report>
       
-      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" flag="dl-ar" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
+      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="bracket-tests-pattern">
@@ -3506,6 +3506,12 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" flag="dl-ar" id="dec-letter-body-test-2">[dec-letter-body-test-2] The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
     </rule>
   </pattern>
+  <pattern id="decision-missing-table-tests-pattern">
+    <rule context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="decision-missing-table-test">[decision-missing-table-test] A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
+    </rule>
+  </pattern>
   <pattern id="reply-front-tests-pattern">
     <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
       
@@ -3537,6 +3543,18 @@
     <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">[reply-missing-disp-quote-test-2] A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
+    </rule>
+  </pattern>
+  <pattern id="reply-missing-table-tests-pattern">
+    <rule context="sub-article[@article-type='reply']" id="reply-missing-table-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">[reply-missing-table-test] An author response table is referred to in the text, but there is no table in the response with a label.</report>
+    </rule>
+  </pattern>
+  <pattern id="sub-article-ext-link-tests-pattern">
+    <rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">[paper-pile-test] In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
   </pattern>
   
