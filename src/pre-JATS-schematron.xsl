@@ -14120,9 +14120,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')"/>
+         <xsl:when test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) panels? would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) panels? would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
                <xsl:attribute name="id">fig-permissions-test-12</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
@@ -34050,7 +34050,7 @@
             </xsl:attribute>
             <svrl:text>[auth-kwd-check-6] Keyword contains more than 3 words - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. Should these should be split out into separate keywords?</svrl:text>
+               <xsl:text/>. Should these be split out into separate keywords?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

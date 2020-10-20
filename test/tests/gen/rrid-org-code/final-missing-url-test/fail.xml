@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="final-missing-url-test.sch"?>
+<!--Context: p|td|th
+Test: report    contains(lower-case(.),'url to be added')
+Message:  element contains the text 'URL to be added' - . If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p> copy archived at [URL to be added]</p>
+  </article>
+</root>

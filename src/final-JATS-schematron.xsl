@@ -14128,9 +14128,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')"/>
+         <xsl:when test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) panels? would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of this panel would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) panels? would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
                <xsl:attribute name="id">fig-permissions-test-12</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
@@ -24265,6 +24265,22 @@
                <xsl:text/>. If the text is referring to a unit then this is fine.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(.),'url to be added')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'url to be added')">
+            <xsl:attribute name="id">final-missing-url-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-missing-url-test] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains the text 'URL to be added' - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M361"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M361"/>
@@ -34096,7 +34112,7 @@
             </xsl:attribute>
             <svrl:text>[auth-kwd-check-6] Keyword contains more than 3 words - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. Should these should be split out into separate keywords?</svrl:text>
+               <xsl:text/>. Should these be split out into separate keywords?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

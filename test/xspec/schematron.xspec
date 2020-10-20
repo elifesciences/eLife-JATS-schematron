@@ -10541,6 +10541,16 @@
         <x:expect-report id="year-style-test" role="warning"/>
         <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="final-missing-url-test-pass">
+        <x:context href="../tests/gen/rrid-org-code/final-missing-url-test/pass.xml"/>
+        <x:expect-not-report id="final-missing-url-test" role="warning"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-missing-url-test-fail">
+        <x:context href="../tests/gen/rrid-org-code/final-missing-url-test/fail.xml"/>
+        <x:expect-report id="final-missing-url-test" role="warning"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="duplicate-ref">
       <x:scenario label="duplicate-ref-test-1-pass">
