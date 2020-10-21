@@ -796,7 +796,7 @@
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-3" test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
     </rule>
   </pattern>

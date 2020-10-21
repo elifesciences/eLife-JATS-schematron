@@ -796,7 +796,7 @@
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-1" test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-1" test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" role="warning" id="table-xref-conformity-1">
         <value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
     </rule>
   </pattern>

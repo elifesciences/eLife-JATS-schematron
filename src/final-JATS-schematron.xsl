@@ -14128,9 +14128,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) panels? would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')"/>
+         <xsl:when test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) panels? would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
                <xsl:attribute name="id">fig-permissions-test-12</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
@@ -14138,7 +14138,7 @@
                </xsl:attribute>
                <svrl:text>[fig-permissions-test-12] <xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/figure would need permission from the copyright holder.', but <xsl:text/>
+                  <xsl:text/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/illustration/figure would need permission from the copyright holder.', but <xsl:text/>
                   <xsl:value-of select="$label"/>
                   <xsl:text/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link on the license element or in an ali:license_ref so presumed ARR.)</svrl:text>
             </svrl:failed-assert>
@@ -25425,7 +25425,7 @@
       <xsl:if test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))">
             <xsl:attribute name="id">table-xref-conformity-1</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25440,7 +25440,7 @@
       <xsl:if test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')">
             <xsl:attribute name="id">table-xref-conformity-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25455,7 +25455,7 @@
       <xsl:if test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))">
             <xsl:attribute name="id">table-xref-conformity-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25470,7 +25470,7 @@
       <xsl:if test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))">
             <xsl:attribute name="id">table-xref-conformity-4</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-conformity-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25485,7 +25485,7 @@
       <xsl:if test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)">
             <xsl:attribute name="id">table-xref-test-1</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25500,7 +25500,7 @@
       <xsl:if test="matches($pre-text,'[A-Za-z0-9][\(]$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[A-Za-z0-9][\(]$')">
             <xsl:attribute name="id">table-xref-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25515,7 +25515,7 @@
       <xsl:if test="matches($post-text,'^[\)][A-Za-z0-9]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\)][A-Za-z0-9]')">
             <xsl:attribute name="id">table-xref-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25530,7 +25530,7 @@
       <xsl:if test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')">
             <xsl:attribute name="id">table-xref-test-4</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25545,7 +25545,7 @@
       <xsl:if test="matches($pre-text,'cf[\.]?\s?[\(]?$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'cf[\.]?\s?[\(]?$')">
             <xsl:attribute name="id">table-xref-test-5</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-xref-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25560,7 +25560,7 @@
       <xsl:if test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')">
             <xsl:attribute name="id">table-xref-test-6</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-xref-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
