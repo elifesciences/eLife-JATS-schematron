@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="fig-permissions-test-15.sch"?>
+<!--Context: permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement
+Test: assert    contains(.,$text)
+Message: The <copyright-statement> element in the permissions for  does not contain the text '' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <permissions>
+        <copyright-statement>© 2009, Elsevier</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier</copyright-holder>
+        <license>
+          <license-p>Figure 1A is reprinted from <xref ref-type="bibr" rid="bib40">Simonetta et al., 2009</xref>, with permission from Elsevier. It is not covered by the CC-BY 4.0 licence and further reproduction of this panel would need permission from the copyright holder.</license-p>
+        </license>
+      </permissions>
+    </fig>
+  </article>
+</root>
