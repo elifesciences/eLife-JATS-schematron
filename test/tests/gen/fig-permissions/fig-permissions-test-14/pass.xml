@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-permissions-test-14.sch"?>
+<!--Context: permissions[not(parent::article-meta)]
+Test: assert    copyright-statement
+Message: permissions for  does not contain a <copyright-statement> element. Is this correct? This would usually only be the case in CC0 licenses. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+   <fig>
+     <permissions>
+       <copyright-statement/>
+     </permissions>
+   </fig>
+  </article>
+</root>

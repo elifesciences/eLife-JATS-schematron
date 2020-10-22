@@ -2813,13 +2813,23 @@
       
       <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">[fig-permissions-test-10] permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
       
-      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">[fig-permissions-test-11] figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
+      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">[fig-permissions-test-11] Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
       <report test="." role="info" id="permissions-notification">[permissions-notification] <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
       
       <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/>
       </assert>
       
+      <assert test="copyright-statement" role="warning" id="fig-permissions-test-14">[fig-permissions-test-14] permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="fig-permissions-2-pattern">
+    <rule context="permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" id="fig-permissions-2">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
+      <let name="text" value="concat('© ',parent::*/copyright-year[1],', ',parent::*/copyright-holder[1])"/>
+      
+      <assert test="contains(.,$text)" role="error" id="fig-permissions-test-15">[fig-permissions-test-15] The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
     </rule>
   </pattern>
   <pattern id="permissions-2-pattern">
@@ -6875,24 +6885,24 @@
     </rule>
   </pattern>
   <pattern id="fig-permissions-check-pattern">
-    <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
+    <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">[reproduce-test-2] The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">[reproduce-test-2] The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">[reproduce-test-3] The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">[reproduce-test-3] The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">[reproduce-test-4] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">[reproduce-test-4] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">[reproduce-test-5] The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">[reproduce-test-5] The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">[reproduce-test-6] The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">[reproduce-test-6] The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">

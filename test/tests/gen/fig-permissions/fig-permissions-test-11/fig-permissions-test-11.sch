@@ -792,7 +792,7 @@
   <pattern id="further-fig-tests">
     <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
+      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

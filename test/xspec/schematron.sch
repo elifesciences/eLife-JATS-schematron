@@ -2926,7 +2926,7 @@
       
       <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
       
-      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
+      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
       <report test="." role="info" id="permissions-notification">
         <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
@@ -2934,6 +2934,16 @@
       <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/>
       </assert>
       
+      <assert test="copyright-statement" role="warning" id="fig-permissions-test-14">permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="fig-permissions-2-pattern">
+    <rule context="permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" id="fig-permissions-2">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
+      <let name="text" value="concat('© ',parent::*/copyright-year[1],', ',parent::*/copyright-holder[1])"/>
+      
+      <assert test="contains(.,$text)" role="error" id="fig-permissions-test-15">The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
     </rule>
   </pattern>
   <pattern id="permissions-2-pattern">
@@ -7257,24 +7267,24 @@
     </rule>
   </pattern>
   <pattern id="fig-permissions-check-pattern">
-    <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
+    <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+      <report test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">
@@ -7892,6 +7902,7 @@
       <assert test="descendant::article//app//fig[not(@specific-use='child-fig')]/label" role="error" id="app-fig-tests-xspec-assert">article//app//fig[not(@specific-use='child-fig')]/label must be present.</assert>
       <assert test="descendant::article//app//fig[@specific-use='child-fig']/label" role="error" id="app-fig-sup-tests-xspec-assert">article//app//fig[@specific-use='child-fig']/label must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
+      <assert test="descendant::permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" role="error" id="fig-permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" role="error" id="permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))] must be present.</assert>
       <assert test="descendant::fig/caption/p" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p must be present.</assert>
       <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
@@ -8126,7 +8137,7 @@
       <assert test="descendant::table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)]" role="error" id="pubmed-link-2-xspec-assert">table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ref-list/ref" role="error" id="ref-link-mandate-xspec-assert">ref-list/ref must be present.</assert>
-      <assert test="descendant::fig or descendant::media[@mimetype='video']" role="error" id="fig-permissions-check-xspec-assert">fig|media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
       <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
       <assert test="descendant::article" role="error" id="code-fork-xspec-assert">article must be present.</assert>

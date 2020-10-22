@@ -3981,7 +3981,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="copyright-statement or license" 
         role="error" 
-        id="fig-permissions-test-11">figure level permissions must either have a &lt;copyright-statement&gt; or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
+        id="fig-permissions-test-11">Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
       <report test="." 
         role="info" 
@@ -3991,6 +3991,19 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="permissions-parent">permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/></assert>
       
+      <assert test="copyright-statement" 
+        role="warning" 
+        id="fig-permissions-test-14">permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
+      
+    </rule>
+    
+    <rule context="permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" id="fig-permissions-2">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
+      <let name="text" value="concat('© ',parent::*/copyright-year[1],', ',parent::*/copyright-holder[1])"/>
+      
+      <assert test="contains(.,$text)" 
+        role="error" 
+        id="fig-permissions-test-15">The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
     </rule>
     
     <rule context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
@@ -10569,38 +10582,38 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
     </rule>
     
-    <rule context="fig|media[@mimetype='video']" id="fig-permissions-check">
+    <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced from')" 
+      <report test="matches(caption[1],'[Rr]eproduced from')" 
         role="warning" 
         id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" 
+      <report test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" 
+      <report test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" 
         role="warning" 
         id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted from')" 
+      <report test="matches(caption[1],'[Rr]eprinted from')" 
         role="warning" 
         id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" 
+      <report test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified from')" 
+      <report test="matches(caption[1],'[Mm]odified from')" 
         role="warning" 
         id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Mm]odified [Ww]ith')" 
+      <report test="matches(caption[1],'[Mm]odified [Ww]ith')" 
         role="warning" 
         id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
-      <report test="not(descendant::permissions) and matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" 
+      <report test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>

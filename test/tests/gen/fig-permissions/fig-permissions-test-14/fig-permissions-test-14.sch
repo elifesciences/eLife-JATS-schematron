@@ -789,15 +789,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
-      <let name="label" value="replace(label[1],'\.','')"/>
-      <report test="matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+  <pattern id="further-fig-tests">
+    <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
+      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
+      <assert test="copyright-statement" role="warning" id="fig-permissions-test-14">permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
+      <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
