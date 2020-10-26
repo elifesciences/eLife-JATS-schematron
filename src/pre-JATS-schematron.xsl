@@ -34100,14 +34100,14 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3">
+      <xsl:if test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 4">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 4">
             <xsl:attribute name="id">auth-kwd-check-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[auth-kwd-check-6] Keyword contains more than 3 words - <xsl:text/>
+            <svrl:text>[auth-kwd-check-6] Keyword contains more than 4 words - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Should these be split out into separate keywords?</svrl:text>
          </svrl:successful-report>
