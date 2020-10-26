@@ -7162,10 +7162,15 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-2" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-2" 
+        test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
+        role="warning" 
+        id="pre-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty). If the link is not available please query the authors asking for it.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-2" 
         test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
         role="error" 
-        id="das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
+        id="final-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
       
     </rule>
     

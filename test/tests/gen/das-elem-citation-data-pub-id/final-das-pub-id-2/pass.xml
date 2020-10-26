@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="das-pub-id-2.sch"?>
+<?oxygen SCHSchema="final-das-pub-id-2.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
 Test: report    @pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))
 Message: Each pub-id element which is not a doi must have an @xlink-href (which is not empty). -->

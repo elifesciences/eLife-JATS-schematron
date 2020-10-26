@@ -23121,16 +23121,16 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))">
-            <xsl:attribute name="id">das-pub-id-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-2</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="id">pre-das-pub-id-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[das-pub-id-2] Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</svrl:text>
+            <svrl:text>[pre-das-pub-id-2] Each pub-id element which is not a doi must have an @xlink-href (which is not empty). If the link is not available please query the authors asking for it.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M344"/>

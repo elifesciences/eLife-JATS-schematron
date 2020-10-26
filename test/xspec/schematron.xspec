@@ -9877,14 +9877,24 @@
         <x:expect-report id="das-pub-id-1" role="error"/>
         <x:expect-not-assert id="das-elem-citation-data-pub-id-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="das-pub-id-2-pass">
-        <x:context href="../tests/gen/das-elem-citation-data-pub-id/das-pub-id-2/pass.xml"/>
-        <x:expect-not-report id="das-pub-id-2" role="error"/>
+      <x:scenario label="pre-das-pub-id-2-pass">
+        <x:context href="../tests/gen/das-elem-citation-data-pub-id/pre-das-pub-id-2/pass.xml"/>
+        <x:expect-not-report id="pre-das-pub-id-2" role="warning"/>
         <x:expect-not-assert id="das-elem-citation-data-pub-id-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="das-pub-id-2-fail">
-        <x:context href="../tests/gen/das-elem-citation-data-pub-id/das-pub-id-2/fail.xml"/>
-        <x:expect-report id="das-pub-id-2" role="error"/>
+      <x:scenario label="pre-das-pub-id-2-fail">
+        <x:context href="../tests/gen/das-elem-citation-data-pub-id/pre-das-pub-id-2/fail.xml"/>
+        <x:expect-report id="pre-das-pub-id-2" role="warning"/>
+        <x:expect-not-assert id="das-elem-citation-data-pub-id-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-das-pub-id-2-pass">
+        <x:context href="../tests/gen/das-elem-citation-data-pub-id/final-das-pub-id-2/pass.xml"/>
+        <x:expect-not-report id="final-das-pub-id-2" role="error"/>
+        <x:expect-not-assert id="das-elem-citation-data-pub-id-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-das-pub-id-2-fail">
+        <x:context href="../tests/gen/das-elem-citation-data-pub-id/final-das-pub-id-2/fail.xml"/>
+        <x:expect-report id="final-das-pub-id-2" role="error"/>
         <x:expect-not-assert id="das-elem-citation-data-pub-id-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
