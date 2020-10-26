@@ -6957,7 +6957,7 @@
       
       <report test="contains($lower,' and ')" role="warning" id="auth-kwd-check-5">[auth-kwd-check-5] Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
       
-      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 3" role="warning" id="auth-kwd-check-6">[auth-kwd-check-6] Keyword contains more than 3 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
+      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 4" role="warning" id="auth-kwd-check-6">[auth-kwd-check-6] Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
       <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">[auth-kwd-check-7] Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
     </rule>
