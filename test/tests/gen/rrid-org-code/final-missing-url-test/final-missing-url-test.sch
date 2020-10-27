@@ -673,6 +673,12 @@
       <xsl:when test="matches($s,'trypanosoma\s?brucei')">
         <xsl:value-of select="'Trypanosoma brucei'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'c\.\s?crescentus')">
+        <xsl:value-of select="'C. crescentus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'caulobacter\s?crescentus')">
+        <xsl:value-of select="'Caulobacter crescentus'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -799,7 +805,7 @@
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
-      <report test="contains(lower-case(.),'url to be added')" role="warning" id="final-missing-url-test">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test" test="contains(lower-case(.),'url to be added')" role="warning" id="final-missing-url-test">
         <name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added.</report>
     </rule>
   </pattern>

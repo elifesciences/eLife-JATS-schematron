@@ -673,6 +673,12 @@
          <xsl:when test="matches($s,'trypanosoma\s?brucei')">
             <xsl:value-of select="'Trypanosoma brucei'"/>
          </xsl:when>
+         <xsl:when test="matches($s,'c\.\s?crescentus')">
+            <xsl:value-of select="'C. crescentus'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'caulobacter\s?crescentus')">
+            <xsl:value-of select="'Caulobacter crescentus'"/>
+         </xsl:when>
          <xsl:when test="matches($s,'d\.\s?rerio')">
             <xsl:value-of select="'D. rerio'"/>
          </xsl:when>
