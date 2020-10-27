@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/suffix" id="suffix-tests">
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
+      <assert test=".=('Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

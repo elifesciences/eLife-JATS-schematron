@@ -1470,9 +1470,9 @@
     
     <rule context="contrib-group//name/suffix" id="suffix-tests">
       
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
+      <assert test=".=('Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
         role="error" 
-        id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
+        id="suffix-assert">suffix can only have one of these values - 'Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
       <report test="*" 
         role="error" 
@@ -5270,7 +5270,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
+      <assert test=".=('Jr','Jnr', 'Sr','Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
         role="error" 
         id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values

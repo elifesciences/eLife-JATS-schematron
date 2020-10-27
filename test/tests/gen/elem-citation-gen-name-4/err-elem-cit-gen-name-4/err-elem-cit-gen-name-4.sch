@@ -791,7 +791,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
+      <assert test=".=('Jr','Jnr', 'Sr','Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement
