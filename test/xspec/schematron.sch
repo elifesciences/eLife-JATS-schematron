@@ -1236,7 +1236,7 @@
   <pattern id="suffix-tests-pattern">
     <rule context="contrib-group//name/suffix" id="suffix-tests">
       
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jnr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
+      <assert test=".=('Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
       <report test="*" role="error" id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/>
       </report>
@@ -3799,7 +3799,7 @@
   <pattern id="elem-citation-gen-name-4-pattern">
     <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
-      <assert test=".=('Jnr', 'Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
+      <assert test=".=('Jr','Jnr', 'Sr','Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
         Jnr, Snr, I, II, III, VI, V, VI, VII, VIII, IX, X.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement
