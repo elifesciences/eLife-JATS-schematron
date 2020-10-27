@@ -673,6 +673,12 @@
          <xsl:when test="matches($s,'trypanosoma\s?brucei')">
             <xsl:value-of select="'Trypanosoma brucei'"/>
          </xsl:when>
+         <xsl:when test="matches($s,'c\.\s?crescentus')">
+            <xsl:value-of select="'C. crescentus'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'caulobacter\s?crescentus')">
+            <xsl:value-of select="'Caulobacter crescentus'"/>
+         </xsl:when>
          <xsl:when test="matches($s,'d\.\s?rerio')">
             <xsl:value-of select="'D. rerio'"/>
          </xsl:when>
@@ -9973,7 +9979,7 @@
       <xsl:if test="contains(.,'copy archived')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'copy archived')">
             <xsl:attribute name="id">ext-link-child-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#ext-link-child-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#ext-link-child-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24329,6 +24335,7 @@
       <xsl:if test="contains(lower-case(.),'url to be added')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'url to be added')">
             <xsl:attribute name="id">final-missing-url-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34063,7 +34070,7 @@
       <xsl:if test="$test//*:match">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$test//*:match">
             <xsl:attribute name="id">code-fork-info</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#code-fork-info</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

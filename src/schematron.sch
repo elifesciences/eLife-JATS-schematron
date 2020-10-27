@@ -731,6 +731,12 @@
       <xsl:when test="matches($s,'trypanosoma\s?brucei')">
         <xsl:value-of select="'Trypanosoma brucei'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'c\.\s?crescentus')">
+        <xsl:value-of select="'C. crescentus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'caulobacter\s?crescentus')">
+        <xsl:value-of select="'Caulobacter crescentus'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'d\.\s?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
@@ -2562,7 +2568,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#ext-link-child-test-3" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#ext-link-child-test-3" 
         test="contains(.,'copy archived')" 
         role="error" 
         id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
@@ -7587,7 +7593,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
       
-      <report test="contains(lower-case(.),'url to be added')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test"
+        test="contains(lower-case(.),'url to be added')" 
         role="warning" 
         id="final-missing-url-test"><name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added.</report>
     </rule>
@@ -10658,7 +10665,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(lower-case(.))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/forking-git-based-repos#code-fork-info" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#code-fork-info" 
         test="$test//*:match" 
         role="warning" 
         id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>.</report>
