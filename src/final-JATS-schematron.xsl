@@ -793,8 +793,8 @@
       <xsl:param name="article" as="element()"/>
       <xsl:param name="regex" as="xs:string"/>
     
-      <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor::sec[@sec-type='additional-information']) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),''))"/>
-      <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic,''))"/>
+      <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor-or-self::sec[@sec-type='additional-information']) then ()       else if ($x/ancestor-or-self::ref-list) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),' '))"/>
+      <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic[not(ancestor::ref-list) and not(ancestor::sec[@sec-type='additional-information'])],' '))"/>
     
     
       <xsl:element name="result">
@@ -11626,6 +11626,20 @@
             <svrl:text>[math-test-18] abstract contains MathML (<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]">
+            <xsl:attribute name="id">math-test-19</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[math-test-19] Maths containing '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M138"/>
@@ -33590,8 +33604,8 @@
                <xsl:value-of select="$italic-count"/>
                <xsl:text/> italic terms which is more common, and <xsl:text/>
                <xsl:value-of select="$roman-count"/>
-               <xsl:text/> roman term(s). The following terms should be unitalicised: <xsl:text/>
-               <xsl:value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>
+               <xsl:text/> roman term(s). The following terms should be italicised: <xsl:text/>
+               <xsl:value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>

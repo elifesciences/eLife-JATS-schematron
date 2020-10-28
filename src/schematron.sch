@@ -860,10 +860,11 @@
     <xsl:variable name="roman-text" select="lower-case(
       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*
       return
-      if ($x/ancestor::sec[@sec-type='additional-information']) then ()
+      if ($x/ancestor-or-self::sec[@sec-type='additional-information']) then ()
+      else if ($x/ancestor-or-self::ref-list) then ()
       else if ($x/local-name() = 'italic') then ()
-      else $x/text(),''))"/>
-    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic,''))"/>
+      else $x/text(),' '))"/>
+    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic[not(ancestor::ref-list) and not(ancestor::sec[@sec-type='additional-information'])],' '))"/>
     
     
     <xsl:element name="result">
@@ -917,7 +918,7 @@
     <xsl:value-of select="string-join(
       for $term in $list//*:match[@count != '0'] 
       return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)
-      else concat($term/@count,' instance of &apos;',$term,'&apos;')
+      else concat($term/@count,' instance of ',$term)
       ,', ')"/>
   </xsl:function>
   
@@ -3191,6 +3192,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="ancestor::abstract" 
         role="warning" 
         id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
+      
+      <report test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" 
+        role="warning" 
+        id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
     </rule>
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">
@@ -10561,7 +10566,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="($roman-count != 0) and ($italic-count gt $roman-count)" 
         role="warning" 
-        id="latin-roman-info">Latin terms are not consistenly either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
+        id="latin-roman-info">Latin terms are not consistenly either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
       
       <report test="($roman-count != 0) and ($italic-count = $roman-count)" 
         role="warning" 

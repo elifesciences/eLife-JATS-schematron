@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="math-test-19.sch"?>
+<!--Context: mml:math
+Test: report    descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]
+Message: Maths containing '' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p><inline-formula><mml:math id="inf1"><mml:mstyle displaystyle="true" scriptlevel="0"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>r</mml:mi><mml:mi>e</mml:mi><mml:mi>d</mml:mi><mml:mspace width="thickmathspace"/><mml:mi>b</mml:mi><mml:mi>l</mml:mi><mml:mi>o</mml:mi><mml:mi>o</mml:mi><mml:mi>d</mml:mi><mml:mspace width="thickmathspace"/><mml:mi>c</mml:mi><mml:mi>e</mml:mi><mml:mi>l</mml:mi><mml:mi>l</mml:mi><mml:mi>s</mml:mi><mml:mspace width="thickmathspace"/><mml:mo>∗</mml:mo><mml:mspace width="thickmathspace"/><mml:mi>m</mml:mi><mml:mi>e</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi><mml:mspace width="thickmathspace"/><mml:mi>c</mml:mi><mml:mi>o</mml:mi><mml:mi>r</mml:mi><mml:mi>p</mml:mi><mml:mi>u</mml:mi><mml:mi>s</mml:mi><mml:mi>c</mml:mi><mml:mi>u</mml:mi><mml:mi>l</mml:mi><mml:mi>a</mml:mi><mml:mi>r</mml:mi><mml:mspace width="thickmathspace"/><mml:mi>v</mml:mi><mml:mi>o</mml:mi><mml:mi>l</mml:mi><mml:mi>u</mml:mi><mml:mi>m</mml:mi><mml:mi>e</mml:mi></mml:mrow><mml:mn>10</mml:mn></mml:mfrac></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+    </body>
+  </article>
+</root>
