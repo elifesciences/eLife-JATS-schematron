@@ -106,7 +106,9 @@ declare function elife:sch2pre($sch){
     modify(
       for $x in $copy2//*:rule
       let $id := ($x/@id || '-pattern')
-      return replace node $x with <pattern id="{$id}">{$x}</pattern>
+      return 
+      if (starts-with($x/@id,'final-')) then delete node $x
+      else (replace node $x with <pattern id="{$id}">{$x}</pattern>)
     )
     return
     copy $copy3 := $copy2
@@ -115,11 +117,10 @@ declare function elife:sch2pre($sch){
       let $id := ("["||$x/@id||"] ")
       return 
       if (starts-with($x/@id,'final-')) then delete node $x
-      else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
       else if (starts-with($x/data(),('['||$x/@id))) then ()
       else insert node $id as first into $x,
 
-      for $x in $copy3//xsl:function[@name="java:file-exists"]
+      for $x in $copy3//xsl:function[@name=("java:file-exists","e:get-latin-terms","e:print-latin-terms")]
       return delete node $x,
 
       for $x in $copy3//*:let[@name="article-text"]/preceding-sibling::comment()[1]
@@ -137,7 +138,7 @@ declare function elife:sch2dl($sch){
       for $x in $copy1//*:pattern
       return replace node $x with $x/*,
       
-      for $x in $copy1//xsl:function[@name="java:file-exists"]
+      for $x in $copy1//xsl:function[@name=("java:file-exists","e:get-latin-terms","e:print-latin-terms")]
       return delete node $x
     )
     return
@@ -172,7 +173,9 @@ declare function elife:sch2final($sch){
     modify(
       for $x in $copy2//*:rule
       let $id := ($x/@id || '-pattern')
-      return replace node $x with <pattern id="{$id}">{$x}</pattern>
+      return 
+      if (starts-with($x/@id,'pre-')) then delete node $x
+      else (replace node $x with <pattern id="{$id}">{$x}</pattern>)
     )
     return
     copy $copy3 := $copy2

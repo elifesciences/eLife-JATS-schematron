@@ -789,6 +789,64 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:function>
+  <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
+  <xsl:function name="e:get-latin-terms" as="element()">
+    <xsl:param name="article" as="element()"/>
+    <xsl:param name="regex" as="xs:string"/>
+    
+    <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor::sec[@sec-type='additional-information']) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),''))"/>
+    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic,''))"/>
+    
+    
+    <xsl:element name="result">
+      <xsl:choose>
+        <xsl:when test="matches($roman-text,$regex)">
+          <xsl:element name="list">
+            <xsl:attribute name="list-type">roman</xsl:attribute>
+            <xsl:for-each select="tokenize($regex,'\|')">
+              <xsl:variable name="display" select="replace(replace(.,'\\s\+',' '),'^ | $','')"/>
+              <xsl:element name="match">
+                <xsl:attribute name="count">
+                  <xsl:value-of select="count(tokenize($roman-text,.)) - 1"/>
+                </xsl:attribute>
+                <xsl:value-of select="$display"/>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:element name="list">
+            <xsl:attribute name="list-type">roman</xsl:attribute>
+          </xsl:element>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:choose>
+        <xsl:when test="matches($italic-text,$regex)">
+          <xsl:element name="list">
+            <xsl:attribute name="list-type">italic</xsl:attribute>
+            <xsl:for-each select="tokenize($regex,'\|')">
+              <xsl:variable name="display" select="replace(.,'\\s\+',' ')"/>
+              <xsl:element name="match">
+                <xsl:attribute name="count">
+                  <xsl:value-of select="count(tokenize($italic-text,.)) - 1"/>
+                </xsl:attribute>
+                <xsl:value-of select="$display"/>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:element>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:element name="list">
+            <xsl:attribute name="list-type">italic</xsl:attribute>
+          </xsl:element>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:print-latin-terms" as="xs:string">
+    <xsl:param name="list" as="element()"/>
+    <xsl:value-of select="string-join(       for $term in $list//*:match[@count != '0']        return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)       else concat($term/@count,' instance of ',$term)       ,', ')"/>
+  </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
     
