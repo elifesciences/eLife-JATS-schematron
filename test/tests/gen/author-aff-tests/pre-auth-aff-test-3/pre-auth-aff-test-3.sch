@@ -794,8 +794,8 @@
     <xsl:param name="article" as="element()"/>
     <xsl:param name="regex" as="xs:string"/>
     
-    <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor::sec[@sec-type='additional-information']) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),''))"/>
-    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic,''))"/>
+    <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor-or-self::sec[@sec-type='additional-information']) then ()       else if ($x/ancestor-or-self::ref-list) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),' '))"/>
+    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic[not(ancestor::ref-list) and not(ancestor::sec[@sec-type='additional-information'])],' '))"/>
     
     
     <xsl:element name="result">

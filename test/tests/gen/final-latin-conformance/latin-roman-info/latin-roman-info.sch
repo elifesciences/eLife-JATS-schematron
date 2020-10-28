@@ -794,8 +794,8 @@
     <xsl:param name="article" as="element()"/>
     <xsl:param name="regex" as="xs:string"/>
     
-    <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor::sec[@sec-type='additional-information']) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),''))"/>
-    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic,''))"/>
+    <xsl:variable name="roman-text" select="lower-case(       string-join(for $x in $article/*[local-name() = 'body' or local-name() = 'back']//*       return       if ($x/ancestor-or-self::sec[@sec-type='additional-information']) then ()       else if ($x/ancestor-or-self::ref-list) then ()       else if ($x/local-name() = 'italic') then ()       else $x/text(),' '))"/>
+    <xsl:variable name="italic-text" select="lower-case(string-join($article//*:italic[not(ancestor::ref-list) and not(ancestor::sec[@sec-type='additional-information'])],' '))"/>
     
     
     <xsl:element name="result">
@@ -858,7 +858,7 @@
       <let name="latin-terms" value="e:get-latin-terms(.,$latin-regex)"/>
       <let name="roman-count" value="sum(for $x in $latin-terms//*:list[@list-type='roman']//*:match return number($x/@count))"/>
       <let name="italic-count" value="sum(for $x in $latin-terms//*:list[@list-type='italic']//*:match return number($x/@count))"/>
-      <report test="($roman-count != 0) and ($italic-count gt $roman-count)" role="warning" id="latin-roman-info">Latin terms are not consistenly either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
+      <report test="($roman-count != 0) and ($italic-count gt $roman-count)" role="warning" id="latin-roman-info">Latin terms are not consistenly either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
