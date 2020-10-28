@@ -825,6 +825,12 @@
     </xsl:choose>
   </xsl:function>
   
+  <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
+  
+  
+  
+  
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>

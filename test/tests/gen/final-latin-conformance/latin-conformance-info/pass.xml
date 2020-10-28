@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="latin-conformance-info.sch"?>
+<!--Context: article
+Test: report    ($roman-count != 0) and ($italic-count = $roman-count)
+Message: Latin terms are not consistenly either roman or italic. There are an equal number of italic () and roman () terms. The following terms are italicised: . The following terms are unitalicised: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p><italic>In vitro</italic> test test test <italic>In vivo</italic> <italic>Ex vivo</italic></p>
+    </body>
+  </article>
+</root>
