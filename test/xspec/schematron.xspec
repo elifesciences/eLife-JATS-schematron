@@ -1,5 +1,17 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
   <x:scenario>
+    <x:scenario label="covid-prologue">
+      <x:scenario label="covid-processing-instruction-pass">
+        <x:context href="../tests/gen/covid-prologue/covid-processing-instruction/pass.xml"/>
+        <x:expect-not-assert id="covid-processing-instruction" role="warning"/>
+        <x:expect-not-assert id="covid-prologue-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="covid-processing-instruction-fail">
+        <x:context href="../tests/gen/covid-prologue/covid-processing-instruction/fail.xml"/>
+        <x:expect-assert id="covid-processing-instruction" role="warning"/>
+        <x:expect-not-assert id="covid-prologue-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="article-tests">
       <x:scenario label="dtd-info-pass">
         <x:context href="../tests/gen/article-tests/dtd-info/pass.xml"/>
@@ -7939,12 +7951,12 @@
       </x:scenario>
       <x:scenario label="err-elem-cit-journal-6-6-pass">
         <x:context href="../tests/gen/elem-citation-journal-fpage/err-elem-cit-journal-6-6/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-journal-6-6" role="error"/>
+        <x:expect-not-report id="err-elem-cit-journal-6-6" role="error"/>
         <x:expect-not-assert id="elem-citation-journal-fpage-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-journal-6-6-fail">
         <x:context href="../tests/gen/elem-citation-journal-fpage/err-elem-cit-journal-6-6/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-journal-6-6" role="error"/>
+        <x:expect-report id="err-elem-cit-journal-6-6" role="error"/>
         <x:expect-not-assert id="elem-citation-journal-fpage-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

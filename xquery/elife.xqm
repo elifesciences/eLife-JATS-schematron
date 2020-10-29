@@ -8,7 +8,7 @@ declare namespace x="http://www.jenitennison.com/xslt/xspec";
 declare variable $elife:base := doc('../src/schematron.sch');
 declare variable $elife:copy-edit-base := doc('../src/copy-edit.sch');
 
-(:~ Generate schemalet files for unti testing purposes
+(:~ Generate schemalet files for unit testing purposes
  :)
 declare function elife:schema-let($assert-or-report){
   let $id := $assert-or-report/@id
@@ -49,7 +49,8 @@ return delete node $x,
     let $rule := $x//*[@id = $id]/parent::*:rule
     let $test := $rule/@context/string()
     let $q := 
-            if (matches($test,'\|')) then <assert test="{string-join(
+            if ($rule/@id="covid-prologue") then <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert>
+            else if (matches($test,'\|')) then <assert test="{string-join(
                               for $x in tokenize($test,'\|')
                               return concat('descendant::',$x)
                               ,
@@ -253,7 +254,7 @@ declare function elife:sch2xspec-sch($sch){
         
         for $c in $copy1//sch:pattern[@id="final-package-pattern"]
         return delete node $c,
-                                                     
+        
         for $c in $copy1//*:pattern[@id!="final-package-pattern"]
         return replace node $c with $c/*
        )
@@ -267,7 +268,8 @@ declare function elife:sch2xspec-sch($sch){
                 for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test"))]
                 let $test := $z/@context/string()
                 return
-                if (matches($test,'\|')) then (
+                if ($z/@id="covid-prologue") then <assert test="{concat('descendant::',$test)}" role="error" id="{concat($z/@id,'-xspec-assert')}">{$test} must be present.</assert>
+                else if (matches($test,'\|')) then (
                   let $q := string-join(
                      for $x in tokenize($test,'\|')
                      return concat('descendant::',$x)
@@ -295,7 +297,8 @@ declare function elife:sch2xspec-sch($sch){
  :)
 declare function elife:sch2xspec($xspec-sch){
   <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
-  <x:scenario >{
+  <x:scenario>
+  {
     (:Ignore final package rule :)
     for $x in $xspec-sch//sch:rule[(@id!='final-package') and (@id!='root-rule')]
     let $id := elife:get-id($x)  

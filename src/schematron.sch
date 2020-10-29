@@ -939,6 +939,17 @@
     <xsl:sequence select="file:exists(file:new($absolute-uri))"/>
   </xsl:function>
   
+  <pattern id="covid-prologue-pattern">
+    <rule context="article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" 
+      id="covid-prologue">
+      
+      <assert test="preceding::processing-instruction('covid-19-tdm')" 
+        role="warning" 
+        id="covid-processing-instruction">The article title (<value-of select="front/article-meta//article-title"/>) suggests that this article should probably have the covid processing instruction - '&lt;?covid-19-tdm?>' - but it does not. Should it?</assert>
+      
+    </rule>
+  </pattern>
+  
  <pattern id="article">
  
     <rule context="article" id="article-tests">
@@ -5708,13 +5719,12 @@ else self::*/local-name() = $allowed-p-blocks"
         If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6" 
-        test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1)) or count(../lpage) eq 0" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6" 
+        test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" 
         role="error" 
         id="err-elem-cit-journal-6-6">[err-elem-cit-journal-6-6]
-        If the content of &lt;fpage&gt; begins with a letter, then the content of  &lt;lpage&gt; must begin with 
-        the same letter. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
+        If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with 
+        the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
       
     </rule>
     
