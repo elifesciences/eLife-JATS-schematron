@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="covid-processing-instruction.sch"?>
+<!--Context: article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]
+Test: assert    preceding::processing-instruction('covid-19-tdm')
+Message: The article title () suggests that this article should probably have the covid processing instruction - '<?covid-19-tdm?>' - but it does not. Should it? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="review-article" dtd-version="1.1">
+    <front>
+      <article-meta>
+        <title-group>
+          <article-title>Obesity and diabetes as comorbidities for COVID-19: Underlying mechanisms and the role of viral–bacterial interactions</article-title>
+        </title-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
