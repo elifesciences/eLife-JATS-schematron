@@ -7350,6 +7350,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="pub-id-test-4">pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
       
+      <report test="ends-with(.,'.')" 
+        role="error" 
+        id="pub-id-test-5"><value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
+      
     </rule>
     
   </pattern>

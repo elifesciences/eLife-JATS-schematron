@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-heritage-test-3.sch"?>
 <!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
 Test: report    ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))
-Message: The text for Software heritage links in the main text must be the revsision SWHID without contextual information. '' is not. Based on the link itself, the text that is embedded should be ''. -->
+Message: The text for Software heritage links in the main text must be the revision SWHID without contextual information. '' is not. Based on the link itself, the text that is embedded should be ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

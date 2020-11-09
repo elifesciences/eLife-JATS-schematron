@@ -2061,7 +2061,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" test="ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">Software heritage links in the main text must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revsision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
       
     </rule>
   </pattern>
@@ -5277,6 +5277,9 @@
       <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" role="error" id="pub-id-doi-test-2">pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. Either the doi link is correct, and the identifier needs changing, or the identifier is correct and needs adding after 'https://doi.org/' in order to create the real doi link.</report>
       
       <report test="contains(.,' ')" role="warning" id="pub-id-test-4">pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
+      
+      <report test="ends-with(.,'.')" role="error" id="pub-id-test-5">
+        <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
       
     </rule>
   </pattern>

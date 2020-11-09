@@ -853,14 +853,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
+  <pattern id="pub-id-pattern">
+    <rule context="element-citation/pub-id" id="pub-id-tests">
+      <report test="ends-with(.,'.')" role="error" id="pub-id-test-5">
+        <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[contains(@xlink:href,'softwareheritage')]" role="error" id="software-heritage-tests-xspec-assert">ext-link[contains(@xlink:href,'softwareheritage')] must be present.</assert>
+      <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -10184,7 +10184,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[software-heritage-test-3] The text for Software heritage links in the main text must be the revsision SWHID without contextual information. '<xsl:text/>
+            <svrl:text>[software-heritage-test-3] The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>' is not. Based on the link itself, the text that is embedded should be '<xsl:text/>
                <xsl:value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>
@@ -23510,6 +23510,22 @@
             <svrl:text>[pub-id-test-4] pub id contains whitespace - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> - which is very likely to be incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(.,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(.,'.')">
+            <xsl:attribute name="id">pub-id-test-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-id-test-5] <xsl:text/>
+               <xsl:value-of select="@pub-id-type"/>
+               <xsl:text/> pub-id ends with a full stop - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - which is not correct. Please remove the full stop.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M352"/>
