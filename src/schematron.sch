@@ -6005,18 +6005,20 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
       <assert test="pub-id or ext-link" 
+        role="warning" 
+        id="pre-err-elem-cit-data-13-1">There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements. If this information is missing, please query it with the authors.</assert>
+      
+      <assert test="pub-id or ext-link" 
         role="error" 
-        id="err-elem-cit-data-13-1">[err-elem-cit-data-13-1]
-        There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements
-        and <value-of select="count(ext-link)"/>  &lt;ext-link&gt; elements.</assert>
+        id="final-err-elem-cit-data-13-1">There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+      
+      <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" 
+        role="warning" 
+        id="pre-err-elem-cit-data-17-1">The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements. If this information is missing, please query it with the authors.</assert>
       
       <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" 
         role="error" 
-        id="err-elem-cit-data-17-1">[err-elem-cit-data-17-1]
-        The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements
-        and <value-of select="count(ext-link)"/>  &lt;ext-link&gt; elements.</assert>
+        id="final-err-elem-cit-data-17-1">The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
       <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" 
         role="error" 

@@ -19901,21 +19901,18 @@
          <xsl:when test="pub-id or ext-link"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="pub-id or ext-link">
-               <xsl:attribute name="id">err-elem-cit-data-13-1</xsl:attribute>
+               <xsl:attribute name="id">final-err-elem-cit-data-13-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-13-1]
-        There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id.
-        Reference '<xsl:text/>
+               <svrl:text>[final-err-elem-cit-data-13-1] There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(pub-id)"/>
-                  <xsl:text/> &lt;pub-id elements
-        and <xsl:text/>
+                  <xsl:text/> &lt;pub-id elements and <xsl:text/>
                   <xsl:value-of select="count(ext-link)"/>
-                  <xsl:text/>  &lt;ext-link&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;ext-link&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19925,21 +19922,18 @@
          <xsl:when test="count(pub-id) ge 1 or count(ext-link) ge 1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(pub-id) ge 1 or count(ext-link) ge 1">
-               <xsl:attribute name="id">err-elem-cit-data-17-1</xsl:attribute>
+               <xsl:attribute name="id">final-err-elem-cit-data-17-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-17-1]
-        The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[final-err-elem-cit-data-17-1] The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(pub-id)"/>
-                  <xsl:text/> &lt;pub-id&gt; elements
-        and <xsl:text/>
+                  <xsl:text/> &lt;pub-id&gt; elements and <xsl:text/>
                   <xsl:value-of select="count(ext-link)"/>
-                  <xsl:text/>  &lt;ext-link&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;ext-link&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
