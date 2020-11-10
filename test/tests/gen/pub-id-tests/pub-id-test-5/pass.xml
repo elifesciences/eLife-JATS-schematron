@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="pub-id-test-5.sch"?>
+<!--Context: element-citation/pub-id
+Test: report    ends-with(.,'.')
+Message:  pub-id ends with a full stop -  - which is not correct. Please remove the full stop. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <ref-list>
+        <ref>
+          <element-citation>
+            <pub-id pub-id-type="doi">10.1523/JNEUROSCI.13-09-03944.1993</pub-id>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </article>
+</root>

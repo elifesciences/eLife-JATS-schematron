@@ -2054,6 +2054,17 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5" test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
     </rule>
   </pattern>
+  <pattern id="software-heritage-tests-pattern">
+    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))" role="error" id="software-heritage-test-1">Software heritage links in the data availability statement must be the revision link without contextual information. '<value-of select="."/>' is not a revision link without contextual information.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" test="ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">Software heritage links in the main text must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="fig-group-tests-pattern">
     <rule context="fig-group" id="fig-group-tests">
       
@@ -4301,15 +4312,13 @@
         elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
-      <assert test="pub-id or ext-link" role="error" id="err-elem-cit-data-13-1">[err-elem-cit-data-13-1]
-        There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements
-        and <value-of select="count(ext-link)"/>  &lt;ext-link&gt; elements.</assert>
       
-      <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" role="error" id="err-elem-cit-data-17-1">[err-elem-cit-data-17-1]
-        The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements
-        and <value-of select="count(ext-link)"/>  &lt;ext-link&gt; elements.</assert>
+      
+      <assert test="pub-id or ext-link" role="error" id="final-err-elem-cit-data-13-1">There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+      
+      
+      
+      <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" role="error" id="final-err-elem-cit-data-17-1">The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
       <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">[err-elem-cit-data-18]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are:
@@ -5266,6 +5275,9 @@
       <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" role="error" id="pub-id-doi-test-2">pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. Either the doi link is correct, and the identifier needs changing, or the identifier is correct and needs adding after 'https://doi.org/' in order to create the real doi link.</report>
       
       <report test="contains(.,' ')" role="warning" id="pub-id-test-4">pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
+      
+      <report test="ends-with(.,'.')" role="error" id="pub-id-test-5">
+        <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
       
     </rule>
   </pattern>

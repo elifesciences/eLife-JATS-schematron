@@ -853,17 +853,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-data-tests">
-    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="pub-id or ext-link" role="error" id="err-elem-cit-data-13-1">[err-elem-cit-data-13-1]
-        There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements
-        and <value-of select="count(ext-link)"/>  &lt;ext-link&gt; elements.</assert>
+  <pattern id="content-containers">
+    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::ext-link[contains(@xlink:href,'softwareheritage')]" role="error" id="software-heritage-tests-xspec-assert">ext-link[contains(@xlink:href,'softwareheritage')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
