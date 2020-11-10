@@ -15928,6 +15928,18 @@
         <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="data-availability-p">
+      <x:scenario label="final-das-p-conformity-1-pass">
+        <x:context href="../tests/gen/data-availability-p/final-das-p-conformity-1/pass.xml"/>
+        <x:expect-not-report id="final-das-p-conformity-1" role="error"/>
+        <x:expect-not-assert id="data-availability-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-das-p-conformity-1-fail">
+        <x:context href="../tests/gen/data-availability-p/final-das-p-conformity-1/fail.xml"/>
+        <x:expect-report id="final-das-p-conformity-1" role="error"/>
+        <x:expect-not-assert id="data-availability-p-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ethics-info">
       <x:scenario label="ethics-info-conformity-pass">
         <x:context href="../tests/gen/ethics-info/ethics-info-conformity/pass.xml"/>

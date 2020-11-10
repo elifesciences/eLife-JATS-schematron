@@ -10251,10 +10251,19 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial?</report>
       
-      <report see="https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link. More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1" 
         test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" 
         role="error" 
         id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
+      
+    </rule>
+    
+    <rule context="sec[@sec-type='data-availability']/p[not(*)]" id="data-availability-p">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-p-conformity-1" 
+        test="normalize-space(replace(.,' ',''))=''" 
+        role="error" 
+        id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
       
     </rule>
     

@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="final-das-p-conformity-1.sch"?>
+<!--Context: sec[@sec-type='data-availability']/p[not(*)]
+Test: report    normalize-space(replace(.,' ',''))=''
+Message: p element in data availability section contains no content. It must be removed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec id="s7" sec-type="data-availability">
+        <title>Data availability</title>
+        <p>Code and data for calculation of imprinting probabilities, vaccination coverage, and
+          model fitting are available on GitHub at <ext-link ext-link-type="uri"
+            xlink:href="https://github.com/cobeylab/FluAImprinting"
+            >https://github.com/cobeylab/FluAImprinting</ext-link> (copy archived at <ext-link
+              ext-link-type="uri"
+              xlink:href="https://github.com/elifesciences-publications/FluAImprinting"
+              >https://github.com/elifesciences-publications/FluAImprinting</ext-link>).</p>
+        <p> </p>
+      </sec>
+    </back>
+  </article>
+</root>

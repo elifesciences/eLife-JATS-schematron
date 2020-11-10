@@ -854,13 +854,13 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1" test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain 'https://doi.org/'. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
+    <rule context="sec[@sec-type='data-availability']/p[not(*)]" id="data-availability-p">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-p-conformity-1" test="normalize-space(replace(.,' ',''))=''" role="error" id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability']/p[1]" role="error" id="data-availability-statement-xspec-assert">sec[@sec-type='data-availability']/p[1] must be present.</assert>
+      <assert test="descendant::sec[@sec-type='data-availability']/p[not(*)]" role="error" id="data-availability-p-xspec-assert">sec[@sec-type='data-availability']/p[not(*)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
