@@ -18722,6 +18722,22 @@
                <xsl:text/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'&lt;/?[a-z]*/?&gt;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;/?[a-z]*/?&gt;')">
+            <xsl:attribute name="id">tagging-elem-cit-des</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[tagging-elem-cit-des] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains tagging, which should be removed - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M283"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M283"/>

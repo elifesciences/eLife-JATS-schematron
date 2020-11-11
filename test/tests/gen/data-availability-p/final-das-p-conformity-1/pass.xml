@@ -2,8 +2,7 @@
 <!--Context: sec[@sec-type='data-availability']/p[not(*)]
 Test: report    normalize-space(replace(.,' ',''))=''
 Message: p element in data availability section contains no content. It must be removed. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>
       <sec id="s7" sec-type="data-availability">
