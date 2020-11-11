@@ -3849,6 +3849,8 @@
       <report test="not(*) and (normalize-space(.)='')" role="warning" id="pre-empty-elem-cit-des">[pre-empty-elem-cit-des] <name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
       
       
+      
+      <report test="matches(.,'&lt;/?[a-z]*/?&gt;')" role="error" id="tagging-elem-cit-des">[tagging-elem-cit-des] <name/> element contains tagging, which should be removed - '<value-of select="."/>'.</report>
     
     </rule>
   </pattern>

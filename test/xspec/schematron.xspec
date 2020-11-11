@@ -7823,6 +7823,16 @@
         <x:expect-report id="final-empty-elem-cit-des" role="error"/>
         <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="tagging-elem-cit-des-pass">
+        <x:context href="../tests/gen/element-citation-descendants/tagging-elem-cit-des/pass.xml"/>
+        <x:expect-not-report id="tagging-elem-cit-des" role="error"/>
+        <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tagging-elem-cit-des-fail">
+        <x:context href="../tests/gen/element-citation-descendants/tagging-elem-cit-des/fail.xml"/>
+        <x:expect-report id="tagging-elem-cit-des" role="error"/>
+        <x:expect-not-assert id="element-citation-descendants-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-journal">
       <x:scenario label="err-elem-cit-journal-2-1-pass">

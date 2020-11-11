@@ -1,0 +1,40 @@
+<?oxygen SCHSchema="tagging-elem-cit-des.sch"?>
+<!--Context: element-citation//*
+Test: report    matches(.,'</?[a-z]*/?>')
+Message:  element contains tagging, which should be removed - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="journal">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Pinto</surname>
+          <given-names>BI</given-names>
+        </name>
+        <name>
+          <surname>Cruz</surname>
+          <given-names>ND</given-names>
+        </name>
+        <name>
+          <surname>Lujan</surname>
+          <given-names>OR</given-names>
+        </name>
+        <name>
+          <surname>Propper</surname>
+          <given-names>CR</given-names>
+        </name>
+        <name>
+          <surname>Kellar</surname>
+          <given-names>RS</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2019">2019</year>
+      <article-title>in vitro scratch assay to demonstrate
+        effects of arsenic on skin cell migration</article-title>
+      <source>Journal of Visualized Experiments</source>
+      <volume>144</volume>
+      <elocation-id>58838</elocation-id>
+      <pub-id pub-id-type="doi">10.3791/58838</pub-id>
+    </element-citation>
+  </article>
+</root>
