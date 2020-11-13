@@ -1146,6 +1146,16 @@
 	
 	</rule>
   </pattern>
+  <pattern id="review-article-title-tests-pattern">
+    <rule context="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,':')]" id="review-article-title-tests">
+      <let name="pre-colon" value="substring-before(.,':')"/>
+      <let name="post-colon" value="substring-after(.,': ')"/>
+      
+      <assert test="substring($pre-colon,1,1) = upper-case(substring($pre-colon,1,1))" role="error" id="review-article-title-1">The first character in the title for a review article should be upper case. '<value-of select="substring($pre-colon,1,1)"/>' in '<value-of select="."/>'</assert>
+      
+      <assert test="substring($post-colon,1,1) = upper-case(substring($post-colon,1,1))" role="error" id="review-article-title-2">The first character after the colon in the title for a review article should be upper case. '<value-of select="substring($post-colon,1,1)"/>' in '<value-of select="."/>'</assert>
+    </rule>
+  </pattern>
   <pattern id="test-contrib-group-pattern">
     <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
 		
@@ -7842,6 +7852,7 @@
       <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject" role="error" id="MSA-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading']/subject must be present.</assert>
       <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']" role="error" id="head-subj-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading'] must be present.</assert>
       <assert test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
+      <assert test="descendant::article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,':')]" role="error" id="review-article-title-tests-xspec-assert">article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,':')] must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group" role="error" id="test-contrib-group-xspec-assert">article/front/article-meta/contrib-group must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="auth-contrib-group-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']" role="error" id="test-editor-contrib-group-xspec-assert">article/front/article-meta/contrib-group[@content-type='section'] must be present.</assert>

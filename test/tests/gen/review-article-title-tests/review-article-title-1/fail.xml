@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="review-article-title-1.sch"?>
+<!--Context: article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')]
+Test: assert    substring($pre-colon,1,1) = upper-case(substring($pre-colon,1,1))
+Message: The first character in the title for a review article should be upper case. '' in '' -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="review-article">
+    <front>
+      <article-meta>
+        <title-group><article-title>lipid hijacking: A unifying theme in vector-borne diseases</article-title></title-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

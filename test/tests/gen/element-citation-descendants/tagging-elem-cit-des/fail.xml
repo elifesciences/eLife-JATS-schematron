@@ -2,8 +2,7 @@
 <!--Context: element-citation//*
 Test: report    matches(.,'</?[a-z]*/?>')
 Message:  element contains tagging, which should be removed - ''. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="journal">
       <person-group person-group-type="author">
@@ -29,7 +28,7 @@ Message:  element contains tagging, which should be removed - ''. -->
         </name>
       </person-group>
       <year iso-8601-date="2019">2019</year>
-      <article-title>&#x003C;em&#x003E;in vitro&#x003C;/em&#x003E; scratch assay to demonstrate
+      <article-title>&lt;em&gt;in vitro&lt;/em&gt; scratch assay to demonstrate
         effects of arsenic on skin cell migration</article-title>
       <source>Journal of Visualized Experiments</source>
       <volume>144</volume>

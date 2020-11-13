@@ -756,6 +756,28 @@
         <x:expect-not-assert id="test-title-group-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="review-article-title-tests">
+      <x:scenario label="review-article-title-1-pass">
+        <x:context href="../tests/gen/review-article-title-tests/review-article-title-1/pass.xml"/>
+        <x:expect-not-assert id="review-article-title-1" role="error"/>
+        <x:expect-not-assert id="review-article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="review-article-title-1-fail">
+        <x:context href="../tests/gen/review-article-title-tests/review-article-title-1/fail.xml"/>
+        <x:expect-assert id="review-article-title-1" role="error"/>
+        <x:expect-not-assert id="review-article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="review-article-title-2-pass">
+        <x:context href="../tests/gen/review-article-title-tests/review-article-title-2/pass.xml"/>
+        <x:expect-not-assert id="review-article-title-2" role="error"/>
+        <x:expect-not-assert id="review-article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="review-article-title-2-fail">
+        <x:context href="../tests/gen/review-article-title-tests/review-article-title-2/fail.xml"/>
+        <x:expect-assert id="review-article-title-2" role="error"/>
+        <x:expect-not-assert id="review-article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="test-contrib-group">
       <x:scenario label="contrib-presence-test-pass">
         <x:context href="../tests/gen/test-contrib-group/contrib-presence-test/pass.xml"/>

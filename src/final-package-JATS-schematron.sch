@@ -1152,6 +1152,16 @@
 	
 	</rule>
   </pattern>
+  <pattern id="review-article-title-tests-pattern">
+    <rule context="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,':')]" id="review-article-title-tests">
+      <let name="pre-colon" value="substring-before(.,':')"/>
+      <let name="post-colon" value="substring-after(.,': ')"/>
+      
+      <assert test="substring($pre-colon,1,1) = upper-case(substring($pre-colon,1,1))" role="error" id="review-article-title-1">The first character in the title for a review article should be upper case. '<value-of select="substring($pre-colon,1,1)"/>' in '<value-of select="."/>'</assert>
+      
+      <assert test="substring($post-colon,1,1) = upper-case(substring($post-colon,1,1))" role="error" id="review-article-title-2">The first character after the colon in the title for a review article should be upper case. '<value-of select="substring($post-colon,1,1)"/>' in '<value-of select="."/>'</assert>
+    </rule>
+  </pattern>
   <pattern id="test-contrib-group-pattern">
     <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
 		
