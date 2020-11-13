@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
-      <assert test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">[err-elem-cit-data-14-2]
-        If the pub-id is of pub-id-type doi, it may not have an @xlink:href.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an
-        @link-href with value '<value-of select="@link-href"/>'.</assert>
+      <assert test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">If the pub-id is of pub-id-type doi, it may not have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an @link-href with value '<value-of select="@link-href"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

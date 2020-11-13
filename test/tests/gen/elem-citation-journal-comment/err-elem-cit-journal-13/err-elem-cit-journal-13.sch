@@ -855,9 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']/comment" id="elem-citation-journal-comment">
-      <assert test="text() = 'In press'" role="error" id="err-elem-cit-journal-13">[err-elem-cit-journal-13] 
-        Comment elements with content other than 'In press' are not allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
+      <assert test="text() = 'In press'" role="error" id="err-elem-cit-journal-13">Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

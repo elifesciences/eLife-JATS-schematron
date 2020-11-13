@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']/person-group" id="elem-citation-book-person-group">
-      <assert test="@person-group-type" role="error" id="err-elem-cit-book-2-1">[err-elem-cit-book-2-1]
-        Each &lt;person-group&gt; must have a @person-group-type attribute.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
-        element with no @person-group-type attribute.</assert>
+      <assert test="@person-group-type" role="error" id="err-elem-cit-book-2-1">Each &lt;person-group&gt; must have a @person-group-type attribute. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; element with no @person-group-type attribute.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

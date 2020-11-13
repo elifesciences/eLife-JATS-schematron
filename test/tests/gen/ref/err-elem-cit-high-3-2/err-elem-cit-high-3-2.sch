@@ -863,12 +863,7 @@
       <let name="preceding-name" value="e:stripDiacritics($pre-preceding-name)"/>
       <let name="pre-preceding-name2" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[2])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]))"/>
       <let name="preceding-name2" value="e:stripDiacritics($pre-preceding-name2)"/>
-      <assert test="matches(normalize-space(@id) ,'^bib\d+$')" role="error" id="err-elem-cit-high-3-2">[err-elem-cit-high-3-2]
-        Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with 
-        a number. 
-        Reference '<value-of select="@id"/>' has the value 
-        '<value-of select="@id"/>', which is incorrect.
-      </assert>
+      <assert test="matches(normalize-space(@id) ,'^bib\d+$')" role="error" id="err-elem-cit-high-3-2">Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with a number. Reference '<value-of select="@id"/>' has the value '<value-of select="@id"/>', which is incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

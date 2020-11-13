@@ -858,10 +858,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
-      <assert test="./@iso-8601-date" role="error" id="err-elem-cit-gen-date-1-3">[err-elem-cit-gen-date-1-3]
-        All &lt;year&gt; elements must have @iso-8601-date attributes.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not.
-      </assert>
+      <assert test="./@iso-8601-date" role="error" id="err-elem-cit-gen-date-1-3">All &lt;year&gt; elements must have @iso-8601-date attributes. Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

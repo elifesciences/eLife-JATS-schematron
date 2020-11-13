@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
-      <assert test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
-        Each pub-id element must have a pub-id-type which is either accession or doi. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type 
-        '<value-of select="@pub-id-type"/>'.</assert>
+      <assert test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

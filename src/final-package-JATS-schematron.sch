@@ -1153,7 +1153,7 @@
 	</rule>
   </pattern>
   <pattern id="review-article-title-tests-pattern">
-    <rule context="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,':')]" id="review-article-title-tests">
+    <rule context="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')]" id="review-article-title-tests">
       <let name="pre-colon" value="substring-before(.,':')"/>
       <let name="post-colon" value="substring-after(.,': ')"/>
       
@@ -3851,15 +3851,9 @@
   <pattern id="elem-citation-general-pattern">
     <rule context="element-citation" id="elem-citation-general">
       
-      <report test="descendant::etal" role="error" id="err-elem-cit-gen-name-5">[err-elem-cit-gen-name-5]
-        The &lt;etal&gt; element in a reference is not allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
+      <report test="descendant::etal" role="error" id="err-elem-cit-gen-name-5">The &lt;etal&gt; element in a reference is not allowed. Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
       
-      <report test="count(year)&gt;1 " role="error" id="err-elem-cit-gen-date-1-9">[err-elem-cit-gen-date-1-9]
-        There may be at most one &lt;year&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/>
-        &lt;year&gt; elements.
-      </report>
+      <report test="count(year) &gt; 1 " role="error" id="err-elem-cit-gen-date-1-9">There may be at most one &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/> &lt;year&gt; elements.</report>
       
       <report test="(fpage) and not(lpage)" role="warning" id="fpage-lpage-test-1">
         <value-of select="e:citation-format1(year[1])"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
@@ -3903,32 +3897,17 @@
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
       
-      <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
-        The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive).
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value '<value-of select="."/>'.
-      </assert>
+      <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains the value '<value-of select="."/>'.</assert>
       
-      <assert test="./@iso-8601-date" role="error" id="err-elem-cit-gen-date-1-3">[err-elem-cit-gen-date-1-3]
-        All &lt;year&gt; elements must have @iso-8601-date attributes.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not.
-      </assert>
+      <assert test="./@iso-8601-date" role="error" id="err-elem-cit-gen-date-1-3">All &lt;year&gt; elements must have @iso-8601-date attributes. Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
       
-      <assert test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-4">[err-elem-cit-gen-date-1-4]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 
-        1700 and the current year + 5 years (inclusive).
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the attribute contains the value 
-        '<value-of select="./@iso-8601-date"/>'.
-      </assert>
+      <assert test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-4">The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the attribute contains the value '<value-of select="./@iso-8601-date"/>'.</assert>
       
       
       
       <assert test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="error" id="final-err-elem-cit-gen-date-1-5">The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
       
-      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">[err-elem-cit-gen-date-1-6]
-        If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
-        the same first author surname (or collab) with a letter "b" after the year. 
-        Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
+      <assert test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
       
       <assert test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',         'abcdefghijklmnopqrstuvwxy')))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         ))" role="error" id="err-elem-cit-gen-date-1-7">[err-elem-cit-gen-date-1-7]
         If the &lt;year&gt; element contains any letter other than 'a' after the digits, there must be another 
@@ -3968,31 +3947,15 @@
       <let name="pre-preceding-name2" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[2])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]))"/>
       <let name="preceding-name2" value="e:stripDiacritics($pre-preceding-name2)"/>
       
-      <assert test="count(*) = count(element-citation)" role="error" id="err-elem-cit-high-1">[err-elem-cit-high-1]
-        The only element that is allowed as a child of &lt;ref&gt; is
-        &lt;element-citation&gt;. 
-        Reference '<value-of select="@id"/>' has other elements.
-      </assert>
+      <assert test="count(*) = count(element-citation)" role="error" id="err-elem-cit-high-1">The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<value-of select="@id"/>' has other elements.</assert>
       
-      <assert test="if (count(element-citation/person-group[1]/*) != 2)         then (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year))         else (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and $name2 &gt; $preceding-name2)         or ($name = $preceding-name and $name2 = $preceding-name2 and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year)         or ($name = $preceding-name and count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2))" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
+      <assert test="if (count(element-citation/person-group[1]/*) != 2)         then (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year))         else (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and $name2 &gt; $preceding-name2)         or ($name = $preceding-name and $name2 = $preceding-name2 and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year)         or ($name = $preceding-name and count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2))" role="error" id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
       
-      <assert test="@id" role="error" id="err-elem-cit-high-3-1">[err-elem-cit-high-3-1]
-        Each &lt;ref&gt; element must have an @id attribute. 
-      </assert>
+      <assert test="@id" role="error" id="err-elem-cit-high-3-1">Each &lt;ref&gt; element must have an @id attribute.</assert>
       
-      <assert test="matches(normalize-space(@id) ,'^bib\d+$')" role="error" id="err-elem-cit-high-3-2">[err-elem-cit-high-3-2]
-        Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with 
-        a number. 
-        Reference '<value-of select="@id"/>' has the value 
-        '<value-of select="@id"/>', which is incorrect.
-      </assert>
+      <assert test="matches(normalize-space(@id) ,'^bib\d+$')" role="error" id="err-elem-cit-high-3-2">Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with a number. Reference '<value-of select="@id"/>' has the value '<value-of select="@id"/>', which is incorrect.</assert>
       
-      <assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))" role="error" id="err-elem-cit-high-3-3">[err-elem-cit-high-3-3]
-        The sequence of ids in the &lt;ref&gt; elements must increase monotonically
-        (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
-        Reference '<value-of select="@id"/>' has the value 
-        '<value-of select="@id"/>', which does not fit this pattern.
-      </assert>
+      <assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))" role="error" id="err-elem-cit-high-3-3">The sequence of ids in the &lt;ref&gt; elements must increase monotonically (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc). Reference '<value-of select="@id"/>' has the value  '<value-of select="@id"/>', which does not fit this pattern.</assert>
       
     </rule>
   </pattern>
@@ -4006,17 +3969,7 @@
   <pattern id="elem-citation-pattern">
     <rule context="element-citation" id="elem-citation">
       
-      <assert test="@publication-type" role="error" id="err-elem-cit-high-6-1">[err-elem-cit-high-6-1]
-        The element-citation element must have a publication-type attribute.
-        Reference '<value-of select="../@id"/>' does not.
-      </assert>
-      
-      <assert test="@publication-type = 'journal' or         @publication-type = 'book'    or         @publication-type = 'data'    or         @publication-type = 'patent'    or         @publication-type = 'software'    or         @publication-type = 'preprint' or         @publication-type = 'web'    or         @publication-type = 'periodical' or         @publication-type = 'report'    or         @publication-type = 'confproc'    or         @publication-type = 'thesis'" role="error" id="err-elem-cit-high-6-2">[err-elem-cit-high-6-2]
-        The publication-type attribute may only take the values 'journal', 'book', 'data', 
-        'patent', 'software', 'preprint', 'web', 
-        'periodical', 'report', 'confproc', or 'thesis'. 
-        Reference '<value-of select="../@id"/>' has the publication-type 
-        '<value-of select="@publication-type"/>'.</assert>
+      <assert test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')" role="error" id="err-elem-cit-high-6-2">element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', or 'thesis'. Reference '<value-of select="../@id"/>' has '<value-of select="if (@publication-type) then concat('a @publication-type with the value ',@publication-type) else ('no @publication-type')"/>'.</assert>
       
       
       
@@ -4045,18 +3998,13 @@
   <pattern id="elem-citation-journal-pattern">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-journal-2-1">[err-elem-cit-journal-2-1]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one and
-        only one &lt;person-group&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-2" test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-journal-2-2">[err-elem-cit-journal-2-2]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt; 
-        with the attribute person-group-type 'author'.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of 
-        '<value-of select="person-group/@person-group-type"/>'.</assert> 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-2-1" test="count(person-group)=1" role="error" id="final-err-elem-cit-journal-2-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+      
+      
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-2-2" test="person-group[@person-group-type='author']" role="error" id="final-err-elem-cit-journal-2-2">Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt;  with the attribute person-group-type 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert> 
       
       
       
@@ -4066,112 +4014,68 @@
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-4-1" test="count(source)=1" role="error" id="final-err-elem-cit-journal-4-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">[err-elem-cit-journal-4-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
-        elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-3" test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">[err-elem-cit-journal-5-1-3]
-        There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/>
-        &lt;volume&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-3" test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/> &lt;volume&gt; elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1" test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">[err-elem-cit-journal-6-5-1]
-        &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1" test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">&lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2" test="lpage and (number(fpage[1]) &gt;= number(lpage[1]))" role="error" id="err-elem-cit-journal-6-5-2">[err-elem-cit-journal-6-5-2]
-        &lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' 
-        but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2" test="lpage and (number(fpage[1]) ge number(lpage[1]))" role="error" id="err-elem-cit-journal-6-5-2">&lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-7" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" role="error" id="err-elem-cit-journal-6-7">[err-elem-cit-journal-6-7]
-        The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, 
-        &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;,
-        <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and 
-        <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-7" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" role="error" id="err-elem-cit-journal-6-7">The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-12" test="count(*) = count(person-group| year| article-title| source| volume| fpage| lpage| elocation-id| comment| pub-id)" role="error" id="err-elem-cit-journal-12">[err-elem-cit-journal-12]
-        The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, 
-        &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-12" test="count(*) = count(person-group| year| article-title| source| volume| fpage| lpage| elocation-id| comment| pub-id)" role="error" id="err-elem-cit-journal-12">The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-article-title-pattern">
     <rule context="element-citation[@publication-type='journal']/article-title" id="elem-citation-journal-article-title">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-3-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">[err-elem-cit-journal-3-2]
-        An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-3-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-volume-pattern">
     <rule context="element-citation[@publication-type='journal']/volume" id="elem-citation-journal-volume">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2" test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">[err-elem-cit-journal-5-1-2]
-        A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
-        at least one character and may not contain child elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
-        child elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2" test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">A &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain at least one character and may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or child elements.</assert>
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-fpage-pattern">
     <rule context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2" test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">[err-elem-cit-journal-6-2]
-        If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2" test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6" test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" role="error" id="err-elem-cit-journal-6-6">[err-elem-cit-journal-6-6]
-        If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with 
-        the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6" test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" role="error" id="err-elem-cit-journal-6-6">If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-elocation-id-pattern">
     <rule context="element-citation[@publication-type='journal']/elocation-id" id="elem-citation-journal-elocation-id">
       
-      <assert test="count(../fpage) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-3">[err-elem-cit-journal-6-3]
-        If &lt;elocation-id&gt; is present, neither &lt;fpage&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;elocation-id&gt; and one of those elements.</assert>
+      <assert test="count(../fpage) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-3">If &lt;elocation-id&gt; is present, neither &lt;fpage&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;elocation-id&gt; and one of those elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-comment-pattern">
     <rule context="element-citation[@publication-type='journal']/comment" id="elem-citation-journal-comment">
       
-      <assert test="count(../fpage) eq 0 and count(../elocation-id) eq 0" role="error" id="err-elem-cit-journal-6-4">[err-elem-cit-journal-6-4]
-        If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
+      <assert test="count(../fpage) eq 0 and count(../elocation-id) eq 0" role="error" id="err-elem-cit-journal-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
       
-      <assert test="text() = 'In press'" role="error" id="err-elem-cit-journal-13">[err-elem-cit-journal-13] 
-        Comment elements with content other than 'In press' are not allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
+      <assert test="text() = 'In press'" role="error" id="err-elem-cit-journal-13">Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-pub-id-pmid-pattern">
     <rule context="element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']" id="elem-citation-journal-pub-id-pmid">
       
-      <report test="matches(.,'\D')" role="error" id="err-elem-cit-journal-10">[err-elem-cit-journal-10]
-        If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric.
-        The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' 
-        is <value-of select="."/>.</report>
+      <report test="matches(.,'\D')" role="error" id="err-elem-cit-journal-10">If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="."/>.</report>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-journal-pub-id-pattern">
     <rule context="element-citation[@publication-type='journal']/pub-id" id="elem-citation-journal-pub-id">
       
-      <assert test="@pub-id-type='doi' or @pub-id-type='pmid'" role="error" id="err-elem-cit-journal-9-1">[err-elem-cit-journal-9-1]
-        Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid".
-        The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' 
-        is <value-of select="@pub-id-type"/>.</assert>
+      <assert test="@pub-id-type=('doi','pmid')" role="error" id="err-elem-cit-journal-9-1">Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid". The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
       
     </rule>
   </pattern>
@@ -4180,31 +4084,23 @@
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'publisher-locations.xml'"/>
       
-      <assert test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" role="error" id="err-elem-cit-book-2-2">[err-elem-cit-book-2-2]
-        The only values allowed for @person-group-type in book references are "author" and "editor".
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of 
-        '<value-of select="person-group/@person-group-type"/>'.</assert> 
+      <assert test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" role="error" id="err-elem-cit-book-2-2">The only values allowed for @person-group-type in book references are "author" and "editor". Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert> 
       
-      <assert test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" role="error" id="err-elem-cit-book-2-3">[err-elem-cit-book-2-3]
-        In a book reference, there should be a single person-group element (either author or editor) or
-        one person-group with @person-group-type="author" and one person-group with @person-group-type=editor.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+      
+      
+      <assert test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" role="error" id="final-err-elem-cit-book-2-3">In a book reference, there should be a single person-group element (either author or editor) or one person-group with @person-group-type="author" and one person-group with @person-group-type=editor. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
       
       
       <assert test="count(source)=1" role="error" id="final-err-elem-cit-book-10-1">Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-book-10-2-2">[err-elem-cit-book-10-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
+      <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-book-10-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
       
       
       <assert test="count(publisher-name)=1" role="error" id="final-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements.</assert>
       
-      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">The content of &lt;publisher-name&gt; may not end with a publisher location. Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>, which ends with a publisher location.</report>
+      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-book-13-3">The content of &lt;publisher-name&gt; should not end with a publisher location. Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>, which ends with a publisher location.</report>
       
       <report test="(lpage or fpage) and not(chapter-title)" role="warning" id="err-elem-cit-book-16">Book reference '<value-of select="ancestor::ref/@id"/>' has first and/or last pages, but no chapter title. Is this correct?</report>
       
@@ -4220,67 +4116,47 @@
   </pattern>
   <pattern id="elem-citation-book-person-group-pattern">
     <rule context="element-citation[@publication-type='book']/person-group" id="elem-citation-book-person-group">
-      <assert test="@person-group-type" role="error" id="err-elem-cit-book-2-1">[err-elem-cit-book-2-1]
-        Each &lt;person-group&gt; must have a @person-group-type attribute.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
-        element with no @person-group-type attribute.</assert>
+      <assert test="@person-group-type" role="error" id="err-elem-cit-book-2-1">Each &lt;person-group&gt; must have a @person-group-type attribute. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; element with no @person-group-type attribute.</assert>
     </rule>
   </pattern>
   <pattern id="elem-citation-book-chapter-title-pattern">
     <rule context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
       
-      <assert test="count(../person-group[@person-group-type='author'])=1" role="error" id="err-elem-cit-book-22">[err-elem-cit-book-22]
-        If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
-      <assert test="count(../person-group[@person-group-type='editor']) le 1" role="error" id="err-elem-cit-book-28-1">[err-elem-cit-book-28-1]
-        If there is a &lt;chapter-title&gt; element there may be a maximum of one &lt;person-group person-group-type="editor"&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
-      <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-book-31">[err-elem-cit-book-31]
-        A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert test="count(../person-group[@person-group-type='author'])=1" role="error" id="final-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      
+      <assert test="count(../person-group[@person-group-type='editor']) le 1" role="error" id="err-elem-cit-book-28-1">If there is a &lt;chapter-title&gt; element there may be a maximum of one &lt;person-group person-group-type="editor"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      
+      <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-book-31">A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-book-publisher-name-pattern">
     <rule context="element-citation[@publication-type='book']/publisher-name" id="elem-citation-book-publisher-name">
       
-      <assert test="count(*)=0" role="error" id="err-elem-cit-book-13-2">[err-elem-cit-book-13-2]
-        No elements are allowed inside &lt;publisher-name&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
-        &lt;publisher-name&gt; element.</assert>
+      <assert test="count(*)=0" role="error" id="err-elem-cit-book-13-2">No elements are allowed inside &lt;publisher-name&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;publisher-name&gt; element.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-book-edition-pattern">
     <rule context="element-citation[@publication-type='book']/edition" id="elem-citation-book-edition">
       
-      <assert test="count(*)=0" role="error" id="err-elem-cit-book-15">[err-elem-cit-book-15]
-        No elements are allowed inside &lt;edition&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
-        &lt;edition&gt; element.</assert>
+      <assert test="count(*)=0" role="error" id="err-elem-cit-book-15">No elements are allowed inside &lt;edition&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;edition&gt; element.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-book-pub-id-pmid-pattern">
     <rule context="element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']" id="elem-citation-book-pub-id-pmid">
       
-      <report test="matches(.,'\D')" role="error" id="err-elem-cit-book-18">[err-elem-cit-book-18]
-        If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of 
-        &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' 
-        is <value-of select="."/>.</report>
+      <report test="matches(.,'\D')" role="error" id="err-elem-cit-book-18">If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="."/>.</report>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-book-pub-id-pattern">
     <rule context="element-citation[@publication-type='book']/pub-id" id="elem-citation-book-pub-id">
       
-      <assert test="@pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'" role="error" id="err-elem-cit-book-17">[err-elem-cit-book-17]
-        Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. 
-        The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' 
-        is <value-of select="@pub-id-type"/>.</assert>
+      <assert test="@pub-id-type=('doi','pmid','isbn')" role="error" id="err-elem-cit-book-17">Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
       
     </rule>
   </pattern>
@@ -4297,20 +4173,11 @@
   <pattern id="elem-citation-data-pattern">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       
-      <assert test="count(person-group[@person-group-type='author']) le 1 and         count(person-group[@person-group-type='compiler']) le 1 and         count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1]
-        Only one person-group of each type (author, compiler, curator) is allowed. 
-        Reference 
-        '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 
-        'author', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 
-        'compiler', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 
-        'curator', and <value-of select="count(person-group[@person-group-type!='author' and @person-group-type!='compiler' and @person-group-type!='curator'])"/>
-        &lt;person-group&gt; elements of some other type.</assert>
+      <assert test="count(person-group[@person-group-type='author']) le 1 and         count(person-group[@person-group-type='compiler']) le 1 and         count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">Only one person-group of each type (author, compiler, curator) is allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'author', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'compiler', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'curator', and <value-of select="count(person-group[@person-group-type!='author' and @person-group-type!='compiler' and @person-group-type!='curator'])"/> &lt;person-group&gt; elements of some other type.</assert>
       
-      <assert test="count(person-group) ge 1" role="error" id="err-elem-cit-data-3-2">[err-elem-cit-data-3-2]
-        Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+      
+      
+      <assert test="count(person-group) ge 1" role="error" id="final-err-elem-cit-data-3-2">Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
       
       
@@ -4320,10 +4187,7 @@
       
       <assert test="count(source)=1" role="error" id="final-err-elem-cit-data-11-2">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements. It must contain one (and only one).</assert>
       
-      <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-data-11-3-2">[err-elem-cit-data-11-3-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" role="error" id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
       
       
@@ -4333,35 +4197,23 @@
       
       <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" role="error" id="final-err-elem-cit-data-17-1">The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
-      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">[err-elem-cit-data-18]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are:
-        &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-data-pub-id-doi-pattern">
     <rule context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
       
-      <assert test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">[err-elem-cit-data-14-2]
-        If the pub-id is of pub-id-type doi, it may not have an @xlink:href.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an
-        @link-href with value '<value-of select="@link-href"/>'.</assert>
+      <assert test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">If the pub-id is of pub-id-type doi, it may not have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an @link-href with value '<value-of select="@link-href"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-data-pub-id-pattern">
     <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
-      <assert test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">[err-elem-cit-data-13-2]
-        Each pub-id element must have a pub-id-type which is either accession or doi. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type 
-        '<value-of select="@pub-id-type"/>'.</assert>
+      <assert test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
       
-      <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1]
-        If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type 
-        '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
+      <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
       
     </rule>
   </pattern>
@@ -4369,32 +4221,21 @@
   <pattern id="elem-citation-patent-pattern">
     <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
       
-      <assert test="count(person-group[@person-group-type='inventor'])=1" role="error" id="err-elem-cit-patent-2-1">[err-elem-cit-patent-2-1]
-        There must be one person-group with @person-group-type="inventor". 
-        Reference '<value-of select="ancestor::ref/@id"/>' has
-        <value-of select="count(person-group[@person-group-type='inventor'])"/> &lt;person-group&gt; 
-        elements of type 'inventor'.</assert>
       
-      <assert test="every $type in person-group/@person-group-type         satisfies $type = ('assignee','inventor')" role="error" id="err-elem-cit-patent-2-3">[err-elem-cit-patent-2-3]
-        The only allowed types of person-group elements are "assignee" and "inventor".
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;person-group&gt; elements of other types.</assert>
       
-      <assert test="count(person-group[@person-group-type='assignee']) le 1" role="error" id="err-elem-cit-patent-2A">[err-elem-cit-patent-2A]
-        There may be zero or one person-group elements with @person-group-type="assignee" 
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group[@person-group-type='assignee'])"/> &lt;person-group&gt; elements of type
-        'assignee'.</assert>
+      <assert test="count(person-group[@person-group-type='inventor'])=1" role="error" id="final-err-elem-cit-patent-2-1">There must be one person-group with @person-group-type="inventor". Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='inventor'])"/> &lt;person-group&gt; elements of type 'inventor'.</assert>
       
-      <assert test="count(article-title)=1" role="error" id="err-elem-cit-patent-8-1">[err-elem-cit-patent-8-1]
-        Each  &lt;element-citation&gt; of type 'patent' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      <assert test="every $type in person-group/@person-group-type         satisfies $type = ('assignee','inventor')" role="error" id="err-elem-cit-patent-2-3">The only allowed types of person-group elements are "assignee" and "inventor". Reference '<value-of select="ancestor::ref/@id"/>' has &lt;person-group&gt; elements of other types.</assert>
       
-      <assert test="count(source)=1" role="error" id="err-elem-cit-patent-9-1">[err-elem-cit-patent-9-1]
-        Each  &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      <assert test="count(person-group[@person-group-type='assignee']) le 1" role="error" id="err-elem-cit-patent-2A">There may be zero or one person-group elements with @person-group-type="assignee". Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='assignee'])"/> &lt;person-group&gt; elements of type 'assignee'.</assert>
+      
+      
+      
+      <assert test="count(article-title)=1" role="error" id="final-err-elem-cit-patent-8-1">Each  &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      
+      
+      
+      <assert test="count(source)=1" role="error" id="final-err-elem-cit-patent-9-1">Each &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
       
       
@@ -4404,35 +4245,21 @@
       
       <assert test="ext-link" role="error" id="final-err-elem-cit-patent-11-1">The &lt;ext-link&gt; element is required in a patent reference. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;ext-link&gt; elements.</assert>
       
-      <assert test="count(*) = count(person-group| article-title| source| year| patent| ext-link)" role="error" id="err-elem-cit-patent-18">[err-elem-cit-patent-18]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="patent" are:
-        &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;patent&gt;, and &lt;ext-link&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert test="count(*) = count(person-group| article-title| source| year| patent| ext-link)" role="error" id="err-elem-cit-patent-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="patent" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;patent&gt;, and &lt;ext-link&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-patent-article-title-pattern">
     <rule context="element-citation[@publication-type='patent']/article-title" id="elem-citation-patent-article-title"> 
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">[err-elem-cit-patent-8-2-1]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
-      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-8-2-2">[err-elem-cit-patent-8-2-2]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
   <pattern id="elem-citation-patent-source-pattern">
     <rule context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
       
-      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-9-2-2">[err-elem-cit-patent-9-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>
@@ -4440,14 +4267,9 @@
     <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent"> 
       <let name="countries" value="'countries.xml'"/>
       
-      <assert test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">[err-elem-cit-patent-10-1-2]
-        The  &lt;patent&gt; element may not have child elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
+      <assert test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">The &lt;patent&gt; element may not have child elements. Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
       
-      <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
-        The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value 
-        '<value-of select="@country"/>', which is not in the list.</assert>
+      <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value. Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value '<value-of select="@country"/>', which is not in the list.</assert>
       
     </rule>
   </pattern>
@@ -4456,35 +4278,20 @@
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
       <let name="person-count" value="count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='curator'])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1" test="$person-count = (1,2)" role="error" id="err-elem-cit-software-2-1">[err-elem-cit-software-2-1] Each
-        &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
-        author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
-        &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/>
-        &lt;person-group&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1" test="$person-count = (1,2)" role="error" id="err-elem-cit-software-2-1">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type
-        'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to
-        'author' or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a
-        &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to 'author' or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1" test="count(data-title) &gt; 1" role="error" id="err-elem-cit-software-10-1">[err-elem-cit-software-10-1] Each &lt;element-citation&gt; of type 'software' may contain one
-        and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>'
-        has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1" test="count(data-title) &gt; 1" role="error" id="err-elem-cit-software-10-1">Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)" role="error" id="err-elem-cit-software-16">[err-elem-cit-software-16] The only tags that are
-        allowed as children of &lt;element-citation&gt; with the publication-type="software" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;,
-        &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>'
-        has other elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)" role="error" id="err-elem-cit-software-16">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-software-data-title-pattern">
     <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2" test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters
-        and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference
-        '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2" test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
   </pattern>
@@ -4492,78 +4299,45 @@
   <pattern id="elem-citation-preprint-pattern">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">[err-elem-cit-preprint-2-1]
-        There must be one and only one person-group. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has
-        <value-of select="count(person-group)"/> &lt;person-group&gt; 
-        elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">There must be one and only one person-group. <value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1" test="count(article-title)=1" role="error" id="err-elem-cit-preprint-8-1">[err-elem-cit-preprint-8-1]
-        Each  &lt;element-citation&gt; of type 'preprint' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1" test="count(article-title)=1" role="error" id="err-elem-cit-preprint-8-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-1" test="count(source) = 1" role="error" id="err-elem-cit-preprint-9-1">[err-elem-cit-preprint-9-1]
-        Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-1" test="count(source) = 1" role="error" id="err-elem-cit-preprint-9-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-1" test="count(pub-id) le 1" role="error" id="err-elem-cit-preprint-10-1">[err-elem-cit-preprint-10-1]
-        One &lt;pub-id&gt; element is allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-1" test="count(pub-id) le 1" role="error" id="err-elem-cit-preprint-10-1">One &lt;pub-id&gt; element is allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-3" test="count(pub-id)=1 or count(ext-link)=1" role="error" id="err-elem-cit-preprint-10-3">[err-elem-cit-preprint-10-3]
-        Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements
-        and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-3" test="count(pub-id)=1 or count(ext-link)=1" role="error" id="err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-13" test="count(*) = count(person-group| article-title| source| year| pub-id| ext-link)" role="error" id="err-elem-cit-preprint-13">[err-elem-cit-preprint-13]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are:
-        &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-13" test="count(*) = count(person-group| article-title| source| year| pub-id| ext-link)" role="error" id="err-elem-cit-preprint-13">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-preprint-person-group-pattern">
     <rule context="element-citation[@publication-type='preprint']/person-group" id="elem-citation-preprint-person-group"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-preprint-2-2">[err-elem-cit-preprint-2-2]
-        The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in 
-        Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-preprint-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-preprint-pub-id-pattern">
     <rule context="element-citation[@publication-type='preprint']/pub-id" id="elem-citation-preprint-pub-id"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">[err-elem-cit-preprint-10-2]
-        If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'.
-        The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>'
-        contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'. The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-preprint-article-title-pattern">
     <rule context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title"> 
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1" test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">[err-elem-cit-preprint-8-2-1]
-        A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1" test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">[err-elem-cit-preprint-8-2-2]
-        A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
   <pattern id="elem-citation-preprint-source-pattern">
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-9-2-2">[err-elem-cit-preprint-9-2-2]
-        A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>
@@ -4571,71 +4345,45 @@
   <pattern id="elem-citation-web-pattern">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
       
-      <assert test="count(person-group)=1" role="error" id="err-elem-cit-web-2-1">[err-elem-cit-web-2-1]
-        There must be one and only one person-group. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has
-        <value-of select="count(person-group)"/> &lt;person-group&gt; 
-        elements.</assert>
+      <assert test="count(person-group)=1" role="error" id="err-elem-cit-web-2-1">There must be one and only one person-group. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
       
       
       <assert test="count(article-title)=1" role="error" id="final-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <report test="count(source) &gt; 1" role="error" id="err-elem-cit-web-9-1">[err-elem-cit-web-9-1]
-        Each  &lt;element-citation&gt; of type 'web' may contain one and only one &lt;source&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</report>
+      <report test="count(source) &gt; 1" role="error" id="err-elem-cit-web-9-1">Each  &lt;element-citation&gt; of type 'web' may contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</report>
       
-      <assert test="count(ext-link)=1" role="error" id="err-elem-cit-web-10-1">[err-elem-cit-web-10-1]
-        One and only one &lt;ext-link&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(ext-link)"/> 
-        &lt;ext-link&gt; elements.</assert>
+      <assert test="count(ext-link)=1" role="error" id="err-elem-cit-web-10-1">One and only one &lt;ext-link&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
       
       
-      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">
-        Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
+      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
       
       <report test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
       
-      <assert test="count(*) = count(person-group|article-title|source|year|ext-link|date-in-citation)" role="error" id="err-elem-cit-web-12">[err-elem-cit-web-12]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="web" are:
-        &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;ext-link&gt; and &lt;date-in-citation&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert test="count(*) = count(person-group|article-title|source|year|ext-link|date-in-citation)" role="error" id="err-elem-cit-web-12">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="web" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;ext-link&gt; and &lt;date-in-citation&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-web-person-group-pattern">
     <rule context="element-citation[@publication-type='web']/person-group" id="elem-citation-web-person-group"> 
       
-      <assert test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">[err-elem-cit-web-2-2]
-        The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in 
-        Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
+      <assert test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-web-article-title-pattern">
     <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title"> 
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">[err-elem-cit-web-8-2-1]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
+        at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
-      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-8-2-2">[err-elem-cit-web-8-2-2]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-8-2-2">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
   <pattern id="elem-citation-web-source-pattern">
     <rule context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
       
-      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-9-2-2">[err-elem-cit-web-9-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-9-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>

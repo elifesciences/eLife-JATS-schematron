@@ -855,12 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation" id="elem-citation">
-      <assert test="@publication-type = 'journal' or         @publication-type = 'book'    or         @publication-type = 'data'    or         @publication-type = 'patent'    or         @publication-type = 'software'    or         @publication-type = 'preprint' or         @publication-type = 'web'    or         @publication-type = 'periodical' or         @publication-type = 'report'    or         @publication-type = 'confproc'    or         @publication-type = 'thesis'" role="error" id="err-elem-cit-high-6-2">[err-elem-cit-high-6-2]
-        The publication-type attribute may only take the values 'journal', 'book', 'data', 
-        'patent', 'software', 'preprint', 'web', 
-        'periodical', 'report', 'confproc', or 'thesis'. 
-        Reference '<value-of select="../@id"/>' has the publication-type 
-        '<value-of select="@publication-type"/>'.</assert>
+      <assert test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')" role="error" id="err-elem-cit-high-6-2">element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', or 'thesis'. Reference '<value-of select="../@id"/>' has '<value-of select="if (@publication-type) then concat('a @publication-type with the value ',@publication-type) else ('no @publication-type')"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,11 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-2.sch"?>
 <!--Context: ref/element-citation/year
 Test: assert    (1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))
-Message: [err-elem-cit-gen-date-1-2]
-        The numeric value of the first 4 digits of the <year> element must be between 1700 and the current year + 5 years (inclusive).
-        Reference '' does not meet this requirement as it contains
-        the value ''.
-       -->
+Message: The numeric value of the first 4 digits of the <year> element must be between 1700 and the current year + 5 years (inclusive). Reference '' does not meet this requirement as it contains the value ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

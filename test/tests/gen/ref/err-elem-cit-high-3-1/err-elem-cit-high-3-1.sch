@@ -863,9 +863,7 @@
       <let name="preceding-name" value="e:stripDiacritics($pre-preceding-name)"/>
       <let name="pre-preceding-name2" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[2])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]))"/>
       <let name="preceding-name2" value="e:stripDiacritics($pre-preceding-name2)"/>
-      <assert test="@id" role="error" id="err-elem-cit-high-3-1">[err-elem-cit-high-3-1]
-        Each &lt;ref&gt; element must have an @id attribute. 
-      </assert>
+      <assert test="@id" role="error" id="err-elem-cit-high-3-1">Each &lt;ref&gt; element must have an @id attribute.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

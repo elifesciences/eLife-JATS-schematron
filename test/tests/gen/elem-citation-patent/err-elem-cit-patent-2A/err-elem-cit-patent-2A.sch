@@ -855,11 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
-      <assert test="count(person-group[@person-group-type='assignee']) le 1" role="error" id="err-elem-cit-patent-2A">[err-elem-cit-patent-2A]
-        There may be zero or one person-group elements with @person-group-type="assignee" 
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group[@person-group-type='assignee'])"/> &lt;person-group&gt; elements of type
-        'assignee'.</assert>
+      <assert test="count(person-group[@person-group-type='assignee']) le 1" role="error" id="err-elem-cit-patent-2A">There may be zero or one person-group elements with @person-group-type="assignee". Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='assignee'])"/> &lt;person-group&gt; elements of type 'assignee'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
