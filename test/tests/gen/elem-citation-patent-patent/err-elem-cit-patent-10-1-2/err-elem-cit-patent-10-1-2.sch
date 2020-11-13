@@ -856,9 +856,7 @@
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent">
       <let name="countries" value="'../../../../../src/countries.xml'"/>
-      <assert test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">[err-elem-cit-patent-10-1-2]
-        The  &lt;patent&gt; element may not have child elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
+      <assert test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">The &lt;patent&gt; element may not have child elements. Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -855,11 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']/volume" id="elem-citation-journal-volume">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2" test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">[err-elem-cit-journal-5-1-2]
-        A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
-        at least one character and may not contain child elements.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or
-        child elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2" test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">A &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain at least one character and may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or child elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

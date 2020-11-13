@@ -1,9 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-journal-6-5-1.sch"?>
 <!--Context: element-citation[@publication-type='journal']
 Test: report    lpage and not(fpage)
-Message: [err-elem-cit-journal-6-5-1]
-        <lpage> is only allowed if <fpage> is present. 
-        Reference '' has <lpage> but no <fpage>. -->
+Message: <lpage> is only allowed if <fpage> is present. Reference '' has <lpage> but no <fpage>. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

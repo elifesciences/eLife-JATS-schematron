@@ -863,12 +863,7 @@
       <let name="preceding-name" value="e:stripDiacritics($pre-preceding-name)"/>
       <let name="pre-preceding-name2" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[2])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]))"/>
       <let name="preceding-name2" value="e:stripDiacritics($pre-preceding-name2)"/>
-      <assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))" role="error" id="err-elem-cit-high-3-3">[err-elem-cit-high-3-3]
-        The sequence of ids in the &lt;ref&gt; elements must increase monotonically
-        (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
-        Reference '<value-of select="@id"/>' has the value 
-        '<value-of select="@id"/>', which does not fit this pattern.
-      </assert>
+      <assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))" role="error" id="err-elem-cit-high-3-3">The sequence of ids in the &lt;ref&gt; elements must increase monotonically (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc). Reference '<value-of select="@id"/>' has the value  '<value-of select="@id"/>', which does not fit this pattern.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

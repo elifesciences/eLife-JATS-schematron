@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']/publisher-name" id="elem-citation-book-publisher-name">
-      <assert test="count(*)=0" role="error" id="err-elem-cit-book-13-2">[err-elem-cit-book-13-2]
-        No elements are allowed inside &lt;publisher-name&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
-        &lt;publisher-name&gt; element.</assert>
+      <assert test="count(*)=0" role="error" id="err-elem-cit-book-13-2">No elements are allowed inside &lt;publisher-name&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;publisher-name&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

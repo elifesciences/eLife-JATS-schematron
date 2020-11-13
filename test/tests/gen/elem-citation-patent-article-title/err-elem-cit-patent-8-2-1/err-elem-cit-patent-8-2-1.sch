@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']/article-title" id="elem-citation-patent-article-title">
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">[err-elem-cit-patent-8-2-1]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

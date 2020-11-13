@@ -1,0 +1,29 @@
+<?oxygen SCHSchema="pre-err-elem-cit-patent-2-1.sch"?>
+<!--Context: element-citation[@publication-type='patent']
+Test: assert    count(person-group[@person-group-type='inventor'])=1
+Message: There must be one person-group with @person-group-type="inventor". Reference '' has  <person-group> elements of type 'inventor'. If this information is missing, please query the authors for it. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="patent">
+          <person-group person-group-type="assignee">
+            <name><surname>Patterson</surname><given-names>JB</given-names></name>
+            <name><surname>Lonergan</surname><given-names>DG</given-names></name>
+            <name><surname>Flynn</surname><given-names>GA</given-names></name>
+            <name><surname>Qingpeng</surname><given-names>Z</given-names></name>
+            <name><surname>Pallai</surname><given-names>PV</given-names></name>
+          </person-group>
+          <person-group person-group-type="assignee">
+            <collab>Mankind Corp</collab>
+          </person-group>
+          <year iso-8601-date="2011">2011</year>
+          <article-title>IRE-1alpha inhibitors</article-title>
+          <source>United States patent</source>
+          <patent country="United States">US20100941530</patent>
+          <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/patents/PAT/US2011065162">http://europepmc.org/patents/PAT/US2011065162</ext-link>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>

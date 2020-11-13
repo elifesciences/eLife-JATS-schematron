@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']" id="elem-citation-journal-pub-id-pmid">
-      <report test="matches(.,'\D')" role="error" id="err-elem-cit-journal-10">[err-elem-cit-journal-10]
-        If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric.
-        The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' 
-        is <value-of select="."/>.</report>
+      <report test="matches(.,'\D')" role="error" id="err-elem-cit-journal-10">If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

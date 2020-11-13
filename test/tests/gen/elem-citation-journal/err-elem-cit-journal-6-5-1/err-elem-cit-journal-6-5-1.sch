@@ -855,9 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1" test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">[err-elem-cit-journal-6-5-1]
-        &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1" test="lpage and not(fpage)" role="error" id="err-elem-cit-journal-6-5-1">&lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

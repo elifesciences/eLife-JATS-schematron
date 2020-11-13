@@ -858,11 +858,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(self::*)"/>
-      <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">[err-elem-cit-gen-date-1-2]
-        The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive).
-        Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains
-        the value '<value-of select="."/>'.
-      </assert>
+      <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains the value '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

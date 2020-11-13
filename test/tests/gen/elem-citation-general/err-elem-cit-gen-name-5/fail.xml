@@ -1,9 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-5.sch"?>
 <!--Context: element-citation
 Test: report    descendant::etal
-Message: [err-elem-cit-gen-name-5]
-        The <etal> element in a reference is not allowed.
-        Reference '' contains it. -->
+Message: The <etal> element in a reference is not allowed. Reference '' contains it. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

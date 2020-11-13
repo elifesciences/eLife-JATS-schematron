@@ -856,10 +856,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" role="error" id="err-elem-cit-book-2-2">[err-elem-cit-book-2-2]
-        The only values allowed for @person-group-type in book references are "author" and "editor".
-        Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of 
-        '<value-of select="person-group/@person-group-type"/>'.</assert>
+      <assert test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" role="error" id="err-elem-cit-book-2-2">The only values allowed for @person-group-type in book references are "author" and "editor". Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

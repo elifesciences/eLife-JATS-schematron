@@ -856,10 +856,7 @@
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent">
       <let name="countries" value="'../../../../../src/countries.xml'"/>
-      <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2]
-        The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value.
-        Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value 
-        '<value-of select="@country"/>', which is not in the list.</assert>
+      <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value. Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value '<value-of select="@country"/>', which is not in the list.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2" test="lpage and (number(fpage[1]) &gt;= number(lpage[1]))" role="error" id="err-elem-cit-journal-6-5-2">[err-elem-cit-journal-6-5-2]
-        &lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' 
-        but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2" test="lpage and (number(fpage[1]) ge number(lpage[1]))" role="error" id="err-elem-cit-journal-6-5-2">&lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

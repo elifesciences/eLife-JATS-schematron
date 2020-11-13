@@ -1,11 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-high-1.sch"?>
 <!--Context: ref
 Test: assert    count(*) = count(element-citation)
-Message: [err-elem-cit-high-1]
-        The only element that is allowed as a child of <ref> is
-        <element-citation>. 
-        Reference '' has other elements.
-       -->
+Message: The only element that is allowed as a child of <ref> is <element-citation>. Reference '' has other elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref>

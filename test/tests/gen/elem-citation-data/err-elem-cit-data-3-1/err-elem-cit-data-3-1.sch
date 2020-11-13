@@ -855,15 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="count(person-group[@person-group-type='author']) le 1 and         count(person-group[@person-group-type='compiler']) le 1 and         count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1]
-        Only one person-group of each type (author, compiler, curator) is allowed. 
-        Reference 
-        '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 
-        'author', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 
-        'compiler', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 
-        'curator', and <value-of select="count(person-group[@person-group-type!='author' and @person-group-type!='compiler' and @person-group-type!='curator'])"/>
-        &lt;person-group&gt; elements of some other type.</assert>
+      <assert test="count(person-group[@person-group-type='author']) le 1 and         count(person-group[@person-group-type='compiler']) le 1 and         count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">Only one person-group of each type (author, compiler, curator) is allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'author', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'compiler', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'curator', and <value-of select="count(person-group[@person-group-type!='author' and @person-group-type!='compiler' and @person-group-type!='curator'])"/> &lt;person-group&gt; elements of some other type.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

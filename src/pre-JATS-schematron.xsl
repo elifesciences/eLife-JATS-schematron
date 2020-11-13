@@ -5827,7 +5827,7 @@
 
 
 	  <!--RULE review-article-title-tests-->
-   <xsl:template match="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,':')]" priority="1000" mode="M54">
+   <xsl:template match="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')]" priority="1000" mode="M54">
       <xsl:variable name="pre-colon" select="substring-before(.,':')"/>
       <xsl:variable name="post-colon" select="substring-after(.,': ')"/>
 
@@ -18150,31 +18150,25 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-gen-name-5]
-        The &lt;etal&gt; element in a reference is not allowed.
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-gen-name-5] The &lt;etal&gt; element in a reference is not allowed. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' contains it.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="count(year)&gt;1 ">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(year)&gt;1">
+      <xsl:if test="count(year) &gt; 1 ">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(year) &gt; 1">
             <xsl:attribute name="id">err-elem-cit-gen-date-1-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-gen-date-1-9]
-        There may be at most one &lt;year&gt; element.
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-gen-date-1-9] There may be at most one &lt;year&gt; element. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has <xsl:text/>
                <xsl:value-of select="count(year)"/>
-               <xsl:text/>
-        &lt;year&gt; elements.
-      </svrl:text>
+               <xsl:text/> &lt;year&gt; elements.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -18315,15 +18309,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-gen-date-1-2]
-        The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive).
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-gen-date-1-2] The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' does not meet this requirement as it contains
-        the value '<xsl:text/>
+                  <xsl:text/>' does not meet this requirement as it contains the value '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>'.
-      </svrl:text>
+                  <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18338,12 +18328,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-gen-date-1-3]
-        All &lt;year&gt; elements must have @iso-8601-date attributes.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-gen-date-1-3] All &lt;year&gt; elements must have @iso-8601-date attributes. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' does not.
-      </svrl:text>
+                  <xsl:text/>' does not.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18358,16 +18345,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-gen-date-1-4]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 
-        1700 and the current year + 5 years (inclusive).
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-gen-date-1-4] The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' does not meet this requirement as the attribute contains the value 
-        '<xsl:text/>
+                  <xsl:text/>' does not meet this requirement as the attribute contains the value '<xsl:text/>
                   <xsl:value-of select="./@iso-8601-date"/>
-                  <xsl:text/>'.
-      </svrl:text>
+                  <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18403,10 +18385,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-gen-date-1-6]
-        If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with 
-        the same first author surname (or collab) with a letter "b" after the year. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-gen-date-1-6] If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not fulfill this requirement.</svrl:text>
             </svrl:failed-assert>
@@ -18548,13 +18527,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-1]
-        The only element that is allowed as a child of &lt;ref&gt; is
-        &lt;element-citation&gt;. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-high-1] The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="@id"/>
-                  <xsl:text/>' has other elements.
-      </svrl:text>
+                  <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18586,9 +18561,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-3-1]
-        Each &lt;ref&gt; element must have an @id attribute. 
-      </svrl:text>
+               <svrl:text>[err-elem-cit-high-3-1] Each &lt;ref&gt; element must have an @id attribute.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18603,16 +18576,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-3-2]
-        Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with 
-        a number. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-high-3-2] Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with a number. Reference '<xsl:text/>
                   <xsl:value-of select="@id"/>
-                  <xsl:text/>' has the value 
-        '<xsl:text/>
+                  <xsl:text/>' has the value '<xsl:text/>
                   <xsl:value-of select="@id"/>
-                  <xsl:text/>', which is incorrect.
-      </svrl:text>
+                  <xsl:text/>', which is incorrect.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18627,16 +18595,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-3-3]
-        The sequence of ids in the &lt;ref&gt; elements must increase monotonically
-        (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc).
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-high-3-3] The sequence of ids in the &lt;ref&gt; elements must increase monotonically (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc). Reference '<xsl:text/>
                   <xsl:value-of select="@id"/>
-                  <xsl:text/>' has the value 
-        '<xsl:text/>
+                  <xsl:text/>' has the value  '<xsl:text/>
                   <xsl:value-of select="@id"/>
-                  <xsl:text/>', which does not fit this pattern.
-      </svrl:text>
+                  <xsl:text/>', which does not fit this pattern.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18684,43 +18647,18 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@publication-type"/>
+         <xsl:when test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-type">
-               <xsl:attribute name="id">err-elem-cit-high-6-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-6-1]
-        The element-citation element must have a publication-type attribute.
-        Reference '<xsl:text/>
-                  <xsl:value-of select="../@id"/>
-                  <xsl:text/>' does not.
-      </svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="@publication-type = 'journal' or         @publication-type = 'book'    or         @publication-type = 'data'    or         @publication-type = 'patent'    or         @publication-type = 'software'    or         @publication-type = 'preprint' or         @publication-type = 'web'    or         @publication-type = 'periodical' or         @publication-type = 'report'    or         @publication-type = 'confproc'    or         @publication-type = 'thesis'"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-type = 'journal' or @publication-type = 'book' or @publication-type = 'data' or @publication-type = 'patent' or @publication-type = 'software' or @publication-type = 'preprint' or @publication-type = 'web' or @publication-type = 'periodical' or @publication-type = 'report' or @publication-type = 'confproc' or @publication-type = 'thesis'">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')">
                <xsl:attribute name="id">err-elem-cit-high-6-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-6-2]
-        The publication-type attribute may only take the values 'journal', 'book', 'data', 
-        'patent', 'software', 'preprint', 'web', 
-        'periodical', 'report', 'confproc', or 'thesis'. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-high-6-2] element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', or 'thesis'. Reference '<xsl:text/>
                   <xsl:value-of select="../@id"/>
-                  <xsl:text/>' has the publication-type 
-        '<xsl:text/>
-                  <xsl:value-of select="@publication-type"/>
+                  <xsl:text/>' has '<xsl:text/>
+                  <xsl:value-of select="if (@publication-type) then concat('a @publication-type with the value ',@publication-type) else ('no @publication-type')"/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
@@ -18812,50 +18750,42 @@
 	  <!--RULE elem-citation-journal-->
    <xsl:template match="element-citation[@publication-type='journal']" priority="1000" mode="M285">
 
-		<!--ASSERT error-->
+		<!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(person-group)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(person-group)=1">
-               <xsl:attribute name="id">err-elem-cit-journal-2-1</xsl:attribute>
-               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-journal-2-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-2-1</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-2-1]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one and
-        only one &lt;person-group&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-journal-2-1] Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;person-group&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group)"/>
-                  <xsl:text/> &lt;person-group&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements. If this information is missing, please query the authors for it.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="person-group[@person-group-type='author']"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="person-group[@person-group-type='author']">
-               <xsl:attribute name="id">err-elem-cit-journal-2-2</xsl:attribute>
-               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-2-2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-journal-2-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-2-2</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-2-2]
-        Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt; 
-        with the attribute person-group-type 'author'.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-journal-2-2] Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt;  with the attribute person-group-type 'author'. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a  &lt;person-group&gt; type of 
-        '<xsl:text/>
+                  <xsl:text/>' has a  &lt;person-group&gt; type of '<xsl:text/>
                   <xsl:value-of select="person-group/@person-group-type"/>
-                  <xsl:text/>'.</svrl:text>
+                  <xsl:text/>'. If this information is missing, please query the authors for it.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18909,10 +18839,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-journal-4-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child 
-        elements.
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-journal-4-2-2] A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child elements. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has disallowed child elements.</svrl:text>
          </svrl:successful-report>
@@ -18929,14 +18856,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-5-1-3]
-        There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-5-1-3] There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(volume)"/>
-                  <xsl:text/>
-        &lt;volume&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;volume&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18950,31 +18874,26 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-journal-6-5-1]
-        &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-journal-6-5-1] &lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="lpage and (number(fpage[1]) &gt;= number(lpage[1]))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lpage and (number(fpage[1]) &gt;= number(lpage[1]))">
+      <xsl:if test="lpage and (number(fpage[1]) ge number(lpage[1]))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lpage and (number(fpage[1]) ge number(lpage[1]))">
             <xsl:attribute name="id">err-elem-cit-journal-6-5-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-journal-6-5-2]
-        &lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-journal-6-5-2] &lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has first page &lt;fpage&gt; = '<xsl:text/>
                <xsl:value-of select="fpage"/>
-               <xsl:text/>' 
-        but last page &lt;lpage&gt; = '<xsl:text/>
+               <xsl:text/>' but last page &lt;lpage&gt; = '<xsl:text/>
                <xsl:value-of select="lpage"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -18989,21 +18908,15 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-journal-6-7]
-        The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, 
-        &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-journal-6-7] The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has 
-        <xsl:text/>
+               <xsl:text/>' has <xsl:text/>
                <xsl:value-of select="count(fpage)"/>
                <xsl:text/> &lt;fpage&gt;, <xsl:text/>
                <xsl:value-of select="count(lpage)"/>
-               <xsl:text/> &lt;lpage&gt;,
-        <xsl:text/>
+               <xsl:text/> &lt;lpage&gt;, <xsl:text/>
                <xsl:value-of select="count(elocation-id)"/>
-               <xsl:text/> &lt;elocation-id&gt;, and 
-        <xsl:text/>
+               <xsl:text/> &lt;elocation-id&gt;, and <xsl:text/>
                <xsl:value-of select="count(comment)"/>
                <xsl:text/> &lt;comment&gt; elements.</svrl:text>
          </svrl:successful-report>
@@ -19020,11 +18933,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-12]
-        The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, 
-        &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-12] The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
@@ -19054,10 +18963,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-3-2]
-        An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-3-2] An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement.</svrl:text>
             </svrl:failed-assert>
@@ -19087,13 +18993,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-5-1-2]
-        A  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain 
-        at least one character and may not contain child elements.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-5-1-2] A &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain at least one character and may not contain child elements. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has too few characters and/or
-        child elements.</svrl:text>
+                  <xsl:text/>' has too few characters and/or child elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19121,9 +19023,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-6-2]
-        If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-6-2] If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has &lt;fpage&gt; and one of those elements.</svrl:text>
             </svrl:failed-assert>
@@ -19139,9 +19039,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-journal-6-6]
-        If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with 
-        the same letter. Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-journal-6-6] If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with the same letter. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' does not.</svrl:text>
          </svrl:successful-report>
@@ -19169,9 +19067,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-6-3]
-        If &lt;elocation-id&gt; is present, neither &lt;fpage&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-6-3] If &lt;elocation-id&gt; is present, neither &lt;fpage&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has &lt;elocation-id&gt; and one of those elements.</svrl:text>
             </svrl:failed-assert>
@@ -19200,9 +19096,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-6-4]
-        If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-6-4] If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has one of those elements.</svrl:text>
             </svrl:failed-assert>
@@ -19219,9 +19113,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-13] 
-        Comment elements with content other than 'In press' are not allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-13] Comment elements with content other than 'In press' are not allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has such a &lt;comment&gt; element.</svrl:text>
             </svrl:failed-assert>
@@ -19248,12 +19140,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-journal-10]
-        If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric.
-        The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-journal-10] If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' 
-        is <xsl:text/>
+               <xsl:text/>' is <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
@@ -19273,20 +19162,17 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@pub-id-type='doi' or @pub-id-type='pmid'"/>
+         <xsl:when test="@pub-id-type=('doi','pmid')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type='doi' or @pub-id-type='pmid'">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type=('doi','pmid')">
                <xsl:attribute name="id">err-elem-cit-journal-9-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-journal-9-1]
-        Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid".
-        The pub-id-type attribute on &lt;pub-id&gt; in Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-journal-9-1] Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid". The pub-id-type attribute on &lt;pub-id&gt; in Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' 
-        is <xsl:text/>
+                  <xsl:text/>' is <xsl:text/>
                   <xsl:value-of select="@pub-id-type"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -19316,37 +19202,30 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-2-2]
-        The only values allowed for @person-group-type in book references are "author" and "editor".
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-2-2] The only values allowed for @person-group-type in book references are "author" and "editor". Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a &lt;person-group&gt; type of 
-        '<xsl:text/>
+                  <xsl:text/>' has a &lt;person-group&gt; type of '<xsl:text/>
                   <xsl:value-of select="person-group/@person-group-type"/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)">
-               <xsl:attribute name="id">err-elem-cit-book-2-3</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-book-2-3</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-2-3]
-        In a book reference, there should be a single person-group element (either author or editor) or
-        one person-group with @person-group-type="author" and one person-group with @person-group-type=editor.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-book-2-3] In a book reference, there should be a single person-group element (either author or editor) or one person-group with @person-group-type="author" and one person-group with @person-group-type=editor. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group)"/>
-                  <xsl:text/> &lt;person-group&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements. If this finromation is missing, please query it with the authors.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19380,10 +19259,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-10-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-10-2-2] A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has child elements that are not allowed.</svrl:text>
             </svrl:failed-assert>
@@ -19417,7 +19293,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[warning-elem-cit-book-13-3] The content of &lt;publisher-name&gt; may not end with a publisher location. Reference '<xsl:text/>
+            <svrl:text>[warning-elem-cit-book-13-3] The content of &lt;publisher-name&gt; should not end with a publisher location. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' contains the string <xsl:text/>
                <xsl:value-of select="publisher-name"/>
@@ -19528,12 +19404,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-2-1]
-        Each &lt;person-group&gt; must have a @person-group-type attribute.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-2-1] Each &lt;person-group&gt; must have a @person-group-type attribute. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a &lt;person-group&gt; 
-        element with no @person-group-type attribute.</svrl:text>
+                  <xsl:text/>' has a &lt;person-group&gt; element with no @person-group-type attribute.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19550,21 +19423,19 @@
 	  <!--RULE elem-citation-book-chapter-title-->
    <xsl:template match="element-citation[@publication-type='book']/chapter-title" priority="1000" mode="M295">
 
-		<!--ASSERT error-->
+		<!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(../person-group[@person-group-type='author'])=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(../person-group[@person-group-type='author'])=1">
-               <xsl:attribute name="id">err-elem-cit-book-22</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-book-22</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-22]
-        If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-book-22] If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' does not meet this requirement.</svrl:text>
+                  <xsl:text/>' does not meet this requirement. If this information is missing, please query the authors for it.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19579,9 +19450,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-28-1]
-        If there is a &lt;chapter-title&gt; element there may be a maximum of one &lt;person-group person-group-type="editor"&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-28-1] If there is a &lt;chapter-title&gt; element there may be a maximum of one &lt;person-group person-group-type="editor"&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement.</svrl:text>
             </svrl:failed-assert>
@@ -19598,10 +19467,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-31]
-        A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-31] A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement.</svrl:text>
             </svrl:failed-assert>
@@ -19630,12 +19496,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-13-2]
-        No elements are allowed inside &lt;publisher-name&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-13-2] No elements are allowed inside &lt;publisher-name&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has child elements within the
-        &lt;publisher-name&gt; element.</svrl:text>
+                  <xsl:text/>' has child elements within the &lt;publisher-name&gt; element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19662,12 +19525,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-15]
-        No elements are allowed inside &lt;edition&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-15] No elements are allowed inside &lt;edition&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has child elements within the
-        &lt;edition&gt; element.</svrl:text>
+                  <xsl:text/>' has child elements within the &lt;edition&gt; element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19692,12 +19552,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-book-18]
-        If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of 
-        &lt;pub-id pub-id-type="pmid"&gt; in Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-book-18] If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' 
-        is <xsl:text/>
+               <xsl:text/>' is <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
@@ -19717,20 +19574,17 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'"/>
+         <xsl:when test="@pub-id-type=('doi','pmid','isbn')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type='doi' or @pub-id-type='pmid' or @pub-id-type='isbn'">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type=('doi','pmid','isbn')">
                <xsl:attribute name="id">err-elem-cit-book-17</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-17]
-        Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. 
-        The pub-id-type attribute on &lt;pub-id&gt; in Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-17] Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. The pub-id-type attribute on &lt;pub-id&gt; in Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' 
-        is <xsl:text/>
+                  <xsl:text/>' is <xsl:text/>
                   <xsl:value-of select="@pub-id-type"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -19805,47 +19659,36 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-3-1]
-        Only one person-group of each type (author, compiler, curator) is allowed. 
-        Reference 
-        '<xsl:text/>
+               <svrl:text>[err-elem-cit-data-3-1] Only one person-group of each type (author, compiler, curator) is allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group[@person-group-type='author'])"/>
-                  <xsl:text/>  &lt;person-group&gt; elements of type of 
-        'author', <xsl:text/>
+                  <xsl:text/>  &lt;person-group&gt; elements of type of 'author', <xsl:text/>
                   <xsl:value-of select="count(person-group[@person-group-type='author'])"/>
-                  <xsl:text/>  &lt;person-group&gt; elements of type of 
-        'compiler', <xsl:text/>
+                  <xsl:text/>  &lt;person-group&gt; elements of type of 'compiler', <xsl:text/>
                   <xsl:value-of select="count(person-group[@person-group-type='author'])"/>
-                  <xsl:text/>  &lt;person-group&gt; elements of type of 
-        'curator', and <xsl:text/>
+                  <xsl:text/>  &lt;person-group&gt; elements of type of 'curator', and <xsl:text/>
                   <xsl:value-of select="count(person-group[@person-group-type!='author' and @person-group-type!='compiler' and @person-group-type!='curator'])"/>
-                  <xsl:text/>
-        &lt;person-group&gt; elements of some other type.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements of some other type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(person-group) ge 1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(person-group) ge 1">
-               <xsl:attribute name="id">err-elem-cit-data-3-2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-data-3-2</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-3-2]
-        Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-data-3-2] Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group)"/>
-                  <xsl:text/> &lt;person-group&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements. if this information is missing, please query the authors for it.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -19898,10 +19741,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-11-3-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-data-11-3-2] A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
@@ -19960,10 +19800,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-18]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are:
-        &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-data-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
@@ -19992,12 +19829,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-14-2]
-        If the pub-id is of pub-id-type doi, it may not have an @xlink:href.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-data-14-2] If the pub-id is of pub-id-type doi, it may not have an @xlink:href. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a &lt;pub-id element with type doi and an
-        @link-href with value '<xsl:text/>
+                  <xsl:text/>' has a &lt;pub-id element with type doi and an @link-href with value '<xsl:text/>
                   <xsl:value-of select="@link-href"/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
@@ -20026,12 +19860,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-13-2]
-        Each pub-id element must have a pub-id-type which is either accession or doi. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-data-13-2] Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a &lt;pub-id element with the type 
-        '<xsl:text/>
+                  <xsl:text/>' has a &lt;pub-id element with the type '<xsl:text/>
                   <xsl:value-of select="@pub-id-type"/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
@@ -20046,12 +19877,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-data-14-1]
-        If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. 
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-data-14-1] If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has a &lt;pub-id element with type 
-        '<xsl:text/>
+               <xsl:text/>' has a &lt;pub-id element with type '<xsl:text/>
                <xsl:value-of select="@pub-id-type"/>
                <xsl:text/>' but no @xlink-href.</svrl:text>
          </svrl:successful-report>
@@ -20069,25 +19897,21 @@
 	  <!--RULE elem-citation-patent-->
    <xsl:template match="element-citation[@publication-type='patent']" priority="1000" mode="M304">
 
-		<!--ASSERT error-->
+		<!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(person-group[@person-group-type='inventor'])=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(person-group[@person-group-type='inventor'])=1">
-               <xsl:attribute name="id">err-elem-cit-patent-2-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-patent-2-1</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-2-1]
-        There must be one person-group with @person-group-type="inventor". 
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-patent-2-1] There must be one person-group with @person-group-type="inventor". Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group[@person-group-type='inventor'])"/>
-                  <xsl:text/> &lt;person-group&gt; 
-        elements of type 'inventor'.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements of type 'inventor'. If this information is missing, please query the authors for it.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20102,9 +19926,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-2-3]
-        The only allowed types of person-group elements are "assignee" and "inventor".
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-2-3] The only allowed types of person-group elements are "assignee" and "inventor". Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has &lt;person-group&gt; elements of other types.</svrl:text>
             </svrl:failed-assert>
@@ -20121,60 +19943,49 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-2A]
-        There may be zero or one person-group elements with @person-group-type="assignee" 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-2A] There may be zero or one person-group elements with @person-group-type="assignee". Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group[@person-group-type='assignee'])"/>
-                  <xsl:text/> &lt;person-group&gt; elements of type
-        'assignee'.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements of type 'assignee'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(article-title)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-title)=1">
-               <xsl:attribute name="id">err-elem-cit-patent-8-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-patent-8-1</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-8-1]
-        Each  &lt;element-citation&gt; of type 'patent' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-patent-8-1] Each  &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;article-title&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(article-title)"/>
                   <xsl:text/> &lt;article-title&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(source)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(source)=1">
-               <xsl:attribute name="id">err-elem-cit-patent-9-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-patent-9-1</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-9-1]
-        Each  &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements.
-        Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-patent-9-1] Each &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(source)"/>
-                  <xsl:text/> &lt;source&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;source&gt; elements. If this information is missing, please query the authors for it.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20223,10 +20034,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-18]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="patent" are:
-        &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;patent&gt;, and &lt;ext-link&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="patent" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;patent&gt;, and &lt;ext-link&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
@@ -20255,10 +20063,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-8-2-1]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain 
-        at least two characters.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-8-2-1] A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain at least two characters. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has too few characters.</svrl:text>
             </svrl:failed-assert>
@@ -20275,11 +20080,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-8-2-2]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-8-2-2] A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
@@ -20308,11 +20109,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-9-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-9-2-2] A &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
@@ -20342,9 +20139,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-10-1-2]
-        The  &lt;patent&gt; element may not have child elements.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-10-1-2] The &lt;patent&gt; element may not have child elements. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has child elements.</svrl:text>
             </svrl:failed-assert>
@@ -20361,12 +20156,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-10-2]
-        The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-10-2] The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a patent/@country attribute with the value 
-        '<xsl:text/>
+                  <xsl:text/>' has a patent/@country attribute with the value '<xsl:text/>
                   <xsl:value-of select="@country"/>
                   <xsl:text/>', which is not in the list.</svrl:text>
             </svrl:failed-assert>
@@ -20397,15 +20189,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-software-2-1] Each
-        &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either
-        author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one
-        &lt;person-group&gt; with attribute person-group-type = curator. Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-software-2-1] Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one &lt;person-group&gt; with attribute person-group-type = curator. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group)"/>
-                  <xsl:text/>
-        &lt;person-group&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20421,12 +20209,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type
-        'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to
-        'author' or 'curator'. Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-software-2-2] Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to 'author' or 'curator'. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has a
-        &lt;person-group&gt; type of '<xsl:text/>
+                  <xsl:text/>' has a &lt;person-group&gt; type of '<xsl:text/>
                   <xsl:value-of select="person-group/@person-group-type"/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
@@ -20442,11 +20227,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-software-10-1] Each &lt;element-citation&gt; of type 'software' may contain one
-        and only one &lt;data-title&gt; element. Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-software-10-1] Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;data-title&gt; element. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>'
-        has <xsl:text/>
+               <xsl:text/>' has <xsl:text/>
                <xsl:value-of select="count(data-title)"/>
                <xsl:text/> &lt;data-title&gt; elements.</svrl:text>
          </svrl:successful-report>
@@ -20463,13 +20246,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-software-16] The only tags that are
-        allowed as children of &lt;element-citation&gt; with the publication-type="software" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;,
-        &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-software-16] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>'
-        has other elements.</svrl:text>
+                  <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20497,9 +20276,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters
-        and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference
-        '<xsl:text/>
+               <svrl:text>[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement.</svrl:text>
             </svrl:failed-assert>
@@ -20529,15 +20306,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-2-1]
-        There must be one and only one person-group. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-2-1] There must be one and only one person-group. <xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group)"/>
-                  <xsl:text/> &lt;person-group&gt; 
-        elements.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20553,13 +20326,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-8-1]
-        Each  &lt;element-citation&gt; of type 'preprint' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-8-1] Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;article-title&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(article-title)"/>
                   <xsl:text/> &lt;article-title&gt; elements.</svrl:text>
             </svrl:failed-assert>
@@ -20577,12 +20346,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-9-1]
-        Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-9-1] Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has 
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(source)"/>
                   <xsl:text/> &lt;source&gt; elements.</svrl:text>
             </svrl:failed-assert>
@@ -20600,9 +20366,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-10-1]
-        One &lt;pub-id&gt; element is allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-10-1] One &lt;pub-id&gt; element is allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(pub-id)"/>
@@ -20622,14 +20386,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-10-3]
-        Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-10-3] Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(pub-id)"/>
-                  <xsl:text/> &lt;pub-id&gt; elements
-        and <xsl:text/>
+                  <xsl:text/> &lt;pub-id&gt; elements and <xsl:text/>
                   <xsl:value-of select="count(ext-link)"/>
                   <xsl:text/> &lt;ext-link&gt; elements.</svrl:text>
             </svrl:failed-assert>
@@ -20647,10 +20408,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-13]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are:
-        &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-13] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
@@ -20680,9 +20438,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-2-2]
-        The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-2-2] The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' contains @person-group-type='<xsl:text/>
                   <xsl:value-of select="@person-group-type"/>
@@ -20714,12 +20470,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-10-2]
-        If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'.
-        The &lt;pub-id&gt; element in Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-10-2] If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'. The &lt;pub-id&gt; element in Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>'
-        contains @pub-id-type='<xsl:text/>
+                  <xsl:text/>' contains @pub-id-type='<xsl:text/>
                   <xsl:value-of select="@pub-id-type"/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
@@ -20749,10 +20502,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-8-2-1]
-        A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain 
-        at least two characters.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-8-2-1] A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain at least two characters. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has too few characters.</svrl:text>
             </svrl:failed-assert>
@@ -20770,10 +20520,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-8-2-2]
-        A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-8-2-2] A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
@@ -20803,10 +20550,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-9-2-2]
-        A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-preprint-9-2-2] A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
@@ -20835,15 +20579,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-2-1]
-        There must be one and only one person-group. 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-2-1] There must be one and only one person-group. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has
-        <xsl:text/>
+                  <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(person-group)"/>
-                  <xsl:text/> &lt;person-group&gt; 
-        elements.</svrl:text>
+                  <xsl:text/> &lt;person-group&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20875,12 +20615,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[err-elem-cit-web-9-1]
-        Each  &lt;element-citation&gt; of type 'web' may contain one and only one &lt;source&gt; element.
-        Reference '<xsl:text/>
+            <svrl:text>[err-elem-cit-web-9-1] Each  &lt;element-citation&gt; of type 'web' may contain one and only one &lt;source&gt; element. Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has 
-        <xsl:text/>
+               <xsl:text/>' has <xsl:text/>
                <xsl:value-of select="count(source)"/>
                <xsl:text/> &lt;source&gt; elements.</svrl:text>
          </svrl:successful-report>
@@ -20896,14 +20633,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-10-1]
-        One and only one &lt;ext-link&gt; element is required.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-10-1] One and only one &lt;ext-link&gt; element is required. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(ext-link)"/>
-                  <xsl:text/> 
-        &lt;ext-link&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;ext-link&gt; elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20916,8 +20650,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[pre-err-elem-cit-web-11-1] 
-        Web Reference '<xsl:text/>
+            <svrl:text>[pre-err-elem-cit-web-11-1] Web Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' has no accessed date (&lt;date-in-citation&gt; element), which is required. Please ensure this is queried with the author.</svrl:text>
          </svrl:successful-report>
@@ -20949,10 +20682,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-12]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="web" are:
-        &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;ext-link&gt; and &lt;date-in-citation&gt;.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-12] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="web" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;ext-link&gt; and &lt;date-in-citation&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
@@ -20981,9 +20711,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-2-2]
-        The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in 
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-2-2] The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' contains @person-group-type='<xsl:text/>
                   <xsl:value-of select="@person-group-type"/>
@@ -21014,10 +20742,8 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-8-2-1]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
-        at least two characters.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-8-2-1] A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
+        at least two characters. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has too few characters.</svrl:text>
             </svrl:failed-assert>
@@ -21034,11 +20760,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-8-2-2]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-8-2-2] A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
@@ -21067,11 +20789,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-web-9-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-web-9-2-2] A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has disallowed child elements.</svrl:text>
             </svrl:failed-assert>
