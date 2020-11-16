@@ -855,11 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
-      <assert test="count(person-group)=1" role="error" id="err-elem-cit-web-2-1">[err-elem-cit-web-2-1]
-        There must be one and only one person-group. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has
-        <value-of select="count(person-group)"/> &lt;person-group&gt; 
-        elements.</assert>
+      <assert test="count(person-group)=1" role="error" id="err-elem-cit-web-2-1">There must be one and only one person-group. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

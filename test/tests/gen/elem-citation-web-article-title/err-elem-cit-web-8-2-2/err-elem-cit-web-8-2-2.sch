@@ -855,11 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title">
-      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-8-2-2">[err-elem-cit-web-8-2-2]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-8-2-2">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

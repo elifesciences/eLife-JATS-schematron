@@ -16481,22 +16481,22 @@
     <x:scenario label="p-punctuation">
       <x:scenario label="p-punctuation-test-pass">
         <x:context href="../tests/gen/p-punctuation/p-punctuation-test/pass.xml"/>
-        <x:expect-not-report id="p-punctuation-test" role="warning"/>
+        <x:expect-not-assert id="p-punctuation-test" role="warning"/>
         <x:expect-not-assert id="p-punctuation-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="p-punctuation-test-fail">
         <x:context href="../tests/gen/p-punctuation/p-punctuation-test/fail.xml"/>
-        <x:expect-report id="p-punctuation-test" role="warning"/>
+        <x:expect-assert id="p-punctuation-test" role="warning"/>
         <x:expect-not-assert id="p-punctuation-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="p-bracket-test-pass">
         <x:context href="../tests/gen/p-punctuation/p-bracket-test/pass.xml"/>
-        <x:expect-not-report id="p-bracket-test" role="warning"/>
+        <x:expect-not-assert id="p-bracket-test" role="warning"/>
         <x:expect-not-assert id="p-punctuation-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="p-bracket-test-fail">
         <x:context href="../tests/gen/p-punctuation/p-bracket-test/fail.xml"/>
-        <x:expect-report id="p-bracket-test" role="warning"/>
+        <x:expect-assert id="p-bracket-test" role="warning"/>
         <x:expect-not-assert id="p-punctuation-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

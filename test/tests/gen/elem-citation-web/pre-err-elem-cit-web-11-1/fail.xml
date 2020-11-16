@@ -1,8 +1,7 @@
 <?oxygen SCHSchema="pre-err-elem-cit-web-11-1.sch"?>
 <!--Context: element-citation[@publication-type='web']
 Test: report    count(date-in-citation) lt 1
-Message: 
-        Web Reference '' has no accessed date (<date-in-citation> element), which is required. Please ensure this is queried with the author. -->
+Message: Web Reference '' has no accessed date (<date-in-citation> element), which is required. Please ensure this is queried with the author. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

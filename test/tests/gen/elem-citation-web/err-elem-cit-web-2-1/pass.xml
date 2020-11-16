@@ -1,11 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-web-2-1.sch"?>
 <!--Context: element-citation[@publication-type='web']
 Test: assert    count(person-group)=1
-Message: [err-elem-cit-web-2-1]
-        There must be one and only one person-group. 
-        Reference '' has
-         <person-group> 
-        elements. -->
+Message: There must be one and only one person-group. Reference '' has  <person-group> elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

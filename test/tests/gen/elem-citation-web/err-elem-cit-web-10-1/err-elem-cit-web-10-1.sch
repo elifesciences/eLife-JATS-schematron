@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
-      <assert test="count(ext-link)=1" role="error" id="err-elem-cit-web-10-1">[err-elem-cit-web-10-1]
-        One and only one &lt;ext-link&gt; element is required.
-        Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(ext-link)"/> 
-        &lt;ext-link&gt; elements.</assert>
+      <assert test="count(ext-link)=1" role="error" id="err-elem-cit-web-10-1">One and only one &lt;ext-link&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

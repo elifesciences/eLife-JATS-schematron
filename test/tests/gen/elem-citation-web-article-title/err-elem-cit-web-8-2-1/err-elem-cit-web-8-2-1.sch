@@ -855,10 +855,8 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title">
-      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">[err-elem-cit-web-8-2-1]
-        A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
-        at least two characters.
-        Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
+      <assert test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
+        at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
