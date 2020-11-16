@@ -855,9 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2" test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">[err-elem-cit-software-10-2] An &lt;data-title&gt; element in a reference may contain characters
-        and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference
-        '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2" test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

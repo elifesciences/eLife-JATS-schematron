@@ -856,11 +856,7 @@
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
       <let name="person-count" value="count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='curator'])"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)" role="error" id="err-elem-cit-software-16">[err-elem-cit-software-16] The only tags that are
-        allowed as children of &lt;element-citation&gt; with the publication-type="software" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;,
-        &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>'
-        has other elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)" role="error" id="err-elem-cit-software-16">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

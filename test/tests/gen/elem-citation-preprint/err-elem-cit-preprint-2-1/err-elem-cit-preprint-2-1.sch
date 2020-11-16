@@ -855,11 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">[err-elem-cit-preprint-2-1]
-        There must be one and only one person-group. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has
-        <value-of select="count(person-group)"/> &lt;person-group&gt; 
-        elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">There must be one and only one person-group. <value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

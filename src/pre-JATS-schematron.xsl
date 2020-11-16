@@ -11398,7 +11398,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[disp-formula-test-4] disp-formula cannot be placed as the first child of a p element with no content before it (ie. &gt;p&gt;&gt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <xsl:text/>
+            <svrl:text>[disp-formula-test-4] disp-formula cannot be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <xsl:text/>
                <xsl:value-of select="parent::p/parent::*/local-name()"/>
                <xsl:text/>
             </svrl:text>
@@ -33305,32 +33305,38 @@
 
 
 	  <!--RULE p-punctuation-->
-   <xsl:template match="article/body//p[not(parent::list-item)]" priority="1000" mode="M417">
+   <xsl:template match="article[not(@article-type=('correction','retraction','article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" priority="1000" mode="M417">
       <xsl:variable name="para" select="replace(.,' ',' ')"/>
 
-		    <!--REPORT warning-->
-      <xsl:if test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\p{P}\s*?$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\p{P}\s*?$'))">
-            <xsl:attribute name="id">p-punctuation-test</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="matches($para,'\p{P}\s*?$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($para,'\p{P}\s*?$')">
+               <xsl:attribute name="id">p-punctuation-test</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
 
-		    <!--REPORT warning-->
-      <xsl:if test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))">
-            <xsl:attribute name="id">p-bracket-test</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?')">
+               <xsl:attribute name="id">p-bracket-test</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M417"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M417"/>

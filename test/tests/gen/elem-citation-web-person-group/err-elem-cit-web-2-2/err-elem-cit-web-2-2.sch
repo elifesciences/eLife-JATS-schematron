@@ -855,9 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/person-group" id="elem-citation-web-person-group">
-      <assert test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">[err-elem-cit-web-2-2]
-        The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in 
-        Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
+      <assert test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

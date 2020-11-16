@@ -855,8 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
-      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">
-        Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
+      <report test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

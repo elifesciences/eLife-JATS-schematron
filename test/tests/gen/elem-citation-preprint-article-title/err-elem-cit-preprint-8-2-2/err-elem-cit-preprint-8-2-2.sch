@@ -855,10 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">[err-elem-cit-preprint-8-2-2]
-        A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

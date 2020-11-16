@@ -854,14 +854,14 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="article/body//p[not(parent::list-item)]" id="p-punctuation">
+    <rule context="article[not(@article-type=('correction','retraction','article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
-      <report test="if (ancestor::article[@article-type=('correction','retraction')]) then () else if ((ancestor::article[@article-type='article-commentary']) and (parent::boxed-text)) then () else if (descendant::*[last()]/ancestor::disp-formula) then () else if (table-wrap) then () else not(matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?'))" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</report>
+      <assert test="matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?')" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//p[not(parent::list-item)]" role="error" id="p-punctuation-xspec-assert">article/body//p[not(parent::list-item)] must be present.</assert>
+      <assert test="descendant::article[not(@article-type=('correction','retraction','article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)] or descendant::       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" role="error" id="p-punctuation-xspec-assert">article[not(@article-type=('correction','retraction','article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

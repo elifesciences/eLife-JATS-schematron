@@ -855,11 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1" test="count(article-title)=1" role="error" id="err-elem-cit-preprint-8-1">[err-elem-cit-preprint-8-1]
-        Each  &lt;element-citation&gt; of type 'preprint' must contain one and
-        only one &lt;article-title&gt; element.
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1" test="count(article-title)=1" role="error" id="err-elem-cit-preprint-8-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
