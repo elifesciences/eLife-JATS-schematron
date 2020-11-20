@@ -3253,6 +3253,16 @@
         <x:expect-report id="ext-link-child-test-5" role="warning"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ext-link-text-pass">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-text/pass.xml"/>
+        <x:expect-not-report id="ext-link-text" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-text-fail">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-text/fail.xml"/>
+        <x:expect-report id="ext-link-text" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="software-heritage-tests">
       <x:scenario label="software-heritage-test-1-pass">
@@ -3284,6 +3294,18 @@
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-3/fail.xml"/>
         <x:expect-report id="software-heritage-test-3" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ext-link-tests-2">
+      <x:scenario label="ext-link-length-pass">
+        <x:context href="../tests/gen/ext-link-tests-2/ext-link-length/pass.xml"/>
+        <x:expect-not-report id="ext-link-length" role="info"/>
+        <x:expect-not-assert id="ext-link-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-length-fail">
+        <x:context href="../tests/gen/ext-link-tests-2/ext-link-length/fail.xml"/>
+        <x:expect-report id="ext-link-length" role="info"/>
+        <x:expect-not-assert id="ext-link-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fig-group-tests">
