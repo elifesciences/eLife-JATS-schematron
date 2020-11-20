@@ -2018,6 +2018,8 @@
       <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" role="warning" id="ext-link-child-test-4">[ext-link-child-test-4] ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5" test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">[ext-link-child-test-5] ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
+      
+      <report test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" role="warning" id="ext-link-text">[ext-link-text] The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
     </rule>
   </pattern>
   <pattern id="software-heritage-tests-pattern">
@@ -2028,6 +2030,13 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" test="ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">[software-heritage-test-2] Software heritage links in the main text must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">[software-heritage-test-3] The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ext-link-tests-2-pattern">
+    <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" id="ext-link-tests-2">
+      
+      <report test=". = @xlink:href" role="info" id="ext-link-length">[ext-link-length] Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - <value-of select="."/>.</report>
       
     </rule>
   </pattern>

@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="ext-link-length.sch"?>
+<!--Context: ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]
+Test: report    . = @xlink:href
+Message: Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p><ext-link ext-link-type="uri" xlink:href="https://bioconductor.org/pack-ages/release/bioc/html/clusterProfiler">https://bioconductor.org/pack-ages/release/bioc/html/clusterProfiler.html</ext-link></p>
+    </body>
+  </article>
+</root>
