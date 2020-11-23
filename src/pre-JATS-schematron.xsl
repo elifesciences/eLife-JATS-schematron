@@ -5933,7 +5933,7 @@
    <xsl:template match="article/front/article-meta/contrib-group[1]" priority="1000" mode="M56">
       <xsl:variable name="names" select="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <xsl:variable name="indistinct-names" select="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <xsl:variable name="orcids" select="contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid']"/>
+      <xsl:variable name="orcids" select="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <xsl:variable name="indistinct-orcids" select="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
 
 		    <!--ASSERT error-->
@@ -6144,7 +6144,7 @@
    <xsl:template match="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/collab/contrib-group" priority="1000" mode="M61">
       <xsl:variable name="names" select="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <xsl:variable name="indistinct-names" select="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <xsl:variable name="orcids" select="contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid']"/>
+      <xsl:variable name="orcids" select="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <xsl:variable name="indistinct-orcids" select="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
 
 		    <!--ASSERT warning-->
