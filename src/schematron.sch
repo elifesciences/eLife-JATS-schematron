@@ -1349,7 +1349,7 @@
     <rule context="article/front/article-meta/contrib-group[1]" id="auth-contrib-group">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <let name="orcids" value="contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid']"/>
+      <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       
       <assert test="contrib[@contrib-type='author' and @corresp='yes']" 
@@ -1410,7 +1410,7 @@
       id="collab-tests">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <let name="orcids" value="contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid']"/>
+      <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       
       <assert test="empty($indistinct-names)" 

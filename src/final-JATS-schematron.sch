@@ -1168,7 +1168,7 @@
     <rule context="article/front/article-meta/contrib-group[1]" id="auth-contrib-group">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <let name="orcids" value="contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid']"/>
+      <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       
       <assert test="contrib[@contrib-type='author' and @corresp='yes']" role="error" id="corresp-presence-test">[corresp-presence-test] There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group).</assert>
@@ -1215,7 +1215,7 @@
     <rule context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/collab/contrib-group" id="collab-tests">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <let name="orcids" value="contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid']"/>
+      <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       
       <assert test="empty($indistinct-names)" role="warning" id="duplicate-member-test">[duplicate-member-test] There is more than one member of the group author <value-of select="e:get-collab(parent::collab)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
