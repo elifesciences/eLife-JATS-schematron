@@ -853,16 +853,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
-      <let name="link" value="@xlink:href"/>
-      <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+  <pattern id="dec-letter-auth-response">
+    <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" role="error" flag="dl-ar" id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/body//p" role="error" id="dec-letter-body-p-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//p must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -10642,15 +10642,15 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@mimetype=('video','application','text','image', 'audio')"/>
+         <xsl:when test="@mimetype=('video','application','text','image', 'audio','chemical')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mimetype=('video','application','text','image', 'audio')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mimetype=('video','application','text','image', 'audio','chemical')">
                <xsl:attribute name="id">media-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[media-test-1] media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</svrl:text>
+               <svrl:text>[media-test-1] media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -10686,8 +10686,8 @@
       </xsl:choose>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(ends-with(@xlink:href,'.m')) else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex')) else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz')) else if ($file='html') then not(ends-with(@xlink:href,'.html')) else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav')) else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff')) else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$')) else not(ends-with(@xlink:href,concat('.',$file)))">
+      <xsl:if test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(ends-with(@xlink:href,'.m')) else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex')) else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz')) else if ($file='html') then not(ends-with(@xlink:href,'.html')) else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav')) else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff')) else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin')) else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb')) else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$')) else not(ends-with(@xlink:href,concat('.',$file)))">
             <xsl:attribute name="id">media-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -17430,8 +17430,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])">
+      <xsl:if test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])">
             <xsl:attribute name="id">dec-letter-front-test-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-4</xsl:attribute>
@@ -17439,7 +17439,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[dec-letter-front-test-4] decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter.</svrl:text>
+            <svrl:text>[dec-letter-front-test-4] decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons or a Peer Community in Evolutionary Biology doi in the decision letter.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M253"/>
@@ -17666,6 +17666,20 @@
             <svrl:text>[dec-letter-body-test-2] The text 'Review Commons' in '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])">
+            <xsl:attribute name="id">dec-letter-body-test-3</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[dec-letter-body-test-3] The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M259"/>
