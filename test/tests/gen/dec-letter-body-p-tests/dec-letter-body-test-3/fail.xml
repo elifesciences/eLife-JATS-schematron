@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="dec-letter-body-test-3.sch"?>
+<!--Context: sub-article[@article-type='decision-letter']/body//p
+Test: report    contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])
+Message: The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="decision-letter">
+      <body>
+        <boxed-text><p>In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.</p></boxed-text>
+        <p>[Editors' note: This article has been reviewed and recommended by Peer Community in Evolutionary Biology.]</p>
+      </body>
+    </sub-article>
+  </article>
+</root>

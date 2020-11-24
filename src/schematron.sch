@@ -2874,9 +2874,9 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
       
-      <assert test="@mimetype=('video','application','text','image', 'audio')" 
+      <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" 
         role="error" 
-        id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio'.</assert>
+        id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
       
       <assert test="@mime-subtype" 
         role="error" 
@@ -2899,6 +2899,8 @@ else self::*/local-name() = $allowed-p-blocks"
         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))
         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))
         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))
+        else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))
+        else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))
         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))
         else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="warning" 
@@ -5104,10 +5106,10 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-4" 
-        test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/')])" 
+        test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" 
         role="warning" 
         flag="dl-ar"
-        id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons in the decision letter.</report>
+        id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons or a Peer Community in Evolutionary Biology doi in the decision letter.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
@@ -5188,6 +5190,12 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         flag="dl-ar"
         id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3" 
+        test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" 
+        role="error" 
+        flag="dl-ar"
+        id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']" 
