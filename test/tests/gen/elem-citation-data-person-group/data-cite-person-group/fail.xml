@@ -1,13 +1,13 @@
-<?oxygen SCHSchema="pre-err-elem-cit-data-3-2.sch"?>
-<!--Context: ref/element-citation[@publication-type='data']
-Test: report    count(person-group) lt 1
-Message: Data references must have one and only one <person-group person-group-type='author'>. Reference '' has 0. If this information is missing, please query the authors asking for it. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<?oxygen SCHSchema="data-cite-person-group.sch"?>
+<!--Context: element-citation[@publication-type='data']/person-group
+Test: assert    @person-group-type='author'
+Message: The person-group for a data reference must have the attribute person-group-type="author". This one in reference '' has either no person-group attribute or the value is incorrect (). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref-list>
       <ref id="bib14">
         <element-citation publication-type="data">
-          <person-group person-group-type="author">
+          <person-group>
             <name><surname>Du</surname><given-names>J</given-names></name>
             <name><surname>Johnson</surname><given-names>LM</given-names></name>
             <name><surname>Groth</surname><given-names>M</given-names></name>

@@ -855,7 +855,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="count(person-group) ge 1" role="warning" id="pre-err-elem-cit-data-3-2">Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements. if this information is missing, please query the authors for it.</assert>
+      <report test="count(person-group) lt 1" role="warning" id="pre-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0. If this information is missing, please query the authors asking for it.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

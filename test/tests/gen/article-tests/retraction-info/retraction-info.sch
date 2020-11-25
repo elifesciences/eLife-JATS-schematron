@@ -853,14 +853,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="front//permissions/license" id="license-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-2" test="count(license-p) = 1" role="error" id="license-test-2">license must contain one and only one license-p.</assert>
+  <pattern id="article">
+    <rule context="article" id="article-tests">
+      <let name="line-count" value="e:line-count(.)"/>
+      <report test="@article-type='retraction'" role="info" id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>
+      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

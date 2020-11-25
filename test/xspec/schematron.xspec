@@ -73,6 +73,16 @@
         <x:expect-report id="line-count" role="error"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="retraction-info-pass">
+        <x:context href="../tests/gen/article-tests/retraction-info/pass.xml"/>
+        <x:expect-not-report id="retraction-info" role="info"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="retraction-info-fail">
+        <x:context href="../tests/gen/article-tests/retraction-info/fail.xml"/>
+        <x:expect-report id="retraction-info" role="info"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="research-article">
       <x:scenario label="pre-test-r-article-d-letter-pass">
@@ -8393,32 +8403,32 @@
     <x:scenario label="elem-citation-data">
       <x:scenario label="err-elem-cit-data-3-1-pass">
         <x:context href="../tests/gen/elem-citation-data/err-elem-cit-data-3-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-data-3-1" role="error"/>
+        <x:expect-not-report id="err-elem-cit-data-3-1" role="error"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-data-3-1-fail">
         <x:context href="../tests/gen/elem-citation-data/err-elem-cit-data-3-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-data-3-1" role="error"/>
+        <x:expect-report id="err-elem-cit-data-3-1" role="error"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-err-elem-cit-data-3-2-pass">
         <x:context href="../tests/gen/elem-citation-data/pre-err-elem-cit-data-3-2/pass.xml"/>
-        <x:expect-not-assert id="pre-err-elem-cit-data-3-2" role="warning"/>
+        <x:expect-not-report id="pre-err-elem-cit-data-3-2" role="warning"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-err-elem-cit-data-3-2-fail">
         <x:context href="../tests/gen/elem-citation-data/pre-err-elem-cit-data-3-2/fail.xml"/>
-        <x:expect-assert id="pre-err-elem-cit-data-3-2" role="warning"/>
+        <x:expect-report id="pre-err-elem-cit-data-3-2" role="warning"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-err-elem-cit-data-3-2-pass">
         <x:context href="../tests/gen/elem-citation-data/final-err-elem-cit-data-3-2/pass.xml"/>
-        <x:expect-not-assert id="final-err-elem-cit-data-3-2" role="error"/>
+        <x:expect-not-report id="final-err-elem-cit-data-3-2" role="error"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-err-elem-cit-data-3-2-fail">
         <x:context href="../tests/gen/elem-citation-data/final-err-elem-cit-data-3-2/fail.xml"/>
-        <x:expect-assert id="final-err-elem-cit-data-3-2" role="error"/>
+        <x:expect-report id="final-err-elem-cit-data-3-2" role="error"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-err-elem-cit-data-10-pass">
@@ -8520,6 +8530,18 @@
         <x:context href="../tests/gen/elem-citation-data/err-elem-cit-data-18/fail.xml"/>
         <x:expect-assert id="err-elem-cit-data-18" role="error"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="elem-citation-data-person-group">
+      <x:scenario label="data-cite-person-group-pass">
+        <x:context href="../tests/gen/elem-citation-data-person-group/data-cite-person-group/pass.xml"/>
+        <x:expect-not-assert id="data-cite-person-group" role="error"/>
+        <x:expect-not-assert id="elem-citation-data-person-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-cite-person-group-fail">
+        <x:context href="../tests/gen/elem-citation-data-person-group/data-cite-person-group/fail.xml"/>
+        <x:expect-assert id="data-cite-person-group" role="error"/>
+        <x:expect-not-assert id="elem-citation-data-person-group-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-data-pub-id-doi">

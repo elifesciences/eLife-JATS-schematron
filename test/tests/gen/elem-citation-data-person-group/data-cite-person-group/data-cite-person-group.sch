@@ -853,14 +853,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="front//permissions/license" id="license-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-2" test="count(license-p) = 1" role="error" id="license-test-2">license must contain one and only one license-p.</assert>
+  <pattern id="element-citation-data-tests">
+    <rule context="element-citation[@publication-type='data']/person-group" id="elem-citation-data-person-group">
+      <assert test="@person-group-type='author'" role="error" id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']/person-group" role="error" id="elem-citation-data-person-group-xspec-assert">element-citation[@publication-type='data']/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

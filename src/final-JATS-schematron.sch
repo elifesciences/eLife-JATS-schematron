@@ -925,6 +925,8 @@
       </report>
 		
       <report test="not(descendant::code) and ($line-count gt 1)" role="error" id="line-count">[line-count] Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
+      
+      <report test="@article-type='retraction'" role="info" id="retraction-info">[retraction-info] Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
  	</rule>
   </pattern>
   <pattern id="research-article-pattern">
@@ -4064,11 +4066,11 @@
   <pattern id="elem-citation-data-pattern">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       
-      <assert test="count(person-group[@person-group-type='author']) le 1 and         count(person-group[@person-group-type='compiler']) le 1 and         count(person-group[@person-group-type='curator']) le 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1] Only one person-group of each type (author, compiler, curator) is allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'author', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'compiler', <value-of select="count(person-group[@person-group-type='author'])"/>  &lt;person-group&gt; elements of type of 'curator', and <value-of select="count(person-group[@person-group-type!='author' and @person-group-type!='compiler' and @person-group-type!='curator'])"/> &lt;person-group&gt; elements of some other type.</assert>
+      <report test="count(person-group[@person-group-type='author']) gt 1" role="error" id="err-elem-cit-data-3-1">[err-elem-cit-data-3-1] Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>.</report>
       
       
       
-      <assert test="count(person-group) ge 1" role="error" id="final-err-elem-cit-data-3-2">[final-err-elem-cit-data-3-2] Each  &lt;element-citation&gt; of type 'data' must contain at least one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+      <report test="count(person-group) lt 1" role="error" id="final-err-elem-cit-data-3-2">[final-err-elem-cit-data-3-2] Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0.</report>
       
       
       
@@ -4089,6 +4091,13 @@
       <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" role="error" id="final-err-elem-cit-data-17-1">[final-err-elem-cit-data-17-1] The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
       <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">[err-elem-cit-data-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="elem-citation-data-person-group-pattern">
+    <rule context="element-citation[@publication-type='data']/person-group" id="elem-citation-data-person-group">
+      
+      <assert test="@person-group-type='author'" role="error" id="data-cite-person-group">[data-cite-person-group] The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
       
     </rule>
   </pattern>
