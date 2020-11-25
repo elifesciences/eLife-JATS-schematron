@@ -855,7 +855,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="front//permissions/license" id="license-tests">
-      <assert test="ali:license_ref" role="error" id="license-test-1">license must contain ali:license_ref.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" test="ali:license_ref" role="error" id="license-test-1">license must contain ali:license_ref.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

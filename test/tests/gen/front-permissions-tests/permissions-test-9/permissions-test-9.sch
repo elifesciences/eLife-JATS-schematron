@@ -857,7 +857,7 @@
     <rule context="front//permissions" id="front-permissions-tests">
       <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-9" test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

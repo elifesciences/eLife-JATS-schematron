@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="retraction-info.sch"?>
+<!--Context: article
+Test: report    @article-type='retraction'
+Message: Ensure that the PDF for the article which is being retracted () is also updated with a header saying it's been retracted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="retraction"/>
+</root>

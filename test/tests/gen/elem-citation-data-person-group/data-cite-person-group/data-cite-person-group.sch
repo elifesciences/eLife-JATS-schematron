@@ -853,15 +853,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="further-fig-tests">
-    <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
-      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-6" test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">permissions for <value-of select="$label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
+  <pattern id="element-citation-data-tests">
+    <rule context="element-citation[@publication-type='data']/person-group" id="elem-citation-data-person-group">
+      <assert test="@person-group-type='author'" role="error" id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']/person-group" role="error" id="elem-citation-data-person-group-xspec-assert">element-citation[@publication-type='data']/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

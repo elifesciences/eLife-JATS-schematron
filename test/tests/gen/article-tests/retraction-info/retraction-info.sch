@@ -853,15 +853,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="further-fig-tests">
-    <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
-      <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-6" test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">permissions for <value-of select="$label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
+  <pattern id="article">
+    <rule context="article" id="article-tests">
+      <let name="line-count" value="e:line-count(.)"/>
+      <report test="@article-type='retraction'" role="info" id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
+      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

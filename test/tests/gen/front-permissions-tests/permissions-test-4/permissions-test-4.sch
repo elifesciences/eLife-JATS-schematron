@@ -857,7 +857,7 @@
     <rule context="front//permissions" id="front-permissions-tests">
       <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <assert test="ali:free_to_read" role="error" id="permissions-test-4">permissions must contain an ali:free_to_read element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-4" test="ali:free_to_read" role="error" id="permissions-test-4">permissions must contain an ali:free_to_read element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

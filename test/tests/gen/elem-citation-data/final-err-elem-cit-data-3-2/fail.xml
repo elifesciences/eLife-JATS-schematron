@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-err-elem-cit-data-3-2.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
-Test: assert    count(person-group) ge 1
-Message: Each  <element-citation> of type 'data' must contain at least one <person-group> element. Reference '' has  <person-group> elements. -->
+Test: report    count(person-group) lt 1
+Message: Data references must have one and only one <person-group person-group-type='author'>. Reference '' has 0. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
