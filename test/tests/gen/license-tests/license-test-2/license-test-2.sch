@@ -855,7 +855,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="front//permissions/license" id="license-tests">
-      <assert test="count(license-p) = 1" role="error" id="license-test-2">license must contain one and only one license-p.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" test="count(license-p) = 1" role="error" id="license-test-2">license must contain one and only one license-p.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

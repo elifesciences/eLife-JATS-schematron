@@ -1017,7 +1017,7 @@
     <report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1" role="error" id="test-history-presence">[test-history-presence] There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
       </report>
 		  
-    <assert test="count(permissions) = 1" role="error" id="test-permissions-presence">[test-permissions-presence] There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
+    <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence" test="count(permissions) = 1" role="error" id="test-permissions-presence">[test-permissions-presence] There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
       </assert>
 		  
     <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">[test-abstracts] There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
@@ -1503,28 +1503,28 @@
 	<let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement.</report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">[permissions-test-2] permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">[permissions-test-2] permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-holder)" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()              else not(copyright-holder)" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder.</report>
 	
-	<assert test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
+	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
 	
 	<assert test="license" role="error" id="permissions-test-5">[permissions-test-5] permissions must contain license.</assert>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname. If it has two authors it should be the surname of the first, then ' and ' and then the surname of the second. If three or more, it should be the surname of the first, and then ' et al'. Currently it's <value-of select="copyright-holder"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname. If it has two authors it should be the surname of the first, then ' and ' and then the surname of the second. If three or more, it should be the surname of the first, and then ' et al'. Currently it's <value-of select="copyright-holder"/>
       </report>
 	
-	  <report test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">[permissions-test-8] copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">[permissions-test-8] copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
       </report>
 	  
-	  <assert test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">[permissions-test-9] license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
+	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-9" test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">[permissions-test-9] license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	  
-	  <report test="license" role="info" id="permissions-info">[permissions-info] This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info" test="license" role="info" id="permissions-info">[permissions-info] This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
       </report>
 	
 	</rule>
@@ -1532,9 +1532,9 @@
   <pattern id="license-tests-pattern">
     <rule context="front//permissions/license" id="license-tests">
 	
-	<assert test="ali:license_ref" role="error" id="license-test-1">[license-test-1] license must contain ali:license_ref.</assert>
+	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" test="ali:license_ref" role="error" id="license-test-1">[license-test-1] license must contain ali:license_ref.</assert>
 	
-	<assert test="count(license-p) = 1" role="error" id="license-test-2">[license-test-2] license must contain one and only one license-p.</assert>
+	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" test="count(license-p) = 1" role="error" id="license-test-2">[license-test-2] license must contain one and only one license-p.</assert>
 	
 	</rule>
   </pattern>
@@ -2902,34 +2902,34 @@
     <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
-      <report test="copyright-statement and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">[fig-permissions-test-1] permissions for <value-of select="$label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-1" test="copyright-statement and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">[fig-permissions-test-1] permissions for <value-of select="$label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
       
-      <report test="copyright-year and (not(copyright-statement) or not(copyright-holder))" role="error" id="fig-permissions-test-2">[fig-permissions-test-2] permissions for <value-of select="$label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-2" test="copyright-year and (not(copyright-statement) or not(copyright-holder))" role="error" id="fig-permissions-test-2">[fig-permissions-test-2] permissions for <value-of select="$label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
       
-      <report test="copyright-holder and (not(copyright-statement) or not(copyright-year))" role="error" id="fig-permissions-test-3">[fig-permissions-test-3] permissions for <value-of select="$label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-3" test="copyright-holder and (not(copyright-statement) or not(copyright-year))" role="error" id="fig-permissions-test-3">[fig-permissions-test-3] permissions for <value-of select="$label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
       
-      <assert test="license/license-p" role="error" id="fig-permissions-test-4">[fig-permissions-test-4] permissions for <value-of select="$label"/> must contain a license-p element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-4" test="license/license-p" role="error" id="fig-permissions-test-4">[fig-permissions-test-4] permissions for <value-of select="$label"/> must contain a license-p element.</assert>
       
-      <report test="count(copyright-statement) gt 1" role="error" id="fig-permissions-test-5">[fig-permissions-test-5] permissions for <value-of select="$label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-5" test="count(copyright-statement) gt 1" role="error" id="fig-permissions-test-5">[fig-permissions-test-5] permissions for <value-of select="$label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">[fig-permissions-test-6] permissions for <value-of select="$label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-6" test="count(copyright-holder) gt 1" role="error" id="fig-permissions-test-6">[fig-permissions-test-6] permissions for <value-of select="$label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(copyright-year) gt 1" role="error" id="fig-permissions-test-7">[fig-permissions-test-7] permissions for <value-of select="$label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-7" test="count(copyright-year) gt 1" role="error" id="fig-permissions-test-7">[fig-permissions-test-7] permissions for <value-of select="$label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="count(license) gt 1" role="error" id="fig-permissions-test-8">[fig-permissions-test-8] permissions for <value-of select="$label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-8" test="count(license) gt 1" role="error" id="fig-permissions-test-8">[fig-permissions-test-8] permissions for <value-of select="$label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
       
-      <report test="(count(license) = 1) and not(license/license-p)" role="error" id="fig-permissions-test-9">[fig-permissions-test-9] permissions for <value-of select="$label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-9" test="(count(license) = 1) and not(license/license-p)" role="error" id="fig-permissions-test-9">[fig-permissions-test-9] permissions for <value-of select="$label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
       
-      <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">[fig-permissions-test-10] permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-10" test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">[fig-permissions-test-10] permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
       
-      <assert test="copyright-statement or license" role="error" id="fig-permissions-test-11">[fig-permissions-test-11] Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-11" test="copyright-statement or license" role="error" id="fig-permissions-test-11">[fig-permissions-test-11] Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
-      <report test="." role="info" id="permissions-notification">[permissions-notification] <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-notification" test="." role="info" id="permissions-notification">[permissions-notification] <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
       
-      <assert test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-parent" test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/>
       </assert>
       
-      <assert test="copyright-statement" role="warning" id="fig-permissions-test-14">[fig-permissions-test-14] permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-14" test="copyright-statement" role="warning" id="fig-permissions-test-14">[fig-permissions-test-14] permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
       
     </rule>
   </pattern>
@@ -2938,16 +2938,16 @@
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       <let name="text" value="concat('© ',parent::*/copyright-year[1],', ',parent::*/copyright-holder[1])"/>
       
-      <assert test="contains(.,$text)" role="error" id="fig-permissions-test-15">[fig-permissions-test-15] The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-15" test="contains(.,$text)" role="error" id="fig-permissions-test-15">[fig-permissions-test-15] The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
     </rule>
   </pattern>
   <pattern id="permissions-2-pattern">
     <rule context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
-      <assert test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')" role="warning" id="fig-permissions-test-12">[fig-permissions-test-12] <value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/illustration/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link on the license element or in an ali:license_ref so presumed ARR.)</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-12" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')" role="warning" id="fig-permissions-test-12">[fig-permissions-test-12] <value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/illustration/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link on the license element or in an ali:license_ref so presumed ARR.)</assert>
       
-      <report test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" role="warning" id="fig-permissions-test-13">[fig-permissions-test-13] <value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:license_ref element, which is very likely incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-13" test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" role="warning" id="fig-permissions-test-13">[fig-permissions-test-13] <value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:license_ref element, which is very likely incorrect.</report>
       
     </rule>
   </pattern>
@@ -6743,21 +6743,21 @@
     <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-1" test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">[reproduce-test-2] The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-2" test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">[reproduce-test-2] The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">[reproduce-test-3] The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-3" test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">[reproduce-test-3] The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">[reproduce-test-4] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-4" test="matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">[reproduce-test-4] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">[reproduce-test-5] The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-5" test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">[reproduce-test-5] The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">[reproduce-test-6] The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-6" test="matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">[reproduce-test-6] The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-7" test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
-      <report test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-8" test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="xref-formatting-pattern">
@@ -6902,10 +6902,9 @@
   </pattern>
   <pattern id="doi-conf-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
       <let name="name" value="lower-case(conf-name[1])"/>
       
-      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">[conf-doi-test-1] <value-of select="$cite"/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">[conf-doi-test-1] <value-of select="e:citation-format1(year[1])"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
   </pattern>

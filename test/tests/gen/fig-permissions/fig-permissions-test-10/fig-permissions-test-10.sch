@@ -856,7 +856,7 @@
   <pattern id="further-fig-tests">
     <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <report test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-10" test="count(license/license-p) gt 1" role="error" id="fig-permissions-test-10">permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

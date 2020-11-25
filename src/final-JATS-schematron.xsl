@@ -5237,6 +5237,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(permissions) = 1">
                <xsl:attribute name="id">test-permissions-presence</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7548,6 +7549,7 @@
       <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-statement)">
             <xsl:attribute name="id">permissions-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7557,9 +7559,10 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(matches(copyright-year[1],'^[0-9]{4}$'))">
+      <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(matches(copyright-year[1],'^[0-9]{4}$'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(matches(copyright-year[1],'^[0-9]{4}$'))">
             <xsl:attribute name="id">permissions-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7572,9 +7575,10 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-holder)">
+      <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()              else not(copyright-holder)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-holder)">
             <xsl:attribute name="id">permissions-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7589,6 +7593,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ali:free_to_read">
                <xsl:attribute name="id">permissions-test-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7614,9 +7619,10 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)">
+      <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)">
             <xsl:attribute name="id">permissions-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7633,6 +7639,7 @@
       <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname) else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')">
             <xsl:attribute name="id">permissions-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7648,6 +7655,7 @@
       <xsl:if test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))">
             <xsl:attribute name="id">permissions-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7667,6 +7675,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')">
                <xsl:attribute name="id">permissions-test-9</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-9</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7680,6 +7689,7 @@
       <xsl:if test="license">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="license">
             <xsl:attribute name="id">permissions-info</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7711,6 +7721,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ali:license_ref">
                <xsl:attribute name="id">license-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7726,6 +7737,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(license-p) = 1">
                <xsl:attribute name="id">license-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14236,6 +14248,7 @@
       <xsl:if test="copyright-statement and (not(copyright-year) or not(copyright-holder))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-statement and (not(copyright-year) or not(copyright-holder))">
             <xsl:attribute name="id">fig-permissions-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14250,6 +14263,7 @@
       <xsl:if test="copyright-year and (not(copyright-statement) or not(copyright-holder))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-year and (not(copyright-statement) or not(copyright-holder))">
             <xsl:attribute name="id">fig-permissions-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14264,6 +14278,7 @@
       <xsl:if test="copyright-holder and (not(copyright-statement) or not(copyright-year))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-holder and (not(copyright-statement) or not(copyright-year))">
             <xsl:attribute name="id">fig-permissions-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14280,6 +14295,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="license/license-p">
                <xsl:attribute name="id">fig-permissions-test-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14295,6 +14311,7 @@
       <xsl:if test="count(copyright-statement) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(copyright-statement) gt 1">
             <xsl:attribute name="id">fig-permissions-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14311,6 +14328,7 @@
       <xsl:if test="count(copyright-holder) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(copyright-holder) gt 1">
             <xsl:attribute name="id">fig-permissions-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14327,6 +14345,7 @@
       <xsl:if test="count(copyright-year) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(copyright-year) gt 1">
             <xsl:attribute name="id">fig-permissions-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-7</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14343,6 +14362,7 @@
       <xsl:if test="count(license) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(license) gt 1">
             <xsl:attribute name="id">fig-permissions-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-8</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14359,6 +14379,7 @@
       <xsl:if test="(count(license) = 1) and not(license/license-p)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(license) = 1) and not(license/license-p)">
             <xsl:attribute name="id">fig-permissions-test-9</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14373,6 +14394,7 @@
       <xsl:if test="count(license/license-p) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(license/license-p) gt 1">
             <xsl:attribute name="id">fig-permissions-test-10</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-10</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14391,6 +14413,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-statement or license">
                <xsl:attribute name="id">fig-permissions-test-11</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-11</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14406,6 +14429,7 @@
       <xsl:if test=".">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".">
             <xsl:attribute name="id">permissions-notification</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-notification</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14424,6 +14448,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')">
                <xsl:attribute name="id">permissions-parent</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-parent</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14442,6 +14467,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-statement">
                <xsl:attribute name="id">fig-permissions-test-14</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-14</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14473,6 +14499,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,$text)">
                <xsl:attribute name="id">fig-permissions-test-15</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-15</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14505,6 +14532,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would need permission from the copyright holder\.$')">
                <xsl:attribute name="id">fig-permissions-test-12</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-12</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14522,6 +14550,7 @@
       <xsl:if test="license//ext-link[contains(@xlink:href,'creativecommons.org')]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="license//ext-link[contains(@xlink:href,'creativecommons.org')]">
             <xsl:attribute name="id">fig-permissions-test-13</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-13</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33791,6 +33820,7 @@
       <xsl:if test="matches(caption[1],'[Rr]eproduced from')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Rr]eproduced from')">
             <xsl:attribute name="id">reproduce-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33805,6 +33835,7 @@
       <xsl:if test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')">
             <xsl:attribute name="id">reproduce-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33819,6 +33850,7 @@
       <xsl:if test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')">
             <xsl:attribute name="id">reproduce-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33833,6 +33865,7 @@
       <xsl:if test="matches(caption[1],'[Rr]eprinted from')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Rr]eprinted from')">
             <xsl:attribute name="id">reproduce-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33847,6 +33880,7 @@
       <xsl:if test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')">
             <xsl:attribute name="id">reproduce-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33861,6 +33895,7 @@
       <xsl:if test="matches(caption[1],'[Mm]odified from')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Mm]odified from')">
             <xsl:attribute name="id">reproduce-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33875,6 +33910,7 @@
       <xsl:if test="matches(caption[1],'[Mm]odified [Ww]ith')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Mm]odified [Ww]ith')">
             <xsl:attribute name="id">reproduce-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-7</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -33889,6 +33925,7 @@
       <xsl:if test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')">
             <xsl:attribute name="id">reproduce-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-8</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34505,7 +34542,6 @@
 
 	  <!--RULE doi-conf-ref-checks-->
    <xsl:template match="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" priority="1000" mode="M442">
-      <xsl:variable name="cite" select="e:citation-format1(year[1])"/>
       <xsl:variable name="name" select="lower-case(conf-name[1])"/>
 
 		    <!--REPORT warning-->
@@ -34517,8 +34553,8 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[conf-doi-test-1] <xsl:text/>
-               <xsl:value-of select="$cite"/>
-               <xsl:text/> is a conference ref without a doi, but it's a conference which is know to possibly have dois - (<xsl:text/>
+               <xsl:value-of select="e:citation-format1(year[1])"/>
+               <xsl:text/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<xsl:text/>
                <xsl:value-of select="conf-name[1]"/>
                <xsl:text/>). Should it have one?</svrl:text>
          </svrl:successful-report>
