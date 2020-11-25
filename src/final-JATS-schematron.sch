@@ -1510,7 +1510,7 @@
 	
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()              else not(copyright-holder)" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder.</report>
 	
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
+	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-4" test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
 	
 	<assert test="license" role="error" id="permissions-test-5">[permissions-test-5] permissions must contain license.</assert>
 	
@@ -1534,7 +1534,7 @@
 	
 	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" test="ali:license_ref" role="error" id="license-test-1">[license-test-1] license must contain ali:license_ref.</assert>
 	
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" test="count(license-p) = 1" role="error" id="license-test-2">[license-test-2] license must contain one and only one license-p.</assert>
+	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-2" test="count(license-p) = 1" role="error" id="license-test-2">[license-test-2] license must contain one and only one license-p.</assert>
 	
 	</rule>
   </pattern>
@@ -4869,7 +4869,7 @@
       
       
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-cit-3" test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" role="error" id="final-das-elem-cit-3">[final-das-elem-cit-3] The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-cit-3" test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" role="error" id="final-das-elem-cit-3">[final-das-elem-cit-3] The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4" test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" role="warning" id="das-elem-cit-4">[das-elem-cit-4] The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
       
@@ -5035,9 +5035,9 @@
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-1" test=". = $impact-statement" role="warning" id="insight-abstract-impact-test-1">[insight-abstract-impact-test-1] In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-abstract-impact-test-1" test=". = $impact-statement" role="warning" id="insight-abstract-impact-test-1">[insight-abstract-impact-test-1] In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-asbtract-impact-test-2" test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-abstract-impact-test-2">[insight-abstract-impact-test-2] In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#insight-abstract-impact-test-2" test="count(p/*) = $impact-statement-element-count" role="warning" id="insight-abstract-impact-test-2">[insight-abstract-impact-test-2] In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
      
    </rule>
   </pattern>
