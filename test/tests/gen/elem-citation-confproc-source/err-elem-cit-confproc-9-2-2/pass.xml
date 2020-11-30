@@ -3,7 +3,7 @@
 Test: assert    count(*)=count(italic | sub | sup)
 Message: [err-elem-cit-confproc-9-2-2]
         A  <source> element within a <element-citation> of type 'confproc' may only contain the child 
-        elements<italic>, <sub>, and <sup>. 
+        elements <italic>, <sub>, and <sup>. 
         No other elements are allowed.
         Reference '' has child elements that are not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
