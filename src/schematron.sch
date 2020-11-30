@@ -3344,7 +3344,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged" 
         test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" 
-        role="error" 
+        role="warning" 
         id="kr-table-not-tagged"><value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged-2" 
@@ -5793,7 +5793,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
         role="error" 
-        id="err-elem-cit-book-10-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
+        id="err-elem-cit-book-10-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
       <assert test="count(publisher-name)=1" 
         role="warning" 
@@ -5936,7 +5936,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
         role="error" 
-        id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
       <assert test="pub-id or ext-link" 
         role="warning" 
@@ -6055,14 +6055,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="count(*)=count(italic | sub | sup)" 
         role="error" 
-        id="err-elem-cit-patent-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-patent-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
     
     <rule context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
       
       <assert test="count(*)=count(italic | sub | sup)" 
         role="error" 
-        id="err-elem-cit-patent-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-patent-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
     
@@ -6178,7 +6178,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2" 
         test="count(*)=count(italic | sub | sup)" 
         role="error" 
-        id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
     
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
@@ -6186,7 +6186,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2" 
         test="count(*)=count(italic | sub | sup)" 
         role="error" 
-        id="err-elem-cit-preprint-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-preprint-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>
@@ -6248,14 +6248,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="count(*)=count(italic | sub | sup)" 
         role="error" 
-        id="err-elem-cit-web-8-2-2">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-web-8-2-2">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
     
     <rule context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
       
       <assert test="count(*)=count(italic | sub | sup)" 
         role="error" 
-        id="err-elem-cit-web-9-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
+        id="err-elem-cit-web-9-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
     
@@ -6515,7 +6515,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-confproc-9-2-2">[err-elem-cit-confproc-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
+        elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
@@ -6746,7 +6746,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-periodical-9-2-2">[err-elem-cit-periodical-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'periodical' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
+        elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
@@ -7378,7 +7378,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
      <assert test="contains($text,$citation)" 
         role="warning" 
-        id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'</assert>
+        id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'.</assert>
      
      <assert test="@related-article-type='commentary-article'" 
         role="error" 

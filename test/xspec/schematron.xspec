@@ -4367,12 +4367,12 @@
       </x:scenario>
       <x:scenario label="kr-table-not-tagged-pass">
         <x:context href="../tests/gen/table-wrap-tests/kr-table-not-tagged/pass.xml"/>
-        <x:expect-not-report id="kr-table-not-tagged" role="error"/>
+        <x:expect-not-report id="kr-table-not-tagged" role="warning"/>
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-not-tagged-fail">
         <x:context href="../tests/gen/table-wrap-tests/kr-table-not-tagged/fail.xml"/>
-        <x:expect-report id="kr-table-not-tagged" role="error"/>
+        <x:expect-report id="kr-table-not-tagged" role="warning"/>
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="kr-table-not-tagged-2-pass">

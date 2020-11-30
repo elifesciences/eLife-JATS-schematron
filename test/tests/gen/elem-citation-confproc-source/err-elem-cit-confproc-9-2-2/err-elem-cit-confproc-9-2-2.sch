@@ -857,7 +857,7 @@
     <rule context="element-citation[@publication-type='confproc']/source" id="elem-citation-confproc-source">
       <assert test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-confproc-9-2-2">[err-elem-cit-confproc-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' may only contain the child 
-        elements&lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
+        elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
     </rule>
