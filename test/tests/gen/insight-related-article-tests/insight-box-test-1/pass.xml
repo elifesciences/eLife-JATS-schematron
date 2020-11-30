@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="insight-box-test-1.sch"?>
 <!--Context: article[@article-type='article-commentary']//article-meta/related-article
 Test: assert    contains($text,$citation)
-Message: A citation for related article  is not included in the related-article box text in the body of the article. '' is not present (or is different to the relevant passage) in ''. -->
+Message: A citation for related article  is not included in the related-article box text in the body of the article. '' is not present (or is different to the relevant passage) in ''. The following word(s) are in the boxed text but not in the citation: . The following word(s) are in the citation but not in the boxed text: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="article-commentary">
     <front>
