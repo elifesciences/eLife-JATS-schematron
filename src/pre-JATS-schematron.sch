@@ -825,6 +825,37 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:insight-box" as="element()">
+    <xsl:param name="box" as="xs:string"/>
+    <xsl:param name="cite-text" as="xs:string"/>
+    <xsl:variable name="box-text" select="substring-after(substring-after($box,'article'),' ')"/> 
+    
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($cite-text,'\s')">
+        <xsl:choose>
+          <xsl:when test="contains($box-text,.)"/>
+          <xsl:otherwise>
+            <xsl:element name="item">
+              <xsl:attribute name="type">cite</xsl:attribute>
+              <xsl:value-of select="."/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      <xsl:for-each select="tokenize($box-text,'\s')">
+        <xsl:choose>
+          <xsl:when test="contains($cite-text,.)"/>
+          <xsl:otherwise>
+            <xsl:element name="item">
+              <xsl:attribute name="type">box</xsl:attribute>
+              <xsl:value-of select="."/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  
   <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
   
   
@@ -4997,7 +5028,7 @@
      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
      <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(        string-join(        for $y in $x/person-group[@person-group-type='author']/*        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)        else $y        ,', '),        '. ',        replace($x/year,'[^\d]',''),        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
-     <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">[insight-box-test-1] A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'.</assert>
+     <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">[insight-box-test-1] A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'. The following word(s) are in the boxed text but not in the citation: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='cite'],'; ')"/>. The following word(s) are in the citation but not in the boxed text: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='box'],'; ')"/>.</assert>
      
      <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">[insight-related-article-test-1] Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
    </rule>

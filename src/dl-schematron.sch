@@ -825,6 +825,37 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:insight-box" as="element()">
+    <xsl:param name="box" as="xs:string"/>
+    <xsl:param name="cite-text" as="xs:string"/>
+    <xsl:variable name="box-text" select="substring-after(substring-after($box,'article'),' ')"/> 
+    
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($cite-text,'\s')">
+        <xsl:choose>
+          <xsl:when test="contains($box-text,.)"/>
+          <xsl:otherwise>
+            <xsl:element name="item">
+              <xsl:attribute name="type">cite</xsl:attribute>
+              <xsl:value-of select="."/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      <xsl:for-each select="tokenize($box-text,'\s')">
+        <xsl:choose>
+          <xsl:when test="contains($cite-text,.)"/>
+          <xsl:otherwise>
+            <xsl:element name="item">
+              <xsl:attribute name="type">box</xsl:attribute>
+              <xsl:value-of select="."/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  
   <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
   
   
