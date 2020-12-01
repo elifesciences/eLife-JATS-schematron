@@ -158,67 +158,69 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
-  <xsl:function name="e:citation-format1" as="xs:string">
-    <xsl:param name="year"/>
+  <xsl:function name="e:cite-name-text" as="xs:string">
+    <xsl:param name="person-group"/>
     <xsl:choose>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 1) and $person-group/name">
+        <xsl:value-of select="$person-group/name/surname[1]"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/collab">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 1) and $person-group/collab">
+        <xsl:value-of select="$person-group/collab"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' and ',$year/ancestor::element-citation/person-group[1]/name/surname[1],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'collab'">
+        <xsl:value-of select="concat($person-group/collab,' and ',$person-group/name/surname[1])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/collab,', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'name'">
+        <xsl:value-of select="concat($person-group/name/surname[1],' and ',$person-group/collab)"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/name[2]/surname[1],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 2)">
+        <xsl:value-of select="concat($person-group/name[1]/surname[1],' and ',$person-group/name[2]/surname[1])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/collab) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1],' and ',$year/ancestor::element-citation/person-group[1]/collab[2],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/collab) = 2)">
+        <xsl:value-of select="concat($person-group/collab[1],' and ',$person-group/collab[2])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1], ' et al., ',$year)"/>
+      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'collab'">
+        <xsl:value-of select="concat($person-group/collab[1], ' et al.')"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1], ' et al., ',$year)"/>
+      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'name'">
+        <xsl:value-of select="concat($person-group/name[1]/surname[1], ' et al.')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undetermined'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:citation-format2" as="xs:string">
-    <xsl:param name="year"/>
+  <xsl:function name="e:citation-format1" as="xs:string">
+    <xsl:param name="element-citation"/>
     <xsl:choose>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],' (',$year,')')"/>
+      <xsl:when test="$element-citation/person-group and $element-citation//year">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),', ',$element-citation/descendant::year[1])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/collab">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' (',$year,')')"/>
+      <xsl:when test="$element-citation/person-group and not($element-citation//year)">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),', ')"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' and ',$year/ancestor::element-citation/person-group[1]/name/surname[1],' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/collab,' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/name[2]/surname[1],' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/collab) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1],' and ',e:stripDiacritics($year/ancestor::element-citation/person-group[1]/collab[2]),' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1], ' et al. (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1], ' et al. (',$year,')')"/>
+      <xsl:when test="not($element-citation/person-group) and $element-citation//year">
+        <xsl:value-of select="concat('et al., ',$element-citation/descendant::year[1])"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="'undetermined'"/>
+        <xsl:value-of select="', '"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:citation-format2" as="xs:string">
+    <xsl:param name="element-citation"/>
+    <xsl:choose>
+      <xsl:when test="$element-citation/person-group and $element-citation//year">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),' (',$element-citation/descendant::year[1],')')"/>
+      </xsl:when>
+      <xsl:when test="$element-citation/person-group and not($element-citation//year)">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),' ()')"/>
+      </xsl:when>
+      <xsl:when test="not($element-citation/person-group) and $element-citation//year">
+        <xsl:value-of select="concat('et al. (',$element-citation/descendant::year[1],')')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="', '"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -226,7 +228,7 @@
     <xsl:param name="ref-list" as="node()"/>
     <xsl:element name="list">
       <xsl:for-each select="$ref-list/ref[element-citation[year]]">
-        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1])"/>
         <xsl:element name="item">
           <xsl:attribute name="id">
             <xsl:value-of select="./@id"/>
@@ -887,8 +889,8 @@
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
-      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
-      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
+      <let name="cite1" value="e:citation-format1($ref/descendant::element-citation[1])"/>
+      <let name="cite2" value="e:citation-format2($ref/descendant::element-citation[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
       <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
@@ -896,7 +898,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-19" test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-19" test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="final-ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
     </rule>
   </pattern>

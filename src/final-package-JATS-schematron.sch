@@ -178,68 +178,71 @@
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
-  <xsl:function name="e:citation-format1" as="xs:string">
-    <xsl:param name="year"/>
+  <xsl:function name="e:cite-name-text" as="xs:string">
+    <xsl:param name="person-group"/>
     <xsl:choose>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 1) and $person-group/name">
+        <xsl:value-of select="$person-group/name/surname[1]"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/collab">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 1) and $person-group/collab">
+        <xsl:value-of select="$person-group/collab"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' and ',$year/ancestor::element-citation/person-group[1]/name/surname[1],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'collab'">
+        <xsl:value-of select="concat($person-group/collab,' and ',$person-group/name/surname[1])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/collab,', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'name'">
+        <xsl:value-of select="concat($person-group/name/surname[1],' and ',$person-group/collab)"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/name[2]/surname[1],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 2)">
+        <xsl:value-of select="concat($person-group/name[1]/surname[1],' and ',$person-group/name[2]/surname[1])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/collab) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1],' and ',$year/ancestor::element-citation/person-group[1]/collab[2],', ',$year)"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/collab) = 2)">
+        <xsl:value-of select="concat($person-group/collab[1],' and ',$person-group/collab[2])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1], ' et al., ',$year)"/>
+      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'collab'">
+        <xsl:value-of select="concat($person-group/collab[1], ' et al.')"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1], ' et al., ',$year)"/>
+      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'name'">
+        <xsl:value-of select="concat($person-group/name[1]/surname[1], ' et al.')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undetermined'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-
-  <xsl:function name="e:citation-format2" as="xs:string">
-    <xsl:param name="year"/>
+  
+  <xsl:function name="e:citation-format1" as="xs:string">
+    <xsl:param name="element-citation"/>
     <xsl:choose>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/name">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],' (',$year,')')"/>
+      <xsl:when test="$element-citation/person-group and $element-citation//year">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),', ',$element-citation/descendant::year[1])"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 1) and $year/ancestor::element-citation/person-group[1]/collab">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' (',$year,')')"/>
+      <xsl:when test="$element-citation/person-group and not($element-citation//year)">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),', ')"/>
       </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab,' and ',$year/ancestor::element-citation/person-group[1]/name/surname[1],' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 1) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/collab,' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/name) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1],' and ',$year/ancestor::element-citation/person-group[1]/name[2]/surname[1],' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) = 2) and (count($year/ancestor::element-citation/person-group[1]/collab) = 2)">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1],' and ',e:stripDiacritics($year/ancestor::element-citation/person-group[1]/collab[2]),' (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/collab[1], ' et al. (',$year,')')"/>
-      </xsl:when>
-      <xsl:when test="(count($year/ancestor::element-citation/person-group[1]/*) ge 2) and $year/ancestor::element-citation/person-group[1]/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($year/ancestor::element-citation/person-group[1]/name[1]/surname[1], ' et al. (',$year,')')"/>
+      <xsl:when test="not($element-citation/person-group) and $element-citation//year">
+        <xsl:value-of select="concat('et al., ',$element-citation/descendant::year[1])"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="'undetermined'"/>
+        <xsl:value-of select="', '"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:citation-format2" as="xs:string">
+    <xsl:param name="element-citation"/>
+    <xsl:choose>
+      <xsl:when test="$element-citation/person-group and $element-citation//year">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),' (',$element-citation/descendant::year[1],')')"/>
+      </xsl:when>
+      <xsl:when test="$element-citation/person-group and not($element-citation//year)">
+        <xsl:value-of select="concat(e:cite-name-text($element-citation/person-group[1]),' ()')"/>
+      </xsl:when>
+      <xsl:when test="not($element-citation/person-group) and $element-citation//year">
+        <xsl:value-of select="concat('et al. (',$element-citation/descendant::year[1],')')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="', '"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -248,7 +251,7 @@
     <xsl:param name="ref-list" as="node()"/>
     <xsl:element name="list">
       <xsl:for-each select="$ref-list/ref[element-citation[year]]">
-        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1]/year[1])"/>
+        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1])"/>
         <xsl:element name="item">
           <xsl:attribute name="id">
             <xsl:value-of select="./@id"/>
@@ -3900,7 +3903,7 @@
       <report test="count(year) &gt; 1 " role="error" id="err-elem-cit-gen-date-1-9">There may be at most one &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/> &lt;year&gt; elements.</report>
       
       <report test="(fpage) and not(lpage)" role="warning" id="fpage-lpage-test-1">
-        <value-of select="e:citation-format1(year[1])"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
+        <value-of select="e:citation-format1(.)"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
       
     </rule>
   </pattern>
@@ -3939,7 +3942,7 @@
     <rule context="ref/element-citation/year" id="elem-citation-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
-      <let name="citation" value="e:citation-format1(self::*)"/>
+      <let name="citation" value="e:citation-format1(parent::element-citation)"/>
       
       <assert test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains the value '<value-of select="."/>'.</assert>
       
@@ -5346,8 +5349,8 @@
     <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
-      <let name="cite1" value="e:citation-format1($ref/descendant::year[1])"/>
-      <let name="cite2" value="e:citation-format2($ref/descendant::year[1])"/>
+      <let name="cite1" value="e:citation-format1($ref/descendant::element-citation[1])"/>
+      <let name="cite2" value="e:citation-format2($ref/descendant::element-citation[1])"/>
       <let name="cite3" value="normalize-space(replace($cite1,'\p{P}|\p{N}',''))"/>
       <let name="pre-text" value="replace(replace(replace(replace(preceding-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
       <let name="post-text" value="replace(replace(replace(replace(following-sibling::text()[1],' ',' '),' et al\. ',' et al '),'e\.g\.','eg '),'i\.e\. ','ie ')"/>
@@ -5391,7 +5394,9 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-18" test="matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')" role="warning" id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-19" test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="ref-xref-test-19">
+      
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-19" test="matches(.,'^et al|^ and|^\(\d|^,')" role="error" id="final-ref-xref-test-19">
         <value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-20" test="matches($post-text,'^\);\s?$') and (following-sibling::*[1]/local-name() = 'xref')" role="error" id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
@@ -5413,8 +5418,8 @@
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
-      <let name="cite1" value="e:citation-format1(descendant::year[1])"/>
-      <let name="cite1.5" value="e:citation-format2(descendant::year[1])"/>
+      <let name="cite1" value="e:citation-format1(.)"/>
+      <let name="cite1.5" value="e:citation-format2(.)"/>
       <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
       <let name="regex" value="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
@@ -6471,9 +6476,9 @@
   <pattern id="book-chapter-tests-pattern">
     <rule context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
       
-      <assert test="person-group[@person-group-type='editor']" role="warning" id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
+      <assert test="person-group[@person-group-type='editor']" role="warning" id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
       
-      <assert test="fpage and lpage" role="warning" id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(year[1])"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
+      <assert test="fpage and lpage" role="warning" id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
       
     </rule>
   </pattern>
@@ -6807,7 +6812,7 @@
   </pattern>
   <pattern id="page-conformity-pattern">
     <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
-      <let name="cite" value="e:citation-format1(year)"/>
+      <let name="cite" value="e:citation-format1(.)"/>
       
       <report test="matches(lower-case(source[1]),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">
         <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
@@ -7256,7 +7261,7 @@
   
   <pattern id="doi-journal-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
       <let name="journals" value="'journals.xml'"/>
@@ -7268,7 +7273,7 @@
   </pattern>
   <pattern id="doi-book-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" id="doi-book-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="publisher" value="lower-case(publisher-name[1])"/>
       <let name="publishers" value="'publishers.xml'"/>
@@ -7280,7 +7285,7 @@
   </pattern>
   <pattern id="doi-software-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
-      <let name="cite" value="e:citation-format1(year[1])"/>
+      <let name="cite" value="e:citation-format1(.)"/>
       <let name="host" value="lower-case(source[1])"/>
       
       <report see="https://doi.org/10.5281/zenodo...'? More information here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1" test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
@@ -7296,7 +7301,7 @@
       <let name="name" value="lower-case(conf-name[1])"/>
       
       <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
-        <value-of select="e:citation-format1(year[1])"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+        <value-of select="e:citation-format1(.)"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
   </pattern>
