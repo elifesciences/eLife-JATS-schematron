@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="ref-xref-test-19.sch"?>
+<?oxygen SCHSchema="final-ref-xref-test-19.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches(.,'^et al|^ and|^\(\d|^,')
 Message:  - citation doesn't start with an author's name which is incorrect. -->
