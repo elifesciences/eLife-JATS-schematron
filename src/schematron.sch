@@ -7559,7 +7559,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" 
+      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" 
         role="warning" 
         id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/></report>
       
@@ -10778,6 +10778,23 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="conf-doi-test-1"><value-of select="e:citation-format1(year[1])"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
+  </pattern>
+  
+  <pattern id="links-in-ref-tests">
+    
+    <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title"
+      id="link-ref-tests">
+      
+      <report test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')" 
+        role="error" 
+        id="doi-in-display-test"><value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
+      
+      <report test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" 
+        role="error" 
+        id="link-in-display-test"><value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
+      
+    </rule>
+      
   </pattern>
   
   <pattern id="fundref-pattern">

@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="doi-in-display-test.sch"?>
+<!--Context: element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title
+Test: report    matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')
+Message:  element contains a doi - . The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="data" specific-use="references" id="dataset5">
+      <person-group person-group-type="author">
+        <collab>Johnson</collab>
+      </person-group>
+      <year iso-8601-date="2018">2018</year>
+      <data-title>CRCNS fcx-2</data-title>
+      <source>CRCNS</source>
+      <pub-id assigning-authority="other" pub-id-type="doi" xlink:href="10.6080/K0VX0DQD"/>
+    </element-citation>
+  </article>
+</root>

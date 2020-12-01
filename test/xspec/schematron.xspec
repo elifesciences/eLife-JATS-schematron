@@ -17218,6 +17218,28 @@
         <x:expect-not-assert id="doi-conf-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="link-ref-tests">
+      <x:scenario label="doi-in-display-test-pass">
+        <x:context href="../tests/gen/link-ref-tests/doi-in-display-test/pass.xml"/>
+        <x:expect-not-report id="doi-in-display-test" role="error"/>
+        <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="doi-in-display-test-fail">
+        <x:context href="../tests/gen/link-ref-tests/doi-in-display-test/fail.xml"/>
+        <x:expect-report id="doi-in-display-test" role="error"/>
+        <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="link-in-display-test-pass">
+        <x:context href="../tests/gen/link-ref-tests/link-in-display-test/pass.xml"/>
+        <x:expect-not-report id="link-in-display-test" role="error"/>
+        <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="link-in-display-test-fail">
+        <x:context href="../tests/gen/link-ref-tests/link-in-display-test/fail.xml"/>
+        <x:expect-report id="link-in-display-test" role="error"/>
+        <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fundref-rule">
       <x:scenario label="fundref-test-1-pass">
         <x:context href="../tests/gen/fundref-rule/fundref-test-1/pass.xml"/>

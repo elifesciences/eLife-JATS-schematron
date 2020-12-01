@@ -5321,7 +5321,7 @@
       
       <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
       
       <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
@@ -7319,6 +7319,18 @@
     </rule>
   </pattern>
   
+  <pattern id="link-ref-tests-pattern">
+    <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
+      
+      <report test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')" role="error" id="doi-in-display-test">
+        <value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
+      
+      <report test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">
+        <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
+      
+    </rule>
+  </pattern>
+  
   <pattern id="fundref-rule-pattern">
     <rule context="article//ack" id="fundref-rule">
       <let name="ack" value="."/>   
@@ -8034,6 +8046,7 @@
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>
+      <assert test="descendant::element-citation/source  or descendant:: element-citation/article-title  or descendant:: element-citation/chapter-title  or descendant:: element-citation/data-title" role="error" id="link-ref-tests-xspec-assert">element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title must be present.</assert>
       <assert test="descendant::article//ack" role="error" id="fundref-rule-xspec-assert">article//ack must be present.</assert>
       <assert test="descendant::sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] or descendant::       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] or descendant::       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] must be present.</assert>
       <assert test="descendant::article//*[not(ancestor::mml:math)]" role="error" id="element-allowlist-xspec-assert">article//*[not(ancestor::mml:math)] must be present.</assert>

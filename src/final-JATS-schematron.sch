@@ -5179,7 +5179,7 @@
       
       <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" role="error" id="diabetes-2-test">[diabetes-2-test] '<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
       
       <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">[year-style-test] '<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
@@ -6945,6 +6945,16 @@
       <let name="name" value="lower-case(conf-name[1])"/>
       
       <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">[conf-doi-test-1] <value-of select="e:citation-format1(year[1])"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+      
+    </rule>
+  </pattern>
+  
+  <pattern id="link-ref-tests-pattern">
+    <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
+      
+      <report test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')" role="error" id="doi-in-display-test">[doi-in-display-test] <value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
+      
+      <report test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">[link-in-display-test] <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
       
     </rule>
   </pattern>
