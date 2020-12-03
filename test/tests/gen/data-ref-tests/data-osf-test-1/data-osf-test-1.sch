@@ -887,7 +887,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://osf.io' type link, but the database name is not 'Open Science Framework' - . Is that correct? More info here - https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-1" test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')" role="warning" id="data-osf-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. Is that correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-1" test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')" role="warning" id="data-osf-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
