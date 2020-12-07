@@ -19968,57 +19968,34 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="pub-id or ext-link"/>
+         <xsl:when test="pub-id"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="pub-id or ext-link">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="pub-id">
                <xsl:attribute name="id">final-err-elem-cit-data-13-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[final-err-elem-cit-data-13-1] There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id. Reference '<xsl:text/>
+               <svrl:text>[final-err-elem-cit-data-13-1] There must be at least one pub-id. There may be more than one pub-id. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(pub-id)"/>
-                  <xsl:text/> &lt;pub-id elements and <xsl:text/>
-                  <xsl:value-of select="count(ext-link)"/>
-                  <xsl:text/> &lt;ext-link&gt; elements.</svrl:text>
+                  <xsl:text/> &lt;pub-id elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="count(pub-id) ge 1 or count(ext-link) ge 1"/>
+         <xsl:when test="count(*) = count(person-group| data-title| source| year| pub-id| version)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(pub-id) ge 1 or count(ext-link) ge 1">
-               <xsl:attribute name="id">final-err-elem-cit-data-17-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[final-err-elem-cit-data-17-1] The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<xsl:text/>
-                  <xsl:value-of select="ancestor::ref/@id"/>
-                  <xsl:text/>' has <xsl:text/>
-                  <xsl:value-of select="count(pub-id)"/>
-                  <xsl:text/> &lt;pub-id&gt; elements and <xsl:text/>
-                  <xsl:value-of select="count(ext-link)"/>
-                  <xsl:text/> &lt;ext-link&gt; elements.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(person-group| data-title| source| year| pub-id| version)">
                <xsl:attribute name="id">err-elem-cit-data-18</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-data-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;. Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-data-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;version&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
