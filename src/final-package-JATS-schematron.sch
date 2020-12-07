@@ -4238,13 +4238,9 @@
       
       
       
-      <assert test="pub-id or ext-link" role="error" id="final-err-elem-cit-data-13-1">There must be at least one pub-id OR an &lt;ext-link&gt;. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+      <assert test="pub-id" role="error" id="final-err-elem-cit-data-13-1">There must be at least one pub-id. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements.</assert>
       
-      
-      
-      <assert test="count(pub-id) ge 1 or count(ext-link) ge 1" role="error" id="final-err-elem-cit-data-17-1">The &lt;ext-link&gt; element is required if there is no &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
-      
-      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;version&gt;, and &lt;ext-link&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version)" role="error" id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
