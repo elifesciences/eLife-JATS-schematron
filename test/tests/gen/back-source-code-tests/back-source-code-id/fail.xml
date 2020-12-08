@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="back-source-code-id.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]
+Test: assert    matches(@id,'^scode\d{1,2}$')
+Message: The id () for  is not in the correct format. Source code needs to have ids in the format 'scode0'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="supplementary-material">
+        <supplementary-material id="sdata1">
+          <label>Source code 1.</label>
+          <caption><title>...</title></caption>
+        </supplementary-material>
+      </sec>
+    </back>
+  </article>
+</root>

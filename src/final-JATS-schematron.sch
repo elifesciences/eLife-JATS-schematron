@@ -1874,7 +1874,7 @@
       
       
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9" test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">[final-custom-meta-test-9] Impact statement contains a possessive phrase. This is not allowed.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9" test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" role="error" id="final-custom-meta-test-9">[final-custom-meta-test-9] Impact statement contains a possessive phrase. This is not allowed.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10" test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">[custom-meta-test-10] Impact statement is comprised entirely of numbers, which must be incorrect.</report>
       
@@ -2237,6 +2237,8 @@
       
       <assert test="string($pos) = $no" role="error" id="back-supplementary-file-position">[back-supplementary-file-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
+      <assert test="matches(@id,'^supp\d{1,2}$')" role="error" id="back-supplementary-file-id">[back-supplementary-file-id] The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Supplementary files need to have ids in the format 'supp0'.</assert>
+      
     </rule>
   </pattern>
   <pattern id="back-source-data-tests-pattern">
@@ -2246,6 +2248,8 @@
       
       <assert test="string($pos) = $no" role="error" id="back-source-data-position">[back-source-data-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
+      <assert test="matches(@id,'^sdata\d{1,2}$')" role="error" id="back-source-data-id">[back-source-data-id] The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source data need to have ids in the format 'sdata0'.</assert>
+      
     </rule>
   </pattern>
   <pattern id="back-source-code-tests-pattern">
@@ -2254,6 +2258,8 @@
       <let name="no" value="substring-after(@id,'scode')"/>
       
       <assert test="string($pos) = $no" role="error" id="back-source-code-position">[back-source-code-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+      <assert test="matches(@id,'^scode\d{1,2}$')" role="error" id="back-source-code-id">[back-source-code-id] The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</assert>
       
     </rule>
   </pattern>

@@ -885,14 +885,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-data-tests">
-    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version)" role="error" id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+  <pattern id="content-containers">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" id="back-source-code-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <let name="no" value="substring-after(@id,'scode')"/>
+      <assert test="matches(@id,'^scode\d{1,2}$')" role="error" id="back-source-code-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" role="error" id="back-source-code-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

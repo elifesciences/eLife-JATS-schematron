@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-data-18.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
-Test: assert    count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)
-Message: The only tags that are allowed as children of <element-citation> with the publication-type="data" are: <person-group>, <data-title>, <source>, <year>, <pub-id>, <version>, and <ext-link>. Reference '' has other elements. -->
+Test: assert    count(*) = count(person-group| data-title| source| year| pub-id| version)
+Message: The only tags that are allowed as children of <element-citation> with the publication-type="data" are: <person-group>, <data-title>, <source>, <year>, <pub-id>, and <version>. Reference '' has other elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
