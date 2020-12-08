@@ -9364,8 +9364,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ww]e show|[Tt]his study|[Tt]his paper')">
+      <xsl:if test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')">
             <xsl:attribute name="id">final-custom-meta-test-9</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -11205,6 +11205,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(@id,'^supp\d{1,2}$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^supp\d{1,2}$')">
+               <xsl:attribute name="id">back-supplementary-file-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[back-supplementary-file-id] The id (<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>) for <xsl:text/>
+                  <xsl:value-of select="replace(label,'\.$','')"/>
+                  <xsl:text/> is not in the correct format. Supplementary files need to have ids in the format 'supp0'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M132"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M132"/>
@@ -11240,6 +11259,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(@id,'^sdata\d{1,2}$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^sdata\d{1,2}$')">
+               <xsl:attribute name="id">back-source-data-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[back-source-data-id] The id (<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>) for <xsl:text/>
+                  <xsl:value-of select="replace(label,'\.$','')"/>
+                  <xsl:text/> is not in the correct format. Source data need to have ids in the format 'sdata0'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M133"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M133"/>
@@ -11272,6 +11310,25 @@
                   <xsl:text/>, but it is placed <xsl:text/>
                   <xsl:value-of select="e:get-ordinal($pos)"/>
                   <xsl:text/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(@id,'^scode\d{1,2}$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^scode\d{1,2}$')">
+               <xsl:attribute name="id">back-source-code-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[back-source-code-id] The id (<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>) for <xsl:text/>
+                  <xsl:value-of select="replace(label,'\.$','')"/>
+                  <xsl:text/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

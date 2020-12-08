@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="back-source-data-id.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]
+Test: assert    matches(@id,'^sdata\d{1,2}$')
+Message: The id () for  is not in the correct format. Source data need to have ids in the format 'sdata0'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="supplementary-material">
+        <supplementary-material id="supp1">
+          <label>Source data 1.</label>
+          <caption><title>...</title></caption>
+        </supplementary-material>
+      </sec>
+    </back>
+  </article>
+</root>

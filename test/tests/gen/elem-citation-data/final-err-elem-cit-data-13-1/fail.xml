@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-err-elem-cit-data-13-1.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
-Test: assert    pub-id or ext-link
-Message: There must be at least one pub-id OR an <ext-link>. There may be more than one pub-id. Reference '' has  <pub-id elements and  <ext-link> elements. -->
+Test: assert    pub-id
+Message: There must be at least one pub-id. There may be more than one pub-id. Reference '' has  <pub-id elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
