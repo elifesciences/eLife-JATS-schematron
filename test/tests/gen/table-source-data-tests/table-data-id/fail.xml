@@ -1,0 +1,35 @@
+<?oxygen SCHSchema="table-data-id.sch"?>
+<!--Context: table-wrap//supplementary-material[contains(label[1],' data ')]
+Test: assert    @id=concat($table-id,'sdata',$pos)
+Message: The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for , '' is not in this format. It should be '' instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="table1">
+      <label>Table 1</label>
+      <caption>
+        <title>Effect of a second siRNA H2A.Z.2 (siZ2#).</title>
+        <p>
+          <supplementary-material id="table1data1">
+            <label>Table 1—source data 1.</label>
+            <caption>
+              <title>Source Data for the histogrammes representing the effect of a second siRNA
+                H2A.</title>
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+        <p>
+          <supplementary-material id="table1sdata2">
+            <label>Table 1—source data 2.</label>
+            <caption>
+              <title>Source Data for the histogrammes representing the effect of a second siRNA
+                H2A.</title>
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+      </caption>
+      <table/>
+    </table-wrap>
+  </article>
+</root>

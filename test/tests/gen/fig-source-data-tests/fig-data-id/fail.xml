@@ -1,0 +1,35 @@
+<?oxygen SCHSchema="fig-data-id.sch"?>
+<!--Context: fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]
+Test: assert    @id=concat($fig-id,'sdata',$pos)
+Message: The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for , '' is not in this format. It should be '' instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig id="fig2s2" position="float" specific-use="child-fig">
+      <label>Figure 2—figure supplement 2.</label>
+      <caption>
+        <title>Effect of a second siRNA H2A.Z.2 (siZ2#).</title>
+        <p>
+          <supplementary-material id="f12-sdata">
+            <label>Figure 2—figure supplement 2—source data 1.</label>
+            <caption>
+              <title>Source Data for the histogrammes representing the effect of a second siRNA
+                H2A.</title>
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+        <p>
+          <supplementary-material id="fig2s2sdata1">
+            <label>Figure 2—figure supplement 2—source data 2.</label>
+            <caption>
+              <title>Source Data for the histogrammes representing the effect of a second siRNA
+                H2A.</title>
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+      </caption>
+      <graphic/>
+    </fig>
+  </article>
+</root>

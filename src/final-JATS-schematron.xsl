@@ -11388,7 +11388,7 @@
       <xsl:variable name="fig-id" select="ancestor::fig[1]/@id"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
-      <xsl:variable name="pos" select="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
+      <xsl:variable name="pos" select="$sibling-count - count(following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -11407,6 +11407,27 @@
                   <xsl:text/>, but it is placed <xsl:text/>
                   <xsl:value-of select="e:get-ordinal($pos)"/>
                   <xsl:text/>. Either it is misnumbered or it should be moved to a different position.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id=concat($fig-id,'sdata',$pos)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id=concat($fig-id,'sdata',$pos)">
+               <xsl:attribute name="id">fig-data-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-data-id] The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for <xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>, '<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>' is not in this format. It should be '<xsl:text/>
+                  <xsl:value-of select="concat($fig-id,'sdata',$pos)"/>
+                  <xsl:text/>' instead.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -11448,6 +11469,27 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id=concat($fig-id,'scode',$pos)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id=concat($fig-id,'scode',$pos)">
+               <xsl:attribute name="id">fig-code-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-code-id] The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>, '<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>' is not in this format. It should be '<xsl:text/>
+                  <xsl:value-of select="concat($fig-id,'scode',$pos)"/>
+                  <xsl:text/>' instead.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M137"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M137"/>
@@ -11486,6 +11528,27 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id=concat($vid-id,'sdata',$pos)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id=concat($vid-id,'sdata',$pos)">
+               <xsl:attribute name="id">vid-data-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[vid-data-id] The id for video level source data must be the id of its ancestor video, followed by 'sdata', followed by its position relative to other source data for the same video. The id for <xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>, '<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>' is not in this format. It should be '<xsl:text/>
+                  <xsl:value-of select="concat($vid-id,'sdata',$pos)"/>
+                  <xsl:text/>' instead.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M138"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M138"/>
@@ -11521,6 +11584,27 @@
                   <xsl:text/>, but it is placed <xsl:text/>
                   <xsl:value-of select="e:get-ordinal($pos)"/>
                   <xsl:text/>. Either it is misnumbered or it should be moved to a different position.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id=concat($vid-id,'scode',$pos)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id=concat($vid-id,'scode',$pos)">
+               <xsl:attribute name="id">vid-code-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[vid-code-id] The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>, '<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>' is not in this format. It should be '<xsl:text/>
+                  <xsl:value-of select="concat($vid-id,'scode',$pos)"/>
+                  <xsl:text/>' instead.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -11563,6 +11647,27 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id=concat($table-id,'sdata',$pos)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id=concat($table-id,'sdata',$pos)">
+               <xsl:attribute name="id">table-data-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-data-id] The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>, '<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>' is not in this format. It should be '<xsl:text/>
+                  <xsl:value-of select="concat($table-id,'sdata',$pos)"/>
+                  <xsl:text/>' instead.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M140"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M140"/>
@@ -11599,6 +11704,27 @@
                   <xsl:text/>, but it is placed <xsl:text/>
                   <xsl:value-of select="e:get-ordinal($pos)"/>
                   <xsl:text/>. Either it is misnumbered or it should be moved to a different position.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id=concat($table-id,'scode',$pos)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id=concat($table-id,'scode',$pos)">
+               <xsl:attribute name="id">table-code-id</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-code-id] The id for table level source code must be the id of its ancestor table, followed by 'scode', followed by its position relative to other source data for the same table. The id for <xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>, '<xsl:text/>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text/>' is not in this format. It should be '<xsl:text/>
+                  <xsl:value-of select="concat($table-id,'scode',$pos)"/>
+                  <xsl:text/>' instead.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="vid-code-id.sch"?>
+<!--Context: media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]
+Test: assert    @id=concat($vid-id,'scode',$pos)
+Message: The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for , '' is not in this format. It should be '' instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <media id="fig4media1" mime-subtype="mp4" mimetype="video">
+      <label>Figure 4—video 1.</label>
+      <caption>
+        <title>Animated structure of the Rho hexamer with mutated residues highlighted.</title>
+        <p>...</p>
+        <p>
+          <supplementary-material id="scode1">
+            <label>Figure 4—video 1—source code 1.</label>
+            <caption>
+              <title>Rho mutations from all replicate evolution experiments.</title>
+              ...
+            </caption>
+            <media/>
+          </supplementary-material>
+        </p>
+      </caption>
+    </media>
+  </article>
+</root>

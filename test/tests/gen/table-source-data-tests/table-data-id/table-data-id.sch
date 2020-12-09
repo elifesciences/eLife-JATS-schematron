@@ -886,18 +886,18 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" id="fig-source-data-tests">
+    <rule context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
       <let name="label" value="label[1]"/>
-      <let name="fig-id" value="ancestor::fig[1]/@id"/>
+      <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
-      <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
-      <let name="pos" value="$sibling-count - count(following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
-      <assert test="$number = $pos" role="error" id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
+      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
+      <assert test="@id=concat($table-id,'sdata',$pos)" role="error" id="table-data-id">The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'sdata',$pos)"/>' instead.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" role="error" id="fig-source-data-tests-xspec-assert">fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')] must be present.</assert>
+      <assert test="descendant::table-wrap//supplementary-material[contains(label[1],' data ')]" role="error" id="table-source-data-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' data ')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

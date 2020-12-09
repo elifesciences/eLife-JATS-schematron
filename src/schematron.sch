@@ -3128,11 +3128,15 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="fig-id" value="ancestor::fig[1]/@id"/>
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
-      <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
+      <let name="pos" value="$sibling-count - count(following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
       
       <assert test="$number = $pos" 
         role="error" 
         id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+      <assert test="@id=concat($fig-id,'sdata',$pos)" 
+        role="error" 
+        id="fig-data-id">The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'sdata',$pos)"/>' instead.</assert>
       
     </rule>
     
@@ -3147,6 +3151,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="fig-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
+      <assert test="@id=concat($fig-id,'scode',$pos)" 
+        role="error" 
+        id="fig-code-id">The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'scode',$pos)"/>' instead.</assert>
+      
     </rule>
     
     <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" id="vid-source-data-tests">
@@ -3160,6 +3168,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
+      <assert test="@id=concat($vid-id,'sdata',$pos)" 
+        role="error" 
+        id="vid-data-id">The id for video level source data must be the id of its ancestor video, followed by 'sdata', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'sdata',$pos)"/>' instead.</assert>
+      
     </rule>
     
     <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" id="vid-source-code-tests">
@@ -3172,6 +3184,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="$number = $pos" 
         role="error" 
         id="vid-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+      <assert test="@id=concat($vid-id,'scode',$pos)" 
+        role="error" 
+        id="vid-code-id">The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
       
     </rule>
     
@@ -3187,6 +3203,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="table-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
+      <assert test="@id=concat($table-id,'sdata',$pos)" 
+        role="error" 
+        id="table-data-id">The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'sdata',$pos)"/>' instead.</assert>
+      
     </rule>
     
     <rule context="table-wrap//supplementary-material[contains(label[1],' code ')]" id="table-source-code-tests">
@@ -3200,6 +3220,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="$number = $pos" 
         role="error" 
         id="table-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+      
+      <assert test="@id=concat($table-id,'scode',$pos)" 
+        role="error" 
+        id="table-code-id">The id for table level source code must be the id of its ancestor table, followed by 'scode', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'scode',$pos)"/>' instead.</assert>
       
     </rule>
     
