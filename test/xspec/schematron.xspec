@@ -3963,6 +3963,16 @@
         <x:expect-assert id="fig-data-test-2" role="error"/>
         <x:expect-not-assert id="fig-source-data-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-data-id-pass">
+        <x:context href="../tests/gen/fig-source-data-tests/fig-data-id/pass.xml"/>
+        <x:expect-not-assert id="fig-data-id" role="error"/>
+        <x:expect-not-assert id="fig-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-data-id-fail">
+        <x:context href="../tests/gen/fig-source-data-tests/fig-data-id/fail.xml"/>
+        <x:expect-assert id="fig-data-id" role="error"/>
+        <x:expect-not-assert id="fig-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-source-code-tests">
       <x:scenario label="fig-code-test-2-pass">
@@ -3973,6 +3983,16 @@
       <x:scenario label="fig-code-test-2-fail">
         <x:context href="../tests/gen/fig-source-code-tests/fig-code-test-2/fail.xml"/>
         <x:expect-assert id="fig-code-test-2" role="error"/>
+        <x:expect-not-assert id="fig-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-code-id-pass">
+        <x:context href="../tests/gen/fig-source-code-tests/fig-code-id/pass.xml"/>
+        <x:expect-not-assert id="fig-code-id" role="error"/>
+        <x:expect-not-assert id="fig-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-code-id-fail">
+        <x:context href="../tests/gen/fig-source-code-tests/fig-code-id/fail.xml"/>
+        <x:expect-assert id="fig-code-id" role="error"/>
         <x:expect-not-assert id="fig-source-code-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -3987,6 +4007,16 @@
         <x:expect-assert id="vid-data-test-2" role="error"/>
         <x:expect-not-assert id="vid-source-data-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="vid-data-id-pass">
+        <x:context href="../tests/gen/vid-source-data-tests/vid-data-id/pass.xml"/>
+        <x:expect-not-assert id="vid-data-id" role="error"/>
+        <x:expect-not-assert id="vid-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="vid-data-id-fail">
+        <x:context href="../tests/gen/vid-source-data-tests/vid-data-id/fail.xml"/>
+        <x:expect-assert id="vid-data-id" role="error"/>
+        <x:expect-not-assert id="vid-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="vid-source-code-tests">
       <x:scenario label="vid-code-test-2-pass">
@@ -3997,6 +4027,16 @@
       <x:scenario label="vid-code-test-2-fail">
         <x:context href="../tests/gen/vid-source-code-tests/vid-code-test-2/fail.xml"/>
         <x:expect-assert id="vid-code-test-2" role="error"/>
+        <x:expect-not-assert id="vid-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="vid-code-id-pass">
+        <x:context href="../tests/gen/vid-source-code-tests/vid-code-id/pass.xml"/>
+        <x:expect-not-assert id="vid-code-id" role="error"/>
+        <x:expect-not-assert id="vid-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="vid-code-id-fail">
+        <x:context href="../tests/gen/vid-source-code-tests/vid-code-id/fail.xml"/>
+        <x:expect-assert id="vid-code-id" role="error"/>
         <x:expect-not-assert id="vid-source-code-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -4011,6 +4051,16 @@
         <x:expect-assert id="table-data-test-2" role="error"/>
         <x:expect-not-assert id="table-source-data-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="table-data-id-pass">
+        <x:context href="../tests/gen/table-source-data-tests/table-data-id/pass.xml"/>
+        <x:expect-not-assert id="table-data-id" role="error"/>
+        <x:expect-not-assert id="table-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-data-id-fail">
+        <x:context href="../tests/gen/table-source-data-tests/table-data-id/fail.xml"/>
+        <x:expect-assert id="table-data-id" role="error"/>
+        <x:expect-not-assert id="table-source-data-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="table-source-code-tests">
       <x:scenario label="table-code-test-2-pass">
@@ -4021,6 +4071,16 @@
       <x:scenario label="table-code-test-2-fail">
         <x:context href="../tests/gen/table-source-code-tests/table-code-test-2/fail.xml"/>
         <x:expect-assert id="table-code-test-2" role="error"/>
+        <x:expect-not-assert id="table-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-code-id-pass">
+        <x:context href="../tests/gen/table-source-code-tests/table-code-id/pass.xml"/>
+        <x:expect-not-assert id="table-code-id" role="error"/>
+        <x:expect-not-assert id="table-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-code-id-fail">
+        <x:context href="../tests/gen/table-source-code-tests/table-code-id/fail.xml"/>
+        <x:expect-assert id="table-code-id" role="error"/>
         <x:expect-not-assert id="table-source-code-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
