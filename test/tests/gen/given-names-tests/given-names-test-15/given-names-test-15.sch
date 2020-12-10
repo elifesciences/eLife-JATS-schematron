@@ -887,7 +887,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/given-names" id="given-names-tests">
-      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" role="error" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
+      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" role="info" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

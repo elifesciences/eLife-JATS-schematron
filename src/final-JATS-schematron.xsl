@@ -6801,11 +6801,11 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT info-->
       <xsl:if test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')">
             <xsl:attribute name="id">given-names-test-15</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
