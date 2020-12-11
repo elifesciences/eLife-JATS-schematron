@@ -16612,6 +16612,18 @@
         <x:expect-not-assert id="mtext-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="inline-formula-length-tests">
+      <x:scenario label="inline-formula-length-test-1-pass">
+        <x:context href="../tests/gen/inline-formula-length-tests/inline-formula-length-test-1/pass.xml"/>
+        <x:expect-not-report id="inline-formula-length-test-1" role="warning"/>
+        <x:expect-not-assert id="inline-formula-length-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-length-test-1-fail">
+        <x:context href="../tests/gen/inline-formula-length-tests/inline-formula-length-test-1/fail.xml"/>
+        <x:expect-report id="inline-formula-length-test-1" role="warning"/>
+        <x:expect-not-assert id="inline-formula-length-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="p-punctuation">
       <x:scenario label="p-punctuation-test-pass">
         <x:context href="../tests/gen/p-punctuation/p-punctuation-test/pass.xml"/>

@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="inline-formula-length-test-1.sch"?>
+<!--Context: inline-formula[not(descendant::mml:mtable) and following-sibling::text()]
+Test: report    string-length(.) gt 89
+Message: Inline formula containing '' (in ) is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>test <inline-formula><mml:math id="inf1"><mml:mstyle displaystyle="true" scriptlevel="0"><mml:mrow><mml:msqrt><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>H</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>0.1</mml:mn><mml:mo>∗</mml:mo><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>15</mml:mn></mml:mrow></mml:msup><mml:mi>N</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:msqrt></mml:mrow></mml:mstyle></mml:math></inline-formula> test</p>
+      <sec>
+        <title>Results</title>
+        <p>test <inline-formula><mml:math id="inf2"><mml:mstyle displaystyle="true" scriptlevel="0"><mml:mrow><mml:msqrt><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>H</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>0.1</mml:mn><mml:mo>∗</mml:mo><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>15</mml:mn></mml:mrow></mml:msup><mml:mi>N</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:msqrt></mml:mrow></mml:mstyle></mml:math></inline-formula> test</p>
+        <fig>
+          <label>Figure 1.</label>
+          <caption>
+            <p>test <inline-formula><mml:math id="inf3"><mml:mstyle displaystyle="true" scriptlevel="0"><mml:mrow><mml:msqrt><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>H</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>0.1</mml:mn><mml:mo>∗</mml:mo><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>15</mml:mn></mml:mrow></mml:msup><mml:mi>N</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:msqrt></mml:mrow></mml:mstyle></mml:math></inline-formula> test</p>
+          </caption>
+        </fig>
+      </sec>
+    </body>
+    <back>
+      <app>
+        <title>Appendix 1</title>
+        <p>test <inline-formula><mml:math id="inf4"><mml:mstyle displaystyle="true" scriptlevel="0"><mml:mrow><mml:msqrt><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>H</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>0.1</mml:mn><mml:mo>∗</mml:mo><mml:msup><mml:mi mathvariant="normal">Δ</mml:mi><mml:mrow><mml:mn>15</mml:mn></mml:mrow></mml:msup><mml:mi>N</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:msqrt></mml:mrow></mml:mstyle></mml:math></inline-formula> test</p>
+      </app>
+    </back>
+  </article>
+</root>

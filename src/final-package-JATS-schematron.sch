@@ -6238,7 +6238,7 @@
       <report test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
         <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/[\+\-]|[\+\-]/\s+[\+\-]')" role="warning" id="plus-minus-presence">
+      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/\s?[\+\-]|[\+\-]\s?/\s+[\+\-]')" role="warning" id="plus-minus-presence">
         <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
       </report>
       
@@ -7038,6 +7038,13 @@
     <rule context="mml:mtext" id="mtext-tests">
       
       <report test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="inline-formula-length-tests-pattern">
+    <rule context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" id="inline-formula-length-tests">
+      
+      <report test="string-length(.) gt 89" role="warning" id="inline-formula-length-test-1">Inline formula containing '<value-of select="data()"/>' (in <value-of select="if (ancestor::caption) then ancestor::caption[1]/parent::*/label[1]            else if (ancestor::sec) then concat('the section titled ',ancestor::sec[1]/title[1])            else if (ancestor::app) then ancestor::app[1]/title[1]            else if (ancestor::sub-article) then ancestor::sub-article[1]/front-stub//article-title           else if (ancestor::abstract) then 'asbtract'           else if (ancestor::body[parent::article]) then 'main text'           else 'acknowledgements'"/>) is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
       
     </rule>
   </pattern>
