@@ -9321,16 +9321,6 @@
         <x:expect-assert id="err-elem-cit-confproc-8-1" role="error"/>
         <x:expect-not-assert id="elem-citation-confproc-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-confproc-9-1-pass">
-        <x:context href="../tests/gen/elem-citation-confproc/err-elem-cit-confproc-9-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-confproc-9-1" role="error"/>
-        <x:expect-not-assert id="elem-citation-confproc-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-confproc-9-1-fail">
-        <x:context href="../tests/gen/elem-citation-confproc/err-elem-cit-confproc-9-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-confproc-9-1" role="error"/>
-        <x:expect-not-assert id="elem-citation-confproc-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="err-elem-cit-confproc-10-1-pass">
         <x:context href="../tests/gen/elem-citation-confproc/err-elem-cit-confproc-10-1/pass.xml"/>
         <x:expect-not-assert id="err-elem-cit-confproc-10-1" role="error"/>
@@ -9412,18 +9402,6 @@
         <x:context href="../tests/gen/elem-citation-confproc-preson-group/err-elem-cit-confproc-2-2/fail.xml"/>
         <x:expect-assert id="err-elem-cit-confproc-2-2" role="error"/>
         <x:expect-not-assert id="elem-citation-confproc-preson-group-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="elem-citation-confproc-source">
-      <x:scenario label="err-elem-cit-confproc-9-2-2-pass">
-        <x:context href="../tests/gen/elem-citation-confproc-source/err-elem-cit-confproc-9-2-2/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-confproc-9-2-2" role="error"/>
-        <x:expect-not-assert id="elem-citation-confproc-source-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-confproc-9-2-2-fail">
-        <x:context href="../tests/gen/elem-citation-confproc-source/err-elem-cit-confproc-9-2-2/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-confproc-9-2-2" role="error"/>
-        <x:expect-not-assert id="elem-citation-confproc-source-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-confproc-article-title">

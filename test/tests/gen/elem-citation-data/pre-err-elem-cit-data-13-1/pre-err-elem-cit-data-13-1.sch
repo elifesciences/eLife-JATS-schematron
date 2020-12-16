@@ -887,7 +887,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="pub-id" role="warning" id="pre-err-elem-cit-data-13-1">There must be at least one pub-id. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements. If this information is missing, please query it with the authors.</assert>
+      <assert test="count(pub-id) = 1" role="warning" id="pre-err-elem-cit-data-13-1">There should be one (and only one) pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
