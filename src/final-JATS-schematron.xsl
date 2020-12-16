@@ -33806,7 +33806,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[inline-formula-length-test-1] Inline formula containing '<xsl:text/>
-               <xsl:value-of select="data()"/>
+               <xsl:value-of select="."/>
                <xsl:text/>' (in <xsl:text/>
                <xsl:value-of select="if (ancestor::caption) then ancestor::caption[1]/parent::*/label[1]            else if (ancestor::sec) then concat('the section titled ',ancestor::sec[1]/title[1])            else if (ancestor::app) then ancestor::app[1]/title[1]            else if (ancestor::sub-article) then ancestor::sub-article[1]/front-stub//article-title           else if (ancestor::abstract) then 'asbtract'           else if (ancestor::body[parent::article]) then 'main text'           else 'acknowledgements'"/>
                <xsl:text/>) is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</svrl:text>

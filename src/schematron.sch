@@ -10420,7 +10420,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="string-length(.) gt 89" 
         role="warning" 
-        id="inline-formula-length-test-1">Inline formula containing '<value-of select="data()"/>' (in <value-of select="if (ancestor::caption) then ancestor::caption[1]/parent::*/label[1] 
+        id="inline-formula-length-test-1">Inline formula containing '<value-of select="."/>' (in <value-of select="if (ancestor::caption) then ancestor::caption[1]/parent::*/label[1] 
           else if (ancestor::sec) then concat('the section titled ',ancestor::sec[1]/title[1]) 
           else if (ancestor::app) then ancestor::app[1]/title[1] 
           else if (ancestor::sub-article) then ancestor::sub-article[1]/front-stub//article-title
