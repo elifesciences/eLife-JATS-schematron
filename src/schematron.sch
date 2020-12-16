@@ -6008,13 +6008,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
-      <assert test="pub-id" 
+      <assert test="count(pub-id) = 1" 
         role="warning" 
-        id="pre-err-elem-cit-data-13-1">There must be at least one pub-id. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements. If this information is missing, please query it with the authors.</assert>
+        id="pre-err-elem-cit-data-13-1">There should be one (and only one) pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="pub-id" 
+      <assert test="count(pub-id) = 1" 
         role="error" 
-        id="final-err-elem-cit-data-13-1">There must be at least one pub-id. There may be more than one pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements.</assert>
+        id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements.</assert>
       
       <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version)" 
         role="error" 
@@ -6500,13 +6500,6 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert test="count(source) le 1" 
-        role="error" 
-        id="err-elem-cit-confproc-9-1">[err-elem-confproc-confproc-9-1]
-        Each  &lt;element-citation&gt; of type 'confproc' must not contain more than one &lt;source&gt; element(s).
-        Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
-      
       <assert test="count(conf-name)=1" 
         role="error" 
         id="err-elem-cit-confproc-10-1">[err-elem-cit-confproc-10-1]
@@ -6551,14 +6544,10 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/>
         &lt;pub-id&gt; elements.</assert>
       
-      <assert test="count(*) = count(person-group | article-title | year| source | conf-loc | conf-name | lpage |
+      <assert test="count(*) = count(person-group | article-title | year | conf-loc | conf-name | lpage |
         fpage | elocation-id | ext-link | pub-id)" 
         role="error" 
-        id="err-elem-cit-confproc-17">[err-elem-cit-confproc-17]
-        The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="confproc" are:
-        &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;conf-loc&gt;, &lt;conf-name&gt;, 
-        &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;.
-        Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        id="err-elem-cit-confproc-17">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="confproc" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;conf-loc&gt;, &lt;conf-name&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
     
@@ -6569,18 +6558,6 @@ else self::*/local-name() = $allowed-p-blocks"
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
-    </rule>
-    
-    <rule context="element-citation[@publication-type='confproc']/source" id="elem-citation-confproc-source">
-      
-      <assert test="count(*)=count(italic | sub | sup)" 
-        role="error" 
-        id="err-elem-cit-confproc-9-2-2">[err-elem-cit-confproc-9-2-2]
-        A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'confproc' may only contain the child 
-        elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
-        No other elements are allowed.
-        Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
-      
     </rule>
     
     <rule context="element-citation[@publication-type='confproc']/article-title" id="elem-citation-confproc-article-title">
@@ -7590,7 +7567,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(descendant::p or descendant::td or descendant::th) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" 
+      <report test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" 
         role="warning" 
         id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/></report>
       
@@ -10420,13 +10397,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="string-length(.) gt 89" 
         role="warning" 
-        id="inline-formula-length-test-1">Inline formula containing '<value-of select="."/>' (in <value-of select="if (ancestor::caption) then ancestor::caption[1]/parent::*/label[1] 
-          else if (ancestor::sec) then concat('the section titled ',ancestor::sec[1]/title[1]) 
-          else if (ancestor::app) then ancestor::app[1]/title[1] 
-          else if (ancestor::sub-article) then ancestor::sub-article[1]/front-stub//article-title
-          else if (ancestor::abstract) then 'asbtract'
-          else if (ancestor::body[parent::article]) then 'main text'
-          else 'acknowledgements'"/>) is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
+        id="inline-formula-length-test-1">Inline formula containing '<value-of select="."/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
       
     </rule>
     

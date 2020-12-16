@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="inline-formula-length-test-1.sch"?>
 <!--Context: inline-formula[not(descendant::mml:mtable) and following-sibling::text()]
 Test: report    string-length(.) gt 89
-Message: Inline formula containing '' (in ) is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange. -->
+Message: Inline formula containing '' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

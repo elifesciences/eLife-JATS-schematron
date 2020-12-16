@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-err-elem-cit-data-13-1.sch"?>
 <!--Context: ref/element-citation[@publication-type='data']
-Test: assert    pub-id
-Message: There must be at least one pub-id. There may be more than one pub-id. Reference '' has  <pub-id elements. If this information is missing, please query it with the authors. -->
+Test: assert    count(pub-id) = 1
+Message: There should be one (and only one) pub-id. Reference '' has  <pub-id elements. If this information is missing, please query it with the authors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
