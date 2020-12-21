@@ -12825,7 +12825,7 @@
 
 	  <!--RULE td-child-tests-->
    <xsl:template match="td/*" priority="1000" mode="M157">
-      <xsl:variable name="allowed-blocks" select="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula')"/>
+      <xsl:variable name="allowed-blocks" select="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula', 'list')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -12856,7 +12856,7 @@
 
 	  <!--RULE th-child-tests-->
    <xsl:template match="th/*" priority="1000" mode="M158">
-      <xsl:variable name="allowed-blocks" select="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic')"/>
+      <xsl:variable name="allowed-blocks" select="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
