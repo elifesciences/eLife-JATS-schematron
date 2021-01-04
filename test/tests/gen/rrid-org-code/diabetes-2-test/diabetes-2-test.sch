@@ -887,7 +887,7 @@
   </xsl:function>
   <pattern id="rrid-org-pattern">
     <rule context="p|td|th" id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>

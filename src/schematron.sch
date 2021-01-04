@@ -7521,7 +7521,7 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="rrid-org-pattern">
     
     <rule context="p|td|th" id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(count(
         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')
@@ -7537,7 +7537,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#rrid-test" 
         test="($text-count gt $count)" 
         role="warning" 
-        id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
+        id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
       <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" 
         role="warning" 

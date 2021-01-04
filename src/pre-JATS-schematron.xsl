@@ -24326,7 +24326,7 @@
 
 	  <!--RULE rrid-org-code-->
    <xsl:template match="p|td|th" priority="1000" mode="M369">
-      <xsl:variable name="count" select="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*')])"/>
+      <xsl:variable name="count" select="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
       <xsl:variable name="lc" select="lower-case(.)"/>
       <xsl:variable name="text-count" select="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
       <xsl:variable name="t" select="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
@@ -24348,7 +24348,7 @@
                <xsl:value-of select="name(.)"/>
                <xsl:text/>' element contains what looks like <xsl:text/>
                <xsl:value-of select="$text-count - $count"/>
-               <xsl:text/> unlinked RRID(s). These should always be linked using 'https://scicrunch.org/resolver/'. Element begins with <xsl:text/>
+               <xsl:text/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with <xsl:text/>
                <xsl:value-of select="substring(.,1,15)"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
