@@ -3250,11 +3250,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}]$')" 
+      <report test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" 
         role="warning" 
         id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]')" 
+      <report test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" 
         role="warning" 
         id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
@@ -7820,7 +7820,9 @@ tokenize(substring-after($text,' et al'),' ')[2]
       media[not(ancestor::sub-article) and label]|
       supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
       <let name="cite1" value="replace(label[1],'\.','')"/>
-      <let name="regex" value="replace($cite1,'—','[—–\\-]')"/>
+      <let name="pre-regex" value="replace($cite1,'—','[—–\\-]')"/>
+      <!-- Account for no break spaces in text -->
+      <let name="regex" value="replace($pre-regex,'\s','[\\s ]')"/>
       <let name="article-text" value="string-join(
         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
         return if ($x/local-name()='label') then ()

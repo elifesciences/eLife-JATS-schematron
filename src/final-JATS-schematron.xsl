@@ -11820,8 +11820,8 @@
       </xsl:choose>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
+      <xsl:if test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
             <xsl:attribute name="id">inline-formula-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -11834,8 +11834,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($post-text,'^[\p{L}\p{N}\p{M}]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\p{L}\p{N}\p{M}]')">
+      <xsl:if test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')">
             <xsl:attribute name="id">inline-formula-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -25186,7 +25186,8 @@
 	  <!--RULE unlinked-object-cite-->
    <xsl:template match="fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label]" priority="1000" mode="M376">
       <xsl:variable name="cite1" select="replace(label[1],'\.','')"/>
-      <xsl:variable name="regex" select="replace($cite1,'—','[—–\\-]')"/>
+      <xsl:variable name="pre-regex" select="replace($cite1,'—','[—–\\-]')"/>
+      <xsl:variable name="regex" select="replace($pre-regex,'\s','[\\s ]')"/>
       <xsl:variable name="article-text" select="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
 
 		    <!--REPORT warning-->
