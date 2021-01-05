@@ -2374,9 +2374,9 @@
       
       <assert test="mml:math" role="error" id="inline-formula-test-1">[inline-formula-test-1] inline-formula must contain an mml:math element.</assert>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">[inline-formula-test-2] There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      <report test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">[inline-formula-test-2] There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">[inline-formula-test-3] There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">[inline-formula-test-3] There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
       <assert test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">[inline-formula-test-4] <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
@@ -5301,7 +5301,9 @@
   <pattern id="unlinked-object-cite-pattern">
     <rule context="fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
       <let name="cite1" value="replace(label[1],'\.','')"/>
-      <let name="regex" value="replace($cite1,'—','[—–\\-]')"/>
+      <let name="pre-regex" value="replace($cite1,'—','[—–\\-]')"/>
+      
+      <let name="regex" value="replace($pre-regex,'\s','[\\s ]')"/>
       <let name="article-text" value="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
       <report test="matches($article-text,$regex)" role="warning" id="text-v-object-cite-test">[text-v-object-cite-test] <value-of select="$cite1"/> has possible unlinked citations in the text.</report>
