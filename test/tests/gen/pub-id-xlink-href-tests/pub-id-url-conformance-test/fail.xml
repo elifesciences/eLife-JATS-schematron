@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="pub-id-url-conformance-test.sch"?>
+<!--Context: pub-id[@xlink:href]
+Test: assert    matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&//=]*)$|^ftp://.')
+Message: @xlink:href doesn't look like a URL - ''. Is this correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <pub-id xlink:href="elifesciences.org">elifesciences.org</pub-id>
+  </article>
+</root>

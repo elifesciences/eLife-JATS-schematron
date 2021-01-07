@@ -2043,6 +2043,8 @@
       
       <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">[url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
+      <report test="matches(@xlink:href,'[\s ]')" role="error" id="url-space-report">[url-space-report] '<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
+      
       <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)" role="warning" id="ext-link-parent-test">[ext-link-parent-test] ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
       
       <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))" role="error" id="ext-link-child-test">[ext-link-child-test] ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$form-children"/> - which is not correct.</report>
@@ -4136,9 +4138,11 @@
       
       
       
-      <assert test="count(pub-id) = 1" role="error" id="final-err-elem-cit-data-13-1">[final-err-elem-cit-data-13-1] There must be one (and only one) pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements.</assert>
+      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" role="error" id="final-err-elem-cit-data-13-1">[final-err-elem-cit-data-13-1] There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
-      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version)" role="error" id="err-elem-cit-data-18">[err-elem-cit-data-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <report test="pub-id and ext-link" role="error" id="elem-cit-data-pub-id-ext-link">[elem-cit-data-pub-id-ext-link] Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id&gt; &lt;ext-link&gt; elements. There can only be one or the other, not both.</report>
+      
+      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" role="error" id="err-elem-cit-data-18">[err-elem-cit-data-18] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;ext-link&gt; and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
@@ -4966,6 +4970,19 @@
       <report test="contains(.,' ')" role="warning" id="pub-id-test-4">[pub-id-test-4] pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
       
       <report test="ends-with(.,'.')" role="error" id="pub-id-test-5">[pub-id-test-5] <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="pub-id-xlink-href-tests-pattern">
+    <rule context="pub-id[@xlink:href]" id="pub-id-xlink-href-tests">
+      
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.')" role="warning" id="pub-id-url-conformance-test">[pub-id-url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      
+      <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag-2">[ftp-credentials-flag-2] @xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
+      
+      <report test="matches(@xlink:href,'\.$')" role="error" id="pub-id-url-fullstop-report">[pub-id-url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
+      
+      <report test="matches(@xlink:href,'[\s ]')" role="error" id="pub-id-url-space-report">[pub-id-url-space-report] '<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
       
     </rule>
   </pattern>

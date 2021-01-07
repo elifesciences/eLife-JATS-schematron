@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="pub-id-url-fullstop-report.sch"?>
+<!--Context: pub-id[@xlink:href]
+Test: report    matches(@xlink:href,'\.$')
+Message: '' - Link ends in a full stop which is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <pub-id xlink:href="https://elifesciences.org">elifesciences.org</pub-id>
+  </article>
+</root>

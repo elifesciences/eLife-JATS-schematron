@@ -885,14 +885,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-data-tests">
-    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" role="error" id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+  <pattern id="pub-id-pattern">
+    <rule context="pub-id[@xlink:href]" id="pub-id-xlink-href-tests">
+      <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag-2">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::pub-id[@xlink:href]" role="error" id="pub-id-xlink-href-tests-xspec-assert">pub-id[@xlink:href] must be present.</assert>
     </rule>
   </pattern>
 </schema>

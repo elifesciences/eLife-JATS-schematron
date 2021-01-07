@@ -887,7 +887,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" role="error" id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+      <report test="pub-id and ext-link" role="error" id="elem-cit-data-pub-id-ext-link">Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id&gt; &lt;ext-link&gt; elements. There can only be one or the other, not both.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2702,6 +2702,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
+      <report test="matches(@xlink:href,'[\s ]')" 
+        role="error" 
+        id="url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
+      
       <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)" 
         role="warning" 
         id="ext-link-parent-test">ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
@@ -6008,17 +6012,21 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
-      <assert test="count(pub-id) = 1" 
+      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" 
         role="warning" 
-        id="pre-err-elem-cit-data-13-1">There should be one (and only one) pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements. If this information is missing, please query it with the authors.</assert>
+        id="pre-err-elem-cit-data-13-1">There should be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="count(pub-id) = 1" 
+      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" 
         role="error" 
-        id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id elements.</assert>
+        id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements.</assert>
       
-      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version)" 
+      <report test="pub-id and ext-link" 
         role="error" 
-        id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        id="elem-cit-data-pub-id-ext-link">Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id> &lt;ext-link> elements. There can only be one or the other, not both.</report>
+      
+      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" 
+        role="error" 
+        id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;ext-link&gt; and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
     
@@ -7226,6 +7234,27 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="ends-with(.,'.')" 
         role="error" 
         id="pub-id-test-5"><value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
+      
+    </rule>
+    
+    <rule context="pub-id[@xlink:href]" 
+      id="pub-id-xlink-href-tests">
+      
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.')" 
+        role="warning" 
+        id="pub-id-url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      
+      <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" 
+        role="warning" 
+        id="ftp-credentials-flag-2">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
+      
+      <report test="matches(@xlink:href,'\.$')" 
+        role="error" 
+        id="pub-id-url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
+      
+      <report test="matches(@xlink:href,'[\s ]')" 
+        role="error" 
+        id="pub-id-url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
       
     </rule>
     
