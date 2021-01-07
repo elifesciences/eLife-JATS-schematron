@@ -9851,8 +9851,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="(@ref-type='other') and ($target/local-name() != 'award-group') and ($target/local-name() != 'element-citation')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@ref-type='other') and ($target/local-name() != 'award-group') and ($target/local-name() != 'element-citation')">
+      <xsl:if test="(@ref-type='other') and not($target/local-name() = 'award-group')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@ref-type='other') and not($target/local-name() = 'award-group')">
             <xsl:attribute name="id">other-xref-target-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -15208,9 +15208,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,'\.$')"/>
+         <xsl:when test="matches(.,'[\.\?]$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\.$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[\.\?]$')">
                <xsl:attribute name="id">supplementary-material-title-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">

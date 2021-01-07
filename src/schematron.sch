@@ -2618,7 +2618,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="supplementary-material-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='other') and ($target/local-name() != 'award-group') and ($target/local-name() != 'element-citation')" 
+      <report test="(@ref-type='other') and not($target/local-name() = 'award-group')" 
         role="error" 
         id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
@@ -4428,7 +4428,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
-      <assert test="matches(.,'\.$')" 
+      <assert test="matches(.,'[\.\?]$')" 
         role="error" 
         id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       

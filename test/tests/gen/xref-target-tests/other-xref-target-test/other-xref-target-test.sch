@@ -889,7 +889,7 @@
     <rule context="xref" id="xref-target-tests">
       <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
-      <report test="(@ref-type='other') and ($target/local-name() != 'award-group') and ($target/local-name() != 'element-citation')" role="error" id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report test="(@ref-type='other') and not($target/local-name() = 'award-group')" role="error" id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
