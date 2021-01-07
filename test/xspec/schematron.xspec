@@ -3203,6 +3203,16 @@
         <x:expect-report id="url-fullstop-report" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="url-space-report-pass">
+        <x:context href="../tests/gen/ext-link-tests/url-space-report/pass.xml"/>
+        <x:expect-not-report id="url-space-report" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="url-space-report-fail">
+        <x:context href="../tests/gen/ext-link-tests/url-space-report/fail.xml"/>
+        <x:expect-report id="url-space-report" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="ext-link-parent-test-pass">
         <x:context href="../tests/gen/ext-link-tests/ext-link-parent-test/pass.xml"/>
         <x:expect-not-report id="ext-link-parent-test" role="warning"/>
@@ -8591,6 +8601,16 @@
         <x:expect-assert id="final-err-elem-cit-data-13-1" role="error"/>
         <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="elem-cit-data-pub-id-ext-link-pass">
+        <x:context href="../tests/gen/elem-citation-data/elem-cit-data-pub-id-ext-link/pass.xml"/>
+        <x:expect-not-report id="elem-cit-data-pub-id-ext-link" role="error"/>
+        <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elem-cit-data-pub-id-ext-link-fail">
+        <x:context href="../tests/gen/elem-citation-data/elem-cit-data-pub-id-ext-link/fail.xml"/>
+        <x:expect-report id="elem-cit-data-pub-id-ext-link" role="error"/>
+        <x:expect-not-assert id="elem-citation-data-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="err-elem-cit-data-18-pass">
         <x:context href="../tests/gen/elem-citation-data/err-elem-cit-data-18/pass.xml"/>
         <x:expect-not-assert id="err-elem-cit-data-18" role="error"/>
@@ -10310,6 +10330,48 @@
         <x:context href="../tests/gen/pub-id-tests/pub-id-test-5/fail.xml"/>
         <x:expect-report id="pub-id-test-5" role="error"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="pub-id-xlink-href-tests">
+      <x:scenario label="pub-id-url-conformance-test-pass">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/pub-id-url-conformance-test/pass.xml"/>
+        <x:expect-not-assert id="pub-id-url-conformance-test" role="warning"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-url-conformance-test-fail">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/pub-id-url-conformance-test/fail.xml"/>
+        <x:expect-assert id="pub-id-url-conformance-test" role="warning"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ftp-credentials-flag-2-pass">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/ftp-credentials-flag-2/pass.xml"/>
+        <x:expect-not-report id="ftp-credentials-flag-2" role="warning"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ftp-credentials-flag-2-fail">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/ftp-credentials-flag-2/fail.xml"/>
+        <x:expect-report id="ftp-credentials-flag-2" role="warning"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-url-fullstop-report-pass">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/pub-id-url-fullstop-report/pass.xml"/>
+        <x:expect-not-report id="pub-id-url-fullstop-report" role="error"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-url-fullstop-report-fail">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/pub-id-url-fullstop-report/fail.xml"/>
+        <x:expect-report id="pub-id-url-fullstop-report" role="error"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-url-space-report-pass">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/pub-id-url-space-report/pass.xml"/>
+        <x:expect-not-report id="pub-id-url-space-report" role="error"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-url-space-report-fail">
+        <x:context href="../tests/gen/pub-id-xlink-href-tests/pub-id-url-space-report/fail.xml"/>
+        <x:expect-report id="pub-id-url-space-report" role="error"/>
+        <x:expect-not-assert id="pub-id-xlink-href-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="feature-title-tests">

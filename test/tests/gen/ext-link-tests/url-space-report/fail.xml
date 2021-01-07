@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="url-space-report.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    matches(@xlink:href,'[\s ]')
+Message: '' - Link contains a space which is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ext-link ext-link-type="uri" xlink:href="http://indiansnakes.org ">http://indiansnakes.org</ext-link>
+  </article>
+</root>
