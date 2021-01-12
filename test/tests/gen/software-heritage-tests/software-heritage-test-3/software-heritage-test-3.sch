@@ -887,6 +887,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
+      <let name="origin" value="substring-before(substring-after(@xlink:href,'origin='),';')"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
     </rule>
   </pattern>

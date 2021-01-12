@@ -10259,8 +10259,9 @@
 
 	  <!--RULE software-heritage-tests-->
    <xsl:template match="ext-link[contains(@xlink:href,'softwareheritage')]" priority="1000" mode="M120">
+      <xsl:variable name="origin" select="substring-before(substring-after(@xlink:href,'origin='),';')"/>
 
-		<!--REPORT error-->
+		    <!--REPORT error-->
       <xsl:if test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))">
             <xsl:attribute name="id">software-heritage-test-1</xsl:attribute>
@@ -10304,6 +10305,23 @@
                <xsl:text/>' is not. Based on the link itself, the text that is embedded should be '<xsl:text/>
                <xsl:value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>
                <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)">
+            <xsl:attribute name="id">software-heritage-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[software-heritage-test-4] A Software heritage link must follow the original link for the software. The Software heritage link with the text '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>' has '<xsl:text/>
+               <xsl:value-of select="$origin"/>
+               <xsl:text/>' as its origin URL, but there is no preceding link with that same URL.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M120"/>
