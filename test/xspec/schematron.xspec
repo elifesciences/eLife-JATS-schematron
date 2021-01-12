@@ -3315,6 +3315,16 @@
         <x:expect-report id="software-heritage-test-3" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="software-heritage-test-4-pass">
+        <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-4/pass.xml"/>
+        <x:expect-not-report id="software-heritage-test-4" role="warning"/>
+        <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="software-heritage-test-4-fail">
+        <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-4/fail.xml"/>
+        <x:expect-report id="software-heritage-test-4" role="warning"/>
+        <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ext-link-tests-2">
       <x:scenario label="ext-link-length-pass">
