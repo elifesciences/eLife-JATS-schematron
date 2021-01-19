@@ -198,7 +198,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
   <xsl:function name="e:cite-name-text" as="xs:string">
@@ -3093,7 +3093,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" 
       id="back-source-data-tests">
-      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following::supplementary-material[contains(label[1],'ource data')])"/>
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <let name="no" value="substring-after(@id,'sdata')"/>
       
       <assert test="string($pos) = $no" 
@@ -3108,7 +3108,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" 
       id="back-source-code-tests">
-      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following-sibling::supplementary-material[contains(label[1],'ource code')])"/>
       <let name="no" value="substring-after(@id,'scode')"/>
       
       <assert test="string($pos) = $no" 
@@ -4932,7 +4932,6 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="sec-specific">
     
     <rule context="sec" id="sec-tests">
-      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-1"
         test="title" 
@@ -4940,7 +4939,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="sec-test-1">sec must have a title</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-2"
-        test="$child-count gt 0" 
+        test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" 
         role="error" 
         id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
       
@@ -7612,8 +7611,8 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test"
         test="contains(lower-case(.),'url to be added')" 
-        role="warning" 
-        id="final-missing-url-test"><name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added.</report>
+        role="error" 
+        id="final-missing-url-test"><name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</report>
     </rule>
     
   </pattern>

@@ -175,7 +175,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
   <xsl:function name="e:cite-name-text" as="xs:string">
@@ -2248,7 +2248,7 @@
   </pattern>
   <pattern id="back-source-data-tests-pattern">
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" id="back-source-data-tests">
-      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following::supplementary-material[contains(label[1],'ource data')])"/>
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <let name="no" value="substring-after(@id,'sdata')"/>
       
       <assert test="string($pos) = $no" role="error" id="back-source-data-position">[back-source-data-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
@@ -2259,7 +2259,7 @@
   </pattern>
   <pattern id="back-source-code-tests-pattern">
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" id="back-source-code-tests">
-      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following-sibling::supplementary-material[contains(label[1],'ource code')])"/>
       <let name="no" value="substring-after(@id,'scode')"/>
       
       <assert test="string($pos) = $no" role="error" id="back-source-code-position">[back-source-code-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
@@ -3457,11 +3457,10 @@
   
   <pattern id="sec-tests-pattern">
     <rule context="sec" id="sec-tests">
-      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-1" test="title" role="error" id="sec-test-1">[sec-test-1] sec must have a title</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-2" test="$child-count gt 0" role="error" id="sec-test-2">[sec-test-2] sec appears to contain no content. This cannot be correct.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-2" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" role="error" id="sec-test-2">[sec-test-2] sec appears to contain no content. This cannot be correct.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">[sec-test-5] Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
@@ -5201,7 +5200,7 @@
       
       <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">[year-style-test] '<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test" test="contains(lower-case(.),'url to be added')" role="warning" id="final-missing-url-test">[final-missing-url-test] <name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test" test="contains(lower-case(.),'url to be added')" role="error" id="final-missing-url-test">[final-missing-url-test] <name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</report>
     </rule>
   </pattern>
   
