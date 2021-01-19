@@ -158,7 +158,7 @@
   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:stripDiacritics" as="xs:string">
       <xsl:param name="string" as="xs:string"/>
-      <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+      <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:cite-name-text" as="xs:string">
       <xsl:param name="person-group"/>
@@ -11202,7 +11202,7 @@
 
 	  <!--RULE back-source-data-tests-->
    <xsl:template match="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" priority="1000" mode="M131">
-      <xsl:variable name="pos" select="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following::supplementary-material[contains(label[1],'ource data')])"/>
+      <xsl:variable name="pos" select="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <xsl:variable name="no" select="substring-after(@id,'sdata')"/>
 
 		    <!--ASSERT error-->
@@ -11256,7 +11256,7 @@
 
 	  <!--RULE back-source-code-tests-->
    <xsl:template match="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" priority="1000" mode="M132">
-      <xsl:variable name="pos" select="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <xsl:variable name="pos" select="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following-sibling::supplementary-material[contains(label[1],'ource code')])"/>
       <xsl:variable name="no" select="substring-after(@id,'scode')"/>
 
 		    <!--ASSERT error-->
@@ -16909,9 +16909,8 @@
 
 	  <!--RULE sec-tests-->
    <xsl:template match="sec" priority="1000" mode="M239">
-      <xsl:variable name="child-count" select="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
 
-		    <!--ASSERT error-->
+		<!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="title"/>
          <xsl:otherwise>
@@ -16929,9 +16928,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="$child-count gt 0"/>
+         <xsl:when test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$child-count gt 0">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code">
                <xsl:attribute name="id">sec-test-2</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
