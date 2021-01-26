@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-fig-specific-test-2.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
-Test: report    if ($article-type = ('correction','retraction')) then () else if ($count = 0) then () else if (not(matches($id,'^fig[0-9]{1,3}$'))) then () else $no != string($pos)
+Test: report    if ($article-type = $notice-article-types) then () else if ($count = 0) then () else if (not(matches($id,'^fig[0-9]{1,3}$'))) then () else $no != string($pos)
 Message:  does not appear in sequence which is incorrect. Relative to the other figures it is placed in position . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">

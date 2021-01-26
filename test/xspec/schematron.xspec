@@ -619,6 +619,16 @@
         <x:expect-report id="disp-subj-value-test-8" role="error"/>
         <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="disp-subj-value-test-9-pass">
+        <x:context href="../tests/gen/disp-channel-checks/disp-subj-value-test-9/pass.xml"/>
+        <x:expect-not-report id="disp-subj-value-test-9" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-subj-value-test-9-fail">
+        <x:context href="../tests/gen/disp-channel-checks/disp-subj-value-test-9/fail.xml"/>
+        <x:expect-report id="disp-subj-value-test-9" role="error"/>
+        <x:expect-not-assert id="disp-channel-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="MSA-checks">
       <x:scenario label="head-subj-MSA-test-pass">
@@ -7588,6 +7598,18 @@
         <x:context href="../tests/gen/retraction-test/related-articles-test-9/fail.xml"/>
         <x:expect-assert id="related-articles-test-9" role="error"/>
         <x:expect-not-assert id="retraction-test-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="eoc-test">
+      <x:scenario label="related-articles-test-13-pass">
+        <x:context href="../tests/gen/eoc-test/related-articles-test-13/pass.xml"/>
+        <x:expect-not-assert id="related-articles-test-13" role="error"/>
+        <x:expect-not-assert id="eoc-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="related-articles-test-13-fail">
+        <x:context href="../tests/gen/eoc-test/related-articles-test-13/fail.xml"/>
+        <x:expect-assert id="related-articles-test-13" role="error"/>
+        <x:expect-not-assert id="eoc-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="research-article-ra-test">
