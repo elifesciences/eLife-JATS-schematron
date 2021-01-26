@@ -24,13 +24,17 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
   <!--=== Global Variables ===-->
-  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
+  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article','expression-of-concern')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article', 'Expression of Concern')"/> 
 
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  
+  <!-- Notice type articles -->
+  <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
+  <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
@@ -122,6 +126,9 @@
       </xsl:when>
       <xsl:when test="$s = 'Retraction'">
         <xsl:value-of select="'Retraction:'"/>
+      </xsl:when>
+      <xsl:when test="$s = 'Expression of Concern'">
+        <xsl:value-of select="'Expression of Concern:'"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
@@ -1092,8 +1099,8 @@
     <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
     <let name="article-type" value="ancestor::article/@article-type"/>
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
-    <let name="exceptions" value="('Insight','Retraction','Correction')"/>
-    <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
+    <let name="exceptions" value="('Insight',$notice-display-types)"/>
+    <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" 
         role="error" 
@@ -1135,23 +1142,23 @@
         role="error" 
         id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri)" 
         role="error" 
         id="test-self-uri-presence">There must be a child self-uri in article-meta.</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[@content-type='pdf'])" 
         role="error" 
         id="test-self-uri-att">self-uri must have an @content-type="pdf"</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" 
         role="error" 
         id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
     
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" 
         role="error" 
         id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1" 
+    <report test="not($article-type = $notice-article-types) and count(history) != 1" 
         role="error" 
         id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
 		  
@@ -1160,7 +1167,7 @@
         role="error" 
         id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/></assert>
 		  
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" 
+    <report test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" 
         role="error" 
         id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
     
@@ -1169,7 +1176,7 @@
         id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
     <report test="if ($article-type = $features-article-types) then ()
-      else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then ()
+      else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()
       else count(funding-group) != 1" 
         role="error" 
         id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
@@ -1177,14 +1184,14 @@
     <report test="if ($subj-type = $exceptions) then ()
       else count(custom-meta-group) != 1" 
         role="error" 
-        id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
+        id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
 	   
-    <report test="if ($subj-type = ('Correction','Retraction')) then ()
+    <report test="if ($subj-type = $notice-display-types) then ()
       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" 
         role="error" 
         id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
     
-    <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)
+    <report test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)
       else ()" 
         role="error" 
         id="test-auth-kwd-group-presence-2"><value-of select="$subj-type"/> articles must not have any author keywords</report>
@@ -1236,7 +1243,7 @@
         role="error" 
         id="head-subj-test1">article-categories must contain 0-2 subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
 	   
-     <report test="($article-type = ('correction','research-article','retraction','review-article')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" 
+     <report test="($article-type = ('research-article','review-article',$notice-article-types)) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" 
         role="error" 
         id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
      
@@ -1284,6 +1291,10 @@
       <report test="($article-type = 'retraction') and not(.='Retraction')" 
         role="error" 
         id="disp-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
+      
+      <report test="($article-type = 'expression-of-concern') and not(.='Expression of Concern')" 
+        role="error" 
+        id="disp-subj-value-test-9">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Expression of Concern' according to the article-type.</report>
   </rule>
     
     <rule context="article-categories/subj-group[@subj-group-type='heading']/subject" id="MSA-checks">
@@ -1349,7 +1360,7 @@
         role="warning" 
         id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/></report>
 	  
-	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')" 
+	  <report test="not($subj-type = ($notice-display-types,'Scientific Correspondence','Replication Study')) and matches($tokens,'[A-Za-z]')" 
         role="warning" 
         id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/></report>
 	  
@@ -1651,7 +1662,7 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = ('Retraction','Correction')) then ()
+    	<report test="if ($subj-type = $notice-display-types) then ()
     	  else if (collab) then ()
     	  else if (ancestor::collab) then ()
     	  else if ($type != 'author') then ()
@@ -1659,7 +1670,7 @@
         role="error" 
         id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
-	  <report test="if ($subj-type = ('Retraction','Correction')) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" 
+	  <report test="if ($subj-type = $notice-display-types) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" 
         role="warning" 
         id="contrib-test-5">Group author members should very likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
@@ -2571,7 +2582,7 @@
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not((count(*) = 1) and child::supplementary-material)" 
+      <report test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and not($article-type = $notice-article-types) and not((count(*) = 1) and child::supplementary-material)" 
         role="warning" 
         id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
@@ -2809,7 +2820,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-test-2">fig must have a @position.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else not(label)" 
         role="error" 
         id="fig-test-3">fig must have a label.</report>
@@ -2820,31 +2831,31 @@ else self::*/local-name() = $allowed-p-blocks"
         id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-4" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else not(caption)" 
         role="warning" 
         id="pre-fig-test-4"><value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else not(caption)" 
         role="error" 
         id="final-fig-test-4"><value-of select="label"/> has no title or caption (caption element).</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-5" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else not(caption/title)" 
         role="warning" 
         id="pre-fig-test-5"><value-of select="label"/> does not have a title.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else not(caption/title)" 
         role="error" 
         id="final-fig-test-5">fig caption must have a title.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
         role="warning" 
         id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct?</report>
@@ -2867,7 +2878,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="no" value="substring-after(@id,'fig')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-test-2" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else not(label)" 
         role="error" 
         flag="dl-ar"
@@ -3401,7 +3412,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-table-wrap-cite-1" 
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
-        else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
         id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
@@ -3409,7 +3420,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-wrap-cite-1" 
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
-        else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if (ancestor::app or ancestor::sub-article) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
@@ -3866,7 +3877,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="video-tests">
     
-    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
+    <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -3937,7 +3948,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="table-pos-tests">
     
-    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
+    <rule context="article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
       <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
       <let name="no" value="substring-after(@id,'table')"/>
@@ -4000,7 +4011,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-2" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
         else $no != string($pos)" 
@@ -4008,7 +4019,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="pre-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-2" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
         else $no != string($pos)" 
@@ -4016,19 +4027,19 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-3" 
-        test="not($article-type = ('correction','retraction')) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
+        test="not($article-type = $notice-article-types) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
         role="warning" 
         id="fig-specific-test-3"><value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-4" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
         id="pre-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-4" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
@@ -4050,7 +4061,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
-      <report test="not($article-type = ('correction','retraction')) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id] and not(ancestor::article//xref[(@rid = $id) and not(ancestor::caption) and not(ancestor::table-wrap)])" 
+      <report test="not($article-type = $notice-article-types) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id] and not(ancestor::article//xref[(@rid = $id) and not(ancestor::caption) and not(ancestor::table-wrap)])" 
         role="warning"
         id="fig-specific-test-7"><value-of select="$lab"/> is only cited in a table or the caption of an object. Please ask the authors for citation in the main text.</report>
   
@@ -4089,13 +4100,13 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-sup-test-3"><value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-4" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else $no != string($pos)" 
         role="error" 
         id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-5" 
-        test="if ($article-type = ('correction', 'retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else (($label-conform = true()) and ($label-no != string($pos)))" 
         role="error" 
         id="fig-sup-test-5"><value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
@@ -4343,7 +4354,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion','Methods', 'Model')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-conformity"
-        test="not($type = ($features-subj,'Review Article','Correction','Retraction')) and not(replace(title,' ',' ') = $allowed-titles)" 
+        test="not($type = ($features-subj,'Review Article',$notice-display-types)) and not(replace(title,' ',' ') = $allowed-titles)" 
         role="warning" 
         id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
@@ -4354,7 +4365,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article-meta//article-title" id="article-title-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
+      <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       
       <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))
         else ()" 
@@ -4978,7 +4989,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
       
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()
+      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else count(sec[@sec-type='additional-information']) != 1" 
         role="error" 
         id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
@@ -5009,7 +5020,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="back-test-6">One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()
+      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if ($subj-type = 'Scientific Correspondence') then ()
         else (not(ack))" 
         role="warning" 
@@ -5069,7 +5080,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', 'correction', 'retraction', 'review-article')"/>
+      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types, 'review-article')"/>
       
       <assert test="parent::back" 
         role="error" 
@@ -5429,6 +5440,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
+    <rule context="article[@article-type='expression-of-concern']//article-meta" id="eoc-test">
+      
+      <assert test="count(related-article[@related-article-type='object-of-concern']) gt 0" 
+        role="error" 
+        id="related-articles-test-13">Expressions of Concern must contain at least 1 related-article link with the attribute related-article-type='object-of-concern'.</assert>
+      
+    </rule>
+    
     <rule context="article[@article-type='research-article']//related-article" id="research-article-ra-test">
       
       <assert test="@related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')" 
@@ -5438,7 +5457,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="related-article" id="related-articles-conformance">
-      <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article')"/>
+      <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
       <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
       
       <assert test="@related-article-type" 
@@ -5447,7 +5466,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="@related-article-type = $allowed-values" 
         role="error" 
-        id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article').</assert>
+        id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', and 'object-of-concern').</assert>
       
       <assert test="@ext-link-type='doi'" 
         role="error" 
@@ -5985,51 +6004,63 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       
-      <report test="count(person-group[@person-group-type='author']) gt 1" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-3-1" 
+        test="count(person-group[@person-group-type='author']) gt 1" 
         role="error" 
         id="err-elem-cit-data-3-1">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>.</report>
       
-      <report test="count(person-group) lt 1" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-3-2" 
+        test="count(person-group) lt 1" 
         role="warning" 
         id="pre-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0. If this information is missing, please query the authors asking for it.</report>
       
-      <report test="count(person-group) lt 1" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-3-2" 
+        test="count(person-group) lt 1" 
         role="error" 
         id="final-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0.</report>
       
-      <assert test="count(data-title)=1" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-10"
+        test="count(data-title)=1" 
         role="warning" 
         id="pre-err-elem-cit-data-10">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> data-title elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="count(data-title)=1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-10" 
+        test="count(data-title)=1" 
         role="error" 
         id="final-err-elem-cit-data-10">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> data-title elements. It must contain one (and only one).</assert>
       
-      <assert test="count(source)=1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-11-2" 
+        test="count(source)=1" 
         role="warning" 
         id="pre-err-elem-cit-data-11-2">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="count(source)=1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-11-2"
+        test="count(source)=1" 
         role="error" 
         id="final-err-elem-cit-data-11-2">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements. It must contain one (and only one).</assert>
       
-      <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-11-3-2"
+        test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
         role="error" 
         id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
-      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-13-1"
+        test="(count(pub-id) = 1) or count(ext-link) = 1" 
         role="warning" 
         id="pre-err-elem-cit-data-13-1">There should be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="(count(pub-id) = 1) or count(ext-link) = 1" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-13-1"
+        test="(count(pub-id) = 1) or count(ext-link) = 1" 
         role="error" 
         id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements.</assert>
       
-      <report test="pub-id and ext-link" 
+      <report  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#elem-cit-data-pub-id-ext-link"
+        test="pub-id and ext-link" 
         role="error" 
         id="elem-cit-data-pub-id-ext-link">Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id> &lt;ext-link> elements. There can only be one or the other, not both.</report>
       
-      <assert test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-18"
+        test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" 
         role="error" 
         id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;ext-link&gt; and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
@@ -6038,7 +6069,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='data']/person-group" 
       id="elem-citation-data-person-group">
       
-      <assert test="@person-group-type='author'" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#data-cite-person-group"
+        test="@person-group-type='author'" 
         role="error" 
         id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
       
@@ -6046,7 +6078,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
       
-      <assert test="not(@xlink:href)" 
+      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-14-2"
+        test="not(@xlink:href)" 
         role="error" 
         id="err-elem-cit-data-14-2">If the pub-id is of pub-id-type doi, it may not have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an @link-href with value '<value-of select="@link-href"/>'.</assert>
       
@@ -6054,11 +6087,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
-      <assert test="@pub-id-type=('accession','doi')" 
+      <assert   see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-13-2"
+        test="@pub-id-type=('accession','doi')" 
         role="error" 
         id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
       
-      <report test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" 
+      <report    see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-14-1"
+        test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" 
         role="error" 
         id="err-elem-cit-data-14-1">If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
       
@@ -7504,35 +7539,36 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="article[@article-type = 'retraction']" id="retraction-tests">
+    <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
+      <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="descendant::article-meta//aff" 
         role="error" 
-        id="retr-aff-presence">Retractions should not contain affiliations.</report>
+        id="retr-aff-presence"><value-of select="$display-subject"/> notices should not contain affiliations.</report>
       
       <report test="descendant::fn-group[@content-type='competing-interest']" 
         role="error" 
-        id="retr-COI-presence">Retractions should not contain competing interests.</report>
+        id="retr-COI-presence"><value-of select="$display-subject"/> notices should not contain competing interests.</report>
       
       <report test="descendant::self-uri" 
         role="error" 
-        id="retr-self-uri-presence">Retractions should not contain a self-uri element (as the PDF is not published).</report>
+        id="retr-self-uri-presence"><value-of select="$display-subject"/> notices should not contain a self-uri element (as the PDF is not published).</report>
       
       <report test="descendant::abstract" 
         role="error" 
-        id="retr-abstract-presence">Retractions should not contain abstracts.</report>
+        id="retr-abstract-presence"><value-of select="$display-subject"/> notices should not contain abstracts.</report>
       
       <report test="back/*" 
         role="error" 
-        id="retr-back">Retractions should not contain any content in the back.</report>
+        id="retr-back"><value-of select="$display-subject"/> notices should not contain any content in the back.</report>
       
       <report test="descendant::meta-name[text() = 'Author impact statement']" 
         role="error" 
-        id="retr-impact-statement">Retractions should not contain an impact statement.</report>
+        id="retr-impact-statement"><value-of select="$display-subject"/> notices should not contain an impact statement.</report>
       
       <report test="descendant::contrib-group[@content-type='section']" 
         role="error" 
-        id="retr-SE-BRE">Retractions must not contain any Senior or Reviewing Editors.</report>
+        id="retr-SE-BRE"><value-of select="$display-subject"/> notices must not contain any Senior or Reviewing Editors.</report>
        
     </rule>
     
@@ -10437,7 +10473,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
     </rule>
     
-    <rule context="article[not(@article-type=('correction','retraction','article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|
+    <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|
       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       

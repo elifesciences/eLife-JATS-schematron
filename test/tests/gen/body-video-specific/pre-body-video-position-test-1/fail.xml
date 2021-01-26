@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pre-body-video-position-test-1.sch"?>
-<!--Context: article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']
+<!--Context: article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']
 Test: report    not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))
 Message:  does not appear in sequence which is incorrect. Relative to the other videos it is placed in position . Please ensure this is queried with the authors if they have cited them out of position. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
