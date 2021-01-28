@@ -4904,6 +4904,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])">
             <xsl:attribute name="id">final-test-r-article-d-letter-feat</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-test-r-article-d-letter-feat</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9216,6 +9217,7 @@
       <xsl:if test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2">
             <xsl:attribute name="id">features-custom-meta-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#features-custom-meta-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9534,6 +9536,7 @@
       <xsl:if test="child::*">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="child::*">
             <xsl:attribute name="id">feat-custom-meta-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9550,6 +9553,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = ('1','2','3','4','5')">
                <xsl:attribute name="id">feat-custom-meta-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9563,6 +9567,7 @@
       <xsl:if test=". = ('1','2','3','4','5')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = ('1','2','3','4','5')">
             <xsl:attribute name="id">feat-custom-meta-test-info</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-info</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9577,6 +9582,7 @@
       <xsl:if test="($type='Insight') and (. != '1')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='Insight') and (. != '1')">
             <xsl:attribute name="id">feat-custom-meta-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9593,6 +9599,7 @@
       <xsl:if test="($type='Editorial') and (. != '2')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='Editorial') and (. != '2')">
             <xsl:attribute name="id">feat-custom-meta-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -9609,6 +9616,7 @@
       <xsl:if test="($type='Feature Article') and not(.=('3','4','5'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='Feature Article') and not(.=('3','4','5'))">
             <xsl:attribute name="id">feat-custom-meta-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23818,6 +23826,7 @@
       <xsl:if test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)">
             <xsl:attribute name="id">feature-title-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-title-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23928,6 +23937,7 @@
       <xsl:if test=". != e:titleCase(.)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". != e:titleCase(.)">
             <xsl:attribute name="id">feature-subj-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23943,6 +23953,7 @@
       <xsl:if test="ends-with(.,':')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(.,':')">
             <xsl:attribute name="id">feature-subj-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23955,6 +23966,7 @@
       <xsl:if test="preceding-sibling::subject">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding-sibling::subject">
             <xsl:attribute name="id">feature-subj-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23982,6 +23994,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count = 1">
                <xsl:attribute name="id">feature-article-category-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-article-category-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24011,6 +24024,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="bio">
                <xsl:attribute name="id">feature-author-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24042,6 +24056,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="p[1]/bold = $name">
                <xsl:attribute name="id">feature-bio-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24057,6 +24072,7 @@
       <xsl:if test="if (count($aff) &gt; 1) then ()        else not(contains(.,$aff))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (count($aff) &gt; 1) then () else not(contains(.,$aff))">
             <xsl:attribute name="id">feature-bio-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24071,6 +24087,7 @@
       <xsl:if test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))">
             <xsl:attribute name="id">feature-bio-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24087,6 +24104,7 @@
       <xsl:if test="matches(p[1],'\.$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(p[1],'\.$')">
             <xsl:attribute name="id">feature-bio-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24103,6 +24121,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(p) = 1)">
                <xsl:attribute name="id">feature-bio-test-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24119,6 +24138,7 @@
       <xsl:if test="*[local-name()!='p']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[local-name()!='p']">
             <xsl:attribute name="id">feature-bio-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24151,6 +24171,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = ('1','2','3')) and child::sub-article">
             <xsl:attribute name="id">feature-template-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24168,6 +24189,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = '5') and not(@article-type='research-article')">
             <xsl:attribute name="id">feature-template-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24186,6 +24208,7 @@
       <xsl:if test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])">
             <xsl:attribute name="id">feature-template-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24202,6 +24225,7 @@
       <xsl:if test="($template = '5') and not(child::sub-article[@article-type='reply'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = '5') and not(child::sub-article[@article-type='reply'])">
             <xsl:attribute name="id">feature-template-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24218,6 +24242,7 @@
       <xsl:if test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')">
             <xsl:attribute name="id">feature-templates-no-bre</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-no-bre</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24238,6 +24263,7 @@
       <xsl:if test="back/fn-group[@content-type='author-contribution'] and ($template != '5')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/fn-group[@content-type='author-contribution'] and ($template != '5')">
             <xsl:attribute name="id">feature-templates-author-cont</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24329,6 +24355,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains($text,$citation)">
                <xsl:attribute name="id">insight-box-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#insight-box-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24354,6 +24381,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@related-article-type='commentary-article'">
                <xsl:attribute name="id">insight-related-article-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#insight-related-article-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24383,6 +24411,7 @@
       <xsl:if test="matches(.,'\[[Oo][Kk]\??\]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[[Oo][Kk]\??\]')">
             <xsl:attribute name="id">final-feat-ok-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

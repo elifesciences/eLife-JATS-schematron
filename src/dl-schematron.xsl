@@ -1313,6 +1313,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])">
             <xsl:attribute name="id">final-test-r-article-d-letter-feat</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-test-r-article-d-letter-feat</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2471,6 +2472,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = ('1','2','3')) and child::sub-article">
             <xsl:attribute name="id">feature-template-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2489,6 +2491,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = '5') and not(@article-type='research-article')">
             <xsl:attribute name="id">feature-template-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

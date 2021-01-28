@@ -978,7 +978,7 @@
 	  
 	  <report test="not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])" role="error" flag="dl-ar" id="final-test-r-article-d-letter">[final-test-r-article-d-letter] A decision letter must be present for research articles.</report>
 	  
-	  <report test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">[final-test-r-article-d-letter-feat] A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-test-r-article-d-letter-feat" test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">[final-test-r-article-d-letter-feat] A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
 	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" flag="dl-ar" id="test-r-article-a-reply">[test-r-article-a-reply] Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
 	
@@ -1841,7 +1841,7 @@
       
       <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" role="error" id="custom-meta-presence">[custom-meta-presence] 1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
-      <report test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">[features-custom-meta-presence] 2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#features-custom-meta-presence" test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">[features-custom-meta-presence] 2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
       
     </rule>
   </pattern>
@@ -1910,17 +1910,17 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="child::*" role="error" id="feat-custom-meta-test-1">[feat-custom-meta-test-1] <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-1" test="child::*" role="error" id="feat-custom-meta-test-1">[feat-custom-meta-test-1] <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
       
-      <assert test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">[feat-custom-meta-test-2] Template type meta-value must one of '1','2','3','4', or '5'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-2" test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">[feat-custom-meta-test-2] Template type meta-value must one of '1','2','3','4', or '5'.</assert>
       
-      <report test=". = ('1','2','3','4','5')" role="info" id="feat-custom-meta-test-info">[feat-custom-meta-test-info] Template <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-info" test=". = ('1','2','3','4','5')" role="info" id="feat-custom-meta-test-info">[feat-custom-meta-test-info] Template <value-of select="."/>.</report>
       
-      <report test="($type='Insight') and (. != '1')" role="error" id="feat-custom-meta-test-3">[feat-custom-meta-test-3] <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-3" test="($type='Insight') and (. != '1')" role="error" id="feat-custom-meta-test-3">[feat-custom-meta-test-3] <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
       
-      <report test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">[feat-custom-meta-test-4] <value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-4" test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">[feat-custom-meta-test-4] <value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
       
-      <report test="($type='Feature Article') and not(.=('3','4','5'))" role="error" id="feat-custom-meta-test-5">[feat-custom-meta-test-5] <value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-5" test="($type='Feature Article') and not(.=('3','4','5'))" role="error" id="feat-custom-meta-test-5">[feat-custom-meta-test-5] <value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -5009,7 +5009,7 @@
     <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject[1]"/>
      
-     <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">[feature-title-test-1] title starts with the sub-display-channel. This is certainly incorrect.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-title-test-1" test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">[feature-title-test-1] title starts with the sub-display-channel. This is certainly incorrect.</report>
      
    </rule>
   </pattern>
@@ -5038,12 +5038,12 @@
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
-     <report test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">[feature-subj-test-2] The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-2" test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">[feature-subj-test-2] The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
       </report>
      
-     <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">[feature-subj-test-3] sub-display-channel ends with a colon. This is incorrect.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-3" test="ends-with(.,':')" role="error" id="feature-subj-test-3">[feature-subj-test-3] sub-display-channel ends with a colon. This is incorrect.</report>
      
-     <report test="preceding-sibling::subject" role="error" id="feature-subj-test-4">[feature-subj-test-4] There is more than one sub-display-channel subject. This is incorrect.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-4" test="preceding-sibling::subject" role="error" id="feature-subj-test-4">[feature-subj-test-4] There is more than one sub-display-channel subject. This is incorrect.</report>
 		
 	</rule>
   </pattern>
@@ -5051,14 +5051,14 @@
     <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
-     <assert test="$count = 1" role="error" id="feature-article-category-test-1">[feature-article-category-test-1] article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-article-category-test-1" test="$count = 1" role="error" id="feature-article-category-test-1">[feature-article-category-test-1] article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
      
    </rule>
   </pattern>
   <pattern id="feature-author-tests-pattern">
     <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
-     <assert test="bio" role="error" id="feature-author-test-1">[feature-author-test-1] Author must contain child bio in feature content.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1" test="bio" role="error" id="feature-author-test-1">[feature-author-test-1] Author must contain child bio in feature content.</assert>
    </rule>
   </pattern>
   <pattern id="feature-bio-tests-pattern">
@@ -5068,19 +5068,19 @@
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
      <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
      
-     <assert test="p[1]/bold = $name" role="error" id="feature-bio-test-1">[feature-bio-test-1] bio must contain a bold element that contains the name of the author - <value-of select="$name"/>.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-1" test="p[1]/bold = $name" role="error" id="feature-bio-test-1">[feature-bio-test-1] bio must contain a bold element that contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
-     <report test="if (count($aff) &gt; 1) then ()        else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">[feature-bio-test-2] bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-2" test="if (count($aff) &gt; 1) then ()        else not(contains(.,$aff))" role="warning" id="feature-bio-test-2">[feature-bio-test-2] bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
      
-     <report test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))" role="warning" id="feature-bio-test-6">[feature-bio-test-6] Some of the text from <value-of select="$name"/>'s affiliations does not appear in their bio - <value-of select="string-join(for $x in $aff-tokens return if (contains(.,$x)) then () else concat('&quot;',$x,'&quot;'),' and ')"/>. Is this correct?</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-6" test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))" role="warning" id="feature-bio-test-6">[feature-bio-test-6] Some of the text from <value-of select="$name"/>'s affiliations does not appear in their bio - <value-of select="string-join(for $x in $aff-tokens return if (contains(.,$x)) then () else concat('&quot;',$x,'&quot;'),' and ')"/>. Is this correct?</report>
      
-     <report test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">[feature-bio-test-3] bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-3" test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">[feature-bio-test-3] bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
      
-     <assert test="(count(p) = 1)" role="error" id="feature-bio-test-4">[feature-bio-test-4] One and only 1 &lt;p&gt; is allowed as a child of bio. <value-of select="."/>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-4" test="(count(p) = 1)" role="error" id="feature-bio-test-4">[feature-bio-test-4] One and only 1 &lt;p&gt; is allowed as a child of bio. <value-of select="."/>
       </assert>
      
-     <report test="*[local-name()!='p']" role="error" id="feature-bio-test-5">[feature-bio-test-5] <value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio&gt;. - <value-of select="."/>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-5" test="*[local-name()!='p']" role="error" id="feature-bio-test-5">[feature-bio-test-5] <value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio&gt;. - <value-of select="."/>
       </report>
    </rule>
   </pattern>
@@ -5089,17 +5089,17 @@
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
-     <report test="($template = ('1','2','3')) and child::sub-article" role="error" flag="dl-ar" id="feature-template-test-1">[feature-template-test-1] <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-1" test="($template = ('1','2','3')) and child::sub-article" role="error" flag="dl-ar" id="feature-template-test-1">[feature-template-test-1] <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
      
-     <report test="($template = '5') and not(@article-type='research-article')" role="error" flag="dl-ar" id="feature-template-test-2">[feature-template-test-2] <value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-2" test="($template = '5') and not(@article-type='research-article')" role="error" flag="dl-ar" id="feature-template-test-2">[feature-template-test-2] <value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
      
-     <report test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" role="warning" id="feature-template-test-3">[feature-template-test-3] <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-3" test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" role="warning" id="feature-template-test-3">[feature-template-test-3] <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
      
-     <report test="($template = '5') and not(child::sub-article[@article-type='reply'])" role="warning" id="feature-template-test-4">[feature-template-test-4] <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-4" test="($template = '5') and not(child::sub-article[@article-type='reply'])" role="warning" id="feature-template-test-4">[feature-template-test-4] <value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
      
-     <report test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" role="error" id="feature-templates-no-bre">[feature-templates-no-bre] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="           string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )           "/>. Please remove any senior/reviewing editors.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-no-bre" test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" role="error" id="feature-templates-no-bre">[feature-templates-no-bre] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="           string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )           "/>. Please remove any senior/reviewing editors.</report>
      
-     <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" role="warning" id="feature-templates-author-cont">[feature-templates-author-cont] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should very likely not have any Author contributions. This <value-of select="$type"/> has <value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>. Please check with eLife production whether author contributions should be present.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont" test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" role="warning" id="feature-templates-author-cont">[feature-templates-author-cont] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should very likely not have any Author contributions. This <value-of select="$type"/> has <value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>. Please check with eLife production whether author contributions should be present.</report>
    </rule>
   </pattern>
   <pattern id="insight-asbtract-tests-pattern">
@@ -5119,15 +5119,15 @@
      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
      <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(        string-join(        for $y in $x/person-group[@person-group-type='author']/*        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)        else $y        ,', '),        '. ',        replace($x/year,'[^\d]',''),        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
-     <assert test="contains($text,$citation)" role="warning" id="insight-box-test-1">[insight-box-test-1] A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'. The following word(s) are in the boxed text but not in the citation: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='cite'],'; ')"/>. The following word(s) are in the citation but not in the boxed text: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='box'],'; ')"/>.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#insight-box-test-1" test="contains($text,$citation)" role="warning" id="insight-box-test-1">[insight-box-test-1] A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'. The following word(s) are in the boxed text but not in the citation: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='cite'],'; ')"/>. The following word(s) are in the citation but not in the boxed text: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='box'],'; ')"/>.</assert>
      
-     <assert test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">[insight-related-article-test-1] Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#insight-related-article-test-1" test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">[insight-related-article-test-1] Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
    </rule>
   </pattern>
   <pattern id="feature-comment-tests-pattern">
     <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">
      
-     <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">[final-feat-ok-test] <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">[final-feat-ok-test] <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
      
    </rule>

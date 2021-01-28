@@ -894,7 +894,7 @@
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">
       <let name="token1" value="substring-before(.,' ')"/>
       <let name="token2" value="substring-after(.,$token1)"/>
-      <report test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-3" test="ends-with(.,':')" role="error" id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
