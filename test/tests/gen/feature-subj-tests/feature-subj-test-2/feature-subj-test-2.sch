@@ -894,7 +894,7 @@
     <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">
       <let name="token1" value="substring-before(.,' ')"/>
       <let name="token2" value="substring-after(.,$token1)"/>
-      <report test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-2" test=". != e:titleCase(.)" role="error" id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/>
       </report>
     </rule>
   </pattern>

@@ -894,7 +894,7 @@
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
       <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" role="warning" id="feature-templates-author-cont">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont" test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" role="warning" id="feature-templates-author-cont">
         <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should very likely not have any Author contributions. This <value-of select="$type"/> has <value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>. Please check with eLife production whether author contributions should be present.</report>
     </rule>
   </pattern>

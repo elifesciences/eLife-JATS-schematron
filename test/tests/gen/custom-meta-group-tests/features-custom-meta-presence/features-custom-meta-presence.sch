@@ -893,7 +893,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
       <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#features-custom-meta-presence" test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" role="error" id="features-custom-meta-presence">2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
