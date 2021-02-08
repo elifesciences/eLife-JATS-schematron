@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="software-heritage-test-5.sch"?>
+<!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
+Test: report    contains(@xlink:href,'[…]')
+Message: A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:19da0c557f8884812d196e912af760ba5f5ffe2b;ori[…]or=swh:1:rev:7f7ba095ebd286ce416f58d91d6a30c025da81bf/">https://archive.softwareheritage.org/swh:1:dir:19da0c557f8884812d196e912af760ba5f5ffe2b;ori[…]or=swh:1:rev:7f7ba095ebd286ce416f58d91d6a30c025da81bf/</ext-link>
+  </article>
+</root>

@@ -2780,6 +2780,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
       
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" 
+        test="contains(@xlink:href,'[…]')" 
+        role="error" 
+        id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
+      
     </rule>
     
     <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" 
