@@ -835,6 +835,55 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:get-copyright-holder">
+    <xsl:param name="contrib-group"/>
+    <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type='author'])"/>
+    <xsl:choose>
+      <xsl:when test="$author-count lt 1"/>
+      <xsl:when test="$author-count = 1">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$author-count = 2">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:choose>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
+              </xsl:when>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <!-- author count is 3+ -->
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' et al')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
   <xsl:function name="e:insight-box" as="element()">
     <xsl:param name="box" as="xs:string"/>
     <xsl:param name="cite-text" as="xs:string"/>

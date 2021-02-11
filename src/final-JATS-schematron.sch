@@ -835,6 +835,55 @@
     </xsl:choose>
   </xsl:function>
   
+  <xsl:function name="e:get-copyright-holder">
+    <xsl:param name="contrib-group"/>
+    <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type='author'])"/>
+    <xsl:choose>
+      <xsl:when test="$author-count lt 1"/>
+      <xsl:when test="$author-count = 1">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$author-count = 2">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:choose>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
+              </xsl:when>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <!-- author count is 3+ -->
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' et al')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
   <xsl:function name="e:insight-box" as="element()">
     <xsl:param name="box" as="xs:string"/>
     <xsl:param name="cite-text" as="xs:string"/>
@@ -1545,7 +1594,8 @@
   </pattern>
   <pattern id="front-permissions-tests-pattern">
     <rule context="front//permissions" id="front-permissions-tests">
-	<let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
+	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
+	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement.</report>
@@ -1561,8 +1611,7 @@
 	
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname. If it has two authors it should be the surname of the first, then ' and ' and then the surname of the second. If three or more, it should be the surname of the first, and then ' et al'. Currently it's <value-of select="copyright-holder"/>
-      </report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else copyright-holder != $copyright-holder" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</report>
 	
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">[permissions-test-8] copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
       </report>
