@@ -29734,7 +29734,7 @@
    <xsl:template match="front//aff/country" priority="1000" mode="M391">
       <xsl:variable name="text" select="self::*/text()"/>
       <xsl:variable name="countries" select="'countries.xml'"/>
-      <xsl:variable name="city" select="parent::aff//named-content[@content-type='city'][1]"/>
+      <xsl:variable name="city" select="parent::aff/descendant::named-content[@content-type='city'][1]"/>
 
 		    <!--REPORT error-->
       <xsl:if test="$text = 'United States of America'">
@@ -29954,7 +29954,7 @@
 
 	  <!--RULE institution-tests-->
    <xsl:template match="aff/institution[not(@*)]" priority="1000" mode="M393">
-      <xsl:variable name="city" select="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <xsl:variable name="city" select="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
 
 		    <!--REPORT error-->
       <xsl:if test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')">
@@ -29987,7 +29987,7 @@
                <xsl:text/>' as its campus name in the institution field, but '<xsl:text/>
                <xsl:value-of select="$city"/>
                <xsl:text/>' is the city. Which is correct? Should it end with '<xsl:text/>
-               <xsl:value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>
+               <xsl:value-of select="concat('University of California, ',following-sibling::addr-line[1]/named-content[@content-type='city'][1])"/>
                <xsl:text/>' instead?</svrl:text>
          </svrl:successful-report>
       </xsl:if>

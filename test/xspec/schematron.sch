@@ -6406,7 +6406,7 @@
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
       <report test="$text = 'United States of America'" role="error" id="united-states-test-1">
@@ -6456,13 +6456,13 @@
   </pattern>
   <pattern id="institution-tests-pattern">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
-      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
         <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="warning" id="UC-no-test-2">
-        <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
+        <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line[1]/named-content[@content-type='city'][1])"/>' instead?</report>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">
         <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>

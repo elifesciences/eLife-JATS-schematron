@@ -940,7 +940,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
-      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">
         <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
     </rule>

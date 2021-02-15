@@ -9269,7 +9269,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
       <report test="$text = 'United States of America'" 
@@ -9339,7 +9339,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     </rule>
     
     <rule context="aff/institution[not(@*)]" id="institution-tests">
-      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" 
         role="error" 
@@ -9347,7 +9347,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" 
         role="warning" 
-        id="UC-no-test-2"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
+        id="UC-no-test-2"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line[1]/named-content[@content-type='city'][1])"/>' instead?</report>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" 
         role="warning" 
