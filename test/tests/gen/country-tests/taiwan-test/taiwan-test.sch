@@ -942,7 +942,7 @@
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\s?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
     </rule>
   </pattern>

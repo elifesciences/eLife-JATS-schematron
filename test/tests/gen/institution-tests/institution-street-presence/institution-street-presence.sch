@@ -940,7 +940,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
-      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
       <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>

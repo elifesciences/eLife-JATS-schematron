@@ -942,7 +942,7 @@
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule>
   </pattern>
