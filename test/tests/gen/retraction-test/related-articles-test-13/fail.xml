@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="related-articles-test-13.sch"?>
-<!--Context: article[@article-type='expression-of-concern']//article-meta
-Test: assert    count(related-article[@related-article-type='object-of-concern']) gt 0
-Message: Expressions of concern must contain at least 1 related-article link with the attribute related-article-type='object-of-concern'. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article article-type="expression-of-concern">
-    <article-meta/>
-  </article>
-</root>

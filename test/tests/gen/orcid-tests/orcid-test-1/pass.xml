@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="orcid-test-1.sch"?>
-<!--Context: contrib-id[@contrib-id-type='orcid']
-Test: assert    @authenticated='true'
-Message: contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true" -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <contrib-id contrib-id-type="orcid" authenticated="true"/>
-  </article>
-</root>
