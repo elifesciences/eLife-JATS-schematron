@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="glossary-child-test.sch"?>
+<!--Context: glossary/*
+Test: assert    name()=('title','def-list')
+Message: The only elements permitted within glossary are title and def-list.  is not allowed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <glossary>
+      <title>Glossary</title>
+      <def-list/>
+    </glossary>
+  </article>
+</root>

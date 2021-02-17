@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="test-contrib-group-presence-1.sch"?>
 <!--Context: article[@article-type='research-article']/front/article-meta
-Test: assert    contrib-group
-Message: contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles. -->
+Test: assert    contrib-group[@content-type='authors']
+Message: contrib-group[@content-type='authors] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains authors). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>
       <article-meta>
-        <contrib-group/>
+        <contrib-group content-type="authors"/>
       </article-meta>
     </front>
   </article>

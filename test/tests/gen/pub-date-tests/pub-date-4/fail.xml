@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="pub-date-4.sch"?>
+<!--Context: article-meta/pub-date
+Test: report    @date-type='pub' and preceding-sibling::pub-date
+Message: There can only be one pub-date with the attribute date-type='pub', and it must be the first pub-date appearing in article-meta. This has  pub-date(s) preceding it with the date-type(s) . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <pub-date publication-format="electronic" date-type="pub" iso-8601-date="2020-09-22">
+        <day>22</day>
+        <month>09</month>
+        <year>2020</year>
+      </pub-date>
+      <pub-date publication-format="electronic" date-type="pub" iso-8601-date="2020-09-23">
+        <day>23</day>
+        <month>09</month>
+        <year>2020</year>
+      </pub-date>
+    </article-meta>
+  </article>
+</root>

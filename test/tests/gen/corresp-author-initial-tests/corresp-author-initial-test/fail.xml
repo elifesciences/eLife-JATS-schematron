@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="corresp-author-initial-test.sch"?>
-<!--Context: article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]
-Test: report    $normalized-name != $name
+<!--Context: article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='pdf-template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]
+Test: assert    $normalized-name = $name
 Message:  has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <front>
       <article-meta>
@@ -79,35 +79,27 @@ Message:  has a name with letters that have diacritics or marks. Please ensure t
             <label>1</label>
             <institution>Department of Physiology, Faculty of Medicine, University of
               Toronto</institution>
-            <addr-line>
-              <named-content content-type="city">Ontario</named-content>
-            </addr-line>
+            <city>Ontario</city>
             <country>Canada</country>
           </aff>
           <aff id="aff2">
             <label>2</label>
             <institution>Donnelly Centre for Cellular &amp; Biomolecular Research, University of
               Toronto</institution>
-            <addr-line>
-              <named-content content-type="city">Ontario</named-content>
-            </addr-line>
+            <city>Ontario</city>
             <country>Canada</country>
           </aff>
           <aff id="aff3">
             <label>3</label>
             <institution>Kaiser Permanente Northern California, Division of Research</institution>
-            <addr-line>
-              <named-content content-type="city">Oakland</named-content>
-            </addr-line>
+            <city>Oakland</city>
             <country>United States</country>
           </aff>
           <aff id="aff4">
             <label>4</label>
             <institution>Advanced Diagnostics, Metabolism, Toronto General Research
               Institute</institution>
-            <addr-line>
-              <named-content content-type="city">Ontario</named-content>
-            </addr-line>
+            <city>Ontario</city>
             <country>Canada</country>
           </aff>
         </contrib-group>

@@ -1,19 +1,19 @@
 <?oxygen SCHSchema="custom-meta-test-15.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta
-Test: report    ($type = $features-subj) and ($pos=2) and (meta-name != 'Template')
-Message: The value of the 2nd meta-name can only be 'Template'. Currently it is . -->
+Test: report    ($pos=2) and (meta-name != 'source-file-type')
+Message: The value of the 2nd meta-name can only be 'source-file-type'. Currently it is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Feature Article</subject>
           </subj-group>
         </article-categories>
         <custom-meta-group>
           <custom-meta>
-            <meta-name>Template</meta-name>
+            <meta-name>pdf-template</meta-name>
             <meta-value>...</meta-value>
           </custom-meta>
           <custom-meta>

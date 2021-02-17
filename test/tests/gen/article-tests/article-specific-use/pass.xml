@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="article-specific-use.sch"?>
+<!--Context: article
+Test: assert    @specific-use = ('version-of-record','corrected-version-of-record')
+Message: The root article element must have a specific-use atribute with a value which is either 'version-of-record' or 'corrected-version-of-record'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article specific-use="version-of-record"/>
+</root>

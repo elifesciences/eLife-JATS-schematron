@@ -1,15 +1,15 @@
 <?oxygen SCHSchema="dec-letter-reply-test-1.sch"?>
 <!--Context: article/sub-article
-Test: assert    if ($pos = 1) then @article-type='decision-letter' else @article-type='reply'
+Test: assert    if ($pos = 1) then @article-type='referee-report' else @article-type='author-comment'
 Message: 1st sub-article must be the decision letter. 2nd sub-article must be the author response. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
-    <sub-article article-type="reply">
+    <sub-article article-type="author-comment">
       <front-stub>
         <contrib-group/>
       </front-stub>
     </sub-article>
-    <sub-article article-type="decision-letter">
+    <sub-article article-type="referee-report">
       <front-stub>
         <contrib-group/>
       </front-stub>

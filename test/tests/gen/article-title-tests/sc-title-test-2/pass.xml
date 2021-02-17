@@ -2,10 +2,10 @@
 <!--Context: article-meta//article-title
 Test: report    ($type = 'Scientific Correspondence') and matches(.,'”')
 Message: title of a '' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <article-meta>
-      <subj-group subj-group-type="display-channel">
+      <subj-group subj-group-type="heading">
         <subject>Scientific Correspondence</subject>
       </subj-group>
       <title-group>

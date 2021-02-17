@@ -1,12 +1,1052 @@
 <?oxygen SCHSchema="contrib-test-5.sch"?>
 <!--Context: article-meta//contrib
-Test: report    if ($subj-type = ('Retraction','Correction')) then () else if ($type != 'author') then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else ()
+Test: report    if ($subj-type = $notice-display-types) then () else if ($type != 'author') then () else if (collab) then () else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0) else ()
 Message: Group author members should very likely have an affiliation.  does not. Is this OK? -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <front>
       <article-meta>
-        <contrib-group><contrib contrib-type="author" id="author-187277" equal-contrib="yes"><name><surname>Rivett</surname><given-names>Lucy</given-names></name><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="fn" rid="equal-contrib1">†</xref><xref ref-type="fn" rid="con1"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187276" equal-contrib="yes"><name><surname>Sridhar</surname><given-names>Sushmita</given-names></name><xref ref-type="aff" rid="aff3">3</xref><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="fn" rid="equal-contrib1">†</xref><xref ref-type="fn" rid="con2"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187278" equal-contrib="yes"><name><surname>Sparkes</surname><given-names>Dominic</given-names></name><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="fn" rid="equal-contrib1">†</xref><xref ref-type="fn" rid="con3"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187279" equal-contrib="yes"><name><surname>Routledge</surname><given-names>Matthew</given-names></name><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="fn" rid="equal-contrib1">†</xref><xref ref-type="fn" rid="con4"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187280" equal-contrib="yes"><name><surname>Jones</surname><given-names>Nick K</given-names></name><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="fn" rid="equal-contrib1">†</xref><xref ref-type="fn" rid="con5"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187282"><name><surname>Forrest</surname><given-names>Sally</given-names></name><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="fn" rid="con6"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187283"><name><surname>Young</surname><given-names>Jamie</given-names></name><xref ref-type="aff" rid="aff6">6</xref><xref ref-type="other" rid="fund14"/><xref ref-type="fn" rid="con7"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187285"><name><surname>Pereira-Dias</surname><given-names>Joana</given-names></name><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="fn" rid="con8"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187286"><name><surname>Hamilton</surname><given-names>William L</given-names></name><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="fn" rid="con9"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187287"><name><surname>Ferris</surname><given-names>Mark</given-names></name><xref ref-type="aff" rid="aff7">7</xref><xref ref-type="fn" rid="con10"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187288"><name><surname>Torok</surname><given-names>M Estee</given-names></name><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="aff" rid="aff8">8</xref><xref ref-type="other" rid="fund10"/><xref ref-type="other" rid="fund11"/><xref ref-type="fn" rid="con11"/><xref ref-type="fn" rid="conf2"/></contrib><contrib contrib-type="author" id="author-187300"><name><surname>Meredith</surname><given-names>Luke</given-names></name><xref ref-type="aff" rid="aff9">9</xref><xref ref-type="fn" rid="con12"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author"><collab>The CITIID-NIHR COVID-19 BioResource Collaboration<contrib-group><contrib contrib-type="author"><name><surname>Gupta</surname><given-names>Ravi</given-names></name></contrib><contrib contrib-type="author"><name><surname>Lyons</surname><given-names>Paul A</given-names></name></contrib><contrib contrib-type="author"><name><surname>Toshner</surname><given-names>Mark</given-names></name></contrib><contrib contrib-type="author"><name><surname>Warne</surname><given-names>Ben</given-names></name></contrib><contrib contrib-type="author"><name><surname>Bartholdson Scott</surname><given-names>Josefin</given-names></name></contrib><contrib contrib-type="author"><name><surname>Cormie</surname><given-names>Claire</given-names></name></contrib><contrib contrib-type="author"><name><surname>Gill</surname><given-names>Harmeet</given-names></name></contrib><contrib contrib-type="author"><name><surname>Kean</surname><given-names>Iain</given-names></name></contrib><contrib contrib-type="author"><name><surname>Maes</surname><given-names>Mailis</given-names></name></contrib><contrib contrib-type="author"><name><surname>Reynolds</surname><given-names>Nicola</given-names></name></contrib><contrib contrib-type="author"><name><surname>Wantoch</surname><given-names>Michelle</given-names></name></contrib><contrib contrib-type="author"><name><surname>Caddy</surname><given-names>Sarah</given-names></name></contrib><contrib contrib-type="author"><name><surname>Caller</surname><given-names>Laura</given-names></name></contrib><contrib contrib-type="author"><name><surname>Feltwell</surname><given-names>Theresa</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hall</surname><given-names>Grant</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hosmillo</surname><given-names>Myra</given-names></name></contrib><contrib contrib-type="author"><name><surname>Houldcroft</surname><given-names>Charlotte</given-names></name></contrib><contrib contrib-type="author"><name><surname>Jahun</surname><given-names>Aminu</given-names></name></contrib><contrib contrib-type="author"><name><surname>Khokhar</surname><given-names>Fahad</given-names></name></contrib><contrib contrib-type="author"><name><surname>Yakovleva</surname><given-names>Anna</given-names></name></contrib><contrib contrib-type="author"><name><surname>Butcher</surname><given-names>Helen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Caputo</surname><given-names>Daniela</given-names></name></contrib><contrib contrib-type="author"><name><surname>Clapham-Riley</surname><given-names>Debra</given-names></name></contrib><contrib contrib-type="author"><name><surname>Dolling</surname><given-names>Helen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Furlong</surname><given-names>Anita</given-names></name></contrib><contrib contrib-type="author"><name><surname>Graves</surname><given-names>Barbara</given-names></name></contrib><contrib contrib-type="author"><name><surname>Gresley</surname><given-names>Emma Le</given-names></name></contrib><contrib contrib-type="author"><name><surname>Kingston</surname><given-names>Nathalie</given-names></name></contrib><contrib contrib-type="author"><name><surname>Papadia</surname><given-names>Sofia</given-names></name></contrib><contrib contrib-type="author"><name><surname>Stark</surname><given-names>Hannah</given-names></name></contrib><contrib contrib-type="author"><name><surname>Stirrups</surname><given-names>Kathleen E.</given-names></name></contrib><contrib contrib-type="author"><name><surname>Webster</surname><given-names>Jennifer</given-names></name></contrib><contrib contrib-type="author"><name><surname>Calder</surname> <given-names>Joanna</given-names></name></contrib><contrib contrib-type="author"><name><surname>Harris</surname><given-names>Julie</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hewitt</surname><given-names>Sarah</given-names></name></contrib><contrib contrib-type="author"><name><surname>Kennet</surname> <given-names>Jane</given-names></name></contrib><contrib contrib-type="author"><name><surname>Meadows</surname><given-names>Anne</given-names></name></contrib><contrib contrib-type="author"><name><surname>Rastall</surname><given-names>Rebecca</given-names></name></contrib><contrib contrib-type="author"><name><surname>Brien</surname><given-names>Criona O</given-names></name></contrib><contrib contrib-type="author"><name><surname>Price</surname><given-names>Jo</given-names></name></contrib><contrib contrib-type="author"><name><surname>Publico</surname><given-names>Cherry</given-names></name></contrib><contrib contrib-type="author"><name><surname>Rowlands</surname><given-names>Jane</given-names></name></contrib><contrib contrib-type="author"><name><surname>Ruffolo</surname><given-names>Valentina</given-names></name></contrib><contrib contrib-type="author"><name><surname>Tordesillas</surname><given-names>Hugo</given-names></name></contrib><contrib contrib-type="author"><name><surname>Brookes</surname><given-names>Karen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Canna</surname><given-names>Laura</given-names></name></contrib><contrib contrib-type="author"><name><surname>Cruz</surname><given-names>Isabel</given-names></name></contrib><contrib contrib-type="author"><name><surname>Dempsey</surname><given-names>Katie</given-names></name></contrib><contrib contrib-type="author"><name><surname>Elmer</surname><given-names>Anne</given-names></name></contrib><contrib contrib-type="author"><name><surname>Escoffery</surname><given-names>Naidine</given-names></name></contrib><contrib contrib-type="author"><name><surname>Jones</surname><given-names>Heather</given-names></name></contrib><contrib contrib-type="author"><name><surname>Ribeiro</surname><given-names>Carla</given-names></name></contrib><contrib contrib-type="author"><name><surname>Saunders</surname><given-names>Caroline</given-names></name></contrib><contrib contrib-type="author"><name><surname>Wright</surname><given-names>Angela</given-names></name></contrib><contrib contrib-type="author"><name><surname>Nyagumbo</surname><given-names>Rutendo</given-names></name></contrib><contrib contrib-type="author"><name><surname>Roberts</surname><given-names>Anne</given-names></name></contrib><contrib contrib-type="author"><name><surname>Bucke</surname><given-names>Ashlea</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hargreaves</surname><given-names>Simone</given-names></name></contrib><contrib contrib-type="author"><name><surname>Johnson</surname><given-names>Danielle</given-names></name></contrib><contrib contrib-type="author"><name><surname>Narcorda</surname><given-names>Aileen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Read</surname><given-names>Debbie</given-names></name></contrib><contrib contrib-type="author"><name><surname>Sparke</surname><given-names>Christian</given-names></name></contrib><contrib contrib-type="author"><name><surname>Warboys</surname><given-names>Lucy</given-names></name></contrib><contrib contrib-type="author"><name> <surname>Lagadu</surname><given-names>Kirsty</given-names></name></contrib><contrib contrib-type="author"><name><surname>Mactavous</surname><given-names>Lenette</given-names></name></contrib><contrib contrib-type="author"><name><surname>Gould</surname><given-names>Tim</given-names></name></contrib><contrib contrib-type="author"><name><surname>Raine</surname><given-names>Tim</given-names></name></contrib><contrib contrib-type="author"><name><surname>Mather</surname><given-names>Claire</given-names></name></contrib><contrib contrib-type="author"><name><surname>Ramenatte</surname><given-names>Nicola</given-names></name></contrib><contrib contrib-type="author"><name><surname>Vallier</surname><given-names>Anne-Laure</given-names></name></contrib><contrib contrib-type="author"><name><surname>Kasanicki</surname><given-names>Mary</given-names></name></contrib><contrib contrib-type="author"><name><surname>Eames</surname><given-names>Penelope-Jane</given-names></name></contrib><contrib contrib-type="author"><name><surname>McNicholas</surname><given-names>Chris</given-names></name></contrib><contrib contrib-type="author"><name><surname>Thake</surname><given-names>Lisa</given-names></name></contrib><contrib contrib-type="author"><name><surname>Bartholomew</surname><given-names>Neil</given-names></name></contrib><contrib contrib-type="author"><name><surname>Brown</surname><given-names>Nick</given-names></name></contrib><contrib contrib-type="author"><name> <surname>Parmar</surname> <given-names>Surendra</given-names></name></contrib><contrib contrib-type="author"><name><surname>Zhang</surname><given-names>Hongyi</given-names></name></contrib><contrib contrib-type="author"><name><surname>Bowring</surname><given-names>Ailsa</given-names></name></contrib><contrib contrib-type="author"><name><surname>Martell</surname><given-names>Geraldine</given-names></name></contrib><contrib contrib-type="author"><name><surname>Quinnell</surname><given-names>Natalie</given-names></name></contrib><contrib contrib-type="author"><name><surname>Wright</surname><given-names>Jo</given-names></name></contrib><contrib contrib-type="author"><name><surname>Murphy</surname><given-names>Helen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Dunmore</surname><given-names>Benjamin J.</given-names></name></contrib><contrib contrib-type="author"><name><surname>Legchenko</surname><given-names>Ekaterina</given-names></name></contrib><contrib contrib-type="author"><name><surname>Gräf</surname><given-names>Stefan</given-names></name></contrib><contrib contrib-type="author"><name><surname>Huang</surname><given-names>Christopher</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hodgson</surname><given-names>Josh</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hunter</surname><given-names>Kelvin</given-names></name></contrib><contrib contrib-type="author"><name><surname>Martin</surname><given-names>Jennifer</given-names></name></contrib><contrib contrib-type="author"><name><surname>Mescia</surname><given-names>Federica</given-names></name></contrib><contrib contrib-type="author"><name> <surname>O’Donnell</surname><given-names>Ciara</given-names></name></contrib><contrib contrib-type="author"><name><surname>Pointon</surname><given-names>Linda</given-names></name></contrib><contrib contrib-type="author"><name><surname>Shih</surname><given-names>Joy</given-names></name></contrib><contrib contrib-type="author"><name><surname>Sutcliffe</surname><given-names>Rachel</given-names></name></contrib><contrib contrib-type="author"><name><surname>Tilly</surname><given-names>Tobias</given-names></name></contrib><contrib contrib-type="author"><name><surname>Tong</surname><given-names>Zhen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Treacy</surname> <given-names>Carmen</given-names></name></contrib><contrib contrib-type="author"><name><surname>Wood</surname><given-names>Jennifer</given-names></name></contrib><contrib contrib-type="author"><name><surname>Bergamaschi</surname><given-names>Laura</given-names></name></contrib><contrib contrib-type="author"><name><surname>Betancourt</surname><given-names>Ariana</given-names></name></contrib><contrib contrib-type="author"><name><surname>Bowyer</surname><given-names>Georgie</given-names></name></contrib><contrib contrib-type="author"><name><surname>De Sa</surname><given-names>Aloka</given-names></name></contrib><contrib contrib-type="author"><name><surname>Epping</surname><given-names>Maddie</given-names></name></contrib><contrib contrib-type="author"><name><surname>Hinch</surname><given-names>Andrew</given-names></name></contrib><contrib contrib-type="author"><name><surname>Huhn</surname><given-names>Oisin</given-names></name></contrib><contrib contrib-type="author"><name><surname>Jarvis</surname><given-names>Isobel</given-names></name></contrib><contrib contrib-type="author"><name><surname>Lewis</surname><given-names>Daniel</given-names></name></contrib><contrib contrib-type="author"><name><surname>Marsden</surname><given-names>Joe</given-names></name></contrib><contrib contrib-type="author"><name><surname>McCallum</surname><given-names>Simon</given-names></name></contrib><contrib contrib-type="author"><name><surname>Nice</surname><given-names>Francescsa</given-names></name></contrib></contrib-group></collab><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="fn" rid="con13"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187289"><name><surname>Curran</surname><given-names>Martin D</given-names></name><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="fn" rid="con14"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187290"><name><surname>Fuller</surname><given-names>Stewart</given-names></name><xref ref-type="aff" rid="aff10">10</xref><xref ref-type="fn" rid="con15"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187291"><name><surname>Chaudhry</surname><given-names>Afzal</given-names></name><xref ref-type="aff" rid="aff11">11</xref><xref ref-type="other" rid="fund10"/><xref ref-type="fn" rid="con16"/><xref ref-type="fn" rid="conf3"/></contrib><contrib contrib-type="author" id="author-187292"><name><surname>Shaw</surname><given-names>Ashley</given-names></name><xref ref-type="aff" rid="aff10">10</xref><xref ref-type="fn" rid="con17"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187293"><name><surname>Samworth</surname><given-names>Richard J</given-names></name><xref ref-type="aff" rid="aff12">12</xref><xref ref-type="other" rid="fund12"/><xref ref-type="other" rid="fund13"/><xref ref-type="fn" rid="con18"/><xref ref-type="fn" rid="conf4"/></contrib><contrib contrib-type="author" id="author-187294"><name><surname>Bradley</surname><given-names>John R</given-names></name><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff13">13</xref><xref ref-type="other" rid="fund10"/><xref ref-type="fn" rid="con19"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-187295"><name><surname>Dougan</surname><given-names>Gordon</given-names></name><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="other" rid="fund10"/><xref ref-type="fn" rid="con20"/><xref ref-type="fn" rid="conf5"/></contrib><contrib contrib-type="author" id="author-187296"><name><surname>Smith</surname><given-names>Kenneth G C</given-names></name><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="other" rid="fund6"/><xref ref-type="fn" rid="con21"/><xref ref-type="fn" rid="conf6"/></contrib><contrib contrib-type="author" id="author-57098"><name><surname>Lehner</surname><given-names>Paul J</given-names></name><contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0001-9383-1054</contrib-id><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="other" rid="fund5"/><xref ref-type="other" rid="fund7"/><xref ref-type="fn" rid="con22"/><xref ref-type="fn" rid="conf7"/></contrib><contrib contrib-type="author" id="author-58590"><name><surname>Matheson</surname><given-names>Nicholas J</given-names></name><contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-3318-1851</contrib-id><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="aff" rid="aff14">14</xref><xref ref-type="other" rid="fund8"/><xref ref-type="other" rid="fund9"/><xref ref-type="fn" rid="con23"/><xref ref-type="fn" rid="conf8"/></contrib><contrib contrib-type="author" id="author-187297"><name><surname>Wright</surname><given-names>Giles</given-names></name><xref ref-type="aff" rid="aff7">7</xref><xref ref-type="fn" rid="con24"/><xref ref-type="fn" rid="conf1"/></contrib><contrib contrib-type="author" id="author-15637"><name><surname>Goodfellow</surname><given-names>Ian G</given-names></name><contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-9483-510X</contrib-id><xref ref-type="aff" rid="aff9">9</xref><xref ref-type="other" rid="fund3"/><xref ref-type="other" rid="fund7"/><xref ref-type="other" rid="fund4"/><xref ref-type="fn" rid="con25"/><xref ref-type="fn" rid="conf9"/></contrib><contrib contrib-type="author" id="author-187298"><name><surname>Baker</surname><given-names>Stephen</given-names></name><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="other" rid="fund2"/><xref ref-type="other" rid="fund7"/><xref ref-type="fn" rid="con26"/><xref ref-type="fn" rid="conf10"/></contrib><contrib contrib-type="author" corresp="yes" id="author-71775"><name><surname>Weekes</surname><given-names>Michael P</given-names></name><contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0003-3196-5545</contrib-id><email>mpw1001@cam.ac.uk</email><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="aff" rid="aff4">4</xref><xref ref-type="aff" rid="aff5">5</xref><xref ref-type="other" rid="fund1"/><xref ref-type="other" rid="fund7"/><xref ref-type="fn" rid="con27"/><xref ref-type="fn" rid="conf11"/></contrib><aff id="aff1"><label>1</label><institution content-type="dept">Department of Infectious Diseases</institution><institution>Cambridge University NHS Hospitals Foundation Trust</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff2"><label>2</label><institution>Clinical Microbiology &amp; Public Health Laboratory, Public Health England</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff3"><label>3</label><institution>Wellcome Sanger Institute</institution><addr-line><named-content content-type="city">Hinxton</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff4"><label>4</label><institution>Department of Medicine, University of Cambridge</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff5"><label>5</label><institution>Cambridge Institute of Therapeutic Immunology &amp; Infectious Disease (CITIID), Jeffrey Cheah Biomedical Centre, Cambridge Biomedical Campus, University of Cambridge</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff6"><label>6</label><institution>Academic Department of Medical Genetics, University of Cambridge</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff7"><label>7</label><institution>Occupational Health and Wellbeing, Cambridge University Hospitals NHS Foundation Trust</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff8"><label>8</label><institution>Department of Microbiology, Cambridge University NHS Hospitals Foundation Trust</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff9"><label>9</label><institution>Division of Virology, Department of Pathology, University of Cambridge</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff10"><label>10</label><institution>National Institutes for Health Research Cambridge, Clinical Research Facility</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff11"><label>11</label><institution>Cambridge University Hospitals NHS Foundation Trust</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff12"><label>12</label><institution>Statistical Laboratory, Centre for Mathematical Sciences</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff13"><label>13</label><institution>National Institutes for Health Research Cambridge Biomedical Research Centre</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff><aff id="aff14"><label>14</label><institution>NHS Blood and Transplant</institution><addr-line><named-content content-type="city">Cambridge</named-content></addr-line><country>United Kingdom</country></aff></contrib-group>
+        <contrib-group>
+          <contrib contrib-type="author" id="author-187277" equal-contrib="yes">
+            <name>
+              <surname>Rivett</surname>
+              <given-names>Lucy</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="equal-contrib1">†</xref>
+            <xref ref-type="fn" rid="con1"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187276" equal-contrib="yes">
+            <name>
+              <surname>Sridhar</surname>
+              <given-names>Sushmita</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff3">3</xref>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="fn" rid="equal-contrib1">†</xref>
+            <xref ref-type="fn" rid="con2"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187278" equal-contrib="yes">
+            <name>
+              <surname>Sparkes</surname>
+              <given-names>Dominic</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="equal-contrib1">†</xref>
+            <xref ref-type="fn" rid="con3"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187279" equal-contrib="yes">
+            <name>
+              <surname>Routledge</surname>
+              <given-names>Matthew</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="equal-contrib1">†</xref>
+            <xref ref-type="fn" rid="con4"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187280" equal-contrib="yes">
+            <name>
+              <surname>Jones</surname>
+              <given-names>Nick K</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="fn" rid="equal-contrib1">†</xref>
+            <xref ref-type="fn" rid="con5"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187282">
+            <name>
+              <surname>Forrest</surname>
+              <given-names>Sally</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="fn" rid="con6"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187283">
+            <name>
+              <surname>Young</surname>
+              <given-names>Jamie</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff6">6</xref>
+            <xref ref-type="other" rid="fund14"/>
+            <xref ref-type="fn" rid="con7"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187285">
+            <name>
+              <surname>Pereira-Dias</surname>
+              <given-names>Joana</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="fn" rid="con8"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187286">
+            <name>
+              <surname>Hamilton</surname>
+              <given-names>William L</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="con9"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187287">
+            <name>
+              <surname>Ferris</surname>
+              <given-names>Mark</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff7">7</xref>
+            <xref ref-type="fn" rid="con10"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187288">
+            <name>
+              <surname>Torok</surname>
+              <given-names>M Estee</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="aff" rid="aff8">8</xref>
+            <xref ref-type="other" rid="fund10"/>
+            <xref ref-type="other" rid="fund11"/>
+            <xref ref-type="fn" rid="con11"/>
+            <xref ref-type="fn" rid="conf2"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187300">
+            <name>
+              <surname>Meredith</surname>
+              <given-names>Luke</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff9">9</xref>
+            <xref ref-type="fn" rid="con12"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author">
+            <collab>The CITIID-NIHR COVID-19 BioResource Collaboration<contrib-group>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Gupta</surname>
+                    <given-names>Ravi</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Lyons</surname>
+                    <given-names>Paul A</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Toshner</surname>
+                    <given-names>Mark</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Warne</surname>
+                    <given-names>Ben</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Bartholdson Scott</surname>
+                    <given-names>Josefin</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Cormie</surname>
+                    <given-names>Claire</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Gill</surname>
+                    <given-names>Harmeet</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Kean</surname>
+                    <given-names>Iain</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Maes</surname>
+                    <given-names>Mailis</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Reynolds</surname>
+                    <given-names>Nicola</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Wantoch</surname>
+                    <given-names>Michelle</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Caddy</surname>
+                    <given-names>Sarah</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Caller</surname>
+                    <given-names>Laura</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Feltwell</surname>
+                    <given-names>Theresa</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hall</surname>
+                    <given-names>Grant</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hosmillo</surname>
+                    <given-names>Myra</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Houldcroft</surname>
+                    <given-names>Charlotte</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Jahun</surname>
+                    <given-names>Aminu</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Khokhar</surname>
+                    <given-names>Fahad</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Yakovleva</surname>
+                    <given-names>Anna</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Butcher</surname>
+                    <given-names>Helen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Caputo</surname>
+                    <given-names>Daniela</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Clapham-Riley</surname>
+                    <given-names>Debra</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Dolling</surname>
+                    <given-names>Helen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Furlong</surname>
+                    <given-names>Anita</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Graves</surname>
+                    <given-names>Barbara</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Gresley</surname>
+                    <given-names>Emma Le</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Kingston</surname>
+                    <given-names>Nathalie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Papadia</surname>
+                    <given-names>Sofia</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Stark</surname>
+                    <given-names>Hannah</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Stirrups</surname>
+                    <given-names>Kathleen E.</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Webster</surname>
+                    <given-names>Jennifer</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Calder</surname> <given-names>Joanna</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Harris</surname>
+                    <given-names>Julie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hewitt</surname>
+                    <given-names>Sarah</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Kennet</surname> <given-names>Jane</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Meadows</surname>
+                    <given-names>Anne</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Rastall</surname>
+                    <given-names>Rebecca</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Brien</surname>
+                    <given-names>Criona O</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Price</surname>
+                    <given-names>Jo</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Publico</surname>
+                    <given-names>Cherry</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Rowlands</surname>
+                    <given-names>Jane</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Ruffolo</surname>
+                    <given-names>Valentina</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Tordesillas</surname>
+                    <given-names>Hugo</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Brookes</surname>
+                    <given-names>Karen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Canna</surname>
+                    <given-names>Laura</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Cruz</surname>
+                    <given-names>Isabel</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Dempsey</surname>
+                    <given-names>Katie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Elmer</surname>
+                    <given-names>Anne</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Escoffery</surname>
+                    <given-names>Naidine</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Jones</surname>
+                    <given-names>Heather</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Ribeiro</surname>
+                    <given-names>Carla</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Saunders</surname>
+                    <given-names>Caroline</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Wright</surname>
+                    <given-names>Angela</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Nyagumbo</surname>
+                    <given-names>Rutendo</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Roberts</surname>
+                    <given-names>Anne</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Bucke</surname>
+                    <given-names>Ashlea</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hargreaves</surname>
+                    <given-names>Simone</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Johnson</surname>
+                    <given-names>Danielle</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Narcorda</surname>
+                    <given-names>Aileen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Read</surname>
+                    <given-names>Debbie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Sparke</surname>
+                    <given-names>Christian</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Warboys</surname>
+                    <given-names>Lucy</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name> <surname>Lagadu</surname>
+                    <given-names>Kirsty</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Mactavous</surname>
+                    <given-names>Lenette</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Gould</surname>
+                    <given-names>Tim</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Raine</surname>
+                    <given-names>Tim</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Mather</surname>
+                    <given-names>Claire</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Ramenatte</surname>
+                    <given-names>Nicola</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Vallier</surname>
+                    <given-names>Anne-Laure</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Kasanicki</surname>
+                    <given-names>Mary</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Eames</surname>
+                    <given-names>Penelope-Jane</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>McNicholas</surname>
+                    <given-names>Chris</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Thake</surname>
+                    <given-names>Lisa</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Bartholomew</surname>
+                    <given-names>Neil</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Brown</surname>
+                    <given-names>Nick</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name> <surname>Parmar</surname> <given-names>Surendra</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Zhang</surname>
+                    <given-names>Hongyi</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Bowring</surname>
+                    <given-names>Ailsa</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Martell</surname>
+                    <given-names>Geraldine</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Quinnell</surname>
+                    <given-names>Natalie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Wright</surname>
+                    <given-names>Jo</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Murphy</surname>
+                    <given-names>Helen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Dunmore</surname>
+                    <given-names>Benjamin J.</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Legchenko</surname>
+                    <given-names>Ekaterina</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Gräf</surname>
+                    <given-names>Stefan</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Huang</surname>
+                    <given-names>Christopher</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hodgson</surname>
+                    <given-names>Josh</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hunter</surname>
+                    <given-names>Kelvin</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Martin</surname>
+                    <given-names>Jennifer</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Mescia</surname>
+                    <given-names>Federica</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name> <surname>O’Donnell</surname>
+                    <given-names>Ciara</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Pointon</surname>
+                    <given-names>Linda</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Shih</surname>
+                    <given-names>Joy</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Sutcliffe</surname>
+                    <given-names>Rachel</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Tilly</surname>
+                    <given-names>Tobias</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Tong</surname>
+                    <given-names>Zhen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Treacy</surname> <given-names>Carmen</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Wood</surname>
+                    <given-names>Jennifer</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Bergamaschi</surname>
+                    <given-names>Laura</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Betancourt</surname>
+                    <given-names>Ariana</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Bowyer</surname>
+                    <given-names>Georgie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>De Sa</surname>
+                    <given-names>Aloka</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Epping</surname>
+                    <given-names>Maddie</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Hinch</surname>
+                    <given-names>Andrew</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Huhn</surname>
+                    <given-names>Oisin</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Jarvis</surname>
+                    <given-names>Isobel</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Lewis</surname>
+                    <given-names>Daniel</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Marsden</surname>
+                    <given-names>Joe</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>McCallum</surname>
+                    <given-names>Simon</given-names>
+                  </name>
+                </contrib>
+                <contrib contrib-type="author">
+                  <name>
+                    <surname>Nice</surname>
+                    <given-names>Francescsa</given-names>
+                  </name>
+                </contrib>
+              </contrib-group>
+            </collab>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="con13"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187289">
+            <name>
+              <surname>Curran</surname>
+              <given-names>Martin D</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff2">2</xref>
+            <xref ref-type="fn" rid="con14"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187290">
+            <name>
+              <surname>Fuller</surname>
+              <given-names>Stewart</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff10">10</xref>
+            <xref ref-type="fn" rid="con15"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187291">
+            <name>
+              <surname>Chaudhry</surname>
+              <given-names>Afzal</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff11">11</xref>
+            <xref ref-type="other" rid="fund10"/>
+            <xref ref-type="fn" rid="con16"/>
+            <xref ref-type="fn" rid="conf3"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187292">
+            <name>
+              <surname>Shaw</surname>
+              <given-names>Ashley</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff10">10</xref>
+            <xref ref-type="fn" rid="con17"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187293">
+            <name>
+              <surname>Samworth</surname>
+              <given-names>Richard J</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff12">12</xref>
+            <xref ref-type="other" rid="fund12"/>
+            <xref ref-type="other" rid="fund13"/>
+            <xref ref-type="fn" rid="con18"/>
+            <xref ref-type="fn" rid="conf4"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187294">
+            <name>
+              <surname>Bradley</surname>
+              <given-names>John R</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff13">13</xref>
+            <xref ref-type="other" rid="fund10"/>
+            <xref ref-type="fn" rid="con19"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187295">
+            <name>
+              <surname>Dougan</surname>
+              <given-names>Gordon</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="other" rid="fund10"/>
+            <xref ref-type="fn" rid="con20"/>
+            <xref ref-type="fn" rid="conf5"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187296">
+            <name>
+              <surname>Smith</surname>
+              <given-names>Kenneth G C</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="other" rid="fund6"/>
+            <xref ref-type="fn" rid="con21"/>
+            <xref ref-type="fn" rid="conf6"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-57098">
+            <name>
+              <surname>Lehner</surname>
+              <given-names>Paul J</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0001-9383-1054</contrib-id>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="other" rid="fund5"/>
+            <xref ref-type="other" rid="fund7"/>
+            <xref ref-type="fn" rid="con22"/>
+            <xref ref-type="fn" rid="conf7"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-58590">
+            <name>
+              <surname>Matheson</surname>
+              <given-names>Nicholas J</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-3318-1851</contrib-id>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="aff" rid="aff14">14</xref>
+            <xref ref-type="other" rid="fund8"/>
+            <xref ref-type="other" rid="fund9"/>
+            <xref ref-type="fn" rid="con23"/>
+            <xref ref-type="fn" rid="conf8"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187297">
+            <name>
+              <surname>Wright</surname>
+              <given-names>Giles</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff7">7</xref>
+            <xref ref-type="fn" rid="con24"/>
+            <xref ref-type="fn" rid="conf1"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-15637">
+            <name>
+              <surname>Goodfellow</surname>
+              <given-names>Ian G</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-9483-510X</contrib-id>
+            <xref ref-type="aff" rid="aff9">9</xref>
+            <xref ref-type="other" rid="fund3"/>
+            <xref ref-type="other" rid="fund7"/>
+            <xref ref-type="other" rid="fund4"/>
+            <xref ref-type="fn" rid="con25"/>
+            <xref ref-type="fn" rid="conf9"/>
+          </contrib>
+          <contrib contrib-type="author" id="author-187298">
+            <name>
+              <surname>Baker</surname>
+              <given-names>Stephen</given-names>
+            </name>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="other" rid="fund2"/>
+            <xref ref-type="other" rid="fund7"/>
+            <xref ref-type="fn" rid="con26"/>
+            <xref ref-type="fn" rid="conf10"/>
+          </contrib>
+          <contrib contrib-type="author" corresp="yes" id="author-71775">
+            <name>
+              <surname>Weekes</surname>
+              <given-names>Michael P</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0003-3196-5545</contrib-id>
+            <email>mpw1001@cam.ac.uk</email>
+            <xref ref-type="aff" rid="aff1">1</xref>
+            <xref ref-type="aff" rid="aff4">4</xref>
+            <xref ref-type="aff" rid="aff5">5</xref>
+            <xref ref-type="other" rid="fund1"/>
+            <xref ref-type="other" rid="fund7"/>
+            <xref ref-type="fn" rid="con27"/>
+            <xref ref-type="fn" rid="conf11"/>
+          </contrib>
+          <aff id="aff1">
+            <label>1</label>
+            <institution content-type="dept">Department of Infectious Diseases</institution>
+            <institution>Cambridge University NHS Hospitals Foundation Trust</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff2">
+            <label>2</label>
+            <institution>Clinical Microbiology &amp; Public Health Laboratory, Public Health England</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff3">
+            <label>3</label>
+            <institution>Wellcome Sanger Institute</institution>
+            <city>Hinxton</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff4">
+            <label>4</label>
+            <institution>Department of Medicine, University of Cambridge</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff5">
+            <label>5</label>
+            <institution>Cambridge Institute of Therapeutic Immunology &amp; Infectious Disease (CITIID), Jeffrey Cheah Biomedical Centre, Cambridge Biomedical Campus, University of Cambridge</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff6">
+            <label>6</label>
+            <institution>Academic Department of Medical Genetics, University of Cambridge</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff7">
+            <label>7</label>
+            <institution>Occupational Health and Wellbeing, Cambridge University Hospitals NHS Foundation Trust</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff8">
+            <label>8</label>
+            <institution>Department of Microbiology, Cambridge University NHS Hospitals Foundation Trust</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff9">
+            <label>9</label>
+            <institution>Division of Virology, Department of Pathology, University of Cambridge</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff10">
+            <label>10</label>
+            <institution>National Institutes for Health Research Cambridge, Clinical Research Facility</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff11">
+            <label>11</label>
+            <institution>Cambridge University Hospitals NHS Foundation Trust</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff12">
+            <label>12</label>
+            <institution>Statistical Laboratory, Centre for Mathematical Sciences</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff13">
+            <label>13</label>
+            <institution>National Institutes for Health Research Cambridge Biomedical Research Centre</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+          <aff id="aff14">
+            <label>14</label>
+            <institution>NHS Blood and Transplant</institution>
+            <city>Cambridge</city>
+            <country>United Kingdom</country>
+          </aff>
+        </contrib-group>
       </article-meta>
     </front>
   </article>

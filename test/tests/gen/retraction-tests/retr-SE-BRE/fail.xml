@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="retr-SE-BRE.sch"?>
 <!--Context: article[@article-type = 'retraction']
-Test: report    descendant::contrib-group[@content-type='section']
+Test: report    descendant::contrib-group[@content-type='peer-review']
 Message: Retractions must not contain any Senior or Reviewing Editors. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="retraction">
     <front>
       <article-meta>
-        <contrib-group content-type="section"/>
+        <contrib-group content-type="peer-review"/>
       </article-meta>
     </front>
   </article>

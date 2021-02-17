@@ -1,17 +1,21 @@
 <?oxygen SCHSchema="back-test-3.sch"?>
 <!--Context: back
-Test: report    ($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)
+Test: report    ($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and (not(ancestor::article//article-meta/pub-date[@date-type=('publication','pub')]) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)
 Message: One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for ''. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <front>
       <article-meta>
         <article-catergories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Communication</subject>
           </subj-group>
         </article-catergories>
-        <pub-date date-type="publication" publication-format="electronic"><day>17</day><month>08</month><year>2017</year></pub-date>
+        <pub-date date-type="publication" publication-format="electronic">
+          <day>17</day>
+          <month>08</month>
+          <year>2017</year>
+        </pub-date>
       </article-meta>
     </front>
     <back>

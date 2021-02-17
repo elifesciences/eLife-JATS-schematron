@@ -2,11 +2,11 @@
 <!--Context: article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value
 Test: report    not($subj = 'Replication Study') and matches(.,'[:;]')
 Message: Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-meta>
       <article-categories>
-        <subj-group subj-group-type="display-channel">
+        <subj-group subj-group-type="heading">
           <subject>Research Article</subject>
         </subj-group>
       </article-categories>

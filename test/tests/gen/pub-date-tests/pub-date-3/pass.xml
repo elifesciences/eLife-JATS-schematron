@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="pub-date-3.sch"?>
+<!--Context: article-meta/pub-date
+Test: assert    @date-type=('pub','update')
+Message: pub-date must have the attribute date-type with a value which is either 'pub' (for the publication date) or 'update' (for the update date if there is one, for example VoR publication date for an article that has been PoA'd). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <pub-date publication-format="electronic" date-type="pub" iso-8601-date="2020-09-22">
+        <day>22</day>
+        <month>09</month>
+        <year>2020</year>
+      </pub-date>
+    </article-meta>
+  </article>
+</root>

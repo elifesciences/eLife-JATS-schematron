@@ -7,7 +7,7 @@ Message: Template type meta-value must one of '1','2','3','4', or '5'. -->
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Insight</subject>
           </subj-group>
         </article-categories>
@@ -17,7 +17,7 @@ Message: Template type meta-value must one of '1','2','3','4', or '5'. -->
             <meta-value>...</meta-value>
           </custom-meta>
           <custom-meta>
-            <meta-name>Template</meta-name>
+            <meta-name>pdf-template</meta-name>
             <meta-value>1</meta-value>
           </custom-meta>
         </custom-meta-group>

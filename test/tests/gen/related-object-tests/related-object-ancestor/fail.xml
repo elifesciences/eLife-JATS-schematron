@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="related-object-ancestor.sch"?>
+<!--Context: related-object
+Test: assert    ancestor::abstract[not(@abstract-type)] or ancestor::sec[@sec-type='ethics-statement']
+Message:  is not allowed outside of the main abstract (abstract[not(@abstract-type)]) or ethics statements (sec[@sec-type='ethics-statement']). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <related-object/>
+  </article>
+</root>

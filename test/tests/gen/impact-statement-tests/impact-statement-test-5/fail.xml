@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="impact-statement-test-5.sch"?>
+<!--Context: article-meta/abstract[@abstract-type='toc']/p[1]
+Test: report    not($subj = 'Replication Study') and matches(.,'[:;]')
+Message: Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <abstract abstract-type="toc">
+        <p>This is an impact <sc>s</sc>tatement: <italic>i</italic><sup>a</sup><sub>b</sub>.</p>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

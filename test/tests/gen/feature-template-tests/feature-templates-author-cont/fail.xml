@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="feature-templates-author-cont.sch"?>
-<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
-Test: report    back/fn-group[@content-type='author-contribution'] and ($template != '5')
+<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = $features-subj]
+Test: report    ($template != '5') and front/article-meta//contrib[@contrib-type='author']/role
 Message:  is a template , which means that it should very likely not have any Author contributions. This  has . Please check with eLife production whether author contributions should be present. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="discussion" dtd-version="1.1">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Feature Article</subject>
           </subj-group>
           <subj-group subj-group-type="sub-display-channel">
@@ -26,37 +26,29 @@ Message:  is a template , which means that it should very likely not have any Au
             <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-6547-0463</contrib-id>
             <email>jasper.hunt@lincoln.ox.ac.uk</email>
             <xref ref-type="aff" rid="aff1"/>
-            <xref ref-type="fn" rid="con1"/>
-            <xref ref-type="fn" rid="conf1"/>
+            <xref ref-type="author-notes" rid="con1"/>
+            <xref ref-type="author-notes" rid="conf1"/>
+            <role/>
             <bio>
-              <p><bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
+              <p>
+                <bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
                 Genetics, University of Oxford, Oxford, United Kingdom</p>
             </bio>
           </contrib>
           <aff id="aff1">
             <institution>Department of Physiology, Anatomy and Genetics, University of
               Oxford</institution>
-            <addr-line>
-              <named-content content-type="city">Oxford</named-content>
-            </addr-line>
+            <city>Oxford</city>
             <country>United Kingdom</country>
           </aff>
         </contrib-group>
         <custom-meta-group>
           <custom-meta specific-use="meta-only">
-            <meta-name>Author impact statement</meta-name>
-            <meta-value>Early-career researchers feel discouraged from exposing vulnerability even
-              during a global crisis.</meta-value>
-          </custom-meta>
-          <custom-meta specific-use="meta-only">
-            <meta-name>Template</meta-name>
+            <meta-name>pdf-template</meta-name>
             <meta-value>3</meta-value>
           </custom-meta>
         </custom-meta-group>
       </article-meta>
     </front>
-    <back>
-      <fn-group content-type="author-contribution"><title>Author contributions</title><fn fn-type="con" id="con1"><p>Writing - original draft, Writing - review and editing</p></fn></fn-group>
-    </back>
   </article>
 </root>

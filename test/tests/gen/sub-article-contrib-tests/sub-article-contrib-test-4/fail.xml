@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="sub-article-contrib-test-4.sch"?>
+<!--Context: sub-article/front-stub/contrib-group/contrib
+Test: assert    role
+Message: sub-article contrib must have a child role element. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article>
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

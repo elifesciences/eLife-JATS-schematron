@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="final-rep-study-impact-statement-test.sch"?>
+<!--Context: article-meta/abstract[@abstract-type='toc']/p[1]
+Test: report    ($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))
+Message: Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Replication Study</subject>
+        </subj-group>
+      </article-categories>
+      <abstract abstract-type="toc">
+        <p>Editors Summary: test content.</p>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

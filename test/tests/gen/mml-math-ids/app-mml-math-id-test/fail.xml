@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="app-mml-math-id-test.sch"?>
+<!--Context: disp-formula/mml:math
+Test: report    (ancestor::app) and not(matches(@id,'^app\d+m[0-9]{1,9}$'))
+Message: mml:math @id in disp-formula must be in the format 'app0m0'.   does not conform to this. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app id="app1">
+        <disp-formula id="app1equ1">
+          <mml:math id="app1math1"/>
+        </disp-formula>
+      </app>
+    </back>
+  </article>
+</root>

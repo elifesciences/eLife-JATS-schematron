@@ -1,0 +1,29 @@
+<?oxygen SCHSchema="custom-meta-test-17.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta
+Test: report    ($pos=3) and (meta-name != 'elife-xml-version')
+Message: The value of the 3rd meta-name can only be 'elife-xml-version'. Currently it is . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article>
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Feature Article</subject>
+        </subj-group>
+      </article-categories>
+      <custom-meta-group>
+        <custom-meta specific-use="meta-only">
+          <meta-name>pdf-template</meta-name>
+          <meta-value>5</meta-value>
+        </custom-meta>
+        <custom-meta specific-use="meta-only">
+          <meta-name>source-file-type</meta-name>
+          <meta-value>word</meta-value>
+        </custom-meta>
+        <custom-meta specific-use="meta-only">
+          <meta-name>xml-version</meta-name>
+          <meta-value>2.0</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

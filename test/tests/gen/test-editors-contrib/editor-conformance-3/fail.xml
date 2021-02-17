@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="editor-conformance-3.sch"?>
-<!--Context: article/front/article-meta/contrib-group[@content-type='section']/contrib
+<!--Context: article/front/article-meta/contrib-group[@content-type='peer-review']/contrib
 Test: report    (@contrib-type='senior_editor') and ($role!='Senior Editor')
 Message:  has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (), which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <article-meta>
-        <contrib-group content-type="section">
+        <contrib-group content-type="peer-review">
           <contrib contrib-type="senior_editor">
             <name>
               <surname>Harrison</surname>
@@ -32,7 +32,7 @@ Message:  has a @contrib-type='senior_editor' but their role is not 'Senior Edit
         </contrib-group>
       </article-meta>
     </front>
-    <sub-article article-type="decision-letter" id="SA1">
+    <sub-article article-type="referee-report" id="SA1">
       <front-stub>
         <contrib-group>
           <contrib contrib-type="editor">

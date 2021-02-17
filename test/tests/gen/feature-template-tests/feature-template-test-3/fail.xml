@@ -1,28 +1,24 @@
 <?oxygen SCHSchema="feature-template-test-3.sch"?>
-<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
-Test: report    ($template = '5') and not(child::sub-article[@article-type='decision-letter'])
+<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = $features-subj]
+Test: report    ($template = '5') and not(child::sub-article[@article-type='referee-report'])
 Message:  is a template  but it does not (currently) have a decision letter. Is that OK? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Feature Article</subject>
           </subj-group>
         </article-categories>
         <custom-meta-group>
           <custom-meta>
-            <meta-name>Author impact statement</meta-name>
-            <meta-value>...</meta-value>
-          </custom-meta>
-          <custom-meta>
-            <meta-name>Template</meta-name>
+            <meta-name>pdf-template</meta-name>
             <meta-value>5</meta-value>
           </custom-meta>
         </custom-meta-group>
       </article-meta>
     </front>
-    <sub-article article-type="reply"/>
+    <sub-article article-type="author-comment"/>
   </article>
 </root>

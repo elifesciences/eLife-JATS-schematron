@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="pre-impact-statement-test-6.sch"?>
+<!--Context: article-meta/abstract[@abstract-type='toc']/p[1]
+Test: report    matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')
+Message: Impact statement contains a possessive phrase. This is not allowed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <abstract abstract-type="toc">
+        <p>This is an impact <sc>s</sc>tatement <italic>i</italic><sup>a</sup><sub>b</sub>.</p>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="reply-missing-disp-quote-test-1.sch"?>
-<!--Context: sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]
+<!--Context: sub-article[@article-type='author-comment']/body//p[not(ancestor::disp-quote)]
 Test: report    (count(*)=1) and (child::italic) and ($free-text='')
 Message: para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly? -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
-    <sub-article article-type="reply" id="SA2">
+    <sub-article article-type="author-comment" id="SA2">
       <front-stub>
         ...
       </front-stub>
@@ -20,7 +20,9 @@ Message: para in author response is entirely in italics, but not in a display qu
           <p>3) ...</p>
         </disp-quote>
         <p>We thank the reviewers for suggesting to use an ...</p>
-        <p><italic>4) In Figure 5B, the authors show that bfa1 ....</italic></p>
+        <p>
+          <italic>4) In Figure 5B, the authors show that bfa1 ....</italic>
+        </p>
         <p>We performed Western blot analyses of ...</p>
       </body>
     </sub-article>

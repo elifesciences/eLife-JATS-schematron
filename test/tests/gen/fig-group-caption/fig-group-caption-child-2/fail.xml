@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-group-caption-child-2.sch"?>
+<!--Context: fig-group/caption
+Test: report    *[not(name() = 'p')]
+Message: fig-group caption can only contain a sinlge p element.  is not permitted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig-group>
+      <caption specific-use="print">
+        <title/>
+      </caption>
+    </fig-group>
+  </article>
+</root>

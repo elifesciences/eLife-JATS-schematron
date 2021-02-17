@@ -2,11 +2,11 @@
 <!--Context: subj-group[@subj-group-type='sub-display-channel']/subject
 Test: report    preceding-sibling::subject
 Message: There is more than one sub-display-channel subject. This is incorrect. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="discussion">
     <article-meta>
       <article-categories>
-        <subj-group subj-group-type="display-channel">
+        <subj-group subj-group-type="heading">
           <subject>Feature Article</subject>
         </subj-group>
         <subj-group subj-group-type="sub-display-channel">

@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="operating-system-command-presence.sch"?>
-<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|styled-content|monospace|code|underline|fn|institution|ext-link
 Test: report    contains(.,'')
 Message:  element contains a operating system command character '' which should very likely be replaced/removed. -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

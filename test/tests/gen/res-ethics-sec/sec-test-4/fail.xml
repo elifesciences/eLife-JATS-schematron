@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="sec-test-4.sch"?>
-<!--Context: article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]
+<!--Context: article[@article-type='research-article']//sec[not(@sec-type='ethics-statement') and not(descendant::xref[@ref-type='bibr'])]
 Test: report    matches(lower-case(title[1]),'^ethics| ethics$| ethics ')
 Message: Section has a title ''. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or ''? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

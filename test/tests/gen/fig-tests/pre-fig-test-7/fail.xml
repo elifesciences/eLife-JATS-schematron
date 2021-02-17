@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-fig-test-7.sch"?>
 <!--Context: fig[not(ancestor::sub-article)]
-Test: assert    graphic
-Message: fig does not have graphic. Ensure author query is added asking for file. -->
+Test: assert    graphic or alternatives[graphic[not(@specific-use='print')]]
+Message: fig does not have a graphic. Ensure author query is added asking for file. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article article-type="research-article">
         <fig id="fig1">

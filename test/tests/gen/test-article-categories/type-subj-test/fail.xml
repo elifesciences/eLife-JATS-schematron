@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="type-subj-test.sch"?>
+<!--Context: article-meta/article-categories
+Test: assert    count(subj-group[@subj-group-type='heading']) = 1
+Message: There must be one subj-group[@subj-group-type='heading'] which is a child of article-categories. Currently there are . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="discussion">
+    <article-meta>
+      <article-categories>
+        
+        <subj-group subj-group-type="major-subject">
+          <subject>Medicine</subject>
+          <subject>Neuroscience</subject>
+        </subj-group>
+      </article-categories>
+    </article-meta>
+  </article>
+</root>

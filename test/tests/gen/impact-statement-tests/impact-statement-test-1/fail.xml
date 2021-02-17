@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="impact-statement-test-1.sch"?>
+<!--Context: article-meta/abstract[@abstract-type='toc']/p[1]
+Test: report    not(child::*) and normalize-space(.)=''
+Message: The abstract for the impact statement cannot be empty. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <abstract abstract-type="toc">
+        <p/>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

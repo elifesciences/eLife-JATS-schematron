@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="gen-aff-test-7.sch"?>
+<!--Context: aff
+Test: report    count(state) gt 1
+Message: Affiliations cannot have more than 1 state elements.  has . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article>
+    <aff>
+      <label/>
+      <institution content-type="dept"/>
+      <institution/>
+      <city/>
+      <state/>
+      <country/>
+    </aff>
+  </article>
+</root>

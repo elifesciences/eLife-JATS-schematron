@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="type-subj-value-test-1.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='heading']/subject
+Test: assert    . = $allowed-disp-subj
+Message: Content of the article type subject should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction, or Expression of concern. Currently it is . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="heading">
+        <subject>Researchor Article</subject>
+      </subj-group>
+    </article-categories>
+  </article>
+</root>

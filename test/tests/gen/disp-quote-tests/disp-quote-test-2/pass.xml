@@ -7,10 +7,10 @@ Message: Display quote in a  is not allowed. Please capture as paragraph instead
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Feature Article</subject>
           </subj-group>
-          <subj-group subj-group-type="heading">
+          <subj-group subj-group-type="major-subject">
             <subject>Neuroscience</subject>
           </subj-group>
         </article-categories>

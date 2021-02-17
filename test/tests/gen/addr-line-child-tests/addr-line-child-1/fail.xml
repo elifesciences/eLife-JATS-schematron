@@ -2,7 +2,7 @@
 <!--Context: addr-line/*
 Test: assert    name()='named-content'
 Message:  is not allowed as a child of <addr-line>. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <addr-line>
       <city/>

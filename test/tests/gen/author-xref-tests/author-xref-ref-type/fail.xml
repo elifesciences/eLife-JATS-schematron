@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="author-xref-ref-type.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/xref
+Test: assert    @ref-type=('aff','author-notes')
+Message:  is not permitted as a ref-type attribute value for author xref elements. The only permitted values are 'aff' or 'author-notes'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author">
+        <xref ref-type="affiliation" rid="aff1"/>
+      </contrib>
+      <aff id="aff1"/>
+    </article-meta>
+  </article>
+</root>

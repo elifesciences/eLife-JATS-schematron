@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="msa-test-3.sch"?>
+<!--Context: article-meta/article-categories
+Test: report    ($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='major-subject']) lt 1
+Message: article-categories does not contain a subj-group[@subj-group-type='major-subject']. Is this correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="discussion">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Insight</subject>
+        </subj-group>
+      </article-categories>
+    </article-meta>
+  </article>
+</root>

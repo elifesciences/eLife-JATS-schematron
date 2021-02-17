@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="author-xref-test-2.sch"?>
 <!--Context: article-meta//contrib[@contrib-type='author']/xref
-Test: report    (@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]
+Test: report    (@ref-type='author-notes') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]
 Message: Equal contribution links from authors must appear after affiliation footnote links. For , their equal contribution link (to ) appears after another non-affiliation link, when it should appear before it. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
@@ -11,10 +11,10 @@ Message: Equal contribution links from authors must appear after affiliation foo
           <given-names>Satish</given-names>
         </name>
         <xref ref-type="aff" rid="aff1">1</xref>
-        <xref ref-type="fn" rid="equal-contrib2">†</xref>
-        <xref ref-type="fn" rid="pa1">‡</xref>
-        <xref ref-type="fn" rid="con3"/>
-        <xref ref-type="fn" rid="conf1"/>
+        <xref ref-type="author-notes" rid="equal-contrib2">†</xref>
+        <xref ref-type="author-notes" rid="pa1">‡</xref>
+        <xref ref-type="author-notes" rid="con3"/>
+        <xref ref-type="author-notes" rid="conf1"/>
         <xref ref-type="other" rid="dataset1"/>
       </contrib>
     </article-meta>

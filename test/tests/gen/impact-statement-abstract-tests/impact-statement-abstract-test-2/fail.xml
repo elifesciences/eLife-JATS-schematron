@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="impact-statement-abstract-test-2.sch"?>
+<!--Context: article-meta/abstract[@abstract-type='toc']
+Test: report    *[name() != 'p']
+Message: abstract[@abstract-type='toc'] must only contain p elements. This one has other elements: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <abstract abstract-type="toc">
+        <title>This is an impact <sc>s</sc>tatement <italic>i</italic><sup>a</sup><sub>b</sub>.</title>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

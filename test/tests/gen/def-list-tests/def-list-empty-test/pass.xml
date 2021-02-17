@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="def-list-empty-test.sch"?>
+<!--Context: def-list
+Test: assert    def-item
+Message: def-list must contain at least one definition (def-item). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <def-list>
+      <def-item>
+        <term>XML</term>
+        <def>
+          <p>eXtensible Markup Language</p>
+        </def>
+      </def-item>
+    </def-list>
+  </article>
+</root>

@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="pub-history-presence.sch"?>
+<!--Context: article/front/article-meta
+Test: report    $version-type='corrected-version-of-record' and not(pub-history)
+Message: A new version must have a pub-history. This one does not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article specific-use="corrected-version-of-record">
+    <front>
+      <article-meta>
+        <pub-history/>
+      </article-meta>
+    </front>
+  </article>
+</root>

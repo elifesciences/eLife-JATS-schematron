@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="role-text-duplicate.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/role[@vocab='credit']
+Test: report    . = following-sibling::role/text()
+Message:  has more than one CRediT role with the text . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author">
+        <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Visualization" vocab-term-identifier="http://credit.niso.org/contributor-roles/visualization/">Visualization</role>
+        <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Visualization" vocab-term-identifier="http://credit.niso.org/contributor-roles/visualization/">Visualization</role>
+      </contrib>
+    </article-meta>
+  </article>
+</root>

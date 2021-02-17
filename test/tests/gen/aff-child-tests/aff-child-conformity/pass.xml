@@ -8,7 +8,8 @@ Message:  is not allowed as a child of <aff>. -->
       <label/>
       <institution content-type="dept"/>
       <institution/>
-      <addr-line/>
+      <city/>
+      <state/>
       <country/>
     </aff>
   </article>

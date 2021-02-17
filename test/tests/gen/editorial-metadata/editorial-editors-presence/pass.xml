@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="editorial-editors-presence.sch"?>
 <!--Context: article[@article-type='editorial']/front/article-meta
-Test: report    contrib-group[@content-type='section']
-Message: Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Test: report    contrib-group[@content-type='peer-review']
+Message: Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='peer-review'] containing . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="editorial">
     <front>
       <article-meta>
@@ -18,7 +18,8 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con1"/>
             <xref ref-type="fn" rid="conf1"/>
             <bio>
-              <p><bold>Michael B Eisen</bold> is the Editor-in-Chief of eLife</p>
+              <p>
+                <bold>Michael B Eisen</bold> is the Editor-in-Chief of eLife</p>
             </bio>
           </contrib>
           <contrib contrib-type="author" id="author-8518">
@@ -31,7 +32,8 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con2"/>
             <xref ref-type="fn" rid="conf2"/>
             <bio>
-              <p><bold>Anna Akhmanova</bold> is a Deputy Editor of eLife</p>
+              <p>
+                <bold>Anna Akhmanova</bold> is a Deputy Editor of eLife</p>
             </bio>
           </contrib>
           <contrib contrib-type="author" id="author-1044">
@@ -44,7 +46,8 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con3"/>
             <xref ref-type="fn" rid="conf2"/>
             <bio>
-              <p><bold>Timothy E Behrens</bold> is a Deputy Editor of eLife</p>
+              <p>
+                <bold>Timothy E Behrens</bold> is a Deputy Editor of eLife</p>
             </bio>
           </contrib>
           <contrib contrib-type="author" id="author-1030">
@@ -57,41 +60,34 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con4"/>
             <xref ref-type="fn" rid="conf2"/>
             <bio>
-              <p><bold>Detlef Weigel</bold> is a Deputy Editor of eLife</p>
+              <p>
+                <bold>Detlef Weigel</bold> is a Deputy Editor of eLife</p>
             </bio>
           </contrib>
           <aff id="aff1">
             <label>1</label>
             <institution>Department of Molecular and Cell Biology, HHMI, University of California,
               Berkeley</institution>
-            <addr-line>
-              <named-content content-type="city">Berkeley</named-content>
-            </addr-line>
+            <city>Berkeley</city>
             <country>United States</country>
           </aff>
           <aff id="aff2">
             <label>2</label>
             <institution>Department of Biology, Utrecht University</institution>
-            <addr-line>
-              <named-content content-type="city">Utrecht</named-content>
-            </addr-line>
+            <city>Utrecht</city>
             <country>Netherlands</country>
           </aff>
           <aff id="aff3">
             <label>3</label>
             <institution>Wellcome Trust Centre for Neuroimaging, University of Oxford</institution>
-            <addr-line>
-              <named-content content-type="city">Oxford</named-content>
-            </addr-line>
+            <city>Oxford</city>
             <country>United Kingdom</country>
           </aff>
           <aff id="aff4">
             <label>4</label>
             <institution>Department of Molecular Biology, Max Planck Institute for Developmental
               Biology</institution>
-            <addr-line>
-              <named-content content-type="city">Tübingen</named-content>
-            </addr-line>
+            <city>Tübingen</city>
             <country>Germany</country>
           </aff>
         </contrib-group>

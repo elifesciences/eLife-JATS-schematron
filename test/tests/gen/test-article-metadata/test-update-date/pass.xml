@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="test-update-date.sch"?>
+<!--Context: article/front/article-meta
+Test: assert    count(pub-date[@date-type='update']) le 1
+Message:  must contain one update date (pub-date[@date-type='update']) or not one at all.  is not allowed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <pub-date date-type="update"/>
+      </article-meta>
+    </front>
+  </article>
+</root>

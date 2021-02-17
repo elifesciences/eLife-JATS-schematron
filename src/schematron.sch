@@ -24,15 +24,34 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
   <!--=== Global Variables ===-->
-  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
+  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article','expression-of-concern')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article', 'Expression of Concern')"/> 
 
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   
+  <!-- Notice article types -->
+  <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
+  <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
+  
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
+  
+  <!-- colour constants - table backgrounds -->
+  <let name="table-blue" value="'background-color: #90caf9'"/>
+  <let name="table-green" value="'background-color: #C5E1A5'"/>
+  <let name="table-orange" value="'background-color: #FFB74D'"/>
+  <let name="table-yellow" value="'background-color: #FFF176'"/>
+  <let name="table-purple" value="'background-color: #9E86C9'"/>
+  <let name="table-red" value="'background-color: #E57373'"/>
+  <let name="table-pink" value="'background-color: #F48FB1'"/>
+  <let name="table-grey" value="'background-color: #E6E6E6'"/>
+  
+  <!-- text colours -->
+  <let name="text-blue" value="'color: #366BFB'"/>
+  <let name="text-purple" value="'color: #9C27B0'"/>
+  <let name="text-red" value="'color: #D50000'"/>
   
   <!--=== Custom functions ===-->
   
@@ -123,6 +142,9 @@
       <xsl:when test="$s = 'Retraction'">
         <xsl:value-of select="'Retraction:'"/>
       </xsl:when>
+      <xsl:when test="$s = 'Expression of Concern'">
+        <xsl:value-of select="'Expression of Concern:'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -198,7 +220,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
   <xsl:function name="e:cite-name-text" as="xs:string">
@@ -424,6 +446,14 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
+  </xsl:function>
+  
+  <xsl:function name="e:indistinct-values" as="xs:anyAtomicType*">
+    <xsl:param name="seq" as="xs:anyAtomicType*"/>
+    
+    <xsl:sequence select="for $val in distinct-values($seq)
+      return $val[count($seq[. = $val]) > 1]"/>
+    
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
@@ -844,13 +874,66 @@
   </xsl:function>
   
   <xsl:function name="e:get-iso-pub-date">
-    <xsl:param name="element"/>
+    <xsl:param name="pub-date"/>
     <xsl:choose>
-      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
-        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
-        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      <xsl:when test="$pub-date/year and $pub-date/month and $pub-date/day">
+        <xsl:value-of select="concat($pub-date/year[1],'-',$pub-date/month[1],'-',$pub-date/day[1])"/>
       </xsl:when>
-      <xsl:otherwise/>
+      <xsl:when test="$pub-date/year and $pub-date/month">
+        <xsl:value-of select="concat($pub-date/year[1],'-',$pub-date/month[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$pub-date/year[1]"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:get-copyright-holder">
+    <xsl:param name="contrib-group"/>
+    <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type='author'])"/>
+    <xsl:choose>
+      <xsl:when test="$author-count lt 1"/>
+      <xsl:when test="$author-count = 1">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$author-count = 2">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:choose>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
+              </xsl:when>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <!-- author count is 3+ -->
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' et al')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
   
@@ -883,6 +966,37 @@
         </xsl:choose>
       </xsl:for-each>
     </xsl:element>
+  </xsl:function>
+  
+  <xsl:function name="e:fig-group-contents">
+    <xsl:param name="fig-group" as="element()"/>
+    <list>
+      <xsl:if test="$fig-group/media[@mimetype='video']">
+        <item>video(s)</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[not(@specific-use)]/caption[1]//supplementary-material[contains(label[1],'data')]">
+        <item>source data</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[not(@specific-use)]/caption[1]//supplementary-material[contains(label[1],'code')]">
+        <item>source code</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[@specific-use='child-fig']">
+        <item>figure supplement(s)</item>
+      </xsl:if>
+    </list>
+  </xsl:function>
+  
+  <xsl:function name="e:get-fig-group-template-text">
+    <xsl:param name="fig-group" as="element()"/>
+    <xsl:variable name="fig-label" select="replace($fig-group/fig[not(@specific-use)]/label[1],'\.$','')"/>
+    <xsl:variable name="list" select="e:fig-group-contents($fig-group)"/>
+    <xsl:variable name="list-count" select="count($list//*:item)"/>
+    <xsl:value-of select="
+      if ($list-count lt 1) then ()
+      else if ($list-count = 1) then concat('The online version of this article includes the following ',$list//*:item/text(),' for ',$fig-label,':')
+      else if ($list-count = 2) then concat('The online version of this article includes the following ',string-join(for $x in $list//*:item return $x/text(),' and '),' for ',$fig-label,':')
+      else concat('The online version of this article includes the following ',string-join((string-join(for $x in $list//*:item[position() lt $list-count] return $x/text(),', '),$list//*:item[position() = $list-count]/text()),', and '),' for ',$fig-label,':')
+      "/>
   </xsl:function>
   
   <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
@@ -996,6 +1110,10 @@
 	  <assert test="@article-type = $allowed-article-types" 
         role="error" 
         id="test-article-type">article-type must be equal to 'article-commentary', 'correction', 'discussion', 'editorial', or 'research-article'. Currently it is <value-of select="@article-type"/></assert>
+      
+      <assert test="@specific-use = ('version-of-record','corrected-version-of-record')" 
+        role="error" 
+        id="article-specific-use">The root article element must have a specific-use atribute with a value which is either 'version-of-record' or 'corrected-version-of-record'.</assert>
 		
 	  <assert test="count(front) = 1" 
         role="error" 
@@ -1019,24 +1137,24 @@
  	</rule>
 	
 	<rule context="article[@article-type='research-article']" id="research-article">
-	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
+	  <let name="type-display" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[1]"/> 
 	
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" 
+	  <report test="($type-display != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" 
         role="warning"
         flag="dl-ar"
         id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
 	  
-	  <report test="not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])" 
+	  <report test="not($type-display = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])" 
         role="error" 
         flag="dl-ar"
         id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
 	  
-	  <report test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])" 
+	  <report test="($type-display = 'Feature Article') and not(sub-article[@article-type='referee-report'])" 
         role="warning" 
         flag="dl-ar"
         id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" 
+	  <report test="($type-display != 'Scientific Correspondence') and not(sub-article[@article-type='author-comment'])" 
         role="warning"
         flag="dl-ar"
         id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
@@ -1091,9 +1209,10 @@
   <rule context="article/front/article-meta" id="test-article-metadata">
     <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
     <let name="article-type" value="ancestor::article/@article-type"/>
-    <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
-    <let name="exceptions" value="('Insight','Retraction','Correction')"/>
+    <let name="subj-type" value="descendant::subj-group[@subj-group-type='heading']/subject[1]"/>
+    <let name="exceptions" value="('Insight',$notice-display-types)"/>
     <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
+    <let name="version-type" value="ancestor::article/@specific-use"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" 
         role="error" 
@@ -1115,13 +1234,13 @@
         role="error" 
         id="test-title-group-presence">title-group containing article-title must be present.</assert>
 	   
-    <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" 
+    <assert test="count(pub-date[@date-type='pub']) = 1" 
         role="error" 
-        id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert>
-	   
-    <assert test="pub-date[@pub-type='collection']" 
-        role="error" 
-        id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</assert> 
+        id="test-epub-date"><name/> must contain one and only one publication date (a child pub-date element with the attribute date-type='pub'). <value-of select="count(pub-date[@date-type='pub'])"/> is not allowed.</assert> 
+    
+    <assert test="count(pub-date[@date-type='update']) le 1" 
+      role="error" 
+      id="test-update-date"><name/> must contain one update date (pub-date[@date-type='update']) or not one at all. <value-of select="count(pub-date[@date-type='update'])"/> is not allowed.</assert>
 	  
     <assert test="volume" 
         role="error" 
@@ -1135,23 +1254,23 @@
         role="error" 
         id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri)" 
         role="error" 
         id="test-self-uri-presence">There must be a child self-uri in article-meta.</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[@content-type='pdf'])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[@content-type='pdf'])" 
         role="error" 
         id="test-self-uri-att">self-uri must have an @content-type="pdf"</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" 
         role="error" 
         id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
     
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" 
         role="error" 
         id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and count(history) != 1" 
+    <report test="not($article-type = $notice-article-types) and count(history) != 1" 
         role="error" 
         id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
 		  
@@ -1160,16 +1279,24 @@
         role="error" 
         id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/></assert>
 		  
-    <report test="(($article-type != 'retraction') and $article-type != 'correction') and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" 
+    <report test="not($article-type = $notice-article-types) and not(abstract)" 
         role="error" 
-        id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
+        id="test-abstract"><value-of select="$article-type"/>s must have an abstract. This one does not.</report>
+    
+    <report test="not($article-type = $notice-article-types) and not(abstract[@abstract-type='toc'])" 
+      role="error" 
+      id="test-impact-statement"><value-of select="$article-type"/>s must have an impact statement. This one does not.</report>
+    
+    <assert test="empty(e:indistinct-values(abstract/@abstract-type)) and count(abstract[not(@abstract-type)]) le 1" 
+      role="error" 
+      id="test-abstracts">There cannot be more than one abstract of the same type.</assert>
     
     <report test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" 
         role="error" 
         id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
     <report test="if ($article-type = $features-article-types) then ()
-      else if ($subj-type = ('Scientific Correspondence','Correction','Retraction')) then ()
+      else if ($subj-type = ('Scientific Correspondence', $notice-display-types)) then ()
       else count(funding-group) != 1" 
         role="error" 
         id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
@@ -1177,15 +1304,13 @@
     <report test="if ($subj-type = $exceptions) then ()
       else count(custom-meta-group) != 1" 
         role="error" 
-        id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions and Corrections.</report>
+        id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of concern.</report>
 	   
-    <report test="if ($subj-type = ('Correction','Retraction')) then ()
-      else count(kwd-group[@kwd-group-type='author-keywords']) != 1" 
+    <report test="not($article-type = $notice-article-types) and count(kwd-group[@kwd-group-type='author-generated']) != 1" 
         role="error" 
         id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
     
-    <report test="if ($subj-type = ('Correction','Retraction')) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)
-      else ()" 
+    <report test="$article-type = $notice-article-types and count(kwd-group[@kwd-group-type='author-keywords']) != 0" 
         role="error" 
         id="test-auth-kwd-group-presence-2"><value-of select="$subj-type"/> articles must not have any author keywords</report>
     
@@ -1193,116 +1318,121 @@
         role="error" 
         id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
     
-    <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))
-      then (count(kwd-group[@kwd-group-type='research-organism']) = 0)
-      else ()" 
+    <report test="($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication')) and (count(kwd-group[@kwd-group-type='research-organism']) = 0)" 
         role="warning" 
         id="test-ro-kwd-group-presence-2"><value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
+    
+    <!-- VoRs most likely will have been published as preprints, but in rare cases they are not, 
+      so we do not specify that pub-history should/shouldnt be present for them -->
+    <report test="$version-type='corrected-version-of-record' and not(pub-history)" 
+      role="warning" 
+      id="pub-history-presence">A new version must have a pub-history. This one does not.</report>
    </rule>
    
    <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
-    <assert test="contrib-group" 
+     <assert test="contrib-group[@content-type='authors']" 
         role="error" 
-        id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
+        id="test-contrib-group-presence-1">contrib-group[@content-type='authors] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains authors).</assert>
      
-     <assert test="contrib-group[@content-type='section']" 
+     <assert test="contrib-group[@content-type='peer-review']" 
         role="error" 
-        id="test-contrib-group-presence-2">contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</assert>
+        id="test-contrib-group-presence-2">contrib-group[@content-type='peer-review'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</assert>
    
    </rule>
     
     <rule context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
       
-      <report test="contrib-group[@content-type='section']" 
+      <report test="contrib-group[@content-type='peer-review']" 
         role="error" 
-        id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
+        id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='peer-review'] containing <value-of select="string-join(for $x in contrib-group[@content-type='peer-review']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
       
     </rule>
 	 
    <rule context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
-   <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
+   <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='pdf-template']/meta-value[1]"/>
 	   
-     <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" 
+     <assert test="count(subj-group[@subj-group-type='heading']) = 1" 
         role="error" 
-        id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
+        id="type-subj-test">There must be one subj-group[@subj-group-type='heading'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='heading'])"/>.</assert>
 	   
-     <assert test="count(subj-group[@subj-group-type='display-channel']/subject) = 1" 
+     <assert test="count(subj-group[@subj-group-type='heading']/subject) = 1" 
         role="error" 
-        id="disp-subj-test2">subj-group[@subj-group-type='display-channel'] must contain only one subject. Currently there are <value-of select="count(subj-group[@subj-group-type='display-channel']/subject)"/>.</assert>
-    
-     <report test="count(subj-group[@subj-group-type='heading']) gt 2" 
-        role="error" 
-        id="head-subj-test1">article-categories must contain 0-2 subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+        id="type-subj-test-2">subj-group[@subj-group-type='heading'] must contain one and only one subject element. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</assert>
 	   
-     <report test="($article-type = ('correction','research-article','retraction','review-article')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" 
+     <report test="($article-type = ('research-article','review-article', $notice-article-types)) and not($template ='5') and count(subj-group[@subj-group-type='major-subject']) != 1" 
         role="error" 
-        id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+        id="mas-test-1">article-categories must contain one subj-group[@subj-group-type='major-subject'] element. Currently there are <value-of select="count(subj-group[@subj-group-type='major-subject'])"/>.</report>
      
-     <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" 
+     <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='major-subject']) lt 1" 
         role="warning" 
-        id="head-subj-test3">article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
-	   
-     <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" 
-        role="error" 
-        id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
+        id="msa-test-3">article-categories does not contain a subj-group[@subj-group-type='major-subject']. Is this correct?</report>
 	</rule>
     
-    <rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject" id="disp-channel-checks">
+    <rule context="article-categories/subj-group[@subj-group-type='heading']/subject" id="disp-channel-checks">
     <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
       
       <assert test=". = $allowed-disp-subj" 
         role="error" 
-        id="disp-subj-value-test-1">Content of the display channel should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction . Currently it is <value-of select="."/>.</assert>
+        id="type-subj-value-test-1">Content of the article type subject should be one of the following: Research Article, Short Report, Tools and Resources, Research Advance, Registered Report, Replication Study, Research Communication, Feature Article, Insight, Editorial, Correction, Retraction, or Expression of concern. Currently it is <value-of select="."/>.</assert>
       
       <report test="($article-type = 'research-article') and not(.=($research-disp-channels,'Feature Article'))" 
         role="error" 
-        id="disp-subj-value-test-2">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
+        id="type-subj-value-test-2">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be one of 'Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', or 'Scientific Correspondence' according to the article-type.</report>
       
       <report test="($article-type = 'article-commentary') and not(.='Insight')" 
         role="error" 
-        id="disp-subj-value-test-3">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
+        id="type-subj-value-test-3">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Insight' according to the article-type.</report>
       
       <report test="($article-type = 'editorial') and not(.='Editorial')" 
         role="error" 
-        id="disp-subj-value-test-4">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
+        id="type-subj-value-test-4">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
       
       <report test="($article-type = 'correction') and not(.='Correction')" 
         role="error" 
-        id="disp-subj-value-test-5">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
+        id="type-subj-value-test-5">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
       
       <report test="($article-type = 'discussion') and not(.='Feature Article')" 
         role="error" 
-        id="disp-subj-value-test-6">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
+        id="type-subj-value-test-6">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
       
       <report test="($article-type = 'review-article') and not(.='Review Article')" 
         role="error" 
-        id="disp-subj-value-test-7">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
+        id="type-subj-value-test-7">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
       
       <report test="($article-type = 'retraction') and not(.='Retraction')" 
         role="error" 
-        id="disp-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
+        id="type-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
+      
+      <report test="($article-type = 'expression-of-concern') and not(.='Expression of concern')" 
+        role="error" 
+        id="type-subj-value-test-9">Article is an @article-type="<value-of select="$article-type"/>" but the article type subject is <value-of select="."/>. It should be 'Expression of concern' according to the article-type.</report>
   </rule>
     
-    <rule context="article-categories/subj-group[@subj-group-type='heading']/subject" id="MSA-checks">
+    <rule context="article-categories/subj-group[@subj-group-type='major-subject']/subject" id="MSA-checks">
       
       <assert test=". = $MSAs" 
         role="error" 
-        id="head-subj-MSA-test">Content of the heading must match one of the MSAs.</assert>
+        id="subj-msa-test">Content of the subject must match one of the MSAs. <value-of select="."/> is not an eLife MSA.</assert>
     </rule>
     
-    <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
+    <rule context="article-categories/subj-group[@subj-group-type='major-subject']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="indistinct-subjects" value="e:indistinct-values(subject)"/>
       
-      <assert test="count(subject) = 1" 
+      <assert test="count(subject) = (1,2)" 
         role="error" 
-        id="head-subj-test-1">Each subj-group[@subj-group-type='heading'] must contain one and only one subject. This one contains <value-of select="count(subject)"/>.</assert>
+        id="msa-subj-test-1">Each subj-group[@subj-group-type='major-subject'] must contain one or two subject elements. This one contains <value-of select="count(subject)"/>.</assert>
+      
+      <assert test="empty($indistinct-subjects)" 
+        role="error" 
+        id="indistinct-msa">The subjects in subj-group[@subj-group-type='major-subject'] must be distinct. The following are duplicated - <value-of select="string-join($indistinct-subjects,', ')"/>.</assert>
     </rule>
 	
 	<rule context="article/front/article-meta/title-group" id="test-title-group">
-	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='heading']/subject[1]"/>
 	  <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
 	  <let name="title" value="replace(article-title[1],'\p{P}','')"/>
 	  <let name="body" value="ancestor::front/following-sibling::body[1]"/>
@@ -1349,7 +1479,7 @@
         role="warning" 
         id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/></report>
 	  
-	  <report test="($subj-type!='Correction') and ($subj-type!='Retraction') and ($subj-type!='Scientific Correspondence') and ($subj-type!='Replication Study') and matches($tokens,'[A-Za-z]')" 
+	  <report test="not($subj-type=($notice-display-types,'Scientific Correspondence','Replication Study')) and matches($tokens,'[A-Za-z]')" 
         role="warning" 
         id="article-title-test-11">Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/></report>
 	  
@@ -1387,9 +1517,13 @@
     
     <rule context="article/front/article-meta/contrib-group[1]" id="auth-contrib-group">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
-      <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
+      <let name="indistinct-names" value="e:indistinct-values($names)"/>
       <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
-      <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
+      <let name="indistinct-orcids" value="e:indistinct-values($orcids)"/>
+      
+      <assert test="@content-type='authors'" 
+        role="error" 
+        id="content-type-authors-test">The first contrib-group in article-meta must have the attribute content-type="authors", as it is the container for authors.</assert>
       
       <assert test="contrib[@contrib-type='author' and @corresp='yes']" 
         role="error" 
@@ -1405,19 +1539,23 @@
       
     </rule>
     
-    <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
+    <rule context="article/front/article-meta/contrib-group[2]" id="test-editor-contrib-group">
+      
+      <assert test="@content-type='peer-review'" 
+        role="error" 
+        id="content-type-editors-test">The second contrib-group in article-meta must have the attribute content-type="peer-revew", as it is the container for Editors.</assert>
       
       <assert test="count(contrib[@contrib-type='senior_editor']) = 1" 
         role="error" 
-        id="editor-conformance-1">contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
+        id="editor-conformance-1">contrib-group[@content-type='peer-review'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
       
       <assert test="count(contrib[@contrib-type='editor']) = 1" 
         role="error" 
-        id="editor-conformance-2">contrib-group[@content-type='section'] must contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']).</assert>
+        id="editor-conformance-2">contrib-group[@content-type='peer-review'] must contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']).</assert>
       
     </rule>
     
-    <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
+    <rule context="article/front/article-meta/contrib-group[@content-type='peer-review']/contrib" id="test-editors-contrib">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       
@@ -1431,26 +1569,36 @@
       
     </rule>
     
-    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
+    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(ancestor::collab)]" id="auth-cont-tests">
       
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
+      <assert test="role" 
         role="warning" 
-        id="auth-cont-test-1"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+        id="pre-auth-cont-test-1"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+      
+      <assert test="role" 
+        role="error" 
+        id="final-auth-cont-test-1"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
     
     <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
       
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
+      <assert test="role" 
         role="warning" 
-        id="collab-cont-test-1"><value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+        id="pre-collab-cont-test-1"><value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+      
+      <assert test="role" 
+        role="error" 
+        id="final-collab-cont-test-1"><value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+      
+      
     </rule>
     
     <rule context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/collab/contrib-group" 
       id="collab-tests">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
-      <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
+      <let name="indistinct-names" value="e:indistinct-values($names)"/>
       <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
-      <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
+      <let name="indistinct-orcids" value="e:indistinct-values($orcids)"/>
       
       <assert test="empty($indistinct-names)" 
         role="warning" 
@@ -1473,18 +1621,75 @@
         id="auth-and-member-test">Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule>
     
+    <rule context="article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" 
+      id="credit-role-tests">
+      <let name="credit-roles-file" value="'credit-roles.xml'"/>
+      <let name="credit-roles" value="document($credit-roles-file)"/>
+      <let name="vocab-term" value="@vocab-term"/>
+      <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
+      <let name="credit-role" value="$credit-roles//*:item[(@term = $vocab-term) or (@uri = $vocab-term-id)]"/>
+      
+      <assert test="@vocab-identifier='http://credit.niso.org/'" 
+        role="error"
+        id="vocab-identifier-conformance">A CRediT taxonomy role must have a vocab-identifier attribute whose value is http://credit.niso.org/. The role containing <value-of select="."/> does not.</assert>
+      
+      <report test="not(@vocab-term-identifier) or ((count($credit-role) = 1) and ($vocab-term-id != $credit-role/@uri))"
+        role="error"
+        id="vocab-term-identifier">A CRediT taxonomy role must have a @vocab-term-identifier, the value of which must be the URL of the specific CRediT term. <value-of select="if (empty($credit-role)) then concat('It must be one of these - ',string-join($credit-roles//*:item/@uri,', ')) 
+          else concat('In this case ',$credit-role/@uri,' (based on the @vocab-term of this role element)')"/>.</report>
+      
+      <report test="not(@vocab-term) or ((count($credit-role) = 1) and ($vocab-term != $credit-role/@term))" 
+        role="error"
+        id="vocab-term-conformance">A CRediT taxonomy role must have a @vocab-term, the value of which must be one of the CRediT terms - <value-of select="if (empty($credit-role)) then string-join($credit-roles//*:item/@term,', ') 
+          else concat(' in this case ',$credit-role/@term,' (based on the @vocab-term-identifer of of this role element)')"/>.
+      </report>
+      
+      <report test="count($credit-role) gt 1" 
+        role="error"
+        id="vocab-term-and-identifier">
+        A CRediT taxonomy role must have a @vocab-term, whose value is a specific CRediT taxonomy term, and a @vocab-term-identifier, whose value is the URL for that corresponding CRediT term. <value-of select="concat('Either the @vocab-term - ', $vocab-term, ' - is incorrect and must be ', $credit-role[@uri=$vocab-term-id]/@term, ', or the @vocab-term-identifier - ', $vocab-term-id,' - is incorrect and must be ', $credit-role[@term=$vocab-term]/@uri)"/>.
+      </report>
+      
+      <report test=". = following-sibling::role/text()" 
+        role="error"
+        id="role-text-duplicate"><value-of select="e:get-name(parent::contrib/name[1])"/> has more than one CRediT role with the text <value-of select="."/>.</report>
+      
+      <report test="@vocab-term = following-sibling::role/@vocab-term" 
+        role="error"
+        id="role-vocab-term-duplicate"><value-of select="e:get-name(parent::contrib/name[1])"/> has more than one CRediT role with the vocab-term attribute value <value-of select="@vocab-term"/>.</report>
+      
+      <report test="@vocab-term-identifier = following-sibling::role/@vocab-term-identifier" 
+        role="error"
+        id="role-vocab-term-identifier-duplicate"><value-of select="e:get-name(parent::contrib/name[1])"/> has more than one CRediT role with the vocab-term-identifier attribute value <value-of select="@vocab-term-identifier"/>.</report>
+     
+    </rule>
+    
+    <rule context="article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" 
+      id="non-credit-role-tests">
+      <let name="credit-regex" value="'conceptualization|data curation|formal analysis|funding acquisition|investigation|methodology|project administration|resources|software|supervision|validation|visualization|writing [—–\-] original draft|writing [—–\-] review (&amp;|and) editing'"/>
+      
+      <report test="matches(lower-case(.),$credit-regex)" 
+        role="error"
+        id="credit-role-not-tagged">Non-credit role for <value-of select="if (parent::contrib/collab) then parent::contrib/collab/text()[1] else (e:get-name(parent::contrib/name[1]))"/>, '<value-of select="."/>', contains a credit term. This should be captured as a proper credit role (role[@vocab="credit"]) instead.</report>
+      
+    </rule>
+    
     <!-- Probably needs extending for general order -->
     <rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
+      
+      <assert test="@ref-type=('aff','author-notes')" 
+        role="error" 
+        id="author-xref-ref-type"><value-of select="."/> is not permitted as a ref-type attribute value for author xref elements. The only permitted values are 'aff' or 'author-notes'.</assert>
       
       <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" 
         role="error" 
         id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
       
-      <report test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" 
+      <report test="(@ref-type='author-notes') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" 
         role="error" 
         id="author-xref-test-2">Equal contribution links from authors must appear after affiliation footnote links. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their equal contribution link (to <value-of select="idref(@rid)"/>) appears after another non-affiliation link, when it should appear before it.</report>
       
-      <report test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" 
+      <report test="(@ref-type='author-notes') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" 
         role="error" 
         id="author-xref-test-3">Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
       
@@ -1631,7 +1836,7 @@
 	
 	<rule context="article-meta//contrib" id="contrib-tests">
 	  <let name="type" value="@contrib-type"/>
-	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='heading']/subject[1]"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
 	  <let name="inst1" value="ancestor::contrib-group//aff[@id = $aff-rid1]/institution[not(@content-type)][1]"/>
 	  <let name="aff-rid2" value="xref[@ref-type='aff'][2]/@rid"/>
@@ -1651,7 +1856,7 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = ('Retraction','Correction')) then ()
+    	<report test="if ($subj-type = $notice-display-types) then ()
     	  else if (collab) then ()
     	  else if (ancestor::collab) then ()
     	  else if ($type != 'author') then ()
@@ -1659,7 +1864,7 @@
         role="error" 
         id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
-	  <report test="if ($subj-type = ('Retraction','Correction')) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" 
+	  <report test="if ($subj-type = $notice-display-types) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" 
         role="warning" 
         id="contrib-test-5">Group author members should very likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
@@ -1669,7 +1874,7 @@
 	  
 	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" 
         role="error" 
-        id="contrib-test-4">The  <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
+        id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
 	  
 	     <report test="name and collab" 
         role="error" 
@@ -1680,46 +1885,36 @@
         role="error" 
         id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
-	     <report test="self::*[@corresp='yes'][not(child::*:email)]" 
+	  <report test="self::*[@corresp='yes'][not(email) and not(contrib-id[@contrib-id-type='twitter'])]" 
         role="error" 
-        id="contrib-email-1">Corresponding authors must have an email.</report>
+        id="contrib-contact-1">Corresponding authors must have contact information - either an email or a twitter handle.</report>
 	  
-	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)" 
+	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (email or contrib-id[@contrib-id-type='twitter'])" 
         role="error" 
-        id="contrib-email-2">Non-corresponding authors must not have an email.</report>
+        id="contrib-contact-2">Non-corresponding authors must not have contact information (an email or twitter handle).</report>
 	  
 	  <report test="(@contrib-type='author') and ($coi = 'No competing interests declared') and (matches($inst,$comp-regex))" 
         role="warning" 
         id="COI-test"><value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
-	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-1" 
-	      test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" 
-        role="error" 
-        id="deceased-test-1"><value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
-	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-2" 
-	      test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" 
-        role="error" 
-        id="deceased-test-2"><value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
 		
 		</rule>
     
-    <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" 
+    <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='pdf-template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" 
       id="corresp-author-initial-tests">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="normalized-name" value="e:stripDiacritics($name)"/>
       
-      <report test="$normalized-name != $name" 
+      <assert test="$normalized-name = $name" 
         role="warning" 
-        id="corresp-author-initial-test"><value-of select="$name"/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</report>
+        id="corresp-author-initial-test"><value-of select="$name"/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</assert>
       
     </rule>
 		
 		<rule context="article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
-		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
-			<let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref')"/>
-		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
+		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='pdf-template']/meta-value[1]"/>
+			<let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref', 'role')"/>
+		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio')"/>
 		
 		  <!-- Exception included for group authors - subject to change. The capture here may use xrefs instead of affs - if it does then the else if param can simply be removed. -->
 		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]
@@ -1731,23 +1926,19 @@
 		
 		</rule>
 
-	<rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
+   <rule context="contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]" id="orcid-tests">
 	  <let name="text" value="."/>
-		
-    	<assert test="@authenticated='true'" 
-        role="error" 
-        id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
 		
 		<!-- Needs updating to only allow https when this is implemented -->
 	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" 
         role="error" 
         id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
 	  
-	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)" 
+	  <report test="(preceding::contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]/text() = $text) or (following::contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]/text() = $text)" 
         role="warning" 
         id="pre-orcid-test-3"><value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD - <value-of select="."/> - is associated with <value-of select="count(preceding::contrib-id[@contrib-id-type='orcid' and text()=$text]) + count(following::contrib-id[@contrib-id-type='orcid' and text()=$text]) + 1"/> authors. Please confirm which author this ORCiD belongs to.'.</report>
 	  
-	  <report test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)" 
+     <report test="(preceding::contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]/text() = $text) or (following::contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]/text() = $text)" 
         role="error" 
         id="final-orcid-test-3"><value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</report>
 		
@@ -1757,7 +1948,7 @@
 		
     	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$')" 
         role="error" 
-        id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
+        id="email-test">email element must contain a valid email address. Currently it is <value-of select="."/>.</assert>
 		
 	</rule>
 	
@@ -1829,49 +2020,10 @@
         id="final-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
     </rule>
-    
-    <rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
-      
-      <assert test="matches(day[1],'^[0-9]{2}$')" 
-        role="warning" 
-        id="pre-pub-date-test-1">day is not present in pub-date.</assert>
-      
-      <assert test="matches(day[1],'^[0-9]{2}$')" 
-        role="error" 
-        id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
-      
-      <assert test="matches(month[1],'^[0-9]{2}$')" 
-        role="warning" 
-        id="pre-pub-date-test-2">month is not present in pub-date.</assert>
-      
-      <assert test="matches(month[1],'^[0-9]{2}$')" 
-        role="error" 
-        id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
-      
-      <assert test="matches(year[1],'^[0-9]{4}$')" 
-        role="error" 
-        id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
-      
-    </rule>
-    
-    <rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
-      
-      <assert test="matches(year[1],'^[0-9]{4}$')" 
-        role="error" 
-        id="pub-date-test-4">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
-      
-      <report test="*/local-name() != 'year'" 
-        role="error" 
-        id="pub-date-test-5">pub-date[@pub-type='collection'] can only contain a year element.</report>
-      
-      <assert test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]" 
-        role="error" 
-        id="pub-date-test-6">pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
-      
-    </rule>
 	
 	<rule context="front//permissions" id="front-permissions-tests">
-	<let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
+	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
+	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
 	  <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" 
@@ -1903,15 +2055,15 @@
 	
 	  <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" 
 	      test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()
-	          else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" 
+	          else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='pub']/year)" 
         role="error" 
-        id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
+        id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='pub']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='pub']/year"/>.</report>
 	
 	  <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" 
 	    test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()
-	    else if ($author-count = 1) then copyright-holder != ancestor::article-meta//contrib[@contrib-type='author']//surname      else if ($author-count = 2) then copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' and ',ancestor::article-meta/descendant::contrib[@contrib-type='author'][2]//surname)  else copyright-holder != concat(ancestor::article-meta/descendant::contrib[@contrib-type='author'][1]//surname,' et al')" 
-        role="error" 
-        id="permissions-test-7">copyright-holder is incorrect. If the article has one author then it should be their surname. If it has two authors it should be the surname of the first, then ' and ' and then the surname of the second. If three or more, it should be the surname of the first, and then ' et al'. Currently it's <value-of select="copyright-holder"/></report>
+	    else copyright-holder != $copyright-holder" 
+	    role="error" 
+	    id="permissions-test-7">copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</report>
 	
 	  <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" 
 	    test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()
@@ -2080,6 +2232,96 @@
         role="warning" 
         id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Abstracts with more than 180 words should be checked with the eLife Editorial team.</report>
 	   </rule>
+    
+    <rule context="article-meta/abstract[@abstract-type='toc']" 
+      id="impact-statement-abstract-tests">
+      
+      <report test="count(p) gt 1" 
+        role="error" 
+        id="impact-statement-abstract-test-1">abstract[@abstract-type='toc'] (for the impact statement) cannot contain more than one p element. This one has <value-of select="count(p)"/>.</report>
+      
+      <report test="*[name() != 'p']" 
+        role="error" 
+        id="impact-statement-abstract-test-2">abstract[@abstract-type='toc'] must only contain p elements. This one has other elements: <value-of select="string-join(for $x in child::* return $x/name(),', ')"/>.</report>
+      
+    </rule>
+    
+    <rule context="article-meta/abstract[@abstract-type='toc']/p[1]" 
+      id="impact-statement-tests">
+      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='heading']/subject[1]"/>
+      <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
+      <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
+      <let name="verbs" value="('name', 'named', 'can', 'progress', 'progressed', 'explain', 'explained', 'found', 'founded', 'present', 'presented', 'have', 'describe', 'described', 'showed', 'report', 'reported', 'miss', 'missed', 'identify', 'identified', 'better', 'bettered', 'validate', 'validated', 'use', 'used', 'listen', 'listened', 'demonstrate', 'demonstrated', 'argue', 'argued', 'will', 'assess', 'assessed', 'are', 'may', 'observe', 'observed', 'find', 'found', 'previously', 'should', 'rely', 'relied', 'reflect', 'reflected', 'recognise', 'recognised', 'attend', 'attended', 'first', 'define', 'defined', 'here', 'need', 'needed')"/>
+      
+      <report test="not(child::*) and normalize-space(.)=''" 
+        role="error" 
+        id="impact-statement-test-1">The abstract for the impact statement cannot be empty.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5" 
+        test="($count gt 30)" 
+        role="warning" 
+        id="impact-statement-test-2">Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed.</report>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-6" 
+        test="matches(.,'[\.|\?]$')" 
+        role="warning" 
+        id="pre-impact-statement-test-3">Impact statement must end with a full stop or question mark.</assert>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-6" 
+        test="matches(.,'[\.|\?]$')" 
+        role="error" 
+        id="final-impact-statement-test-3">Impact statement must end with a full stop or question mark.</assert>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-7" 
+        test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" 
+        role="warning" 
+        id="impact-statement-test-4">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-8" 
+        test="not($subj = 'Replication Study') and matches(.,'[:;]')" 
+        role="warning" 
+        id="impact-statement-test-5">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-9" 
+        test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" 
+        role="warning" 
+        id="pre-impact-statement-test-6">Impact statement contains a possessive phrase. This is not allowed.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9" 
+        test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" 
+        role="error" 
+        id="final-impact-statement-test-6">Impact statement contains a possessive phrase. This is not allowed.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10" 
+        test="matches(.,'^[\d]+$')" 
+        role="error" 
+        id="impact-statement-test-7">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-11" 
+        test="matches(.,' [Oo]ur |^[Oo]ur ')" 
+        role="warning" 
+        id="impact-statement-test-8">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)?</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-13" 
+        test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" 
+        role="warning" 
+        id="impact-statement-test-9">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-rep-study-custom-meta-test" 
+        test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" 
+        role="warning" 
+        id="pre-rep-study-impact-statement-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-rep-study-custom-meta-test" 
+        test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" 
+        role="error" 
+        id="final-rep-study-impact-statement-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-16" 
+        test="$we-token = $verbs" 
+        role="warning" 
+        id="impact-statement-test-11">Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive language relating to the article or research itself (which should be removed)?</report>
+    </rule>
 	
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
       
@@ -2088,7 +2330,7 @@
         id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
     
-    <rule context="article-meta/contrib-group[not(@*)]/aff" id="author-aff-tests">
+    <rule context="article-meta/contrib-group[@content-type='authors']/aff" id="author-aff-tests">
       <let name="display" value="string-join(child::*[not(local-name()='label')],', ')"/>
       
       <assert test="country" 
@@ -2099,11 +2341,11 @@
         role="error" 
         id="final-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
       
-      <assert test="addr-line[named-content[@content-type='city']]" 
+      <assert test="city" 
         role="warning" 
         id="pre-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>. Please query the authors.</assert>
       
-      <assert test="addr-line[named-content[@content-type='city']]" 
+      <assert test="city" 
         role="error" 
         id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/></assert>
       
@@ -2131,9 +2373,13 @@
         role="error" 
         id="gen-aff-test-3">Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
       
-      <report test="count(addr-line) gt 1" 
+      <report test="count(city) gt 1" 
         role="error" 
-        id="gen-aff-test-4">Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
+        id="gen-aff-test-4">Affiliations cannot have more than 1 city elements. <value-of select="$display"/> has <value-of select="count(city)"/>.</report>
+      
+      <report test="count(state) gt 1" 
+        role="error" 
+        id="gen-aff-test-7">Affiliations cannot have more than 1 state elements. <value-of select="$display"/> has <value-of select="count(state)"/>.</report>
       
       <report test="count(country) gt 1" 
         role="error" 
@@ -2141,34 +2387,16 @@
       
       <report test="text()" 
         role="error" 
-        id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
+        id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, city, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
     </rule>
     
     <rule context="aff/*" id="aff-child-tests">
-      <let name="allowed-elems" value="('label','institution','addr-line','country')"/>
+      <let name="allowed-elems" value="('label','institution','city','state','country')"/>
       
       <assert test="name()=$allowed-elems" 
         role="error" 
         id="aff-child-conformity"><value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
       
-    </rule>
-    
-    <rule context="addr-line" id="addr-line-parent-test">
-      
-      <assert test="parent::aff" 
-        role="error" 
-        id="addr-line-parent"><value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
-    </rule>
-    
-    <rule context="addr-line/*" id="addr-line-child-tests">
-      
-      <assert test="name()='named-content'" 
-        role="error" 
-        id="addr-line-child-1"><value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
-      
-      <report test="(name()='named-content') and not(@content-type='city')" 
-        role="error" 
-        id="addr-line-child-2"><value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule>
     
 	<rule context="article-meta/funding-group" id="funding-group-tests">
@@ -2228,16 +2456,6 @@
         role="error" 
         id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
 	  
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-7" 
-        test="ancestor::article//article-meta//contrib//xref/@rid = $id" 
-        role="warning" 
-        id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query.</assert>
-	  
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-7" 
-        test="ancestor::article//article-meta//contrib//xref/@rid = $id" 
-        role="error" 
-        id="final-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;).</assert>
-	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8" 
         test="count(funding-source/institution-wrap/institution) gt 1" 
         role="error" 
@@ -2272,18 +2490,18 @@
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test" 
-        test="institution-id[@institution-id-type='FundRef']" 
+        test="institution-id[@institution-id-type='doi']" 
         role="warning" 
-        id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
+        id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="doi"] is not present in institution-wrap).</assert>
       
     </rule>
     
     <rule context="institution-wrap/institution-id" id="institution-id-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-2" 
-        test="@institution-id-type='FundRef'" 
+        test="@institution-id-type='doi'" 
         role="error" 
-        id="institution-id-test-2"><name/> element must have the attribute institution-id-type="FundRef".</assert>
+        id="institution-id-test-2"><name/> element must have the attribute institution-id-type="doi".</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-3" 
         test="normalize-space(.) != ''" 
@@ -2296,9 +2514,41 @@
         id="institution-id-test-4">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-5" 
-        test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" 
+        test="(normalize-space(.) != '') and not(matches(.,'^10.13039/\d*$'))" 
         role="error" 
         id="institution-id-test-5"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
+      
+      <assert test="@vocab='open-funder-registry'" 
+        role="error" 
+        id="institution-id-test-6"><name/> element must have the attribute vocab="open-funder-registry".</assert>
+      
+      <assert test="@vocab-identifier='10.13039/open-funder-registry'" 
+        role="error" 
+        id="institution-id-test-7"><name/> element must have the attribute vocab-identifier="10.13039/open-funder-registry".</assert>
+      
+    </rule>
+    
+    <rule context="funding-group//principal-award-recipient" id="par-tests">
+      
+      <assert test="count(name) = 1" 
+        role="error" 
+        id="par-test-1">Every <name/> element must have one and only one name element. If there are mutliple award recipients, they must each be tagged in their own <name/> element.</assert>
+      
+    </rule>
+    
+    <rule context="principal-award-recipient/contrib-id[@contrib-id-type='orcid']" id="funding-orcid-tests">
+      <let name="orcid" value="."/>
+      <let name="matching-author-name" value="e:get-name(ancestor::article-meta//contrib[@contrib-type='author' and contrib-id[@contrib-id-type='orcid' and text() = $orcid]]/name[1])"/>
+      <let name="name" value="e:get-name(parent::*/name[1])"/>
+      
+      <!-- Needs updating to only allow https when this is implemented -->
+      <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" 
+        role="error" 
+        id="funding-orcid-test-1">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
+      
+      <assert test="$name = $matching-author-name" 
+        role="error" 
+        id="funding-orcid-test-2">In the funding section the ORCiD and name must be the same as in the author list. The ORCiD in the funding entry for <value-of select="$name"/> (<value-of select="$orcid"/>) does not match up with the ORCiD in the author section. Either the ORCiD is incorrect or the name is incorrect.</assert>
       
     </rule>
     
@@ -2313,9 +2563,9 @@
     
     <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
       
-      <assert test="@kwd-group-type='author-keywords'" 
+      <assert test="@kwd-group-type='author-generated'" 
         role="error" 
-        id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
+        id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-generated'.</assert>
       
       <assert test="kwd" 
         role="warning" 
@@ -2323,10 +2573,6 @@
     </rule>
     
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
-	  
-      <assert test="title = 'Research organism'" 
-        role="error" 
-        id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
       
       <assert test="kwd" 
         role="warning" 
@@ -2347,20 +2593,14 @@
     </rule>
     
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
-      <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1" 
+      <report test="count(custom-meta[@specific-use='meta-only']) != 3" 
         role="error" 
-        id="custom-meta-presence">1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
-      
-      <report test="($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2" 
-        role="error" 
-        id="features-custom-meta-presence">2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>.</report>
+        id="custom-meta-presence">There must be three custom-meta[@specific-use='meta-only'] elements in article-meta. One for the pdf-template, one for the source-file-type, and one for the elife-xml-version. Currently there are <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
       
     </rule>
     
     <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
-      <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-1" 
@@ -2368,10 +2608,10 @@
         role="error" 
         id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-2" 
-        test="($type = $research-subj) and (meta-name != 'Author impact statement')" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-2" 
+        test="meta-name = ('pdf-template','source-file-type','elife-xml-version')" 
         role="error" 
-        id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
+        id="custom-meta-test-2">The value of meta-name can only be 'pdf-template', 'source-file-type', or 'elife-xml-version'. Currently it is <value-of select="meta-name"/>.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-3" 
         test="count(meta-value) = 1" 
@@ -2379,129 +2619,74 @@
         id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-14" 
-        test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" 
+        test="($pos=1) and  (meta-name != 'pdf-template')" 
         role="error" 
-        id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
+        id="custom-meta-test-14">The value of the 1st meta-name can only be 'pdf-template'. Currently it is <value-of select="meta-name"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-15" 
-        test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" 
+        test="($pos=2) and (meta-name != 'source-file-type')" 
         role="error" 
-        id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>.</report>
+        id="custom-meta-test-15">The value of the 2nd meta-name can only be 'source-file-type'. Currently it is <value-of select="meta-name"/>.</report>
       
-    </rule>
-      
-    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
-      <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
-      <let name="verbs" value="('name', 'named', 'can', 'progress', 'progressed', 'explain', 'explained', 'found', 'founded', 'present', 'presented', 'have', 'describe', 'described', 'showed', 'report', 'reported', 'miss', 'missed', 'identify', 'identified', 'better', 'bettered', 'validate', 'validated', 'use', 'used', 'listen', 'listened', 'demonstrate', 'demonstrated', 'argue', 'argued', 'will', 'assess', 'assessed', 'are', 'may', 'observe', 'observed', 'find', 'found', 'previously', 'should', 'rely', 'relied', 'reflect', 'reflected', 'recognise', 'recognised', 'attend', 'attended', 'first', 'define', 'defined', 'here', 'need', 'needed')"/>
-      
-      <report test="not(child::*) and normalize-space(.)=''" 
+      <report test="($pos=3) and (meta-name != 'elife-xml-version')" 
         role="error" 
-        id="custom-meta-test-4">The value of meta-value cannot be empty</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5" 
-        test="($count gt 30)" 
-        role="warning" 
-        id="custom-meta-test-5">Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed.</report>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-6" 
-        test="matches(.,'[\.|\?]$')" 
-        role="warning" 
-        id="pre-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-6" 
-        test="matches(.,'[\.|\?]$')" 
-        role="error" 
-        id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-7" 
-        test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" 
-        role="warning" 
-        id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-8" 
-        test="not($subj = 'Replication Study') and matches(.,'[:;]')" 
-        role="warning" 
-        id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-9" 
-        test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" 
-        role="warning" 
-        id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-custom-meta-test-9" 
-        test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" 
-        role="error" 
-        id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-10" 
-        test="matches(.,'^[\d]+$')" 
-        role="error" 
-        id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-11" 
-        test="matches(.,' [Oo]ur |^[Oo]ur ')" 
-        role="warning" 
-        id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-13" 
-        test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" 
-        role="warning" 
-        id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-rep-study-custom-meta-test" 
-        test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" 
-        role="warning" 
-        id="pre-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#final-rep-study-custom-meta-test" 
-        test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" 
-        role="error" 
-        id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-16" 
-        test="$we-token = $verbs" 
-        role="warning" 
-        id="custom-meta-test-16">Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive language relating to the article or research itself (which should be removed)?</report>
-    </rule>
-    
-    <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
-      <let name="allowed-elements" value="('italic','sup','sub')"/>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-child-test-1" 
-        test="local-name() = $allowed-elements" 
-        role="error" 
-        id="custom-meta-child-test-1"><name/> is not allowed in impact statement.</assert>
+        id="custom-meta-test-17">The value of the 3rd meta-name can only be 'elife-xml-version'. Currently it is <value-of select="meta-name"/>.</report>
       
     </rule>
     
-    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+    <rule context="article-meta/custom-meta-group/custom-meta/meta-value" 
+      id="meta-value-tests">
       
       <report test="child::*" 
         role="error" 
-        id="feat-custom-meta-test-1"><value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
+        id="meta-value-test-1"><name/> cannot contain elements.</report>
       
-      <assert test=". = ('1','2','3','4','5')" 
+    </rule>
+    
+    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='pdf-template']/meta-value" id="pdf-template-meta-tests">
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='heading']/subject[1]"/>
+      
+      <assert test=". = ('1','2','3','4','5','6')" 
         role="error" 
-        id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
+        id="pdf-template-meta-test-1">pdf-template meta-value must one of '1','2','3','4','5', or '6'.</assert>
       
-      <report test=". = ('1','2','3','4','5')" 
+      <report test=". = ('1','2','3','4','5','6')" 
         role="info" 
-        id="feat-custom-meta-test-info">Template <value-of select="."/>.</report>
+        id="pdf-template-meta-test-info">Template <value-of select="."/>.</report>
       
       <report test="($type='Insight') and (. != '1')" 
         role="error" 
-        id="feat-custom-meta-test-3"><value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
+        id="pdf-template-meta-test-2"><value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
       
       <report test="($type='Editorial') and (. != '2')" 
         role="error" 
-        id="feat-custom-meta-test-4"><value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
+        id="pdf-template-meta-test-3"><value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
       
       <report test="($type='Feature Article') and not(.=('3','4','5'))" 
         role="error" 
-        id="feat-custom-meta-test-5"><value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
+        id="pdf-template-meta-test-4"><value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
+      
+      <report test="($type=$research-subj) and (. != '6')" 
+        role="error" 
+        id="pdf-template-meta-test-5"><value-of select="$type"/> must be a template 6. Currently it is a template <value-of select="."/>.</report>
+      
+    </rule>
+    
+    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='source-file-type']/meta-value" 
+      id="source-file-meta-tests">
+      
+      <assert test=". = ('latex','word')" 
+        role="error" 
+        id="source-file-meta-test-1">The meta-value for the source-file-type must be either 'latex', or 'word'. <value-of select="meta-name"/> is not allowed.</assert>
+      
+    </rule>
+    
+    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='elife-xml-version']/meta-value" 
+      id="xml-version-meta-tests">
+      
+      <assert test=". = 2.0" 
+        role="error" 
+        id="xml-version-meta-test-1">The meta-value for the elife-xml-version must be '2.0'. <value-of select="meta-name"/> is not allowed.</assert>
       
     </rule>
     
@@ -2515,11 +2700,51 @@
     
     <rule context="related-object" id="related-object-tests">
       
-      <assert test="ancestor::abstract[not(@abstract-type)]" 
+      <assert test="ancestor::abstract[not(@abstract-type)] or ancestor::sec[@sec-type='ethics-statement']" 
         role="error" 
-        id="related-object-ancetsor"><name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
+        id="related-object-ancestor"><name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]) or ethics statements (sec[@sec-type='ethics-statement']).</assert>
     </rule>
  </pattern>
+  
+  <pattern id="article-events">
+    
+    <rule context="article-meta/pub-date" id="pub-date-tests">
+      <let name="date" value="e:get-iso-pub-date(.)"/>
+      
+      <assert test="@publication-format='electronic'" 
+        role="error" 
+        id="pub-date-1">pub-date must have the attribute publication-format='electronic'.</assert>
+      
+      <assert test="@iso-8601-date = $date" 
+        role="error" 
+        id="pub-date-2">pub-date must have the attribute iso-8601-date with a value equivalent to the data in the year, month and day fields, in this case '<value-of select="$date"/>'.</assert>
+      
+      <assert test="@date-type=('pub','update')" 
+        role="error" 
+        id="pub-date-3">pub-date must have the attribute date-type with a value which is either 'pub' (for the publication date) or 'update' (for the update date if there is one, for example VoR publication date for an article that has been PoA'd).</assert>
+      
+      <report test="@date-type='pub' and preceding-sibling::pub-date" 
+        role="error" 
+        id="pub-date-4">There can only be one pub-date with the attribute date-type='pub', and it must be the first pub-date appearing in article-meta. This has <value-of select="count(preceding-sibling::pub-date)"/> pub-date(s) preceding it with the date-type(s) <value-of select="string-join(preceding-sibling::pub-date/@date-type,' and ')"/>.</report>
+      
+      <report test="@date-type='update' and not(preceding-sibling::pub-date[@date-type='pub'])" 
+        role="error" 
+        id="pub-date-5">The update date (pub-date[@date-type='update']), must be placed directly after the publication date (pub-date[@date-type='pub']) in article-meta. Either this article is missing a publication date, or the update date is placed incorrectly.</report>
+    </rule>
+    
+    <rule context="event" id="event-tests">
+      
+      <assert test="event-desc" 
+        role="error" 
+        id="event-1">event must contain an event description (event-desc).</assert>
+      
+      <assert test="date" 
+        role="error" 
+        id="event-2">event must contain at least one date.</assert>
+      
+    </rule>
+    
+  </pattern>
   
   <pattern id="journal-volume">
     
@@ -2559,7 +2784,7 @@
         role="error" 
         id="p-test-1">p element begins with '<value-of select="substring(.,1,1)"/>'. Is this OK? Usually it should begin with an upper-case letter, or digit, or mathematic symbol, or open parenthesis, or open quote. Or perhaps it should not be the beginning of a new paragraph?</report>-->
       
-      <report test="@*" 
+      <report test="not(ancestor::sec[@sec-type='ethics-statement']) and @*" 
         role="error" 
         id="p-test-2">p element must not have any attributes.</report>
       
@@ -2571,7 +2796,7 @@
         role="warning" 
         id="p-test-5">p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and ($article-type != 'correction') and ($article-type != 'retraction') and not((count(*) = 1) and child::supplementary-material)" 
+      <report test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and not($article-type = $notice-article-types) and not((count(*) = 1) and child::supplementary-material)" 
         role="warning" 
         id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
@@ -2581,13 +2806,13 @@
     </rule>
     
     <rule context="p/*" id="p-child-tests">
-      <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap')"/>
+      <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap','strike','roman','styled-content')"/>
       
       <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')
 
 else self::*/local-name() = $allowed-p-blocks" 
         role="error" 
-        id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object.</assert>
+        id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - bold, sup, sub, sc, italic, xref, inline-formula, disp-formula, supplementary-material, code, ext-link, named-content, inline-graphic, monospace, related-object, strike, roman, styled-content.</assert>
     </rule>
     
     <rule context="xref" id="xref-target-tests">
@@ -2650,7 +2875,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" 
+      <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula','author-notes','list')" 
         role="error" 
         id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
@@ -2761,6 +2986,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
       
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" 
+        test="contains(@xlink:href,'[…]')" 
+        role="error" 
+        id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
+      
     </rule>
     
     <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" 
@@ -2789,7 +3019,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="fig-group/*" id="fig-group-child-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-1" 
-        test="local-name() = ('fig','media')" 
+        test="local-name() = ('fig','media','caption')" 
         role="error" 
         id="fig-group-child-test-1"><name/> is not allowed as a child of fig-group.</assert>
       
@@ -2797,6 +3027,28 @@ else self::*/local-name() = $allowed-p-blocks"
         test="(local-name() = 'media') and not(@mimetype='video')" 
         role="error" 
         id="fig-group-child-test-2"><name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
+      
+    </rule>
+    
+    <rule context="fig-group/caption" id="fig-group-caption">
+      <let name="supplement-count" value="count(parent::fig-group/fig[@specific-use='child-fig']) + count(parent::fig-group/media[@mimetype='video'])"/>
+      <let name="text" value="e:get-fig-group-template-text(parent::fig-group)"/>
+      
+      <assert test="@specific-use='print'" 
+        role="error" 
+        id="fig-group-child-test-3"><name/> which is a child of fig-group, must have an specific-use='print' attribute so that it does not display on the eLife website.</assert>
+      
+      <assert test="p[1] = $text" 
+        role="error" 
+        id="fig-group-caption-conformance">fig-group caption contains '<value-of select="p[1]"/>', when according to the contents of the fig-group, the text should be '<value-of select="$text"/>'.</assert>
+      
+      <assert test="count(p) = 1" 
+        role="error" 
+        id="fig-group-caption-child-1">fig-group caption must contain one and only one p element.</assert>
+      
+      <report test="*[not(name() = 'p')]" 
+        role="error" 
+        id="fig-group-caption-child-2">fig-group caption can only contain a sinlge p element. <value-of select="string-join(distinct-values(*[not(name() = 'p')]/name()),' and ')"/> is not permitted.</report>
       
     </rule>
     
@@ -2809,7 +3061,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-test-2">fig must have a @position.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types, $notice-article-types)) then ()
         else not(label)" 
         role="error" 
         id="fig-test-3">fig must have a label.</report>
@@ -2820,54 +3072,49 @@ else self::*/local-name() = $allowed-p-blocks"
         id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-4" 
-        test="if ($article-type = ('correction','retraction')) then ()
-        else not(caption)" 
+        test="not($article-type = $notice-article-types) and not(caption)" 
         role="warning" 
         id="pre-fig-test-4"><value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" 
-        test="if ($article-type = ('correction','retraction')) then ()
-        else not(caption)" 
+        test="not($article-type = $notice-article-types) and not(caption)" 
         role="error" 
         id="final-fig-test-4"><value-of select="label"/> has no title or caption (caption element).</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-5" 
-        test="if ($article-type = ('correction','retraction')) then ()
-        else not(caption/title)" 
+        test="not($article-type = $notice-article-types) and not(caption/title)" 
         role="warning" 
         id="pre-fig-test-5"><value-of select="label"/> does not have a title.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5" 
-        test="if ($article-type = ('correction','retraction')) then ()
-        else not(caption/title)" 
+        test="not($article-type = $notice-article-types) and not(caption/title)" 
         role="error" 
         id="final-fig-test-5">fig caption must have a title.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6" 
-        test="if ($article-type = ('correction','retraction')) then ()
-        else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
+        test="not($article-type = $notice-article-types) and (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
         role="warning" 
         id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct?</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-7" 
-        test="graphic" 
+        test="graphic or alternatives[graphic[not(@specific-use='print')]]" 
         role="warning" 
-        id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file.</assert>
+        id="pre-fig-test-7">fig does not have a graphic. Ensure author query is added asking for file.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-7" 
-        test="graphic" 
+        test="graphic or alternatives[graphic[not(@specific-use='print')]]" 
         role="error" 
         id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
     
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+    <rule context="fig[ancestor::sub-article[@article-type='author-comment']]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-test-2" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types, $notice-article-types)) then ()
         else not(label)" 
         role="error" 
         flag="dl-ar"
@@ -2904,9 +3151,9 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="graphic-test-1"><name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" 
+      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps')) and not(ends-with($file,'.ps'))" 
         role="error" 
-        id="graphic-test-2"><name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
+        id="graphic-test-2"><name/> has postscript mime-subtype but filename does not end with '.eps' or '.ps'. This cannot be correct.</report>
       
       <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" 
         role="error" 
@@ -2974,7 +3221,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
-      <report test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Author response video \d{1,4}\.$'))
+      <report test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Author response video \d{1,4}\.$'))
         else ()" 
         role="error" 
         id="media-test-7">media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
@@ -3083,7 +3330,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="string($pos) = $no" 
         role="error" 
-        id="back-supplementary-file-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+        id="back-supplementary-file-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
       <assert test="matches(@id,'^supp\d{1,2}$')" 
         role="error" 
@@ -3093,12 +3340,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" 
       id="back-source-data-tests">
-      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following::supplementary-material[contains(label[1],'ource data')])"/>
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <let name="no" value="substring-after(@id,'sdata')"/>
       
       <assert test="string($pos) = $no" 
         role="error" 
-        id="back-source-data-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+        id="back-source-data-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
       <assert test="matches(@id,'^sdata\d{1,2}$')" 
         role="error" 
@@ -3108,12 +3355,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" 
       id="back-source-code-tests">
-      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following::supplementary-material[contains(label[1],'ource code')])"/>
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following-sibling::supplementary-material[contains(label[1],'ource code')])"/>
       <let name="no" value="substring-after(@id,'scode')"/>
       
       <assert test="string($pos) = $no" 
         role="error" 
-        id="back-source-code-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+        id="back-source-code-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
       <assert test="matches(@id,'^scode\d{1,2}$')" 
         role="error" 
@@ -3142,7 +3389,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$number = $pos" 
         role="error" 
-        id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+        id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="$pos"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($fig-id,'sdata',$pos)" 
         role="error" 
@@ -3159,7 +3406,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$number = $pos" 
         role="error" 
-        id="fig-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+        id="fig-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="$pos"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($fig-id,'scode',$pos)" 
         role="error" 
@@ -3176,7 +3423,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$number = $pos" 
         role="error" 
-        id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+        id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="$pos"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($vid-id,'sdata',$pos)" 
         role="error" 
@@ -3193,7 +3440,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$number = $pos" 
         role="error" 
-        id="vid-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+        id="vid-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="$pos"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($vid-id,'scode',$pos)" 
         role="error" 
@@ -3211,7 +3458,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-data-test-2" 
         test="$number = $pos" 
         role="error" 
-        id="table-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+        id="table-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="$pos"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($table-id,'sdata',$pos)" 
         role="error" 
@@ -3229,7 +3476,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-code-test-2" 
         test="$number = $pos" 
         role="error" 
-        id="table-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
+        id="table-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="$pos"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($table-id,'scode',$pos)" 
         role="error" 
@@ -3356,14 +3603,14 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report test="not(local-name()=('label','math'))" 
+      <report test="not(name()=('label','mml:math'))" 
         role="error" 
         id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
     </rule>
     
     <rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report test="local-name()!='math'" 
+      <report test="name()!='mml:math'" 
         role="error" 
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
     </rule>
@@ -3401,7 +3648,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-table-wrap-cite-1" 
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
-        else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else if ($article-type = ($features-article-types, $notice-article-types)) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
         id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
@@ -3409,7 +3656,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-wrap-cite-1" 
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
-        else if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        else if ($article-type = ($features-article-types, $notice-article-types)) then ()
         else if (ancestor::app or ancestor::sub-article) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
@@ -3619,12 +3866,12 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="td/*" id="td-child-tests">
-      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula', 'list')"/> 
+      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline','inline-formula', 'list','styled-content')"/> 
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#td-child-test" 
         test="self::*/local-name() = $allowed-blocks" 
         role="error" 
-        id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
+        id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', 'styled-content' and 'inline-formula'.</assert>
     </rule>
     
     <rule context="th/*" id="th-child-tests">
@@ -3665,11 +3912,13 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
     
-    <rule context="list" id="list-tests">
+    <rule context="list[@continued-from]" id="list-tests">
+      <let name="rid" value="@continued-from"/>
+      <let name="type" value="@list-type"/>
       
-      <report test="@continued-from" 
+      <assert test="preceding::list[(@id = $rid) and @list-type = $type]" 
         role="error" 
-        id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
+        id="continued-from-test-1">List (with the type <value-of select="$type"/>) has the continued from attribute which references a list with the id '<value-of select="$rid"/>', but there is no list before it with that id and the same type. Either the continued-from value is incorrect, the types need to be made the same, or the lists need to be moved so that they reference each other correctly.</assert>
       
     </rule>
     
@@ -3827,9 +4076,9 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="disp-quote" id="disp-quote-tests">
-      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='heading']/subject[1]"/>
       
-      <report test="ancestor::sub-article[@article-type='decision-letter']" 
+      <report test="ancestor::sub-article[@article-type='referee-report']" 
         role="warning" 
         flag="dl-ar"
         id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/></report>
@@ -3866,7 +4115,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="video-tests">
     
-    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']" id="body-video-specific">
+    <rule context="article[not(@article-type=$notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -3918,7 +4167,22 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article/body//media[@mimetype='video']" id="ar-video-specific">
+    <rule context="sub-article[@article-type='referee-report']/body//media[@mimetype='video']" id="dl-video-specific">
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article[@article-type='referee-report']])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" 
+        role="warning" 
+        flag="dl-ar"
+        id="pre-dl-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="$no = string($pos)" 
+        role="error" 
+        id="final-dl-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
+    </rule>
+    
+    <rule context="sub-article[@article-type='author-comment']/body//media[@mimetype='video']" id="ar-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -3937,7 +4201,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="table-pos-tests">
     
-    <rule context="article[(@article-type!='correction') and (@article-type!='retraction')]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
+    <rule context="article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
       <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
       <let name="no" value="substring-after(@id,'table')"/>
@@ -4000,7 +4264,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-2" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
         else $no != string($pos)" 
@@ -4008,7 +4272,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="pre-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-2" 
-        test="if ($article-type = ('correction','retraction')) then ()
+        test="if ($article-type = $notice-article-types) then ()
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
         else $no != string($pos)" 
@@ -4016,19 +4280,19 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-3" 
-        test="not($article-type = ('correction','retraction')) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
+        test="not($article-type = $notice-article-types) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
         role="warning" 
         id="fig-specific-test-3"><value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-4" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types, $notice-article-types)) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
         id="pre-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-4" 
-        test="if ($article-type = ($features-article-types,'correction','retraction')) then ()
+        test="if ($article-type = ($features-article-types, $notice-article-types)) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
@@ -4050,7 +4314,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
-      <report test="not($article-type = ('correction','retraction')) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id] and not(ancestor::article//xref[(@rid = $id) and not(ancestor::caption) and not(ancestor::table-wrap)])" 
+      <report test="not($article-type = $notice-article-types) and ancestor::article//xref[(ancestor::caption or ancestor::table-wrap) and @rid = $id] and not(ancestor::article//xref[(@rid = $id) and not(ancestor::caption) and not(ancestor::table-wrap)])" 
         role="warning"
         id="fig-specific-test-7"><value-of select="$lab"/> is only cited in a table or the caption of an object. Please ask the authors for citation in the main text.</report>
   
@@ -4089,14 +4353,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-sup-test-3"><value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-4" 
-        test="if ($article-type = ('correction','retraction')) then ()
-        else $no != string($pos)" 
+        test="not($article-type = $notice-article-types) and $no != string($pos)" 
         role="error" 
         id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-5" 
-        test="if ($article-type = ('correction', 'retraction')) then ()
-        else (($label-conform = true()) and ($label-no != string($pos)))" 
+        test="not($article-type = $notice-article-types) and (($label-conform = true()) and ($label-no != string($pos)))" 
         role="error" 
         id="fig-sup-test-5"><value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
       
@@ -4107,7 +4369,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
+    <rule context="sub-article[@article-type='author-comment']//fig" id="rep-fig-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-test-2" 
         test="label" 
@@ -4123,7 +4385,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
+    <rule context="sub-article[@article-type='referee-report']//fig" id="dec-fig-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-1" 
         test="label" 
@@ -4307,7 +4569,7 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="body">
     
     <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='heading']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
     
@@ -4338,12 +4600,12 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="body/sec" id="top-level-sec-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='heading']/subject[1]"/>
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion','Methods', 'Model')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-conformity"
-        test="not($type = ($features-subj,'Review Article','Correction','Retraction')) and not(replace(title,' ',' ') = $allowed-titles)" 
+        test="not($type = ($features-subj,'Review Article', $notice-display-types)) and not(replace(title,' ',' ') = $allowed-titles)" 
         role="warning" 
         id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
       
@@ -4353,8 +4615,8 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="title-conformance">
     
     <rule context="article-meta//article-title" id="article-title-tests">
-      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="specifics" value="('Replication Study','Registered Report','Correction','Retraction')"/>
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='heading']/subject[1]"/>
+      <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       
       <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))
         else ()" 
@@ -4569,7 +4831,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-title-test" 
         test="article-title = 'Decision letter'" 
@@ -4578,7 +4840,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
+    <rule context="sub-article[@article-type='author-comment']/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-title-test" 
         test="article-title = 'Author response'" 
         role="error" 
@@ -4589,15 +4851,6 @@ else self::*/local-name() = $allowed-p-blocks"
   </pattern>
   
   <pattern id="id-conformance">
-    
-    <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
-      
-      <report test="if (collab) then ()
-        else if (ancestor::collab) then ()
-        else not(matches(@id,'^[a-z]+-[0-9]+$'))" 
-        role="error" 
-        id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string. <value-of select="@id"/> does not conform to this.</report>
-    </rule>
     
     <rule context="funding-group/award-group" id="award-group-ids">
       
@@ -4610,7 +4863,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <!-- Needs updating once scheme/checmical structure ids have been updated -->
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-1" 
-        test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" 
+        test="matches(@id,'^fig[0-9]{1,3}$|^chem[0-9]{1,3}$|^scheme[0-9]{1,3}$')" 
         role="error" 
         id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
       
@@ -4778,33 +5031,45 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="if ($parent = 'table-wrap-foot') then ()
         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))
         else if ($type = 'con') then
-        if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))
-        else not(matches(@id,'^con[0-9]{1,3}$'))
+          if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))
+          else not(matches(@id,'^con[0-9]{1,3}$'))
         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))
-        else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))
+        else if ($type = 'COI-statement') then not(matches(@id,'^con[0-9]{1,3}$'))
         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))
         else ()" 
         role="error" 
         id="fn-id-test">fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
     </rule>
     
-    <rule context="disp-formula" id="disp-formula-ids">
+    <rule context="article/body//disp-formula[not(ancestor::boxed-text)]" id="body-disp-formula-ids">
       
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" 
+      <assert test="matches(@id,'^equ[0-9]{1,9}$')" 
         role="error" 
-        id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
+        id="body-disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</assert>
+    </rule>
+    
+    <rule context="boxed-text//disp-formula" 
+      id="box-disp-formula-ids">
       
-      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" 
+      <report test="not(ancestor::app) and not(matches(@id,'^box[0-9]{1,9}equ[0-9]{1,9}$'))" 
         role="error" 
-        flag="dl-ar"
-        id="sub-disp-formula-id-test">disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
+        id="box-disp-formula-id-test-1">disp-formula @id in boxed-text must be in the format 'box0equ0'.</report>
+      
+      <report test="ancestor::app and not(matches(@id,'^app[0-9]{1,9}box[0-9]{1,9}equ[0-9]{1,9}$'))" 
+        role="error" 
+        id="box-disp-formula-id-test-2">disp-formula @id in boxed-text which is also in an appendix must be in the format 'app0box0equ0'.</report>
     </rule>
     
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" 
+      <report test="not(ancestor::sub-article) and not(ancestor::app) and not(matches(@id,'^m[0-9]{1,9}$'))" 
         role="error" 
         id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
+      
+      <report test="(ancestor::app) and not(matches(@id,'^app\d+m[0-9]{1,9}$'))" 
+        role="error" 
+        flag="dl-ar"
+        id="app-mml-math-id-test">mml:math @id in disp-formula must be in the format 'app0m0'.  <value-of select="@id"/> does not conform to this.</report>
       
       <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" 
         role="error" 
@@ -4816,7 +5081,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-1" 
-        test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^keyresource$')" 
+        test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$')" 
         role="error" 
         id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this.</assert>
       
@@ -4836,7 +5101,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="resp-table-wrap-id-test">table-wrap @id in author reply must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not.</assert>
     </rule>
     
-    <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article[@article-type='reply'])]" id="table-wrap-ids">
+    <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)]" id="table-wrap-ids">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-id-test" 
         test="if (label = 'Key resources table') then @id='keyresource'
@@ -4863,7 +5128,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="back-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
     
-    <rule context="article/body/sec//sec|article/back/sec//sec" id="low-level-sec-ids">
+    <rule context="article/body/sec//sec[not(ancestor::boxed-text)]|article/back/sec//sec[not(ancestor::boxed-text)]" id="low-level-sec-ids">
       <let name="parent-sec" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
       
@@ -4871,6 +5136,28 @@ else self::*/local-name() = $allowed-p-blocks"
         test="@id = concat($parent-sec,'-',$pos)" 
         role="error" 
         id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
+    </rule>
+    
+    <rule context="article/body//boxed-text/sec" 
+      id="boxed-text-upper-sec-ids">
+      <let name="box-id" value="ancestor::boxed-text/@id"/>
+      <let name="pos" value="count(parent::boxed-text/sec) - count(following-sibling::sec)"/>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#low-level-sec-id-test"
+        test="@id = concat($box-id,'s',$pos)" 
+        role="error" 
+        id="boxed-text-upper-sec-id">The id for a sec which is a child of boxed-text must be a concatenation of the box id, 's', and this element's position relative to its sibling secs. It must be <value-of select="concat($box-id,'-s',$pos)"/>.</assert>
+    </rule>
+    
+    <rule context="article/body//boxed-text/sec//sec" 
+      id="boxed-text-lower-sec-ids">
+      <let name="parent-sec" value="parent::sec/@id"/>
+      <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#low-level-sec-id-test"
+        test="@id = concat($parent-sec,'-',$pos)" 
+        role="error" 
+        id="boxed-text-lower-sec-id">The id for a sec in boxed-text must be a concatenation of the box id, its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
     </rule>
     
     <rule context="app" id="app-ids">
@@ -4884,12 +5171,20 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
+    
+    <rule context="def-item" id="def-term-ids">
+      
+      <assert test="matches(@id,'^def\d{1,4}$')"
+        role="error"
+        id="def-item-id-test">def-term must have an id in the format 'def0'. '<value-of select="@id"/>' is not in this format.</assert>
+      
+    </rule>
   </pattern>
   
   <pattern id="child-conformance">
     
     <rule context="fig/*" id="fig-children">
-      <let name="allowed-children" value="('label', 'caption', 'graphic', 'permissions', 'attrib')"/>
+      <let name="allowed-children" value="('label', 'caption', 'graphic', 'permissions', 'attrib', 'alternatives')"/>
       
       <assert test="local-name() = $allowed-children" 
         role="error" 
@@ -4932,7 +5227,6 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="sec-specific">
     
     <rule context="sec" id="sec-tests">
-      <let name="child-count" value="count(p) + count(sec) + count(fig) + count(fig-group) + count(media) + count(table-wrap) + count(boxed-text) + count(list) + count(fn-group) + count(supplementary-material) + count(related-object)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-1"
         test="title" 
@@ -4940,7 +5234,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="sec-test-1">sec must have a title</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-2"
-        test="$child-count gt 0" 
+        test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" 
         role="error" 
         id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
       
@@ -4960,7 +5254,8 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" id="res-ethics-sec">
+    <rule context="article[@article-type='research-article']//sec[not(@sec-type='ethics-statement') and not(descendant::xref[@ref-type='bibr'])]" 
+      id="res-ethics-sec">
       
       <report test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" 
         role="warning" 
@@ -4976,10 +5271,10 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
-      <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
-      <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
+      <let name="subj-type" value="parent::article//subj-group[@subj-group-type='heading']/subject"/>
+      <let name="pub-date" value="e:get-iso-pub-date(ancestor::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')][1])"/>
       
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()
+      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else count(sec[@sec-type='additional-information']) != 1" 
         role="error" 
         id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
@@ -4989,7 +5284,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#back-test-3" 
-        test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and ( not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" 
+        test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and (not(ancestor::article//article-meta/pub-date[@date-type=('publication','pub')]) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" 
         role="error" 
         id="back-test-3">One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
       
@@ -5010,23 +5305,15 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="back-test-6">One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type = ($features-article-types,'retraction','correction')) then ()
+      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if ($subj-type = 'Scientific Correspondence') then ()
         else (not(ack))" 
         role="warning" 
         id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
       
-      <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" 
+      <report test="fn-group" 
         role="error" 
-        id="back-test-7">An fn-group[@content-type='competing-interest'] must be present as a child of back <value-of select="$subj-type"/> content.</report>
-      
-      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='competing-interest']) != 1)" 
-        role="error" 
-        id="back-test-9">One and only one fn-group[@content-type='competing-interest'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
-      
-      <report test="($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='author-contribution']) != 1)" 
-        role="error" 
-        id="back-test-12">One and only one fn-group[@content-type='author-contribution'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
+        id="back-test-7">fn-group is not permitted as a child of back.</report>
       
       <report test="($article-type = ('article-commentary', 'editorial', 'book-review', 'discussion')) and sec[@sec-type='additional-information']" 
         role="error" 
@@ -5068,83 +5355,97 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', 'correction', 'retraction', 'review-article')"/>
       
       <assert test="parent::back" 
         role="error" 
         id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
       
-      <!-- Exception for article with no authors -->
-      <report test="if ($author-count = 0) then ()
-        else not(fn-group[@content-type='competing-interest'])" 
-        role="error" 
-        id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
-      
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))
-        else ()" 
-        role="error" 
-        id="final-additional-info-test-3">Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
-      
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))
-        else ()" 
-        role="warning" 
-        id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
-      
-      <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" 
-        role="error" 
-        id="additional-info-test-4"><value-of select="$article-type"/> type articles should not contain author contributions.</report>
-      
     </rule>
     
-    <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
-      
-      <assert test="count(fn) gt 0" 
-        role="error" 
-        id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
-      
-      <assert test="ancestor::back" 
-        role="error" 
-        id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
-    </rule>
-    
-    <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
-      
-      <assert test="@fn-type='COI-statement'" 
-        role="error" 
-        id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
-      
-    </rule>
-    
-    <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
-      
-      <assert test="@fn-type='con'" 
-        role="error" 
-        id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
-    </rule>
-    
-    <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
+    <rule context="sec[@sec-type='ethics-statement']" id="ethics-tests">
       
       <!-- Exclusion included for Feature 5 -->
       <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" 
         role="error" 
-        id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
+        id="ethics-test-1">Ethics statements can only be captured as a child of a sec [@sec-type='additional-information']</report>
  
-      <report test="count(fn) gt 3" 
+      <report test="count(p) gt 3" 
         role="error" 
-        id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
+        id="ethics-test-2">Ethics statement may not have more than 3 p elements. Currently there are <value-of select="count(p)"/>.</report>
       
-      <report test="count(fn) = 0" 
+      <report test="count(p) = 0" 
         role="error" 
-        id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
+        id="ethics-test-3">Ethics statements must have at least one fn element.</report>
     </rule>
     
-    <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
+    <rule context="sec[@sec-type='ethics-statement']/*" id="ethics-child-tests">
       
-      <assert test="@fn-type='other'" 
+      <assert test="name() = ('p','title')" 
         role="error" 
-        id="ethics-test-4">This fn must have an @fn-type='other'</assert>
+        id="ethics-child-test-1">Ethics statements can only contain p and title elements. <value-of select="name()"/> is not permitted.</assert>
+    </rule>
+    
+    <rule context="sec[@sec-type='ethics-statement']/p" id="ethics-p-tests">
+      
+      <assert test="@content-type=('ethics-approval-human','ethics-approval-animal') or related-object[@document-id-type='clinical-trial-number']" 
+        role="error" 
+        id="ethics-test-4">p element in ethics statements must either have the attribute content-type with a value of 'ethics-approval-human', or 'ethics-approval-animal' (for human or animal ethics statements respectively), or it must have a clincal trial number tagged using a related-object element. This one does not meet this requirement.</assert>
+      
+    </rule>
+    
+    <rule context="glossary" id="glossary-tests">
+      
+      <assert test="parent::back"
+        role="error"
+        id="glossary-test-1">glossary must be captured as a child of back. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
+      <assert test="title"
+        role="error"
+        id="glossary-test-2">glossary must contain a child title element.</assert>
+      
+      <assert test="def-list"
+        role="error"
+        id="glossary-test-3">glossary must contains a child def-list element.</assert>
+    </rule>
+    
+    <rule context="glossary/*" id="glossary-child-tests">
+      
+      <report test="name()='title' and .!= 'Abbreviations'"
+        role="error"
+        id="glossary-title-test">The title for a glossary must be 'Abbreviations'. This one is <value-of select="."/>.</report>
+      
+      <assert test="name()=('title','def-list')"
+        role="error"
+        id="glossary-child-test">The only elements permitted within glossary are title and def-list. <name/> is not allowed.</assert>
+      
+    </rule>
+    
+    <rule context="def-list" id="def-list-tests">
+      
+      <assert test="def-item"
+        role="error"
+        id="def-list-empty-test">def-list must contain at least one definition (def-item).</assert>
+      
+    </rule>
+    
+    <rule context="def-item" id="def-item-tests">
+      
+      <assert test="count(term) = 1"
+        role="error"
+        id="def-item-term-test">def-item must contain one and only one term.</assert>
+      
+      <assert test="count(def) = 1"
+        role="error"
+        id="def-item-def-test">def-item must contain one and only one def.</assert>
+      
+    </rule>
+    
+    <rule context="term/*" id="term-child-tests">
+      <let name="allowed-list" value="('italic','monospace','sup','sub')"/>
+      
+      <assert test="name()=$allowed-list"
+        role="error"
+        id="term-child"><name/> is not permitted in term. The only allowed elements are italic, monospace, sup, and sub.</assert>
       
     </rule>
   </pattern>
@@ -5155,8 +5456,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" 
-        test="if ($pos = 1) then @article-type='decision-letter'
-        else @article-type='reply'" 
+        test="if ($pos = 1) then @article-type='referee-report'
+        else @article-type='author-comment'" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
@@ -5197,7 +5498,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-reply-test-6"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1" 
@@ -5207,88 +5508,109 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2" 
-        test="$count gt 0" 
+        test="$count = 2" 
         role="error" 
         flag="dl-ar"
-        id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3" 
-        test="$count gt 2" 
-        role="error" 
-        flag="dl-ar"
-        id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-4" 
-        test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" 
-        role="warning" 
-        flag="dl-ar"
-        id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons or a Peer Community in Evolutionary Biology doi in the decision letter.</report>
+        id="dec-letter-front-test-2">decision letter front-stub must contain 2 contrib-group elements.</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
+    <rule context="sub-article/front-stub/contrib-group/contrib" 
+      id="sub-article-contrib-tests">
+      
+      <assert test="@contrib-type='author'" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-1">sub-article contrib must have the attribute contrib-type='author'.</assert>
+      
+      <assert test="name or anonymous or collab" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
+      
+      <report test="(name and anonymous) or (collab and anonymous) or (name and collab)" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab')] return concat('a ',$x/name()),' and ')"/>.</report>
+      
+      <assert test="role" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-4">sub-article contrib must have a child role element.</assert>
+      
+    </rule>
+    
+    <rule context="sub-article/front-stub/contrib-group/contrib/role" 
+      id="sub-article-role-tests">
+      <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
+      
+      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@specific-use='editor')" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-1">The role element for contributors in the first contrib-group in the decision letter must have the attribute specific-use='editor'.</report>
+      
+      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-2">The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'.</report>
+      
+      <report test="$sub-article-type='author-comment' and not(@specific-use='author')" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-3">The role element for contributors in the author response must have the attribute specific-use='author'.</report>
+      
+      <report test="@specific-use='author' and .!='Author'" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-4">A role element with the attribute specific-use='author' must contain the text 'Author'. This one has '<value-of select="."/>'.</report>
+      
+      <report test="@specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-5">A role element with the attribute specific-use='editor' must contain the text 'Senior and Reviewing Editor' or 'Reviewing Editor'. This one has '<value-of select="."/>'.</report>
+      
+      <report test="@specific-use='referee' and .!='Reviewer'" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-6">A role element with the attribute specific-use='referee' must contain the text 'Reviewer'. This one has '<value-of select="."/>'.</report>
+      
+    </rule>
+    
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1" 
-        test="count(contrib[@contrib-type='editor']) = 1" 
-        role="warning" 
-        flag="dl-ar"
-        id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-2" 
-        test="contrib[not(@contrib-type) or @contrib-type!='editor']" 
-        role="warning" 
-        flag="dl-ar"
-        id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
-    </rule>
-    
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
-      <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role[1]"/>
-      <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
-      <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-3" 
-        test="$role=('Reviewing Editor','Senior and Reviewing Editor')" 
+        test="count(contrib[role[@specific-use='editor']]) = 1" 
         role="error" 
         flag="dl-ar"
-        id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
+        id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</assert>
+    </rule>
+    
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" id="dec-letter-editor-tests-2">
+      <let name="name" value="e:get-name(name[1])"/>
+      <let name="role" value="role[1]"/>
+      <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='peer-review']/contrib[e:get-name(name[1])=$name]/role"/>-->
+      <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='peer-review']/contrib[role=$role]/name[1])"/>-->
       
       <!--<report test="($top-name!='') and ($top-name!=$name)"
         role="error"
         id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1" 
-        test="count(contrib[@contrib-type='reviewer']) gt 0" 
+        test="count(contrib[role[@specific-use='referee']]) gt 0" 
         role="error" 
         flag="dl-ar"
-        id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-2" 
-        test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" 
-        role="error" 
-        flag="dl-ar"
-        id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
+        id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-6" 
-        test="count(contrib[@contrib-type='reviewer']) gt 5" 
+        test="count(contrib[role[@specific-use='referee']]) gt 5" 
         role="warning" 
         flag="dl-ar"
         id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
-      <let name="name" value="e:get-name(name[1])"/>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-3" 
-        test="role='Reviewer'" 
-        role="error" 
-        flag="dl-ar"
-        id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
-    </rule>
-    
-    <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
+    <rule context="sub-article[@article-type='referee-report']/body" id="dec-letter-body-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1" 
         test="child::*[1]/local-name() = 'boxed-text'" 
@@ -5297,7 +5619,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
       
-    <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">  
+    <rule context="sub-article[@article-type='referee-report']/body//p" id="dec-letter-body-p-tests">  
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2" 
         test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" 
         role="error" 
@@ -5311,7 +5633,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='decision-letter']" 
+    <rule context="sub-article[@article-type='referee-report']" 
       id="decision-missing-table-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#decision-missing-table-test" 
@@ -5321,7 +5643,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
+    <rule context="sub-article[@article-type='author-comment']/front-stub" id="reply-front-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
@@ -5330,7 +5652,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
+    <rule context="sub-article[@article-type='author-comment']/body" id="reply-body-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1" 
         test="count(disp-quote[@content-type='editor-comment']) = 0" 
@@ -5345,7 +5667,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
+    <rule context="sub-article[@article-type='author-comment']/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-disp-quote-test-1" 
         test="@content-type='editor-comment'" 
@@ -5354,7 +5676,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+    <rule context="sub-article[@article-type='author-comment']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(
         normalize-space(string-join(for $x in self::*/text() return $x,''))
         ,' ','')"/>
@@ -5366,7 +5688,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    <rule context="sub-article[@article-type='author-comment']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2" 
         test="string-length(.) ge 50" 
@@ -5375,7 +5697,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']" 
+    <rule context="sub-article[@article-type='author-comment']" 
       id="reply-missing-table-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-table-test" 
@@ -5392,13 +5714,22 @@ else self::*/local-name() = $allowed-p-blocks"
         test="contains(@xlink:href,'paperpile.com')"
         role="error" 
         flag="dl-ar"
-        id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
+        id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='author-comment']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
+    </rule>
+    
+    <rule context="anonymous" 
+      id="anonymous-tests">
+      
+      <assert test="parent::contrib[role[@specific-use='referee']]"
+        role="error" 
+        flag="dl-ar"
+        id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
     </rule>
   </pattern>
   
   <pattern id="related-articles">
     
-    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = 'Research Advance']//article-meta" id="research-advance-test">
       
       <assert test="count(related-article[@related-article-type='article-reference']) gt 0" 
         role="error" 
@@ -5406,7 +5737,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = 'Insight']//article-meta" id="insight-test">
       
       <assert test="count(related-article[@related-article-type='commentary-article']) gt 0" 
         role="error" 
@@ -5430,6 +5761,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
+    <rule context="article[@article-type='expression-of-concern']//article-meta" id="expression-of-concern-test">
+      
+      <assert test="count(related-article[@related-article-type='object-of-concern']) gt 0" 
+        role="error" 
+        id="related-articles-test-13">Expressions of concern must contain at least 1 related-article link with the attribute related-article-type='object-of-concern'.</assert>
+      
+    </rule>
+    
     <rule context="article[@article-type='research-article']//related-article" id="research-article-ra-test">
       
       <assert test="@related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')" 
@@ -5439,7 +5778,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="related-article" id="related-articles-conformance">
-      <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article')"/>
+      <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article','object-of-concern')"/>
       <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
       
       <assert test="@related-article-type" 
@@ -5448,7 +5787,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="@related-article-type = $allowed-values" 
         role="error" 
-        id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', and 'retracted-article').</assert>
+        id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', and 'object-of-concern').</assert>
       
       <assert test="@ext-link-type='doi'" 
         role="error" 
@@ -5840,7 +6179,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='journal']/pub-id" id="elem-citation-journal-pub-id">
       
-      <assert test="@pub-id-type=('doi','pmid')" 
+      <assert test="@pub-id-type=('doi','pmid','pmcid')" 
         role="error" 
         id="err-elem-cit-journal-9-1">Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid". The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
       
@@ -6034,6 +6373,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;ext-link&gt; and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
+      <assert test="@specific-use=('generated','analyzed')" 
+        role="error" 
+        id="data-cit-specific-use">Every element-citation[@publication-type='data'] must have a specific-use attribute with the value 'generated', or 'analyzed'.</assert>
+      
     </rule>
     
     <rule context="element-citation[@publication-type='data']/person-group" 
@@ -6171,23 +6514,31 @@ else self::*/local-name() = $allowed-p-blocks"
         id="err-elem-cit-software-2-2">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to 'author' or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1" 
-        test="count(data-title) &gt; 1" 
+        test="count(article-title) &gt; 1" 
         role="error" 
-        id="err-elem-cit-software-10-1">Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
+        id="err-elem-cit-software-10-1">Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> &lt;article-title&gt; elements.</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16" 
-        test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)" 
+        test="count(*) = count(person-group | year | article-title | source | version | publisher-name | publisher-loc | ext-link | pub-id)" 
         role="error" 
-        id="err-elem-cit-software-16">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+        id="err-elem-cit-software-16">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
     
-    <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
+    <rule context="element-citation[@publication-type = 'software']/article-title" id="elem-citation-software-article-title">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2" 
         test="count(*) = count(sub | sup | italic)" 
         role="error" 
         id="err-elem-cit-software-10-2">An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      
+    </rule>
+    
+    <rule context="element-citation[@publication-type='software']/pub-id" id="elem-citation-software-pub-id">
+      
+      <assert test="@pub-id-type='doi'" 
+        role="error" 
+        id="err-elem-cit-software-pub-id">If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'. The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
   </pattern>
@@ -6860,13 +7211,6 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       
-      <assert test="./@iso-8601-date" 
-        role="error" 
-        id="err-elem-cit-periodical-7-2">[err-elem-cit-periodical-7-2]
-        The &lt;year&gt; element must have an @iso-8601-date attribute.
-        Reference '<value-of select="ancestor::ref/@id"/>' does not.
-      </assert>
-      
       <assert test="matches(normalize-space(.),'(^\d{4}[a-z]?)')" 
         role="error" 
         id="err-elem-cit-periodical-7-4-1">[err-elem-cit-periodical-7-4-1]
@@ -7042,165 +7386,6 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
   </pattern>
   
-  <pattern id="das-element-citation-tests">
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
-      <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/> 
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-person-group-1" 
-        test="count(person-group[@person-group-type='author'])=1" 
-        role="warning" 
-        id="pre-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them in or query the authors asking for the author list.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1" 
-        test="count(person-group[@person-group-type='author'])=1" 
-        role="error" 
-        id="final-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them.</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-person-group-2" 
-        test="count(person-group) gt 1" 
-        role="error" 
-        id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-person-1" 
-        test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" 
-        role="warning" 
-        id="pre-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors. Please ensure to add them in or query the authors asking for the author list.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-1" 
-        test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" 
-        role="error" 
-        id="final-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (person-group[@person-group-type='author']). Please ensure to add them in.</report>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-data-title-1" 
-        test="count(data-title)=1" 
-        role="warning" 
-        id="pre-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in or query the authors asking for it.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-data-title-1" 
-        test="count(data-title)=1" 
-        role="error" 
-        id="final-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-source-1" 
-        test="count(source)=1" 
-        role="warning" 
-        id="pre-das-elem-source-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in or query the authors asking for it.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-source-1" 
-        test="count(source)=1" 
-        role="error" 
-        id="final-das-elem-source-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-pub-id-1" 
-        test="count(pub-id)=1" 
-        role="warning" 
-        id="pre-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in or query the authors asking for it.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-1" 
-        test="count(pub-id)=1" 
-        role="error" 
-        id="final-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in.</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-pub-id-2" 
-        test="normalize-space(pub-id)=''" 
-        role="warning" 
-        id="pre-das-elem-pub-id-2">The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in or query the authors asking for it.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-2" 
-        test="normalize-space(pub-id)=''" 
-        role="error" 
-        id="final-das-elem-pub-id-2">The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in.</report>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-year-1" 
-        test="count(year)=1" 
-        role="warning" 
-        id="pre-das-elem-year-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in or query the authors asking for it.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-year-1" 
-        test="count(year)=1" 
-        role="error" 
-        id="final-das-elem-year-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in.</assert>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1" 
-        test="@specific-use" 
-        role="error" 
-        id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not.</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-2" 
-        test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" 
-        role="error" 
-        id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-cit-3" 
-        test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" 
-        role="warning" 
-        id="pre-das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-cit-3" 
-        test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" 
-        role="error" 
-        id="final-das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4" 
-        test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" 
-        role="warning" 
-        id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-5" 
-        test="pub-id[1] = following::element-citation[ancestor::ref-list]/pub-id[1]" 
-        role="warning" 
-        id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
-      
-    </rule>
-    
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1" 
-        test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" 
-        role="error" 
-        id="das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-2" 
-        test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
-        role="warning" 
-        id="pre-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty). If the link is not available please query the authors asking for it.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-2" 
-        test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
-        role="error" 
-        id="final-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
-      
-    </rule>
-    
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
-      <let name="allowed-elems" value="('sup','sub','italic')"/>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-child-1" 
-        test="name()=$allowed-elems" 
-        role="error" 
-        id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
-    </rule>
-    
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
-      <let name="digits" value="replace(.,'[^\d]','')"/>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-year-1" 
-        test="(.!='') and (@iso-8601-date!=$digits)" 
-        role="error" 
-        id="das-elem-citation-year-1">Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-citation-year-2" 
-        test="normalize-space(.)=''" 
-        role="warning" 
-        id="pre-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in or query the authors asking for it.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-citation-year-2" 
-        test="normalize-space(.)=''" 
-        role="error" 
-        id="final-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in.</report>
-    </rule>
-  </pattern>
-  
   <pattern id="pub-id-pattern">
     
     <rule context="element-citation/pub-id" id="pub-id-tests">
@@ -7268,7 +7453,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
  <pattern id="features">
    
-   <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
+   <rule context="article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject[1]"/>
      
      <report test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" 
@@ -7319,23 +7504,23 @@ else self::*/local-name() = $allowed-p-blocks"
 		
 	</rule>
    
-   <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
+   <rule context="article-categories[subj-group[@subj-group-type='heading']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
      <assert test="$count = 1" 
         role="error" 
-        id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
+        id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='heading']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
      
    </rule>
    
-   <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
+   <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='heading']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
      <assert test="bio" 
         role="error" 
         id="feature-author-test-1">Author must contain child bio in feature content.</assert>
    </rule>
    
-   <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
+   <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='heading']/subject=$features-subj]//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
      <let name="name" value="e:get-name(parent::contrib/name[1])"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)
@@ -7369,9 +7554,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="feature-bio-test-5"><value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio&gt;. - <value-of select="."/></report>
    </rule>
    
-   <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
-     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
-     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
+   <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = $features-subj]" id="feature-template-tests">
+     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='pdf-template']/meta-value[1]"/>
+     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[1]"/>
      
      <report test="($template = ('1','2','3')) and child::sub-article" 
         role="error" 
@@ -7383,29 +7568,29 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="feature-template-test-2"><value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
      
-     <report test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" 
+     <report test="($template = '5') and not(child::sub-article[@article-type='referee-report'])" 
         role="warning" 
         id="feature-template-test-3"><value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
      
-     <report test="($template = '5') and not(child::sub-article[@article-type='reply'])" 
+     <report test="($template = '5') and not(child::sub-article[@article-type='author-comment'])" 
         role="warning" 
         id="feature-template-test-4"><value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
      
-     <report test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" 
+     <report test="front/article-meta/contrib-group[@content-type='peer-review'] and ($template != '5')" 
         role="error" 
         id="feature-templates-no-bre"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="
           string-join(
-          for $x in front/article-meta/contrib-group[@content-type='section']/contrib
+          for $x in front/article-meta/contrib-group[@content-type='peer-review']/contrib
           return concat(e:get-name($x/name[1]),' as ',$x/role[1])
           ,
           ' and '
           )
           "/>. Please remove any senior/reviewing editors.</report>
      
-     <report test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" 
+     <report test="($template != '5') and front/article-meta//contrib[@contrib-type='author']/role" 
         role="warning" 
         id="feature-templates-author-cont"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should very likely not have any Author contributions. This <value-of select="$type"/> has <value-of select="
-          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn
+          string-join(for $x in front/article-meta//contrib[@contrib-type='author']/role
           return concat('&quot;', $x,'&quot;')
           ,
           '; '
@@ -7459,9 +7644,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
    </rule>
    
-   <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|
-     article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|
-     article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" 
+   <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]]//p|
+     article[descendant::article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]]//td|
+     article[descendant::article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]]//th" 
      id="feature-comment-tests">
      
      <report test="matches(.,'\[[Oo][Kk]\??\]')" 
@@ -7499,7 +7684,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
       
-      <report test="descendant::contrib-group[@content-type='section']" 
+      <report test="descendant::contrib-group[@content-type='peer-review']" 
         role="error" 
         id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
       
@@ -7531,7 +7716,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="retr-impact-statement">Retractions should not contain an impact statement.</report>
       
-      <report test="descendant::contrib-group[@content-type='section']" 
+      <report test="descendant::contrib-group[@content-type='peer-review']" 
         role="error" 
         id="retr-SE-BRE">Retractions must not contain any Senior or Reviewing Editors.</report>
        
@@ -7612,7 +7797,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test"
         test="contains(lower-case(.),'url to be added')" 
-        role="warning" 
+        role="error" 
         id="final-missing-url-test"><name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then it may be worth querying with the authors to determine what needs to be added.</report>
     </rule>
     
@@ -9009,7 +9194,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
   
   <pattern id="house-style">
     
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|styled-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
       <report test="contains(.,'©')" 
         role="error" 
@@ -9150,7 +9335,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <rule context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
-      <let name="city" value="parent::aff//named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::aff/city[1]"/>
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
       <report test="$text = 'United States of America'" 
@@ -9190,7 +9375,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule>
     
-    <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
+    <rule context="front//aff//city" id="city-tests">
       <let name="lc" value="normalize-space(lower-case(.))"/>
       <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
       
@@ -9220,7 +9405,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     </rule>
     
     <rule context="aff/institution[not(@*)]" id="institution-tests">
-      <let name="city" value="parent::*/addr-line/named-content[@content-type='city'][1]"/>
+      <let name="city" value="parent::*/city[1]"/>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" 
         role="error" 
@@ -9228,7 +9413,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" 
         role="warning" 
-        id="UC-no-test-2"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line/named-content[@content-type='city'][1])"/>' instead?</report>
+        id="UC-no-test-2"><value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::city[1])"/>' instead?</report>
       
       <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" 
         role="warning" 
@@ -9659,16 +9844,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-ncbi-test-2">Data reference with the database source '<value-of select="source[1]"/>' is not marked as an accession number, which is very likely incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-3" 
-        test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-ncbi-test-3">Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked with NCBI as its assigning authority, which must be incorrect.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4" 
-        test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-ncbi-test-4">Data reference with the database source '<value-of select="source[1]"/>' is not marked with NCBI as its assigning authority, which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-1" 
         test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')" 
         role="warning" 
@@ -9679,20 +9854,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-dryad-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-3" 
-        test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (pub-id[1][@assigning-authority!='Dryad' or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-dryad-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Dryad, which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')" 
         role="warning" 
         id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-rcsbpbd-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but is not marked with PDB as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9704,11 +9869,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-emdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but the database name is not 'Electron Microscopy Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-2" 
-        test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-emdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-3" 
         test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
@@ -9719,20 +9879,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-empiar-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <value-of select="source[1]"/>. Is that correct? https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-1</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-empiar-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but is not marked with EBI as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-2</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')" 
         role="warning" 
         id="data-arrayexpress-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but the database name is not 'ArrayExpress' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-arrayexpress-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but is not marked with EBI as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9743,11 +9893,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and not(source[1]='PRIDE')" 
         role="warning" 
         id="data-pride-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but the database name is not 'PRIDE' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-pride-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but is not marked with EBI as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9764,20 +9909,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-zenodo-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5281/zenodo', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-zenodo-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Zenodo type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Zenodo, which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-1" 
         test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')" 
         role="warning" 
         id="data-osf-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-2" 
-        test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-osf-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3" 
         test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9789,11 +9924,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-osf-test-4">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-osf-test-5">Data reference with the title '<value-of select="data-title[1]"/>' has a OSF type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not Open Science Framework, which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (source[1]!='figshare')" 
         role="warning" 
@@ -9804,20 +9934,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-figshare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a figshare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not figshare, which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-1" 
         test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')" 
         role="warning" 
         id="data-proteomexchange-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but the database name is not 'ProteomeXchange' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-proteomexchange-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-3" 
         test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9834,11 +9954,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-openneuro-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.18112/openneuro' or 'openneuro.org/datasets' type link, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-openneuro-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a OpenNeuro type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')" 
         role="warning" 
@@ -9849,20 +9964,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-synapse-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Synapse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')" 
         role="warning" 
         id="data-bmrb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-bmrb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9873,11 +9978,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and not(source[1]='Morph D Base')" 
         role="warning" 
         id="data-morphdbase-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but the database name is not 'Morph D Base' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-morphdbase-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9894,11 +9994,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-mendeley-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17632', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-mendeley-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Mendeley Data type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')" 
         role="warning" 
@@ -9908,11 +10003,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" 
         role="warning" 
         id="data-edatashare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-edatashare-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an Edinburgh DataShare type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'Edinburgh University', which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')" 
@@ -9924,11 +10014,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-eth-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.3929', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-eth-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a ETH Library research collection type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')" 
         role="warning" 
@@ -9938,11 +10023,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6080')) and (source[1]='Collaborative Research in Computational Neuroscience')" 
         role="warning" 
         id="data-crcns-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6080', which is incorrect.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-crcns-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a CRCNS type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (source[1]!='MorphoSource')" 
@@ -9954,20 +10034,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-morphosource-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17602', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-morphosource-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a MorphoSource type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-1" 
         test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and not(source[1]='NeuroVault')" 
         role="warning" 
         id="data-neurovault-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but the database name is not 'NeuroVault' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-neurovault-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-3" 
         test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -9984,11 +10054,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-wwpdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Worldwide Protein Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'PDB', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')" 
         role="warning" 
@@ -9998,11 +10063,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID')) and (source[1]='SBGrid Data Bank')" 
         role="warning" 
         id="data-sbgdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect.</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-sbgdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a SBGrid Data Bank type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (source[1]!='Harvard Dataverse')" 
@@ -10014,20 +10074,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="data-harvard-dataverse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7910', which is likely incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-3" 
-        test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])" 
-        role="warning" 
-        id="data-harvard-dataverse-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Harvard Dataverse type doi - <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the assigning authority is not 'other', which must be incorrect.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and not(source[1]='ENCODE')" 
         role="warning" 
         id="data-encode-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but the database name is not 'ENCODE' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-encode-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -10038,11 +10088,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and not(source[1]='EMDataResource')" 
         role="warning" 
         id="data-emdr-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but the database name is not 'EMDataResource' - <value-of select="source[1]"/>. Is that correct?</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-2" 
-        test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]" 
-        role="warning" 
-        id="data-emdr-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-2</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
@@ -10145,14 +10190,14 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-dryad-conformity" 
-        test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" 
+        test="matches(.,'[Dd]ryad') and not(xref[@rid = ancestor::back/ref-list/ref[element-citation[@publication-type='data' and contains(source[1],'Dryad')]]/@id])" 
         role="warning" 
-        id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. If there is a dryad dataset present, ensure the assigning authority is dryad, otherwise please query the authors for the reference details.</report>
+        id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a database name containing 'Dryad'. If there is a dryad dataset present, ensure the assigning authority is dryad, otherwise please query the authors for the reference details.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-dryad-conformity" 
-        test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])" 
+        test="matches(.,'[Dd]ryad') and not(xref[@rid = ancestor::back/ref-list/ref[element-citation[@publication-type='data' and contains(source[1],'Dryad')]]/@id])" 
         role="error" 
-        id="final-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority.</report>
+        id="final-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a database name containing 'Dryad'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity" 
         test="matches(.,'[Ss]upplemental [Ff]igure')" 
@@ -10271,7 +10316,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     </rule>
     
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
-      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[1]"/>
       
       <report test="descendant::xref[@ref-type='bibr']" 
         role="warning" 
@@ -10300,7 +10345,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     </rule>
     
     <rule context="article" id="KRT-check">
-      <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="subj" value="descendant::subj-group[@subj-group-type='heading']/subject[1]"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
       
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" 
@@ -10333,55 +10378,47 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
     </rule>
     
-    <rule context="th|td" id="colour-table">
+    <rule context="th[@style]|td[@style]" id="colour-table">
+      <let name="allowed-values" value="($table-blue, $table-green, $table-orange, $table-yellow, $table-purple, $table-red, $table-pink, $table-grey)"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#colour-check-table" 
-        test="starts-with(@style,'author-callout')" 
+        test="@style=$allowed-values" 
         role="warning" 
         id="colour-check-table"><name/> element has colour background. Is this correct? It contains <value-of select="."/>.</report>
-    </rule>
-    
-    <rule context="th[@style]|td[@style]" id="colour-table-2">
-      <let name="allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-colour-check-table-2" 
         test="@style=$allowed-values" 
         role="warning" 
-        id="pre-colour-check-table-2"><name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
+        id="pre-colour-check-table-2"><name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green, orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-colour-check-table-2" 
         test="@style=$allowed-values" 
         role="error" 
-        id="final-colour-check-table-2"><name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
+        id="final-colour-check-table-2"><name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green, orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
     
-    <rule context="named-content" id="colour-named-content">
-      <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
+    <rule context="named-content" id="named-content">
       
-      <report test="starts-with(@content-type,'author-callout')" 
-        role="warning" 
-        id="colour-named-content-check"><value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/></report>
-      
-      <assert test="@content-type = $allowed-values" 
-        role="warning" 
-        id="pre-named-content-type-check"><value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>. Only blue, purple, and red text is permitted (author-callout-style-a1, author-callout-style-a2, and author-callout-style-a3 respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
-      
-      <assert test="@content-type = $allowed-values" 
+      <assert test="@content-type='sequence'" 
         role="error" 
-        id="final-named-content-type-check"><value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>.</assert>
+        id="named-content-check"><name/> element must have the attribute content-type='sequence', but the element containing '<value-of select="."/>' does not.</assert>
       
     </rule>
     
     <rule context="styled-content" id="colour-styled-content">
-      <let name="parent" value="parent::*/local-name()"/>
+      <let name="allowed-values" value="($text-blue, $text-purple, $text-red)"/>
       
       <report test="." 
         role="warning" 
-        id="pre-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. If it is red, blue or purple then it should be tagged using &lt;named-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
+        id="styled-content-check"><value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/></report>
       
-      <report test="." 
+      <assert test="@style = $allowed-values" 
+      role="warning" 
+      id="pre-styled-content-type-check"><value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in &lt;styled-content&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>, which are for blue, purple and red text respectively. If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
+      
+      <assert test="@style = $allowed-values" 
         role="error" 
-        id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+        id="final-styled-content-type-check"><value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in &lt;styled-content&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>, which are for blue, purple and red text respectively. If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
     </rule>
     
     <rule context="mml:*[@mathcolor]" id="math-colour-tests">
@@ -10405,7 +10442,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="not(ancestor::table-wrap)" 
         role="warning" 
-        id="pre-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they will not display in downstream HTML (for example in PMC). eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
+        id="pre-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility. eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
       
       <report test="ancestor::table-wrap" 
         role="warning" 
@@ -10438,7 +10475,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
     </rule>
     
-    <rule context="article[not(@article-type=('correction','retraction','article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|
+    <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|
       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
@@ -10711,7 +10748,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="auth-kwd-check-5">Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
       
-      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 4" 
+      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 4" 
         role="warning" 
         id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
@@ -10725,15 +10762,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report test="string-length(.) gt 4" 
         role="warning" 
         id="ref-given-names-test-1">Given names should always be initialised. Ref '<value-of select="ancestor::ref[1]/@id"/>' contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
-    </rule>
-    
-    <rule context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">      
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ref-given-names-test-1" 
-        test="string-length(.) gt 4" 
-        role="warning" 
-        id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
-      
     </rule>
     
     <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">     
@@ -11336,7 +11364,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
   <pattern id="element-allowlist-pattern">
     
     <rule context="article//*[not(ancestor::mml:math)]" id="element-allowlist">
-      <let name="allowed-elements" value="('abstract', 'ack', 'addr-line', 'aff', 'ali:free_to_read', 'ali:license_ref', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'sc', 'sec', 'self-uri', 'source', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'version', 'volume', 'xref', 'year')"/>
+      <let name="allowed-elements" value="('abstract', 'ack', 'aff', 'ali:free_to_read', 'ali:license_ref', 'alternatives', 'anonymous', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'city', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'def', 'def-item','def-list', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'event', 'event-desc', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'glossary','graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-history', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'roman', 'sc', 'sec', 'self-uri', 'source', 'state', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'term', 'tex-math','td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'version', 'volume', 'xref', 'year')"/>
       
       <assert test="name()=$allowed-elements" 
         role="error" 

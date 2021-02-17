@@ -1,19 +1,19 @@
 <?oxygen SCHSchema="pre-test-r-article-d-letter.sch"?>
 <!--Context: article[@article-type='research-article']
-Test: report    ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])
+Test: report    ($type-display != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])
 Message: A decision letter should be present for research articles. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Advance</subject>
           </subj-group>
         </article-categories>
         <related-article related-article-type="article-reference"/>
       </article-meta>
     </front>
-    <sub-article article-type="decision-letter"/>
+    <sub-article article-type="referee-report"/>
   </article>
 </root>

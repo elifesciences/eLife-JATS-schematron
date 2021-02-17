@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="xml-version-meta-test-1.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='elife-xml-version']/meta-value
+Test: assert    . = 2.0
+Message: The meta-value for the elife-xml-version must be '2.0'.  is not allowed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>elife-xml-version</meta-name>
+          <meta-value>2.0</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

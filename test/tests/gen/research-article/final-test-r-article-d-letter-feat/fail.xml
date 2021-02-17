@@ -1,11 +1,196 @@
 <?oxygen SCHSchema="final-test-r-article-d-letter-feat.sch"?>
 <!--Context: article[@article-type='research-article']
-Test: report    ($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])
+Test: report    ($type-display = 'Feature Article') and not(sub-article[@article-type='referee-report'])
 Message: A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article article-type="research-article" dtd-version="1.1">
-      <front><journal-meta><journal-id journal-id-type="nlm-ta">elife</journal-id><journal-id journal-id-type="publisher-id">eLife</journal-id><journal-title-group><journal-title>eLife</journal-title></journal-title-group><issn publication-format="electronic" pub-type="epub">2050-084X</issn><publisher><publisher-name>eLife Sciences Publications, Ltd</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type="publisher-id">60080</article-id><article-id pub-id-type="doi">10.7554/eLife.60080</article-id><article-categories><subj-group subj-group-type="display-channel"><subject>Feature Article</subject></subj-group><subj-group subj-group-type="sub-display-channel"><subject>Meta-Research</subject></subj-group></article-categories><title-group><article-title>The growth of acronyms in the scientific literature</article-title></title-group><contrib-group><contrib contrib-type="author" corresp="yes" id="author-47050"><name><surname>Barnett</surname><given-names>Adrian</given-names></name><contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0001-6339-0374</contrib-id><email>a.barnett@qut.edu.au</email><xref ref-type="aff" rid="aff1">1</xref><xref ref-type="other" rid="fund1"/><xref ref-type="fn" rid="con1"/><xref ref-type="fn" rid="conf1"/><bio><p><bold>Adrian Barnett</bold> is in the School of Public Health and Social Work, Queensland University of Technology, Brisbane, Australia</p></bio></contrib><contrib contrib-type="author" id="author-195073"><name><surname>Doubleday</surname><given-names>Zoe</given-names></name><contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0003-0045-6377</contrib-id><xref ref-type="aff" rid="aff2">2</xref><xref ref-type="other" rid="fund2"/><xref ref-type="fn" rid="con2"/><xref ref-type="fn" rid="conf1"/><bio><p><bold>Zoe Doubleday</bold> is in the Future Industries Institute, University of South Australia, Adelaide, Australia</p></bio></contrib><aff id="aff1"><label>1</label><institution>School of Public Health and Social Work, Queensland University of Technology</institution><addr-line><named-content content-type="city">Brisbane</named-content></addr-line><country>Australia</country></aff><aff id="aff2"><label>2</label><institution>Future Industries Institute, University of South Australia</institution><addr-line><named-content content-type="city">Adelaide</named-content></addr-line><country>Australia</country></aff></contrib-group><contrib-group content-type="section"><contrib contrib-type="editor"><name><surname>Rodgers</surname><given-names>Peter</given-names></name><role>Reviewing Editor</role><aff><institution>eLife</institution><country>United Kingdom</country></aff></contrib><contrib contrib-type="senior_editor"><name><surname>Rodgers</surname><given-names>Peter</given-names></name><role>Senior Editor</role><aff><institution>eLife</institution><country>United Kingdom</country></aff></contrib></contrib-group><pub-date date-type="publication" publication-format="electronic"><year>2020</year></pub-date><pub-date pub-type="collection"><year>2020</year></pub-date><volume>9</volume><elocation-id>e60080</elocation-id><history><date date-type="received" iso-8601-date="2020-06-16"><day>16</day><month>06</month><year>2020</year></date><date date-type="accepted" iso-8601-date="2020-07-14"><day>14</day><month>07</month><year>2020</year></date></history><permissions><copyright-statement>© 2020, Barnett and Doubleday</copyright-statement><copyright-year>2020</copyright-year><copyright-holder>Barnett and Doubleday</copyright-holder><ali:free_to_read/><license xlink:href="http://creativecommons.org/licenses/by/4.0/"><ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref><license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p></license></permissions><self-uri content-type="pdf" xlink:href="elife-60080.pdf"/><abstract><p>Some acronyms are useful and are widely understood, but many of the acronyms used in scientific papers hinder understanding and contribute to the increasing fragmentation of science. Here we report the results of an analysis of more than 24 million article titles and 18 million article abstracts published between 1950 and 2019. There was at least one acronym in 19% of the titles and 73% of the abstracts. Acronym use has also increased over time, but the re-use of acronyms has declined. We found that from more than one million unique acronyms in our data, just over 2000 (0.2%) were used regularly, and most acronyms (79%) appeared fewer than 10 times. Acronyms are not the biggest current problem in science communication, but reducing their use is a simple change that would help readers and potentially increase the value of science.</p></abstract><kwd-group kwd-group-type="author-keywords"><kwd>meta-research</kwd><kwd>scientific writing</kwd><kwd>acronyms</kwd><kwd>communication</kwd><kwd>knowledge</kwd><kwd>scientific publishing</kwd></kwd-group><kwd-group kwd-group-type="research-organism"><title>Research organism</title><kwd>None</kwd></kwd-group><funding-group><award-group id="fund1"><funding-source><institution-wrap><institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100000925</institution-id><institution>National Health and Medical Research Council</institution></institution-wrap></funding-source><award-id>APP1117784</award-id><principal-award-recipient><name><surname>Barnett</surname><given-names>Adrian</given-names></name></principal-award-recipient></award-group><award-group id="fund2"><funding-source><institution-wrap><institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100000923</institution-id><institution>Australian Research Council</institution></institution-wrap></funding-source><award-id>FT190100244</award-id><principal-award-recipient><name><surname>Doubleday</surname><given-names>Zoe</given-names></name></principal-award-recipient></award-group><funding-statement>The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.</funding-statement></funding-group><custom-meta-group><custom-meta specific-use="meta-only"><meta-name>Author impact statement</meta-name><meta-value>A study of 24 million articles has revealed that scientists have created more than 1 million acronyms since 1950, most of which have been used fewer than 10 times.</meta-value></custom-meta><custom-meta specific-use="meta-only"><meta-name>Template</meta-name><meta-value>5</meta-value></custom-meta></custom-meta-group></article-meta></front>
+      <front>
+        <journal-meta>
+          <journal-id journal-id-type="nlm-ta">elife</journal-id>
+          <journal-id journal-id-type="publisher-id">eLife</journal-id>
+          <journal-title-group>
+            <journal-title>eLife</journal-title>
+          </journal-title-group>
+          <issn publication-format="electronic" pub-type="epub">2050-084X</issn>
+          <publisher>
+            <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+          </publisher>
+        </journal-meta>
+        <article-meta>
+          <article-id pub-id-type="publisher-id">60080</article-id>
+          <article-id pub-id-type="doi">10.7554/eLife.60080</article-id>
+          <article-categories>
+            <subj-group subj-group-type="heading">
+              <subject>Feature Article</subject>
+            </subj-group>
+            <subj-group subj-group-type="sub-display-channel">
+              <subject>Meta-Research</subject>
+            </subj-group>
+          </article-categories>
+          <title-group>
+            <article-title>The growth of acronyms in the scientific literature</article-title>
+          </title-group>
+          <contrib-group>
+            <contrib contrib-type="author" corresp="yes" id="author-47050">
+              <name>
+                <surname>Barnett</surname>
+                <given-names>Adrian</given-names>
+              </name>
+              <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0001-6339-0374</contrib-id>
+              <email>a.barnett@qut.edu.au</email>
+              <xref ref-type="aff" rid="aff1">1</xref>
+              <xref ref-type="other" rid="fund1"/>
+              <xref ref-type="fn" rid="con1"/>
+              <xref ref-type="fn" rid="conf1"/>
+              <bio>
+                <p>
+                  <bold>Adrian Barnett</bold> is in the School of Public Health and Social Work, Queensland University of Technology, Brisbane, Australia</p>
+              </bio>
+            </contrib>
+            <contrib contrib-type="author" id="author-195073">
+              <name>
+                <surname>Doubleday</surname>
+                <given-names>Zoe</given-names>
+              </name>
+              <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0003-0045-6377</contrib-id>
+              <xref ref-type="aff" rid="aff2">2</xref>
+              <xref ref-type="other" rid="fund2"/>
+              <xref ref-type="fn" rid="con2"/>
+              <xref ref-type="fn" rid="conf1"/>
+              <bio>
+                <p>
+                  <bold>Zoe Doubleday</bold> is in the Future Industries Institute, University of South Australia, Adelaide, Australia</p>
+              </bio>
+            </contrib>
+            <aff id="aff1">
+              <label>1</label>
+              <institution>School of Public Health and Social Work, Queensland University of Technology</institution>
+              <city>Brisbane</city>
+              <country>Australia</country>
+            </aff>
+            <aff id="aff2">
+              <label>2</label>
+              <institution>Future Industries Institute, University of South Australia</institution>
+              <city>Adelaide</city>
+              <country>Australia</country>
+            </aff>
+          </contrib-group>
+          <contrib-group content-type="peer-review">
+            <contrib contrib-type="editor">
+              <name>
+                <surname>Rodgers</surname>
+                <given-names>Peter</given-names>
+              </name>
+              <role>Reviewing Editor</role>
+              <aff>
+                <institution>eLife</institution>
+                <country>United Kingdom</country>
+              </aff>
+            </contrib>
+            <contrib contrib-type="senior_editor">
+              <name>
+                <surname>Rodgers</surname>
+                <given-names>Peter</given-names>
+              </name>
+              <role>Senior Editor</role>
+              <aff>
+                <institution>eLife</institution>
+                <country>United Kingdom</country>
+              </aff>
+            </contrib>
+          </contrib-group>
+          <pub-date date-type="publication" publication-format="electronic">
+            <year>2020</year>
+          </pub-date>
+          <pub-date pub-type="collection">
+            <year>2020</year>
+          </pub-date>
+          <volume>9</volume>
+          <elocation-id>e60080</elocation-id>
+          <history>
+            <date date-type="received" iso-8601-date="2020-06-16">
+              <day>16</day>
+              <month>06</month>
+              <year>2020</year>
+            </date>
+            <date date-type="accepted" iso-8601-date="2020-07-14">
+              <day>14</day>
+              <month>07</month>
+              <year>2020</year>
+            </date>
+          </history>
+          <permissions>
+            <copyright-statement>© 2020, Barnett and Doubleday</copyright-statement>
+            <copyright-year>2020</copyright-year>
+            <copyright-holder>Barnett and Doubleday</copyright-holder>
+            <ali:free_to_read/>
+            <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+              <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+              <license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p>
+            </license>
+          </permissions>
+          <self-uri content-type="pdf" xlink:href="elife-60080.pdf"/>
+          <abstract>
+            <p>Some acronyms are useful and are widely understood, but many of the acronyms used in scientific papers hinder understanding and contribute to the increasing fragmentation of science. Here we report the results of an analysis of more than 24 million article titles and 18 million article abstracts published between 1950 and 2019. There was at least one acronym in 19% of the titles and 73% of the abstracts. Acronym use has also increased over time, but the re-use of acronyms has declined. We found that from more than one million unique acronyms in our data, just over 2000 (0.2%) were used regularly, and most acronyms (79%) appeared fewer than 10 times. Acronyms are not the biggest current problem in science communication, but reducing their use is a simple change that would help readers and potentially increase the value of science.</p>
+          </abstract>
+          <kwd-group kwd-group-type="author-keywords">
+            <kwd>meta-research</kwd>
+            <kwd>scientific writing</kwd>
+            <kwd>acronyms</kwd>
+            <kwd>communication</kwd>
+            <kwd>knowledge</kwd>
+            <kwd>scientific publishing</kwd>
+          </kwd-group>
+          <kwd-group kwd-group-type="research-organism">
+            <title>Research organism</title>
+            <kwd>None</kwd>
+          </kwd-group>
+          <funding-group>
+            <award-group id="fund1">
+              <funding-source>
+                <institution-wrap>
+                  <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100000925</institution-id>
+                  <institution>National Health and Medical Research Council</institution>
+                </institution-wrap>
+              </funding-source>
+              <award-id>APP1117784</award-id>
+              <principal-award-recipient>
+                <name>
+                  <surname>Barnett</surname>
+                  <given-names>Adrian</given-names>
+                </name>
+              </principal-award-recipient>
+            </award-group>
+            <award-group id="fund2">
+              <funding-source>
+                <institution-wrap>
+                  <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100000923</institution-id>
+                  <institution>Australian Research Council</institution>
+                </institution-wrap>
+              </funding-source>
+              <award-id>FT190100244</award-id>
+              <principal-award-recipient>
+                <name>
+                  <surname>Doubleday</surname>
+                  <given-names>Zoe</given-names>
+                </name>
+              </principal-award-recipient>
+            </award-group>
+            <funding-statement>The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.</funding-statement>
+          </funding-group>
+          <custom-meta-group>
+            <custom-meta specific-use="meta-only">
+              <meta-name>Author impact statement</meta-name>
+              <meta-value>A study of 24 million articles has revealed that scientists have created more than 1 million acronyms since 1950, most of which have been used fewer than 10 times.</meta-value>
+            </custom-meta>
+            <custom-meta>
+              <meta-name>pdf-template</meta-name>
+              <meta-value>5</meta-value>
+            </custom-meta>
+          </custom-meta-group>
+        </article-meta>
+      </front>
     </article>
   </article>
 </root>

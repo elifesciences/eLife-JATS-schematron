@@ -1,15 +1,15 @@
 <?oxygen SCHSchema="gen-aff-test-4.sch"?>
 <!--Context: aff
-Test: report    count(addr-line) gt 1
-Message: Affiliations cannot have more than 1 addr-line elements.  has . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Test: report    count(city) gt 1
+Message: Affiliations cannot have more than 1 city elements.  has . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <aff>
       <label/>
       <institution content-type="dept"/>
       <institution/>
-      <addr-line/>
-      <addr-line/>
+      <city/>
+      <city/>
       <country/>
     </aff>
   </article>

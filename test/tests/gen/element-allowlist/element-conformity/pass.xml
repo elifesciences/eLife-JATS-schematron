@@ -6,7 +6,6 @@ Message:  element is not allowed. -->
   <article>
     <abstract/>
     <ack/>
-    <addr-line/>
     <aff/>
     <ali:free_to_read/>
     <ali:license_ref/>
@@ -92,7 +91,30 @@ Message:  element is not allowed. -->
     <media/>
     <meta-name/>
     <meta-value/>
-    <mml:math><mml:menclose/><mml:mfenced/><mml:mfrac/><mml:mi/><mml:mmultiscripts/><mml:mn/><mml:mo/><mml:mover/><mml:mpadded/><mml:mroot/><mml:mrow/><mml:mspace/><mml:msqrt/><mml:mstyle/><mml:msub/><mml:msubsup/><mml:msup/><mml:mtable/><mml:mtext/><mml:munder/><mml:munderover/><mml:semantics/></mml:math>
+    <mml:math>
+      <mml:menclose/>
+      <mml:mfenced/>
+      <mml:mfrac/>
+      <mml:mi/>
+      <mml:mmultiscripts/>
+      <mml:mn/>
+      <mml:mo/>
+      <mml:mover/>
+      <mml:mpadded/>
+      <mml:mroot/>
+      <mml:mrow/>
+      <mml:mspace/>
+      <mml:msqrt/>
+      <mml:mstyle/>
+      <mml:msub/>
+      <mml:msubsup/>
+      <mml:msup/>
+      <mml:mtable/>
+      <mml:mtext/>
+      <mml:munder/>
+      <mml:munderover/>
+      <mml:semantics/>
+    </mml:math>
     <monospace/>
     <month/>
     <name/>

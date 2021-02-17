@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="sub-article-role-test-2.sch"?>
+<!--Context: sub-article/front-stub/contrib-group/contrib/role
+Test: report    $sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')
+Message: The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="author">Author</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="final-feat-ok-test.sch"?>
-<!--Context: article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th
+<!--Context: article[descendant::article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]]//th
 Test: report    matches(.,'\[[Oo][Kk]\??\]')
 Message:  element contains [OK] or [OK?] which should be removed -  -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="discussion">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Feature Article</subject>
           </subj-group>
           <subj-group subj-group-type="sub-display-channel">

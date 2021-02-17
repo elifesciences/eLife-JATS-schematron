@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="continued-from-test-1.sch"?>
-<!--Context: list
-Test: report    @continued-from
-Message: The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted. -->
+<!--Context: list[@continued-from]
+Test: assert    preceding::list[(@id = $rid) and @list-type = $type]
+Message: List (with the type ) has the continued from attribute which references a list with the id '', but there is no list before it with that id and the same type. Either the continued-from value is incorrect, the types need to be made the same, or the lists need to be moved so that they reference each other correctly. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <list id="list1"/>
+    <list id="list1" list-type="ordered"/>
     <p/>
-    <list id="list2" continued-from="list1"/>
+    <list id="list2" list-type="ordered" continued-from="list3"/>
   </article>
 </root>

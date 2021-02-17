@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="type-subj-value-test-3.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='heading']/subject
+Test: report    ($article-type = 'article-commentary') and not(.='Insight')
+Message: Article is an @article-type="" but the article type subject is . It should be 'Insight' according to the article-type. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article article-type="article-commentary">
+    <article-categories>
+      <subj-group subj-group-type="heading">
+        <subject>Feature Article</subject>
+      </subj-group>
+    </article-categories>
+  </article>
+</root>

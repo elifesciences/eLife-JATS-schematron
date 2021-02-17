@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-software-16.sch"?>
 <!--Context: element-citation[@publication-type = 'software']
-Test: assert    count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)
-Message: The only tags that are allowed as children of <element-citation> with the publication-type="software" are: <person-group>, <year>, <data-title>, <source>, <version>, <publisher-name>, <publisher-loc>, and <ext-link> Reference '' has other elements. -->
+Test: assert    count(*) = count(person-group | year | article-title | source | version | publisher-name | publisher-loc | ext-link | pub-id)
+Message: The only tags that are allowed as children of <element-citation> with the publication-type="software" are: <person-group>, <year>, <article-title>, <source>, <version>, <publisher-name>, <publisher-loc>, and <ext-link> Reference '' has other elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
@@ -12,7 +12,7 @@ Message: The only tags that are allowed as children of <element-citation> with t
           </person-group>
           <year iso-8601-date="2002">2002</year>
           <source>PyMol</source>
-          <data-title>The PyMol Molecular Graphics System</data-title>
+          <article-title>The PyMol Molecular Graphics System</article-title>
           <version designator="1.7.4">Version 1.7.4</version>
           <publisher-name>Schrödinger LLC</publisher-name>
           <ext-link ext-link-type="uri" xlink:href="https://www.pymol.org/">https://www.pymol.org/</ext-link>  

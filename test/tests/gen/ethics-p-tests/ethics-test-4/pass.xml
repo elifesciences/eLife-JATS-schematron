@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ethics-test-4.sch"?>
+<!--Context: sec[@sec-type='ethics-statement']/p
+Test: assert    @content-type=('ethics-approval-human','ethics-approval-animal') or related-object[@document-id-type='clinical-trial-number']
+Message: p element in ethics statements must either have the attribute content-type with a value of 'ethics-approval-human', or 'ethics-approval-animal' (for human or animal ethics statements respectively), or it must have a clincal trial number tagged using a related-object element. This one does not meet this requirement. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec sec-type="ethics-statement">
+      <p content-type="ethics-approval-human"/>
+      <p content-type="ethics-approval-animal"/>
+      <p>Clinical trial <related-object document-id-type="clinical-trial-number"/> </p>
+    </sec>
+  </article>
+</root>

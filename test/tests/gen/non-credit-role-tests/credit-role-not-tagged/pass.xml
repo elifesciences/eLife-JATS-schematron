@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="credit-role-not-tagged.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]
+Test: report    matches(lower-case(.),$credit-regex)
+Message: Non-credit role for , '', contains a credit term. This should be captured as a proper credit role (role[@vocab="credit"]) instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author">
+        <role/>
+      </contrib>
+    </article-meta>
+  </article>
+</root>

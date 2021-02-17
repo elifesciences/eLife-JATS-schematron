@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-id-test-1.sch"?>
 <!--Context: article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]
-Test: assert    matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')
+Test: assert    matches(@id,'^fig[0-9]{1,3}$|^chem[0-9]{1,3}$|^scheme[0-9]{1,3}$')
 Message: fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes).  does not conform to this. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

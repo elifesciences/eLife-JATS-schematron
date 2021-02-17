@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="pre-auth-cont-test-1.sch"?>
+<!--Context: article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(ancestor::collab)]
+Test: assert    role
+Message:  has no contributions. Please ensure to query this with the authors. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib-group conte-type="authors">
+          <contrib contrib-type="author"/>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

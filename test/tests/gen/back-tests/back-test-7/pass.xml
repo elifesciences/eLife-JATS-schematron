@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="back-test-7.sch"?>
 <!--Context: back
-Test: report    ($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)
-Message: An fn-group[@content-type='competing-interest'] must be present as a child of back  content. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Test: report    fn-group
+Message: fn-group is not permitted as a child of back. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <front>
       <article-meta>
         <article-catergories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Communication</subject>
           </subj-group>
         </article-catergories>
@@ -15,9 +15,7 @@ Message: An fn-group[@content-type='competing-interest'] must be present as a ch
     </front>
     <back>
       <ack/>
-      <sec sec-type="additional-information">
-        <fn-group content-type="competing-interest"/>
-      </sec>
+      <sec sec-type="additional-information"/>
       <ref-list/>
       <app-group/>
     </back>

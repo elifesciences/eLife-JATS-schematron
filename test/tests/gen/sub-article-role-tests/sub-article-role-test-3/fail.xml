@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="sub-article-role-test-3.sch"?>
+<!--Context: sub-article/front-stub/contrib-group/contrib/role
+Test: report    $sub-article-type='author-comment' and not(@specific-use='author')
+Message: The role element for contributors in the author response must have the attribute specific-use='author'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="author-comment">
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="referee">Reviewer</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

@@ -7,13 +7,13 @@ Message: article-categories does not contain a subj-group[@subj-group-type='head
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Article</subject>
           </subj-group>
-          <subj-group subj-group-type="heading">
+          <subj-group subj-group-type="major-subject">
             <subject>Computational and Systems Biology</subject>
           </subj-group>
-          <subj-group subj-group-type="heading">
+          <subj-group subj-group-type="major-subject">
             <subject>Neuroscience</subject>
           </subj-group>
         </article-categories>

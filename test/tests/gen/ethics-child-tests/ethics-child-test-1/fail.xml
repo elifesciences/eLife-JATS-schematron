@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ethics-child-test-1.sch"?>
+<!--Context: sec[@sec-type='ethics-statement']/*
+Test: assert    name() = ('p','title')
+Message: Ethics statements can only contain p and title elements.  is not permitted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec sec-type="ethics-statement">
+      <title/>
+      <p/>
+      <fig/>
+    </sec>
+  </article>
+</root>

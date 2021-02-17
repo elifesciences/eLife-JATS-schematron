@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="def-item-id-test.sch"?>
+<!--Context: def-item
+Test: assert    matches(@id,'^def\d{1,4}$')
+Message: def-term must have an id in the format 'def0'. '' is not in this format. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <def-list>
+      <def-item id="def1">
+        <term>XML</term>
+        <def>
+          <p>eXtensible Markup Language</p>
+        </def>
+      </def-item>
+    </def-list>
+  </article>
+</root>

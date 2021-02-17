@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="contrib-contact-2.sch"?>
+<!--Context: article-meta//contrib
+Test: report    not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (email or contrib-id[@contrib-id-type='twitter'])
+Message: Non-corresponding authors must not have contact information (an email or twitter handle). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group content-type="authors">
+          <contrib contrib-type="author" corresp="yes">
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
+            <email/>
+          </contrib>
+          <contrib contrib-type="author" corresp="yes">
+            <name>
+              <surname>Hansel</surname>
+            </name>
+            <contrib-id contrib-id-type="twitter">@...</contrib-id>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

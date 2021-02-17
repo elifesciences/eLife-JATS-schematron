@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="err-elem-cit-software-pub-id.sch"?>
+<!--Context: element-citation[@publication-type='software']/pub-id
+Test: assert    @pub-id-type='doi'
+Message: If present, the <pub-id> element must contain @pub-id-type='doi'. The <pub-id> element in Reference '' contains @pub-id-type=''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="software">
+      <pub-id pub-id-type="doi"/>
+    </element-citation>
+  </article>
+</root>

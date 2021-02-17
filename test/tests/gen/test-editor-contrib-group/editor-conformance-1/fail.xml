@@ -1,12 +1,13 @@
 <?oxygen SCHSchema="editor-conformance-1.sch"?>
-<!--Context: article/front/article-meta/contrib-group[@content-type='section']
+<!--Context: article/front/article-meta/contrib-group[2]
 Test: assert    count(contrib[@contrib-type='senior_editor']) = 1
-Message: contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']). -->
+Message: contrib-group[@content-type='peer-review'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <article-meta>
-        <contrib-group content-type="section">
+        <contrib-group content-type="authors"/>
+        <contrib-group content-type="peer-review">
           <contrib contrib-type="editor">
             <name>
               <surname>Harrison</surname>
@@ -32,7 +33,7 @@ Message: contrib-group[@content-type='section'] must contain one (and only 1) Se
         </contrib-group>
       </article-meta>
     </front>
-    <sub-article article-type="decision-letter" id="SA1">
+    <sub-article article-type="referee-report" id="SA1">
       <front-stub>
         <contrib-group>
           <contrib contrib-type="editor">

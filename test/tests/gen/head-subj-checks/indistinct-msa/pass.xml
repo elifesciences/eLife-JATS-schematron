@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="indistinct-msa.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='major-subject']
+Test: assert    empty($indistinct-subjects)
+Message: The subjects in subj-group[@subj-group-type='major-subject'] must be distinct. The following are duplicated - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="major-subject">
+        <subject>Medicine</subject>
+        <subject>Neuroscience</subject>
+      </subj-group>
+    </article-categories>
+  </article>
+</root>

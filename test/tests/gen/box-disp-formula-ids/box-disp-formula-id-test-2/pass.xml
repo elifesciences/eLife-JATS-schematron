@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="box-disp-formula-id-test-2.sch"?>
+<!--Context: boxed-text//disp-formula
+Test: report    ancestor::app and not(matches(@id,'^app[0-9]{1,9}box[0-9]{1,9}equ[0-9]{1,9}$'))
+Message: disp-formula @id in boxed-text which is also in an appendix must be in the format 'app0box0equ0'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <boxed-text id="box1">
+        <disp-formula id="box1equ1"/>
+      </boxed-text>
+    </body>
+  </article>
+</root>

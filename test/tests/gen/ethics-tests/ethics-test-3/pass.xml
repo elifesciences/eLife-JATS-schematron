@@ -1,15 +1,13 @@
 <?oxygen SCHSchema="ethics-test-3.sch"?>
-<!--Context: fn-group[@content-type='ethics-information']
-Test: report    count(fn) = 0
-Message: Ethics fn-group must have at least one fn element. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<!--Context: sec[@sec-type='ethics-statement']
+Test: report    count(p) = 0
+Message: Ethics statements must have at least one fn element. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <sec sec-type="additional-information">
-      <fn-group content-type="ethics-information">
-        <fn fn-type="other">Supplementary figure</fn>
-        <fn fn-type="other">Supplementary figure</fn>
-        <fn fn-type="other">Supplementary figure</fn>
-      </fn-group>
+    <sec sec-type="ethics-statement">
+      <p content-type="ethics-approval-human"/>
+      <p content-type="ethics-approval-animal"/>
+      <p>Clinical trial <related-object document-id-type="clinical-trial-number"/> </p>
     </sec>
   </article>
 </root>

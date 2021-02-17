@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="ref-presence.sch"?>
-<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|styled-content|monospace|code|underline|fn|institution|ext-link
 Test: report    not(local-name()='code') and not(ancestor::sub-article) and matches(.,' [Rr]ef\. ')
 Message:  element contains 'Ref.' which is either incorrect or unnecessary. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

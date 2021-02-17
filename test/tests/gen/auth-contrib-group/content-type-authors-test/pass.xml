@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="content-type-authors-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: assert    @content-type='authors'
+Message: The first contrib-group in article-meta must have the attribute content-type="authors", as it is the container for authors. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group content-type="authors"/>
+      </article-meta>
+    </front>
+  </article>
+</root>

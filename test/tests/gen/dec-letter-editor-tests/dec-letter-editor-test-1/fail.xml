@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="dec-letter-editor-test-1.sch"?>
-<!--Context: sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]
-Test: assert    count(contrib[@contrib-type='editor']) = 1
-Message: First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']). -->
+<!--Context: sub-article[@article-type='referee-report']/front-stub/contrib-group[1]
+Test: assert    count(contrib[role[@specific-use='editor']]) = 1
+Message: First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <article-meta>
-        <contrib-group content-type="section">
+        <contrib-group content-type="peer-review">
           <contrib contrib-type="senior_editor">
             <name>
               <surname>Harrison</surname>
@@ -32,7 +32,7 @@ Message: First contrib-group in decision letter must contain 1 and only 1 editor
         </contrib-group>
       </article-meta>
     </front>
-    <sub-article article-type="decision-letter" id="SA1">
+    <sub-article article-type="referee-report" id="SA1">
       <front-stub>
         <contrib-group>
           

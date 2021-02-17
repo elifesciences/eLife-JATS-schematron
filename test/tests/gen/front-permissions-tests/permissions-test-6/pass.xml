@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="permissions-test-6.sch"?>
 <!--Context: front//permissions
-Test: report    if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)
-Message: copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year= and pub-date=. -->
+Test: report    if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='pub']/year)
+Message: copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='pub']. Currently, copyright-year= and pub-date=. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <article-meta>
-        <pub-date date-type="publication" publication-format="electronic">
+        <pub-date date-type="pub" publication-format="electronic">
           <year>2019</year>
           <month>09</month>
           <day>01</day>

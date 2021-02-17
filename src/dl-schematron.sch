@@ -16,15 +16,34 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
   <!--=== Global Variables ===-->
-  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/> 
+  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article','expression-of-concern')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article', 'Expression of Concern')"/> 
 
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
   
+  <!-- Notice article types -->
+  <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
+  <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
+  
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
+  
+  <!-- colour constants - table backgrounds -->
+  <let name="table-blue" value="'background-color: #90caf9'"/>
+  <let name="table-green" value="'background-color: #C5E1A5'"/>
+  <let name="table-orange" value="'background-color: #FFB74D'"/>
+  <let name="table-yellow" value="'background-color: #FFF176'"/>
+  <let name="table-purple" value="'background-color: #9E86C9'"/>
+  <let name="table-red" value="'background-color: #E57373'"/>
+  <let name="table-pink" value="'background-color: #F48FB1'"/>
+  <let name="table-grey" value="'background-color: #E6E6E6'"/>
+  
+  <!-- text colours -->
+  <let name="text-blue" value="'color: #366BFB'"/>
+  <let name="text-purple" value="'color: #9C27B0'"/>
+  <let name="text-red" value="'color: #D50000'"/>
   
   <!--=== Custom functions ===-->
   
@@ -99,6 +118,9 @@
       </xsl:when>
       <xsl:when test="$s = 'Retraction'">
         <xsl:value-of select="'Retraction:'"/>
+      </xsl:when>
+      <xsl:when test="$s = 'Expression of Concern'">
+        <xsl:value-of select="'Expression of Concern:'"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
@@ -175,7 +197,7 @@
   
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
 
   <xsl:function name="e:cite-name-text" as="xs:string">
@@ -401,6 +423,13 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
+  </xsl:function>
+  
+  <xsl:function name="e:indistinct-values" as="xs:anyAtomicType*">
+    <xsl:param name="seq" as="xs:anyAtomicType*"/>
+    
+    <xsl:sequence select="for $val in distinct-values($seq)       return $val[count($seq[. = $val]) &gt; 1]"/>
+    
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
@@ -818,13 +847,66 @@
   </xsl:function>
   
   <xsl:function name="e:get-iso-pub-date">
-    <xsl:param name="element"/>
+    <xsl:param name="pub-date"/>
     <xsl:choose>
-      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
-        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
-        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      <xsl:when test="$pub-date/year and $pub-date/month and $pub-date/day">
+        <xsl:value-of select="concat($pub-date/year[1],'-',$pub-date/month[1],'-',$pub-date/day[1])"/>
       </xsl:when>
-      <xsl:otherwise/>
+      <xsl:when test="$pub-date/year and $pub-date/month">
+        <xsl:value-of select="concat($pub-date/year[1],'-',$pub-date/month[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$pub-date/year[1]"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:get-copyright-holder">
+    <xsl:param name="contrib-group"/>
+    <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type='author'])"/>
+    <xsl:choose>
+      <xsl:when test="$author-count lt 1"/>
+      <xsl:when test="$author-count = 1">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$author-count = 2">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:choose>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
+              </xsl:when>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <!-- author count is 3+ -->
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' et al')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
   
@@ -859,6 +941,32 @@
     </xsl:element>
   </xsl:function>
   
+  <xsl:function name="e:fig-group-contents">
+    <xsl:param name="fig-group" as="element()"/>
+    <list>
+      <xsl:if test="$fig-group/media[@mimetype='video']">
+        <item>video(s)</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[not(@specific-use)]/caption[1]//supplementary-material[contains(label[1],'data')]">
+        <item>source data</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[not(@specific-use)]/caption[1]//supplementary-material[contains(label[1],'code')]">
+        <item>source code</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[@specific-use='child-fig']">
+        <item>figure supplement(s)</item>
+      </xsl:if>
+    </list>
+  </xsl:function>
+  
+  <xsl:function name="e:get-fig-group-template-text">
+    <xsl:param name="fig-group" as="element()"/>
+    <xsl:variable name="fig-label" select="replace($fig-group/fig[not(@specific-use)]/label[1],'\.$','')"/>
+    <xsl:variable name="list" select="e:fig-group-contents($fig-group)"/>
+    <xsl:variable name="list-count" select="count($list//*:item)"/>
+    <xsl:value-of select="       if ($list-count lt 1) then ()       else if ($list-count = 1) then concat('The online version of this article includes the following ',$list//*:item/text(),' for ',$fig-label,':')       else if ($list-count = 2) then concat('The online version of this article includes the following ',string-join(for $x in $list//*:item return $x/text(),' and '),' for ',$fig-label,':')       else concat('The online version of this article includes the following ',string-join((string-join(for $x in $list//*:item[position() lt $list-count] return $x/text(),', '),$list//*:item[position() = $list-count]/text()),', and '),' for ',$fig-label,':')       "/>
+  </xsl:function>
+  
   <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
   
   
@@ -880,15 +988,15 @@
   
  <pattern id="research-article-pattern">
     <rule context="article[@article-type='research-article']" id="research-article">
-	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
+	  <let name="type-display" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[1]"/> 
 	
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
+	  <report test="($type-display != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
 	  
-	  <report test="not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])" role="error" flag="dl-ar" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
+	  <report test="not($type-display = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])" role="error" flag="dl-ar" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
 	  
-	  <report test="($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
+	  <report test="($type-display = 'Feature Article') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
-	  <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])" role="warning" flag="dl-ar" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
+	  <report test="($type-display != 'Scientific Correspondence') and not(sub-article[@article-type='author-comment'])" role="warning" flag="dl-ar" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
 	
 	</rule>
   </pattern>
@@ -900,17 +1008,19 @@
   
   
   
+  
+  
 
    	
   
   <pattern id="ar-fig-tests-pattern">
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+    <rule context="fig[ancestor::sub-article[@article-type='author-comment']]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-test-2" test="if ($article-type = ($features-article-types,'correction','retraction')) then ()         else not(label)" role="error" flag="dl-ar" id="ar-fig-test-2">Author Response fig must have a label.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-test-2" test="if ($article-type = ($features-article-types, $notice-article-types)) then ()         else not(label)" role="error" flag="dl-ar" id="ar-fig-test-2">Author Response fig must have a label.</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-test-3" test="graphic" role="warning" flag="dl-ar" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Ensure author query is added asking for file.</assert>
       
@@ -924,17 +1034,29 @@
   </pattern>
   <pattern id="disp-quote-tests-pattern">
     <rule context="disp-quote" id="disp-quote-tests">
-      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="subj" value="ancestor::article//subj-group[@subj-group-type='heading']/subject[1]"/>
       
-      <report test="ancestor::sub-article[@article-type='decision-letter']" role="warning" flag="dl-ar" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
+      <report test="ancestor::sub-article[@article-type='referee-report']" role="warning" flag="dl-ar" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/>
       </report>
       
       
     </rule>
   </pattern>
   
+  <pattern id="dl-video-specific-pattern">
+    <rule context="sub-article[@article-type='referee-report']/body//media[@mimetype='video']" id="dl-video-specific">
+      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article[@article-type='referee-report']])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-dl-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
+      
+      
+    </rule>
+  </pattern>
   <pattern id="ar-video-specific-pattern">
-    <rule context="sub-article/body//media[@mimetype='video']" id="ar-video-specific">
+    <rule context="sub-article[@article-type='author-comment']/body//media[@mimetype='video']" id="ar-video-specific">
       <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -949,7 +1071,7 @@
   
   
   <pattern id="rep-fig-tests-pattern">
-    <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
+    <rule context="sub-article[@article-type='author-comment']//fig" id="rep-fig-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
       
@@ -958,7 +1080,7 @@
     </rule>
   </pattern>
   <pattern id="dec-fig-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
+    <rule context="sub-article[@article-type='referee-report']//fig" id="dec-fig-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-1" test="label" role="error" flag="dl-ar" id="dec-fig-test-1">fig must have a label.</assert>
       
@@ -970,13 +1092,13 @@
   
   
   <pattern id="dec-letter-title-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-title-test" test="article-title = 'Decision letter'" role="error" flag="dl-ar" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
   <pattern id="reply-title-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
+    <rule context="sub-article[@article-type='author-comment']/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-title-test" test="article-title = 'Author response'" role="error" flag="dl-ar" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
     </rule>
@@ -995,18 +1117,12 @@
       
     </rule>
   </pattern>
-  <pattern id="disp-formula-ids-pattern">
-    <rule context="disp-formula" id="disp-formula-ids">
-      
-      
-      
-      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-disp-formula-id-test">disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
-    </rule>
-  </pattern>
   <pattern id="mml-math-ids-pattern">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
       
+      
+      <report test="(ancestor::app) and not(matches(@id,'^app\d+m[0-9]{1,9}$'))" role="error" flag="dl-ar" id="app-mml-math-id-test">mml:math @id in disp-formula must be in the format 'app0m0'.  <value-of select="@id"/> does not conform to this.</report>
       
       <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-mml-math-id-test">mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
@@ -1028,7 +1144,7 @@
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" test="if ($pos = 1) then @article-type='decision-letter'         else @article-type='reply'" role="error" flag="dl-ar" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" test="if ($pos = 1) then @article-type='referee-report'         else @article-type='author-comment'" role="error" flag="dl-ar" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2" test="@id = concat('sa',$pos)" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2).</assert>
       
@@ -1049,84 +1165,86 @@
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2" test="$count gt 0" role="error" flag="dl-ar" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2" test="$count = 2" role="error" flag="dl-ar" id="dec-letter-front-test-2">decision letter front-stub must contain 2 contrib-group elements.</assert>
+    </rule>
+  </pattern>
+  <pattern id="sub-article-contrib-tests-pattern">
+    <rule context="sub-article/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3" test="$count gt 2" role="error" flag="dl-ar" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
+      <assert test="@contrib-type='author'" role="error" flag="dl-ar" id="sub-article-contrib-test-1">sub-article contrib must have the attribute contrib-type='author'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-4" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'The reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" role="warning" flag="dl-ar" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons or a Peer Community in Evolutionary Biology doi in the decision letter.</report>
+      <assert test="name or anonymous or collab" role="error" flag="dl-ar" id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
+      
+      <report test="(name and anonymous) or (collab and anonymous) or (name and collab)" role="error" flag="dl-ar" id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab')] return concat('a ',$x/name()),' and ')"/>.</report>
+      
+      <assert test="role" role="error" flag="dl-ar" id="sub-article-contrib-test-4">sub-article contrib must have a child role element.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="sub-article-role-tests-pattern">
+    <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
+      <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
+      
+      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@specific-use='editor')" role="error" flag="dl-ar" id="sub-article-role-test-1">The role element for contributors in the first contrib-group in the decision letter must have the attribute specific-use='editor'.</report>
+      
+      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')" role="error" flag="dl-ar" id="sub-article-role-test-2">The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'.</report>
+      
+      <report test="$sub-article-type='author-comment' and not(@specific-use='author')" role="error" flag="dl-ar" id="sub-article-role-test-3">The role element for contributors in the author response must have the attribute specific-use='author'.</report>
+      
+      <report test="@specific-use='author' and .!='Author'" role="error" flag="dl-ar" id="sub-article-role-test-4">A role element with the attribute specific-use='author' must contain the text 'Author'. This one has '<value-of select="."/>'.</report>
+      
+      <report test="@specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))" role="error" flag="dl-ar" id="sub-article-role-test-5">A role element with the attribute specific-use='editor' must contain the text 'Senior and Reviewing Editor' or 'Reviewing Editor'. This one has '<value-of select="."/>'.</report>
+      
+      <report test="@specific-use='referee' and .!='Reviewer'" role="error" flag="dl-ar" id="sub-article-role-test-6">A role element with the attribute specific-use='referee' must contain the text 'Reviewer'. This one has '<value-of select="."/>'.</report>
+      
     </rule>
   </pattern>
   <pattern id="dec-letter-editor-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1" test="count(contrib[@contrib-type='editor']) = 1" role="warning" flag="dl-ar" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-2" test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" flag="dl-ar" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
-    </rule>
-  </pattern>
-  <pattern id="dec-letter-editor-tests-2-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
-      <let name="name" value="e:get-name(name[1])"/>
-      <let name="role" value="role[1]"/>
-      <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
-      <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-3" test="$role=('Reviewing Editor','Senior and Reviewing Editor')" role="error" flag="dl-ar" id="dec-letter-editor-test-3">Editor in decision letter front-stub must have the role 'Reviewing Editor' or 'Senior and Reviewing Editor'. <value-of select="$name"/> has '<value-of select="$role"/>'.</assert>
-      
-      <!--<report test="($top-name!='') and ($top-name!=$name)"
-        role="error"
-        id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1" test="count(contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-reviewer-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1" test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" flag="dl-ar" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1" test="count(contrib[role[@specific-use='referee']]) gt 0" role="error" flag="dl-ar" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-2" test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" flag="dl-ar" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-6" test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" flag="dl-ar" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
-    </rule>
-  </pattern>
-  <pattern id="dec-letter-reviewer-tests-2-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
-      <let name="name" value="e:get-name(name[1])"/>
-      
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-3" test="role='Reviewer'" role="error" flag="dl-ar" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-6" test="count(contrib[role[@specific-use='referee']]) gt 5" role="warning" flag="dl-ar" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-body-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
+    <rule context="sub-article[@article-type='referee-report']/body" id="dec-letter-body-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-body-p-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">  
+    <rule context="sub-article[@article-type='referee-report']/body//p" id="dec-letter-body-p-tests">  
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" flag="dl-ar" id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" role="error" flag="dl-ar" id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="decision-missing-table-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
+    <rule context="sub-article[@article-type='referee-report']" id="decision-missing-table-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
     </rule>
   </pattern>
   <pattern id="reply-front-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
+    <rule context="sub-article[@article-type='author-comment']/front-stub" id="reply-front-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
   <pattern id="reply-body-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
+    <rule context="sub-article[@article-type='author-comment']/body" id="reply-body-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="warning" flag="dl-ar" id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
@@ -1134,26 +1252,26 @@
     </rule>
   </pattern>
   <pattern id="reply-disp-quote-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
+    <rule context="sub-article[@article-type='author-comment']/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" flag="dl-ar" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+    <rule context="sub-article[@article-type='author-comment']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-2-pattern">
-    <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    <rule context="sub-article[@article-type='author-comment']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
   <pattern id="reply-missing-table-tests-pattern">
-    <rule context="sub-article[@article-type='reply']" id="reply-missing-table-tests">
+    <rule context="sub-article[@article-type='author-comment']" id="reply-missing-table-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule>
@@ -1161,11 +1279,15 @@
   <pattern id="sub-article-ext-link-tests-pattern">
     <rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='author-comment']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
   </pattern>
-  
-  
+  <pattern id="anonymous-tests-pattern">
+    <rule context="anonymous" id="anonymous-tests">
+      
+      <assert test="parent::contrib[role[@specific-use='referee']]" role="error" flag="dl-ar" id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
+    </rule>
+  </pattern>
   
   
   
@@ -1200,9 +1322,9 @@
   
   
  <pattern id="feature-template-tests-pattern">
-    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
-     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
-     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = $features-subj]" id="feature-template-tests">
+     <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='pdf-template']/meta-value[1]"/>
+     <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[1]"/>
      
      <report test="($template = ('1','2','3')) and child::sub-article" role="error" flag="dl-ar" id="feature-template-test-1">
         <value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>

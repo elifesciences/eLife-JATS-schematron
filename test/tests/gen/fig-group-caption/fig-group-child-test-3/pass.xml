@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fig-group-child-test-3.sch"?>
+<!--Context: fig-group/caption
+Test: assert    @specific-use='print'
+Message:  which is a child of fig-group, must have an specific-use='print' attribute so that it does not display on the eLife website. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig-group>
+      <caption specific-use="print"/>
+    </fig-group>
+  </article>
+</root>

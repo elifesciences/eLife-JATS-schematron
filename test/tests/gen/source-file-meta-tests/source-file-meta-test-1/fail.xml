@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="source-file-meta-test-1.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='source-file-type']/meta-value
+Test: assert    . = ('latex','word')
+Message: The meta-value for the source-file-type must be either 'latex', or 'word'.  is not allowed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta specific-use="meta-only">
+          <meta-name>source-file-type</meta-name>
+          <meta-value>google Docs</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

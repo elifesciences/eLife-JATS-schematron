@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="sub-article-role-test-5.sch"?>
+<!--Context: sub-article/front-stub/contrib-group/contrib/role
+Test: report    @specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))
+Message: A role element with the attribute specific-use='editor' must contain the text 'Senior and Reviewing Editor' or 'Reviewing Editor'. This one has ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article>
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="editor">Reviewer</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

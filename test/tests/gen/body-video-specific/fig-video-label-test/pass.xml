@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="fig-video-label-test.sch"?>
-<!--Context: article[(@article-type!='correction') and (@article-type!='retraction')]/body//media[@mimetype='video']
+<!--Context: article[not(@article-type=$notice-article-types)]/body//media[@mimetype='video']
 Test: assert    starts-with(label[1],$fig-label)
 Message:  does not begin with its parent figure label -  - which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

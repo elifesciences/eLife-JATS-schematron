@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="glossary-title-test.sch"?>
+<!--Context: glossary/*
+Test: report    name()='title' and .!= 'Abbreviations'
+Message: The title for a glossary must be 'Abbreviations'. This one is . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <glossary>
+      <title>Glossary</title>
+      <def-list/>
+    </glossary>
+  </article>
+</root>

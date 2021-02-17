@@ -2,10 +2,10 @@
 <!--Context: article-categories/subj-group[@subj-group-type='heading']
 Test: assert    count(subject) = 1
 Message: Each subj-group[@subj-group-type='heading'] must contain one and only one subject. This one contains . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-categories>
-      <subj-group subj-group-type="heading">
+      <subj-group subj-group-type="major-subject">
         <subject/>
       </subj-group>
     </article-categories>

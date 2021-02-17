@@ -6,7 +6,7 @@ Message: The  doesn't have an affiliation -  - is this correct? -->
   <article>
     <front>
       <article-meta>
-        <contrib-group content-type="section">
+        <contrib-group content-type="peer-review">
           <contrib contrib-type="senior_editor">
             <name>
               <surname>Zoolander</surname>
@@ -16,9 +16,7 @@ Message: The  doesn't have an affiliation -  - is this correct? -->
           </contrib>
           <aff id="aff1">
             <institution>University of Cambridge</institution>
-            <addr-line>
-              <named-content content-type="city">Cambdrige</named-content>
-            </addr-line>
+            <city>Cambdrige</city>
             <country>United Kingdom</country>
           </aff>
         </contrib-group>

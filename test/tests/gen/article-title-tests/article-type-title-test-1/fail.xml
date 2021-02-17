@@ -2,10 +2,10 @@
 <!--Context: article-meta//article-title
 Test: report    if ($type = $specifics) then not(starts-with(.,e:article-type2title($type))) else ()
 Message: title of a '' must start with ''. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="correction">
     <article-meta>
-      <subj-group subj-group-type="display-channel">
+      <subj-group subj-group-type="heading">
         <subject>Correction</subject>
       </subj-group>
       <title-group>

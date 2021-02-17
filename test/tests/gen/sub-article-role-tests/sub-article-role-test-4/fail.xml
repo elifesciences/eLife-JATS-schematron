@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="sub-article-role-test-4.sch"?>
+<!--Context: sub-article/front-stub/contrib-group/contrib/role
+Test: report    @specific-use='author' and .!='Author'
+Message: A role element with the attribute specific-use='author' must contain the text 'Author'. This one has ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article>
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="author">Reviewer</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

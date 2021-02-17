@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="term-child.sch"?>
+<!--Context: term/*
+Test: assert    name()=$allowed-list
+Message:  is not permitted in term. The only allowed elements are italic, monospace, sup, and sub. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <def-list>
+      <term><bold/></term>
+      <def><p/></def>
+    </def-list>
+  </article>
+</root>

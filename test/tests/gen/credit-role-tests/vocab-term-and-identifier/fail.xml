@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="vocab-term-and-identifier.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/role[@vocab='credit']
+Test: report    count($credit-role) gt 1
+Message: 
+        A CRediT taxonomy role must have a @vocab-term, whose value is a specific CRediT taxonomy term, and a @vocab-term-identifier, whose value is the URL for that corresponding CRediT term. .
+       -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author">
+        <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Formal Analysis" vocab-term-identifier="http://credit.niso.org/contributor-roles/visualization/">Formal Analysis</role>
+        <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Visualization" vocab-term-identifier="http://credit.niso.org/contributor-roles/visualization/">Visualization</role>
+      </contrib>
+    </article-meta>
+  </article>
+</root>

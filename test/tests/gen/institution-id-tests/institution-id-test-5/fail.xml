@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="institution-id-test-5.sch"?>
 <!--Context: institution-wrap/institution-id
-Test: report    (normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))
+Test: report    (normalize-space(.) != '') and not(matches(.,'^10.13039/\d*$'))
 Message:  element in funding entry for  contains the following text -  - which is not a fundref doi. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="pdf-template-meta-test-3.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='pdf-template']/meta-value
+Test: report    ($type='Editorial') and (. != '2')
+Message:  must be a template 2. Currently it is a template . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="article-commentary">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="heading">
+            <subject>Editorial</subject>
+          </subj-group>
+        </article-categories>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>...</meta-value>
+          </custom-meta>
+          <custom-meta>
+            <meta-name>pdf-template</meta-name>
+            <meta-value>2</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

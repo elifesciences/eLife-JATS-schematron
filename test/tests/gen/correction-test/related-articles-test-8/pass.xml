@@ -2,14 +2,18 @@
 <!--Context: article[@article-type='correction']//article-meta
 Test: assert    count(related-article[@related-article-type='corrected-article']) gt 0
 Message: Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="correction">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel"><subject>Retraction</subject></subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Retraction</subject>
+          </subj-group>
         </article-categories>
-        <title-group><article-title>Retraction: The structure of SV40 large T hexameric helicase in complex with AT-rich origin DNA</article-title></title-group>
+        <title-group>
+          <article-title>Retraction: The structure of SV40 large T hexameric helicase in complex with AT-rich origin DNA</article-title>
+        </title-group>
         <related-article ext-link-type="doi" id="ra1" related-article-type="corrected-article" xlink:href="10.7554/eLife.00000"/>
       </article-meta>
     </front>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="content-type-editors-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[2]
+Test: assert    @content-type='peer-review'
+Message: The second contrib-group in article-meta must have the attribute content-type="peer-revew", as it is the container for Editors. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group content-type="authors"/>
+        <contrib-group/>
+      </article-meta>
+    </front>
+  </article>
+</root>

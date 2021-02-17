@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="pre-styled-content-type-check.sch"?>
+<!--Context: styled-content
+Test: assert    @style = $allowed-values
+Message:  - text in  element is captured in <styled-content>. The only allowed values for the @content-type are , which are for blue, purple and red text respectively. If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.' -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>test <styled-content style="blue">test</styled-content> test</p>
+    </body>
+  </article>
+</root>

@@ -1,14 +1,18 @@
 <?oxygen SCHSchema="final-das-dryad-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
-Test: report    matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])
-Message: Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority. -->
+Test: report    matches(.,'[Dd]ryad') and not(xref[@rid = ancestor::back/ref-list/ref[element-citation[@publication-type='data' and contains(source[1],'Dryad')]]/@id])
+Message: Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a database name containing 'Dryad'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec sec-type="data-availability">
-      <p>Dryad</p>
-      <element-citation>
-        <pub-id assigning-authority="Dryad">000001</pub-id>
-      </element-citation>
+      <p><xref ref-type="bibr" rid="bib1"/> </p>
     </sec>
+      <ref-list>
+        <ref id="bib1">
+          <element-citation>
+            <pub-id assigning-authority="Dryad">000001</pub-id>
+          </element-citation>
+        </ref>
+      </ref-list>
   </article>
 </root>

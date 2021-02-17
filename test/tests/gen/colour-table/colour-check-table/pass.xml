@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="colour-check-table.sch"?>
-<!--Context: th|td
-Test: report    starts-with(@style,'author-callout')
+<!--Context: th[@style]|td[@style]
+Test: report    @style=$allowed-values
 Message:  element has colour background. Is this correct? It contains . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <td>test</td>
+    <td style="author-callout-red">test-red</td>
   </article>
 </root>

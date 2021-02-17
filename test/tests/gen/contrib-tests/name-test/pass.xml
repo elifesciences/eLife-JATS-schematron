@@ -6,7 +6,7 @@ Message: Contrib contains no collab but has  name(s). This is not correct. -->
   <article>
     <front>
       <article-meta>
-        <contrib-group content-type="section">
+        <contrib-group content-type="peer-review">
           <contrib>
             <name>
               <surname>Zoolander</surname>
@@ -16,9 +16,7 @@ Message: Contrib contains no collab but has  name(s). This is not correct. -->
           </contrib>
           <aff id="aff1">
             <institution>University of Cambridge</institution>
-            <addr-line>
-              <named-content content-type="city">Cambdrige</named-content>
-            </addr-line>
+            <city>Cambdrige</city>
             <country>United Kingdom</country>
           </aff>
         </contrib-group>

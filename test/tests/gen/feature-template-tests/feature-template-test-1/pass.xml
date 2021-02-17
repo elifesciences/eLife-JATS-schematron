@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="feature-template-test-1.sch"?>
-<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
+<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = $features-subj]
 Test: report    ($template = ('1','2','3')) and child::sub-article
 Message:  is a template  but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
@@ -7,22 +7,18 @@ Message:  is a template  but it has a decision letter or author response, which 
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Feature Article</subject>
           </subj-group>
         </article-categories>
         <custom-meta-group>
           <custom-meta>
-            <meta-name>Author impact statement</meta-name>
-            <meta-value>...</meta-value>
-          </custom-meta>
-          <custom-meta>
-            <meta-name>Template</meta-name>
+            <meta-name>pdf-template</meta-name>
             <meta-value>5</meta-value>
           </custom-meta>
         </custom-meta-group>
       </article-meta>
     </front>
-    <sub-article article-type="reply"/>
+    <sub-article article-type="author-comment"/>
   </article>
 </root>

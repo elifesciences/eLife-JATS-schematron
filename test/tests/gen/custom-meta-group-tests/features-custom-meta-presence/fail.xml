@@ -2,12 +2,12 @@
 <!--Context: article-meta/custom-meta-group
 Test: report    ($type = $features-subj) and count(custom-meta[@specific-use='meta-only']) != 2
 Message: 2 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="article-commentary">
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Insight</subject>
           </subj-group>
         </article-categories>

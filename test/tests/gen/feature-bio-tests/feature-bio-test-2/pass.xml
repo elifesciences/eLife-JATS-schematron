@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="feature-bio-test-2.sch"?>
-<!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio
+<!--Context: article//article-meta[article-categories//subj-group[@subj-group-type='heading']/subject=$features-subj]//contrib[@contrib-type='author']/bio
 Test: report    if (count($aff) > 1) then () else not(contains(.,$aff))
 Message: bio does not contain the institution text as it appears in their affiliation (''). Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="discussion">
     <article-meta>
       <article-categories>
-        <subj-group subj-group-type="display-channel">
+        <subj-group subj-group-type="heading">
           <subject>Feature Article</subject>
         </subj-group>
         <subj-group subj-group-type="sub-display-channel">
@@ -50,9 +50,7 @@ Message: bio does not contain the institution text as it appears in their affili
           <label>1</label>
           <institution content-type="dept">Department of Biology</institution>
           <institution>The Derek Zoolander School for Kids Who Can't Read Good and Want to Do Other Stuff Good Too</institution>
-          <addr-line>
-            <named-content content-type="city">Port Orchard</named-content>
-          </addr-line>
+          <city>Port Orchard</city>
           <country>United States</country>
         </aff>
       </contrib-group>

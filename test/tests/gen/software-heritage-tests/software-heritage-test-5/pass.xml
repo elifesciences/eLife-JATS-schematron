@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="software-heritage-test-5.sch"?>
+<!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
+Test: report    contains(@xlink:href,'[…]')
+Message: A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:89513b41bd021137c72fa7cf3e57bcef4bf6c933;origin=https://github.com/lifan36/Zhan-Fan-et-al-2019-scRNAseq;visit=swh:1:snp:7166156ca6702a41990236e9da386c44440b6609;anchor=swh:1:rev:c008b3ff49d567a1abe9d9eed42afed4e9a27b42/">swh:1:rev:c008b3ff49d567a1abe9d9eed42afed4e9a27b42</ext-link>
+  </article>
+</root>

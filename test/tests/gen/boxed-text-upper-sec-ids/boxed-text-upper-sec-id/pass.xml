@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="boxed-text-upper-sec-id.sch"?>
+<!--Context: article/body//boxed-text/sec
+Test: assert    @id = concat($box-id,'s',$pos)
+Message: The id for a sec which is a child of boxed-text must be a concatenation of the box id, 's', and this element's position relative to its sibling secs. It must be . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <boxed-text id="box1">
+        <sec id="box1s1"/>
+        <sec id="box1s2"/>  
+        <sec id="box1s3"/>
+      </boxed-text>
+    </body>
+  </article>
+</root>

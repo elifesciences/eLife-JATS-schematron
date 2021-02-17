@@ -1,0 +1,86 @@
+<?oxygen SCHSchema="fig-group-caption-conformance.sch"?>
+<!--Context: fig-group/caption
+Test: assert    p[1] = $text
+Message: fig-group caption contains '', when according to the contents of the fig-group, the text should be ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig-group>
+      <caption specific-use="print">
+        <p>The online version of this article includes the following video(s), source data, source code, and figure supplement(s) for Figure 1:</p>
+      </caption>
+      <fig id="fig1" position="float">
+        <label>Figure 1.</label>
+        <caption>
+          <p><supplementary-material>
+            <label>Figure 1-source data 1.</label>
+          </supplementary-material></p>
+          <p><supplementary-material>
+            <label>Figure 1- source code 1.</label>
+          </supplementary-material></p>
+        </caption>
+      </fig>
+      <fig specific-use="child-fig" position="float"/>
+      <media mime-subtype="mp4" mimetype="video"/>
+    </fig-group>
+    <fig-group>
+      <caption specific-use="print">
+        <p>The online version of this article includes the following video(s) and figure supplement(s) for Figure 2:</p>
+      </caption>
+      <fig position="float">
+        <label>Figure 2.</label>
+      </fig>
+      <fig specific-use="child-fig" position="float"/>
+      <media mime-subtype="mp4" mimetype="video"/>
+    </fig-group>
+    <fig-group>
+      <caption specific-use="print">
+        <p>The online version of this article includes the following source data for Figure 3:</p>
+      </caption>
+      <fig position="float">
+        <label>Figure 3.</label>
+        <caption>
+          <p><supplementary-material>
+            <label>Figure 3-source data 1.</label>
+          </supplementary-material></p>
+        </caption>
+      </fig>
+    </fig-group>
+    <fig-group>
+      <caption specific-use="print">
+        <p>The online version of this article includes the following source code for Figure 4:</p>
+      </caption>
+      <fig position="float">
+        <label>Figure 4.</label>
+        <caption>
+          <p><supplementary-material>
+            <label>Figure 4-source code 1.</label>
+          </supplementary-material></p>
+        </caption>
+      </fig>
+    </fig-group>
+    <fig-group>
+      <caption specific-use="print">
+        <p>The online version of this article includes the following video(s) and source code for Figure 5:</p>
+      </caption>
+      <fig position="float">
+        <label>Figure 5.</label>
+        <caption>
+          <p><supplementary-material>
+            <label>Figure 5-source code 1.</label>
+          </supplementary-material></p>
+        </caption>
+      </fig>
+      <media mime-subtype="mp4" mimetype="video"/>
+    </fig-group>
+    <fig-group>
+      <caption specific-use="print">
+        <p>The online version of this article includes the following video(s) and figure supplement(s) for Figure 6:</p>
+      </caption>
+      <fig position="float">
+        <label>Figure 6.</label>
+      </fig>
+      <fig specific-use="child-fig" position="float"/>
+      <media mime-subtype="mp4" mimetype="video"/>
+    </fig-group>
+  </article>
+</root>

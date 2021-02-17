@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="event-1.sch"?>
+<!--Context: event
+Test: assert    event-desc
+Message: event must contain an event description (event-desc). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <pub-history>
+        <event>
+          <event-desc>This manuscript was published as a preprint at bioRxiv.</event-desc>
+          <date date-type="submitted" iso-8601-date="2019-02-15">
+            <day>15</day>
+            <month>02</month>
+            <year>2019</year>
+          </date>
+          <date date-type="accepted" iso-8601-date="2019-02-16">
+            <day>16</day>
+            <month>02</month>
+            <year>2019</year>
+          </date>    
+          <self-uri content-type="preprint" xlink:href="https://www.biorxiv.org/content/10.1101/2019.08.22.6666666v1"/>   
+        </event>
+      </pub-history>
+    </article-meta>
+  </article>
+</root>

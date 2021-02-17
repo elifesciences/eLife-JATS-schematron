@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="broken-unicode-presence.sch"?>
-<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|styled-content|monospace|code|underline|fn|institution|ext-link
 Test: report    matches(.,'&#x\d')
 Message:  element contains what looks like a broken unicode - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

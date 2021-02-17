@@ -2,12 +2,12 @@
 <!--Context: sub-article//ext-link
 Test: report    contains(@xlink:href,'paperpile.com')
 Message: In the  the text '' has an embedded hyperlink to . The hyperlink should be removed (but the text retained). -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
-    <sub-article article-type="decision-letter">
+    <sub-article article-type="referee-report">
       <p>This is demonstrated in Smith et al. 2020 and at <ext-link link-type="uri" xlink:href="https://github.com">GitHub</ext-link>.</p>
     </sub-article>
-    <sub-article article-type="reply">
+    <sub-article article-type="author-comment">
       <p>This is demonstrated in Smith et al. 2020.</p>
     </sub-article>
   </article>

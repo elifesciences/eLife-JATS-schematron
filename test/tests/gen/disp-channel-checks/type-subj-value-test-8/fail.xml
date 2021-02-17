@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="type-subj-value-test-8.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='heading']/subject
+Test: report    ($article-type = 'retraction') and not(.='Retraction')
+Message: Article is an @article-type="" but the article type subject is . It should be 'Retraction' according to the article-type. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article article-type="retraction">
+    <article-categories>
+      <subj-group subj-group-type="heading">
+        <subject>Correction</subject>
+      </subj-group>
+    </article-categories>
+  </article>
+</root>

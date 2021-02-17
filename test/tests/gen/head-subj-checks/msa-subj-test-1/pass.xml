@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="msa-subj-test-1.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='major-subject']
+Test: assert    count(subject) = (1,2)
+Message: Each subj-group[@subj-group-type='major-subject'] must contain one or two subject elements. This one contains . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-categories>
+      <subj-group subj-group-type="major-subject">
+        <subject>Medicine</subject>
+        <subject>Neuroscience</subject>
+      </subj-group>
+    </article-categories>
+  </article>
+</root>

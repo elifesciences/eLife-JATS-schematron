@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="related-articles-test-1.sch"?>
-<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta
+<!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject = 'Research Advance']//article-meta
 Test: assert    count(related-article[@related-article-type='article-reference']) gt 0
 Message: Research Advance must contain an article-reference link to the original article it is building upon. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Advance</subject>
           </subj-group>
         </article-categories>

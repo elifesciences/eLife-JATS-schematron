@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="vocab-term-identifier.sch"?>
+<!--Context: article-meta//contrib[@contrib-type='author']/role[@vocab='credit']
+Test: report    not(@vocab-term-identifier) or ((count($credit-role) = 1) and ($vocab-term-id != $credit-role/@uri))
+Message: A CRediT taxonomy role must have a @vocab-term-identifier, the value of which must be the URL of the specific CRediT term. . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author">
+        <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Formal Analysis">Formal Analysis</role>
+        <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Visualization" vocab-term-identifier="http://credit.niso.org/contributor-roles/hfncdhub">Visualization</role>
+      </contrib>
+    </article-meta>
+  </article>
+</root>

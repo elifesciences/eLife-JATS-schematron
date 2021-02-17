@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="institution-id-test-2.sch"?>
 <!--Context: institution-wrap/institution-id
-Test: assert    @institution-id-type='FundRef'
-Message:  element must have the attribute institution-id-type="FundRef". -->
+Test: assert    @institution-id-type='doi'
+Message:  element must have the attribute institution-id-type="doi". -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <award-group id="fund6">

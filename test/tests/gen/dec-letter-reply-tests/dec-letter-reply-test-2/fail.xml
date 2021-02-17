@@ -2,14 +2,14 @@
 <!--Context: article/sub-article
 Test: assert    @id = concat('sa',$pos)
 Message: sub-article id must be in the format 'sa0', where '0' is its position (1 or 2). -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
-    <sub-article article-type="reply" id="sa2">
+    <sub-article article-type="author-comment" id="sa2">
       <front-stub>
         <contrib-group/>
       </front-stub>
     </sub-article>
-    <sub-article article-type="decision-letter" id="sa1">
+    <sub-article article-type="referee-report" id="sa1">
       <front-stub>
         <contrib-group/>
       </front-stub>

@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="body-disp-formula-id-test.sch"?>
+<!--Context: article/body//disp-formula[not(ancestor::boxed-text)]
+Test: assert    matches(@id,'^equ[0-9]{1,9}$')
+Message: disp-formula @id must be in the format 'equ0'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <disp-formula/>
+      <disp-formula id="equation1"/>
+      <disp-formula id="m1"/>
+    </body>
+  </article>
+</root>

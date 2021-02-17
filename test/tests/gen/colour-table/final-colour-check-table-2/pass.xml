@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="final-colour-check-table-2.sch"?>
+<!--Context: th[@style]|td[@style]
+Test: assert    @style=$allowed-values
+Message:  element contanining '' has an @style with an unallowed value - ''. The only allowed values are  for blue, green, orange, yellow, purple, red, pink and grey respectively. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <td style="background-color: #90caf9">test</td>
+  </article>
+</root>

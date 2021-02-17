@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="subj-msa-test.sch"?>
+<!--Context: article-categories/subj-group[@subj-group-type='major-subject']/subject
+Test: assert    . = $MSAs
+Message: Content of the subject must match one of the MSAs.  is not an eLife MSA. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="major-subject">
+          <subject>Medicine and other things</subject>
+        </subj-group>
+      </article-categories>
+    </article-meta>
+  </article>
+</root>

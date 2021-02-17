@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="pre-dl-video-position-test.sch"?>
+<!--Context: sub-article[@article-type='referee-report']/body//media[@mimetype='video']
+Test: assert    $no = string($pos)
+Message:  does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="referee-report">
+      <body>
+        <media mimetype="video" id="sa1video1"/>
+        <media mimetype="video" id="sa1video1"/>
+      </body>
+    </sub-article>
+  </article>
+</root>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="impact-statement-abstract-test-1.sch"?>
+<!--Context: article-meta/abstract[@abstract-type='toc']
+Test: report    count(p) gt 1
+Message: abstract[@abstract-type='toc'] (for the impact statement) cannot contain more than one p element. This one has . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <abstract abstract-type="toc">
+        <p>This is an impact <sc>s</sc>tatement <italic>i</italic><sup>a</sup><sub>b</sub>.</p>
+        <p>This is an impact <sc>s</sc>tatement <italic>i</italic><sup>a</sup><sub>b</sub>.</p>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

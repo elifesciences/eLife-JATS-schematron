@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="data-cit-specific-use.sch"?>
+<!--Context: ref/element-citation[@publication-type='data']
+Test: assert    @specific-use=('generated','analyzed')
+Message: Every element-citation[@publication-type='data'] must have a specific-use attribute with the value 'generated', or 'analyzed'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref>
+      <element-citation publication-type="data"/>
+    </ref>
+    <ref>
+      <element-citation publication-type="data" specific-use="created"/>
+    </ref>
+  </article>
+</root>

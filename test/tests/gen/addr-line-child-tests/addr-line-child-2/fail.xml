@@ -2,7 +2,7 @@
 <!--Context: addr-line/*
 Test: report    (name()='named-content') and not(@content-type='city')
 Message:  in <addr-line> must have the attribute content-type="city".  does not. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <addr-line>
       <named-content content-type="dept"/>

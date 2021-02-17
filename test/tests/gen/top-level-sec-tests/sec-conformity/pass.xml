@@ -1,13 +1,13 @@
 <?oxygen SCHSchema="sec-conformity.sch"?>
 <!--Context: body/sec
-Test: report    not($type = ($features-subj,'Review Article','Correction','Retraction')) and not(replace(title,' ',' ') = $allowed-titles)
+Test: report    not($type = ($features-subj,'Review Article', $notice-display-types)) and not(replace(title,' ',' ') = $allowed-titles)
 Message: top level sec with title -  - is not a usual title for  content. Should this be captured as a sub-level of ? -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <front>
       <article-meta>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Article</subject>
           </subj-group>
         </article-categories>

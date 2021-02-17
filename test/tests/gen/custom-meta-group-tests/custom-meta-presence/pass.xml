@@ -1,17 +1,28 @@
 <?oxygen SCHSchema="custom-meta-presence.sch"?>
 <!--Context: article-meta/custom-meta-group
-Test: report    ($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1
-Message: 1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Test: report    count(custom-meta[@specific-use='meta-only']) != 3
+Message: There must be three custom-meta[@specific-use='meta-only'] elements in article-meta. One for the pdf-template, one for the source-file-type, and one for the elife-xml-version. Currently there are . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-meta>
       <article-categories>
-        <subj-group subj-group-type="display-channel">
+        <subj-group subj-group-type="heading">
           <subject>Tools and Resources</subject>
         </subj-group>
       </article-categories>
       <custom-meta-group>
-        <custom-meta specific-use="meta-only"/>
+        <custom-meta specific-use="meta-only">
+          <meta-name>pdf-template</meta-name>
+          <meta-value>6</meta-value>
+        </custom-meta>
+        <custom-meta specific-use="meta-only">
+          <meta-name>source-file-type</meta-name>
+          <meta-value>latex</meta-value>
+        </custom-meta>
+        <custom-meta specific-use="meta-only">
+          <meta-name>elife-xml-version</meta-name>
+          <meta-value>2.0</meta-value>
+        </custom-meta>
       </custom-meta-group>
     </article-meta>
   </article>

@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="final-orcid-test-3.sch"?>
-<!--Context: contrib-id[@contrib-id-type='orcid']
-Test: report    (preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)
+<!--Context: contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]
+Test: report    (preceding::contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]/text() = $text) or (following::contrib-id[@contrib-id-type='orcid' and ancestor::contrib-group]/text() = $text)
 Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <contrib-group>
       <contrib contrib-type="author" equal-contrib="yes" id="author-129295">
@@ -77,9 +77,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
               </name>
               <aff>
                 <institution>Science Exchange</institution>
-                <addr-line>
-                  <named-content content-type="city">Palo Alto</named-content>
-                </addr-line>
+                <city>Palo Alto</city>
                 <country>United States</country>
               </aff>
             </contrib>
@@ -90,9 +88,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
               </name>
               <aff>
                 <institution>Science Exchange</institution>
-                <addr-line>
-                  <named-content content-type="city">Palo Alto</named-content>
-                </addr-line>
+                <city>Palo Alto</city>
                 <country>United States</country>
               </aff>
             </contrib>
@@ -104,9 +100,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
               <contrib-id authenticated="true" contrib-id-type="orcid">http://orcid.org/0000-0002-1210-2309</contrib-id>
               <aff>
                 <institution>Center for Open Science</institution>
-                <addr-line>
-                  <named-content content-type="city">Charlottesville</named-content>
-                </addr-line>
+                <city>Charlottesville</city>
                 <country>United States</country>
               </aff>
             </contrib>
@@ -117,9 +111,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
               </name>
               <aff>
                 <institution>Science Exchange</institution>
-                <addr-line>
-                  <named-content content-type="city">Palo Alto</named-content>
-                </addr-line>
+                <city>Palo Alto</city>
                 <country>United States</country>
               </aff>
             </contrib>
@@ -131,9 +123,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
               <contrib-id authenticated="true" contrib-id-type="orcid">http://orcid.org/0000-0002-4959-5143</contrib-id>
               <aff>
                 <institution>Center for Open Science</institution>
-                <addr-line>
-                  <named-content content-type="city">Charlottesville</named-content>
-                </addr-line>
+                <city>Charlottesville</city>
                 <country>United States</country>
               </aff>
             </contrib>
@@ -147,26 +137,20 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
         <label>1</label>
         <institution content-type="dept">Geisel School of Medicine at Dartmouth</institution>
         <institution>Department of Microbiology and Immunology</institution>
-        <addr-line>
-          <named-content content-type="city">Lebanon</named-content>
-        </addr-line>
+        <city>Lebanon</city>
         <country>United States</country>
       </aff>
       <aff id="aff2">
         <label>2</label>
         <institution>MIA Cellavie Inc</institution>
-        <addr-line>
-          <named-content content-type="city">Montreal</named-content>
-        </addr-line>
+        <city>Montreal</city>
         <country>Canada</country>
       </aff>
       <aff id="aff3">
         <label>3</label>
         <institution content-type="dept">Beth Israel Deaconess Medical Center</institution>
         <institution>Harvard Medical School</institution>
-        <addr-line>
-          <named-content content-type="city">Boston</named-content>
-        </addr-line>
+        <city>Boston</city>
         <country>United States</country>
       </aff>
     </contrib-group>

@@ -6,7 +6,7 @@ Message: Second contrib-group in decision letter contains a contrib which is not
   <article>
     <front>
       <article-meta>
-        <contrib-group content-type="section">
+        <contrib-group content-type="peer-review">
           <contrib contrib-type="senior_editor">
             <name>
               <surname>Harrison</surname>
@@ -32,7 +32,7 @@ Message: Second contrib-group in decision letter contains a contrib which is not
         </contrib-group>
       </article-meta>
     </front>
-    <sub-article article-type="decision-letter" id="SA1">
+    <sub-article article-type="referee-report" id="SA1">
       <front-stub>
         <contrib-group>
           <contrib contrib-type="editor">

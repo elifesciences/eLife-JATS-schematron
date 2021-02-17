@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="glossary-test-1.sch"?>
+<!--Context: glossary
+Test: assert    parent::back
+Message: glossary must be captured as a child of back. This one is a child of . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <glossary>
+        <title>Abbreviations</title>
+        <def-list/>
+      </glossary>
+    </back>
+  </article>
+</root>

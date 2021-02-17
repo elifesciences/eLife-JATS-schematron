@@ -11,12 +11,25 @@
   <ns uri="https://elifesciences.org/namespace" prefix="e"/>
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
-  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article','expression-of-concern')"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article', 'Expression of Concern')"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
   <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
+  <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
+  <let name="table-blue" value="'background-color: #90caf9'"/>
+  <let name="table-green" value="'background-color: #C5E1A5'"/>
+  <let name="table-orange" value="'background-color: #FFB74D'"/>
+  <let name="table-yellow" value="'background-color: #FFF176'"/>
+  <let name="table-purple" value="'background-color: #9E86C9'"/>
+  <let name="table-red" value="'background-color: #E57373'"/>
+  <let name="table-pink" value="'background-color: #F48FB1'"/>
+  <let name="table-grey" value="'background-color: #E6E6E6'"/>
+  <let name="text-blue" value="'color: #366BFB'"/>
+  <let name="text-purple" value="'color: #9C27B0'"/>
+  <let name="text-red" value="'color: #D50000'"/>
   <xsl:function name="e:titleCaseToken" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -87,6 +100,9 @@
       <xsl:when test="$s = 'Retraction'">
         <xsl:value-of select="'Retraction:'"/>
       </xsl:when>
+      <xsl:when test="$s = 'Expression of Concern'">
+        <xsl:value-of select="'Expression of Concern:'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -156,7 +172,7 @@
   </xsl:function>
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
-    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨɉꝁłøɍŧɏƶ','bcdeghijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+    <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
   <xsl:function name="e:cite-name-text" as="xs:string">
     <xsl:param name="person-group"/>
@@ -372,6 +388,12 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
+  </xsl:function>
+  <xsl:function name="e:indistinct-values" as="xs:anyAtomicType*">
+    <xsl:param name="seq" as="xs:anyAtomicType*"/>
+    
+    <xsl:sequence select="for $val in distinct-values($seq)       return $val[count($seq[. = $val]) &gt; 1]"/>
+    
   </xsl:function>
   <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|h\.\s?sapiens|homo\s?sapiens|c\.\s?trachomatis|chlamydia\s?trachomatis|enterococcus\s?faecalis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?lanceolata|plantago\s?lanceolata|m\.\s?trossulus|mytilus\s?trossulus|m\.\s?edulis|mytilus\s?edulis|m\.\s?chilensis|mytilus\s?chilensis|u\.\s?maydis|ustilago\s?maydis|p\.\s?knowlesi|plasmodium\s?knowlesi|p\.\s?aeruginosa|pseudomonas\s?aeruginosa|t\.\s?brucei|trypanosoma\s?brucei|caulobacter\s?crescentus|c\.\s?crescentus|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
@@ -782,13 +804,65 @@
     </xsl:element>
   </xsl:function>
   <xsl:function name="e:get-iso-pub-date">
-    <xsl:param name="element"/>
+    <xsl:param name="pub-date"/>
     <xsl:choose>
-      <xsl:when test="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]/month">
-        <xsl:variable name="pub-date" select="$element/ancestor-or-self::article//article-meta/pub-date[(@date-type='publication') or (@date-type='pub')]"/>
-        <xsl:value-of select="concat($pub-date/year,'-',$pub-date/month,'-',$pub-date/day)"/>
+      <xsl:when test="$pub-date/year and $pub-date/month and $pub-date/day">
+        <xsl:value-of select="concat($pub-date/year[1],'-',$pub-date/month[1],'-',$pub-date/day[1])"/>
       </xsl:when>
-      <xsl:otherwise/>
+      <xsl:when test="$pub-date/year and $pub-date/month">
+        <xsl:value-of select="concat($pub-date/year[1],'-',$pub-date/month[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$pub-date/year[1]"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:get-copyright-holder">
+    <xsl:param name="contrib-group"/>
+    <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type='author'])"/>
+    <xsl:choose>
+      <xsl:when test="$author-count lt 1"/>
+      <xsl:when test="$author-count = 1">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$author-count = 2">
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
+            <xsl:choose>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
+              </xsl:when>
+              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' et al')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
   <xsl:function name="e:insight-box" as="element()">
@@ -820,6 +894,30 @@
         </xsl:choose>
       </xsl:for-each>
     </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:fig-group-contents">
+    <xsl:param name="fig-group" as="element()"/>
+    <list>
+      <xsl:if test="$fig-group/media[@mimetype='video']">
+        <item>video(s)</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[not(@specific-use)]/caption[1]//supplementary-material[contains(label[1],'data')]">
+        <item>source data</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[not(@specific-use)]/caption[1]//supplementary-material[contains(label[1],'code')]">
+        <item>source code</item>
+      </xsl:if>
+      <xsl:if test="$fig-group/fig[@specific-use='child-fig']">
+        <item>figure supplement(s)</item>
+      </xsl:if>
+    </list>
+  </xsl:function>
+  <xsl:function name="e:get-fig-group-template-text">
+    <xsl:param name="fig-group" as="element()"/>
+    <xsl:variable name="fig-label" select="replace($fig-group/fig[not(@specific-use)]/label[1],'\.$','')"/>
+    <xsl:variable name="list" select="e:fig-group-contents($fig-group)"/>
+    <xsl:variable name="list-count" select="count($list//*:item)"/>
+    <xsl:value-of select="       if ($list-count lt 1) then ()       else if ($list-count = 1) then concat('The online version of this article includes the following ',$list//*:item/text(),' for ',$fig-label,':')       else if ($list-count = 2) then concat('The online version of this article includes the following ',string-join(for $x in $list//*:item return $x/text(),' and '),' for ',$fig-label,':')       else concat('The online version of this article includes the following ',string-join((string-join(for $x in $list//*:item[position() lt $list-count] return $x/text(),', '),$list//*:item[position() = $list-count]/text()),', and '),' for ',$fig-label,':')       "/>
   </xsl:function>
   <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
   <xsl:function name="e:get-latin-terms" as="element()">
@@ -887,7 +985,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="front//permissions" id="front-permissions-tests">
-      <let name="author-count" value="count(ancestor::article-meta//contrib[@contrib-type='author'])"/>
+      <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
+      <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
     </rule>

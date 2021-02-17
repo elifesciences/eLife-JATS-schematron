@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-self-uri-presence.sch"?>
 <!--Context: article/front/article-meta
-Test: report    (($article-type != 'retraction') and $article-type != 'correction') and not(self-uri)
+Test: report    not($article-type = $notice-article-types) and not(self-uri)
 Message: There must be a child self-uri in article-meta. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
@@ -9,13 +9,13 @@ Message: There must be a child self-uri in article-meta. -->
         <article-id pub-id-type="publisher-id">00000</article-id>
         <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
         <article-categories>
-          <subj-group subj-group-type="display-channel">
+          <subj-group subj-group-type="heading">
             <subject>Research Article</subject>
           </subj-group>
-          <subj-group subj-group-type="heading">
+          <subj-group subj-group-type="major-subject">
             <subject>Computational and Systems Biology</subject>
           </subj-group>
-          <subj-group subj-group-type="heading">
+          <subj-group subj-group-type="major-subject">
             <subject>Neuroscience</subject>
           </subj-group>
         </article-categories>
@@ -43,13 +43,11 @@ Message: There must be a child self-uri in article-meta. -->
           <aff id="aff1">
             <label>1</label>
             <institution>The Derek Zoolander School for Kids Who Can't Read Good and Want to Do Other Stuff Good Too</institution>
-            <addr-line>
-              <named-content content-type="city">New York</named-content>
-            </addr-line>
+            <city>New York</city>
             <country>United States</country>
           </aff>
         </contrib-group>
-        <contrib-group content-type="section">
+        <contrib-group content-type="peer-review">
           <contrib contrib-type="editor">
             <name>
               <surname>Mugatu</surname>

@@ -1,10 +1,10 @@
 <?oxygen SCHSchema="dec-letter-title-test.sch"?>
-<!--Context: sub-article[@article-type='decision-letter']/front-stub/title-group
+<!--Context: sub-article[@article-type='referee-report']/front-stub/title-group
 Test: assert    article-title = 'Decision letter'
 Message: title-group must contain article-title which contains 'Decision letter'. Currently it is . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
-    <sub-article article-type="decision-letter">
+    <sub-article article-type="referee-report">
       <front-stub>
         <title-group>
           <article-title>Decision Letter</article-title>
