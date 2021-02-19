@@ -3070,6 +3070,28 @@
         <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="event-date-tests">
+      <x:scenario label="event-date-1-pass">
+        <x:context href="../tests/gen/event-date-tests/event-date-1/pass.xml"/>
+        <x:expect-not-assert id="event-date-1" role="error"/>
+        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-date-1-fail">
+        <x:context href="../tests/gen/event-date-tests/event-date-1/fail.xml"/>
+        <x:expect-assert id="event-date-1" role="error"/>
+        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-date-2-pass">
+        <x:context href="../tests/gen/event-date-tests/event-date-2/pass.xml"/>
+        <x:expect-not-assert id="event-date-2" role="error"/>
+        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-date-2-fail">
+        <x:context href="../tests/gen/event-date-tests/event-date-2/fail.xml"/>
+        <x:expect-assert id="event-date-2" role="error"/>
+        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="volume-test">
       <x:scenario label="volume-test-1-pass">
         <x:context href="../tests/gen/volume-test/volume-test-1/pass.xml"/>
@@ -4180,6 +4202,28 @@
         <x:context href="../tests/gen/back-source-code-tests/back-source-code-id/fail.xml"/>
         <x:expect-assert id="back-source-code-id" role="error"/>
         <x:expect-not-assert id="back-source-code-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="back-audio-tests">
+      <x:scenario label="back-audio-position-pass">
+        <x:context href="../tests/gen/back-audio-tests/back-audio-position/pass.xml"/>
+        <x:expect-not-assert id="back-audio-position" role="error"/>
+        <x:expect-not-assert id="back-audio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-audio-position-fail">
+        <x:context href="../tests/gen/back-audio-tests/back-audio-position/fail.xml"/>
+        <x:expect-assert id="back-audio-position" role="error"/>
+        <x:expect-not-assert id="back-audio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-audio-id-pass">
+        <x:context href="../tests/gen/back-audio-tests/back-audio-id/pass.xml"/>
+        <x:expect-not-assert id="back-audio-id" role="error"/>
+        <x:expect-not-assert id="back-audio-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="back-audio-id-fail">
+        <x:context href="../tests/gen/back-audio-tests/back-audio-id/fail.xml"/>
+        <x:expect-assert id="back-audio-id" role="error"/>
+        <x:expect-not-assert id="back-audio-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="source-data-specific-tests">

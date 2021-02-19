@@ -984,7 +984,7 @@
     
   </xsl:function>
   <pattern id="doi-ref-checks">
-    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
+    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
@@ -995,7 +995,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source] must be present.</assert>
     </rule>
   </pattern>
 </schema>

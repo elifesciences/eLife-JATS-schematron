@@ -2057,6 +2057,16 @@
       
     </rule>
   </pattern>
+  <pattern id="event-date-tests-pattern">
+    <rule context="event/date" id="event-date-tests">
+      <let name="self-uri-type" value="parent::event/self-uri/@content-type"/>
+      
+      <assert test="@date-type = ('preprint','accepted-manuscript','version-of-record','corrected-version-of-record')" role="error" id="event-date-1">[event-date-1] date in event must have a date-type attribute with one of the following values: 'preprint','accepted-manuscript','version-of-record', or 'corrected-version-of-record'.</assert>
+      
+      <assert test="@date-type = $self-uri-type" role="error" id="event-date-2">[event-date-2] The date-type attribute value must be the same as the content-type value on the self-uri element in the same event. Currently the date-type value is '<value-of select="@date-type"/>' whereas the content-type value for the self-uri is '<value-of select="$self-uri-type"/>'.</assert>
+      
+    </rule>
+  </pattern>
   
   <pattern id="volume-test-pattern">
     <rule context="article-meta/volume" id="volume-test">
@@ -2411,6 +2421,17 @@
       <assert test="string($pos) = $no" role="error" id="back-source-code-position">[back-source-code-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
       <assert test="matches(@id,'^scode\d{1,2}$')" role="error" id="back-source-code-id">[back-source-code-id] The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="back-audio-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]" id="back-audio-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'udio')]) - count(following-sibling::supplementary-material[contains(label[1],'udio')])"/>
+      <let name="no" value="substring-after(@id,'audio')"/>
+      
+      <assert test="string($pos) = $no" role="error" id="back-audio-position">[back-audio-position] <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+      <assert test="matches(@id,'^audio\d{1,2}$')" role="error" id="back-audio-id">[back-audio-id] The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Audio files needs to have ids in the format 'audio0'.</assert>
       
     </rule>
   </pattern>
@@ -5580,7 +5601,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-2" test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">[table-xref-conformity-2] <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">[table-xref-conformity-3] <value-of select="."/> - Citation content does not match what it directs to.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app')) and not(contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">[table-xref-conformity-3] <value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-4" test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">[table-xref-conformity-4] <value-of select="."/> - Citation content does not match what it directs to.</report>
       
@@ -6998,7 +7019,7 @@
   </pattern>
   
   <pattern id="doi-journal-ref-checks-pattern">
-    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
+    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>

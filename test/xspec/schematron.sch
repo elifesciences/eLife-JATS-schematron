@@ -2160,6 +2160,16 @@
       
     </rule>
   </pattern>
+  <pattern id="event-date-tests-pattern">
+    <rule context="event/date" id="event-date-tests">
+      <let name="self-uri-type" value="parent::event/self-uri/@content-type"/>
+      
+      <assert test="@date-type = ('preprint','accepted-manuscript','version-of-record','corrected-version-of-record')" role="error" id="event-date-1">date in event must have a date-type attribute with one of the following values: 'preprint','accepted-manuscript','version-of-record', or 'corrected-version-of-record'.</assert>
+      
+      <assert test="@date-type = $self-uri-type" role="error" id="event-date-2">The date-type attribute value must be the same as the content-type value on the self-uri element in the same event. Currently the date-type value is '<value-of select="@date-type"/>' whereas the content-type value for the self-uri is '<value-of select="$self-uri-type"/>'.</assert>
+      
+    </rule>
+  </pattern>
   
   <pattern id="volume-test-pattern">
     <rule context="article-meta/volume" id="volume-test">
@@ -2542,6 +2552,18 @@
         <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
       <assert test="matches(@id,'^scode\d{1,2}$')" role="error" id="back-source-code-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="back-audio-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]" id="back-audio-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'udio')]) - count(following-sibling::supplementary-material[contains(label[1],'udio')])"/>
+      <let name="no" value="substring-after(@id,'audio')"/>
+      
+      <assert test="string($pos) = $no" role="error" id="back-audio-position">
+        <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
+      
+      <assert test="matches(@id,'^audio\d{1,2}$')" role="error" id="back-audio-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Audio files needs to have ids in the format 'audio0'.</assert>
       
     </rule>
   </pattern>
@@ -5800,7 +5822,7 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-2" test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" role="warning" id="table-xref-conformity-2">
         <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app')) and not(contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
         <value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-4" test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-4">
@@ -7448,7 +7470,7 @@
   </pattern>
   
   <pattern id="doi-journal-ref-checks-pattern">
-    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
+    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
@@ -7898,6 +7920,7 @@
       <assert test="descendant::related-object" role="error" id="related-object-tests-xspec-assert">related-object must be present.</assert>
       <assert test="descendant::article-meta/pub-date" role="error" id="pub-date-tests-xspec-assert">article-meta/pub-date must be present.</assert>
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
+      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
       <assert test="descendant::article-meta/volume" role="error" id="volume-test-xspec-assert">article-meta/volume must be present.</assert>
       <assert test="descendant::article-meta//contrib[@contrib-type='author']" role="error" id="equal-author-tests-xspec-assert">article-meta//contrib[@contrib-type='author'] must be present.</assert>
       <assert test="descendant::p" role="error" id="p-tests-xspec-assert">p must be present.</assert>
@@ -7919,6 +7942,7 @@
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" role="error" id="back-source-data-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')] must be present.</assert>
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" role="error" id="back-source-code-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')] must be present.</assert>
+      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]" role="error" id="back-audio-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')] must be present.</assert>
       <assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" role="error" id="source-data-specific-tests-xspec-assert">supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</assert>
       <assert test="descendant::fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" role="error" id="fig-source-data-tests-xspec-assert">fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')] must be present.</assert>
       <assert test="descendant::fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" role="error" id="fig-source-code-tests-xspec-assert">fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')] must be present.</assert>
@@ -8229,7 +8253,7 @@
       <assert test="descendant::sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" role="error" id="section-title-tests-xspec-assert">sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')] must be present.</assert>
       <assert test="descendant::title[(count(*)=1) and (child::bold or child::italic)]" role="error" id="title-bold-tests-xspec-assert">title[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::italic[matches(lower-case(.),$org-regex)]" role="error" id="italic-org-tests-xspec-assert">italic[matches(lower-case(.),$org-regex)] must be present.</assert>
-      <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
+      <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>

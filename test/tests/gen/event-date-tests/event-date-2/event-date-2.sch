@@ -983,20 +983,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="table-xref-pattern">
-    <rule context="xref[@ref-type='table']" id="table-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
-      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app')) and not(contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
-        <value-of select="."/> - Citation content does not match what it directs to.</report>
+  <pattern id="article-events">
+    <rule context="event/date" id="event-date-tests">
+      <let name="self-uri-type" value="parent::event/self-uri/@content-type"/>
+      <assert test="@date-type = $self-uri-type" role="error" id="event-date-2">The date-type attribute value must be the same as the content-type value on the self-uri element in the same event. Currently the date-type value is '<value-of select="@date-type"/>' whereas the content-type value for the self-uri is '<value-of select="$self-uri-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
+      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
     </rule>
   </pattern>
 </schema>

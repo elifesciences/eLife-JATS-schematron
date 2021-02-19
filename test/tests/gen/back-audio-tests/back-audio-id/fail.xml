@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="back-audio-id.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]
+Test: assert    matches(@id,'^audio\d{1,2}$')
+Message: The id () for  is not in the correct format. Audio files needs to have ids in the format 'audio0'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="supplementary-material">
+        <supplementary-material id="scode1">
+          <label>Audio file 1.</label>
+          <caption><title>...</title></caption>
+        </supplementary-material>
+      </sec>
+    </back>
+  </article>
+</root>

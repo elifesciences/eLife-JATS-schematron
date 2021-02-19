@@ -983,20 +983,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="table-xref-pattern">
-    <rule context="xref[@ref-type='table']" id="table-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
-      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" test="(not(contains($rid,'app')) and not(contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))" role="warning" id="table-xref-conformity-3">
-        <value-of select="."/> - Citation content does not match what it directs to.</report>
+  <pattern id="content-containers">
+    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]" id="back-audio-tests">
+      <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'udio')]) - count(following-sibling::supplementary-material[contains(label[1],'udio')])"/>
+      <let name="no" value="substring-after(@id,'audio')"/>
+      <assert test="string($pos) = $no" role="error" id="back-audio-position">
+        <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="$pos"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
+      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]" role="error" id="back-audio-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

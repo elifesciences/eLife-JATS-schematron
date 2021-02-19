@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="back-audio-position.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'udio')]
+Test: assert    string($pos) = $no
+Message:  id ends with , but it is placed . Either it is mislabelled, the id is incorrect, or it should be moved to a different position. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="supplementary-material">
+        <supplementary-material id="audio1">
+          <label>Audio file 1.</label>
+          <caption><title>...</title></caption>
+        </supplementary-material>
+      </sec>
+    </back>
+  </article>
+</root>

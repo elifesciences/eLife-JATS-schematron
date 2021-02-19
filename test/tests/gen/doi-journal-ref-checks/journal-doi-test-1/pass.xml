@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="journal-doi-test-1.sch"?>
-<!--Context: element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]
+<!--Context: element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and not(comment) and year and source]
 Test: assert    some $x in document($journals)/journals/journal satisfies (($x/@title/string()=$journal) and (number($x/@year) ge $year))
 Message:  is a journal ref without a doi. Should it have one? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
