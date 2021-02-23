@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="empty-xref-test.sch"?>
 <!--Context: body//xref
 Test: report    not(child::*) and normalize-space(.)=''
-Message: Empty xref in the body is not allowed. Its position here in the text - "". -->
+Message: Empty xref in the body is not allowed. Its position is here in the text - "". -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <body>

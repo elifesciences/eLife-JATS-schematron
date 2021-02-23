@@ -983,7 +983,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="figure-xref-pattern">
+  <pattern id="xref-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="type" value="e:fig-id-type($rid)"/>

@@ -983,7 +983,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="supp-xref-pattern">
+  <pattern id="xref-pattern">
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
@@ -992,7 +992,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2251,6 +2251,8 @@
       
       <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
+      <report test="(@ref-type='list') and ($target/local-name() != 'def-item')" role="error" id="list-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
       <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula','author-notes','list')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
       <report test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
@@ -2259,7 +2261,7 @@
   <pattern id="body-xref-tests-pattern">
     <rule context="body//xref" id="body-xref-tests">
       
-      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
       <report test="ends-with(.,';') or ends-with(.,'; ')" role="warning" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text.</report>
       
@@ -5718,7 +5720,7 @@
         <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
       <!-- Workaround for animations -->
-      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" role="error" id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
+      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" role="error" id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -5730,13 +5732,13 @@
       <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" role="error" id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" role="error" id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="vid-xref-test-10">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
@@ -5744,7 +5746,6 @@
       
     </rule>
   </pattern>
-  
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -5778,7 +5779,7 @@
         <value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
-        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+        <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
@@ -5807,7 +5808,6 @@
       <report test="matches($post-text,'^\-[A-Za-z0-9]')" role="warning" id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
     </rule>
   </pattern>
-  
   <pattern id="table-xref-conformance-pattern">
     <rule context="xref[@ref-type='table']" id="table-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -5831,9 +5831,9 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-1" test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" role="warning" id="table-xref-test-1">
         <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2" test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2" test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4" test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="table-xref-test-4">Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
@@ -5842,7 +5842,6 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-6" test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" role="warning" id="table-xref-test-6">Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead?</report>
     </rule>
   </pattern>
-  
   <pattern id="supp-file-xref-conformance-pattern">
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -5871,9 +5870,9 @@
       <report test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">
         <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="warning" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="warning" id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" role="error" id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
@@ -5883,7 +5882,6 @@
       
     </rule>
   </pattern>
-  
   <pattern id="equation-xref-conformance-pattern">
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -5900,6 +5898,15 @@
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($prec-text,'cf[\.]?\s?[\(]?$')" role="warning" id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+    </rule>
+  </pattern>
+  <pattern id="def-item-xref-conformance-pattern">
+    <rule context="xref[@ref-type='list']" id="def-item-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="label" value="ancestor::article//def-item[@id = $rid]/term"/>
+      
+      <assert test="(text()|*) = ($label/text()|$label/*)" role="error" id="def-xref-conformity-1">A link to a definition must contain the same content as the term of that definition. This link has <value-of select="."/>, but the term it points to contains <value-of select="$label"/>.</assert>
+      
     </rule>
   </pattern>
   
@@ -7375,7 +7382,7 @@
       
       <report test="$parent = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report test="$child = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
+      <report test="not(@ref-type='list') and $child = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>
   </pattern>
   <pattern id="ref-xref-formatting-pattern">
@@ -8197,6 +8204,7 @@
       <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
       <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='list']" role="error" id="def-item-xref-conformance-xspec-assert">xref[@ref-type='list'] must be present.</assert>
       <assert test="descendant::element-citation/article-title or descendant::element-citation/chapter-title or descendant::element-citation/source or descendant::element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title must be present.</assert>
       <assert test="descendant::article//article-meta/title-group/article-title  or descendant:: article/body//sec/title  or descendant:: article//article-meta//kwd" role="error" id="org-title-kwd-xspec-assert">article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::styled-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|styled-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>

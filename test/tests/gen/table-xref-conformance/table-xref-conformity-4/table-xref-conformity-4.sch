@@ -983,7 +983,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="table-xref-pattern">
+  <pattern id="xref-pattern">
     <rule context="xref[@ref-type='table']" id="table-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>

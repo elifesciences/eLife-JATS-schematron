@@ -983,7 +983,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="equation-xref-pattern">
+  <pattern id="xref-pattern">
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>

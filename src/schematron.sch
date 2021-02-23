@@ -2888,6 +2888,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
+      <report test="(@ref-type='list') and ($target/local-name() != 'def-item')" 
+        role="error" 
+        id="list-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      
       <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula','author-notes','list')" 
         role="error" 
         id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
@@ -2901,7 +2905,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="not(child::*) and normalize-space(.)=''" 
         role="error" 
-        id="empty-xref-test">Empty xref in the body is not allowed. Its position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+        id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
       <report test="ends-with(.,';') or ends-with(.,'; ')" 
         role="warning" 
@@ -8088,7 +8092,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     </rule>
   </pattern>
   
-  <pattern id="video-xref-pattern">
+  <pattern id="xref-pattern">
     
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -8103,7 +8107,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <!-- Workaround for animations -->
       <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" 
         role="error" 
-        id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
+        id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
@@ -8122,11 +8126,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="vid-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
-        role="warning" 
+        role="error" 
         id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
-        role="warning" 
+        role="error" 
         id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
@@ -8135,7 +8139,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" 
         role="error" 
-        id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<value-of select="concat($pre-text,.)"/>'.</report>
+        id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
@@ -8146,9 +8150,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="vid-xref-test-11">Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <value-of select="."/>.</report>
       
     </rule>
-  </pattern>
-  
-  <pattern id="figure-xref-pattern">
     
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -8196,7 +8197,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
-        id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+        id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
@@ -8250,9 +8251,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
     </rule>
-  </pattern>
   
-  <pattern id="table-xref-pattern">
     <rule context="xref[@ref-type='table']" id="table-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
@@ -8287,12 +8286,12 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2" 
         test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
-        role="warning" 
+        role="error" 
         id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" 
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
-        role="warning" 
+        role="error" 
         id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4" 
@@ -8310,10 +8309,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="table-xref-test-6">Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead?</report>
     </rule>
-    
-  </pattern>
-  
-  <pattern id="supp-xref-pattern">
     
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -8349,11 +8344,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="supp-file-xref-test-1"><value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
-        role="warning" 
+        role="error" 
         id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
-        role="warning" 
+        role="error" 
         id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" 
@@ -8369,9 +8364,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
       
     </rule>
-  </pattern>
-  
-  <pattern id="equation-xref-pattern">
     
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rid" value="@rid"/>
@@ -8394,6 +8386,16 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report test="matches($prec-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
         id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+    </rule>
+    
+    <rule context="xref[@ref-type='list']" id="def-item-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="label" value="ancestor::article//def-item[@id = $rid]/term"/>
+      
+      <assert test="(text()|*) = ($label/text()|$label/*)"
+        role="error" 
+        id="def-xref-conformity-1">A link to a definition must contain the same content as the term of that definition. This link has <value-of select="."/>, but the term it points to contains <value-of select="$label"/>.</assert>
+      
     </rule>
     
   </pattern>
@@ -10713,7 +10715,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="error" 
         id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report test="$child = $formatting-elems" 
+      <report test="not(@ref-type='list') and $child = $formatting-elems" 
         role="warning" 
         id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>

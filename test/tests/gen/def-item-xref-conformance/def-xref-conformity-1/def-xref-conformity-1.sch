@@ -983,14 +983,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="body//xref" id="body-xref-tests">
-      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+  <pattern id="xref-pattern">
+    <rule context="xref[@ref-type='list']" id="def-item-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="label" value="ancestor::article//def-item[@id = $rid]/term"/>
+      <assert test="(text()|*) = ($label/text()|$label/*)" role="error" id="def-xref-conformity-1">A link to a definition must contain the same content as the term of that definition. This link has <value-of select="."/>, but the term it points to contains <value-of select="$label"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::body//xref" role="error" id="body-xref-tests-xspec-assert">body//xref must be present.</assert>
+      <assert test="descendant::xref[@ref-type='list']" role="error" id="def-item-xref-conformance-xspec-assert">xref[@ref-type='list'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

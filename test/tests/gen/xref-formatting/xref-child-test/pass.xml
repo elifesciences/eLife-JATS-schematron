@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="xref-child-test.sch"?>
 <!--Context: xref[not(@ref-type='bibr')]
-Test: report    $child = $formatting-elems
+Test: report    not(@ref-type='list') and $child = $formatting-elems
 Message: xref -  - has a formatting child element -  - which is likely not correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

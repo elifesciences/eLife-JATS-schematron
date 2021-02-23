@@ -983,7 +983,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="video-xref-pattern">
+  <pattern id="xref-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="target-no" value="substring-after($rid,'video')"/>

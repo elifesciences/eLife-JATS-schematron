@@ -1,0 +1,45 @@
+<?oxygen SCHSchema="def-xref-conformity-1.sch"?>
+<!--Context: xref[@ref-type='list']
+Test: assert    (text()|*) = ($label/text()|$label/*)
+Message: A link to a definition must contain the same content as the term of that definition. This link has , but the term it points to contains . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>Lorem <xref ref-type="list" rid="def2">GLV<italic>s</italic></xref></p>
+      <p>Lorem <xref ref-type="list" rid="def1">Aoin<sup>2</sup></xref></p>
+      <p>Lorem <xref ref-type="list" rid="def3">Hip1R</xref></p>
+      <p>Lorem <xref ref-type="list" rid="def4">sapien</xref></p>
+    </body>
+    <back>
+      <glossary>
+        <title>Abbreviations</title>
+        <def-list>
+          <def-item id="def1">
+            <term>Aoin<sup>2</sup></term>
+            <def>
+              <p>This definition can also contain minimal formatting such as <bold>bold</bold>, <italic>italic</italic> <sup>superscript</sup>, and <sub>subscript</sub></p>
+            </def>
+          </def-item>
+          <def-item id="def2">
+            <term>GLV<italic>s</italic></term>
+            <def>
+              <p>Green leaf volatiles</p>
+            </def>
+          </def-item>
+          <def-item id="def3">
+            <term>Hip1R</term>
+            <def>
+              <p>Huntingtin-interacting protein 1-related protein</p>
+            </def>
+          </def-item>
+          <def-item id="def4">
+            <term>sapien</term>
+            <def>
+              <p>This is the definition for the term</p>
+            </def>
+          </def-item>
+        </def-list>
+      </glossary>
+    </back>
+  </article>
+</root>
