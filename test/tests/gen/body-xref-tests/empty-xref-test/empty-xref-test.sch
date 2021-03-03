@@ -940,7 +940,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="body//xref" id="body-xref-tests">
-      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+      <report test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

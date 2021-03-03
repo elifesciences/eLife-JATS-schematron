@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="vid-xref-test-9.sch"?>
 <!--Context: xref[@ref-type='video']
-Test: report    matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')
-Message: Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - ''. -->
+Test: report    matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')
+Message: Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

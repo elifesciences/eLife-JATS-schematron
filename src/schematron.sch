@@ -2134,13 +2134,13 @@
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
-      <report test="($count gt 180)" 
+      <report test="($count gt 280)" 
         role="warning" 
-        id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+        id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
 	     
-      <report test="($count gt 180)" 
+      <report test="($count gt 280)" 
         role="warning" 
-        id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Abstracts with more than 180 words should be checked with the eLife Editorial team.</report>
+        id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Abstracts with more than 280 words should be checked with the eLife Editorial team.</report>
 	   </rule>
 	
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
@@ -2464,9 +2464,9 @@
         id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5" 
-        test="($count gt 30)" 
+        test="($count gt 40)" 
         role="warning" 
-        id="custom-meta-test-5">Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed.</report>
+        id="custom-meta-test-5">Impact statement contains more than 40 words (<value-of select="$count"/>). This is not allowed.</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-6" 
         test="matches(.,'[\.|\?]$')" 
@@ -2732,11 +2732,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="not(child::*) and normalize-space(.)=''" 
         role="error" 
-        id="empty-xref-test">Empty xref in the body is not allowed. Its position here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
+        id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
       <report test="ends-with(.,';') or ends-with(.,'; ')" 
-        role="warning" 
-        id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text.</report>
+        role="error" 
+        id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
       
     </rule>
     
@@ -4429,6 +4429,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article-meta//article-title" id="article-title-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
+      <let name="count" value="string-length(.)"/>
       
       <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))
         else ()" 
@@ -4446,6 +4447,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="($type = 'Scientific Correspondence') and matches(.,'”')" 
         role="warning" 
         id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
+      
+      <report test="($count gt 140)" 
+        role="warning" 
+        id="pre-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+      
+      <report test="($count gt 140)" 
+        role="warning" 
+        id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
     </rule>
     
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
@@ -7900,7 +7909,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-22" 
         test="matches($post-sentence,'^\)[A-Za-z0-9]')" 
         role="warning" 
-        id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+        id="ref-xref-test-22">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-26" 
         test="matches($pre-text,'; \[$')" 
@@ -7987,7 +7996,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         else if ($x/local-name() = 'xref') then ()
         else $x/text(),'')"/>
       
-      <report test="matches($article-text,$regex)" 
+      <report test="matches(lower-case($article-text),lower-case($regex))" 
         role="warning" 
         id="text-v-object-cite-test"><value-of select="$cite1"/> has possible unlinked citations in the text.</report>
       
@@ -8009,7 +8018,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <!-- Workaround for animations -->
       <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" 
         role="error" 
-        id="vid-xref-conformity-2">video citation does not matches the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
+        id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
       
       <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
@@ -8028,20 +8037,20 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="vid-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
-        role="warning" 
+        role="error" 
         id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
-        role="warning" 
-        id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        role="error" 
+        id="vid-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
         role="error" 
         id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" 
+      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')" 
         role="error" 
-        id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<value-of select="concat($pre-text,.)"/>'.</report>
+        id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
@@ -8102,7 +8111,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
-        id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</report>
+        id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
@@ -8110,7 +8119,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
-        id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        id="fig-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'their $')" 
         role="warning" 
@@ -8120,15 +8129,15 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')" 
         role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" 
         role="error" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
         role="warning" 
         id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
@@ -8193,13 +8202,13 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2" 
         test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
-        role="warning" 
+        role="error" 
         id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" 
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
-        role="warning" 
-        id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        role="error" 
+        id="table-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4" 
         test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
@@ -8255,14 +8264,14 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="supp-file-xref-test-1"><value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
       <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
-        role="warning" 
+        role="error" 
         id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
-        role="warning" 
-        id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        role="error" 
+        id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" 
+      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" 
         role="error" 
         id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       

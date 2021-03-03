@@ -944,7 +944,7 @@
       <let name="pre-regex" value="replace($cite1,'—','[—–\\-]')"/>
       <let name="regex" value="replace($pre-regex,'\s','[\\s ]')"/>
       <let name="article-text" value="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
-      <report test="matches($article-text,$regex)" role="warning" id="text-v-object-cite-test">
+      <report test="matches(lower-case($article-text),lower-case($regex))" role="warning" id="text-v-object-cite-test">
         <value-of select="$cite1"/> has possible unlinked citations in the text.</report>
     </rule>
   </pattern>
