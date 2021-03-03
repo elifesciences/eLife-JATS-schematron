@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="fig-xref-test-5.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
 Test: report    ($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')
-Message:  - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked. -->
+Message:  - Figure citation refers to a figure from a different paper, and therefore must be unlinked. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
     <article>
         <p>... See <xref ref-type="fig" rid="fig1">Figure 1</xref> from <xref ref-type="bibr" rid="bib1">Smith et al., 1992</xref>...</p>

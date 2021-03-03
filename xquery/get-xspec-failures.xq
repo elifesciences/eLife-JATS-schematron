@@ -1,12 +1,10 @@
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
 let $result := doc('../test/xspec/xspec/schematron-result.xml')
-let $result2 := doc('../test/xspec/xspec/copy-edit-result.xml')
 
 return distinct-values(
   for $x in (
-    $result//x:test[@successful="false"]/parent::x:scenario/x:context/substring-after(@href,'/tests/'),
-    $result2//x:test[@successful="false"]/parent::x:scenario/x:context/substring-after(@href,'/tests/')
+    $result//x:test[@successful="false"]/parent::x:scenario//x:context/substring-after(@href,'/tests/')
   )
   order by lower-case($x)
   return $x 

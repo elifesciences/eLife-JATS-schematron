@@ -8368,8 +8368,8 @@
       <xsl:variable name="count" select="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($count gt 180)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 180)">
+      <xsl:if test="($count gt 280)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 280)">
             <xsl:attribute name="id">final-abstract-word-count-restriction</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -8377,7 +8377,7 @@
             </xsl:attribute>
             <svrl:text>[final-abstract-word-count-restriction] The abstract contains <xsl:text/>
                <xsl:value-of select="$count"/>
-               <xsl:text/> words, when the usual upper limit is 180. Abstracts with more than 180 words should be checked with the eLife Editorial team.</svrl:text>
+               <xsl:text/> words, when the usual upper limit is 280. Abstracts with more than 280 words should be checked with the eLife Editorial team.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M95"/>
@@ -9398,15 +9398,15 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($count gt 30)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 30)">
+      <xsl:if test="($count gt 40)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 40)">
             <xsl:attribute name="id">custom-meta-test-5</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[custom-meta-test-5] Impact statement contains more than 30 words (<xsl:text/>
+            <svrl:text>[custom-meta-test-5] Impact statement contains more than 40 words (<xsl:text/>
                <xsl:value-of select="$count"/>
                <xsl:text/>). This is not allowed.</svrl:text>
          </svrl:successful-report>
@@ -10207,23 +10207,23 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[empty-xref-test] Empty xref in the body is not allowed. Its position here in the text - "<xsl:text/>
+            <svrl:text>[empty-xref-test] Empty xref in the body is not allowed. Its position is here in the text - "<xsl:text/>
                <xsl:value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>
                <xsl:text/>".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="ends-with(.,';') or ends-with(.,'; ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(.,';') or ends-with(.,'; ')">
             <xsl:attribute name="id">semi-colon-xref-test</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[semi-colon-xref-test] xref ends with semi-colon - '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text.</svrl:text>
+               <xsl:text/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M123"/>
@@ -15153,6 +15153,7 @@
    <xsl:template match="article-meta//article-title" priority="1000" mode="M199">
       <xsl:variable name="type" select="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="specifics" select="('Replication Study','Registered Report',$notice-display-types)"/>
+      <xsl:variable name="count" select="string-length(.)"/>
 
 		    <!--REPORT error-->
       <xsl:if test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))         else ()">
@@ -15215,6 +15216,20 @@
                <xsl:text/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="($count gt 140)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 140)">
+            <xsl:attribute name="id">final-title-length-restriction</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-title-length-restriction] The article title contains <xsl:text/>
+               <xsl:value-of select="$count"/>
+               <xsl:text/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M199"/>
@@ -25342,7 +25357,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ref-xref-test-22] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
+            <svrl:text>[ref-xref-test-22] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
                <xsl:value-of select="concat(.,$post-sentence)"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -25496,8 +25511,8 @@
       <xsl:variable name="article-text" select="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($article-text,$regex)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($article-text,$regex)">
+      <xsl:if test="matches(lower-case($article-text),lower-case($regex))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case($article-text),lower-case($regex))">
             <xsl:attribute name="id">text-v-object-cite-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -25550,7 +25565,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[vid-xref-conformity-2] video citation does not matches the video that it links to. Target video label number is <xsl:text/>
+            <svrl:text>[vid-xref-conformity-2] video citation does not match the video that it links to. Target video label number is <xsl:text/>
                <xsl:value-of select="$target-no"/>
                <xsl:text/>, but that number is not in the citation text - <xsl:text/>
                <xsl:value-of select="."/>
@@ -25614,11 +25629,11 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches($pre-text,'[A-Za-z0-9][\(]$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[A-Za-z0-9][\(]$')">
             <xsl:attribute name="id">vid-xref-test-6</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -25628,23 +25643,23 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches($post-text,'^[\)][A-Za-z0-9]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\)][A-Za-z0-9]')">
             <xsl:attribute name="id">vid-xref-test-7</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[vid-xref-test-7] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
+            <svrl:text>[vid-xref-test-7] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
                <xsl:value-of select="concat(.,$post-text)"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')">
+      <xsl:if test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')">
             <xsl:attribute name="id">vid-xref-test-8</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -25657,14 +25672,14 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')">
+      <xsl:if test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')">
             <xsl:attribute name="id">vid-xref-test-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[vid-xref-test-9] Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to figure level source data or code - '<xsl:text/>
+            <svrl:text>[vid-xref-test-9] Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<xsl:text/>
                <xsl:value-of select="concat($pre-text,.)"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -25859,7 +25874,7 @@
             </xsl:attribute>
             <svrl:text>[fig-xref-test-5] <xsl:text/>
                <xsl:value-of select="concat(.,$post-text,following-sibling::*[1])"/>
-               <xsl:text/> - Figure citation is in a reference to a figure from a different paper, and therefore must be unlinked.</svrl:text>
+               <xsl:text/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -25885,7 +25900,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[fig-xref-test-7] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
+            <svrl:text>[fig-xref-test-7] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
                <xsl:value-of select="concat(.,$post-text)"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -25920,8 +25935,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')">
+      <xsl:if test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')">
             <xsl:attribute name="id">fig-xref-test-10</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -25934,8 +25949,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')">
+      <xsl:if test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')">
             <xsl:attribute name="id">fig-xref-test-11</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -25948,8 +25963,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')">
+      <xsl:if test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')">
             <xsl:attribute name="id">fig-xref-test-12</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -26145,12 +26160,12 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches($pre-text,'[A-Za-z0-9][\(]$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[A-Za-z0-9][\(]$')">
             <xsl:attribute name="id">table-xref-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -26160,16 +26175,16 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches($post-text,'^[\)][A-Za-z0-9]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\)][A-Za-z0-9]')">
             <xsl:attribute name="id">table-xref-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[table-xref-test-3] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
+            <svrl:text>[table-xref-test-3] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
                <xsl:value-of select="concat(.,$post-text)"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -26331,11 +26346,11 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches($pre-text,'[A-Za-z0-9][\(]$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[A-Za-z0-9][\(]$')">
             <xsl:attribute name="id">supp-xref-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -26345,23 +26360,23 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches($post-text,'^[\)][A-Za-z0-9]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\)][A-Za-z0-9]')">
             <xsl:attribute name="id">supp-xref-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[supp-xref-test-3] citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
+            <svrl:text>[supp-xref-test-3] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<xsl:text/>
                <xsl:value-of select="concat(.,$post-text)"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')">
+      <xsl:if test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')">
             <xsl:attribute name="id">supp-xref-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

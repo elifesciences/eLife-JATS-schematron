@@ -938,21 +938,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="supp-xref-pattern">
-    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
-      <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
-      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+  <pattern id="title-conformance">
+    <rule context="article-meta//article-title" id="article-title-tests">
+      <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
+      <let name="count" value="string-length(.)"/>
+      <report test="($count gt 140)" role="warning" id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
+      <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>
     </rule>
   </pattern>
 </schema>
