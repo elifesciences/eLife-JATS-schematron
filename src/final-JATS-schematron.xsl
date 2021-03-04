@@ -5044,7 +5044,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[test-journal-nlm] journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is <xsl:text/>
+               <svrl:text>[test-journal-nlm] journal-id[@journal-id-type='nlm-ta'] must only contain 'elife'. Currently it is <xsl:text/>
                   <xsl:value-of select="journal-id[@journal-id-type='nlm-ta']"/>
                   <xsl:text/>
                </svrl:text>
@@ -31607,36 +31607,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-ncbi-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-ncbi-test-3] Data reference with an NCBI link '<xsl:text/>
-               <xsl:value-of select="pub-id[1]/@xlink:href"/>
-               <xsl:text/>' is not marked with NCBI as its assigning authority, which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[1][@assigning-authority!='NCBI' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-ncbi-test-4</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-4</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-ncbi-test-4] Data reference with the database source '<xsl:text/>
-               <xsl:value-of select="source[1]"/>
-               <xsl:text/>' is not marked with NCBI as its assigning authority, which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')">
             <xsl:attribute name="id">data-dryad-test-1</xsl:attribute>
@@ -31673,23 +31643,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (pub-id[1][@assigning-authority!='Dryad' or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (pub-id[1][@assigning-authority!='Dryad' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-dryad-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-dryad-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a Dryad type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not Dryad, which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')">
             <xsl:attribute name="id">data-rcsbpbd-test-1</xsl:attribute>
@@ -31703,21 +31656,6 @@
                <xsl:text/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and  pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-rcsbpbd-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-rcsbpbd-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'http://www.rcsb.org' type link, but is not marked with PDB as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -31754,21 +31692,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and  pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@assigning-authority!='EMDB' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-emdb-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-emdb-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked with EMDB as its assigning authority, which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]">
             <xsl:attribute name="id">data-emdb-test-3</xsl:attribute>
@@ -31801,21 +31724,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-empiar-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-empiar-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but is not marked with EBI as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-2</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')">
             <xsl:attribute name="id">data-arrayexpress-test-1</xsl:attribute>
@@ -31829,21 +31737,6 @@
                <xsl:text/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but the database name is not 'ArrayExpress' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-arrayexpress-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-arrayexpress-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but is not marked with EBI as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -31876,21 +31769,6 @@
                <xsl:text/>' has a 'www.ebi.ac.uk/pride' type link, but the database name is not 'PRIDE' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and  pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and pub-id[1][@assigning-authority!='EBI' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-pride-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-pride-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'www.ebi.ac.uk/pride' type link, but is not marked with EBI as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -31944,23 +31822,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (pub-id[1][@assigning-authority!='Zenodo' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-zenodo-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-zenodo-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a Zenodo type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not Zenodo, which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')">
             <xsl:attribute name="id">data-osf-test-1</xsl:attribute>
@@ -31974,21 +31835,6 @@
                <xsl:text/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-osf-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-osf-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'https://osf.io' type link, but is not marked with Open Science Framework as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32021,23 +31867,6 @@
                <xsl:text/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (pub-id[1][@assigning-authority!='Open Science Framework' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-osf-test-5</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-5</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-osf-test-5] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a OSF type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not Open Science Framework, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32076,23 +31905,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (pub-id[1][@assigning-authority!='figshare' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-figshare-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-figshare-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a figshare type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not figshare, which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')">
             <xsl:attribute name="id">data-proteomexchange-test-1</xsl:attribute>
@@ -32106,21 +31918,6 @@
                <xsl:text/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but the database name is not 'ProteomeXchange' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-proteomexchange-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-proteomexchange-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32174,23 +31971,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-openneuro-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-openneuro-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a OpenNeuro type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')">
             <xsl:attribute name="id">data-synapse-test-1</xsl:attribute>
@@ -32225,23 +32005,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-synapse-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-synapse-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a Synapse type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')">
             <xsl:attribute name="id">data-bmrb-test-1</xsl:attribute>
@@ -32255,21 +32018,6 @@
                <xsl:text/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-bmrb-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-bmrb-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32302,21 +32050,6 @@
                <xsl:text/>' has a 'www.morphdbase.de' type link, but the database name is not 'Morph D Base' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-morphdbase-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-morphdbase-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'www.morphdbase.de' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32370,23 +32103,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-mendeley-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-mendeley-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a Mendeley Data type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')">
             <xsl:attribute name="id">data-edatashare-test-1</xsl:attribute>
@@ -32417,23 +32133,6 @@
                <xsl:text/>' has the database name <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>, but no doi starting with '10.7488', which is incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (pub-id[1][@assigning-authority!='Edinburgh University' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-edatashare-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-edatashare-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has an Edinburgh DataShare type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'Edinburgh University', which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32472,23 +32171,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-eth-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-eth-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a ETH Library research collection type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')">
             <xsl:attribute name="id">data-crcns-test-1</xsl:attribute>
@@ -32519,23 +32201,6 @@
                <xsl:text/>' has the database name <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>, but no doi starting with '10.6080', which is incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-crcns-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-crcns-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a CRCNS type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32574,23 +32239,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-morphosource-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-morphosource-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a MorphoSource type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and not(source[1]='NeuroVault')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and not(source[1]='NeuroVault')">
             <xsl:attribute name="id">data-neurovault-test-1</xsl:attribute>
@@ -32604,21 +32252,6 @@
                <xsl:text/>' has a 'neurovault.org/collections' type link, but the database name is not 'NeuroVault' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-neurovault-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-neurovault-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'neurovault.org/collections' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32672,23 +32305,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (pub-id[1][@assigning-authority!='PDB' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-wwpdb-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-wwpdb-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a Worldwide Protein Data Bank type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'PDB', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')">
             <xsl:attribute name="id">data-sbgdb-test-1</xsl:attribute>
@@ -32719,23 +32335,6 @@
                <xsl:text/>' has the database name <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-sbgdb-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-sbgdb-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a SBGrid Data Bank type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32774,23 +32373,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (pub-id[1][@assigning-authority!='other'  or not(@assigning-authority)])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (pub-id[1][@assigning-authority!='other' or not(@assigning-authority)])">
-            <xsl:attribute name="id">data-harvard-dataverse-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-harvard-dataverse-test-3] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a Harvard Dataverse type doi - <xsl:text/>
-               <xsl:value-of select="pub-id[1][@pub-id-type='doi']"/>
-               <xsl:text/>, but the assigning authority is not 'other', which must be incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and not(source[1]='ENCODE')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and not(source[1]='ENCODE')">
             <xsl:attribute name="id">data-encode-test-1</xsl:attribute>
@@ -32804,21 +32386,6 @@
                <xsl:text/>' has a 'www.encodeproject.org' type link, but the database name is not 'ENCODE' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-encode-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-encode-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'www.encodeproject.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32851,21 +32418,6 @@
                <xsl:text/>' has a 'www.emdataresource.org' type link, but the database name is not 'EMDataResource' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and  pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and pub-id[1][@assigning-authority!='other' or not(@assigning-authority)]">
-            <xsl:attribute name="id">data-emdr-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-emdr-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'www.emdataresource.org' type link, but is not marked with 'other' as its assigning authority, which must be incorrect. https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-2</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -33250,15 +32802,15 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation/pub-id[@assigning-authority='Dryad'])">
+      <xsl:if test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation[contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))]])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Dd]ryad') and not(parent::sec//element-citation[contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))]])">
             <xsl:attribute name="id">final-das-dryad-conformity</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-dryad-conformity</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[final-das-dryad-conformity] Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad assigning authority.</svrl:text>
+            <svrl:text>[final-das-dryad-conformity] Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad doi and/or database name containing 'Dryad'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
