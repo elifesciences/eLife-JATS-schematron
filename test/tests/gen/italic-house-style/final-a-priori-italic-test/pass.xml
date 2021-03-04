@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="a-priori-italic-test.sch"?>
-<!--Context: italic[not(ancestor::ref) and not(ancestor::sub-article)]
-Test: report    matches(.,'[Aa] [Pp]riori')
-Message:  element contains 'a priori' - this should not be in italics (eLife house style). -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <italic>test</italic>
-  </article>
-</root>
