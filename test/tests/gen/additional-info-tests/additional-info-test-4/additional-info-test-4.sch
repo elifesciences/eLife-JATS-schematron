@@ -942,7 +942,7 @@
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types, 'review-article')"/>
+      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
       <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" role="error" id="additional-info-test-4">
         <value-of select="$article-type"/> type articles should not contain author contributions.</report>
     </rule>

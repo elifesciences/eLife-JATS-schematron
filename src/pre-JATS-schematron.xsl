@@ -6235,7 +6235,7 @@
 
 
 	  <!--RULE auth-cont-tests-->
-   <xsl:template match="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" priority="1000" mode="M64">
+   <xsl:template match="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" priority="1000" mode="M64">
 
 		<!--ASSERT warning-->
       <xsl:choose>
@@ -6264,7 +6264,7 @@
 
 
 	  <!--RULE collab-cont-tests-->
-   <xsl:template match="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" priority="1000" mode="M65">
+   <xsl:template match="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab]" priority="1000" mode="M65">
 
 		<!--ASSERT warning-->
       <xsl:choose>
@@ -17442,7 +17442,7 @@
    <xsl:template match="sec[@sec-type='additional-information']" priority="1000" mode="M250">
       <xsl:variable name="article-type" select="ancestor::article/@article-type"/>
       <xsl:variable name="author-count" select="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <xsl:variable name="non-contribs" select="('article-commentary', 'editorial', 'book-review', $notice-article-types, 'review-article')"/>
+      <xsl:variable name="non-contribs" select="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -17472,8 +17472,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))         else ()">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution'])) else ()">
+      <xsl:if test="if ($article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))         else ()">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution'])) else ()">
             <xsl:attribute name="id">pre-additional-info-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
