@@ -939,14 +939,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="collab-cont-test-1">
         <value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" role="error" id="collab-cont-tests-xspec-assert">article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab] must be present.</assert>
+      <assert test="descendant::article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab]" role="error" id="collab-cont-tests-xspec-assert">article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1239,13 +1239,13 @@
     </rule>
   </pattern>
   <pattern id="auth-cont-tests-pattern">
-    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
       
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="auth-cont-test-1">[auth-cont-test-1] <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="collab-cont-tests-pattern">
-    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
       
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" id="collab-cont-test-1">[collab-cont-test-1] <value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
@@ -3551,7 +3551,7 @@
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types, 'review-article')"/>
+      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
       
       <assert test="parent::back" role="error" id="additional-info-test-1">[additional-info-test-1] sec[@sec-type='additional-information'] must be a child of back.</assert>
       
@@ -3560,7 +3560,7 @@
       
       
       
-      <report test="if ($article-type = 'research-article') then (not(fn-group[@content-type='author-contribution']))         else ()" role="warning" id="pre-additional-info-test-3">[pre-additional-info-test-3] Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
+      <report test="if ($article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))         else ()" role="warning" id="pre-additional-info-test-3">[pre-additional-info-test-3] Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
       
       <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" role="error" id="additional-info-test-4">[additional-info-test-4] <value-of select="$article-type"/> type articles should not contain author contributions.</report>
       

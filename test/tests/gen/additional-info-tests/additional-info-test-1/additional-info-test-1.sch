@@ -942,7 +942,7 @@
     <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
-      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types, 'review-article')"/>
+      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
       <assert test="parent::back" role="error" id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
     </rule>
   </pattern>
