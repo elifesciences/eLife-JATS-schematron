@@ -7476,6 +7476,38 @@
         <x:expect-not-assert id="dec-letter-body-p-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="dec-letter-box-tests">
+      <x:scenario label="dec-letter-box-test-1-pass">
+        <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-1/pass.xml"/>
+        <x:expect-not-assert id="dec-letter-box-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-box-test-1-fail">
+        <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-1/fail.xml"/>
+        <x:expect-assert id="dec-letter-box-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-box-test-2-pass">
+        <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-2/pass.xml"/>
+        <x:expect-not-report id="dec-letter-box-test-2" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-box-test-2-fail">
+        <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-2/fail.xml"/>
+        <x:expect-report id="dec-letter-box-test-2" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-box-test-3-pass">
+        <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-3/pass.xml"/>
+        <x:expect-not-report id="dec-letter-box-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-box-test-3-fail">
+        <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-3/fail.xml"/>
+        <x:expect-report id="dec-letter-box-test-3" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="decision-missing-table-tests">
       <x:scenario label="decision-missing-table-test-pass">
         <x:context href="../tests/gen/decision-missing-table-tests/decision-missing-table-test/pass.xml"/>
