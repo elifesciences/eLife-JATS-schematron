@@ -947,8 +947,8 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">
-        <value-of select="."/> - It looks like the citation content does not match what it directs to.</assert>
+      <assert test="contains(.,$last-rid-no)" role="warning" id="supp-file-xref-conformity-4">
+        <value-of select="."/> - It looks like the citation content does not match what it directs to. The only case where this can be ignored is if this points to an audio file.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

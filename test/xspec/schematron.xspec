@@ -11823,12 +11823,12 @@
       </x:scenario>
       <x:scenario label="supp-file-xref-conformity-4-pass">
         <x:context href="../tests/gen/supp-file-xref-conformance/supp-file-xref-conformity-4/pass.xml"/>
-        <x:expect-not-assert id="supp-file-xref-conformity-4" role="error"/>
+        <x:expect-not-assert id="supp-file-xref-conformity-4" role="warning"/>
         <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="supp-file-xref-conformity-4-fail">
         <x:context href="../tests/gen/supp-file-xref-conformance/supp-file-xref-conformity-4/fail.xml"/>
-        <x:expect-assert id="supp-file-xref-conformity-4" role="error"/>
+        <x:expect-assert id="supp-file-xref-conformity-4" role="warning"/>
         <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="supp-file-xref-conformity-5-pass">

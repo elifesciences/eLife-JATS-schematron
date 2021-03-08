@@ -26167,19 +26167,19 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="contains(.,$last-rid-no)"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,$last-rid-no)">
                <xsl:attribute name="id">supp-file-xref-conformity-4</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[supp-file-xref-conformity-4] <xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/> - It looks like the citation content does not match what it directs to.</svrl:text>
+                  <xsl:text/> - It looks like the citation content does not match what it directs to. The only case where this can be ignored is if this points to an audio file.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

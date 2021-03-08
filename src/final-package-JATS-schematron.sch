@@ -5703,8 +5703,8 @@
       <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-3">
         <value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
-      <assert test="contains(.,$last-rid-no)" role="error" id="supp-file-xref-conformity-4">
-        <value-of select="."/> - It looks like the citation content does not match what it directs to.</assert>
+      <assert test="contains(.,$last-rid-no)" role="warning" id="supp-file-xref-conformity-4">
+        <value-of select="."/> - It looks like the citation content does not match what it directs to. The only case where this can be ignored is if this points to an audio file.</assert>
       
       <assert test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-5">
         <value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
