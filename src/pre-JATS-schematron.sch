@@ -174,6 +174,18 @@
       <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Scheme'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix scheme'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -3699,7 +3711,7 @@
       <let name="permitted-text-2" value="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.'"/>
       <let name="permitted-text-3" value="'In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.'"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-1" test=".=($permitted-text-1,$permitted-text-2,$permitted-text-3)" role="error" flag="dl-ar" id="dec-letter-box-test-1">[dec-letter-box-test-1] The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-1" test=".=($permitted-text-1,$permitted-text-2,$permitted-text-3)" role="warning" flag="dl-ar" id="dec-letter-box-test-1">[dec-letter-box-test-1] The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-2" test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" role="error" flag="dl-ar" id="dec-letter-box-test-2">[dec-letter-box-test-2] At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
       
@@ -5402,9 +5414,9 @@
       
       <assert test="matches(.,'\p{N}')" role="error" id="fig-xref-conformity-1">[fig-xref-conformity-1] <value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="($type = 'Figure') and not(contains($no,$target-no))" role="error" id="fig-xref-conformity-2">[fig-xref-conformity-2] <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      <report test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" role="error" id="fig-xref-conformity-2">[fig-xref-conformity-2] <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report test="($type = 'Figure') and ($no != $target-no)" role="warning" id="fig-xref-conformity-3">[fig-xref-conformity-3] <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
+      <report test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)" role="warning" id="fig-xref-conformity-3">[fig-xref-conformity-3] <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
       <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">[fig-xref-conformity-4] <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
