@@ -154,6 +154,18 @@
          <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
             <xsl:value-of select="'Author response figure'"/>
          </xsl:when>
+         <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+            <xsl:value-of select="'Chemical structure'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+            <xsl:value-of select="'Appendix chemical structure'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+            <xsl:value-of select="'Scheme'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+            <xsl:value-of select="'Appendix scheme'"/>
+         </xsl:when>
          <xsl:otherwise>
             <xsl:value-of select="'undefined'"/>
          </xsl:otherwise>
@@ -18213,7 +18225,7 @@
       <xsl:variable name="permitted-text-2" select="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.'"/>
       <xsl:variable name="permitted-text-3" select="'In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.'"/>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test=".=($permitted-text-1,$permitted-text-2,$permitted-text-3)"/>
          <xsl:otherwise>
@@ -18221,7 +18233,7 @@
                <xsl:attribute name="id">dec-letter-box-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -25820,8 +25832,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="($type = 'Figure') and not(contains($no,$target-no))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = 'Figure') and not(contains($no,$target-no))">
+      <xsl:if test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))">
             <xsl:attribute name="id">fig-xref-conformity-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -25834,8 +25846,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($type = 'Figure') and ($no != $target-no)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = 'Figure') and ($no != $target-no)">
+      <xsl:if test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)">
             <xsl:attribute name="id">fig-xref-conformity-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
