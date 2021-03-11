@@ -7479,12 +7479,12 @@
     <x:scenario label="dec-letter-box-tests">
       <x:scenario label="dec-letter-box-test-1-pass">
         <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-1/pass.xml"/>
-        <x:expect-not-assert id="dec-letter-box-test-1" role="error"/>
+        <x:expect-not-assert id="dec-letter-box-test-1" role="warning"/>
         <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-box-test-1-fail">
         <x:context href="../tests/gen/dec-letter-box-tests/dec-letter-box-test-1/fail.xml"/>
-        <x:expect-assert id="dec-letter-box-test-1" role="error"/>
+        <x:expect-assert id="dec-letter-box-test-1" role="warning"/>
         <x:expect-not-assert id="dec-letter-box-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="dec-letter-box-test-2-pass">
