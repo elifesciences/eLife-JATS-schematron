@@ -5953,8 +5953,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')">
+      <xsl:if test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')">
             <xsl:attribute name="id">article-title-test-10</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -6558,9 +6558,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)"/>
+         <xsl:when test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)">
                <xsl:attribute name="id">surname-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -6685,9 +6685,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)"/>
+         <xsl:when test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)">
                <xsl:attribute name="id">given-names-test-5</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -26367,6 +26367,34 @@
             <svrl:text>[supp-xref-test-6] citation contains '—Source' (<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains($rid,'data') and matches(.,'[Ss]ource datas')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains($rid,'data') and matches(.,'[Ss]ource datas')">
+            <xsl:attribute name="id">supp-file-xref-conformity-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[supp-file-xref-conformity-6] <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains($rid,'code') and matches(.,'[Ss]ource codes')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains($rid,'code') and matches(.,'[Ss]ource codes')">
+            <xsl:attribute name="id">supp-file-xref-conformity-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[supp-file-xref-conformity-7] <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M384"/>

@@ -1418,7 +1418,8 @@
         role="error" 
         id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/></report>
 	  
-	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" 
+	  <!-- exception for articles with structured abstracts -->
+	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')" 
         role="warning" 
         id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/></report>
 	  
@@ -1592,7 +1593,7 @@
         role="error" 
         id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" 
+	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)" 
         role="error" 
         id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
@@ -1628,7 +1629,7 @@
         role="error" 
         id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)" 
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" 
         role="error" 
         id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
@@ -8318,6 +8319,14 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report test="contains(.,'—Source')" 
         role="warning" 
         id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
+      
+      <report test="contains($rid,'data') and matches(.,'[Ss]ource datas')" 
+        role="error" 
+        id="supp-file-xref-conformity-6"><value-of select="."/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</report>
+      
+      <report test="contains($rid,'code') and matches(.,'[Ss]ource codes')" 
+        role="error" 
+        id="supp-file-xref-conformity-7"><value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
       
     </rule>
   </pattern>
