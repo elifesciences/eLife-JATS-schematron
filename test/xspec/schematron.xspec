@@ -11933,6 +11933,26 @@
         <x:expect-report id="supp-xref-test-6" role="warning"/>
         <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="supp-file-xref-conformity-6-pass">
+        <x:context href="../tests/gen/supp-file-xref-conformance/supp-file-xref-conformity-6/pass.xml"/>
+        <x:expect-not-report id="supp-file-xref-conformity-6" role="error"/>
+        <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supp-file-xref-conformity-6-fail">
+        <x:context href="../tests/gen/supp-file-xref-conformance/supp-file-xref-conformity-6/fail.xml"/>
+        <x:expect-report id="supp-file-xref-conformity-6" role="error"/>
+        <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supp-file-xref-conformity-7-pass">
+        <x:context href="../tests/gen/supp-file-xref-conformance/supp-file-xref-conformity-7/pass.xml"/>
+        <x:expect-not-report id="supp-file-xref-conformity-7" role="error"/>
+        <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supp-file-xref-conformity-7-fail">
+        <x:context href="../tests/gen/supp-file-xref-conformance/supp-file-xref-conformity-7/fail.xml"/>
+        <x:expect-report id="supp-file-xref-conformity-7" role="error"/>
+        <x:expect-not-assert id="supp-file-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="equation-xref-conformance">
       <x:scenario label="equ-xref-conformity-1-pass">

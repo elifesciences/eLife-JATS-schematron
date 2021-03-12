@@ -950,14 +950,22 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+  <pattern id="supp-xref-pattern">
+    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+      <let name="rid" value="@rid"/>
+      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
+      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
+      <let name="pre-text" value="preceding-sibling::text()[1]"/>
+      <let name="post-text" value="following-sibling::text()[1]"/>
+      <report test="contains($rid,'code') and matches(.,'[Ss]ource codes')" role="error" id="supp-file-xref-conformity-7">
+        <value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

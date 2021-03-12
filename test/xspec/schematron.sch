@@ -1374,7 +1374,7 @@
 		
     <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" role="error" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)" role="error" id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
 	  <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[rn]? |^van |^von |^el |^te[rn] '))" role="warning" id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
 	  
@@ -1395,7 +1395,7 @@
 		
     	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
 	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  
@@ -5747,6 +5747,12 @@
       <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
       <report test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
+      
+      <report test="contains($rid,'data') and matches(.,'[Ss]ource datas')" role="error" id="supp-file-xref-conformity-6">
+        <value-of select="."/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</report>
+      
+      <report test="contains($rid,'code') and matches(.,'[Ss]ource codes')" role="error" id="supp-file-xref-conformity-7">
+        <value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
       
     </rule>
   </pattern>
