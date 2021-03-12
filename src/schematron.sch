@@ -1418,7 +1418,8 @@
         role="error" 
         id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/></report>
 	  
-	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" 
+	  <!-- exception for articles with structured abstracts -->
+	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')" 
         role="warning" 
         id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/></report>
 	  
