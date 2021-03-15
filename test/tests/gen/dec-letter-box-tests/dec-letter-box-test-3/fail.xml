@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="dec-letter-box-test-3.sch"?>
+<!--Context: sub-article[@article-type='decision-letter']/body/boxed-text[1]
+Test: report    (.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])
+Message: At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article article-type="decision-letter">
+      <body>
+        <boxed-text><p>Our editorial process produces two outputs: i) <ext-link ext-link-type="uri" xlink:href="https://sciety.org/articles/activity/10.1101/2020.12.12.422520">public reviews</ext-link> designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.</p></boxed-text>
+      </body>
+    </sub-article>
+  </article>
+</root>

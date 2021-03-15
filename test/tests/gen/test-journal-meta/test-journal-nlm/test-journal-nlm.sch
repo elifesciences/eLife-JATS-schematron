@@ -165,6 +165,18 @@
       <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Scheme'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix scheme'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -985,7 +997,7 @@
   </xsl:function>
   <pattern id="journal-meta">
     <rule context="article/front/journal-meta" id="test-journal-meta">
-      <assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" role="error" id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/>
+      <assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" role="error" id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'elife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/>
       </assert>
     </rule>
   </pattern>

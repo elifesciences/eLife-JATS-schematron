@@ -165,6 +165,18 @@
       <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Scheme'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix scheme'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -990,7 +1002,7 @@
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="table-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

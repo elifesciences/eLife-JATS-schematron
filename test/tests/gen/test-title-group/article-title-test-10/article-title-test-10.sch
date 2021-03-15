@@ -165,6 +165,18 @@
       <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Scheme'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix scheme'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -990,7 +1002,7 @@
       <let name="title" value="replace(article-title[1],'\p{P}','')"/>
       <let name="body" value="ancestor::front/following-sibling::body[1]"/>
       <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return      if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
-      <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
+      <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')" role="warning" id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/>
       </report>
     </rule>
   </pattern>

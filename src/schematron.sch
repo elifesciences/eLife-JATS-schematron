@@ -212,6 +212,18 @@
       <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Scheme'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix scheme'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -1183,7 +1195,7 @@
 	 
 		<assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" 
         role="error" 
-        id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/></assert>
+        id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'elife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/></assert>
 		  
 		<assert test="journal-id[@journal-id-type='publisher-id'] = 'eLife'" 
         role="error" 
@@ -1475,7 +1487,8 @@
         role="error" 
         id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/></report>
 	  
-	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and contains(article-title[1],':')" 
+	  <!-- exception for articles with structured abstracts -->
+	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')" 
         role="warning" 
         id="article-title-test-10">Article title contains a colon. This almost never allowed. - <value-of select="article-title"/></report>
 	  
@@ -1569,7 +1582,7 @@
       
     </rule>
     
-    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and not(ancestor::collab)]" id="auth-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and not(ancestor::collab)]" id="auth-cont-tests">
       
       <assert test="role" 
         role="warning" 
@@ -1580,7 +1593,7 @@
         id="final-auth-cont-test-1"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
     
-    <rule context="article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
       
       <assert test="role" 
         role="warning" 
@@ -1724,7 +1737,7 @@
         role="error" 
         id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'-]*$&quot;)" 
+	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)" 
         role="error" 
         id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
@@ -1760,7 +1773,7 @@
         role="error" 
         id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'-]*$&quot;)" 
+      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" 
         role="error" 
         id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
@@ -2224,13 +2237,13 @@
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
-      <report test="($count gt 180)" 
+      <report test="($count gt 280)" 
         role="warning" 
-        id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+        id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
 	     
-      <report test="($count gt 180)" 
+      <report test="($count gt 280)" 
         role="warning" 
-        id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 180. Abstracts with more than 180 words should be checked with the eLife Editorial team.</report>
+        id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Abstracts with more than 180 words should be checked with the eLife Editorial team.</report>
 	   </rule>
     
     <rule context="article-meta/abstract[@abstract-type='toc']" 
@@ -2258,9 +2271,9 @@
         id="impact-statement-test-1">The abstract for the impact statement cannot be empty.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-5" 
-        test="($count gt 30)" 
+        test="($count gt 40)" 
         role="warning" 
-        id="impact-statement-test-2">Impact statement contains more than 30 words (<value-of select="$count"/>). This is not allowed.</report>
+        id="impact-statement-test-2">Impact statement contains more than 40 words (<value-of select="$count"/>). This is not allowed.</report>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#pre-custom-meta-test-6" 
         test="matches(.,'[\.|\?]$')" 
@@ -2908,8 +2921,8 @@ else self::*/local-name() = $allowed-p-blocks"
         id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
       <report test="ends-with(.,';') or ends-with(.,'; ')" 
-        role="warning" 
-        id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is almost definitely incorrect. The semi-colon should very likely be placed after the link as 'normal' text.</report>
+        role="error" 
+        id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
       
     </rule>
     
@@ -4649,6 +4662,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article-meta//article-title" id="article-title-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='heading']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
+      <let name="count" value="string-length(.)"/>
       
       <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))
         else ()" 
@@ -4666,6 +4680,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="($type = 'Scientific Correspondence') and matches(.,'”')" 
         role="warning" 
         id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
+    
+      <report test="($count gt 140)" 
+        role="warning" 
+        id="pre-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+      
+      <report test="($count gt 140)" 
+        role="warning" 
+        id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
     </rule>
     
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
@@ -5665,6 +5687,30 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
     
+    <rule context="sub-article[@article-type='decision-letter']/body/boxed-text[1]" id="dec-letter-box-tests">  
+      <let name="permitted-text-1" value="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below.'"/>
+      <let name="permitted-text-2" value="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.'"/>
+      <let name="permitted-text-3" value="'In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.'"/>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-1" 
+        test=".=($permitted-text-1,$permitted-text-2,$permitted-text-3)" 
+        role="warning" 
+        flag="dl-ar"
+        id="dec-letter-box-test-1">The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-2" 
+        test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" 
+        role="error" 
+        flag="dl-ar"
+        id="dec-letter-box-test-2">At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-2" 
+        test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" 
+        role="error" 
+        flag="dl-ar"
+        id="dec-letter-box-test-3">At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint.</report>
+    </rule>
+    
     <rule context="sub-article[@article-type='referee-report']" 
       id="decision-missing-table-tests">
       
@@ -6599,9 +6645,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="err-elem-cit-preprint-10-1">One &lt;pub-id&gt; element is allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-3" 
-        test="count(pub-id)=1 or count(ext-link)=1" 
+        test="count(pub-id[@pub-id-type='doi'])=1 or count(ext-link)=1" 
         role="error" 
-        id="err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+        id="err-elem-cit-preprint-10-3">Either one &lt;pub-id pub-id-type="doi"&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-13" 
         test="count(*) = count(person-group| article-title| source| year| pub-id| ext-link)" 
@@ -7998,7 +8044,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-22" 
         test="matches($post-sentence,'^\)[A-Za-z0-9]')" 
         role="warning" 
-        id="ref-xref-test-22">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
+        id="ref-xref-test-22">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-26" 
         test="matches($pre-text,'; \[$')" 
@@ -8085,7 +8131,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         else if ($x/local-name() = 'xref') then ()
         else $x/text(),'')"/>
       
-      <report test="matches($article-text,$regex)" 
+      <report test="matches(lower-case($article-text),lower-case($regex))" 
         role="warning" 
         id="text-v-object-cite-test"><value-of select="$cite1"/> has possible unlinked citations in the text.</report>
       
@@ -8131,13 +8177,13 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
-        id="vid-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        id="vid-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
         role="error" 
         id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s—\-][\s]?$')" 
+      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')" 
         role="error" 
         id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
@@ -8163,11 +8209,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="error" 
         id="fig-xref-conformity-1"><value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="($type = 'Figure') and not(contains($no,$target-no))" 
+      <report test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" 
         role="error" 
         id="fig-xref-conformity-2"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report test="($type = 'Figure') and ($no != $target-no)" 
+      <report test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)" 
         role="warning" 
         id="fig-xref-conformity-3"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
@@ -8205,7 +8251,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
-        id="fig-xref-test-7">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        id="fig-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'their $')" 
         role="warning" 
@@ -8215,15 +8261,15 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ff]igure supplement')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')" 
         role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Vv]ideo')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" 
         role="error" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
         role="warning" 
         id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
@@ -8292,7 +8338,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" 
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
-        id="table-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        id="table-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4" 
         test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
@@ -8349,7 +8395,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
-        id="supp-xref-test-3">citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+        id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s—\-][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s—\-][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s—\-][\s]?$')" 
         role="error" 
@@ -8362,6 +8408,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report test="contains(.,'—Source')" 
         role="warning" 
         id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
+      
+      <report test="contains($rid,'data') and matches(.,'[Ss]ource datas')" role="error" id="supp-file-xref-conformity-6">[supp-file-xref-conformity-6] <value-of select="."/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</report>
+      
+      <report test="contains($rid,'code') and matches(.,'[Ss]ource codes')" role="error" id="supp-file-xref-conformity-7">[supp-file-xref-conformity-7] <value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
       
     </rule>
     

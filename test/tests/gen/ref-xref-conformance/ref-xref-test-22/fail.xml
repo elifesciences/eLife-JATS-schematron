@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-xref-test-22.sch"?>
 <!--Context: xref[@ref-type='bibr']
 Test: report    matches($post-sentence,'^\)[A-Za-z0-9]')
-Message: citation is followed by a ')' which in turns is immediately followed by a letter or number. Is there a space missing after the ')'?  - ''. -->
+Message: citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>

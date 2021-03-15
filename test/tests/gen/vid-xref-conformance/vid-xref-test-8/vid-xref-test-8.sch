@@ -165,6 +165,18 @@
       <xsl:when test="matches($s,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')">
         <xsl:value-of select="'Author response figure'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'^C[0-9]{1,3}$|^chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}C[0-9]{1,3}$|^app[0-9]{1,3}chem[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix chemical structure'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^S[0-9]{1,3}$|^scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Scheme'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'^app[0-9]{1,3}S[0-9]{1,3}$|^app[0-9]{1,3}scheme[0-9]{1,3}$')">
+        <xsl:value-of select="'Appendix scheme'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
@@ -989,7 +1001,7 @@
       <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-journal-nlm.sch"?>
 <!--Context: article/front/journal-meta
 Test: assert    journal-id[@journal-id-type='nlm-ta'] = 'elife'
-Message: journal-id[@journal-id-type='nlm-ta'] must only contain 'eLife'. Currently it is  -->
+Message: journal-id[@journal-id-type='nlm-ta'] must only contain 'elife'. Currently it is  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

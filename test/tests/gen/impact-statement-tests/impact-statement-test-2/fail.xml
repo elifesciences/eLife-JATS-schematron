@@ -1,12 +1,12 @@
 <?oxygen SCHSchema="impact-statement-test-2.sch"?>
 <!--Context: article-meta/abstract[@abstract-type='toc']/p[1]
-Test: report    ($count gt 30)
-Message: Impact statement contains more than 30 words (). This is not allowed. -->
+Test: report    ($count gt 40)
+Message: Impact statement contains more than 40 words (). This is not allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>
       <abstract abstract-type="toc">
-        <p>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31.</p>
+        <p>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41.</p>
       </abstract>
     </article-meta>
   </article>

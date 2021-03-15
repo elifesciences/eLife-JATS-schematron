@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="supp-file-xref-conformity-6.sch"?>
+<!--Context: xref[@ref-type='supplementary-material']
+Test: report    contains($rid,'data') and matches(.,'[Ss]ource datas')
+Message: [supp-file-xref-conformity-6]  - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p><xref ref-type="supplementary-material" rid="sdata1">Source datas 1</xref> </p>
+    </body>
+  </article>
+</root>

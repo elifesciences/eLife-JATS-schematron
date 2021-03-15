@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-collab-cont-test-1.sch"?>
-<!--Context: article[@article-type='research-article']//article-meta//contrib[(@contrib-type='author') and child::collab]
+<!--Context: article[@article-type=('research-article','review-article')]//article-meta//contrib[(@contrib-type='author') and child::collab]
 Test: assert    role
 Message:  has no contributions. Please ensure to query this with the authors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
