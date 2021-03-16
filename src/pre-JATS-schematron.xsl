@@ -21662,6 +21662,24 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="ext-link and pub-id[@pub-id-type='doi']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ext-link and pub-id[@pub-id-type='doi']">
+            <xsl:attribute name="id">err-elem-cit-report-14</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[err-elem-cit-report-14] Report reference cannot have both a doi and a URL. Reference '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has a doi (<xsl:text/>
+               <xsl:value-of select="pub-id[@pub-id-type='doi']"/>
+               <xsl:text/>) and a URL (<xsl:text/>
+               <xsl:value-of select="ext-link"/>
+               <xsl:text/>).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M329"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M329"/>
