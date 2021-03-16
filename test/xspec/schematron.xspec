@@ -9365,6 +9365,16 @@
         <x:expect-assert id="err-elem-cit-report-15" role="error"/>
         <x:expect-not-assert id="elem-citation-report-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="err-elem-cit-report-14-pass">
+        <x:context href="../tests/gen/elem-citation-report/err-elem-cit-report-14/pass.xml"/>
+        <x:expect-not-report id="err-elem-cit-report-14" role="error"/>
+        <x:expect-not-assert id="elem-citation-report-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-report-14-fail">
+        <x:context href="../tests/gen/elem-citation-report/err-elem-cit-report-14/fail.xml"/>
+        <x:expect-report id="err-elem-cit-report-14" role="error"/>
+        <x:expect-not-assert id="elem-citation-report-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-report-preson-group">
       <x:scenario label="err-elem-cit-report-2-2-pass">

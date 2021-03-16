@@ -6574,6 +6574,10 @@ else self::*/local-name() = $allowed-p-blocks"
         &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
+      <report test="ext-link and pub-id[@pub-id-type='doi']" 
+        role="error" 
+        id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
+      
     </rule>
     
     <rule context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
