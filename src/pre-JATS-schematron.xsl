@@ -28,7 +28,7 @@
          <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
             <xsl:value-of select="lower-case($s)"/>
          </xsl:when>
-         <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
+         <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor','aids','covid-19','covid')">
             <xsl:value-of select="upper-case($s)"/>
          </xsl:when>
          <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -63,7 +63,7 @@
          <xsl:when test="lower-case($s)=('and','or','the','an','of')">
             <xsl:value-of select="lower-case($s)"/>
          </xsl:when>
-         <xsl:when test="lower-case($s)=('rna','dna')">
+         <xsl:when test="lower-case($s)=('rna','dna','hiv','aids','covid-19','covid')">
             <xsl:value-of select="upper-case($s)"/>
          </xsl:when>
          <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -33456,7 +33456,7 @@
                   <xsl:value-of select="name()"/>
                   <xsl:text/> element) containing '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>' has a color style which is not red, blue or purple - '<xsl:text/>
+                  <xsl:text/>' has a colour style which is not red, blue or purple - '<xsl:text/>
                   <xsl:value-of select="@mathcolor"/>
                   <xsl:text/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</svrl:text>
             </svrl:failed-assert>

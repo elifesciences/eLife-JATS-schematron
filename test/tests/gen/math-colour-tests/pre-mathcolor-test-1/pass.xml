@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-mathcolor-test-1.sch"?>
 <!--Context: mml:*[@mathcolor]
 Test: assert    @mathcolor = $allowed-values
-Message: math ( element) containing '' has a color style which is not red, blue or purple - '' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'. -->
+Message: math ( element) containing '' has a colour style which is not red, blue or purple - '' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <mml:math>
