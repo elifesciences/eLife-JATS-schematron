@@ -958,7 +958,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="matches($post-text,'^\-[A-Za-z0-9]')" role="warning" id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-18" test="matches($post-text,'^\-[A-Za-z0-9]')" role="warning" id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -955,7 +955,7 @@
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby')"/>
-      <report test="$parent = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-parent-test" test="$parent = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

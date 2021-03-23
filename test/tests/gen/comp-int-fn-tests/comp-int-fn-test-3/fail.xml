@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="comp-int-fn-test-3.sch"?>
+<!--Context: fn-group[@content-type='competing-interest']/fn
+Test: report    contains(lower-case(.),'the other authors')
+Message: Competing interests footnote contains information about other authors - ''. These footnotes should only contain information about that specific author. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fn-group content-type="competing-interest">
+      <fn><p>the other authors declare blah blah</p></fn>
+    </fn-group>
+  </article>
+</root>

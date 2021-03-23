@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="double-sup-sub.sch"?>
+<!--Context: sub|sup
+Test: report    parent::*/name() = name()
+Message:  is captured as a child of , which is not permitted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sup><sup/></sup>
+    <sub><sub/></sub>
+  </article>
+</root>

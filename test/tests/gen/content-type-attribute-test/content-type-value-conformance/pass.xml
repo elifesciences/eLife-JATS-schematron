@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="content-type-value-conformance.sch"?>
+<!--Context: *[@content-type]
+Test: assert    name()=$allowed-elements
+Message:  element cannot have a content-type attribute. The only elements that can have that can have a content-type attribtue are named-content, contrib-group, self-uri, institution, fn-group, and disp-quote. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <named-content content-type="test"/>
+    <contrib-group content-type="test"/>
+    <self-uri content-type="test"/>
+    <institution content-type="test"/>
+    <fn-group content-type="test"/>
+    <disp-quote content-type="test"/>
+  </article>
+</root>

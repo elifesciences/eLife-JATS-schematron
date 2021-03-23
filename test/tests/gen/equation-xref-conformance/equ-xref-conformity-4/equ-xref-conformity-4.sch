@@ -956,7 +956,7 @@
       <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report test="matches($prec-text,'cf[\.]?\s?[\(]?$')" role="warning" id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-4" test="matches($prec-text,'cf[\.]?\s?[\(]?$')" role="warning" id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -958,7 +958,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-9" test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

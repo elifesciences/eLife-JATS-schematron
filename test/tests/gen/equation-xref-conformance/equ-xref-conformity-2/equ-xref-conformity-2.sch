@@ -956,7 +956,7 @@
       <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert test="contains(.,$label)" role="warning" id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2" test="contains(.,$label)" role="warning" id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

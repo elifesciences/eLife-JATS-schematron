@@ -958,7 +958,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-6" test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" role="error" id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

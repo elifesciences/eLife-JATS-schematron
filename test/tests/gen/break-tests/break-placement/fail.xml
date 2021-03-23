@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="break-placement.sch"?>
+<!--Context: break
+Test: assert    ancestor::td or ancestor::th
+Message: The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <title><break/></title>
+    <p><break/></p>
+    <sec><break/></sec>
+    <label><break/></label>
+  </article>
+</root>

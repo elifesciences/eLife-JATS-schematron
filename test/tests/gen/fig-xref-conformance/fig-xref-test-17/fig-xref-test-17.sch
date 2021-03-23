@@ -958,7 +958,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="matches(.,'[A-Z]$') and matches($post-text,'^\s?and [A-Z] |^\s?and [A-Z]\.')" role="warning" id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-17" test="matches(.,'[A-Z]$') and matches($post-text,'^\s?and [A-Z] |^\s?and [A-Z]\.')" role="warning" id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

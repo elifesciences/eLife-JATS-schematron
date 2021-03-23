@@ -958,7 +958,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-4" test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">
         <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
     </rule>
   </pattern>

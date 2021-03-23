@@ -956,7 +956,7 @@
       <let name="target-no" value="substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-1" test="matches(.,'\p{N}')" role="error" id="vid-xref-conformity-1">
         <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
     </rule>
   </pattern>
