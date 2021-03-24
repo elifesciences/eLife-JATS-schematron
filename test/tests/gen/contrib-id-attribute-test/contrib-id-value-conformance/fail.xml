@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="contrib-id-value-conformance.sch"?>
+<!--Context: contrib[@contrib-type]
+Test: assert    @contrib-type=$allowed-values
+Message: '' is not a permitted value for a  element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <contrib contrib-type="test"/>
+    <contrib contrib-type="rev"/>
+    <contrib contrib-type="ed"/>
+    <contrib contrib-type="proofreader"/>
+  </article>
+</root>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="test-journal--id.sch"?>
+<!--Context: article/front/journal-meta/journal-id
+Test: assert    @journal-id-type=('nlm-ta','publisher-id')
+Message: The only journal-id-types permitted are 'nlm-ta' or 'publisher-id'.  is not permitted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <journal-meta>
+        <journal-id journal-id-type="nlm-ta">elife</journal-id>
+        <journal-id journal-id-type="publisher-id">eLife</journal-id>
+      </journal-meta>
+    </front>
+  </article>
+</root>

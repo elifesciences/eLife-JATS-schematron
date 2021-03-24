@@ -1153,6 +1153,14 @@
         id="test-journal-pubid-4">The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'.</assert>
 	    
 	 </rule>
+    
+    <rule context="article/front/journal-meta/journal-id" id="journal-id">
+      
+      <assert test="@journal-id-type=('nlm-ta','publisher-id')" 
+        role="error" 
+        id="test-journal-id">The only journal-id-types permitted are 'nlm-ta' or 'publisher-id'. <value-of select="@journal-id-type"/> is not permitted.</assert>
+    </rule>
+    
   </pattern>
 
   <pattern id="article-metadata">
@@ -2684,11 +2692,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='fig') and ($target/local-name() != 'fig')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-target-test"
+        test="(@ref-type='fig') and ($target/local-name() != 'fig')" 
         role="error" 
         id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-target-test"
+        test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" 
         role="error" 
         id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
       
@@ -2696,15 +2706,18 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="bibr-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='supplementary-material') and ($target/local-name() != 'supplementary-material')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementary-material-xref-target-test"
+        test="(@ref-type='supplementary-material') and ($target/local-name() != 'supplementary-material')" 
         role="error" 
         id="supplementary-material-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='other') and not($target/local-name() = 'award-group')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#other-xref-target-test"
+        test="(@ref-type='other') and not($target/local-name() = 'award-group')" 
         role="error" 
         id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-target-test"
+        test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" 
         role="error" 
         id="table-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
@@ -2712,7 +2725,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="table-fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#box-xref-target-test"
+        test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" 
         role="error" 
         id="box-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
@@ -2736,18 +2750,25 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
-      <report test="boolean($target) = false()" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-target-conformance"
+        test="boolean($target) = false()" 
         role="error" 
         id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
+      
+      <report test="@ref-type!='disp-formula' and contains(@rid,' ')" 
+        role="error" 
+        id="xref-targets-flag">xref with @ref-type='<value-of select="@ref-type"/>' points to numerous different elements - <value-of select="@rid"/>. Please change this so that the xref only points to one location. It may be necessary to add other links to the subsequent locations, depending on the context.</report>
     </rule>
     
     <rule context="body//xref" id="body-xref-tests">
       
-      <report test="not(child::*) and normalize-space(.)=''" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#empty-xref-test"
+        test="not(child::*) and normalize-space(.)=''" 
         role="error" 
         id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
-      <report test="ends-with(.,';') or ends-with(.,'; ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#semi-colon-xref-test"
+        test="ends-with(.,';') or ends-with(.,'; ')" 
         role="error" 
         id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
       
@@ -4430,9 +4451,31 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion','Methods', 'Model')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-conformity"
-        test="not($type = ($features-subj,'Review Article',$notice-display-types)) and not(replace(title,' ',' ') = $allowed-titles)" 
+        test="not($type = ($features-subj,'Review Article',$notice-display-types)) and not(replace(title[1],' ',' ') = $allowed-titles)" 
         role="warning" 
         id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
+      
+    </rule>
+    
+    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title" id="conclusion-sec-tests">
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
+        
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1"
+        test="matches($title,'conclusions?')" 
+        role="error" 
+        id="conclusion-test-1">Top level section with title - <value-of select="."/> - should either be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
+      
+    </rule>
+    
+    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body//sec/sec//sec/title" id="conclusion-lower-sec-tests">
+      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1"
+        test="matches($title,'conclusions?')" 
+        role="warning" 
+        id="conclusion-test-2">Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should very likely be made a level 2 section.</report>
       
     </rule>
   </pattern>
@@ -4444,8 +4487,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
       
-      <report test="if ($type = $specifics) then not(starts-with(.,e:article-type2title($type)))
-        else ()" 
+      <report test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" 
         role="error" 
         id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
       
@@ -4680,6 +4722,15 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         flag="dl-ar"
         id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
+      
+    </rule>
+    
+    <rule context="title/*" id="title-child-tests">
+      <let name="allowed-elems" value="('sub','xref','sup','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
+     
+      <assert test="name()=$allowed-elems" 
+        role="error" 
+        id="title-child-conformance"><name/> is not allowed in a title element. The only permitted elements are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
       
     </rule>
   </pattern>
@@ -5209,6 +5260,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="@fn-type='COI-statement'" 
         role="error" 
         id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
+      
+      <report test="contains(lower-case(.),'the other authors')" 
+        role="error" 
+        id="comp-int-fn-test-3">Competing interests footnote contains information about other authors - '<value-of select="."/>'. These footnotes should only contain information about that specific author.</report>
       
     </rule>
     
@@ -8052,52 +8107,64 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert test="matches(.,'\p{N}')" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-1"
+        test="matches(.,'\p{N}')" 
         role="error" 
         id="vid-xref-conformity-1"><value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
       <!-- Workaround for animations -->
-      <report test="not(contains(.,'nimation')) and not(contains(.,$target-no))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-2"
+        test="not(contains(.,'nimation')) and not(contains(.,$target-no))" 
         role="error" 
         id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-2"
+        test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-3"
+        test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report test="(ancestor::media[@mimetype='video']/@id = $rid)" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-4"
+        test="(ancestor::media[@mimetype='video']/@id = $rid)" 
         role="warning" 
         id="vid-xref-test-4"><value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
-      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-5"
+        test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
         id="vid-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-6"
+        test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-7"
+        test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="vid-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-8"
+        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
         role="error" 
         id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-9"
+        test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')" 
         role="error" 
         id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-10"
+        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
         id="vid-xref-test-10">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report test="contains(lower-case(.),'figure') and contains(.,'Video')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-11"
+        test="contains(lower-case(.),'figure') and contains(.,'Video')" 
         role="warning" 
         id="vid-xref-test-11">Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <value-of select="."/>.</report>
       
@@ -8114,95 +8181,118 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
       
-      <assert test="matches(.,'\p{N}')" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-1"
+        test="matches(.,'\p{N}')" 
         role="error" 
         id="fig-xref-conformity-1"><value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-2"
+        test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" 
         role="error" 
         id="fig-xref-conformity-2"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-3"
+        test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)" 
         role="warning" 
         id="fig-xref-conformity-3"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report test="($type = 'Figure') and matches(.,'[Ss]upplement')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-4"
+        test="($type = 'Figure') and matches(.,'[Ss]upplement')" 
         role="error" 
         id="fig-xref-conformity-4"><value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
-      <report test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-5"
+        test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" 
         role="warning" 
         id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-6"
+        test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" 
         role="error" 
         id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
-      <report test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-2"
+        test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-3"
+        test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-4"
+        test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" 
         role="warning" 
         id="fig-xref-test-4"><value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
-      <report test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-5"
+        test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
         id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-6"
+        test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-7"
+        test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="fig-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'their $')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-8"
+        test="matches($pre-text,'their $')" 
         role="warning" 
         id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-9"
+        test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" 
         role="warning" 
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-10"
+        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')" 
         role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-11"
+        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" 
         role="error" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-12"
+        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
         role="warning" 
         id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-13"
+        test="matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')" 
         role="warning" 
         id="fig-xref-test-13">Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-14"
+        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
         id="fig-xref-test-14">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report test="matches(.,' [Ff]ig[\.]? ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-15"
+        test="matches(.,' [Ff]ig[\.]? ')" 
         role="error" 
         id="fig-xref-test-15">Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
       
-      <report test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-16"
+        test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" 
         role="warning" 
         id="fig-xref-test-16">Figure citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a figure supplement citation instead?</report>
       
-      <report test="matches(.,'[A-Z]$') and matches($post-text,'^\s?and [A-Z] |^\s?and [A-Z]\.')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-17"
+        test="matches(.,'[A-Z]$') and matches($post-text,'^\s?and [A-Z] |^\s?and [A-Z]\.')" 
         role="warning" 
         id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
       
-      <report test="matches($post-text,'^\-[A-Za-z0-9]')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-18"
+        test="matches($post-text,'^\-[A-Za-z0-9]')" 
         role="warning" 
         id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
     </rule>
@@ -8280,55 +8370,68 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-1"
+        test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
         role="warning" 
         id="supp-file-xref-conformity-1"><value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
       
-      <report test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-2"
+        test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
         role="warning" 
         id="supp-file-xref-conformity-2"><value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
       
-      <report test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-3"
+        test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
         role="warning" 
         id="supp-file-xref-conformity-3"><value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
-      <assert test="contains(.,$last-rid-no)" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-4"
+        test="contains(.,$last-rid-no)" 
         role="warning" 
         id="supp-file-xref-conformity-4"><value-of select="."/> - It looks like the citation content does not match what it directs to. The only case where this can be ignored is if this points to an audio file.</assert>
       
-      <assert test="$last-text-no = $last-rid-no" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-5"
+        test="$last-text-no = $last-rid-no" 
         role="warning" 
         id="supp-file-xref-conformity-5"><value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
       
-      <report test="ancestor::supplementary-material/@id = $rid" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-1"
+        test="ancestor::supplementary-material/@id = $rid" 
         role="warning" 
         id="supp-file-xref-test-1"><value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
-      <report test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-2"
+        test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($post-text,'^[\)][A-Za-z0-9]')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-3"
+        test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-4"
+        test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" 
         role="error" 
         id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-5"
+        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
         id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report test="contains(.,'—Source')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-6"
+        test="contains(.,'—Source')" 
         role="warning" 
         id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
       
-      <report test="contains($rid,'data') and matches(.,'[Ss]ource datas')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-6"
+        test="contains($rid,'data') and matches(.,'[Ss]ource datas')" 
         role="error" 
         id="supp-file-xref-conformity-6"><value-of select="."/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</report>
       
-      <report test="contains($rid,'code') and matches(.,'[Ss]ource codes')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-7"
+        test="contains($rid,'code') and matches(.,'[Ss]ource codes')" 
         role="error" 
         id="supp-file-xref-conformity-7"><value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
       
@@ -8343,19 +8446,23 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-1"
+        test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" 
         role="warning" 
         id="equ-xref-conformity-1"><value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
-      <assert test="contains(.,$label)" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2"
+        test="contains(.,$label)" 
         role="warning" 
         id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
       
-      <report test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-3"
+        test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
         id="equ-xref-conformity-3"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
       
-      <report test="matches($prec-text,'cf[\.]?\s?[\(]?$')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-4"
+        test="matches($prec-text,'cf[\.]?\s?[\(]?$')" 
         role="warning" 
         id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
@@ -9216,19 +9323,23 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="plus-minus-presence"><name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/></report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfigure-presence"
+        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" 
         role="warning" 
         id="supplementalfigure-presence"><name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfile-presence"
+        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" 
         role="warning" 
         id="supplementalfile-presence"><name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementary [Ff]igure')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementaryfigure-presence"
+        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementary [Ff]igure')" 
         role="warning" 
         id="supplementaryfigure-presence"><name/> element contains the phrase ' Supplementary figure ' which almost certainly needs updating. If it's unclear which figure/figure supplement should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplement-table-presence"
+        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')" 
         role="warning" 
         id="supplement-table-presence"><name/> element contains the phrase 'Supplementary table' or 'Supplemental table'. Does it need updating? If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
@@ -10681,11 +10792,13 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby')"/>
       
-      <report test="$parent = $formatting-elems" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-parent-test"
+        test="$parent = $formatting-elems" 
         role="error" 
         id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report test="$child = $formatting-elems" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-child-test"
+        test="$child = $formatting-elems" 
         role="warning" 
         id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>
@@ -10821,6 +10934,22 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <assert test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\s\p{P}]')" 
         role="warning" 
         id="italic-org-test-2">There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
+    </rule>
+    
+    <rule context="sub|sup" id="sub-sup-tests">
+      
+      <report test="parent::*/name() = name()" 
+        role="error" 
+        id="double-sup-sub"><name/> is captured as a child of <name/>, which is not permitted.</report>
+      
+    </rule>
+    
+    <rule context="break" id="break-tests">
+      
+      <assert test="ancestor::td or ancestor::th" 
+        role="error" 
+        id="break-placement">The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
+      
     </rule>
   </pattern>
   
@@ -11382,7 +11511,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     </rule>
   </pattern>
   
-  <pattern id="empty-attribute-pattern">
+  <pattern id="attribute-pattern">
     
     <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
       
@@ -11394,6 +11523,22 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="error" 
         id="final-empty-attribute-conformance"><value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/><value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>></report>
       
+    </rule>
+    
+    <rule context="contrib[@contrib-type]" id="contrib-id-attribute-test">
+      <let name="allowed-values" value="('author','senior_editor','editor','reviewer')"/>
+      
+      <assert test="@contrib-type=$allowed-values" 
+        role="error" 
+        id="contrib-id-value-conformance">'<value-of select="@contrib-type"/>' is not a permitted value for a <name/> element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'.</assert>
+    </rule>
+    
+    <rule context="*[@content-type]" id="content-type-attribute-test">
+      <let name="allowed-elements" value="('named-content','contrib-group','self-uri','institution','fn-group','disp-quote')"/>
+      
+      <assert test="name()=$allowed-elements" 
+        role="error" 
+        id="content-type-value-conformance"><name/> element cannot have a content-type attribute. The only elements that can have that can have a content-type attribtue are named-content, contrib-group, self-uri, institution, fn-group, and disp-quote.</assert>
     </rule>
   </pattern>
   

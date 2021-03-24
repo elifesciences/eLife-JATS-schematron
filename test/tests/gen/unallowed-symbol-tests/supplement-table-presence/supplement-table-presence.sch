@@ -952,7 +952,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')" role="warning" id="supplement-table-presence">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplement-table-presence" test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')" role="warning" id="supplement-table-presence">
         <name/> element contains the phrase 'Supplementary table' or 'Supplemental table'. Does it need updating? If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
     </rule>

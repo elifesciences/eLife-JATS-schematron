@@ -2,8 +2,7 @@
 <!--Context: element-citation[@publication-type='report']
 Test: report    ext-link and pub-id[@pub-id-type='doi']
 Message: Report reference cannot have both a doi and a URL. Reference '' has a doi () and a URL (). -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib74">
       <element-citation publication-type="report">

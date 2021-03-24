@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="article-type-title-test-1.sch"?>
 <!--Context: article-meta//article-title
-Test: report    if ($type = $specifics) then not(starts-with(.,e:article-type2title($type))) else ()
+Test: report    ($type = $specifics) and not(starts-with(.,e:article-type2title($type)))
 Message: title of a '' must start with ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="correction">

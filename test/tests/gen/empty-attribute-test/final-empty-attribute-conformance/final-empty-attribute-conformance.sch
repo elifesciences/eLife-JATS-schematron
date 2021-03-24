@@ -950,7 +950,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="empty-attribute-pattern">
+  <pattern id="attribute-pattern">
     <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
       <report test="." role="error" id="final-empty-attribute-conformance">
         <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
