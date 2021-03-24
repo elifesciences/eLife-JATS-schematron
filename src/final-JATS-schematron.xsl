@@ -16179,7 +16179,7 @@
 
 	  <!--RULE title-child-tests-->
    <xsl:template match="title/*" priority="1000" mode="M216">
-      <xsl:variable name="allowed-elems" select="('sub','xref','sup','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
+      <xsl:variable name="allowed-elems" select="('sub','xref','sup','bold','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>

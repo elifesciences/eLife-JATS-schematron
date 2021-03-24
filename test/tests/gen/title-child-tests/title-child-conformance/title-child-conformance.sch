@@ -952,7 +952,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="title/*" id="title-child-tests">
-      <let name="allowed-elems" value="('sub','xref','sup','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
+      <let name="allowed-elems" value="('sub','xref','sup','bold','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
       <assert test="name()=$allowed-elems" role="error" id="title-child-conformance">
         <name/> is not allowed in a title element. The only permitted elements are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
     </rule>
