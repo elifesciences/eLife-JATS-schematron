@@ -4726,7 +4726,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="title/*" id="title-child-tests">
-      <let name="allowed-elems" value="('sub','xref','sup','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
+      <let name="allowed-elems" value="('sub','xref','sup','bold','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
      
       <assert test="name()=$allowed-elems" 
         role="error" 
