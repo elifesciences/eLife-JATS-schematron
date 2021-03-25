@@ -952,7 +952,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="disp-formula" id="disp-formula-ids">
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

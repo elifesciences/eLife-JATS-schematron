@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="table-fn-test-2.sch"?>
+<!--Context: table-wrap-foot//fn
+Test: report    @id and not(label)
+Message: Table footnotes with an id must have a label (or the id should be removed). This one has the id '' but no label. If a lable should not be present, then please remove the id. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap-foot>
+      <fn id="table1fn1"></fn>
+    </table-wrap-foot>
+  </article>
+</root>

@@ -75,4 +75,10 @@
     <subtitle>TCTR</subtitle>
     <doi>10.18810/tctr</doi>
   </registry>
+  <registry>
+    <subtitle>LBCTR</subtitle>
+  </registry>
+  <registry>
+    <subtitle>REPEC</subtitle>
+  </registry>
 </registries>

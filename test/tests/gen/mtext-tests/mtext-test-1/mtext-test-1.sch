@@ -952,7 +952,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="mml:mtext" id="mtext-tests">
-      <report test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mtext-test-1" test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -951,7 +951,7 @@
     
   </xsl:function>
   <pattern id="further-fig-tests">
-    <rule context="fig/caption/p" id="fig-caption-tests">
+    <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\s{1,3}?[a-z]')) then $x         else ()"/>
@@ -960,7 +960,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/p" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p must be present.</assert>
+      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

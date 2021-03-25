@@ -954,7 +954,7 @@
     <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body//sec/sec//sec/title" id="conclusion-lower-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should very likely be made a level 2 section.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-2" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should very likely be made a level 2 section.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

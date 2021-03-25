@@ -954,7 +954,7 @@
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report test="$data = ''" role="error" id="math-test-1">mml:math must not be empty.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-1" test="$data = ''" role="error" id="math-test-1">mml:math must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

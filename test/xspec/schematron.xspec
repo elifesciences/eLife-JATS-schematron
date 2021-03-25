@@ -2085,6 +2085,16 @@
         <x:expect-assert id="clintrial-related-object-11" role="error"/>
         <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="clintrial-related-object-12-pass">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-12/pass.xml"/>
+        <x:expect-not-report id="clintrial-related-object-12" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-12-fail">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-12/fail.xml"/>
+        <x:expect-report id="clintrial-related-object-12" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-word-count">
       <x:scenario label="pre-abstract-word-count-restriction-pass">
@@ -4896,6 +4906,28 @@
         <x:context href="../tests/gen/table-fn-label-tests/table-fn-label-test-1/fail.xml"/>
         <x:expect-report id="table-fn-label-test-1" role="warning"/>
         <x:expect-not-assert id="table-fn-label-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="table-fn-tests">
+      <x:scenario label="table-fn-test-1-pass">
+        <x:context href="../tests/gen/table-fn-tests/table-fn-test-1/pass.xml"/>
+        <x:expect-not-report id="table-fn-test-1" role="error"/>
+        <x:expect-not-assert id="table-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-fn-test-1-fail">
+        <x:context href="../tests/gen/table-fn-tests/table-fn-test-1/fail.xml"/>
+        <x:expect-report id="table-fn-test-1" role="error"/>
+        <x:expect-not-assert id="table-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-fn-test-2-pass">
+        <x:context href="../tests/gen/table-fn-tests/table-fn-test-2/pass.xml"/>
+        <x:expect-not-report id="table-fn-test-2" role="error"/>
+        <x:expect-not-assert id="table-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-fn-test-2-fail">
+        <x:context href="../tests/gen/table-fn-tests/table-fn-test-2/fail.xml"/>
+        <x:expect-report id="table-fn-test-2" role="error"/>
+        <x:expect-not-assert id="table-fn-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fn-tests">
