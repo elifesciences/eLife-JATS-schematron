@@ -959,7 +959,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-4" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" role="error" id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-4" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" role="error" id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

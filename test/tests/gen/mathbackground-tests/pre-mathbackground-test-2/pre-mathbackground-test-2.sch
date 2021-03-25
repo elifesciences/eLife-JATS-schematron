@@ -952,7 +952,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="mml:*[@mathbackground]" id="mathbackground-tests">
-      <report test="ancestor::table-wrap" role="warning" id="pre-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathbackground-test-2" test="ancestor::table-wrap" role="warning" id="pre-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

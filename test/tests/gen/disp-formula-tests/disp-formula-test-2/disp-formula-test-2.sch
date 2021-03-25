@@ -952,7 +952,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="disp-formula" id="disp-formula-tests">
-      <assert test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-2" test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

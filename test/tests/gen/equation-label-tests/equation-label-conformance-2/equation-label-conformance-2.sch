@@ -954,7 +954,7 @@
     <rule context="disp-formula/label" id="equation-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
-      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#equation-label-conformance-2" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

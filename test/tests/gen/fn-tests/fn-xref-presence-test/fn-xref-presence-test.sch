@@ -951,13 +951,13 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
+    <rule context="fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" id="fn-tests">
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn[@id][not(@fn-type='other')]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other')] must be present.</assert>
+      <assert test="descendant::fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

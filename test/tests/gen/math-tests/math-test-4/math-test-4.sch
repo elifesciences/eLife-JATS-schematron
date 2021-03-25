@@ -954,7 +954,7 @@
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" role="error" id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Capture this as a normal text instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-4" test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" role="error" id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Capture this as a normal text instead.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

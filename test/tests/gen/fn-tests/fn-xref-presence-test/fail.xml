@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="fn-xref-presence-test.sch"?>
-<!--Context: fn[@id][not(@fn-type='other')]
+<!--Context: fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]
 Test: assert    ancestor::article//xref/@rid = @id
 Message: fn element with an id must have at least one xref element pointing to it. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

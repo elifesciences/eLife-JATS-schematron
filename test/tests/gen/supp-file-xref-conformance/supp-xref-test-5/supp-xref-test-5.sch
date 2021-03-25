@@ -959,7 +959,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-5" test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-5" test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

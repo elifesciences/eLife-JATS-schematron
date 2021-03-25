@@ -1669,6 +1669,8 @@
       <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>
       </assert>
       
+      <report test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">[clintrial-related-object-12] ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+      
     </rule>
   </pattern>
   <pattern id="abstract-word-count-pattern">
@@ -2388,11 +2390,11 @@
   <pattern id="disp-formula-tests-pattern">
     <rule context="disp-formula" id="disp-formula-tests">
       
-      <assert test="mml:math" role="error" id="disp-formula-test-2">[disp-formula-test-2] disp-formula must contain an mml:math element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-2" test="mml:math" role="error" id="disp-formula-test-2">[disp-formula-test-2] disp-formula must contain an mml:math element.</assert>
       
-      <assert test="parent::p" role="warning" id="disp-formula-test-3">[disp-formula-test-3] In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-3" test="parent::p" role="warning" id="disp-formula-test-3">[disp-formula-test-3] In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
       
-      <report test="parent::p and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='')" role="error" id="disp-formula-test-4">[disp-formula-test-4] disp-formula cannot be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-4" test="parent::p and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='')" role="error" id="disp-formula-test-4">[disp-formula-test-4] disp-formula cannot be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/>
       </report>
     </rule>
   </pattern>
@@ -2401,13 +2403,13 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert test="mml:math" role="error" id="inline-formula-test-1">[inline-formula-test-1] inline-formula must contain an mml:math element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-1" test="mml:math" role="error" id="inline-formula-test-1">[inline-formula-test-1] inline-formula must contain an mml:math element.</assert>
       
-      <report test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">[inline-formula-test-2] There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-2" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">[inline-formula-test-2] There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">[inline-formula-test-3] There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-3" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">[inline-formula-test-3] There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">[inline-formula-test-4] <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-4" test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">[inline-formula-test-4] <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>
   </pattern>
@@ -2416,55 +2418,55 @@
       <let name="data" value="replace(normalize-space(.),'\s','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
-      <report test="$data = ''" role="error" id="math-test-1">[math-test-1] mml:math must not be empty.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-1" test="$data = ''" role="error" id="math-test-1">[math-test-1] mml:math must not be empty.</report>
       
-      <report test="descendant::mml:merror" role="error" id="math-test-2">[math-test-2] math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-2" test="descendant::mml:merror" role="error" id="math-test-2">[math-test-2] math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
       
-      <report test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" role="warning" id="math-test-14">[math-test-14] mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-14" test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" role="warning" id="math-test-14">[math-test-14] mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</report>
       
-      <report test="$data = '±'" role="error" id="math-test-3">[math-test-3] mml:math only contains '±', which is unnecessary. Capture this as a normal text '±' instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-3" test="$data = '±'" role="error" id="math-test-3">[math-test-3] mml:math only contains '±', which is unnecessary. Capture this as a normal text '±' instead.</report>
       
-      <report test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" role="error" id="math-test-4">[math-test-4] mml:math only contains '±' followed by digits, which is unnecessary. Capture this as a normal text instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-4" test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" role="error" id="math-test-4">[math-test-4] mml:math only contains '±' followed by digits, which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report test="$data = '×'" role="error" id="math-test-5">[math-test-5] mml:math only contains '×', which is unnecessary. Capture this as a normal text '×' instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-5" test="$data = '×'" role="error" id="math-test-5">[math-test-5] mml:math only contains '×', which is unnecessary. Capture this as a normal text '×' instead.</report>
       
-      <report test="$data = '~'" role="error" id="math-test-6">[math-test-6] mml:math only contains '~', which is unnecessary. Capture this as a normal text '~' instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-6" test="$data = '~'" role="error" id="math-test-6">[math-test-6] mml:math only contains '~', which is unnecessary. Capture this as a normal text '~' instead.</report>
       
-      <report test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')" role="error" id="math-test-7">[math-test-7] mml:math only contains '~' and digits, which is unnecessary. Capture this as a normal text instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-7" test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')" role="error" id="math-test-7">[math-test-7] mml:math only contains '~' and digits, which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report test="$data = 'μ'" role="warning" id="math-test-8">[math-test-8] mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-8" test="$data = 'μ'" role="warning" id="math-test-8">[math-test-8] mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
       
-      <report test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')" role="error" id="math-test-9">[math-test-9] mml:math only contains '%' and digits, which is unnecessary. Capture this as a normal text instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-9" test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')" role="error" id="math-test-9">[math-test-9] mml:math only contains '%' and digits, which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report test="matches($data,'^%$')" role="error" id="math-test-12">[math-test-12] mml:math only contains '%', which is unnecessary. Capture this as a normal text instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-12" test="matches($data,'^%$')" role="error" id="math-test-12">[math-test-12] mml:math only contains '%', which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report test="$data = '°'" role="error" id="math-test-10">[math-test-10] mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-10" test="$data = '°'" role="error" id="math-test-10">[math-test-10] mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report test="contains($data,'○')" role="warning" id="math-test-11">[math-test-11] mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-11" test="contains($data,'○')" role="warning" id="math-test-11">[math-test-11] mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
-      <report test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">[math-test-13] mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-13" test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-13">[math-test-13] mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')" role="warning" id="math-test-15">[math-test-15] mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-15" test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')" role="warning" id="math-test-15">[math-test-15] mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">[math-test-16] mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-16" test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" role="warning" id="math-test-16">[math-test-16] mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report test="child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-17">[math-test-17] mml:math only contains number(s) and square root symbol(s) '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead? Such as <value-of select="concat('√',.)"/>?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-17" test="child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" role="warning" id="math-test-17">[math-test-17] mml:math only contains number(s) and square root symbol(s) '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead? Such as <value-of select="concat('√',.)"/>?</report>
       
-      <report test="ancestor::abstract" role="warning" id="math-test-18">[math-test-18] abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-18" test="ancestor::abstract" role="warning" id="math-test-18">[math-test-18] abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
       
-      <report test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">[math-test-19] Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-19" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">[math-test-19] Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
     </rule>
   </pattern>
   <pattern id="disp-formula-child-tests-pattern">
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-child-test-1" test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>
     </rule>
   </pattern>
   <pattern id="inline-formula-child-tests-pattern">
     <rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report test="local-name()!='math'" role="error" id="inline-formula-child-test-1">[inline-formula-child-test-1] <name/> element is not allowed as a child of inline-formula.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-child-test-1" test="local-name()!='math'" role="error" id="inline-formula-child-test-1">[inline-formula-child-test-1] <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -2633,8 +2635,16 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-label-test-1" test="not(matches(.,'^\s?[*†‡§¶]')) and matches(.,'^\s?[\p{Ps}]?[\da-z][\p{Pe}]?\s+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
     </rule>
   </pattern>
+  <pattern id="table-fn-tests-pattern">
+    <rule context="table-wrap-foot//fn" id="table-fn-tests"> 
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-test-1" test="label and not(@id)" role="error" id="table-fn-test-1">[table-fn-test-1] Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">[table-fn-test-2] Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
+    </rule>
+  </pattern>
   <pattern id="fn-tests-pattern">
-    <rule context="fn[@id][not(@fn-type='other')]" id="fn-tests">
+    <rule context="fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" id="fn-tests">
       
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">[fn-xref-presence-test] fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
@@ -2751,9 +2761,9 @@
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       
-      <report test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">[equation-label-conformance-1] Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#equation-label-conformance-1" test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">[equation-label-conformance-1] Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
       
-      <report test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">[equation-label-conformance-2] Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#equation-label-conformance-2" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">[equation-label-conformance-2] Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
       
     </rule>
   </pattern>
@@ -3035,7 +3045,7 @@
     </rule>
   </pattern>
   <pattern id="fig-caption-tests-pattern">
-    <rule context="fig/caption/p" id="fig-caption-tests">
+    <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\s{1,3}?[a-z]')) then $x         else ()"/>
@@ -3095,7 +3105,7 @@
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">[conclusion-test-2] Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should very likely be made a level 2 section.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-2" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">[conclusion-test-2] Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should very likely be made a level 2 section.</report>
       
     </rule>
   </pattern>
@@ -3409,17 +3419,17 @@
   <pattern id="disp-formula-ids-pattern">
     <rule context="disp-formula" id="disp-formula-ids">
       
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">[disp-formula-id-test] disp-formula @id must be in the format 'equ0'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">[disp-formula-id-test] disp-formula @id must be in the format 'equ0'.</report>
       
-      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-disp-formula-id-test">[sub-disp-formula-id-test] disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#sub-disp-formula-id-test" test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-disp-formula-id-test">[sub-disp-formula-id-test] disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="mml-math-ids-pattern">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
-      <report test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">[mml-math-id-test] mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mml-math-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">[mml-math-id-test] mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
       
-      <report test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-mml-math-id-test">[sub-mml-math-id-test] mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#sub-mml-math-id-test" test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-mml-math-id-test">[sub-mml-math-id-test] mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="app-table-wrap-ids-pattern">
@@ -3748,11 +3758,11 @@
       <let name="permitted-text-2" value="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.'"/>
       <let name="permitted-text-3" value="'In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.'"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-1" test=".=($permitted-text-1,$permitted-text-2,$permitted-text-3)" role="warning" flag="dl-ar" id="dec-letter-box-test-1">[dec-letter-box-test-1] The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-box-test-1" test=".=($permitted-text-1,$permitted-text-2,$permitted-text-3)" role="warning" flag="dl-ar" id="dec-letter-box-test-1">[dec-letter-box-test-1] The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-2" test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" role="error" flag="dl-ar" id="dec-letter-box-test-2">[dec-letter-box-test-2] At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-box-test-2" test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" role="error" flag="dl-ar" id="dec-letter-box-test-2">[dec-letter-box-test-2] At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-2" test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" role="error" flag="dl-ar" id="dec-letter-box-test-3">[dec-letter-box-test-3] At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-box-test-3" test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" role="error" flag="dl-ar" id="dec-letter-box-test-3">[dec-letter-box-test-3] At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint.</report>
     </rule>
   </pattern>
   <pattern id="decision-missing-table-tests-pattern">
@@ -5551,15 +5561,15 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-1" test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">[supp-file-xref-test-1] <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-2" test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="supp-xref-test-2">[supp-xref-test-2] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-2" test="matches($pre-text,'[A-Za-z0-9][\(]$')" role="error" id="supp-xref-test-2">[supp-xref-test-2] citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="supp-xref-test-3">[supp-xref-test-3] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="supp-xref-test-3">[supp-xref-test-3] citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-4" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" role="error" id="supp-xref-test-4">[supp-xref-test-4] Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-4" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" role="error" id="supp-xref-test-4">[supp-xref-test-4] Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-5" test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">[supp-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-5" test="matches($pre-text,'cf[\.]?\s?[\(]?$')" role="warning" id="supp-xref-test-5">[supp-xref-test-5] citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-6" test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">[supp-xref-test-6] citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-6" test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">[supp-xref-test-6] citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-6" test="contains($rid,'data') and matches(.,'[Ss]ource datas')" role="error" id="supp-file-xref-conformity-6">[supp-file-xref-conformity-6] <value-of select="."/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</report>
       
@@ -6697,20 +6707,20 @@
     <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
       
-      <assert test="@mathcolor = $allowed-values" role="warning" id="pre-mathcolor-test-1">[pre-mathcolor-test-1] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a colour style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathcolor-test-1" test="@mathcolor = $allowed-values" role="warning" id="pre-mathcolor-test-1">[pre-mathcolor-test-1] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a colour style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
       
       
       
-      <report test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">[mathcolor-test-2] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mathcolor-test-2" test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">[mathcolor-test-2] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
       
     </rule>
   </pattern>
   <pattern id="mathbackground-tests-pattern">
     <rule context="mml:*[@mathbackground]" id="mathbackground-tests">
       
-      <report test="not(ancestor::table-wrap)" role="warning" id="pre-mathbackground-test-1">[pre-mathbackground-test-1] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they will not display in downstream HTML (for example in PMC). eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathbackground-test-1" test="not(ancestor::table-wrap)" role="warning" id="pre-mathbackground-test-1">[pre-mathbackground-test-1] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they will not display in downstream HTML (for example in PMC). eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
       
-      <report test="ancestor::table-wrap" role="warning" id="pre-mathbackground-test-2">[pre-mathbackground-test-2] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathbackground-test-2" test="ancestor::table-wrap" role="warning" id="pre-mathbackground-test-2">[pre-mathbackground-test-2] math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
       
       
       
@@ -6721,14 +6731,14 @@
   <pattern id="mtext-tests-pattern">
     <rule context="mml:mtext" id="mtext-tests">
       
-      <report test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">[mtext-test-1] math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mtext-test-1" test="matches(.,'^\s*\\')" role="warning" id="mtext-test-1">[mtext-test-1] math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
       
     </rule>
   </pattern>
   <pattern id="inline-formula-length-tests-pattern">
     <rule context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" id="inline-formula-length-tests">
       
-      <report test="string-length(.) gt 89" role="warning" id="inline-formula-length-test-1">[inline-formula-length-test-1] Inline formula containing '<value-of select="."/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-length-test-1" test="string-length(.) gt 89" role="warning" id="inline-formula-length-test-1">[inline-formula-length-test-1] Inline formula containing '<value-of select="."/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
       
     </rule>
   </pattern>
