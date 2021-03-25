@@ -3,5 +3,11 @@
 Test: report    @source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)
 Message: ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This  has the link '', which based on the clinical trial registry () and @document-id () is not right. Either the xlink:href is wrong (should it be  instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <abstract>
+      <sec>
+        <related-object document-id="NCT02836002" document-id-type="clinical-trial-number" id="RO1" source-id="ClinicalTrials.gov" source-id-type="registry-name" source-type="clinical-trials-registry" xlink:href="https://clinicaltrials.gov/show/NCT02836002">NCT02836002</related-object>
+      </sec>
+    </abstract>
+  </article>
 </root>
