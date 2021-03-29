@@ -944,6 +944,21 @@
     <xsl:param name="list" as="element()"/>
     <xsl:value-of select="string-join(       for $term in $list//*:match[@count != '0']        return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)       else concat($term/@count,' instance of ',$term)       ,', ')"/>
   </xsl:function>
+  <xsl:function name="e:list-panels">
+    <xsl:param name="caption" as="xs:string"/>
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($caption,'\.\s+')">
+        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\s+')">
+          <xsl:element name="item">
+            <xsl:attribute name="token">
+              <xsl:value-of select="substring-before(.,' ')"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
     
@@ -955,6 +970,7 @@
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\s{1,3}?[a-z]')) then $x         else ()"/>
+      <let name="panel-list" value="e:list-panels(.)"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-2" test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
     </rule>
   </pattern>

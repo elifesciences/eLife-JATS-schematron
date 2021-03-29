@@ -933,6 +933,22 @@
   
   
   
+  <xsl:function name="e:list-panels">
+    <xsl:param name="caption" as="xs:string"/>
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($caption,'\.\s+')">
+        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\s+')">
+          <xsl:element name="item">
+            <xsl:attribute name="token">
+              <xsl:value-of select="substring-before(.,' ')"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>

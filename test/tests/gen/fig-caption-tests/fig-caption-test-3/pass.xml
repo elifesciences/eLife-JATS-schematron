@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-caption-test-3.sch"?>
+<!--Context: fig/caption/p[not(child::supplementary-material)]
+Test: report    $panel-list//*:item
+Message: Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for  may have some panels without parentheses. Check  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>
+        <p>(A) this is a caption. (B) panel shows blah.</p>
+      </caption>
+    </fig>
+  </article>
+</root>
