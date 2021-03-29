@@ -944,6 +944,21 @@
     <xsl:param name="list" as="element()"/>
     <xsl:value-of select="string-join(       for $term in $list//*:match[@count != '0']        return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)       else concat($term/@count,' instance of ',$term)       ,', ')"/>
   </xsl:function>
+  <xsl:function name="e:list-panels">
+    <xsl:param name="caption" as="xs:string"/>
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($caption,'\.\s+')">
+        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\s+')">
+          <xsl:element name="item">
+            <xsl:attribute name="token">
+              <xsl:value-of select="substring-before(.,' ')"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
     
@@ -954,7 +969,7 @@
     <rule context="xref" id="xref-target-tests">
       <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
-      <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#disp-formula-xref-target-test" test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" role="error" id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

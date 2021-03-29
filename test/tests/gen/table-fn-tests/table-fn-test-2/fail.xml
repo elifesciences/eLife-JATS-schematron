@@ -5,7 +5,7 @@ Message: Table footnotes with an id must have a label (or the id should be remov
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap-foot>
-      <fn id="table1fn1"></fn>
+      <fn id="table1fn1"/>
     </table-wrap-foot>
   </article>
 </root>

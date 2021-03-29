@@ -1024,6 +1024,22 @@
       ,', ')"/>
   </xsl:function>
   
+  <xsl:function name="e:list-panels">
+    <xsl:param name="caption" as="xs:string"/>
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($caption,'\.\s+')">
+        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\s+')">
+          <xsl:element name="item">
+            <xsl:attribute name="token">
+              <xsl:value-of select="substring-before(.,' ')"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
@@ -2746,7 +2762,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="decision-letter-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#disp-formula-xref-target-test"
+        test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" 
         role="error" 
         id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
@@ -4435,6 +4452,8 @@ else self::*/local-name() = $allowed-p-blocks"
         if (string-length($x) lt 3) then ()
         else if (matches($x,'^\s{1,3}?[a-z]')) then $x
         else ()"/>
+      <let name="panel-list" value="e:list-panels(.)"/>
+      
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-1" 
         test="count($text-tokens) = 0" 
@@ -4445,6 +4464,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" 
         role="warning" 
         id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
+      
+      <report test="$panel-list//*:item" 
+        role="warning" 
+        id="fig-caption-test-3">Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/></report>
     </rule>
     
     <rule context="fig/caption/p/bold" id="fig-panel-tests">
@@ -9366,7 +9389,8 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="andand-presence"><name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
-      <report test="matches(.,'[Ff]igure [Ff]igure')" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#figurefigure-presence" 
+        test="matches(.,'[Ff]igure [Ff]igure')" 
         role="warning" 
         id="figurefigure-presence"><name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
