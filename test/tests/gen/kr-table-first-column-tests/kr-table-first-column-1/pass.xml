@@ -1,0 +1,266 @@
+<?oxygen SCHSchema="kr-table-first-column-1.sch"?>
+<!--Context: table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]
+Test: assert    matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant DNA reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')
+Message: A cell in the first column of the body of a key resources table should start with one of the standard values. '' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource" position="anchor">
+      <label>Key resources table</label>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top">Reagent type (species) or resource</th>
+            <th valign="top">Designation</th>
+            <th valign="top">Source or reference</th>
+            <th valign="top">Identifiers</th>
+            <th valign="top">Additional information</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top">Antibody</td>
+            <td valign="top">
+              Anti-Synaptopodin
+              <break/>
+              (Rabbit polyclonal)
+            </td>
+            <td valign="top">Synaptic Systems</td>
+            <td valign="top">
+              Cat#: 163002
+              <break/>
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:AB_887825">AB_887825</ext-link>
+            </td>
+            <td valign="top">
+              IF (‘1:1000’)
+              <break/>
+              EM (‘1:100’)
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Antibody</td>
+            <td valign="top">
+              Anti-NeuN
+              <break/>
+              (Rabbit polyclonal)
+            </td>
+            <td valign="top">Abcam</td>
+            <td valign="top">
+              Cat#: ab104225
+              <break/>
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:AB_10711153">AB_10711153</ext-link>
+            </td>
+            <td valign="top">IF (‘1:500’)</td>
+          </tr>
+          <tr>
+            <td valign="top">Antibody</td>
+            <td valign="top">
+              Anti-Rabbit IgG (H+L) Highly Cross-Adsorbed Secondary Antibody, Alexa Fluor 488
+              <break/>
+              (Goat polyclonal)
+            </td>
+            <td valign="top">Invitrogen</td>
+            <td valign="top">
+              Cat#: A-11034, RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:AB_2576217">AB_2576217</ext-link>
+            </td>
+            <td valign="top">IF (‘1:1000’)</td>
+          </tr>
+          <tr>
+            <td valign="top">Antibody</td>
+            <td valign="top">
+              Anti-Rabbit IgG (H+L) Highly Cross-Adsorbed Secondary Antibody, Alexa Fluor Plus 555
+              <break/>
+              (Goat polyclonal)
+            </td>
+            <td valign="top">Invitrogen</td>
+            <td valign="top">
+              Cat#: A-32732, RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:AB_2633281">AB_2633281</ext-link>
+            </td>
+            <td valign="top">IF (‘1:1000’)</td>
+          </tr>
+          <tr>
+            <td valign="top">Antibody</td>
+            <td valign="top">
+              Anti-Rabbit IgG Nanogold-Fab'
+              <break/>
+              (goat polyclonal)
+            </td>
+            <td valign="top">Nanoprobes</td>
+            <td valign="top">
+              <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/articles/46135#bib19">Cat#:</ext-link>
+              2004
+              <break/>
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:AB_2631182">AB_2631182</ext-link>
+            </td>
+            <td valign="top">EM (‘1:100’)</td>
+          </tr>
+          <tr>
+            <td valign="top">Biological sample (<italic>Homo sapiens</italic>), male and female</td>
+            <td valign="top">Sample</td>
+            <td valign="top">Biobank of the Department for Neurosurgery at the Faculty of Medicine, University of Freiburg, AZ 472/15_160880</td>
+            <td valign="top"/>
+            <td valign="top">Approval of the Local Ethics Committee, University of Freiburg, AZ 593/19</td>
+          </tr>
+          <tr>
+            <td valign="top">Chemical compound, drug</td>
+            <td valign="top">DAPI (1 mg/ml in water)</td>
+            <td valign="top">Thermo Scientific</td>
+            <td valign="top">Cat#: 62248</td>
+            <td valign="top">IF and post hoc labeling (‘1:5000’)</td>
+          </tr>
+          <tr>
+            <td valign="top">Chemical compound, drug</td>
+            <td valign="top">Pierce16% Formaldehyde (w/v), methanol-free</td>
+            <td valign="top">Thermo Scientific</td>
+            <td valign="top">Cat#: 28906</td>
+            <td valign="top">Final concentration: (4% in PBS)</td>
+          </tr>
+          <tr>
+            <td valign="top">Chemical compound, drug</td>
+            <td valign="top">Glutardialdehyd</td>
+            <td valign="top">Carl Roth</td>
+            <td valign="top">Cat#: 4157.2</td>
+            <td valign="top">Final concentration: 2.5% (TEM) and 0.1% (Immunogold)</td>
+          </tr>
+          <tr>
+            <td valign="top">Chemical compound, drug</td>
+            <td valign="top">All-trans retinoic acid</td>
+            <td valign="top">Sigma–Aldrich</td>
+            <td valign="top">Cat#: R2625</td>
+            <td valign="top">Final concentration: 1 µM</td>
+          </tr>
+          <tr>
+            <td valign="top">Chemical compound, drug</td>
+            <td valign="top">Anisomycin</td>
+            <td valign="top">Abcam</td>
+            <td valign="top">Cat#: ab120495</td>
+            <td valign="top">Final concentration: 10 µM</td>
+          </tr>
+          <tr>
+            <td valign="top">Chemical compound, drug</td>
+            <td valign="top">Actinomycin D</td>
+            <td valign="top">Sigma–Aldrich</td>
+            <td valign="top">Cat#: A9415</td>
+            <td valign="top">Final concentration: 5 µg/ml</td>
+          </tr>
+          <tr>
+            <td valign="top">Commercial assay, kit</td>
+            <td valign="top">HQ Silver Enhancement Kit</td>
+            <td valign="top">Nanoprobes</td>
+            <td valign="top">Cat#: 2012</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">Genetic reagent<break/><italic>Mus musculus</italic>, male
+            </td>
+            <td valign="top">
+              B6.129-Synpo
+              <sup>tm1Mndl</sup>
+              /Dllr;
+              <italic>
+                Synpo
+                <sup>−/−</sup>
+              </italic>
+            </td>
+            <td valign="top">
+              <xref ref-type="bibr" rid="bib55">Vlachos et al., 2013</xref>
+              <break/>
+              PMID:
+              <ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/pubmed/23630268">23630268</ext-link>
+            </td>
+            <td valign="top">MGI: 6423115</td>
+            <td valign="top">Obtained from Deller Lab (Frankfurt)</td>
+          </tr>
+          <tr>
+            <td valign="top">Genetic reagent<break/><italic>Mus musculus</italic>, male</td>
+            <td valign="top">B6.Cg-Synpo<sup>tm1Mndl</sup>Tg(Thy1-Synpo/GFP)1Dllr/Dllr; Thy1-GFP/Synpo<sup>+/<italic>−</italic></sup><italic>x Synpo<sup>−/−</sup></italic></td>
+            <td valign="top">
+              <xref ref-type="bibr" rid="bib55">Vlachos et al., 2013</xref>
+              <break/>
+              PMID:
+              <ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/pubmed/23630268">23630268</ext-link>
+            </td>
+            <td valign="top">MGI: 6423116</td>
+            <td valign="top">Obtained from Deller Lab (Frankfurt)</td>
+          </tr>
+          <tr>
+            <td valign="top">Peptide, recombinant protein</td>
+            <td valign="top">Streptavidin, Alexa Fluor 488-Conjugate</td>
+            <td valign="top">Invitrogen</td>
+            <td valign="top">
+              Cat#: S32354
+              <break/>
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:AB_2315383">AB_2315383</ext-link>
+            </td>
+            <td valign="top">Post hoc labeling (‘1:1000’)</td>
+          </tr>
+          <tr>
+            <td valign="top">Software, algorithm</td>
+            <td valign="top">Prism</td>
+            <td valign="top">GraphPad</td>
+            <td valign="top">
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:SCR_002798">SCR_002798</ext-link>
+            </td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">Software, algorithm</td>
+            <td valign="top">
+              Clampfit
+              <break/>
+              (pClamp software package)
+            </td>
+            <td valign="top">Molecular Devices</td>
+            <td valign="top">
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:SCR_011323">SCR_011323</ext-link>
+            </td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">Software, algorithm</td>
+            <td valign="top">ImageJ</td>
+            <td valign="top"/>
+            <td valign="top">
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:SCR_003070">SCR_003070</ext-link>
+            </td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">Software, algorithm</td>
+            <td valign="top">Photoshop</td>
+            <td valign="top">Adobe</td>
+            <td valign="top">
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:SCR_014199">SCR_014199</ext-link>
+            </td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">Strain, strain background<italic>Mus musculus</italic></td>
+            <td valign="top">
+              C57BL/6J;
+              <italic>
+                Synpo
+                <sup>+/+</sup>
+              </italic>
+            </td>
+            <td valign="top">Jackson Laboratory</td>
+            <td valign="top">
+              RRID:
+              <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID/RRID:IMSR_JAX:000664">IMSR_JAX:000664</ext-link>
+            </td>
+            <td valign="top"/>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </article>
+</root>

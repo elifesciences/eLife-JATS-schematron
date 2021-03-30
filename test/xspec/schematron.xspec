@@ -4728,6 +4728,18 @@
         <x:expect-not-assert id="kr-table-body-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="kr-table-first-column-tests">
+      <x:scenario label="kr-table-first-column-1-pass">
+        <x:context href="../tests/gen/kr-table-first-column-tests/kr-table-first-column-1/pass.xml"/>
+        <x:expect-not-assert id="kr-table-first-column-1" role="warning"/>
+        <x:expect-not-assert id="kr-table-first-column-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kr-table-first-column-1-fail">
+        <x:context href="../tests/gen/kr-table-first-column-tests/kr-table-first-column-1/fail.xml"/>
+        <x:expect-assert id="kr-table-first-column-1" role="warning"/>
+        <x:expect-not-assert id="kr-table-first-column-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="table-cell-tests">
       <x:scenario label="table-cell-1-pass">
         <x:context href="../tests/gen/table-cell-tests/table-cell-1/pass.xml"/>
