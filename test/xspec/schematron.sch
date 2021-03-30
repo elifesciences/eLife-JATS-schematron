@@ -1689,7 +1689,7 @@
 	
 	<report test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
 	  
-	  <report test="child::sec and count(sec) != 6" role="error" id="abstract-test-5">If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts.</report>
+	  <report test="child::sec and not(count(sec) = (5,6))" role="error" id="abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
 	  
 	  <report test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
       </report>
@@ -1697,6 +1697,13 @@
 	    <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
       </report>
 		
+    </rule>
+  </pattern>
+  <pattern id="medicine-abstract-tests-pattern">
+    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" id="medicine-abstract-tests">
+      
+      <assert test="sec" role="error" id="medicine-abstract-conformance">Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
+      
     </rule>
   </pattern>
   <pattern id="abstract-children-tests-pattern">
@@ -3274,6 +3281,20 @@
     
     </rule>
   </pattern>
+  <pattern id="medicine-section-tests-pattern">
+    <rule context="article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" id="medicine-section-tests">
+      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
+      
+      <report test="$pos=1 and not(title[1]='Introduction')" role="warning" id="medicine-introduction">The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
+      
+      <report test="$pos=2 and not(title[1]='Methods')" role="warning" id="medicine-methods">The second top level section in a Medicine article should be 'Methods'. This one is '<value-of select="title[1]"/>'.</report>
+      
+      <report test="$pos=3 and not(title[1]='Results')" role="warning" id="medicine-results">The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
+      
+      <report test="$pos=4 and not(title[1]='Discussion')" role="warning" id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="top-level-sec-tests-pattern">
     <rule context="body/sec" id="top-level-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
@@ -3445,9 +3466,9 @@
   <pattern id="ethics-title-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
       
-      <assert test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-title-test" test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
       
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-broken-unicode-test" test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-title-tests-pattern">
@@ -3740,7 +3761,7 @@
   <pattern id="res-ethics-sec-pattern">
     <rule context="article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" id="res-ethics-sec">
       
-      <report test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" role="warning" id="sec-test-4">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or '<value-of select="string-join(         ancestor::article//fn-group[@content-type='ethics-information']/fn         ,' '         )"/>'?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#sec-test-4" test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" role="warning" id="sec-test-4">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or '<value-of select="string-join(         ancestor::article//fn-group[@content-type='ethics-information']/fn         ,' '         )"/>'?</report>
       
     </rule>
   </pattern>
@@ -3851,17 +3872,17 @@
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
       
       <!-- Exclusion included for Feature 5 -->
-      <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-1" test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
  
-      <report test="count(fn) gt 3" role="error" id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-2" test="count(fn) gt 3" role="error" id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
       
-      <report test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-3" test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
     </rule>
   </pattern>
   <pattern id="ethics-fn-tests-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
       
-      <assert test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
       
     </rule>
   </pattern>
@@ -7004,9 +7025,9 @@
   <pattern id="ethics-info-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
-      <assert test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-info-conformity" test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
       
-      <report test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-info-supplemental-conformity" test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
     </rule>
   </pattern>
@@ -7877,6 +7898,7 @@
       <assert test="descendant::front//permissions" role="error" id="front-permissions-tests-xspec-assert">front//permissions must be present.</assert>
       <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>
       <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
+      <assert test="descendant::article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" role="error" id="medicine-abstract-tests-xspec-assert">article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract must be present.</assert>
       <assert test="descendant::front//abstract/*" role="error" id="abstract-children-tests-xspec-assert">front//abstract/* must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type) and sec]//related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type) and sec]//related-object must be present.</assert>
@@ -7984,6 +8006,7 @@
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
       <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec must be present.</assert>
       <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
       <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title" role="error" id="conclusion-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title must be present.</assert>
       <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body//sec/sec//sec/title" role="error" id="conclusion-lower-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body//sec/sec//sec/title must be present.</assert>

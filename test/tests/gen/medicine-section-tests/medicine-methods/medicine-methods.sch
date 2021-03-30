@@ -965,14 +965,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="back">
-    <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
+  <pattern id="body">
+    <rule context="article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" id="medicine-section-tests">
+      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
+      <report test="$pos=2 and not(title[1]='Methods')" role="warning" id="medicine-methods">The second top level section in a Medicine article should be 'Methods'. This one is '<value-of select="title[1]"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-fn-tests-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

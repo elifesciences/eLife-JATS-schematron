@@ -967,7 +967,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
-      <report test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-1" test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

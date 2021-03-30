@@ -967,7 +967,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
-      <report test="count(fn) gt 3" role="error" id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-2" test="count(fn) gt 3" role="error" id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

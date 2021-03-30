@@ -967,7 +967,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
-      <report test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-3" test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
