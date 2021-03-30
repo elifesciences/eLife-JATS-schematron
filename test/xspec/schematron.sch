@@ -2703,6 +2703,13 @@
       
     </rule>
   </pattern>
+  <pattern id="kr-table-first-column-tests-pattern">
+    <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" id="kr-table-first-column-tests">
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-first-column-1" test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant DNA reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')" role="warning" id="kr-table-first-column-1">A cell in the first column of the body of a key resources table should start with one of the standard values. '<value-of select="."/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="table-cell-tests-pattern">
     <rule context="table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]" id="table-cell-tests">
       <let name="stripped-text" value="string-join(for $x in self::*/(text()|*)         return if (($x/local-name()='xref') and $x/@ref-type='bibr') then ()         else $x,'')"/>
@@ -7962,6 +7969,7 @@
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" role="error" id="kr-table-body-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/* must be present.</assert>
+      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" role="error" id="kr-table-first-column-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1] must be present.</assert>
       <assert test="descendant::table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')] or descendant::table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]" role="error" id="table-cell-tests-xspec-assert">table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')] must be present.</assert>
       <assert test="descendant::body//table-wrap/label" role="error" id="body-table-label-tests-xspec-assert">body//table-wrap/label must be present.</assert>
       <assert test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
