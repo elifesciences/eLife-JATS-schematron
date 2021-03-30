@@ -965,14 +965,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="back">
-    <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
+  <pattern id="article-metadata">
+    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" id="medicine-abstract-tests">
+      <assert test="sec" role="error" id="medicine-abstract-conformance">Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-fn-tests-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
+      <assert test="descendant::article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" role="error" id="medicine-abstract-tests-xspec-assert">article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract must be present.</assert>
     </rule>
   </pattern>
 </schema>

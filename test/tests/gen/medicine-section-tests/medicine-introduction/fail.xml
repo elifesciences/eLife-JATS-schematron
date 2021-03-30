@@ -1,0 +1,60 @@
+<?oxygen SCHSchema="medicine-introduction.sch"?>
+<!--Context: article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec
+Test: report    $pos=1 and not(title[1]='Introduction')
+Message: The first top level section in a Medicine article should be 'Introduction'. This one is ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Research Article</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Medicine</subject>
+        </subj-group></article-categories>
+      <title-group>
+        <article-title>Test: study</article-title>
+      </title-group>
+      <abstract>
+        <sec id="abs1">
+          <title>Background:</title>
+          <p>...</p>
+        </sec>
+        <sec id="abs2">
+          <title>Methods:</title>
+          <p>...</p>
+        </sec>
+        <sec id="abs3">
+          <title>Results:</title>
+          <p>...</p>
+        </sec>
+        <sec id="abs5">
+          <title>Funding:</title>
+          <p>...</p>
+        </sec>
+        <sec id="abs6">
+          <title>Clinical trial number:</title>
+          <p><related-object document-id="NCT04549831" document-id-type="clinical-trial-number" id="RO1" source-id="ClinicalTrials.gov" source-id-type="registry-name" source-type="clinical-trials-registry" xlink:href="https://clinicaltrials.gov/show/NCT04549831">NCT04549831</related-object>.</p>
+        </sec>
+      </abstract>
+    </article-meta>
+    <body>
+      <sec>
+        <title>Background</title>
+        <p>...</p>
+      </sec>
+      <sec>
+        <title>Methods</title>
+        <p>...</p>
+      </sec>
+      <sec>
+        <title>Results</title>
+        <p>...</p>
+      </sec>
+      <sec>
+        <title>Discussion</title>
+        <p>...</p>
+      </sec>
+    </body>
+  </article>
+</root>

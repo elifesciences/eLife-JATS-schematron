@@ -967,7 +967,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
-      <assert test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-title-test" test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

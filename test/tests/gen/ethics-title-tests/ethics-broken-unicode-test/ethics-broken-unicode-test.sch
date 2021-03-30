@@ -967,7 +967,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-broken-unicode-test" test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

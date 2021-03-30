@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="medicine-abstract-conformance.sch"?>
+<!--Context: article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract
+Test: assert    sec
+Message: Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Research Article</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Medicine</subject>
+        </subj-group></article-categories>
+      <title-group>
+        <article-title>Test: study</article-title>
+      </title-group>
+      <abstract>
+        <p>...</p>
+      </abstract>
+    </article-meta>
+  </article>
+</root>
