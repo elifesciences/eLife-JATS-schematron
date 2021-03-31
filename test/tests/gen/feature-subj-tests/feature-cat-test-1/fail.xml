@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="feature-cat-test-1.sch"?>
+<!--Context: article-meta[descendant::subj-group[@subj-group-type='heading']/subject = $features-subj]//title-group/article-title
+Test: report    $preamble != e:titleCase($preamble)
+Message: The category preamble at the start of the article title (before the colon) for feature content should be in title case. '' should be ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <article article-type="discussion">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Feature Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Climate classification: Exploring a new way to think about climate regions</article-title>
+      </title-group>
+    </article-meta>
+  </article>
+</root>

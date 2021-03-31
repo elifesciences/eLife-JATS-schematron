@@ -33,14 +33,14 @@
   <xsl:function name="e:titleCaseToken" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
+      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor','aids','covid-19','covid')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
       <xsl:when test="contains($s,'-')">
         <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
       <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
-      </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna','mri','hiv','tor')">
-        <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
         <xsl:value-of select="upper-case($s)"/>
@@ -74,11 +74,14 @@
       <xsl:when test="lower-case($s)=('and','or','the','an','of')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="lower-case($s)=('rna','dna')">
+      <xsl:when test="lower-case($s)=('rna','dna','hiv','aids','covid-19','covid')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
         <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
+      <xsl:when test="contains($s,'-')">
+        <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="e:titleCaseToken($s)"/>
@@ -815,6 +818,21 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:list-panels">
+    <xsl:param name="caption" as="xs:string"/>
+    <xsl:element name="list">
+      <xsl:for-each select="tokenize($caption,'\.\s+')">
+        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\s+')">
+          <xsl:element name="item">
+            <xsl:attribute name="token">
+              <xsl:value-of select="substring-before(.,' ')"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:get-iso-pub-date">
     <xsl:param name="pub-date"/>
     <xsl:choose>
@@ -996,16 +1014,17 @@
     
   </xsl:function>
   <pattern id="further-fig-tests">
-    <rule context="fig/caption/p" id="fig-caption-tests">
+    <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\s{1,3}?[a-z]')) then $x         else ()"/>
+      <let name="panel-list" value="e:list-panels(.)"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-2" test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/p" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p must be present.</assert>
+      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

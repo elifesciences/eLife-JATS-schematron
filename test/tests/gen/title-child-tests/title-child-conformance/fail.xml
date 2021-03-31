@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="title-child-conformance.sch"?>
+<!--Context: title/*
+Test: assert    name()=$allowed-elems
+Message:  is not allowed in a title element. The only permitted elements are . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <title>
+      <sub/><xref/><sup/><italic/><bold/><inline-formula/><underline/><sc/><ext-link/><monospace/><mml:math/><inline-graphic/><related-article/><related-object/><inline-media/><private-char/>
+    </title>
+  </article>
+</root>

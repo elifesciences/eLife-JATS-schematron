@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="abstract-test-5.sch"?>
 <!--Context: front//abstract
-Test: report    child::sec and count(sec) != 6
-Message: If an abstract has sections, then it must have the 6 sections required for clinical trial abstracts. -->
+Test: report    child::sec and not(count(sec) = (5,6))
+Message: If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="COI-test-2.sch"?>
+<!--Context: article-meta//contrib
+Test: report    contains(lower-case($coi),'the other authors')
+Message: The COI statement for  contains information about other authors - ''. These footnotes should only contain information about that specific author. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib contrib-type="author">
+        <xref ref-type="author-notes" rid="con1"/>
+      </contrib>
+      <author-notes>
+        <fn fn-type="COI-statement" id="con1"><p>No competing interests to declare.</p></fn>
+      </author-notes>
+    </article-meta>
+  </article>
+</root>

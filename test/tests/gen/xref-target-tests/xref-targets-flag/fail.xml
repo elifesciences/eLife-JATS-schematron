@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="xref-targets-flag.sch"?>
+<!--Context: xref
+Test: report    @ref-type!='disp-formula' and contains(@rid,' ')
+Message: xref with @ref-type='' points to numerous different elements - . Please change this so that the xref only points to one location. It may be necessary to add other links to the subsequent locations, depending on the context. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p><xref ref-type="fig" rid="fig1 fig2">Figures 1 and 2</xref>.</p>
+    <fig id="fig1"/>
+    <fig id="fig2"/>
+  </article>
+</root>
