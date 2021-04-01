@@ -966,13 +966,13 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" id="kr-table-first-column-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-first-column-1" test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')" role="warning" id="kr-table-first-column-1">A cell in the first column of the body of a key resources table should start with one of the standard values. '<value-of select="."/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</assert>
+    <rule context="table-wrap[contains(@id,'keyresource')]" id="kr-table-tests">
+      <report test="following::table-wrap[contains(@id,'keyresource') or contains(lower-case(label[1]),'key resources table')]" role="error" id="final-duplicate-kr-table-1">There is more than one key resources table, which is not permitted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" role="error" id="kr-table-first-column-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1] must be present.</assert>
+      <assert test="descendant::table-wrap[contains(@id,'keyresource')]" role="error" id="kr-table-tests-xspec-assert">table-wrap[contains(@id,'keyresource')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
