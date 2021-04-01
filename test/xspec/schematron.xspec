@@ -4740,6 +4740,28 @@
         <x:expect-not-assert id="kr-table-first-column-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="kr-table-tests">
+      <x:scenario label="pre-duplicate-kr-table-1-pass">
+        <x:context href="../tests/gen/kr-table-tests/pre-duplicate-kr-table-1/pass.xml"/>
+        <x:expect-not-report id="pre-duplicate-kr-table-1" role="warning"/>
+        <x:expect-not-assert id="kr-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-duplicate-kr-table-1-fail">
+        <x:context href="../tests/gen/kr-table-tests/pre-duplicate-kr-table-1/fail.xml"/>
+        <x:expect-report id="pre-duplicate-kr-table-1" role="warning"/>
+        <x:expect-not-assert id="kr-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-duplicate-kr-table-1-pass">
+        <x:context href="../tests/gen/kr-table-tests/final-duplicate-kr-table-1/pass.xml"/>
+        <x:expect-not-report id="final-duplicate-kr-table-1" role="error"/>
+        <x:expect-not-assert id="kr-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-duplicate-kr-table-1-fail">
+        <x:context href="../tests/gen/kr-table-tests/final-duplicate-kr-table-1/fail.xml"/>
+        <x:expect-report id="final-duplicate-kr-table-1" role="error"/>
+        <x:expect-not-assert id="kr-table-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="table-cell-tests">
       <x:scenario label="table-cell-1-pass">
         <x:context href="../tests/gen/table-cell-tests/table-cell-1/pass.xml"/>
