@@ -11849,12 +11849,12 @@
       </x:scenario>
       <x:scenario label="fig-xref-test-11-pass">
         <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-11/pass.xml"/>
-        <x:expect-not-report id="fig-xref-test-11" role="error"/>
+        <x:expect-not-report id="fig-xref-test-11" role="warning"/>
         <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-xref-test-11-fail">
         <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-11/fail.xml"/>
-        <x:expect-report id="fig-xref-test-11" role="error"/>
+        <x:expect-report id="fig-xref-test-11" role="warning"/>
         <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="fig-xref-test-12-pass">
@@ -14835,16 +14835,6 @@
         <x:expect-report id="Research-gate-check" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="zenodo-check-pass">
-        <x:context href="../tests/gen/journal-title-tests/zenodo-check/pass.xml"/>
-        <x:expect-not-report id="zenodo-check" role="error"/>
-        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="zenodo-check-fail">
-        <x:context href="../tests/gen/journal-title-tests/zenodo-check/fail.xml"/>
-        <x:expect-report id="zenodo-check" role="error"/>
-        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="journal-replacement-character-presence-pass">
         <x:context href="../tests/gen/journal-title-tests/journal-replacement-character-presence/pass.xml"/>
         <x:expect-not-report id="journal-replacement-character-presence" role="error"/>
@@ -17414,6 +17404,18 @@
         <x:context href="../tests/gen/doi-conf-ref-checks/conf-doi-test-1/fail.xml"/>
         <x:expect-report id="conf-doi-test-1" role="warning"/>
         <x:expect-not-assert id="doi-conf-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="zenodo-tests">
+      <x:scenario label="zenodo-check-pass">
+        <x:context href="../tests/gen/zenodo-tests/zenodo-check/pass.xml"/>
+        <x:expect-not-assert id="zenodo-check" role="error"/>
+        <x:expect-not-assert id="zenodo-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="zenodo-check-fail">
+        <x:context href="../tests/gen/zenodo-tests/zenodo-check/fail.xml"/>
+        <x:expect-assert id="zenodo-check" role="error"/>
+        <x:expect-not-assert id="zenodo-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="link-ref-tests">

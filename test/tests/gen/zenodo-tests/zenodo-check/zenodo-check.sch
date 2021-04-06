@@ -965,16 +965,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
-      <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
-      <let name="uc" value="upper-case(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check" test="$uc = 'ZENODO'" role="error" id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference.</report>
+  <pattern id="zenodo-checks">
+    <rule context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check" test="@publication-type=('data','software','preprint','report')" role="error" id="zenodo-check">
+        <value-of select="@publication-type"/> type reference <value-of select="if (parent::ref[@id]) then concat('(with id ',parent::ref[1]/@id,')') else ()"/> is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/source" role="error" id="journal-title-tests-xspec-assert">element-citation[@publication-type='journal']/source must be present.</assert>
+      <assert test="descendant::element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" role="error" id="zenodo-tests-xspec-assert">element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
