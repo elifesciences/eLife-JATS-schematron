@@ -5549,7 +5549,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-10" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')" role="error" id="fig-xref-test-10">[fig-xref-test-10] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-11" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" role="error" id="fig-xref-test-11">[fig-xref-test-11] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-11" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" role="warning" id="fig-xref-test-11">[fig-xref-test-11] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-12" test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" role="warning" id="fig-xref-test-12">[fig-xref-test-12] Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
@@ -6252,8 +6252,6 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#Research-gate-check" test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')" role="error" id="Research-gate-check">[Research-gate-check]  ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check" test="$uc = 'ZENODO'" role="error" id="zenodo-check">[zenodo-check] Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-replacement-character-presence" test="matches(.,'�')" role="error" id="journal-replacement-character-presence">[journal-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
@@ -6332,7 +6330,7 @@
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test" test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">[biorxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
@@ -7066,6 +7064,14 @@
       <let name="name" value="lower-case(conf-name[1])"/>
       
       <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">[conf-doi-test-1] <value-of select="e:citation-format1(.)"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
+      
+    </rule>
+  </pattern>
+  
+  <pattern id="zenodo-tests-pattern">
+    <rule context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check" test="@publication-type=('data','software','preprint','report')" role="error" id="zenodo-check">[zenodo-check] <value-of select="@publication-type"/> type reference <value-of select="if (parent::ref[@id]) then concat('(with id ',parent::ref[1]/@id,')') else ()"/> is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report.</assert>
       
     </rule>
   </pattern>

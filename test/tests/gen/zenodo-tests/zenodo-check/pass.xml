@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="zenodo-check.sch"?>
-<!--Context: element-citation[@publication-type='journal']/source
-Test: report    $uc = 'ZENODO'
-Message: Journal ref '' has a source title '' which must be incorrect. It should be a data or software type reference. -->
+<!--Context: element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]
+Test: assert    @publication-type=('data','software','preprint','report')
+Message:  type reference  is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib89">
-      <element-citation publication-type="journal">
+      <element-citation publication-type="data">
         <person-group person-group-type="author">
           <name>
             <surname>Sermet</surname>
@@ -43,7 +43,7 @@ Message: Journal ref '' has a source title '' which must be incorrect. It should
         <year iso-8601-date="2020">2020</year>
         <article-title>Data set for “Pathway-, layer- and cell-type-specific thalamic input
           to mouse barrel cortex”</article-title>
-        <source>vbejriqpbveirp</source>
+        <source>Zenodo</source>
         <pub-id pub-id-type="doi">10.5281/zenodo.3560697</pub-id>
       </element-citation>
     </ref>

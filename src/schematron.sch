@@ -8392,7 +8392,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-11"
         test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" 
-        role="error" 
+        role="warning" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-12"
@@ -9726,11 +9726,6 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="error" 
         id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check" 
-        test="$uc = 'ZENODO'" 
-        role="error" 
-        id="zenodo-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect. It should be a data or software type reference.</report>
-      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-replacement-character-presence" 
         test="matches(.,'�')" 
         role="error" 
@@ -9858,7 +9853,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="lc" value="lower-case(.)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" 
-        test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints')" 
+        test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" 
         role="warning" 
         id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
@@ -11149,6 +11144,19 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="conf-doi-test-1"><value-of select="e:citation-format1(.)"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>
+  </pattern>
+  
+  <pattern id="zenodo-checks">
+    
+    <rule context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check"  
+        test="@publication-type=('data','software','preprint','report')" 
+        role="error" 
+        id="zenodo-check"><value-of select="@publication-type"/> type reference <value-of select="if (parent::ref[@id]) then concat('(with id ',parent::ref[1]/@id,')') else ()"/> is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report.</assert>
+      
+    </rule>
+    
   </pattern>
   
   <pattern id="links-in-ref-tests">
