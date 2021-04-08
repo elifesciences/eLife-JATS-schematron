@@ -1088,7 +1088,6 @@
 	  <assert test="count(body) = 1" 
         role="error" 
         id="test-article-body">Article must have one child body. Currently there are <value-of select="count(body)"/></assert>
-		
     <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" 
         role="error" 
         id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/></report>
@@ -4545,7 +4544,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <!-- Once process is in place change context to:
-      article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec  -->
+      article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec  
     <rule context="article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" 
       id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
@@ -4566,7 +4565,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
       
-    </rule>
+    </rule>-->
     
     <rule context="body/sec" id="top-level-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
