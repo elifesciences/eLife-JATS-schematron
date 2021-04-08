@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="disp-formula-test-4.sch"?>
 <!--Context: disp-formula
-Test: report    parent::p and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='')
+Test: report    parent::p and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='') and not(ancestor::list)
 Message: disp-formula cannot be placed as the first child of a p element with no content before it (ie. <p><disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
