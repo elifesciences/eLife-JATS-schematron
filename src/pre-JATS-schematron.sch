@@ -983,7 +983,6 @@
 		
 	  <assert test="count(body) = 1" role="error" id="test-article-body">[test-article-body] Article must have one child body. Currently there are <value-of select="count(body)"/>
       </assert>
-		
     <report test="(@article-type = ('article-commentary','discussion','editorial','research-article','review-article')) and count(back) != 1" role="error" id="test-article-back">[test-article-back] Article must have one child back. Currently there are <value-of select="count(back)"/>
       </report>
 		
@@ -3123,20 +3122,6 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-4" test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">[ra-sec-test-4] main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
     
-    </rule>
-  </pattern>
-  <pattern id="medicine-section-tests-pattern">
-    <rule context="article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" id="medicine-section-tests">
-      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      
-      <report test="$pos=1 and not(title[1]='Introduction')" role="warning" id="medicine-introduction">[medicine-introduction] The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
-      
-      <report test="$pos=2 and not(title[1]='Methods')" role="warning" id="medicine-methods">[medicine-methods] The second top level section in a Medicine article should be 'Methods'. This one is '<value-of select="title[1]"/>'.</report>
-      
-      <report test="$pos=3 and not(title[1]='Results')" role="warning" id="medicine-results">[medicine-results] The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
-      
-      <report test="$pos=4 and not(title[1]='Discussion')" role="warning" id="medicine-discussion">[medicine-discussion] The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
-      
     </rule>
   </pattern>
   <pattern id="top-level-sec-tests-pattern">
