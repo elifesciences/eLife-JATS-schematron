@@ -1134,7 +1134,7 @@
     
      <report test="count(subj-group[@subj-group-type='heading']) gt 2" role="error" id="head-subj-test1">[head-subj-test1] article-categories must contain 0-2 subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
 	   
-     <report test="($article-type = ('research-article','review-article',$notice-article-types)) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">[head-subj-test2] article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>.</report>
+     <report test="($article-type = ('research-article','review-article',$notice-article-types,'article-commentary')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">[head-subj-test2] article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</report>
      
      <report test="($article-type = ('editorial','discussion')) and count(subj-group[@subj-group-type='heading']) lt 1" role="warning" id="head-subj-test3">[head-subj-test3] article-categories does not contain a subj-group[@subj-group-type='heading']. Is this correct?</report>
 	   

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="head-subj-test2.sch"?>
 <!--Context: article-meta/article-categories
-Test: report    ($article-type = ('research-article','review-article',$notice-article-types)) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1
-Message: article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are . -->
+Test: report    ($article-type = ('research-article','review-article',$notice-article-types,'article-commentary')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1
+Message: article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>
