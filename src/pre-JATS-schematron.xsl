@@ -5723,16 +5723,14 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="($article-type = ('research-article','review-article',$notice-article-types)) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($article-type = ('research-article','review-article',$notice-article-types)) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1">
+      <xsl:if test="($article-type = ('research-article','review-article',$notice-article-types,'article-commentary')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($article-type = ('research-article','review-article',$notice-article-types,'article-commentary')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1">
             <xsl:attribute name="id">head-subj-test2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[head-subj-test2] article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are <xsl:text/>
-               <xsl:value-of select="count(subj-group[@subj-group-type='heading']/subject)"/>
-               <xsl:text/>.</svrl:text>
+            <svrl:text>[head-subj-test2] article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
