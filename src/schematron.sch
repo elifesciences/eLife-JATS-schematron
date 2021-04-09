@@ -9505,7 +9505,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" 
+      <report test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" 
         role="warning" 
         id="extra-full-stop-presence"><name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       

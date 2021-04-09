@@ -30193,8 +30193,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))">
+      <xsl:if test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))">
             <xsl:attribute name="id">extra-full-stop-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
