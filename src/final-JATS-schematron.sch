@@ -6159,7 +6159,7 @@
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
+      <report test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       
       <report test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
       
