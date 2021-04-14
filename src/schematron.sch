@@ -8455,7 +8455,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="table-xref-conformity-3"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-4" 
-        test="(contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" 
+        test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" 
         role="warning" 
         id="table-xref-conformity-4"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
