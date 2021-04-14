@@ -26618,8 +26618,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(not(contains($rid,'app'))) and ($text-no != $rid-no) and not(contains(.,'–'))">
+      <xsl:if test="(not(contains($rid,'app') or contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(not(contains($rid,'app') or contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))">
             <xsl:attribute name="id">table-xref-conformity-3</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -26642,6 +26642,21 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[table-xref-conformity-4] <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - Citation content does not match what it directs to.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="(contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))">
+            <xsl:attribute name="id">table-xref-conformity-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-xref-conformity-5] <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> - Citation content does not match what it directs to.</svrl:text>
          </svrl:successful-report>
