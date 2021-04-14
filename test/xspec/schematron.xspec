@@ -11927,6 +11927,16 @@
         <x:expect-report id="table-xref-conformity-4" role="warning"/>
         <x:expect-not-assert id="table-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="table-xref-conformity-5-pass">
+        <x:context href="../tests/gen/table-xref-conformance/table-xref-conformity-5/pass.xml"/>
+        <x:expect-not-report id="table-xref-conformity-5" role="warning"/>
+        <x:expect-not-assert id="table-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-xref-conformity-5-fail">
+        <x:context href="../tests/gen/table-xref-conformance/table-xref-conformity-5/fail.xml"/>
+        <x:expect-report id="table-xref-conformity-5" role="warning"/>
+        <x:expect-not-assert id="table-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="table-xref-test-1-pass">
         <x:context href="../tests/gen/table-xref-conformance/table-xref-test-1/pass.xml"/>
         <x:expect-not-report id="table-xref-test-1" role="warning"/>
