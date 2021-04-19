@@ -2897,6 +2897,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
       
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-6" 
+        test="ends-with(@xlink:href,'/')" 
+        role="error" 
+        id="software-heritage-test-6">A Software heritage link ending with '/' is not valid. Please remove the trailing '/' from the link.</report>
+      
     </rule>
     
     <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" 

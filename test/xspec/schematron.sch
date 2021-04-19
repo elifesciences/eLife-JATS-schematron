@@ -2216,6 +2216,8 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
       
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-6" test="ends-with(@xlink:href,'/')" role="error" id="software-heritage-test-6">A Software heritage link ending with '/' is not valid. Please remove the trailing '/' from the link.</report>
+      
     </rule>
   </pattern>
   <pattern id="ext-link-tests-2-pattern">
