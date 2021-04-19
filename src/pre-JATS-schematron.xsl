@@ -8094,13 +8094,13 @@
 	  <!--RULE medicine-abstract-tests-->
    <xsl:template match="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" priority="1000" mode="M92">
 
-		<!--ASSERT error-->
+		<!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="sec"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="sec">
                <xsl:attribute name="id">medicine-abstract-conformance</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
