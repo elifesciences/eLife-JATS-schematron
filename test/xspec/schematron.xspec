@@ -1883,12 +1883,12 @@
     <x:scenario label="medicine-abstract-tests">
       <x:scenario label="medicine-abstract-conformance-pass">
         <x:context href="../tests/gen/medicine-abstract-tests/medicine-abstract-conformance/pass.xml"/>
-        <x:expect-not-assert id="medicine-abstract-conformance" role="error"/>
+        <x:expect-not-assert id="medicine-abstract-conformance" role="warning"/>
         <x:expect-not-assert id="medicine-abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-abstract-conformance-fail">
         <x:context href="../tests/gen/medicine-abstract-tests/medicine-abstract-conformance/fail.xml"/>
-        <x:expect-assert id="medicine-abstract-conformance" role="error"/>
+        <x:expect-assert id="medicine-abstract-conformance" role="warning"/>
         <x:expect-not-assert id="medicine-abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
