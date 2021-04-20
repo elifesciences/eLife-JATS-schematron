@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="software-heritage-test-6.sch"?>
-<!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
-Test: report    ends-with(@xlink:href,'/')
-Message: A Software heritage link ending with '/' is not valid. Please remove the trailing '/' from the link. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article>
-    <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:feb61594144d5787d91049172267d925b738079b;origin=https://github.com/blab/seasonal-cov-adaptive-evolution;visit=swh:1:snp:db7c97d981938da69e10585d540a30e869537903;anchor=swh:1:rev:83721cd000f2848d4f77d2a6da8c2d0df8a555a1">swh:1:rev:83721cd000f2848d4f77d2a6da8c2d0df8a555a1</ext-link>
-  </article>
-</root>
