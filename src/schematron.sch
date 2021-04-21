@@ -2782,10 +2782,6 @@ else self::*/local-name() = $allowed-p-blocks"
         test="boolean($target) = false()" 
         role="error" 
         id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
-      
-      <report test="@ref-type!='disp-formula' and contains(@rid,' ')" 
-        role="error" 
-        id="xref-targets-flag">xref with @ref-type='<value-of select="@ref-type"/>' points to numerous different elements - <value-of select="@rid"/>. Please change this so that the xref only points to one location. It may be necessary to add other links to the subsequent locations, depending on the context.</report>
     </rule>
     
     <rule context="body//xref" id="body-xref-tests">

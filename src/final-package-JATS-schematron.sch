@@ -2157,8 +2157,6 @@
       <assert test="@ref-type = ('aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula')" role="error" id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-target-conformance" test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
-      
-      <report test="@ref-type!='disp-formula' and contains(@rid,' ')" role="error" id="xref-targets-flag">xref with @ref-type='<value-of select="@ref-type"/>' points to numerous different elements - <value-of select="@rid"/>. Please change this so that the xref only points to one location. It may be necessary to add other links to the subsequent locations, depending on the context.</report>
     </rule>
   </pattern>
   <pattern id="body-xref-tests-pattern">
