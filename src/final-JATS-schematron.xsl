@@ -10423,22 +10423,6 @@
                <xsl:text/>', but no such element exists.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
-      <xsl:if test="@ref-type!='disp-formula' and contains(@rid,' ')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@ref-type!='disp-formula' and contains(@rid,' ')">
-            <xsl:attribute name="id">xref-targets-flag</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[xref-targets-flag] xref with @ref-type='<xsl:text/>
-               <xsl:value-of select="@ref-type"/>
-               <xsl:text/>' points to numerous different elements - <xsl:text/>
-               <xsl:value-of select="@rid"/>
-               <xsl:text/>. Please change this so that the xref only points to one location. It may be necessary to add other links to the subsequent locations, depending on the context.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M125"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M125"/>

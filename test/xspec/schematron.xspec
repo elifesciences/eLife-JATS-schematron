@@ -3193,16 +3193,6 @@
         <x:expect-report id="xref-target-conformance" role="error"/>
         <x:expect-not-assert id="xref-target-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="xref-targets-flag-pass">
-        <x:context href="../tests/gen/xref-target-tests/xref-targets-flag/pass.xml"/>
-        <x:expect-not-report id="xref-targets-flag" role="error"/>
-        <x:expect-not-assert id="xref-target-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="xref-targets-flag-fail">
-        <x:context href="../tests/gen/xref-target-tests/xref-targets-flag/fail.xml"/>
-        <x:expect-report id="xref-targets-flag" role="error"/>
-        <x:expect-not-assert id="xref-target-tests-xspec-assert" role="error"/>
-      </x:scenario>
     </x:scenario>
     <x:scenario label="body-xref-tests">
       <x:scenario label="empty-xref-test-pass">
