@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-software-2-2.sch"?>
 <!--Context: element-citation[@publication-type = 'software']
-Test: assert    person-group[@person-group-type = ('author', 'curator')]
-Message: Each <element-citation> of type 'software' must contain one <person-group> with the attribute person-group-type set to 'author' or 'curator'. Reference '' has a <person-group> type of ''. -->
+Test: assert    person-group[@person-group-type='author']
+Message: The <person-group> in a software reference must have the attribute person-group-type set to 'author'. Reference '' has a <person-group> type of ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>

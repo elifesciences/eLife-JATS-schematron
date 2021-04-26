@@ -1777,6 +1777,13 @@
       
     </rule>
   </pattern>
+  <pattern id="clintrial-related-object-p-pattern">
+    <rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
+      
+      <report test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" role="warning" id="clintrial-related-object-13">There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="abstract-word-count-pattern">
     <rule context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
@@ -4545,11 +4552,10 @@
   
   <pattern id="elem-citation-software-pattern">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
-      <let name="person-count" value="count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='curator'])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1" test="$person-count = (1,2)" role="error" id="err-elem-cit-software-2-1">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element (either author or curator) or one &lt;person-group&gt; with attribute person-group-type = author and one &lt;person-group&gt; with attribute person-group-type = curator. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1" test="count(person-group[@person-group-type='author']) = 1" role="error" id="err-elem-cit-software-2-1">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element with attribute person-group-type = author. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" test="person-group[@person-group-type = ('author', 'curator')]" role="error" id="err-elem-cit-software-2-2">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; with the attribute person-group-type set to 'author' or 'curator'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-software-2-2">The &lt;person-group&gt; in a software reference must have the attribute person-group-type set to 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1" test="count(data-title) &gt; 1" role="error" id="err-elem-cit-software-10-1">Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
       
@@ -4792,7 +4798,7 @@
         &lt;fpage&gt; elements,  <value-of select="count(lpage)"/> &lt;lpage&gt; elements, and 
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt; elements.</report>
       
-      <report test="(lpage and fpage) and (fpage[1] ge lpage[1])" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
+      <report test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
         If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
@@ -7911,6 +7917,7 @@
       <assert test="descendant::front//abstract/*" role="error" id="abstract-children-tests-xspec-assert">front//abstract/* must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type) and sec]//related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type) and sec]//related-object must be present.</assert>
+      <assert test="descendant::abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" role="error" id="clintrial-related-object-p-xspec-assert">abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']] must be present.</assert>
       <assert test="descendant::front//abstract[not(@abstract-type) and not(sec)]" role="error" id="abstract-word-count-xspec-assert">front//abstract[not(@abstract-type) and not(sec)] must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/aff" role="error" id="aff-tests-xspec-assert">article-meta/contrib-group/aff must be present.</assert>
       <assert test="descendant::article-meta/contrib-group[not(@*)]/aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]/aff must be present.</assert>

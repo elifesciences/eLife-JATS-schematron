@@ -965,17 +965,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-confproc-tests">
-    <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc">
-      <report test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
-        If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
-        Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
-        less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
+  <pattern id="article-metadata">
+    <rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
+      <report test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" role="warning" id="clintrial-related-object-13">There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
+      <assert test="descendant::abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" role="error" id="clintrial-related-object-p-xspec-assert">abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

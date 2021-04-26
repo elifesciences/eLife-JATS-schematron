@@ -2108,6 +2108,18 @@
         <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="clintrial-related-object-p">
+      <x:scenario label="clintrial-related-object-13-pass">
+        <x:context href="../tests/gen/clintrial-related-object-p/clintrial-related-object-13/pass.xml"/>
+        <x:expect-not-report id="clintrial-related-object-13" role="warning"/>
+        <x:expect-not-assert id="clintrial-related-object-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-13-fail">
+        <x:context href="../tests/gen/clintrial-related-object-p/clintrial-related-object-13/fail.xml"/>
+        <x:expect-report id="clintrial-related-object-13" role="warning"/>
+        <x:expect-not-assert id="clintrial-related-object-p-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-word-count">
       <x:scenario label="pre-abstract-word-count-restriction-pass">
         <x:context href="../tests/gen/abstract-word-count/pre-abstract-word-count-restriction/pass.xml"/>
