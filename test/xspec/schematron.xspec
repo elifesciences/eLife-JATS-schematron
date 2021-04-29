@@ -2991,16 +2991,6 @@
         <x:expect-report id="p-test-2" role="error"/>
         <x:expect-not-assert id="p-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="p-test-3-pass">
-        <x:context href="../tests/gen/p-tests/p-test-3/pass.xml"/>
-        <x:expect-not-assert id="p-test-3" role="error"/>
-        <x:expect-not-assert id="p-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="p-test-3-fail">
-        <x:context href="../tests/gen/p-tests/p-test-3/fail.xml"/>
-        <x:expect-assert id="p-test-3" role="error"/>
-        <x:expect-not-assert id="p-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="p-test-5-pass">
         <x:context href="../tests/gen/p-tests/p-test-5/pass.xml"/>
         <x:expect-not-report id="p-test-5" role="warning"/>
@@ -3030,6 +3020,18 @@
         <x:context href="../tests/gen/p-tests/p-test-7/fail.xml"/>
         <x:expect-report id="p-test-7" role="warning"/>
         <x:expect-not-assert id="p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="p-text-tests">
+      <x:scenario label="p-test-3-pass">
+        <x:context href="../tests/gen/p-text-tests/p-test-3/pass.xml"/>
+        <x:expect-not-assert id="p-test-3" role="error"/>
+        <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="p-test-3-fail">
+        <x:context href="../tests/gen/p-text-tests/p-test-3/fail.xml"/>
+        <x:expect-assert id="p-test-3" role="error"/>
+        <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="p-child-tests">

@@ -970,7 +970,7 @@
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
-      <report test="($count gt 140)" role="warning" id="pre-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" role="warning" id="pre-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

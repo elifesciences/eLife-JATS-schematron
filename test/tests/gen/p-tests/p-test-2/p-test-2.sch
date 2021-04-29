@@ -968,7 +968,6 @@
   <pattern id="content-containers">
     <rule context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
       <report test="@*" role="error" id="p-test-2">p element must not have any attributes.</report>
     </rule>
   </pattern>
