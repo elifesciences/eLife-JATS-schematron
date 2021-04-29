@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-title-length-restriction.sch"?>
 <!--Context: article-meta//article-title
-Test: report    ($count gt 140)
+Test: report    not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)
 Message: The article title contains  characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

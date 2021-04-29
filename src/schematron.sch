@@ -2678,7 +2678,6 @@
     
     <rule context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
       
       <!--<report test="not(matches(.,'^[\p{Lu}\p{N}\p{Ps}\p{S}\p{Pi}\p{Z}]')) and not(parent::list-item) and not(parent::td)"
         role="error" 
@@ -2687,10 +2686,6 @@
       <report test="@*" 
         role="error" 
         id="p-test-2">p element must not have any attributes.</report>
-      
-      <assert test="count($text-tokens) = 0" 
-        role="error" 
-        id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
       <report test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" 
         role="warning" 
@@ -2703,6 +2698,15 @@
       <report test="matches(.,'^\s?•') and not(ancestor::sub-article)" 
         role="warning" 
         id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/></report>
+    </rule>
+    
+    <rule context="p[not(inline-formula or disp-formula or code)]" id="p-text-tests">
+      <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
+      
+      <assert test="count($text-tokens) = 0" 
+        role="error" 
+        id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
+      
     </rule>
     
     <rule context="p/*" id="p-child-tests">
@@ -4629,11 +4633,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="($count gt 140)" 
+      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" 
         role="warning" 
         id="pre-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
       
-      <report test="($count gt 140)" 
+      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" 
         role="warning" 
         id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
     </rule>
