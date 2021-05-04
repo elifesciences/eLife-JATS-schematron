@@ -4718,14 +4718,6 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
-      <report test="contains(lower-case(.),'key resource table')" 
-        role="warning" 
-        id="supplementary-material-title-test-5">title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
-      
-      <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" 
-        role="warning" 
-        id="supplementary-material-title-test-6">title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
-      
       <report test="string-length(.) gt 250" 
         role="warning" 
         id="supplementary-material-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>

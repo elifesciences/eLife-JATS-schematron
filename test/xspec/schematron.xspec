@@ -6275,26 +6275,6 @@
         <x:expect-report id="supplementary-material-title-test-4" role="error"/>
         <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="supplementary-material-title-test-5-pass">
-        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-5/pass.xml"/>
-        <x:expect-not-report id="supplementary-material-title-test-5" role="warning"/>
-        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="supplementary-material-title-test-5-fail">
-        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-5/fail.xml"/>
-        <x:expect-report id="supplementary-material-title-test-5" role="warning"/>
-        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="supplementary-material-title-test-6-pass">
-        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-6/pass.xml"/>
-        <x:expect-not-report id="supplementary-material-title-test-6" role="warning"/>
-        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="supplementary-material-title-test-6-fail">
-        <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-6/fail.xml"/>
-        <x:expect-report id="supplementary-material-title-test-6" role="warning"/>
-        <x:expect-not-assert id="supplementary-material-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="supplementary-material-title-test-7-pass">
         <x:context href="../tests/gen/supplementary-material-title-tests/supplementary-material-title-test-7/pass.xml"/>
         <x:expect-not-report id="supplementary-material-title-test-7" role="warning"/>
