@@ -3398,10 +3398,6 @@
       
       <report test="matches(.,'^\s')" role="error" id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
-      <report test="contains(lower-case(.),'key resource table')" role="warning" id="supplementary-material-title-test-5">title for <value-of select="$label"/> is '<value-of select="."/>' - should 'resource' be plural, i.e. 'resources'?.</report>
-      
-      <report test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))" role="warning" id="supplementary-material-title-test-6">title for <value-of select="$label"/> is '<value-of select="."/>', which suggest the label should be in the format Supplementary file X instead.</report>
-      
       <report test="string-length(.) gt 250" role="warning" id="supplementary-material-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
       
       <report test="$sentence-count gt 1" role="warning" id="supplementary-material-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>

@@ -15984,38 +15984,6 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="contains(lower-case(.),'key resource table')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'key resource table')">
-            <xsl:attribute name="id">supplementary-material-title-test-5</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[supplementary-material-title-test-5] title for <xsl:text/>
-               <xsl:value-of select="$label"/>
-               <xsl:text/> is '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>' - should 'resource' be plural, i.e. 'resources'?.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(normalize-space(lower-case(.))='key resources table.') and not(contains($label,'upplementary'))">
-            <xsl:attribute name="id">supplementary-material-title-test-6</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[supplementary-material-title-test-6] title for <xsl:text/>
-               <xsl:value-of select="$label"/>
-               <xsl:text/> is '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>', which suggest the label should be in the format Supplementary file X instead.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
       <xsl:if test="string-length(.) gt 250">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(.) gt 250">
             <xsl:attribute name="id">supplementary-material-title-test-7</xsl:attribute>
