@@ -969,6 +969,7 @@
     <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" id="fig-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="fig-id" value="ancestor::fig[1]/@id"/>
+      <let name="fig-label" value="replace(ancestor::fig[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>

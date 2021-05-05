@@ -969,6 +969,7 @@
     <rule context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
+      <let name="table-label" value="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>

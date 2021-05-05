@@ -11823,6 +11823,7 @@
    <xsl:template match="fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" priority="1000" mode="M144">
       <xsl:variable name="label" select="label[1]"/>
       <xsl:variable name="fig-id" select="ancestor::fig[1]/@id"/>
+      <xsl:variable name="fig-label" select="replace(ancestor::fig[1]/label[1],'\.$','')"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
       <xsl:variable name="pos" select="$sibling-count - count(following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
@@ -11868,6 +11869,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$label = concat($fig-label,'—source data ',$pos,'.')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$label = concat($fig-label,'—source data ',$pos,'.')">
+               <xsl:attribute name="id">fig-data-label</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-data-label] Figure source data label (<xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:value-of select="concat($fig-label,'—source data ',$pos,'.')"/>
+                  <xsl:text/> instead?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M144"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M144"/>
@@ -11882,6 +11902,7 @@
    <xsl:template match="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" priority="1000" mode="M145">
       <xsl:variable name="label" select="label[1]"/>
       <xsl:variable name="fig-id" select="ancestor::fig[1]/@id"/>
+      <xsl:variable name="fig-label" select="replace(ancestor::fig[1]/label[1],'\.$','')"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
       <xsl:variable name="pos" select="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>
@@ -11927,6 +11948,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$label = concat($fig-label,'—source code ',$pos,'.')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$label = concat($fig-label,'—source code ',$pos,'.')">
+               <xsl:attribute name="id">fig-code-label</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-code-label] Figure source data label (<xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:value-of select="concat($fig-label,'—source code ',$pos,'.')"/>
+                  <xsl:text/> instead?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M145"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M145"/>
@@ -11941,6 +11981,7 @@
    <xsl:template match="media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" priority="1000" mode="M146">
       <xsl:variable name="label" select="label[1]"/>
       <xsl:variable name="vid-id" select="ancestor::media[1]/@id"/>
+      <xsl:variable name="vid-label" select="replace(ancestor::media[1]/label[1],'\.$','')"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::media[1]//supplementary-material[contains(label[1],' data ')])"/>
       <xsl:variable name="pos" select="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' data ')])"/>
@@ -11986,6 +12027,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$label = concat($vid-label,'—source data ',$pos,'.')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$label = concat($vid-label,'—source data ',$pos,'.')">
+               <xsl:attribute name="id">vid-data-label</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[vid-data-label] Video source data label (<xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:value-of select="concat($vid-label,'—source data ',$pos,'.')"/>
+                  <xsl:text/> instead?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M146"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M146"/>
@@ -12000,6 +12060,7 @@
    <xsl:template match="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" priority="1000" mode="M147">
       <xsl:variable name="label" select="label[1]"/>
       <xsl:variable name="vid-id" select="ancestor::media[1]/@id"/>
+      <xsl:variable name="vid-label" select="replace(ancestor::media[1]/label[1],'\.$','')"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::media[1]//supplementary-material[contains(label[1],' code ')])"/>
       <xsl:variable name="pos" select="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' code ')])"/>
@@ -12045,6 +12106,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$label = concat($vid-label,'—source code ',$pos,'.')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$label = concat($vid-label,'—source code ',$pos,'.')">
+               <xsl:attribute name="id">vid-code-label</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[vid-code-label] Video source code label (<xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:value-of select="concat($vid-label,'—source code ',$pos,'.')"/>
+                  <xsl:text/> instead?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M147"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M147"/>
@@ -12059,6 +12139,7 @@
    <xsl:template match="table-wrap//supplementary-material[contains(label[1],' data ')]" priority="1000" mode="M148">
       <xsl:variable name="label" select="label[1]"/>
       <xsl:variable name="table-id" select="ancestor::table-wrap[1]/@id"/>
+      <xsl:variable name="table-label" select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <xsl:variable name="pos" select="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
@@ -12105,6 +12186,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$label = concat($table-label,'—source data ',$pos,'.')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$label = concat($table-label,'—source data ',$pos,'.')">
+               <xsl:attribute name="id">table-data-label</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-data-label] Table source data label (<xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:value-of select="concat($table-label,'—source data ',$pos,'.')"/>
+                  <xsl:text/> instead?</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M148"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M148"/>
@@ -12119,6 +12219,7 @@
    <xsl:template match="table-wrap//supplementary-material[contains(label[1],' code ')]" priority="1000" mode="M149">
       <xsl:variable name="label" select="label[1]"/>
       <xsl:variable name="table-id" select="ancestor::table-wrap[1]/@id"/>
+      <xsl:variable name="table-label" select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
       <xsl:variable name="number" select="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <xsl:variable name="sibling-count" select="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' code ')])"/>
       <xsl:variable name="pos" select="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' code ')])"/>
@@ -12162,6 +12263,25 @@
                   <xsl:text/>' is not in this format. It should be '<xsl:text/>
                   <xsl:value-of select="concat($table-id,'scode',$pos)"/>
                   <xsl:text/>' instead.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$label = concat($table-label,'—source code ',$pos,'.')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$label = concat($table-label,'—source code ',$pos,'.')">
+               <xsl:attribute name="id">table-code-label</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-code-label] Table source code label (<xsl:text/>
+                  <xsl:value-of select="$label"/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:value-of select="concat($table-label,'—source code ',$pos,'.')"/>
+                  <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
