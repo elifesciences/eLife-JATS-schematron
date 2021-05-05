@@ -5473,8 +5473,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="not($article-type = $notice-article-types) and count(history) != 1">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = $notice-article-types) and count(history) != 1">
+      <xsl:if test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1">
             <xsl:attribute name="id">test-history-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

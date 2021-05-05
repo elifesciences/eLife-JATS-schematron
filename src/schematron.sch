@@ -1243,9 +1243,15 @@
         role="error" 
         id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <report test="not($article-type = $notice-article-types) and count(history) != 1" 
+    <report test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1" 
         role="error" 
         id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
+    
+    <!-- Add this once all history is removed from insights
+      
+      <report test="($article-type = ($notice-article-types,'article-commentary')) and count(history) != 0" 
+      role="error" 
+      id="test-history-presence-2"><value-of select="$subj-type"/> cannot have a history element in the article-meta. Currently there are <value-of select="count(history)"/></report> -->
 		  
     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence" 
         test="count(permissions) = 1" 
