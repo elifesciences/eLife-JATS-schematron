@@ -973,7 +973,7 @@
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
-      <assert test="@id=concat($table-id,'sdata',$pos)" role="error" id="table-data-id">The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'sdata',$pos)"/>' instead.</assert>
+      <assert test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

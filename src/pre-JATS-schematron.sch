@@ -1084,8 +1084,14 @@
     
     <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">[test-self-uri-pdf-2] self-uri does not conform.</report>
 		
-    <report test="not($article-type = $notice-article-types) and count(history) != 1" role="error" id="test-history-presence">[test-history-presence] There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
+    <report test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1" role="error" id="test-history-presence">[test-history-presence] There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
       </report>
+    
+    <!-- Add this once all history is removed from insights
+      
+      <report test="($article-type = ($notice-article-types,'article-commentary')) and count(history) != 0" 
+      role="error" 
+      id="test-history-presence-2"><value-of select="$subj-type"/> cannot have a history element in the article-meta. Currently there are <value-of select="count(history)"/></report> -->
 		  
     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence" test="count(permissions) = 1" role="error" id="test-permissions-presence">[test-permissions-presence] There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
       </assert>
@@ -2339,6 +2345,7 @@
     <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" id="fig-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="fig-id" value="ancestor::fig[1]/@id"/>
+      <let name="fig-label" value="replace(ancestor::fig[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count(following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
@@ -2347,12 +2354,14 @@
       
       <assert test="@id=concat($fig-id,'sdata',$pos)" role="error" id="fig-data-id">[fig-data-id] The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'sdata',$pos)"/>' instead.</assert>
       
+      <assert test="$label = concat($fig-label,'—source data ',$pos,'.')" role="error" id="fig-data-label">[fig-data-label] Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="fig-source-code-tests-pattern">
     <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" id="fig-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="fig-id" value="ancestor::fig[1]/@id"/>
+      <let name="fig-label" value="replace(ancestor::fig[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>
@@ -2361,12 +2370,15 @@
       
       <assert test="@id=concat($fig-id,'scode',$pos)" role="error" id="fig-code-id">[fig-code-id] The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'scode',$pos)"/>' instead.</assert>
       
+      <assert test="$label = concat($fig-label,'—source code ',$pos,'.')" role="error" id="fig-code-label">[fig-code-label] Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source code ',$pos,'.')"/> instead?</assert>
+      
     </rule>
   </pattern>
   <pattern id="vid-source-data-tests-pattern">
     <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" id="vid-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="vid-id" value="ancestor::media[1]/@id"/>
+      <let name="vid-label" value="replace(ancestor::media[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' data ')])"/>
@@ -2375,12 +2387,14 @@
       
       <assert test="@id=concat($vid-id,'sdata',$pos)" role="error" id="vid-data-id">[vid-data-id] The id for video level source data must be the id of its ancestor video, followed by 'sdata', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'sdata',$pos)"/>' instead.</assert>
       
+      <assert test="$label = concat($vid-label,'—source data ',$pos,'.')" role="error" id="vid-data-label">[vid-data-label] Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="vid-source-code-tests-pattern">
     <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" id="vid-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="vid-id" value="ancestor::media[1]/@id"/>
+      <let name="vid-label" value="replace(ancestor::media[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' code ')])"/>
@@ -2389,12 +2403,14 @@
       
       <assert test="@id=concat($vid-id,'scode',$pos)" role="error" id="vid-code-id">[vid-code-id] The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
       
+      <assert test="$label = concat($vid-label,'—source code ',$pos,'.')" role="error" id="vid-code-label">[vid-code-label] Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="table-source-data-tests-pattern">
     <rule context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
+      <let name="table-label" value="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
@@ -2403,12 +2419,15 @@
       
       <assert test="@id=concat($table-id,'sdata',$pos)" role="error" id="table-data-id">[table-data-id] The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'sdata',$pos)"/>' instead.</assert>
       
+      <assert test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">[table-data-label] Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
+      
     </rule>
   </pattern>
   <pattern id="table-source-code-tests-pattern">
     <rule context="table-wrap//supplementary-material[contains(label[1],' code ')]" id="table-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
+      <let name="table-label" value="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
       <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' code ')])"/>
@@ -2416,6 +2435,8 @@
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-code-test-2" test="$number = $pos" role="error" id="table-code-test-2">[table-code-test-2] '<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
       <assert test="@id=concat($table-id,'scode',$pos)" role="error" id="table-code-id">[table-code-id] The id for table level source code must be the id of its ancestor table, followed by 'scode', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'scode',$pos)"/>' instead.</assert>
+      
+      <assert test="$label = concat($table-label,'—source code ',$pos,'.')" role="error" id="table-code-label">[table-code-label] Table source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source code ',$pos,'.')"/> instead?</assert>
       
     </rule>
   </pattern>
