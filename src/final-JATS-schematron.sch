@@ -2411,7 +2411,7 @@
       
       <assert test="@id=concat($fig-id,'sdata',$pos)" role="error" id="fig-data-id">[fig-data-id] The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'sdata',$pos)"/>' instead.</assert>
       
-      <assert test="$label = concat($fig-label,'—source data ',$pos,'.')" role="error" id="fig-data-label">[fig-data-label] Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
+      <assert test="$label = concat($fig-label,'—source data ',$pos,'.')" role="error" id="fig-data-label">[fig-data-label] Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="fig-source-code-tests-pattern">
@@ -2427,7 +2427,7 @@
       
       <assert test="@id=concat($fig-id,'scode',$pos)" role="error" id="fig-code-id">[fig-code-id] The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'scode',$pos)"/>' instead.</assert>
       
-      <assert test="$label = concat($fig-label,'—source code ',$pos,'.')" role="error" id="fig-code-label">[fig-code-label] Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source code ',$pos,'.')"/> instead?</assert>
+      <assert test="$label = concat($fig-label,'—source code ',$pos,'.')" role="error" id="fig-code-label">[fig-code-label] Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source code ',$pos,'.')"/> instead?</assert>
       
     </rule>
   </pattern>
@@ -2444,7 +2444,7 @@
       
       <assert test="@id=concat($vid-id,'sdata',$pos)" role="error" id="vid-data-id">[vid-data-id] The id for video level source data must be the id of its ancestor video, followed by 'sdata', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'sdata',$pos)"/>' instead.</assert>
       
-      <assert test="$label = concat($vid-label,'—source data ',$pos,'.')" role="error" id="vid-data-label">[vid-data-label] Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
+      <assert test="$label = concat($vid-label,'—source data ',$pos,'.')" role="error" id="vid-data-label">[vid-data-label] Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="vid-source-code-tests-pattern">
@@ -2460,7 +2460,7 @@
       
       <assert test="@id=concat($vid-id,'scode',$pos)" role="error" id="vid-code-id">[vid-code-id] The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
       
-      <assert test="$label = concat($vid-label,'—source code ',$pos,'.')" role="error" id="vid-code-label">[vid-code-label] Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
+      <assert test="$label = concat($vid-label,'—source code ',$pos,'.')" role="error" id="vid-code-label">[vid-code-label] Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="table-source-data-tests-pattern">
@@ -2476,7 +2476,7 @@
       
       <assert test="@id=concat($table-id,'sdata',$pos)" role="error" id="table-data-id">[table-data-id] The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'sdata',$pos)"/>' instead.</assert>
       
-      <assert test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">[table-data-label] Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
+      <assert test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">[table-data-label] Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
       
     </rule>
   </pattern>
@@ -2493,7 +2493,7 @@
       
       <assert test="@id=concat($table-id,'scode',$pos)" role="error" id="table-code-id">[table-code-id] The id for table level source code must be the id of its ancestor table, followed by 'scode', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'scode',$pos)"/>' instead.</assert>
       
-      <assert test="$label = concat($table-label,'—source code ',$pos,'.')" role="error" id="table-code-label">[table-code-label] Table source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source code ',$pos,'.')"/> instead?</assert>
+      <assert test="$label = concat($table-label,'—source code ',$pos,'.')" role="error" id="table-code-label">[table-code-label] Table source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source code ',$pos,'.')"/> instead?</assert>
       
     </rule>
   </pattern>

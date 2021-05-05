@@ -3301,7 +3301,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$label = concat($fig-label,'—source data ',$pos,'.')" 
         role="error" 
-        id="fig-data-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
+        id="fig-data-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
     
     <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" id="fig-source-code-tests">
@@ -3322,7 +3322,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$label = concat($fig-label,'—source code ',$pos,'.')" 
         role="error" 
-        id="fig-code-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source code ',$pos,'.')"/> instead?</assert>
+        id="fig-code-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source code ',$pos,'.')"/> instead?</assert>
       
     </rule>
     
@@ -3344,7 +3344,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$label = concat($vid-label,'—source data ',$pos,'.')" 
         role="error" 
-        id="vid-data-label">Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
+        id="vid-data-label">Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
     
     <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" id="vid-source-code-tests">
@@ -3365,7 +3365,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$label = concat($vid-label,'—source code ',$pos,'.')" 
         role="error" 
-        id="vid-code-label">Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
+        id="vid-code-label">Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
     </rule>
     
     <rule context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
@@ -3387,7 +3387,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$label = concat($table-label,'—source data ',$pos,'.')" 
         role="error" 
-        id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
+        id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
       
     </rule>
     
@@ -3410,7 +3410,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$label = concat($table-label,'—source code ',$pos,'.')" 
         role="error" 
-        id="table-code-label">Table source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source code ',$pos,'.')"/> instead?</assert>
+        id="table-code-label">Table source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source code ',$pos,'.')"/> instead?</assert>
       
     </rule>
     

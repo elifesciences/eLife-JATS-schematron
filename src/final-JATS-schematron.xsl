@@ -11882,7 +11882,7 @@
                </xsl:attribute>
                <svrl:text>[fig-data-label] Figure source data label (<xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <xsl:text/>
                   <xsl:value-of select="concat($fig-label,'—source data ',$pos,'.')"/>
                   <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
@@ -11961,7 +11961,7 @@
                </xsl:attribute>
                <svrl:text>[fig-code-label] Figure source data label (<xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <xsl:text/>
                   <xsl:value-of select="concat($fig-label,'—source code ',$pos,'.')"/>
                   <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
@@ -12040,7 +12040,7 @@
                </xsl:attribute>
                <svrl:text>[vid-data-label] Video source data label (<xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <xsl:text/>
                   <xsl:value-of select="concat($vid-label,'—source data ',$pos,'.')"/>
                   <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
@@ -12119,7 +12119,7 @@
                </xsl:attribute>
                <svrl:text>[vid-code-label] Video source code label (<xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <xsl:text/>
                   <xsl:value-of select="concat($vid-label,'—source code ',$pos,'.')"/>
                   <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
@@ -12199,7 +12199,7 @@
                </xsl:attribute>
                <svrl:text>[table-data-label] Table source data label (<xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <xsl:text/>
                   <xsl:value-of select="concat($table-label,'—source data ',$pos,'.')"/>
                   <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
@@ -12279,7 +12279,7 @@
                </xsl:attribute>
                <svrl:text>[table-code-label] Table source code label (<xsl:text/>
                   <xsl:value-of select="$label"/>
-                  <xsl:text/>) is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be <xsl:text/>
+                  <xsl:text/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <xsl:text/>
                   <xsl:value-of select="concat($table-label,'—source code ',$pos,'.')"/>
                   <xsl:text/> instead?</svrl:text>
             </svrl:failed-assert>
